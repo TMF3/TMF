@@ -1,0 +1,13 @@
+name = "Teamwork";
+picture = "\x\tmf\addons\common\UI\logo_tmf_ca.paa";
+actionName = "Website";
+action = "http://teamonetactical.com/wiki/doku.php?id=tmf:start";
+description = "Addonized Mission Framework";
+logo = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
+logoOver = "\x\tmf\addons\common\UI\logo_tmf_small_glow_ca.paa";
+tooltip = "Teamwork";
+tooltipOwned = "Teamwork Owned";
+overview = "Teamwork is a mission making framework. It focuses on harnessing the full power of the 3D editor. Our goal is to make mission making is more accessible and easier.";
+author = "TMF Team";
+overviewPicture = "\x\tmf\addons\common\UI\logo_tmf_ca.paa";
+overviewText = "Teamwork";

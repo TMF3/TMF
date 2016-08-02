@@ -1,0 +1,84 @@
+tmf_version[] = {1,0,1}; // DO NOT CHANGE THIS. This is the core version of the template that your mission was started with.
+enableDebugConsole = 1; // Allows the logged in admin to use the debug console from the escape page.
+
+// Use a randomized loading image from TMF. Set your own loading image with e.g. overviewPicture = "image.jpg";
+overviewPicture = __EVAL(selectRandom ['\x\tmf\addons\common\ui\loadscreens\1.jpg','\x\tmf\addons\common\ui\loadscreens\2.jpg','\x\tmf\addons\common\ui\loadscreens\3.jpg','\x\tmf\addons\common\ui\loadscreens\4.jpg','\x\tmf\addons\common\ui\loadscreens\5.jpg','\x\tmf\addons\common\ui\loadscreens\6.jpg','\x\tmf\addons\common\ui\loadscreens\7.jpg','\x\tmf\addons\common\ui\loadscreens\8.jpg','\x\tmf\addons\common\ui\loadscreens\9.jpg','\x\tmf\addons\common\ui\loadscreens\10.jpg']);
+
+class CfgDebriefing
+{
+	class Success
+	{
+		title = "Mission Success";
+		subtitle = "";
+		description = "";
+		// pictureBackground = "";
+		// picture = "";
+		// pictureColor[] = {0.0,0.3,0.6,1};
+	};
+	class Failed
+	{
+		title = "Mission Failed";
+		subtitle = "";
+		description = "";
+		// pictureBackground = "";
+		// picture = "";
+		// pictureColor[] = {0.0,0.3,0.6,1};
+	};
+	class CustomEnding1
+	{
+		title = "Custom Ending #1";
+		subtitle = "";
+		description = "*** Explanation for the debriefing page ***";
+		// pictureBackground = "";
+		// picture = "";
+		// pictureColor[] = {0.0,0.3,0.6,1};
+	};
+
+};
+
+// DO NOT REMOVE. Include the macros for custom loadouts.
+#include "loadouts\_macros.hpp"
+
+class CfgLoadouts
+{
+	class US_ARMY_OCP
+	{
+		displayName = "US Army (OCP)";
+		#include "loadouts\us_army_ocp.hpp"
+	};
+	class RUS_MSV_FLORA
+	{
+		displayName = "RU Ground Forces (Flora)";
+		#include "loadouts\ru_msv_flora.hpp"
+	};
+	class TAK_ARMY
+	{
+		displayName = "Takistani Army";
+		#include "loadouts\taki_army.hpp"
+	};
+};
+
+class ACE_settings {
+	class ace_finger_enabled {
+		value = 1;
+		typeName = "BOOL";
+		force = 1;
+	};
+	class ace_finger_maxRange {
+		value = 5;
+		typeName = "SCALAR";
+		force = 1;
+	};
+	class ace_overheating_unJamOnreload { // Clear jam by reloading instead of non-obvious key combination
+		typeName = "BOOL";
+		value = 1;
+	};
+	class ace_overheating_unJamFailChance { // Unjams shouldn't fail
+		typeName = "SCALAR";
+		value = 0;
+	};
+	class ace_map_DefaultChannel {
+		typeName = "NUMBER";
+		value = 1; // Side chat
+	};
+};
