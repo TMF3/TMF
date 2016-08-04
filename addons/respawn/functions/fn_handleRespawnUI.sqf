@@ -99,7 +99,7 @@ switch _input do {
         _control lbSetValue [_idx,3];
         _control lbSetCurSel 0;
         GVAR(selectedSide) = 1;
-        _control ctrlAddEventHandler ["LBSelChanged",{GVAR(selectedSide) = (_this select 0) lbData (_this select 1);}];
+        _control ctrlAddEventHandler ["LBSelChanged",{GVAR(selectedSide) = (_this select 0) lbValue (_this select 1);}];
         
 		//Default Rank listbox
 		_control = (RESPAWN_DISPLAY displayCtrl 26897);
