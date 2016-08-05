@@ -233,7 +233,7 @@ private _arr = [] + GVAR(killedUnits);
 reverse _arr;
 _index = 0;
 {
-    _x params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName"];
+    _x params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName","_weapon"];
     _time = time - _time;
     if(_time <= 12 && _index < 6) then {
         _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _index;
@@ -243,7 +243,7 @@ _index = 0;
         if(_kName == "") then {
             _kName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _killer >> "displayName")
         };
-        _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (currentWeapon _killer) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
+        _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (_weapon) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
         _index = _index + 1;
     };
 } foreach _arr;

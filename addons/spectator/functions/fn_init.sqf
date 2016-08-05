@@ -184,14 +184,14 @@ if !([] call tmf_common_fnc_isAdmin) then {
 
 addMissionEventHandler ["EntityKilled",{
     params ["_killed","_killer"];
-    if(!(side _killed in [blufor,opfor,independent,civilian])) exitwith {};
+    if(!(side _killed in [blufor,opfor,independent,civilian]) || !(_killed isKindOf "CAManBase" || _killed isKindOf "AllVehicles") ) exitwith {};
 
     _kName = "";
     _dName = "";
     if(isPlayer _killed) then {_dName = name (_killed);};
     if(isPlayer _killer) then {_kName = name (_killer);};
 
-    GVAR(killedUnits) pushback [_killed,time,_killer,side group _killed,side group _killer,_dName,_kName];
+    GVAR(killedUnits) pushback [_killed,time,_killer,side group _killed,side group _killer,_dName,_kName,currentWeapon _killer];
 }];
 
 
