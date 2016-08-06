@@ -56,7 +56,7 @@ if (_radioChannelIndexSpectator != -1) then {
 };
 
 //addSwitchableUnit localRespawnedUnit; This will create awkard mission ends.
-//setPlayable _respawnedUnit;
+setPlayable tmf_localRespawnedUnit; // Allow unit to referenced later with player functions (name/getPlayerUID) (Verify this works)
 selectPlayer tmf_localRespawnedUnit;
 //localRespawnedUnit setName _name;
 
