@@ -6,6 +6,8 @@ class cfgFunctions {
             class waveInit;
             class spawnWave;
             class garrison;
+            class hunt;
+            class huntInit;
             class rearmInit;
             class rearm;
 		};

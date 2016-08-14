@@ -66,4 +66,5 @@ class CfgVehicles
 	};
     #include "ComponentModules.hpp"
     #include "RearmModule.hpp"
+    #include "modules\huntModule.hpp"
 };
