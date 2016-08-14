@@ -62,7 +62,6 @@ if (_side isEqualTo -1) then {
 } else {
     // OLD ASSIGN GEAR SYSTEM
     _side = toLower([_side] call CFUNC(sideType));
-    _unit setVariable [QGVAR(side),_side,true];
     _cfg = missionConfigFile >> "cfgLoadouts" >> _side >> _faction;
 };
 
