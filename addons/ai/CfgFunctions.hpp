@@ -10,6 +10,8 @@ class cfgFunctions {
             class huntInit;
             class rearmInit;
             class rearm;
+            class addWaveHandler;
+            class removeWaveHandler;
 		};
 	};
 };
