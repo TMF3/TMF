@@ -13,14 +13,12 @@ waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",tru
 
 
 // Disable effects
-if(!isnil "BIS_fnc_feedback_allowPP") then
-{
+if(!isnil "BIS_fnc_feedback_allowPP") then {
   // disable effects death effects
   BIS_fnc_feedback_allowPP = false;
 };
 
-if(_isJip) then
-{
+if(_isJip) then {
 	[] spawn {
 		["tmf_spectator",false] call BIS_fnc_blackOut;
 		uiSleep 3;
@@ -29,8 +27,7 @@ if(_isJip) then
 };
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then
-{
+if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then {
   _newGrp = createGroup sideLogic;
   _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
   _newUnit allowDamage false;
