@@ -1,21 +1,12 @@
 
 
-class CfgVehicles
-{
+class CfgVehicles {
 	class Logic;
-	class Module_F: Logic
-	{
-		class ArgumentsBaseUnits
-		{
-			class Units;
-		};
-		class ModuleDescription
-		{
-			class AnyBrain;
-		};
+	class Module_F: Logic {
+		class ArgumentsBaseUnits { class Units; };
+		class ModuleDescription { class AnyBrain; };
 	};
-	class GVAR(module) : Module_F
-	{
+	class GVAR(module) : Module_F {
 		// Standard object definitions
 		scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
 		displayName = "Spectator: Show Objective"; // Name displayed in the menu
@@ -38,25 +29,21 @@ class CfgVehicles
 
 
 		// Module arguments
-		class Arguments: ArgumentsBaseUnits
-		{
+		class Arguments: ArgumentsBaseUnits {
 			// Module specific arguments
-			class Icon
-				{
+			class Icon {
 				displayName = "Icon (.paa)"; // Argument label
 				description = "Path to ICON"; // Tooltip description
 				typeName = "STRING"; // Value type, can be "NUMBER", "STRING" or "BOOL"
 				defaultValue = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";
 			};
-			class Text
-				{
+			class Text {
 				displayName = "Text"; // Argument label
 				description = ""; // Tooltip description
 				typeName = "STRING"; // Value type, can be "NUMBER", "STRING" or "BOOL"
 				defaultValue = "Objective Alpha";
 			};
-			class Color
-				{
+			class Color {
 				displayName = "Color"; // Argument label
 				description = "[Red,Green,Blue,Alpha]"; // Tooltip description
 				typeName = "STRING"; // Value type, can be "NUMBER", "STRING" or "BOOL"
@@ -65,12 +52,10 @@ class CfgVehicles
 		};
 
 		// Module description. Must inherit from base class, otherwise pre-defined entities won't be available
-		class ModuleDescription: ModuleDescription
-		{
+		class ModuleDescription: ModuleDescription {
 			description = "Short module description"; // Short description, will be formatted as structured text
 			sync[] = {"Men"}; // Array of synced entities (can contain base classes)
-			class unit
-			{
+			class unit {
 				description = "Any unit";
 				displayName = "Any unit"; // Custom name
 				icon = "iconMan"; // Custom icon (can be file path or CfgVehicleIcons entry)
