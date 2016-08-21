@@ -1,12 +1,11 @@
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic"];
-_lastWave = [];
+_spawnedGroups = [];
 _data = _logic getVariable [QGVAR(waveData), []];
 {
     _x params ["_side","_units","_vehicles","_waypoints"];
 
     private _grp = createGroup _side;
-
 
     {
         _x params ["_type","_pos","_gear"];
@@ -49,18 +48,23 @@ _data = _logic getVariable [QGVAR(waveData), []];
     };
 
     _grp setCurrentWaypoint [_grp,_lastIndex];
-    _lastWave pushBack _grp;
+    _spawnedGroups pushBack _grp;
 } foreach _data;
 
-
-_logic setVariable ["Waves", (_logic getVariable ["Waves",1])-1];
-
+_wave = _logic getVariable ["Waves",1];
+_logic setVariable ["Waves", (_wave-1)];
+_handlers = _logic getVariable ["Handlers",[]];
+{
+    if(_x isEqualType {}) then {
+        [_wave,_spawnedGroups] call _x;
+    };
+} foreach _handlers;
 // Check if there is another wave
 if(_logic getVariable ["Waves",1] > 0) then {
 
     // Check if we need to wait for them to die
     if(_logic getVariable ["WhenDead",false]) then {
-        [{ {{alive _x} count (units _x) > 0 } count (_this select 1) <= 0 },FUNC(spawnWave), [_logic,_lastWave]] call CBA_fnc_waitUntilAndExecute;
+        [{ {{alive _x} count (units _x) > 0 } count (_this select 1) <= 0 },FUNC(spawnWave), [_logic,_spawnedGroups]] call CBA_fnc_waitUntilAndExecute;
     }
     else {  // Otherwise spawn the wave after sleeping for some time
         [FUNC(spawnWave), [_logic], _logic getvariable ["Time",10]] call CBA_fnc_waitAndExecute;
