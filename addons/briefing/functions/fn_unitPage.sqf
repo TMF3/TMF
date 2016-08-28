@@ -51,21 +51,23 @@ private _fnc_wepMags = {
 };
 
 // ==========================
-
+private _cfgMagazines = configFile >> "CfgMagazines";
+private _cfgWeapons = configFile >> "CfgWeapons";
 {
     private _text = "<br/>";
     private _visText = "";
     private _unit = _x;
     // Filter out field glasses
-    private _weapons = (weapons _unit) select {(toLower (getText(configFile >> "CfgWeapons" >> _x >> "simulation"))) != "binocular"};
+    private _weapons = (weapons _unit) select {(toLower (getText(_cfgWeapons >> _x >> "simulation"))) != "binocular"};
     // Get a nested array containing all attached weapon items
     private _weaponItems = weaponsItems _unit;
     // Get a nested array containing all unique magazines and their count
     private _mags = (primaryWeaponMagazine _unit + secondaryWeaponMagazine _unit + handgunMagazine _unit + magazines _unit) call BIS_fnc_consolidateArray;
     // Get a nested array containing all non-equipped items and their count
-    private _items = (items _unit) call BIS_fnc_consolidateArray;
-    // Remove ACRE radios (show in ACRE2 page instead)
+    private _items = (items _unit) - _weapons;
+    // Remove ACRE radios (show in ACRE2 page instead) and deleted indexes;
     _items = _items - ["ItemRadio","ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_PRC77","ACRE_PRC117F"];
+    _items = _items call BIS_fnc_consolidateArray;
 
     private _visText = "";
     private _magVisText = "";
@@ -77,12 +79,16 @@ private _fnc_wepMags = {
     // Do this before _mags is deleted from
 
     {
-        private _icon = getText(configFile >> "CfgMagazines" >> (_x select 0) >> "picture");
-        if (_icon find ".paa" == -1) then { _icon = _icon + ".paa"};
-        _magVisText = _magVisText + format["<img image='%1' height=48 />",_icon];
-        if ((_x select 1) > 1) then {
-            _magVisText = _magVisText + format[" x%1",(_x select 1)];
-        };
+        _x params ["_magClassName","_magQuantity"];
+        // Mass check isn't needed at least for now.
+        //if (getNumber (_cfgMagazines >> _magClassName >> "mass") > 0) then {
+            private _icon = getText(_cfgMagazines >> _magClassName >> "picture");
+            if (_icon find ".paa" == -1) then { _icon = _icon + ".paa"};
+            _magVisText = _magVisText + format["<img image='%1' height=48 />",_icon];
+            if ((_x select 1) > 1) then {
+                _magVisText = _magVisText + format[" x%1",_magQuantity];
+            };
+        //};
     } forEach _mags;
 
     // Weapons
@@ -90,7 +96,7 @@ private _fnc_wepMags = {
         _weaponText = _weaponText + "<font size='18'>WEAPONS:</font>";
         {
             private _weapon = _x;
-            private _cfg = configFile >> "CfgWeapons" >> _weapon;
+            private _cfg = _cfgWeapons >> _weapon;
             _weaponText = _weaponText + format["<br/>%1",getText( _cfg >> "displayname")];
             // Add magazines for the weapon
             _weaponText = _weaponText + ([_weapon] call _fnc_wepMags);
@@ -117,9 +123,9 @@ private _fnc_wepMags = {
             _attachments deleteAt 0; // Remove the first element as it points to the weapon itself
             {
                 if (!(_x isEqualType []) && {_x != ""}) then {
-                    _icon = getText(configFile >> "CfgWeapons" >> _x >> "picture");
+                    _icon = getText(_cfgWeapons >> _x >> "picture");
                     if (_icon find ".paa" == -1) then { _icon = _icon + ".paa"};
-                    _weaponText = _weaponText + format["<br/>  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%1",getText(configFile >> "CfgWeapons" >> _x >> "displayName")];
+                    _weaponText = _weaponText + format["<br/>  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%1",getText(_cfgWeapons >> _x >> "displayName")];
                     _visText = _visText + format["<img image='%1' height=48 />",_icon];
                 };
             } forEach _attachments;
@@ -132,7 +138,7 @@ private _fnc_wepMags = {
     if (count _mags > 0) then {
         _otherText = _otherText + "<br/><font size='18'>OTHER:</font><br/>";
         {
-            _otherText = _otherText + format["%1 [%2]<br/>",getText(configFile >> "CfgMagazines" >> (_x select 0) >> "displayName"),_x select 1];
+            _otherText = _otherText + format["%1 [%2]<br/>",getText(_cfgMagazines >> (_x select 0) >> "displayName"),_x select 1];
         } forEach _mags;
     };
     _visText = _visText + "<br/>" + _magVisText + "<br/>";
@@ -147,16 +153,16 @@ private _fnc_wepMags = {
     if (count _items > 0) then {
         _itemText = _itemText + "<br/><font size='18'>ITEMS:</font><br/>";
         {
-            _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_unChecked_ca.paa' height='16'/>%1 [%2]<br/>",getText (configFile >> "CfgWeapons" >> _x select 0 >> "displayName"),_x select 1];
-            _visText = _visText + "<img image='" + getText(configFile >> "CfgWeapons" >> _x select 0  >> "picture") + "' height=48 />";
+            _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_unChecked_ca.paa' height='16'/>%1 [%2]<br/>",getText (_cfgWeapons >> _x select 0 >> "displayName"),_x select 1];
+            _visText = _visText + "<img image='" + getText(_cfgWeapons >> _x select 0  >> "picture") + "' height=48 />";
             if ((_x select 1) > 1) then {
                 _visText = _visText + format[" x%1",(_x select 1)];
             };
         } forEach _items;
 
         {
-            _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_checked_ca.paa' height='16'/>%1<br/>",getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
-            _visText = _visText + format["<img image='%1' height=48 />",getText(configFile >> "CfgWeapons" >> _x >> "picture")];
+            _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_checked_ca.paa' height='16'/>%1<br/>",getText (_cfgWeapons >> _x >> "displayName")];
+            _visText = _visText + format["<img image='%1' height=48 />",getText(_cfgWeapons >> _x >> "picture")];
         } forEach assignedItems _x;
 
         _itemText = _itemText + "<br/><img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_checked_ca.paa' height='16'/>Indicates an equipped item.";
