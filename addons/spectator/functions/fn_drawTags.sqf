@@ -2,27 +2,29 @@
 
 // enable hud and grab the user settings variables
 cameraEffectEnableHUD true;
-_campos = getPosVisual GVAR(camera);
-_grpTagSize = 1 * GVAR(grpTagScale);
-_unitTagSize = 1 * GVAR(unitTagScale);
+private _campos = getPosVisual GVAR(camera);
+private _grpTagSize = 1 * GVAR(grpTagScale);
+private _unitTagSize = 1 * GVAR(unitTagScale);
+private _renderGroups = _grpTagSize > 0;
 
 {
 
   // grab the group infomation cache
-  _grpCache = _x getVariable [QGVAR(grpCache),[0,[],[1,1,1,1],false]];
+  private _grpCache = _x getVariable [QGVAR(grpCache),[0,[0,0,0],[1,1,1,1],true]];
   _grpCache params ["_grpTime","_avgpos","_color","_isAI"];
 
 
   // default fontsize
-  _fontSize = 0.04;
+  private _fontSize = 0.04;
 
   // If we don't have a average pos for the group, or the time since the last the update as expired, generate a new one
   if(count _avgpos <= 0 || time > _grpTime) then
   {
       _grpCache = ([_x] call FUNC(updateGroupCache));
+      _avgpos = _grpCache select 1; // update pos ASAP
   };
   // reset the cache
-  _grpCache params ["_grpTime","_avgpos","_color","_isAI","_isSeen"];
+  
 
   // check if the average pos is on the screen
   private _render = [_avgpos] call FUNC(onScreen);
@@ -32,20 +34,19 @@ _unitTagSize = 1 * GVAR(unitTagScale);
   // Group tags
   ////////////////////////////////////////////////////////
   // Only draw the icon if the grp tags are "enabled"
-  if(_render && !_isAI && _grpTagSize > 0) then {
+  if(_render && _renderGroups && !_isAI) then { //
     if(_campos distance2d _avgpos > 400) then { _fontSize = 0;};
 
     // get marker data from the teamwork groupmarker system if there is some.
-    _twGrpMkr = [_x] call EFUNC(orbat,getGroupMarkerData);
+    private _twGrpMkr = [_x] call EFUNC(orbat,getGroupMarkerData);
 
     // if the data exists, read it.
     if(count _twGrpMkr == 3) then {
       _twGrpMkr params ["_grpTexture","_gname","_grpTextureSize"];
-      drawIcon3D [_grpTexture, [1,1,1,1],_avgpos,GVAR(grpTagScale),GVAR(grpTagScale), 0,"", 0,_fontSize,"PuristaSemibold" ];
-      drawIcon3D ["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,1],_avgpos,GVAR(grpTagScale),GVAR(grpTagScale), 0,_gname, 2,_fontSize,"PuristaSemibold" ];
-      if(_grpTextureSize != "") then { drawIcon3D [_grpTextureSize, [1,1,1,1],_avgpos, 1, 1, 0,"", 0,_fontSize,"PuristaSemibold" ];};
-    }
-    else {
+      //drawIcon3D [_grpTexture, [1,1,1,1],_avgpos,_grpTagSize,_grpTagSize, 0,"", 0,_fontSize,"PuristaSemibold" ];
+      drawIcon3D [_grpTexture, [1,1,1,1],_avgpos,_grpTagSize,_grpTagSize, 0,_gname, 2,_fontSize,"PuristaSemibold" ];
+      //if(_grpTextureSize != "") then { drawIcon3D [_grpTextureSize, [1,1,1,1],_avgpos, 1, 1, 0,"", 0,_fontSize,"PuristaSemibold" ];};
+    } else {
       drawIcon3D ["\A3\ui_f\data\map\markers\nato\b_unknown.paa", _color,_avgpos, _grpTagSize, _grpTagSize, 0,"", 2,_fontSize,"PuristaSemibold" ];
       drawIcon3D ["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,1],_avgpos, _grpTagSize, _grpTagSize, 0,groupID _x, 2,_fontSize,"PuristaSemibold" ];
     };
@@ -55,10 +56,10 @@ _unitTagSize = 1 * GVAR(unitTagScale);
   // Unit / vehicle tags
   ////////////////////////////////////////////////////////
 
-  _renderedVehicles = [];
+  private _renderedVehicles = [];
   {
-    _veh = vehicle _x;
-    _isVeh = false;
+    private _veh = vehicle _x;
+    private _isVeh = false;
     _render = true;
 
     // if vehicles, set the appropriate variables
@@ -69,7 +70,7 @@ _unitTagSize = 1 * GVAR(unitTagScale);
     };
 
 
-    _pos = (getPosATLVisual _x);
+    private _pos = (getPosATLVisual _x);
     if(alive _x && {[_pos] call FUNC(onScreen)} && {_render} && {_campos distance2d _x <= 500}) then {
       if(surfaceIsWater _pos) then {_pos = getPosASLVisual _x;};
       _pos = _pos vectorAdd [0,0,3.1];
@@ -91,16 +92,16 @@ _unitTagSize = 1 * GVAR(unitTagScale);
       if(!isPlayer _x) then {_name = ""};
 
       // used to modified the output of the tag text
-      _format = _x getVariable [QGVAR(nameLabel),0];
+      private _format = _x getVariable [QGVAR(nameLabel),0];
       if(!(_format isEqualType 0)) then {
         _name = format[_format,_name];
       };
 
       // make the tag white if the target is shooting
-      _unitColor = _color;
-      if(vehicle _x getVariable [QGVAR(fired), false]) then {
+      private _unitColor = _color;
+      if(_veh getVariable [QGVAR(fired), false]) then {
           _unitColor = [0.8,0.8,0.8,0.7];
-          vehicle _x setVariable [QGVAR(fired), false];
+          _veh setVariable [QGVAR(fired), false];
       };
 
       // draw icon
@@ -135,7 +136,7 @@ _unitTagSize = 1 * GVAR(unitTagScale);
     // draw text
     if(_text != "") then { drawIcon3D ["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,_color select 3],_pos, 1, 1, 0,_text, 2,_fontSize,"PuristaSemibold" ]; };
   };
-} foreach GVAR(objectives);
+} forEach GVAR(objectives);
 
 // emit event
 [QGVAR(draw3D), [_campos]] call EFUNC(event,emit);
@@ -159,7 +160,7 @@ _unitTagSize = 1 * GVAR(unitTagScale);
         }
         else { GVAR(killedUnits) set [_forEachIndex,0]; };
     };
-} foreach GVAR(killedUnits);
+} forEach GVAR(killedUnits);
 
 GVAR(killedUnits) = GVAR(killedUnits)  - [0];
 
