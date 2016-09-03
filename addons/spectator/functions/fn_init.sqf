@@ -6,10 +6,10 @@ params ["_unit","_oldUnit",["_forced",false,[false]]];
 if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {createDialog QGVAR(dialog);};
 
 
-_isJip = didJIP;
+private _isJip = didJIP;
 
 // disable this to instantly switch to the spectator script.
-waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",true] || isNull (_oldUnit) || _isJip || _forced};
+waitUntil {missionNamespace getVariable ["BIS_fnc_feedback_allowDeathScreen",true] || isNull (_oldUnit) || _isJip || _forced};
 
 
 // Disable effects
@@ -86,7 +86,7 @@ GVAR(unitTagScale) = profileNamespace getVariable [QGVAR(unitTagScale),1.0];
 GVAR(camera) cameraEffect ["internal","back"];
 
 // Set the location of the track point
-_pos = getPosVisual GVAR(target);
+private _pos = getPosVisual GVAR(target);
 _pos set [2,(_pos select 2)+1.3];
 
 
@@ -192,8 +192,8 @@ addMissionEventHandler ["EntityKilled",{
     params ["_killed","_killer"];
     if(!(side _killed in [blufor,opfor,independent,civilian]) || !(_killed isKindOf "CAManBase" || _killed isKindOf "AllVehicles") ) exitwith {};
 
-    _kName = "";
-    _dName = "";
+    private _kName = "";
+    private _dName = "";
     if(isPlayer _killed) then {_dName = name (_killed);};
     if(isPlayer _killer) then {_kName = name (_killer);};
 

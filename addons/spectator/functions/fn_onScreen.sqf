@@ -1,11 +1,10 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_pos"];
-private _render = (worldToScreen _pos);
-if(count _render > 0 && ((getPosVisual GVAR(camera)) distance _avgpos) <= ((getObjectViewDistance) select 0)) then {
-    _render = _render select 0;
-    _render = _render > (0 * safezoneW + safezoneX) || _render <= (1 * safezoneW + safezoneX);
-} // render maybe
-else {
-    _render = false;
-}; // dont render
+private _render = false;
+
+private _screenPos = worldToScreen _pos;
+if(count _screenPos > 0 && {((getPosVisual GVAR(camera)) distance _pos) <= ((getObjectViewDistance) select 0)}) then {
+    _screenPos params ["_x","_y"];
+    _render = _x > (0 * safeZoneW + safeZoneX) && {_x <= (1 * safeZoneW + safeZoneX)} && {_y > (0 * safeZoneH + safeZoneY)} && {_y <= (1 * safeZoneH + safeZoneY)};
+}; // render maybe
 _render

@@ -34,7 +34,7 @@ private _renderGroups = _grpTagSize > 0;
   // Group tags
   ////////////////////////////////////////////////////////
   // Only draw the icon if the grp tags are "enabled"
-  if(_render && _renderGroups && !_isAI) then { //
+  if(_render && {_renderGroups && !_isAI}) then { //
     if(_campos distance2d _avgpos > 400) then { _fontSize = 0;};
 
     // get marker data from the teamwork groupmarker system if there is some.
@@ -151,7 +151,7 @@ private _renderGroups = _grpTagSize > 0;
 
         _time = time - _time;
 
-        _pos = (getPosATLVisual _unit);
+        private _pos = (getPosATLVisual _unit);
         if(surfaceIsWater _pos) then {_pos = getPosASLVisual _unit;};
         _pos set [2,(_pos select 2)+1];
 
@@ -176,7 +176,7 @@ if(GVAR(tracers)) then {
             private _missile = _object isKindOf "RocketCore" || _object isKindOf "MissileCore";
             private _grenade = !_missile && {_object isKindOf "Grenade"};
 
-            _pos = (getPosATLVisual _object);
+            private _pos = (getPosATLVisual _object);
             if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
 
             // missile
@@ -198,7 +198,7 @@ if(GVAR(tracers)) then {
 
             // grenade rendering
             if(_grenade && {_campos distance2d _object <= 300}) then {
-                _icon = "\x\tmf\addons\spectator\images\grenade.paa";
+                private _icon = "\x\tmf\addons\spectator\images\grenade.paa";
                 if(_object isKindOf "SmokeShell") then {_icon = "\x\tmf\addons\spectator\images\smokegrenade.paa"};
 
                 // draw icon
