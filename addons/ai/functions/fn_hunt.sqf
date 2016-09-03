@@ -8,7 +8,12 @@ private _hunters = []; // allUnits select {side _x == east}
 private _hunterVal = _logic getVariable ["Hunters", -1];
 if (_hunterVal == -1) then {
     _hunters = synchronizedObjects _logic;
-    
+    {
+        private _vehicle = vehicle _x;
+        {
+            _hunters pushBackUnique _x;
+        } forEach (crew _vehicle);
+    } forEach _hunters;
 } else {
     private _side = switch (_hunterVal) do {
         case 0: {east};
