@@ -4,7 +4,7 @@ class GVAR(area) : Module_F
     displayName = "TMF Area";
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
-    function = "";
+    function = QFUNC(emptyFunction);
     // 0 for server only execution, 1 for global execution, 2 for persistent global execution
     isGlobal = 0;
     isTriggerActivated = 1;

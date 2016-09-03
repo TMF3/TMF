@@ -33,14 +33,20 @@ if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then
 {
   _newGrp = createGroup sideLogic;
   _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
-  _newUnit allowDamage false;
-  _newUnit hideObjectGlobal true;
-  _newUnit enableSimulationGlobal false;
-  _newUnit setpos [0,0,5];
-  selectPlayer _newUnit;
-  waituntil{player isEqualTo _newUnit};
-  if(typeof _unit == "seagull") then { deleteVehicle _unit; };
-  GVAR(unit) = _newUnit;
+  if (!isNull _newUnit) then {
+      _newUnit allowDamage false;
+      _newUnit hideObjectGlobal true;
+      _newUnit enableSimulationGlobal false;
+      _newUnit setPos [0,0,5];
+
+      selectPlayer _newUnit;
+      waitUntil{player isEqualTo _newUnit};
+      if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
+      GVAR(unit) = _newUnit;
+  } else {
+      if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };
+      GVAR(unit) = _oldUnit;
+  };
 };
 
 // If oldunit is null set a new starting target

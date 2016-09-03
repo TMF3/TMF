@@ -12,6 +12,7 @@ class cfgFunctions {
             class rearm;
             class addWaveHandler;
             class removeWaveHandler;
+            class emptyFunction;
 		};
 	};
 };

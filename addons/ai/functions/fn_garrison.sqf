@@ -33,7 +33,7 @@ _debug = _logic getVariable ["Debug",false];
 _areas = (synchronizedObjects _logic) select {side _x == sideLogic && _x isKindOf QGVAR(area)};
 _units = _logic getVariable [QGVAR(units),[]];
 _mainGroup = createGroup ((_units select 0) select 0);
-_holdPos = _logic getVariable ["holdPos", false];
+_holdPos = _logic getVariable ["hold", false];
 if(count _areas > 0) then {
     {
         _areaLogic = _x;
@@ -54,6 +54,7 @@ if(count _areas > 0) then {
 
                 if(_holdPos) then {
                     _unit disableAI "PATH";
+                    _unit setUnitPos "UP";
                 };
 
                 if(_debug) then {
