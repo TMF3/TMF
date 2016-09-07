@@ -25,8 +25,10 @@ if (getMissionConfigValue ['TMF_AcreBabelEnabled',false]) then {
 /*if (getMissionConfigValue ['TMF_AcreTerrainLoss',1] != 1) then {
     [(getMissionConfigValue ['TMF_AcreTerrainLoss',1])] call acre_api_fnc_setLossModelScale;
 };*/
+
 // OVERRIDE 1TAC
-[0] call acre_api_fnc_setLossModelScale;
+[0.5] call acre_api_fnc_setLossModelScale;
+[true] call acre_api_fnc_ignoreAntennaDirection;
 
 if (getMissionConfigValue ['TMF_AcreFullDuplex',false]) then {
     [true] call acre_api_fnc_setFullDuplex;

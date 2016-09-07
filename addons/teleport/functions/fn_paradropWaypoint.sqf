@@ -4,7 +4,7 @@ _units = units _group;
 _flyingVehicles = _units select {vehicle _x isKindOf "Air" && effectiveCommander (vehicle _x) == _x};
 _flyingVehicles = _flyingVehicles apply {vehicle _x};
 _flyingVehicles = _flyingVehicles arrayIntersect _flyingVehicles;
-systemChat format["%1",count _flyingVehicles];
+
 {
   _x spawn {
     _vehicle = _this;
