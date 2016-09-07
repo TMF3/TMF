@@ -30,6 +30,7 @@ class cfgFunctions {
             class checkVersionArray;
             class checkTMFVersion;
             class arrayToStringArray;
+            class randPosArea;
         };
     };
 };

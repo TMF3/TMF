@@ -13,6 +13,8 @@ class cfgFunctions {
             class addWaveHandler;
             class removeWaveHandler;
             class emptyFunction;
+            class arty;
+            class doArty;
 		};
 	};
 };
