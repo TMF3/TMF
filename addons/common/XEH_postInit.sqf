@@ -6,6 +6,7 @@ if (isTMF) then {
     enableSaving [false, false]; // Disable mission saving
     enableSentences false; // Mute AI reports?
 
+    STHud_NoSquadBarMode = true;
     if (hasInterface) then {
         [{
             if (time == 0) exitWith {};
@@ -14,7 +15,7 @@ if (isTMF) then {
             private _showHud = shownHUD;
             _showHud set [6,false];
             showHUD _showHud;
-
+            
 
             // Turn on Weapon Safety.
             if (currentWeapon player != "" && {!isNil "ACE_safemode_fnc_lockSafety"} && {missionNamespace getVariable [QGVAR(weaponSafety),true]}) then {
