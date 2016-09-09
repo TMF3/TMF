@@ -2,7 +2,7 @@
 class GVAR(artillery) : Module_F
 {
     scope = 2;
-    displayName = "artillery";
+    displayName = "Artillery";
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
     function = QFUNC(arty);
@@ -16,50 +16,52 @@ class GVAR(artillery) : Module_F
         {
             displayName = "Debug mode";
             tooltip = "Shows units";
-            property = "debug";
+            property = "Debug";
             control = "Checkbox";
             defaultValue = false;
             expression = "_this setVariable ['%s',_value];";
+            typeName = "BOOL";
         };
         class TimeBetweenShots
         {
             displayName = "Time between shots";
             tooltip = "The time between each series of firing";
             control = "Edit";
-            validate = "number";
-            property = "TimeBetweenShots";
+            property = "TimeBetweenShots"
             defaultValue = 5;
-            typeName = "NUMBER"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
+            expression = "_this setVariable ['%s',_value];";
+            typeName = "NUMBER";
         };
         class Salvos
         {
             displayName = "Total salvos";
             tooltip = "The amount of times the units will shoot";
             control = "Edit";
-            validate = "number";
             property = "Salvos";
             defaultValue = 5;
-            typeName = "NUMBER"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
+            expression = "_this setVariable ['%s',_value];";
+            typeName = "NUMBER";
         };
         class RoundsPerSalvo
         {
             displayName = "Rounds per salvo";
             tooltip = "";
             control = "Edit";
-            validate = "number";
             defaultValue = 1;
             property = "RoundsPerSalvo";
-            typeName = "NUMBER"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
+            expression = "_this setVariable ['%s',_value];";
+            typeName = "NUMBER";
         };
-        class Magazine
+        class Round
         {
             displayName = "Magazine";
             tooltip = "If empty will use the loaded ammo.";
             control = "Edit";
-            validate = "string";
-            defaultValue = "";
-            property = "Magazine";
-            typeName = "STRING"; // Defines data type of saved value, can be STRING, NUMBER or BOOL. Used only when control is "Combo", "Edit" or their variants
+            property = "Round";
+            defaultValue = 'default';
+            expression = "_this setVariable ['%s',_value];";
+            typeName = "STRING";
+            validate = "none";
         };
     };
 };

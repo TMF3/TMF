@@ -7,4 +7,4 @@ if(!_activated) exitwith {};
 private _areas = (synchronizedObjects _logic) select {_x isKindOf QGVAR(area)};
 private _vehicles = (synchronizedObjects _logic) select { !(_x isKindOf QGVAR(area)) };
 
-[_logic,_areas,_vehicles] call FUNC(doArty);
+[{_this call FUNC(doArty);},[_logic,_areas,_vehicles]] call CBA_fnc_execNextFrame;
