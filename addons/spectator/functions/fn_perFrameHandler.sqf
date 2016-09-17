@@ -237,13 +237,16 @@ _index = 0;
     _time = time - _time;
     if(_time <= 12 && _index < 6) then {
         _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _index;
-        if(_dName == "") then {
-            _dName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _unit >> "displayName")
+        if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _unit >> "displayName")   };
+        if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _killer >> "displayName") };
+        _x set [5,_dName];
+        _x set [6,_kName];
+        if(_killer == _unit || isNull _killer) then {
+            _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sidetohexcolor)];
+        }
+        else {
+            _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (_weapon) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
         };
-        if(_kName == "") then {
-            _kName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _killer >> "displayName")
-        };
-        _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (_weapon) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
         _index = _index + 1;
     };
 } foreach _arr;
