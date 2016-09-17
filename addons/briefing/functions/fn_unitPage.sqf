@@ -66,7 +66,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
     // Get a nested array containing all non-equipped items and their count
     private _items = (items _unit) - _weapons;
     // Remove ACRE radios (show in ACRE2 page instead) and deleted indexes;
-    _items = _items - ["ItemRadio","ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_PRC77","ACRE_PRC117F"];
+    _items = _items - ["ItemRadio","ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_PRC77","ACRE_PRC117F","ACRE_SEM52SL"];
     _items = _items call BIS_fnc_consolidateArray;
 
     private _visText = "";

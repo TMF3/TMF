@@ -750,18 +750,20 @@ class Cfg3DEN
 					rows = 1;
 					columns = 7;
 					strings[] = {
-						"\idi\clients\acre\addons\sys_prc343\Data\static\prc343_icon.paa", //+ static
-						"\idi\clients\acre\addons\sys_prc148\Data\static\prc148_icon.paa",
-						"\idi\clients\acre\addons\sys_prc152\Data\PRC152c_ico.paa",
-						"\idi\clients\acre\addons\sys_prc117f\Data\PRC117F_ico.paa",
-						"\idi\clients\acre\addons\sys_prc77\Data\prc77_icon.paa"
+						"\idi\acre\addons\sys_prc343\Data\static\prc343_icon.paa", //+ static
+						"\idi\acre\addons\sys_prc148\Data\static\prc148_icon.paa",
+						"\idi\acre\addons\sys_prc152\Data\PRC152c_ico.paa",
+						"\idi\acre\addons\sys_prc117f\Data\PRC117F_ico.paa",
+						"\idi\acre\addons\sys_prc77\Data\prc77_icon.paa",
+						"\idi\acre\addons\sys_sem52sl\data\ui\sem52sl_icon.paa"
 					};
 					tooltips[] = {
 						"AN/PRC-343",
 						"AN/PRC-148",
 						"AN/PRC-152",
 						"AN/PRC-117F",
-						"AN/PRC-77"
+						"AN/PRC-77",
+						"SEM52SL"
 					};
 				};
 				class SharedChannel : Title1
