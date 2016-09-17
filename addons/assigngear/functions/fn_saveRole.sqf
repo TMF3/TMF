@@ -31,7 +31,7 @@ if(primaryWeapon _unit != "") then {
     _data = _data + format ["    primaryWeapon[] = {%1};"+_nl,str primaryWeapon _unit];
 };
 if(count primaryWeaponItems _unit > 0) then {
-    _data = _data + format ["    primaryWeaponItems[] = %1;"+_nl,[primaryWeaponItems _unit] call CFUNC(arrayToStringArray)];
+    _data = _data + format ["    primaryAttachments[] = %1;"+_nl,[primaryWeaponItems _unit] call CFUNC(arrayToStringArray)];
 };
 
 if(secondaryWeapon _unit != "") then {
@@ -54,7 +54,7 @@ if(count _magazines  > 0) then {
 };
 
 if(count _items  > 0) then {
-    _data = _data + format ["    _items[] = %1;"+_nl,[_items] call CFUNC(arrayToStringArray)];
+    _data = _data + format ["    items[] = %1;"+_nl,[_items] call CFUNC(arrayToStringArray)];
 };
 
 if(count assignedItems _unit  > 0) then {
