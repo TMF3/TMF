@@ -44,4 +44,9 @@ _unitListControl tvSetPictureColor [[_index],_color];
 		[_x,_index] call FUNC(createUnitNode);
 	};
 } forEach (units _x);
+
+if({isPlayer _x} count (units _grp) > 0) then {
+    _unitListControl tvExpand [_index];
+};
+
 _index
