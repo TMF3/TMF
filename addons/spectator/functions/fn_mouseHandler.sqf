@@ -37,7 +37,8 @@ switch (_type) do {
         };
         if(GVAR(mode) == 1 && {_x} count GVAR(modifiers_keys) <= 0) then
         {
-            GVAR(movement_keys) set [6,(GVAR(movement_keys) select 6)+_value];
+            private _nvalue = GVAR(movement_keys) select 6;
+            GVAR(movement_keys) set [6,_nvalue + _value];
         };
 	};
 
