@@ -72,28 +72,11 @@ class GVAR(settingControl) : RscControlsGroup
       w = SETTINGS_WDITH;
       h = 0.022 * safezoneH;
     };
-        class camSpeedTitle : RscTitle
-        {
-            text = "Free camera speed"; //--- ToDo: Localize;
-            x = 0;
-            y = ROW(0);
-            w = 0.19 * safezoneW;
-            h = 0.022 * safezoneH;
-        };
-        class camSpeedSlider : RscXSliderH
-        {
-            idc = 100;
-            x = 0;
-            y = ROW(1);
-            w = 0.2 * safezoneW;
-            h = 0.022 * safezoneH;
-            onSliderPosChanged = "hint format[""%1"",_this];";
-        };
         class grpTagTitle : RscTitle
         {
             text = "Group tag size modifier"; //--- ToDo: Localize;
             x = 0;
-            y = ROW(2);
+            y = ROW(0);
             w = 0.19 * safezoneW;
             h = 0.022 * safezoneH;
         };
@@ -101,7 +84,7 @@ class GVAR(settingControl) : RscControlsGroup
         {
             idc = 101;
             x = 0;
-            y = ROW(3);
+            y = ROW(1);
             w = 0.2 * safezoneW;
             h = 0.022 * safezoneH;
             onSliderPosChanged = "hint format[""%1"",_this];";
@@ -110,7 +93,7 @@ class GVAR(settingControl) : RscControlsGroup
         {
             text = "Unit tag size modifier"; //--- ToDo: Localize;
             x = 0;
-            y = ROW(4);
+            y = ROW(2);
             w = 0.19 * safezoneW;
             h = 0.022 * safezoneH;
         };
@@ -118,7 +101,7 @@ class GVAR(settingControl) : RscControlsGroup
         {
             idc = 102;
             x = 0;
-            y = ROW(5);
+            y = ROW(3);
             w = 0.2 * safezoneW;
             h = 0.022 * safezoneH;
         };
