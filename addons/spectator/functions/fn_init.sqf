@@ -142,11 +142,9 @@ GVAR(followcam_zoom) = 0.3;
 GVAR(followcam_fov) = 0.7;
 
 // Freecam
-GVAR(freecam_speedmod) = profileNamespace getVariable [QGVAR(freecam_speedmod),4];
-GVAR(freecam_speedmod_max) = 10;
-GVAR(freecam_speedmod_min) = 1;
+GVAR(freecam_speedmod) = 5;
+GVAR(freecam_zoom) = 0;
 
-GVAR(freecam_speed_timestamp) = 0;
 
 GVAR(freecam_move) = [0,0,0];
 GVAR(freecam_timestamp) = time;

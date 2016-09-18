@@ -1,18 +1,13 @@
 #include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
-if([] call FUNC(isOpen)) then {[] call TMF_spectator_fnc_handleUnitList};
-if(!([] call FUNC(isOpen)) || GVAR(showMap)) exitWith {};
+_isOpen = [] call FUNC(isOpen);
+if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
+if(!(_isOpen) || GVAR(showMap)) exitWith {};
 
 
 disableSerialization;
 with uiNamespace do {
   ctrlSetFocus GVAR(unitlist);
-  _timeSamp = missionNamespace getVariable [QGVAR(freecam_speed_timestamp),0];
-  if(_timeSamp > 0 && (_timeSamp - time) < -1.5 ) then
-  {
-        GVAR(speed_bar) ctrlShow false;
-        GVAR(speed_text) ctrlShow false;
-  };
 };
 
 
@@ -115,10 +110,9 @@ if(GVAR(mode) == FREECAM) then
   private _height = (0.1 max ((_currPos select 2) - 2)) min 400;
   _mod = (_mod * (0.175 max (_height/200))) min 10;
   if(_shift) then {_mod = _mod * 5};
-  if(_zScroll != 0) then {
-    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)+_zScroll];
-    GVAR(movement_keys) set [6,0];
-  };
+  if(_ctrl) then {_mod = _mod * 0.5};
+
+  //GVAR(freecam_move) set [1 ,(GVAR(freecam_move) select 1)+_zScroll];
 
   if(_aButton) then {
     GVAR(freecam_move) set [0,(GVAR(freecam_move) select 0)-_mod];
@@ -132,11 +126,11 @@ if(GVAR(mode) == FREECAM) then
   if(_sButton) then {
     GVAR(freecam_move) set [1,(GVAR(freecam_move) select 1)-_mod];
   };
-  if(_qButton || _zScroll > 0) then {
-    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)+_mod/2];
+  if(_qButton) then {
+    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)+_mod/4];
   };
-  if(_zButton || _zScroll < 0) then {
-    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)-_mod/2];
+  if(_zButton) then {
+    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)-_mod/4];
   };
 
   private _delta = time - GVAR(freecam_timestamp);
@@ -166,9 +160,20 @@ if(GVAR(mode) == FREECAM) then
   _tmpPos = [_x,_y,_z];
   _tmpPos = (ATLToASL _tmpPos) select 2;
   if(_tmpPos < getTerrainHeightASL [_x,_y]) then {_z = 0};
-  GVAR(camera) setpos [_x,_y,_z];
-  GVAR(camera) setDir _angleX;
+  _tmpPos = [_x,_y,_z];
+  if(_zscroll != 0) then {
+     systemChat str (_zscroll);
+    if(_zscroll > 0) then {
+        _tmpPos = (_tmpPos vectorAdd vectorDirVisual GVAR(camera)) vectorMultiply 1;
+    }
+    else {
+        _tmpPos = (_tmpPos vectorDiff vectorDirVisual GVAR(camera)) vectorMultiply 1;
+    };
+    GVAR(movement_keys) set [6,0];
+  };
 
+  GVAR(camera) setpos _tmpPos;
+  GVAR(camera) setDir _angleX;
   [GVAR(camera),_angleY,0] call BIS_fnc_setPitchBank;
   GVAR(camera) camSetFov GVAR(followcam_fov);
   GVAR(camera) camCommit 0;
@@ -237,13 +242,16 @@ _index = 0;
     _time = time - _time;
     if(_time <= 12 && _index < 6) then {
         _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _index;
-        if(_dName == "") then {
-            _dName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _unit >> "displayName")
+        if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _unit >> "displayName")   };
+        if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _killer >> "displayName") };
+        _x set [5,_dName];
+        _x set [6,_kName];
+        if(_killer == _unit || isNull _killer) then {
+            _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sidetohexcolor)];
+        }
+        else {
+            _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (_weapon) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
         };
-        if(_kName == "") then {
-            _kName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _killer >> "displayName")
-        };
-        _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (_weapon) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
         _index = _index + 1;
     };
 } foreach _arr;

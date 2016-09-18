@@ -27,7 +27,7 @@ class GVAR(artillery) : Module_F
             displayName = "Time between shots";
             tooltip = "The time between each series of firing";
             control = "Edit";
-            property = "TimeBetweenShots"
+            property = "TimeBetweenShots";
             defaultValue = 5;
             expression = "_this setVariable ['%s',_value];";
             typeName = "NUMBER";

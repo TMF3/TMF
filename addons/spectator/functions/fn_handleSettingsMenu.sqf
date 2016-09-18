@@ -2,11 +2,6 @@
 params ["_type","_args"];
 
 switch (_type) do {
-    case ("freecam_speedmod"): {
-        _args params ["_control","_value"];
-        GVAR(freecam_speedmod) = _value;
-        profileNamespace setVariable [QGVAR(freecam_speedmod),_value];
-    };
     case ("grpTagScale"): {
         _args params ["_control","_value"];
         GVAR(grpTagScale) = _value;

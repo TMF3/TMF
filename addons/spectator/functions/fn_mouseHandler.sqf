@@ -37,18 +37,7 @@ switch (_type) do {
         };
         if(GVAR(mode) == 1 && {_x} count GVAR(modifiers_keys) <= 0) then
         {
-          if(_value > 0) then {GVAR(freecam_speedmod) = (GVAR(freecam_speedmod) +  _value) min GVAR(freecam_speedmod_max);};
-          if(_value < 0) then {GVAR(freecam_speedmod) = (GVAR(freecam_speedmod) -  (abs _value)) max GVAR(freecam_speedmod_min);};
-          profileNamespace setVariable [QGVAR(freecam_speedmod),GVAR(freecam_speedmod)];
-          _prcent = GVAR(freecam_speedmod) / GVAR(freecam_speedmod_max);
-
-          GVAR(freecam_speed_timestamp) = time;
-
-          with uiNamespace do {
-              GVAR(speed_bar) ctrlShow true;
-              GVAR(speed_text) ctrlShow true;
-              GVAR(speed_bar) progressSetPosition _prcent;
-          };
+            GVAR(movement_keys) set [6,(GVAR(movement_keys) select 6)+_value];
         };
 	};
 

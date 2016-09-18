@@ -2,7 +2,7 @@ params ["_display"];
 #include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
-_prcent = GVAR(freecam_speedmod) / GVAR(freecam_speedmod_max);
+
 
 
 with uiNamespace do {
@@ -27,11 +27,7 @@ with uiNamespace do {
     _labelParent = _display displayCtrl 2300;
     GVAR(labels) = [_labelParent controlsGroupCtrl 1,_labelParent controlsGroupCtrl 2,_labelParent controlsGroupCtrl 3,_labelParent controlsGroupCtrl 4,_labelParent controlsGroupCtrl 5,_labelParent controlsGroupCtrl 6];
 
-	GVAR(speed_text) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_SPEED_TEXT;
-	GVAR(speed_bar) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_SPEED_BAR;
-	GVAR(speed_ba) progressSetPosition _prcent;
-	GVAR(speed_bar) ctrlShow false;
-	GVAR(speed_text) ctrlShow false;
+
 	GVAR(notificationbar) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_NOTIFICATION;
 	GVAR(map) ctrlShow (missionNamespace getVariable [QGVAR(showMap),false]);
 	GVAR(map) mapCenterOnCamera false;
