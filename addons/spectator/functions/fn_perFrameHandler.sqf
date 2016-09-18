@@ -162,14 +162,20 @@ if(GVAR(mode) == FREECAM) then
   if(_tmpPos < getTerrainHeightASL [_x,_y]) then {_z = 0};
   _tmpPos = [_x,_y,_z];
   if(_zscroll != 0) then {
+     _zdelta  = _zScroll * _delta;
      systemChat str (_zscroll);
     if(_zscroll > 0) then {
-        _tmpPos = (_tmpPos vectorAdd vectorDirVisual GVAR(camera)) vectorMultiply 1;
+        _tmpPos = _tmpPos vectorAdd ((vectorDirVisual GVAR(camera)) vectorMultiply abs(_zdelta));
     }
     else {
-        _tmpPos = (_tmpPos vectorDiff vectorDirVisual GVAR(camera)) vectorMultiply 1;
+        _tmpPos = _tmpPos vectorDiff ((vectorDirVisual GVAR(camera)) vectorMultiply abs(_zdelta));
     };
-    GVAR(movement_keys) set [6,0];
+
+    GVAR(movement_keys) set [6,_zScroll-_zdelta];
+    private _value = _zScroll-_zdelta;
+    if(_value < 0.5 && _value > 0) then {GVAR(movement_keys) set [6,0];};
+    if(_value > -0.5 && _value < 0) then {GVAR(movement_keys) set [6,0];};
+
   };
 
   GVAR(camera) setpos _tmpPos;
