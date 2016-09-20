@@ -163,7 +163,6 @@ if(GVAR(mode) == FREECAM) then
   _tmpPos = [_x,_y,_z];
   if(_zscroll != 0) then {
      _zdelta  = _zScroll * _delta;
-     systemChat str (_zscroll);
     if(_zscroll > 0) then {
         _tmpPos = _tmpPos vectorAdd ((vectorDirVisual GVAR(camera)) vectorMultiply abs(_zdelta));
     }
