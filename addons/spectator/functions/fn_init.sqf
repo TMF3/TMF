@@ -193,6 +193,10 @@ addMissionEventHandler ["EntityKilled",{
     if (!isNull _acekiller) then {
     	_killer = _acekiller;
     };
+    if(isNull _killer) then
+    {
+        _killer = _killed getVariable ['tmf_spectator_lastDamage',objNull];
+    };
     private _kName = "";
     private _dName = "";
     if(isPlayer _killed) then {_dName = name (_killed);};

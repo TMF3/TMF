@@ -24,7 +24,7 @@ private _renderGroups = _grpTagSize > 0;
       _avgpos = _grpCache select 1; // update pos ASAP
   };
   // reset the cache
-  
+
 
   // check if the average pos is on the screen
   private _render = [_avgpos] call FUNC(onScreen);
@@ -99,9 +99,10 @@ private _renderGroups = _grpTagSize > 0;
 
       // make the tag white if the target is shooting
       private _unitColor = _color;
-      if(_veh getVariable [QGVAR(fired), false]) then {
+      private _hasFired = _veh getVariable [QGVAR(fired), 0];
+      if(_hasFired > 0) then {
           _unitColor = [0.8,0.8,0.8,0.7];
-          _veh setVariable [QGVAR(fired), false];
+          _veh setVariable [QGVAR(fired), _hasFired-1];
       };
 
       // draw icon

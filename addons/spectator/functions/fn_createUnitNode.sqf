@@ -5,7 +5,7 @@ params["_unit","_parentIndex"];
 disableSerialization;
 
 GVAR(allunits) pushBackUnique _unit;
-
+/*
 private _enabled = _unit getVariable [QGVAR(fired_enabled),nil];
 if (isNil "_enabled") then {
 		_unit addEventHandler ["fired", "_this call tmf_spectator_fnc_onFired"];
@@ -21,6 +21,7 @@ if(vehicle _unit != _unit) then { // issue here when they leave and someone take
 	(vehicle _unit) setVariable [QGVAR(fired_enabled), true];
 	GVAR(vehicles) pushBack (vehicle _unit);
 };
+*/
 
 
 private _name = name _unit;
