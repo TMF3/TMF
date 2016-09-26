@@ -189,7 +189,14 @@ if !([] call tmf_common_fnc_isAdmin) then {
 addMissionEventHandler ["EntityKilled",{
     params ["_killed","_killer"];
     if(!(side _killed in [blufor,opfor,independent,civilian]) || !(_killed isKindOf "CAManBase" || _killed isKindOf "AllVehicles") ) exitwith {};
-
+    private _acekiller = _killed getVariable ["ace_medical_lastDamageSource", objNull];
+    if (!isNull _acekiller) then {
+    	_killer = _acekiller;
+    };
+    if(isNull _killer) then
+    {
+        _killer = _killed getVariable ['tmf_spectator_lastDamage',objNull];
+    };
     private _kName = "";
     private _dName = "";
     if(isPlayer _killed) then {_dName = name (_killed);};

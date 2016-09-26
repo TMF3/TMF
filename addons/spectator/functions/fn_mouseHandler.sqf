@@ -27,7 +27,7 @@ switch (_type) do {
 
     case "MouseZChanged" : {
         _args params ["_control","_value"];
-        if(GVAR(modifiers_keys) select 0) then
+        if((GVAR(modifiers_keys) select 0) && (GVAR(modifiers_keys) select 2)) then
         {
             if(_value > 0) then {GVAR(followcam_fov) = (GVAR(followcam_fov) - 0.05 * _value) max 0.1;};
             if(_value < 0) then {GVAR(followcam_fov) = (GVAR(followcam_fov) + 0.05 * (abs _value)) min 2.0;};
@@ -35,7 +35,7 @@ switch (_type) do {
         if(GVAR(mode) == 0 && {_x} count GVAR(modifiers_keys) <= 0) then {
           GVAR(followcam_zoom) = ((GVAR(followcam_zoom) - ((_value)*GVAR(followcam_zoom)/5)) max 0.1) min 650;
         };
-        if(GVAR(mode) == 1 && {_x} count GVAR(modifiers_keys) <= 0) then
+        if(GVAR(mode) == 1 && {_x} count GVAR(modifiers_keys) <= 1) then
         {
             private _nvalue = GVAR(movement_keys) select 6;
             GVAR(movement_keys) set [6,_nvalue + _value];

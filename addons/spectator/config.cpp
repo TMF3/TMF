@@ -23,6 +23,23 @@ class CfgRespawnTemplates
 		onPlayerKilled = "";
 	};
 };
+
+class Extended_Fired_Eventhandlers {
+    class AllVehicles {
+        class GVAR(fired) {
+            fired = "if([] call tmf_spectator_fnc_isOpen) then { _this call tmf_spectator_fnc_onFired;};"
+        };
+    };
+};
+class Extended_Hit_Eventhandlers {
+    class AllVehicles {
+        class GVAR(hit) {
+            hit = "if([] call tmf_spectator_fnc_isOpen) then {(_this select 0) setVariable ['tmf_spectator_lastDamage',(_this select 1)]};"
+        };
+    };
+};
+
+
 #include "CfgFunctions.hpp"
 #include "dialog.hpp"
 
