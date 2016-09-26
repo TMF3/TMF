@@ -186,34 +186,40 @@ if !([] call tmf_common_fnc_isAdmin) then {
     0 enableChannel false;
 };
 
-addMissionEventHandler ["EntityKilled",{
-    params ["_killed","_killer"];
-    if(!(side _killed in [blufor,opfor,independent,civilian]) || !(_killed isKindOf "CAManBase" || _killed isKindOf "AllVehicles") ) exitwith {};
-    private _acekiller = _killed getVariable ["ace_medical_lastDamageSource", objNull];
-    if (!isNull _acekiller) then {
-    	_killer = _acekiller;
-    };
-    if(isNull _killer) then
-    {
-        _killer = _killed getVariable ['tmf_spectator_lastDamage',objNull];
-    };
-    private _kName = "";
-    private _dName = "";
-    if(isPlayer _killed) then {_dName = name (_killed);};
-    if(isPlayer _killer) then {_kName = name (_killer);};
 
-    GVAR(killedUnits) pushback [_killed,time,_killer,side group _killed,side group _killer,_dName,_kName,currentWeapon _killer];
-}];
 
 
 GVAR(currentnotification) = "";
 GVAR(notification) = [];
 
 
+// Add EH
 
+if (isNil QGVAR(setupEH)) then {
+    addMissionEventHandler ["EntityKilled",{
+        params ["_killed","_killer"];
+        if(!(side _killed in [blufor,opfor,independent,civilian]) || !(_killed isKindOf "CAManBase" || _killed isKindOf "AllVehicles") ) exitwith {};
+        private _acekiller = _killed getVariable ["ace_medical_lastDamageSource", objNull];
+        if (!isNull _acekiller) then {
+            _killer = _acekiller;
+        };
+        if(isNull _killer) then
+        {
+            _killer = _killed getVariable [QGVAR(lastDamage),objNull];
+        };
+        private _kName = "";
+        private _dName = "";
+        if(isPlayer _killed) then {_dName = name (_killed);};
+        if(isPlayer _killer) then {_kName = name (_killer);};
 
+        GVAR(killedUnits) pushback [_killed,time,_killer,side group _killed,side group _killer,_dName,_kName,currentWeapon _killer];
+    }];
 
+    ["AllVehicles", "fired", {if([] call FUNC(isOpen)) then { _this call FUNC(onFired)}}] call CBA_fnc_addClassEventHandler;
+    ["AllVehicles", "hit", {if([] call FUNC(isOpen)) then {(_this select 0) setVariable [QGVAR(lastDamage),(_this select 1)]}}] call CBA_fnc_addClassEventHandler;
 
+    GVAR(setupEH) = true;
+};
 
 
 
