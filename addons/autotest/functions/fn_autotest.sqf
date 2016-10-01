@@ -28,8 +28,8 @@ _output append ([] call FUNC(testEndings));
 private _array = playableUnits + [player];
 private _aiCount = {!(_x in _array)} count allUnits;
 
-if (_aiCount > 200) then {
-    if (_aiCount > 350) then {
+if (_aiCount > 160) then {
+    if (_aiCount > 200) then {
         _output pushBack [0,format["You have placed %1 AI. You may wish to consider the performance impact.",_aiCount]];
     } else {
         _output pushBack [1,format["You have placed %1 AI. You may wish to consider the performance impact.",_aiCount]];
