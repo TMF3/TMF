@@ -9,6 +9,7 @@ _ctrlListbox lnbSetColumnsPos [0,0.05];
 
 // Do the tests.
 private _output = [];
+_output append ([] call FUNC(testBriefings));
 _output append ([] call FUNC(testGear));
 _output append ([] call FUNC(testInit));
 _output append ([] call FUNC(testEndings));
