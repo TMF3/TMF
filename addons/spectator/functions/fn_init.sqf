@@ -8,18 +8,14 @@ if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {createDialog QGVAR(di
 private _isJip = didJIP;
 
 // disable this to instantly switch to the spectator script.
-waitUntil {missionNamespace getVariable ["BIS_fnc_feedback_allowDeathScreen",true] || isNull (_oldUnit) || _isJip || _forced};
+waitUntil {missionNamespace getVariable ["BIS_fnc_feedback_allowDeathScreen",false] || isNull (_oldUnit) || _isJip || _forced};
 
 
 // Disable effects
-if(!isnil "BIS_fnc_feedback_allowPP") then
-{
-  // disable effects death effects
-  BIS_fnc_feedback_allowPP = false;
-};
+// disable effects death effects
+if(!isnil "BIS_fnc_feedback_allowPP") then { BIS_fnc_feedback_allowPP = false; };
 
-if(_isJip) then
-{
+if(_isJip) then {
 	[] spawn {
 		["tmf_spectator",false] call BIS_fnc_blackOut;
 		uiSleep 3;
@@ -28,10 +24,9 @@ if(_isJip) then
 };
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then
-{
-  _newGrp = createGroup sideLogic;
-  _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
+if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then {
+  private _newGrp = createGroup sideLogic;
+  private _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
   if (!isNull _newUnit) then {
       _newUnit allowDamage false;
       _newUnit hideObjectGlobal true;
@@ -42,7 +37,8 @@ if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then
       waitUntil{player isEqualTo _newUnit};
       if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
       GVAR(unit) = _newUnit;
-  } else {
+  }
+  else {
       if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };
       GVAR(unit) = _oldUnit;
   };
@@ -63,13 +59,14 @@ GVAR(camera) = tmf_spectator_followcam;
 GVAR(target) = _oldUnit;
 #include "defines.hpp"
 
-if(isNil QGVAR(objectives)) then {GVAR(objectives) = []};
+if(isNil QGVAR(objectives)) then { GVAR(objectives) = []; };
 
 // UI
 GVAR(showUI) = true;
 GVAR(controls) = [IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL,IDC_SPECTATOR_TMF_SPECTATOR_UNITLIST,IDC_SPECTATOR_TMF_SPECTATOR_VISION,IDC_SPECTATOR_TMF_SPECTATOR_FILTER,IDC_SPECTATOR_TMF_SPECTATOR_BUTTON,IDC_SPECTATOR_TMF_SPECTATOR_TAGS,IDC_SPECTATOR_TMF_SPECTATOR_VIEW,IDC_SPECTATOR_TMF_SPECTATOR_COMPASS,IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT,IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight,IDC_SPECTATOR_TMF_SPECTATOR_MUTE,IDC_SPECTATOR_TMF_SPECTATOR_MENUBACK];
 
 GVAR(tracers) = true;
+GVAR(bulletTrails) = true;
 // MAP
 GVAR(showMap) = false;
 
@@ -122,8 +119,6 @@ if(!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
 GVAR(visionMode) = 0;
 GVAR(visionMode_strings) = ["NORMAL","NIGHTVISION","WHITE HOT"];
 
-GVAR(freecamAcceleration) = 0.1;
-
 // Show Players only
 GVAR(playersOnly) = false;
 if(isMultiplayer) then {
@@ -141,7 +136,6 @@ GVAR(followcam_zoom) = 0.3;
 GVAR(followcam_fov) = 0.7;
 
 // Freecam
-//GVAR(freecam_speedmod) = 5;
 GVAR(freecam_zoom) = 0;
 
 
@@ -185,8 +179,9 @@ if !([] call tmf_common_fnc_isAdmin) then {
     0 enableChannel false;
 };
 
-
-
+GVAR(missileIcon) = "\x\tmf\addons\spectator\images\missile.paa";
+GVAR(grenadeIcon) = "\x\tmf\addons\spectator\images\grenade.paa";
+GVAR(smokeIcon) = "\x\tmf\addons\spectator\images\smokegrenade.paa";
 
 GVAR(currentnotification) = "";
 GVAR(notification) = [];

@@ -43,10 +43,9 @@ private _renderGroups = _grpTagSize > 0;
     // if the data exists, read it.
     if(count _twGrpMkr == 3) then {
       _twGrpMkr params ["_grpTexture","_gname","_grpTextureSize"];
-      //drawIcon3D [_grpTexture, [1,1,1,1],_avgpos,_grpTagSize,_grpTagSize, 0,"", 0,_fontSize,"PuristaSemibold" ];
       drawIcon3D [_grpTexture, [1,1,1,1],_avgpos,_grpTagSize,_grpTagSize, 0,_gname, 2,_fontSize,"PuristaSemibold" ];
-      //if(_grpTextureSize != "") then { drawIcon3D [_grpTextureSize, [1,1,1,1],_avgpos, 1, 1, 0,"", 0,_fontSize,"PuristaSemibold" ];};
-    } else {
+    }
+    else {
       drawIcon3D ["\A3\ui_f\data\map\markers\nato\b_unknown.paa", _color,_avgpos, _grpTagSize, _grpTagSize, 0,"", 2,_fontSize,"PuristaSemibold" ];
       drawIcon3D ["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,1],_avgpos, _grpTagSize, _grpTagSize, 0,groupID _x, 2,_fontSize,"PuristaSemibold" ];
     };
@@ -63,39 +62,37 @@ private _renderGroups = _grpTagSize > 0;
     _render = true;
 
     // if vehicles, set the appropriate variables
-    if(_veh != _x) then {
+    if(_veh != _x && effectiveCommander _veh == _x) then {
         _x = _veh;
         _render = ((_renderedVehicles pushBackUnique _x) != -1);
         _isVeh = true;
     };
 
-
     private _pos = (getPosATLVisual _x);
-    if(alive _x && {[_pos] call FUNC(onScreen)} && {_render} && {_campos distance2d _x <= 500}) then {
+
+    if(alive _x && {[_pos] call FUNC(onScreen)} && {_render} && {_campos distance2d _x <= 500} ) then {
+
+        if(_isVeh) then {
+            private _vehicleName = _x getVariable [QGVAR(vehiclename),""];
+            if(_vehicleName == "") then {
+                _vehicleName = getText ( configFile >> "CfgVehicles" >> typeOf _x >> "displayname");
+                _x setVariable [QGVAR(vehiclename),_vehicleName];
+            };
+            if(isPlayer _x) then {
+                _vehicleName = name (effectiveCommander _x);
+            };
+            _name = format ["%1 [%2]",_vehicleName, count crew _x];
+        };
+
+        // AI HAVE NO NAMES, THEY ARE DRIVING A VEHICLE
+        if(!isPlayer _x && !_isVeh) then {_name = ""}
+        else {
+            _format = _x getVariable [QGVAR(nameLabel),0]; // can we omit this?, most missions don't use it
+            if(!(_format isEqualType 0)) then { _name = format[_format,_name]; }; // passes name to the format
+        };
+
       if(surfaceIsWater _pos) then {_pos = getPosASLVisual _x;};
       _pos = _pos vectorAdd [0,0,3.1];
-      _name = name _x;
-      // if we are a vehicle
-      if(_isVeh) then {
-          // make sure the tag is over the vehicle by using its boundingcenter height
-          _pos = _pos vectorAdd [0,0,((boundingCenter _x) select 2)*2];
-          // get vehicle name
-          private _vehicleName = _x getVariable [QGVAR(vehiclename),""];
-          if(_vehicleName == "") then {
-              _vehicleName = getText ( configFile >> "CfgVehicles" >> typeOf _x >> "displayname");
-              _x setVariable [QGVAR(vehiclename),_vehicleName];
-          };
-          _name = format ["%1 [%2]",_vehicleName, count crew _x];
-      };
-
-      // AI don't arent allowed to have names
-      if(!isPlayer _x) then {_name = ""};
-
-      // used to modified the output of the tag text
-      private _format = _x getVariable [QGVAR(nameLabel),0];
-      if(!(_format isEqualType 0)) then {
-        _name = format[_format,_name];
-      };
 
       // make the tag white if the target is shooting
       private _unitColor = _color;
@@ -158,76 +155,40 @@ private _renderGroups = _grpTagSize > 0;
 
         if(_time <= 10 && {_campos distance2d _pos <= 500}) then {
             drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, _unitTagSize/2, _unitTagSize/2, 0,_dName, 2,0.04,"PuristaSemibold" ];
-        }
-        else { GVAR(killedUnits) set [_forEachIndex,0]; };
+        };
     };
 } forEach GVAR(killedUnits);
 
-GVAR(killedUnits) = GVAR(killedUnits)  - [0];
+
 
 ////////////////////////////////////////////////////////
 // Tracers / grenade / rocket tags
 ////////////////////////////////////////////////////////
 
 if(GVAR(tracers)) then {
-    _cleanup = false;
     {
         _x params ["_object","_posArray","_last"];
+        _pos = _posArray select (count _posArray-1);
         if(!isNull _object) then {
-            private _missile = _object isKindOf "RocketCore" || _object isKindOf "MissileCore";
-            private _grenade = !_missile && {_object isKindOf "Grenade"};
-
             private _pos = (getPosATLVisual _object);
             if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
-
-            // missile
-            if(_missile) then
-            {
-              drawIcon3D["\x\tmf\addons\spectator\images\missile.paa",[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
-              reverse _posArray;
-              _prev = getPosVisual _object;
-              {
-                  drawLine3D [_prev,_x,[1,0,0,0.7]];
-                  _prev = _x;
-              } forEach _posArray;
-              reverse _posArray;
-              if(time > _last) then {
-                  _posArray pushBack _pos;
-                  _last = time+1;
-              };
-            };
-
-            // grenade rendering
-            if(_grenade && {_campos distance2d _object <= 300}) then {
-                private _icon = "\x\tmf\addons\spectator\images\grenade.paa";
-                if(_object isKindOf "SmokeShell") then {_icon = "\x\tmf\addons\spectator\images\smokegrenade.paa"};
-
-                // draw icon
+        };
+        switch true do {
+            case ( !isNull _object  && {(typeof _object) isKindOf "Grenade"} ) : {
+                private _icon = GVAR(grenadeIcon);
+                if(_object isKindOf "SmokeShell") then {_icon = GVAR(smokeIcon);};
                 drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
-
-                // update the postion array
-                _prev = getPosVisual _object;
-                if(count _posArray <= 0 || speed _object > 0 ) then {
-                  reverse _posArray;
-                  {
-                      drawLine3D [_prev,_x,[1,0,0,0.7]];
-                      _prev = _x;
-                  } forEach _posArray;
-                  reverse _posArray;
-                  if(time > _last) then {
-                      _posArray pushBack _pos;
-                      _last = time+0.5;
-                  };
+                [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
+            };
+            case ( !isNull _object && {(typeOf _object) isKindOf "MissileCore" || (typeOf _object) isKindOf "RocketCore"} ) : {
+                drawIcon3D[GVAR(missileIcon),[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
+                [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
+            };
+            default {
+                if(GVAR(bulletTrails)) then {
+                    [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
                 };
             };
-            GVAR(rounds) set [_forEachIndex,[_object,_posArray,_last]];
-        }
-        else {
-          GVAR(rounds) set [_forEachIndex,objNull];
-          _cleanup = true;
         };
-  } forEach GVAR(rounds);
-  if(_cleanup) then {
-    GVAR(rounds) = GVAR(rounds) - [objNull];
-  };
+    } forEach GVAR(rounds);
 };

@@ -9,4 +9,4 @@ if (isNull _projectile) then {
     _projectile = nearestObject [_unit, _ammo];
 };
 
-GVAR(rounds) pushBack [_projectile,[getPosVisual _projectile],time];
+GVAR(rounds) pushBack [_projectile,[getPosVisual _projectile],diag_frameNo,time];
