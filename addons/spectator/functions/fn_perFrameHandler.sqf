@@ -1,41 +1,26 @@
 #include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
-_isOpen = [] call FUNC(isOpen);
+
+disableSerialization;
+private _isOpen = [] call FUNC(isOpen);
 if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
 if(!(_isOpen) || GVAR(showMap)) exitWith {};
 
-
-disableSerialization;
-with uiNamespace do {
-  ctrlSetFocus GVAR(unitlist);
-};
-
-
-
+with uiNamespace do { ctrlSetFocus GVAR(unitlist);};
 
 GVAR(mPos) params ["_x","_y"];
-
 GVAR(mButtons) params ["_leftButton","_rightButton"];
-
 GVAR(lmPos) params ["_lx","_ly"];
 
-_dx = _lx - _x;
-_dy = _ly - _y;
+private _dx = _lx - _x;
+private _dy = _ly - _y;
 
-
-
-if(_rightButton && !_leftButton) then
-  {
-  GVAR(followcam_angle) params ["_ax","_ay"];
-  GVAR(followcam_angle) = [(_ax - (_dx*360)),(_ay + (_dy*180)) min 89 max -89];
+if(_rightButton && !_leftButton) then {
+    GVAR(followcam_angle) params ["_ax","_ay"];
+    GVAR(followcam_angle) = [(_ax - (_dx*360)),(_ay + (_dy*180)) min 89 max -89];
 };
 
-
-
-
-
-_oldcam = GVAR(camera);
-
+private _oldcam = GVAR(camera);
 
 GVAR(camera) = switch (tmf_spectator_mode) do {
   case 0: {
@@ -43,8 +28,8 @@ GVAR(camera) = switch (tmf_spectator_mode) do {
   };
   case 1: {
     if(GVAR(camera) != GVAR(freecam)) then {
-      GVAR(freecam) setpos (getpos GVAR(followcam));
-      GVAR(freecam) setVectorDirAndUp [vectordir GVAR(followcam),vectorUp GVAR(followcam) ];
+      GVAR(freecam) setPos (getPos GVAR(followcam));
+      GVAR(freecam) setVectorDirAndUp [vectorDir GVAR(followcam),vectorUp GVAR(followcam) ];
     };
     GVAR(freecam)
   };
@@ -52,7 +37,6 @@ GVAR(camera) = switch (tmf_spectator_mode) do {
     GVAR(target)
   };
 };
-
 
 if(_oldcam != GVAR(camera)) then {
   [GVAR(target)] call FUNC(setTarget);
@@ -79,15 +63,14 @@ if(GVAR(mode) == FOLLOWCAM) then
     GVAR(followcam_angle) set [1,(GVAR(followcam_angle) select 1)-1];
   };
 
-  _commitTime = ((1.0 - ((speed vehicle tmf_spectator_target)/65))/3) max 0.1;
-  _delta = (-(2*(0.3 max GVAR(followcam_zoom))));
-
+  private _commitTime = ((1.0 - ((speed vehicle tmf_spectator_target)/65))/3) max 0.1;
+  private _delta = (-(2*(0.3 max GVAR(followcam_zoom))));
 
   GVAR(followcam_angle) params ["_ax","_ay"];
 
-  _zLevel = sin(_ay)*(2*(0.3 max GVAR(followcam_zoom)));
+  private _zLevel = sin(_ay)*(2*(0.3 max GVAR(followcam_zoom)));
 
-  _pos = (getPosATLVisual GVAR(target));
+  private _pos = (getPosATLVisual GVAR(target));
   if(surfaceIsWater _pos) then {_pos = getPosASLVisual GVAR(target)};
   _pos set [2,(_pos select 2)+1.3];
 
@@ -99,20 +82,15 @@ if(GVAR(mode) == FOLLOWCAM) then
     _commitTime = 0;
   };
   GVAR(camera) camCommit _commitTime;
-
 };
 // Freecam
 if(GVAR(mode) == FREECAM) then
 {
-  private _mod = GVAR(freecam_speedmod); // 1 to 10
-
   private _currPos = getPosVisual GVAR(freecam);
-  private _height = (0.1 max ((_currPos select 2) - 2)) min 400;
-  _mod = (_mod * (0.175 max (_height/200))) min 10;
-  if(_shift) then {_mod = _mod * 5};
+  private _height = (0.1 max ((_currPos select 2) + 0.4)) min 650;
+  private _mod = (0.1 max ((log (_height/5)) + (_height / 115))) min 7;
+  if(_shift) then {_mod = _mod * 3.5};
   if(_ctrl) then {_mod = _mod * 0.5};
-
-  //GVAR(freecam_move) set [1 ,(GVAR(freecam_move) select 1)+_zScroll];
 
   if(_aButton) then {
     GVAR(freecam_move) set [0,(GVAR(freecam_move) select 0)-_mod];
@@ -127,10 +105,10 @@ if(GVAR(mode) == FREECAM) then
     GVAR(freecam_move) set [1,(GVAR(freecam_move) select 1)-_mod];
   };
   if(_qButton) then {
-    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)+_mod/4];
+    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)+_mod/2];
   };
   if(_zButton) then {
-    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)-_mod/4];
+    GVAR(freecam_move) set [2,(GVAR(freecam_move) select 2)-_mod/2];
   };
 
   private _delta = time - GVAR(freecam_timestamp);
@@ -138,16 +116,10 @@ if(GVAR(mode) == FREECAM) then
   GVAR(freecam_move) params ["_mX","_mY","_mZ"];
   GVAR(followcam_angle) params ["_angleX","_angleY"];
 
-
-
-
-
   _z = 0;
   _x = (_currPos select 0) + (_mX * (cos _angleX)) + (_mY * (sin _angleX));
   _y = (_currPos select 1) - (_mX * (sin _angleX)) + (_mY * (cos _angleX));
   _z = ((_currPos select 2) + _mZ);
-
-
 
   if(_mX > 0) then {GVAR(freecam_move) set [0,_mX - abs (_mX)]};
   if(_mY > 0) then {GVAR(freecam_move) set [1,_mY - abs (_mY )]};
@@ -157,68 +129,60 @@ if(GVAR(mode) == FREECAM) then
 
   if(_mZ < 0) then {GVAR(freecam_move) set [2,_mZ + abs (_mZ )]};
   if(_mZ > 0) then {GVAR(freecam_move) set [2,_mZ - abs (_mZ)]};
-  _tmpPos = [_x,_y,_z];
-  _tmpPos = (ATLToASL _tmpPos) select 2;
-  if(_tmpPos < getTerrainHeightASL [_x,_y]) then {_z = 0};
-  _tmpPos = [_x,_y,_z];
+  private _tmpPos = [_x,_y,_z];
+  private _z2 = (ATLToASL _tmpPos) select 2;
+  if(_z2 < getTerrainHeightASL [_x,_y]) then {_z = 0; _tmpPos set[2,0];};
+
   if(_zscroll != 0) then {
-      private _movement = _zScroll*2;
-      if(_shift) then {
-          _movement = (_zScroll*4);
-      };
-      if(_ctrl) then {
-          _movement = (_zScroll);
-      };
-     _zdelta  = _movement;
+    private _movement = _zScroll*2.5*_mod;
+    private _zdelta = _movement;
+    private _dirVector = vectorNormalized (screenToWorld (getMousePosition) vectorDiff getPosVisual GVAR(camera)); //(vectorDirVisual GVAR(camera)
     if(_zscroll > 0) then {
-        _tmpPos = _tmpPos vectorAdd ((vectorDirVisual GVAR(camera)) vectorMultiply abs(_zdelta));
-    }
-    else {
-        _tmpPos = _tmpPos vectorDiff ((vectorDirVisual GVAR(camera)) vectorMultiply abs(_zdelta));
+        _tmpPos = _tmpPos vectorAdd (_dirVector vectorMultiply abs(_zdelta));
+    } else {
+        _tmpPos = _tmpPos vectorDiff (_dirVector vectorMultiply abs(_zdelta));
     };
 
     GVAR(movement_keys) set [6,_zScroll*_delta];
     private _value = _zScroll-_zdelta;
     if(_value < 0.5 && _value > 0) then {GVAR(movement_keys) set [6,0];};
     if(_value > -0.5 && _value < 0) then {GVAR(movement_keys) set [6,0];};
-
   };
 
-  GVAR(camera) setpos _tmpPos;
+  GVAR(camera) setPos _tmpPos;
   GVAR(camera) setDir _angleX;
   [GVAR(camera),_angleY,0] call BIS_fnc_setPitchBank;
   GVAR(camera) camSetFov GVAR(followcam_fov);
   GVAR(camera) camCommit 0;
-
 };
 
 if(GVAR(mode) == FIRSTPERSON) then
 {
-    GVAR(target) SwitchCamera "internal";
+    GVAR(target) switchCamera "internal";
     if(vehicle GVAR(target) != GVAR(target)) then
     {
-        _vehicle = vehicle GVAR(target);
-        _mode = "internal";
+        private _vehicle = vehicle GVAR(target);
+        private _mode = "internal";
         if((assignedVehicleRole GVAR(target) select 0) != "Cargo") then {_mode = "gunner"};
         _vehicle switchCamera _mode;
     };
     if(vehicle GVAR(target) == GVAR(target) && (GVAR(mButtons) select 1)) then
     {
-        GVAR(target) SwitchCamera "gunner";
+        GVAR(target) switchCamera "gunner";
     };
 };
 
 // update compass
-(uiNamespace getVariable QGVAR(compass)) ctrlSetText ([(getdir GVAR(camera))] call FUNC(getCardinal));
-(uiNamespace getVariable QGVAR(compassL)) ctrlSetText ([(getdir GVAR(camera))-45] call FUNC(getCardinal));
-(uiNamespace getVariable QGVAR(compassR)) ctrlSetText ([(getdir GVAR(camera))+45] call FUNC(getCardinal));
+(uiNamespace getVariable QGVAR(compass)) ctrlSetText ([(getDir GVAR(camera))] call FUNC(getCardinal));
+(uiNamespace getVariable QGVAR(compassL)) ctrlSetText ([(getDir GVAR(camera))-45] call FUNC(getCardinal));
+(uiNamespace getVariable QGVAR(compassR)) ctrlSetText ([(getDir GVAR(camera))+45] call FUNC(getCardinal));
 
 // update something horrible
 
 if(!isNil QGVAR(target) && {!isNull GVAR(target)} && {alive GVAR(target)} ) then {
-  (uinamespace getvariable QGVAR(unitlabel)) ctrlSetText (name GVAR(target));
+    (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText (name GVAR(target));
 } else {
-    (uinamespace getvariable QGVAR(unitlabel)) ctrlSetText "";
+    (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText "";
 };
 
 // Handle notfications
@@ -245,30 +209,27 @@ if(GVAR(currentnotification) == "" && count GVAR(notification) > 0) then {
 };
 {
     _x ctrlSetStructuredText parseText "";
-} foreach (uiNamespace getvariable [QGVAR(labels),[]]);
+} forEach (uiNamespace getVariable [QGVAR(labels),[]]);
 private _arr = [] + GVAR(killedUnits);
 reverse _arr;
-_index = 0;
+private _index = 0;
 {
     _x params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName","_weapon"];
     _time = time - _time;
     if(_time <= 12 && _index < 6) then {
-        _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _index;
+        private _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _index;
         if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _unit >> "displayName")   };
         if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _killer >> "displayName") };
         _x set [5,_dName];
         _x set [6,_kName];
         if(_killer == _unit || isNull _killer) then {
             _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sidetohexcolor)];
-        }
-        else {
+        } else {
             _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (_weapon) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
         };
         _index = _index + 1;
     };
-} foreach _arr;
-
-
+} forEach _arr;
 
 if(GVAR(tags)) then {call FUNC(drawTags)};
 GVAR(freecam_timestamp) = time;

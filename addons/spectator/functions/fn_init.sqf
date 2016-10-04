@@ -5,7 +5,6 @@ if((_this select 2) isEqualType 0) then {_this set [2,false]};
 params ["_unit","_oldUnit",["_forced",false,[false]]];
 if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {createDialog QGVAR(dialog);};
 
-
 private _isJip = didJIP;
 
 // disable this to instantly switch to the spectator script.
@@ -142,7 +141,7 @@ GVAR(followcam_zoom) = 0.3;
 GVAR(followcam_fov) = 0.7;
 
 // Freecam
-GVAR(freecam_speedmod) = 5;
+//GVAR(freecam_speedmod) = 5;
 GVAR(freecam_zoom) = 0;
 
 
