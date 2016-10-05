@@ -165,30 +165,24 @@ private _renderGroups = _grpTagSize > 0;
 // Tracers / grenade / rocket tags
 ////////////////////////////////////////////////////////
 
-if(GVAR(tracers)) then {
-    {
-        _x params ["_object","_posArray","_last"];
-        _pos = _posArray select (count _posArray-1);
-        if(!isNull _object) then {
-            private _pos = (getPosATLVisual _object);
-            if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
+if(!GVAR(tracers)) exitWith {}:
+{
+    _x params ["_object","_posArray","_last","_type"];
+    _pos = _posArray select (count _posArray-1);
+    if(!isNull _object) then {
+        private _pos = (getPosATLVisual _object);q
+        if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
+    };
+    if(_type > 0) then {
+        private _icon = switch (_type) do {
+            case 1 : {GVAR(grenadeIcon)};
+            case 2 : {GVAR(smokegrenade)};
+            case 3 : {GVAR(grenadeIcon)};
         };
-        switch true do {
-            case ( !isNull _object  && {(typeof _object) isKindOf "Grenade"} ) : {
-                private _icon = GVAR(grenadeIcon);
-                if(_object isKindOf "SmokeShell") then {_icon = GVAR(smokeIcon);};
-                drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
-                [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
-            };
-            case ( !isNull _object && {(typeOf _object) isKindOf "MissileCore" || (typeOf _object) isKindOf "RocketCore"} ) : {
-                drawIcon3D[GVAR(missileIcon),[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
-                [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
-            };
-            default {
-                if(GVAR(bulletTrails)) then {
-                    [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
-                };
-            };
-        };
-    } forEach GVAR(rounds);
-};
+        drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
+        [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
+    };
+    if(GVAR(bulletTrails) && _type == 0) then {
+        [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
+    };
+} forEach GVAR(rounds);
