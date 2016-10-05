@@ -108,27 +108,25 @@ _map drawIcon ["\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCamera_ca.paa"
 
 if(GVAR(tracers)) then {
     {
-        _x params ["_object","_posArray"];
+        _x params ["_object","_posArray","_last","_type"];
+        _pos = _posArray select (count _posArray-1);
         if(!isNull _object) then {
-          _initalpos = getPos _object;
-          _futurepos = _initalpos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
-          switch true do {
-              case ( (typeof _object) isKindOf "Grenade" ) : {
-                  _icon = GVAR(grenadeIcon);
-                  if(_object isKindOf "SmokeShell") then {_icon = GVAR(smokeIcon);};
-
-                  _map drawIcon [_icon, [1,0,0,1], _initalpos, 10, 10,0,"",0];
-                  _map drawLine [_posArray select 0, getPosVisual _object, [1,0,0,1]];
-              };
-              case ( (typeOf _object) isKindOf "MissileCore" || (typeOf _object) isKindOf "RocketCore" ) : {
-                  _map drawIcon [GVAR(missileIcon), [1,0,0,1], _initalpos, 10, 10, _initalpos getDir _futurepos,"",0,0.02];
-                  _map drawLine [_posArray select 0, getPosVisual _object, [1,0,0,1]];
-              };
-              default {
-                  _map drawLine [_initalpos, _futurepos, [1,0,0,1]];
-              };
-          };
-      };
+            private _pos = (getPosATLVisual _object);
+            if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
+        };
+        if(_type > 0) then {
+            private _icon = switch (_type) do {
+                case 1 : {GVAR(grenadeIcon)};
+                case 2 : {GVAR(smokegrenade)};
+                case 3 : {GVAR(grenadeIcon)};
+            };
+            _map drawIcon [_icon, [1,0,0,1], _pos, 10, 10,0,"",0];
+            _map drawLine [_posArray select 0, _pos, [1,0,0,1]];
+        }
+        if(_type == 1 && !isNull _object) then {
+             _futurepos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
+             _map drawLine [_pos, _futurepos, [1,0,0,1]];
+        };
     } forEach GVAR(rounds);
 };
 [QGVAR(draw2D), [_campos]] call EFUNC(event,emit);

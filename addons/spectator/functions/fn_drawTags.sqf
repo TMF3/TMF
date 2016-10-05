@@ -170,7 +170,7 @@ if(!GVAR(tracers)) exitWith {}:
     _x params ["_object","_posArray","_last","_type"];
     _pos = _posArray select (count _posArray-1);
     if(!isNull _object) then {
-        private _pos = (getPosATLVisual _object);q
+        private _pos = (getPosATLVisual _object);
         if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
     };
     if(_type > 0) then {
@@ -181,8 +181,8 @@ if(!GVAR(tracers)) exitWith {}:
         };
         drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
-    };
-    if(GVAR(bulletTrails) && _type == 0) then {
+    }
+    if(GVAR(bulletTrails) && _type == 1) then {
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
 } forEach GVAR(rounds);
