@@ -31,6 +31,7 @@ class cfgFunctions {
             class checkTMFVersion;
             class arrayToStringArray;
             class randPosArea;
+            class drawLines;
         };
     };
 };
