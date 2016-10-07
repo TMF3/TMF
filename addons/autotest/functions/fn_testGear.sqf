@@ -100,20 +100,20 @@ private _fnc_checkExists = {
         private _mags = [];
         {
             private _exists = false;
-            if (isClass (configFile >> "CfgMagazines" >> _x)) then { _exists = true; _mags pushBack _x;};
+            if (isClass (configFile >> "CfgMagazines" >> _x)) then { _exists = true; _mags pushBack (toLower _x);};
             if (isClass (configFile >> "CfgWeapons" >> _x)) then { _exists = true; };
             if (!_exists) then {
                 _output pushBack [0,format["Missing classname: %1 (for: %2 - %3 - %4)", _x,_side,_faction,_role]]; 
             }
         } forEach _magsAndItems;
-        _mags apply {toLower _x};
+
         //Mag check 
         if (count _primaryWeapon > 0) then {
-            _weaponMags = getArray (configFile >> "CfgWeapons" >> (_primaryWeapon select 0) >> "magazines");
-            _weaponMags apply {toLower _x};
-            _weaponMagCount = 0;
+            private _weaponMags = getArray (configFile >> "CfgWeapons" >> (_primaryWeapon select 0) >> "magazines");
+            _weaponMags = _weaponMags apply {toLower _x};
+            private _weaponMagCount = 0;
             {
-                if (_weaponMags find _x != -1) then {
+                if (_x in _weaponMags) then {
                     _weaponMagCount = _weaponMagCount + 1;
                 };
             } forEach _mags;
@@ -123,11 +123,11 @@ private _fnc_checkExists = {
         };
         
         if (count _sidearmWeapon > 0) then {
-            _weaponMags = getArray (configFile >> "CfgWeapons" >> (_sidearmWeapon select 0) >> "magazines");
-            _weaponMags apply {toLower _x};
-            _weaponMagCount = 0;
+            private _weaponMags = getArray (configFile >> "CfgWeapons" >> (_sidearmWeapon select 0) >> "magazines");
+            _weaponMags = _weaponMags apply {toLower _x};
+            private _weaponMagCount = 0;
             {
-                if (_weaponMags find _x != -1) then {
+                if (_x in _weaponMags) then {
                     _weaponMagCount = _weaponMagCount + 1;
                 };
             } forEach _mags;
