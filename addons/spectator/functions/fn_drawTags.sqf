@@ -181,7 +181,7 @@ if(!GVAR(tracers)) exitWith {}:
         };
         drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
-    }
+    };
     if(GVAR(bulletTrails) && _type == 1) then {
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
