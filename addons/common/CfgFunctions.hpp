@@ -32,6 +32,7 @@ class cfgFunctions {
             class arrayToStringArray;
             class randPosArea;
             class drawLines;
+            class endMission;
         };
     };
 };
