@@ -14,7 +14,7 @@
 #include "\x\tmf\addons\common\script_component.hpp"
 
 params [
-	["_input",[0,0,0]]
+    ["_input",[0,0,0]]
 ];
 
 private _tmfVersion = getMissionConfigValue ["tmf_version",[0,0,0]];

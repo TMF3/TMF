@@ -29,11 +29,11 @@ if (isNil QGVAR(respawnedGroupsMarkerData)) exitWith {};
                 //private _size = [28,28];
                 
 
-				private _color = ((GVAR(respawnMenuMarkerColours) select (_x select 3)) select 2);
-				private _type = ((GVAR(respawnMenuMarkers) select (_x select 2)) select 2);
-				private _markerTexture = "x\tmf\addons\orbat\textures\" + _color + "_" + _type;
-				private _markerColorRGB = [1,1,1,1];
-				private _size = [32,32];
+                private _color = ((GVAR(respawnMenuMarkerColours) select (_x select 3)) select 2);
+                private _type = ((GVAR(respawnMenuMarkers) select (_x select 2)) select 2);
+                private _markerTexture = "x\tmf\addons\orbat\textures\" + _color + "_" + _type;
+                private _markerColorRGB = [1,1,1,1];
+                private _size = [32,32];
 
                 ["",(_x select 1),[_markerTexture,_markerColorRGB,_size],"",_entity] call EFUNC(orbat,add);
             };

@@ -14,14 +14,14 @@
  */
 #include "\x\tmf\addons\event\script_component.hpp"
 params [
-	"_name",
-	"_arguments"
+    "_name",
+    "_arguments"
 ];
 
 [
-	[_name,_arguments],
-	QUOTE(FUNC(emitEvent)),
-	false,
-	true,
-	_persistent
+    [_name,_arguments],
+    QUOTE(FUNC(emitEvent)),
+    false,
+    true,
+    _persistent
 ] call BIS_fnc_MP;

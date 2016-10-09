@@ -55,7 +55,7 @@ if (isMultiplayer) then {
 //Tao Folding map support.
 if (isClass(configFile >> "CfgPatches" >> "tao_foldmap_a3")) then {
     [] spawn {
-		disableSerialization;
+        disableSerialization;
         while {true} do {
             waitUntil {sleep 1;!isNull (uiNamespace getVariable "tao_foldmap")};
             private _control1 = ((uiNamespace getVariable "tao_foldmap") displayctrl 40);
@@ -119,7 +119,7 @@ FUNC(PFHUpdate) = {
         GVAR(orbatMarkerArray) call FUNC(updateArray);
     };
     
-	if (!(getMissionConfigValue ['TMF_ORBATMarkersFT', false])) exitWith {};
+    if (!(getMissionConfigValue ['TMF_ORBATMarkersFT', false])) exitWith {};
     private _fireTeamMarkers = [];
     {
         if (!isNull _x) then {

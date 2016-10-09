@@ -14,33 +14,33 @@ private _maxDist = 0;
 private _maxDistPos = _rootNode select 4;
 if (count _in > 1) then {
     for "_i" from 1 to (count _in - 1) do {
-		private _xObject = (_in select _i);
-		private _ret = _xObject call FUNC(updateArray);
-		_ret params ["_retPos2", "_retmaxDistPos"];
-		_meanPos = _meanPos vectorAdd _retPos2;
-		private _thisIdx = _i;
-		private _minChildDist = 100000;
-		private _minDistPos = [0,0,0];
-		private _dist = (_retPos2 distanceSqr _myPos); // old mean.
-		if (_dist > _maxDist) then {
-			_maxDist = _dist;
-			_maxDistPos = ((_xObject select 0) select 4);
-		};
-		_dist = (_retMaxDistPos distanceSqr _myPos); // old mean.
-		if (_dist > _maxDist) then {
-			_maxDist = _dist;
-			_maxDistPos = _retMaxDistPos;
-		};
+        private _xObject = (_in select _i);
+        private _ret = _xObject call FUNC(updateArray);
+        _ret params ["_retPos2", "_retmaxDistPos"];
+        _meanPos = _meanPos vectorAdd _retPos2;
+        private _thisIdx = _i;
+        private _minChildDist = 100000;
+        private _minDistPos = [0,0,0];
+        private _dist = (_retPos2 distanceSqr _myPos); // old mean.
+        if (_dist > _maxDist) then {
+            _maxDist = _dist;
+            _maxDistPos = ((_xObject select 0) select 4);
+        };
+        _dist = (_retMaxDistPos distanceSqr _myPos); // old mean.
+        if (_dist > _maxDist) then {
+            _maxDist = _dist;
+            _maxDistPos = _retMaxDistPos;
+        };
         for "_i" from 1 to (count _in - 1) do {
-			if ((_thisIdx != _i)) then {
-				private _childPos = (((_in select _i) select 0) select 4);
-				_dist = (_retPos2 distanceSqr _childPos);
-				if (_dist < _minChildDist) then {
-					_minChildDist = _dist;
-					_minDistPos = _childPos;
-				};
-			};
-		};
+            if ((_thisIdx != _i)) then {
+                private _childPos = (((_in select _i) select 0) select 4);
+                _dist = (_retPos2 distanceSqr _childPos);
+                if (_dist < _minChildDist) then {
+                    _minChildDist = _dist;
+                    _minDistPos = _childPos;
+                };
+            };
+        };
         (_xObject select 0) set [5,_minDistPos]; 
     };
     _rootNode set[6,_maxDistPos];

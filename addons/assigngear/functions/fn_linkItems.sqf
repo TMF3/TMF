@@ -18,7 +18,7 @@ params ["_unit","_items"];
 if (isNil "_unit") exitWith {};
 
 {
-	if !(isNil "_x") then {
-		_unit addWeapon _x;
-	};
+    if !(isNil "_x") then {
+        _unit addWeapon _x;
+    };
 } forEach _items;

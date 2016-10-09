@@ -231,13 +231,13 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
 
         // Wait for existing rasRemove already initalized radios.
         if ("ItemRadio" in (items _unit + assignedItems _unit)) exitWith {};
-        if (!([] call acre_api_fnc_isInitialized)) exitWith {};	
+        if (!([] call acre_api_fnc_isInitialized)) exitWith {};    
 
         {_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);
 
 
         // Allocate new radios.
-        {	
+        {    
             if (_unit canAdd _x) then {
                 _unit addItem _x;
             } else {
@@ -250,7 +250,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
                         (unitBackpack _unit) addItemCargoGlobal [_x, 1];
                         _added = true;
                     };
-                };*/			
+                };*/            
 
                 if (!_added) then {
                     [_x] spawn {

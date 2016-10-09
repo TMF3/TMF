@@ -16,8 +16,8 @@ switch (_type) do {
     };
 
     case "MouseButtonUp": {
-    	_args params ["_control","_button","_x","_y","_shift","_ctrl","_alt"];
-    	GVAR(mButtons) set [_button,false];
+        _args params ["_control","_button","_x","_y","_shift","_ctrl","_alt"];
+        GVAR(mButtons) set [_button,false];
     };
 
     case "MouseMoving" : {
@@ -40,5 +40,5 @@ switch (_type) do {
             private _nvalue = GVAR(movement_keys) select 6;
             GVAR(movement_keys) set [6,_nvalue + _value];
         };
-	};
+    };
 };

@@ -19,7 +19,7 @@ _args params ["_control"];
 switch (_button) do {
 
 
-	// Sidefilter button
+    // Sidefilter button
     case "sidefilter": {
       GVAR(sides_button_state) = (GVAR(sides_button_state) + 1);
 
@@ -65,12 +65,12 @@ switch (_button) do {
       [_messsage] call FUNC(notificationShow);
       _control ctrlSetText ( _text);
       _control ctrlSetTooltip _messsage;
-	};
+    };
 
 
 
-	// Tags button
-	case "tags" : {
+    // Tags button
+    case "tags" : {
       GVAR(tags) = !GVAR(tags);
 
 
@@ -78,37 +78,37 @@ switch (_button) do {
       _msg = "TAGS DISABLED";
 
       if(GVAR(tags)) then {
-      	_tooltip = "DISABLE TAGS";
-      	_msg = "TAGS ENABLED";
+          _tooltip = "DISABLE TAGS";
+          _msg = "TAGS ENABLED";
       };
 
 
       [_msg] call FUNC(notificationShow);
       _control ctrlSetTooltip _tooltip;
-	};
-	case "mute" : {
-  	[] call acre_sys_core_fnc_toggleHeadset;
-	};
-	case "vision" : {
-		GVAR(visionMode) = GVAR(visionMode) +1;
-		if(GVAR(visionMode) > 2) then {GVAR(visionMode) = 0};
-		false setCamUseTi 0;
-		camUseNVG false;
-		switch (GVAR(visionMode)) do {
-		    case 1: {
-    			camUseNVG true;
-		    };
-		    case 2: {
-				true setCamUseTi 0;
-		    };
-		};
-		[format ["SWITCHED TO %1", GVAR(visionMode_strings) select GVAR(visionMode) ]] call FUNC(notificationShow);;
-		_i = (GVAR(visionMode))+1;
-		if(_i > 4) then {_i = 0};
+    };
+    case "mute" : {
+      [] call acre_sys_core_fnc_toggleHeadset;
+    };
+    case "vision" : {
+        GVAR(visionMode) = GVAR(visionMode) +1;
+        if(GVAR(visionMode) > 2) then {GVAR(visionMode) = 0};
+        false setCamUseTi 0;
+        camUseNVG false;
+        switch (GVAR(visionMode)) do {
+            case 1: {
+                camUseNVG true;
+            };
+            case 2: {
+                true setCamUseTi 0;
+            };
+        };
+        [format ["SWITCHED TO %1", GVAR(visionMode_strings) select GVAR(visionMode) ]] call FUNC(notificationShow);;
+        _i = (GVAR(visionMode))+1;
+        if(_i > 4) then {_i = 0};
     if(isNil "_control" || {isNull _control}) then {_control = uinamespace getVariable [QGVAR(vision),controlNull];};
-		_control ctrlSetTooltip format ["Switch to %1", GVAR(visionMode_strings) select _i ];
-	};
-	case "camera" : {
+        _control ctrlSetTooltip format ["Switch to %1", GVAR(visionMode_strings) select _i ];
+    };
+    case "camera" : {
         private _tooltip = "SWITCH TO FOLLOW CAMERA";
         private _messsage = "FIRST PERSON ENABLED";
         private _modes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
@@ -139,5 +139,5 @@ switch (_button) do {
 
         _control ctrlSetTooltip _tooltip;
         [_messsage] call FUNC(notificationShow);
-	};
+    };
 };

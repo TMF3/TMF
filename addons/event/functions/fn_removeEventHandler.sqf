@@ -18,6 +18,6 @@ params ["_name","_id"];
 
 private _functions = missionNamespace getVariable [EVENT,[]];
 if (count _functions >= _id) then {
-	_functions set [_id,nil];
+    _functions set [_id,nil];
 };
 missionNamespace setVariable [EVENT,_functions];

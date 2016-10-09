@@ -13,8 +13,8 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 params [
-	["_component","",["a"]],
-	["_text","",["a"]]
+    ["_component","",["a"]],
+    ["_text","",["a"]]
 ];
 
 if ((!is3DEN) && {!(getMissionConfigValue ["tmf_debug_enabled",true])}) exitWith {};

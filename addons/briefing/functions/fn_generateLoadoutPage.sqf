@@ -1,15 +1,15 @@
 /*
- *		Name: TMF_briefing_fnc_addLoadoutNotes
- *		Author: Nick, Snippers
+ *        Name: TMF_briefing_fnc_addLoadoutNotes
+ *        Author: Nick, Snippers
  *
- *		Arguments:
- *			0: _unit (Default: player)
+ *        Arguments:
+ *            0: _unit (Default: player)
  *
- *		Return:
- *			None
+ *        Return:
+ *            None
  *
- *		Description:
- *			Add the Loadout entry to the diary
+ *        Description:
+ *            Add the Loadout entry to the diary
  */
 #include "\x\tmf\addons\briefing\script_component.hpp"
 if(!hasInterface || (GVAR(addLoadoutNotes) isEqualTo 0)) exitWith {};

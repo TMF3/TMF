@@ -6,33 +6,33 @@ overviewPicture = __EVAL(selectRandom ['\x\tmf\addons\common\ui\loadscreens\1.jp
 
 class CfgDebriefing
 {
-	class Success
-	{
-		title = "Mission Success";
-		subtitle = "";
-		description = "";
-		// pictureBackground = "";
-		// picture = "";
-		// pictureColor[] = {0.0,0.3,0.6,1};
-	};
-	class Failed
-	{
-		title = "Mission Failed";
-		subtitle = "";
-		description = "";
-		// pictureBackground = "";
-		// picture = "";
-		// pictureColor[] = {0.0,0.3,0.6,1};
-	};
-	class CustomEnding1
-	{
-		title = "Custom Ending #1";
-		subtitle = "";
-		description = "*** Explanation for the debriefing page ***";
-		// pictureBackground = "";
-		// picture = "";
-		// pictureColor[] = {0.0,0.3,0.6,1};
-	};
+    class Success
+    {
+        title = "Mission Success";
+        subtitle = "";
+        description = "";
+        // pictureBackground = "";
+        // picture = "";
+        // pictureColor[] = {0.0,0.3,0.6,1};
+    };
+    class Failed
+    {
+        title = "Mission Failed";
+        subtitle = "";
+        description = "";
+        // pictureBackground = "";
+        // picture = "";
+        // pictureColor[] = {0.0,0.3,0.6,1};
+    };
+    class CustomEnding1
+    {
+        title = "Custom Ending #1";
+        subtitle = "";
+        description = "*** Explanation for the debriefing page ***";
+        // pictureBackground = "";
+        // picture = "";
+        // pictureColor[] = {0.0,0.3,0.6,1};
+    };
 
 };
 
@@ -41,19 +41,19 @@ class CfgDebriefing
 
 class CfgLoadouts
 {
-	class US_ARMY_OCP
-	{
-		displayName = "US Army (OCP)";
-		#include "loadouts\us_army_ocp.hpp"
-	};
-	class RUS_MSV_FLORA
-	{
-		displayName = "RU Ground Forces (Flora)";
-		#include "loadouts\ru_msv_flora.hpp"
-	};
-	class TAK_ARMY
-	{
-		displayName = "Takistani Army";
-		#include "loadouts\taki_army.hpp"
-	};
+    class US_ARMY_OCP
+    {
+        displayName = "US Army (OCP)";
+        #include "loadouts\us_army_ocp.hpp"
+    };
+    class RUS_MSV_FLORA
+    {
+        displayName = "RU Ground Forces (Flora)";
+        #include "loadouts\ru_msv_flora.hpp"
+    };
+    class TAK_ARMY
+    {
+        displayName = "Takistani Army";
+        #include "loadouts\taki_army.hpp"
+    };
 };

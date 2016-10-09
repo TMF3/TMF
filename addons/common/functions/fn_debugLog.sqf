@@ -13,9 +13,9 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 params [
-	["_file","",["a"]],
-	["_line",0,[0]],
-	["_text","",["a"]]
+    ["_file","",["a"]],
+    ["_line",0,[0]],
+    ["_text","",["a"]]
 ];
 
 if ((!is3DEN) && {!(getMissionConfigValue ["tmf_debug_enabled",true])}) exitWith {};

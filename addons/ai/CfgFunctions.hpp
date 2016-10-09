@@ -1,8 +1,8 @@
 class cfgFunctions {
-	class ADDON {
-		class COMPONENT {
-			file = QPATHTO_FOLDER(functions);
-			class fortify;
+    class ADDON {
+        class COMPONENT {
+            file = QPATHTO_FOLDER(functions);
+            class fortify;
             class waveInit;
             class spawnWave;
             class garrison;
@@ -15,6 +15,6 @@ class cfgFunctions {
             class emptyFunction;
             class arty;
             class doArty;
-		};
-	};
+        };
+    };
 };

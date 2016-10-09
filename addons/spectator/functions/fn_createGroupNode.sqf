@@ -25,8 +25,8 @@ private _icon = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";
 private _color = (side _x) call CFUNC(sideToColor);
 
 if(count _twGrpMkr >= 3) then {
-	_icon = _twGrpMkr select 0;
-	_color = [1,1,1,1];
+    _icon = _twGrpMkr select 0;
+    _color = [1,1,1,1];
 };
 
 GVAR(groups) pushBackUnique _grp;
@@ -40,9 +40,9 @@ _unitListControl tvSetPictureColor [[_index],_color];
 
 
 {
-	if(alive _x) then {
-		[_x,_index] call FUNC(createUnitNode);
-	};
+    if(alive _x) then {
+        [_x,_index] call FUNC(createUnitNode);
+    };
 } forEach (units _x);
 
 if({isPlayer _x} count (units _grp) > 0) then {

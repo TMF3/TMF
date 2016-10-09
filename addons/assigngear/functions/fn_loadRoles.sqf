@@ -38,8 +38,8 @@ call {
 };
 
 {
-	private _index = _control lbAdd getText(_x >> "displayName");
-	_control lbSetData [_index,configName _x];
-	if(configName _x == _role) then {_control lbSetCurSel _index};
+    private _index = _control lbAdd getText(_x >> "displayName");
+    _control lbSetData [_index,configName _x];
+    if(configName _x == _role) then {_control lbSetCurSel _index};
 } forEach _classes;
 

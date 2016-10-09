@@ -2,17 +2,17 @@
 
 class cfgPatches
 {
-	class ADDON
-	{
+    class ADDON
+    {
         name = "TMF: ACRE2";
-		author = "Snippers";
-		url = "http://www.teamonetactical.com";
-		units[] = {};
-		weapons[] = {};
-		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"tmf_common", "acre_main"};
-		VERSION_CONFIG;
-	};
+        author = "Snippers";
+        url = "http://www.teamonetactical.com";
+        units[] = {};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {"tmf_common", "acre_main"};
+        VERSION_CONFIG;
+    };
 };
 
 #include "CfgFunctions.hpp"

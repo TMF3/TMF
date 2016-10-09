@@ -32,6 +32,6 @@ _unitListControl tvSetData [[_parentIndex,_index],netId _unit];
 
 private _icon = getText (configFile >> "CfgVehicles" >> typeof (vehicle _unit) >> "icon");
 if (isText (configfile >> "CfgVehicleIcons" >> _icon )) then {
-	_icon = getText (configfile >> "CfgVehicleIcons" >> _icon );
+    _icon = getText (configfile >> "CfgVehicleIcons" >> _icon );
 };
 _unitListControl tvSetPicture [[_parentIndex,_index],_icon];

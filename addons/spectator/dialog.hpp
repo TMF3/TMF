@@ -154,14 +154,14 @@ class tmf_spectator_dialog
   onUnload = "TMF_spectator_camera cameraEffect ['TERMINATE','BACK']";
   class TMF_SPECTATOR_KILLLIST: RscControlsGroup
   {
-  	idc = 2300;
-  	x = 0.763544 * safezoneW + safezoneX;
-  	y = 0 * safezoneH + safezoneY;
-  	w = 0.233576 * safezoneW;
-  	h = (0.020*6.5) * safezoneH;
+      idc = 2300;
+      x = 0.763544 * safezoneW + safezoneX;
+      y = 0 * safezoneH + safezoneY;
+      w = 0.233576 * safezoneW;
+      h = (0.020*6.5) * safezoneH;
     colorBackground[] = {0,0,0,0};
-  	class controls
-  	{
+      class controls
+      {
           class Label1: RscStructuredText
           {
             idc = 1;
@@ -183,7 +183,7 @@ class tmf_spectator_dialog
               x = 0.00352533 * safezoneW;
               y = (0.005+(0.020*1)) * safezoneH;
               w = 0.230 * safezoneW;
-        	  h = 0.020 * safezoneH;
+              h = 0.020 * safezoneH;
               colorBackground[] = {0,0,0,0.0};
               text = "";
           };
@@ -203,7 +203,7 @@ class tmf_spectator_dialog
               x = 0.00352533 * safezoneW;
               y = (0.005+(0.020*3)) * safezoneH;
               w = 0.230 * safezoneW;
-        	  h = 0.020 * safezoneH;
+              h = 0.020 * safezoneH;
               colorBackground[] = {0,0,0,0.0};
               text = "";
           };
@@ -213,7 +213,7 @@ class tmf_spectator_dialog
               x = 0.00352533 * safezoneW;
               y = (0.005+(0.020*4)) * safezoneH;
               w = 0.230 * safezoneW;
-        	  h = 0.020 * safezoneH;
+              h = 0.020 * safezoneH;
               colorBackground[] = {0,0,0,0.0};
               text = "";
           };
@@ -223,11 +223,11 @@ class tmf_spectator_dialog
               x = 0.00352533 * safezoneW;
               y = (0.005+(0.020*5)) * safezoneH;
               w = 0.230 * safezoneW;
-        	  h = 0.020 * safezoneH;
+              h = 0.020 * safezoneH;
               colorBackground[] = {0,0,0,0.0};
               text = "";
           };
-  	};
+      };
   };
   class TMF_SPECTATOR_UNITLABEL: RscSpectatorText
   {

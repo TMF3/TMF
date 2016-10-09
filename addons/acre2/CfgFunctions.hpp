@@ -1,9 +1,9 @@
 class cfgFunctions {
-	class ADDON {
-		class COMPONENT {
-			file = QPATHTO_FOLDER(functions);
-			class clientInit;
-			class createPresets;
-		};
-	};
+    class ADDON {
+        class COMPONENT {
+            file = QPATHTO_FOLDER(functions);
+            class clientInit;
+            class createPresets;
+        };
+    };
 };

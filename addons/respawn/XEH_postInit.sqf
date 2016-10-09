@@ -50,9 +50,9 @@ if (hasInterface) then {
         QGVAR(respawnedGroupsMarkerData) addPublicVariableEventHandler {
             [] call FUNC(respawnGroupMarkerUpdate);
         };
-		
-		// Create markers for any respawned markers that have occured before the client has joined.
-		[] call FUNC(respawnGroupMarkerUpdate);
+        
+        // Create markers for any respawned markers that have occured before the client has joined.
+        [] call FUNC(respawnGroupMarkerUpdate);
     };
 };
 

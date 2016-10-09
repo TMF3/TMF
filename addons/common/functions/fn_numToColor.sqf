@@ -14,12 +14,12 @@
 
 params["_number"];
 private _color = switch (_number) do {
-	case -1: {"#FFFFFF"};
-	case 0: {"#1AFF00"};
-	case 1: {"#0071FF"};
-	case 2: {"#E8DF06"};
-	case 3: {"#06E8B1"};
-	default {"#FFAB06"};
+    case -1: {"#FFFFFF"};
+    case 0: {"#1AFF00"};
+    case 1: {"#0071FF"};
+    case 2: {"#E8DF06"};
+    case 3: {"#06E8B1"};
+    default {"#FFAB06"};
 };
 // return color
 _color
