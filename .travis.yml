@@ -1,0 +1,10 @@
+language: python
+python:
+- '3.4'
+script:
+- python3 tools/sqf_validator.py
+- python3 tools/config_style_checker.py
+notifications:
+  email:
+    on_success: never
+    on_failure: never
