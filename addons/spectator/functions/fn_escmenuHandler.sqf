@@ -17,11 +17,12 @@ switch (_mode) do {
       W,A,S,D - Move fowards/backwards/left/right <br/>
       Q,Z - Adjust altitude <br/>
       T - Toggle tracers <br/>
+      U - Hide UI <br/>
       %1 - Show group lines <br/>
       Space - Toggle camera mode <br/>
       %2 - Show map <br/>
-      Scroll-wheel - Speed modifier for freecam <br/>
-      Shift - Precision mode <br/>
+      Scroll-wheel - Zoom on mouse position <br/>
+      Shift - High speed <br/>
       ",actionKeysNames "ReloadMagazine",actionKeysNames "ShowMap"];
       ((_args select 0) displayCtrl 1100) ctrlSetStructuredText parseText _text;
 
