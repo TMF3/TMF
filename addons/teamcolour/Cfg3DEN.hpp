@@ -1,6 +1,5 @@
 #include "\a3\3DEN\UI\macros.inc"
-class ctrlCombo;
-class ctrlStatic;
+
 class ctrlToolbox;
 
 class Cfg3DEN

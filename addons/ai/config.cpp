@@ -18,5 +18,4 @@ class cfgPatches
 #include "CfgFunctions.hpp"
 #include "CfgWaypoints.hpp"
 #include "CfgModules.hpp"
-class ctrlControlsGroupNoScrollbars;
-class ctrlCheckboxToolbar;
+

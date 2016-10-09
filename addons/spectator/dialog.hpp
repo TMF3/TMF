@@ -1,6 +1,5 @@
 
 class RscText;
-class RscShortcutButton;
 class RscMapControl;
 class RscTree;
 class RscControlsGroup;
@@ -9,8 +8,8 @@ class RscButtonMenuOK;
 class RscTitle;
 class RscStructuredText;
 class RscDebugConsole;
-class RscProgress;
 class RscPicture;
+class RscXSliderH;
 
 class RscSpectatorText : RscText
 {
@@ -42,7 +41,7 @@ class RscSpectatorShortcutButton : RscPicture
     soundEscape[] = { "", 0, 1 };  // no sound
 };
 
-class RscXSliderH;
+
 #define SETTINGS_WDITH 0.2 * safezoneW
 #define SETTINGS_HEIGHT 0.5 * safezoneH
 #define ROW(A) ((0.022) *safezoneH)+(((0.025) *safezoneH)*A)
@@ -106,7 +105,7 @@ class GVAR(settingControl) : RscControlsGroup
             h = 0.022 * safezoneH;
         };
   };
-}
+};
 
 
 

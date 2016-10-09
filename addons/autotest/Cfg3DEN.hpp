@@ -9,7 +9,6 @@ class ctrlStatic;// : ctrlDefaultText;
 class ctrlListNBox;// : ctrlDefaultText;
 class ctrlTree;// : ctrlDefaultText;
 class ctrlEdit;// : ctrlDefaultText;
-class ctrlToolBox;// : ctrlDefaultText;
 
 class RscButtonMenu;
 class RscText;
