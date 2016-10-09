@@ -57,28 +57,3 @@ class CfgLoadouts
 		#include "loadouts\taki_army.hpp"
 	};
 };
-
-class ACE_settings {
-	class ace_finger_enabled {
-		value = 1;
-		typeName = "BOOL";
-		force = 1;
-	};
-	class ace_finger_maxRange {
-		value = 5;
-		typeName = "SCALAR";
-		force = 1;
-	};
-	class ace_overheating_unJamOnreload { // Clear jam by reloading instead of non-obvious key combination
-		typeName = "BOOL";
-		value = 1;
-	};
-	class ace_overheating_unJamFailChance { // Unjams shouldn't fail
-		typeName = "SCALAR";
-		value = 0;
-	};
-	class ace_map_DefaultChannel {
-		typeName = "NUMBER";
-		value = 1; // Side chat
-	};
-};
