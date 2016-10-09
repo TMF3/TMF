@@ -1,5 +1,5 @@
 /*
- * Author: Head
+ * Author: Head, Snippers
  * Creates a group node for units tree node
  *
  * Arguments:

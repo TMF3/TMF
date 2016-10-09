@@ -1,3 +1,19 @@
+/*
+ * Author: Head, Snippers
+ * Creates a unit node for units tree node
+ *
+ * Arguments:
+ * 0: _unit - a unit
+ * 1: _parentIndex - parent index for the treeview group node
+ *
+ * Return Value:
+ * Index <NUMBER>
+ *
+ * Example:
+ * [group player] call tmf_spectator_fnc_createUnitNode
+ *
+ * Public: No
+ */
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params["_unit","_parentIndex"];
 

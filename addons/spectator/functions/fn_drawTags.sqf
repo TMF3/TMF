@@ -165,24 +165,25 @@ private _renderGroups = _grpTagSize > 0;
 // Tracers / grenade / rocket tags
 ////////////////////////////////////////////////////////
 
-if(!GVAR(tracers)) exitWith {}:
+if(!GVAR(tracers)) exitWith {};
 {
-    _x params ["_object","_posArray","_last","_type"];
+    _x params ["_object","_posArray","_last","_time","_type"];
     _pos = _posArray select (count _posArray-1);
     if(!isNull _object) then {
         private _pos = (getPosATLVisual _object);
         if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
     };
-    if(_type > 0) then {
+    _render = (_campos distance2d _pos <= 400);
+    if(_type > 0 && _render) then {
         private _icon = switch (_type) do {
-            case 1 : {GVAR(grenadeIcon)};
-            case 2 : {GVAR(smokegrenade)};
-            case 3 : {GVAR(grenadeIcon)};
+            case 1 : { GVAR(grenadeIcon) };
+            case 2 : { GVAR(smokeIcon) };
+            case 3 : { GVAR(missileIcon) };
         };
         drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
-    if(GVAR(bulletTrails) && _type == 1) then {
+    if(GVAR(bulletTrails) && _type == 0 && _render) then {
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
 } forEach GVAR(rounds);

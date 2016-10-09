@@ -5,13 +5,6 @@ disableSerialization;
 if(GVAR(unitUpdate) > time) exitWith {};
 GVAR(unitUpdate) = time+(random 3 max 1);
 
-
-
-
-
-
-
-
 private _unitListControl = (uiNamespace getVariable [QGVAR(unitlist),controlNull]);
 
 if(GVAR(clearGroups)) then { /* Used by UI which groups to display */
@@ -24,11 +17,9 @@ if(GVAR(clearGroups)) then { /* Used by UI which groups to display */
     GVAR(vehicles) = [];
 };
 private _newGroups = [];
-if(!GVAR(playersOnly)) then {
-    _newGroups = (allGroups select {{alive _x && side _x in tmf_spectator_sides} count units _x > 0}) - GVAR(groups);
-} else {
-    _newGroups = (allGroups select {{alive _x && {side _x in tmf_spectator_sides} && {{isPlayer _x || _x in playableUnits} count (units _x) > 0}} count units _x > 0}) - GVAR(groups);
-};
+if(!GVAR(playersOnly)) then { _newGroups = (allGroups select {{alive _x && side _x in tmf_spectator_sides} count units _x > 0}) - GVAR(groups); }
+else { _newGroups = (allGroups select {{alive _x && {side _x in tmf_spectator_sides} &&
+{{isPlayer _x || _x in playableUnits} count (units _x) > 0}} count units _x > 0}) - GVAR(groups); };
 
 // check if any new groups appeard
 if((count _newGroups) > 0) then {
