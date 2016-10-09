@@ -3,7 +3,7 @@
 
 
 if (!isNil "ace_common_fnc_addCanInteractWithCondition") then {
-	[QGVAR(spectatingCondition), {isNull (findDisplay IDC_SPECTATOR_TMF_SPECTATOR_DIALOG)}] call ace_common_fnc_addCanInteractWithCondition;
+    [QGVAR(spectatingCondition), {isNull (findDisplay IDC_SPECTATOR_TMF_SPECTATOR_DIALOG)}] call ace_common_fnc_addCanInteractWithCondition;
 };
 
 if (isServer) then {

@@ -31,16 +31,16 @@ private _classes = [];
 } forEach (configProperties [missionConfigFile >> "CfgLoadouts" >> _side,"isClass _x"]);
 
 {
-	_x params ["_faction","_name"];
-	private _roles = [];
-	if (isClass (missionConfigFile >> "CfgLoadouts" >> _side >> _faction)) then {
-		_roles = configProperties [missionConfigFile >> "CfgLoadouts" >> _side >> _faction,"isClass _x"];
-	} else {
-		_roles = configProperties [configFile >> "CfgLoadouts" >> _side >> _faction,"isClass _x"];
-	};
-	// turn roles cfg into string names
-	{_roles set [_forEachIndex,[configName _x,getText(_x >> "displayName")]]} forEach _roles;
-	_classes pushBack _roles;
+    _x params ["_faction","_name"];
+    private _roles = [];
+    if (isClass (missionConfigFile >> "CfgLoadouts" >> _side >> _faction)) then {
+        _roles = configProperties [missionConfigFile >> "CfgLoadouts" >> _side >> _faction,"isClass _x"];
+    } else {
+        _roles = configProperties [configFile >> "CfgLoadouts" >> _side >> _faction,"isClass _x"];
+    };
+    // turn roles cfg into string names
+    {_roles set [_forEachIndex,[configName _x,getText(_x >> "displayName")]]} forEach _roles;
+    _classes pushBack _roles;
 } forEach _factions;
 
 {  _return pushBack [_x,_classes select _forEachIndex] } forEach _factions;

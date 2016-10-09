@@ -18,10 +18,10 @@ class RscMap;
 #include "\a3\3den\UI\resincl.inc"
 
 
-#define MSGBOX_W	100
-#define MSGBOX_H	50
-#define MSGBOX_X	0.25
-#define MSGBOX_Y	0.25
+#define MSGBOX_W    100
+#define MSGBOX_H    50
+#define MSGBOX_X    0.25
+#define MSGBOX_Y    0.25
 
 class ctrlDefault;
 class ctrlDefaultText;// : ctrlDefault;
@@ -41,61 +41,61 @@ class ctrlCheckbox;
 
 class GVAR(editBox)
 {
-	idd = -1;
-	movingEnable = 0;
+    idd = -1;
+    movingEnable = 0;
     enableSimulation = 1;
     enableDisplay = 1;
-	onUnload = "_this call tmf_patrol_fnc_3denPatrol";
-	class Controls
-	{
+    onUnload = "_this call tmf_patrol_fnc_3denPatrol";
+    class Controls
+    {
         class Back : ctrlStaticBackgroundDisableTiles
         {
             x = SafeZoneX; y = SafeZoneY;
-    	    w = SafeZoneW; h = SafeZoneH;
+            w = SafeZoneW; h = SafeZoneH;
         };
-		class Title: ctrlStaticTitle
-		{
-			idc = IDC_DISPLAY3DENMSGBOX_TITLE;
-			x = (MSGBOX_X);
-			y = (MSGBOX_Y);
-			w = (MSGBOX_W) * GRID_W;
-			h = 5 * GRID_H;
+        class Title: ctrlStaticTitle
+        {
+            idc = IDC_DISPLAY3DENMSGBOX_TITLE;
+            x = (MSGBOX_X);
+            y = (MSGBOX_Y);
+            w = (MSGBOX_W) * GRID_W;
+            h = 5 * GRID_H;
             text = "Patrol generator";
-		};
-		class Background: ctrlStaticBackground
-		{
-			idc = IDC_DISPLAY3DENMSGBOX_BACKGROUND;
-			x = (MSGBOX_X);
-			y = (MSGBOX_Y) + SIZE_M * GRID_H;
-			w = (MSGBOX_W) * GRID_W;
-			h =  MSGBOX_H * GRID_H;
-		};
-		class BottomBackground: ctrlStaticFooter
-		{
-			idc = IDC_DISPLAY3DENMSGBOX_BOTTOMBACKGROUND;
-			x = (MSGBOX_X);
-			y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
-			w = (MSGBOX_W) * GRID_W;
-			h = 5 * GRID_H;
-		};
-		class ButtonOK: ctrlButtonOK
-		{
-            idc = 3434;
-			x = MSGBOX_X + (MSGBOX_W * 1/3) * GRID_W;
-			y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
-			w = (MSGBOX_W * 1/3 - 1) * GRID_W;
-			h = 5 * GRID_H;
-            onButtonDown = "(ctrlParent (_this select 0)) closeDisplay 1;";
-		};
-		class ButtonCancel: ctrlButtonCancel
-		{
-            idc = 3432;
-			x = MSGBOX_X + (MSGBOX_W * 2/3) * GRID_W;
+        };
+        class Background: ctrlStaticBackground
+        {
+            idc = IDC_DISPLAY3DENMSGBOX_BACKGROUND;
+            x = (MSGBOX_X);
+            y = (MSGBOX_Y) + SIZE_M * GRID_H;
+            w = (MSGBOX_W) * GRID_W;
+            h =  MSGBOX_H * GRID_H;
+        };
+        class BottomBackground: ctrlStaticFooter
+        {
+            idc = IDC_DISPLAY3DENMSGBOX_BOTTOMBACKGROUND;
+            x = (MSGBOX_X);
             y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
-			w = (MSGBOX_W * 1/3 - 1) * GRID_W;
-			h = 5 * GRID_H;
+            w = (MSGBOX_W) * GRID_W;
+            h = 5 * GRID_H;
+        };
+        class ButtonOK: ctrlButtonOK
+        {
+            idc = 3434;
+            x = MSGBOX_X + (MSGBOX_W * 1/3) * GRID_W;
+            y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
+            w = (MSGBOX_W * 1/3 - 1) * GRID_W;
+            h = 5 * GRID_H;
+            onButtonDown = "(ctrlParent (_this select 0)) closeDisplay 1;";
+        };
+        class ButtonCancel: ctrlButtonCancel
+        {
+            idc = 3432;
+            x = MSGBOX_X + (MSGBOX_W * 2/3) * GRID_W;
+            y = (MSGBOX_Y) + (MSGBOX_H * GRID_H);
+            w = (MSGBOX_W * 1/3 - 1) * GRID_W;
+            h = 5 * GRID_H;
             onButtonDown = "(ctrlParent (_this select 0)) closeDisplay 2;";
-		};
+        };
         class PatrolShapeLabel : ctrlStructuredText
         {
             x = (MSGBOX_X);
@@ -108,7 +108,7 @@ class GVAR(editBox)
         {
             IDC  = 1337;
             x = (MSGBOX_X);
-			y = (MSGBOX_Y)+ (SIZE_M+5) * GRID_H;
+            y = (MSGBOX_Y)+ (SIZE_M+5) * GRID_H;
             w = (MSGBOX_W) * GRID_W;
             h = 15 * GRID_H;
             rows = 1;
@@ -175,5 +175,5 @@ class GVAR(editBox)
             h = 5 * GRID_H;
             text = "Force waypoint to road";
         };
-	};
+    };
 };

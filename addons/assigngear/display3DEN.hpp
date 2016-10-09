@@ -14,11 +14,11 @@
 class ctrlMenu; /*proto*/
 class display3DEN
 {
-	class ContextMenu: ctrlMenu
-	{
-		class Items
-		{
-			class Arsenal
+    class ContextMenu: ctrlMenu
+    {
+        class Items
+        {
+            class Arsenal
             {
                 //text = $STR_A3_Arsenal;
                 //data = "Arsenal";
@@ -28,6 +28,6 @@ class display3DEN
                 //conditionShow = hoverObjectBrain AND NOT(hoverObjectVehicle);
                 //picture = "\a3\3DEN\Data\Displays\Display3DEN\EntityMenu\arsenal_ca.paa";
             };
-		};
-	};
+        };
+    };
 };

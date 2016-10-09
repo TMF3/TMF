@@ -24,14 +24,14 @@ if (!isNull _entity) then {
 
 private _place = [];
 if (_parent != "") then {
-	_place = [GVAR(orbatMarkerArray), _parent] call BIS_fnc_findNestedElement;
+    _place = [GVAR(orbatMarkerArray), _parent] call BIS_fnc_findNestedElement;
 };
 if (count _place == 0) then {
-	if (count GVAR(orbatMarkerArray) == 0) then {
-		GVAR(orbatMarkerArray) pushBack _line;
-	} else {
-		GVAR(orbatMarkerArray) pushBack [_line];
-	};
+    if (count GVAR(orbatMarkerArray) == 0) then {
+        GVAR(orbatMarkerArray) pushBack _line;
+    } else {
+        GVAR(orbatMarkerArray) pushBack [_line];
+    };
 } else {
     private _subArray = GVAR(orbatMarkerArray);
     for "_i" from 0 to ((count _place)-3) do {

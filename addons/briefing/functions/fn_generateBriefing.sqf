@@ -24,10 +24,10 @@ private _unitGroup = group _unit;
 
 private _indexesToTrigger = [];
 {
-	_x params ["","_conditions"];
-	if ([_unit, _conditions] call EFUNC(common,evaluateCondArray)) then {
-		_indexesToTrigger pushBack _forEachIndex;
-	};
+    _x params ["","_conditions"];
+    if ([_unit, _conditions] call EFUNC(common,evaluateCondArray)) then {
+        _indexesToTrigger pushBack _forEachIndex;
+    };
 } forEach _briefingArray;
 
 //Check group/unit conditions
@@ -37,7 +37,7 @@ private _unitCond = _unit getVariable ["TMF_Briefinglist", []];
 if (_unitCond isEqualType "") then { _unitCond = call compile _unitCond; };
 
 {
-	_indexesToTrigger pushBackUnique _x;
+    _indexesToTrigger pushBackUnique _x;
 } forEach (_groupCond + _unitCond);
 
 
@@ -53,28 +53,28 @@ private _fnc_fileExists = {
 };
 
 {
-	private _scriptName = (_briefingArray select _x) select 2;
-	if ((_scriptName) call _fnc_fileExists) then {
-		call compile preprocessfilelinenumbers _scriptName;
-	} else {
-		[_scriptName] spawn {
+    private _scriptName = (_briefingArray select _x) select 2;
+    if ((_scriptName) call _fnc_fileExists) then {
+        call compile preprocessfilelinenumbers _scriptName;
+    } else {
+        [_scriptName] spawn {
             params ["_scriptName"];
-			uiSleep 5;
-			systemChat format["[TMF-Briefing] Missing file: %1 ", _scriptName];
-		};
-	};
+            uiSleep 5;
+            systemChat format["[TMF-Briefing] Missing file: %1 ", _scriptName];
+        };
+    };
 } forEach _indexesToTrigger;
 
 //Do Admin briefing.
 if ([] call tmf_common_fnc_isAdmin) then {
-	if (("briefing\admin.sqf") call _fnc_fileExists) then {
-		call compile preprocessfilelinenumbers "briefing\admin.sqf";
-	} else {
-		[] spawn {
-			uiSleep 5;
-			systemChat "[TMF-Briefing] Warning admin briefing not found. Expected: MISSION_ROOT\briefing\admin.sqf";
-		};
-	};
+    if (("briefing\admin.sqf") call _fnc_fileExists) then {
+        call compile preprocessfilelinenumbers "briefing\admin.sqf";
+    } else {
+        [] spawn {
+            uiSleep 5;
+            systemChat "[TMF-Briefing] Warning admin briefing not found. Expected: MISSION_ROOT\briefing\admin.sqf";
+        };
+    };
 };
 
 

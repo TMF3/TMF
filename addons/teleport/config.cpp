@@ -2,17 +2,17 @@
 
 class cfgPatches
 {
-	class ADDON
-	{
+    class ADDON
+    {
         name = "TMF: Teleport";
-		author = "Head";
-		url = "http://www.teamonetactical.com";
-		units[] = {QGVAR(module),QGVAR(deploy)};
-		weapons[] = {};
-		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"tmf_common"};
-		VERSION_CONFIG;
-	};
+        author = "Head";
+        url = "http://www.teamonetactical.com";
+        units[] = {QGVAR(module),QGVAR(deploy)};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {"tmf_common"};
+        VERSION_CONFIG;
+    };
 };
 
 #include "CfgFunctions.hpp"

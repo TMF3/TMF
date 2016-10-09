@@ -7,7 +7,7 @@ disableSerialization;
 switch (_mode) do {
     case "onLoad": {
       if(serverCommandAvailable "#kick" || !isMultiplayer) then {
-        	["onLoad",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
+            ["onLoad",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
       }
       else {
           ((_args select 0) displayCtrl 13184) ctrlShow false;
@@ -38,7 +38,7 @@ switch (_mode) do {
             _abort = [localize "str_msg_confirm_return_lobby","Back to lobby?",localize "str_disp_xbox_hint_yes",localize "str_disp_xbox_hint_no",_display,false,false] call BIS_fnc_guiMessage;
 
             if (_abort) then {_display closeDisplay 2; failMission "loser"};
-	};
+    };
     case "continueClicked": {
         closeDialog 1;
     };

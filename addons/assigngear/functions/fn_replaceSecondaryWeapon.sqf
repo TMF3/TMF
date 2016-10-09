@@ -26,10 +26,10 @@ if (_weapon isEqualTo "default") exitWith {};
 
 _unit removeWeapon (secondaryWeapon _unit);
 if !(isNil "_weapon") then {
-	_unit addWeapon _weapon;
+    _unit addWeapon _weapon;
 };
 {
-	if !(isNil "_x") then {
-		_unit addSecondaryWeaponItem _x;
-	};
+    if !(isNil "_x") then {
+        _unit addSecondaryWeaponItem _x;
+    };
 } forEach _items;

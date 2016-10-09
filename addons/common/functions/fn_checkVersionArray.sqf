@@ -15,8 +15,8 @@
 #include "\x\tmf\addons\common\script_component.hpp"
 
 params [
-	["_input",[0,0,0]],
-	["_required",[1,0,0]]
+    ["_input",[0,0,0]],
+    ["_required",[1,0,0]]
 ];
 
 _input params ["_i0","_i1","_i2"];

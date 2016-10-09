@@ -28,10 +28,10 @@ _currentWeapon = handgunWeapon _unit;
 _unit removeWeapon _currentWeapon;
 
 if !(isNil "_weapon") then {
-	_unit addWeapon _weapon;
+    _unit addWeapon _weapon;
 };
 {
-	if !(isNil "_x") then {
-		_unit addHandgunItem _x;
-	};
+    if !(isNil "_x") then {
+        _unit addHandgunItem _x;
+    };
 } forEach _items;

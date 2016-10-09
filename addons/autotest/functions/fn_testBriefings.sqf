@@ -23,12 +23,12 @@ private _conditions = [];
 // Check briefings exist.
 {
     _x params ["_name", "_cond", "_scriptPath"];
-	if ((_scriptPath) call _fnc_fileExists) then {
+    if ((_scriptPath) call _fnc_fileExists) then {
         //TODO: error check the briefing script for errors.
-		//call compile preprocessFileLineNumbers _scriptPath;
-	} else {
+        //call compile preprocessFileLineNumbers _scriptPath;
+    } else {
         _output pushBack [0,format["Briefing %1 - file missing %2", _name, _scriptPath]]; 
-	};
+    };
     
     // Weed out units that are acceptable to the condition
     {

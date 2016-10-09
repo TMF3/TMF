@@ -15,14 +15,14 @@
 private _return = false;
 
 if (isServer or serverCommandAvailable "#kick") then {
-	_return = true;
+    _return = true;
 };
 
 // Check 1Tac Admin IDs.
 if (!isNil "tac1_adminIDs") then {
-	if ( (getPlayerUID player) in tac1_adminIDs) then {
-		_return = true;
-	};
+    if ( (getPlayerUID player) in tac1_adminIDs) then {
+        _return = true;
+    };
 }; 
 
 _return

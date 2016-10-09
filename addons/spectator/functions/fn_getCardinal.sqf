@@ -4,31 +4,31 @@ if(_dir < 0) then {_dir = 360+_dir};
 _dir = [_dir,45] call BIS_fnc_roundDir;
 _cardianl = switch (_dir) do {
     case 0: {
-    	"N"
+        "N"
     };
     case 45: {
-    	"NE"
+        "NE"
     };
     case 90: {
-    	"E"
+        "E"
     };
     case 135: {
-    	"SE"
+        "SE"
     };
     case 180: {
-    	"S"
+        "S"
   };
     case 225: {
-    	"SW"
+        "SW"
     };
     case 270: {
-    	"W"
+        "W"
   };
   case 315: {
-  	"NW"
+      "NW"
   };
   case 360: {
-  	"N"
+      "N"
   };
 };
 _cardianl

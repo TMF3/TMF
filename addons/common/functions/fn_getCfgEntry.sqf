@@ -14,7 +14,7 @@
 #include "\x\tmf\addons\common\script_component.hpp"
 
 if !(_this isEqualType []) exitWith {
-	DEBUG_ERR_1("Argument must be type ARRAY, not %1",(typeName _this));
+    DEBUG_ERR_1("Argument must be type ARRAY, not %1",(typeName _this));
 };
 
 // Look up in missionConfigFile first
@@ -23,16 +23,16 @@ private _path = missionConfigFile;
 
 // If there was no corresponding entry in the missionConfig, try configFile
 if (configName _path isEqualTo "") then {
-	_path = configFile;
-	{_path = _path >> _x} forEach _this;
+    _path = configFile;
+    {_path = _path >> _x} forEach _this;
 };
 
 // Get value from path
 private _return = switch (true) do {
-	case (isNumber _path): 	{getNumber _path};
-	case (isText _path): 	{getText   _path};
-	case (isArray _path): 	{getArray  _path};
-	default {nil};
+    case (isNumber _path):     {getNumber _path};
+    case (isText _path):     {getText   _path};
+    case (isArray _path):     {getArray  _path};
+    default {nil};
 };
 
 // Return value

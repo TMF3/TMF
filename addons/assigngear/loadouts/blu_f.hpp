@@ -1,12 +1,12 @@
 class baseMan {// Weaponless baseclass
     displayName = "Unarmed";
     // All randomized.
- 	uniform[] = {"U_B_CombatUniform_mcam","U_B_CombatUniform_mcam_vest"};
-   	vest[] = {"V_PlateCarrier1_rgr","V_PlateCarrier2_rgr"};
-   	backpack[] = {"B_AssaultPack_mcamo"};
-   	headgear[] = {};
-   	goggles[] = {"default"};
-   	hmd[] = {};
+     uniform[] = {"U_B_CombatUniform_mcam","U_B_CombatUniform_mcam_vest"};
+       vest[] = {"V_PlateCarrier1_rgr","V_PlateCarrier2_rgr"};
+       backpack[] = {"B_AssaultPack_mcamo"};
+       headgear[] = {};
+       goggles[] = {"default"};
+       hmd[] = {};
     // Leave empty to remove all. "Default" > leave original item.
 
     // All randomized

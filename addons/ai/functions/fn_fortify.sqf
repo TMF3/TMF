@@ -7,9 +7,9 @@ private _leader = leader _group;
 
 // Check if group needs to move first
 if (_leader distance2D _pos > _radius) then {
-	_leader doMove _pos;
-	((units _group) select {!(_x == _leader)}) doFollow _leader;
-	waitUntil {_leader distance2D _pos < _radius};
+    _leader doMove _pos;
+    ((units _group) select {!(_x == _leader)}) doFollow _leader;
+    waitUntil {_leader distance2D _pos < _radius};
 };
 
 // CBA_fnc_taskDefend for now

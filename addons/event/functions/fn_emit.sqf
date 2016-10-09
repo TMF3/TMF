@@ -20,8 +20,8 @@ private _functions = missionNamespace getVariable [EVENT,[]];
 _functions = _functions arrayIntersect _functions;
 // Call functions
 {
-	_x params ["_code","_args"];
-	private _this =+ _arguments;
-	_this append _args;
-	_this call _code;
+    _x params ["_code","_args"];
+    private _this =+ _arguments;
+    _this append _args;
+    _this call _code;
 } forEach _functions;

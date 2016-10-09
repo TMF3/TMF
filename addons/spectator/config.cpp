@@ -2,35 +2,40 @@
 
 class cfgPatches
 {
-	class ADDON
-	{
+    class ADDON
+    {
         name = "TMF: Spectator";
-		author = "Head";
-		url = "http://www.teamonetactical.com";
-		units[] = {};
-		weapons[] = {};
-		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"tmf_common"};
-		VERSION_CONFIG;
-	};
+        author = "Head";
+        url = "http://www.teamonetactical.com";
+        units[] = {};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {"tmf_common"};
+        VERSION_CONFIG;
+    };
 };
 class CfgRespawnTemplates
 {
-	class TMF_Spectator
-	{
-		displayName = "Teamwork Spectator";
-		onPlayerRespawn  = "tmf_spectator_fnc_init";
-		onPlayerKilled = "";
-	};
+    class TMF_Spectator
+    {
+        displayName = "Teamwork Spectator";
+        onPlayerRespawn  = "tmf_spectator_fnc_init";
+        onPlayerKilled = "";
+    };
 };
 
 
 
-
+#include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
-#include "dialog.hpp"
 
 #include "Cfg3DEN.hpp"
 #include "display3DEN.hpp"
+
+#include "dialog.hpp"
+
 #include "CfgModules.hpp"
-#include "CfgEventHandlers.hpp"
+
+
+
+

@@ -15,15 +15,15 @@
 
 params [["_path",configNull]];
 if !(_path isEqualType configNull) exitWith {
-	DEBUG_ERR_1("Argument must be type CONFIG, not %1",(typeName _this));
+    DEBUG_ERR_1("Argument must be type CONFIG, not %1",(typeName _this));
 };
 
 // Get value from path
 private _return = switch (true) do {
-	case (isNumber _path): 	{getNumber _path};
-	case (isText _path): 	{getText   _path};
-	case (isArray _path): 	{getArray  _path};
-	default {nil};
+    case (isNumber _path):     {getNumber _path};
+    case (isText _path):     {getText   _path};
+    case (isArray _path):     {getArray  _path};
+    default {nil};
 };
 
 // Return value

@@ -16,16 +16,16 @@
  */
 #include "\x\tmf\addons\event\script_component.hpp"
 params [
-	"_name",
-	"_arguments",
-	"_target",
-	["_persistent",false,[false]]
+    "_name",
+    "_arguments",
+    "_target",
+    ["_persistent",false,[false]]
 ];
 
 [
-	[_name,_arguments],
-	QUOTE(FUNC(emitEvent)),
-	_target,
-	true,
-	_persistent
+    [_name,_arguments],
+    QUOTE(FUNC(emitEvent)),
+    _target,
+    true,
+    _persistent
 ] call BIS_fnc_MP;

@@ -2,17 +2,17 @@
 
 class cfgPatches
 {
-	class ADDON
-	{
+    class ADDON
+    {
         name = "TMF: Debrief";
-		author = "Head";
-		url = "http://www.teamonetactical.com";
-		units[] = {};
-		weapons[] = {};
-		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"tmf_common"};
-		VERSION_CONFIG;
-	};
+        author = "Head";
+        url = "http://www.teamonetactical.com";
+        units[] = {};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {"tmf_common"};
+        VERSION_CONFIG;
+    };
 };
 
 #include "dialog.hpp"

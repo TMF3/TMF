@@ -15,9 +15,9 @@
 params ["_unit", "_condArray"];
 private _return = false;
 {
-	if ((_x isEqualType "") and {_x == (faction (leader _unitGroup))}) exitWith { _return = true; };
-	if ((_x isEqualType 0) && {(_x call tmf_common_fnc_numToSide) == side _unit}) exitWith { _return = true; };
-	if ((_x isEqualType east) && {_x == side _unit}) exitWith { _return = true;};
+    if ((_x isEqualType "") and {_x == (faction (leader _unitGroup))}) exitWith { _return = true; };
+    if ((_x isEqualType 0) && {(_x call tmf_common_fnc_numToSide) == side _unit}) exitWith { _return = true; };
+    if ((_x isEqualType east) && {_x == side _unit}) exitWith { _return = true;};
 } forEach _condArray;
 
 _return

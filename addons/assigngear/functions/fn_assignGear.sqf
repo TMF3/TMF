@@ -71,11 +71,11 @@ _unit setVariable [QGVAR(role),_role,true];
 
 // Faction not found in mission try in modpack.
 if (!isClass _cfg) then {
-	_cfg = configFile >> "cfgLoadouts" >> _faction;
+    _cfg = configFile >> "cfgLoadouts" >> _faction;
 };
 
 if (!isClass _cfg) exitWith {
-	// ERROR FACTION NOT FOUND.
+    // ERROR FACTION NOT FOUND.
     private _message = format["ERROR: Faction %1 not found.",_faction];
     if (is3DEN) then {
         0 = [_message,1,5,true] spawn {
@@ -91,7 +91,7 @@ _cfg = _cfg >> _role;
 
 /* TODO ERROR CHECK ROLE
 if (configName _path isEqualTo "") exitWith {
-	// ERROR FACTION NOT FOUND.
+    // ERROR FACTION NOT FOUND.
     private _message = "ERROR ROLE NOT FOUND";
     if (is3DEN) then {
 
@@ -171,13 +171,13 @@ if ((count _code) > 0) then {_unit call compile _code};
 
 // Select primary weapon
 if !((primaryWeapon _unit) isEqualTo "") then {
-	private _type = primaryWeapon _unit;
-	private _muzzles = getArray (configFile >> "cfgWeapons" >> _type >> "muzzles");
-	if (count _muzzles > 1) then {
-		_unit selectWeapon (_muzzles select 0);
-	} else {
-		_unit selectWeapon _type;
-	};
+    private _type = primaryWeapon _unit;
+    private _muzzles = getArray (configFile >> "cfgWeapons" >> _type >> "muzzles");
+    if (count _muzzles > 1) then {
+        _unit selectWeapon (_muzzles select 0);
+    } else {
+        _unit selectWeapon _type;
+    };
 };
 
 // Finish assignGear by emitting the event (locally) and setting a variable on the unit

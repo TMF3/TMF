@@ -8,19 +8,19 @@ if (_entity isEqualType objNull) then {_entity = group _entity;};
 private _parentId = _entity getVariable ["TMF_OrbatParent", -1];
 
 /*OrbatSettings_Array = [
-			[west,[
-					[0,"1PLT","x\tmf\addons\orbat\textures\yellow.paa","x\tmf\addons\orbat\textures\modif_3dot.paa"],
-					[
-						[[1,"A","x\tmf\addons\orbat\textures\red_inf.paa","x\tmf\addons\orbat\textures\modif_dot.paa"],[]]
-					]
-				   ]],
-			[east,[
-					[2,"2PLT","x\tmf\addons\orbat\textures\yellow.paa","x\tmf\addons\orbat\textures\modif_3dot.paa"],
-					[
-						[[3,"A","x\tmf\addons\orbat\textures\red_inf.paa","x\tmf\addons\orbat\textures\modif_dot.paa"],[]]
-					]
-				   ]]
-		];*/
+            [west,[
+                    [0,"1PLT","x\tmf\addons\orbat\textures\yellow.paa","x\tmf\addons\orbat\textures\modif_3dot.paa"],
+                    [
+                        [[1,"A","x\tmf\addons\orbat\textures\red_inf.paa","x\tmf\addons\orbat\textures\modif_dot.paa"],[]]
+                    ]
+                   ]],
+            [east,[
+                    [2,"2PLT","x\tmf\addons\orbat\textures\yellow.paa","x\tmf\addons\orbat\textures\modif_3dot.paa"],
+                    [
+                        [[3,"A","x\tmf\addons\orbat\textures\red_inf.paa","x\tmf\addons\orbat\textures\modif_dot.paa"],[]]
+                    ]
+                   ]]
+        ];*/
 
 if (isNil QGVAR(orbatRawData)) then {
     GVAR(orbatRawData) = getMissionConfigValue ["TMF_ORBATSettings",[]];

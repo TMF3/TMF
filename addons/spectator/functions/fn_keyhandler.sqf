@@ -111,46 +111,46 @@ switch true do {
       _done = true;
   };
   case (_key == DIK_A) : {
-  	if(_type == KEYDOWN) then
-  	{
-  		GVAR(movement_keys) set [1,true];
-  	}
-  	else
-  	{
-  		GVAR(movement_keys) set [1,false];
-  	};
+      if(_type == KEYDOWN) then
+      {
+          GVAR(movement_keys) set [1,true];
+      }
+      else
+      {
+          GVAR(movement_keys) set [1,false];
+      };
   };
   case (_key == DIK_D) : {
-  	if(_type == KEYDOWN) then
-  	{
-  		GVAR(movement_keys) set [3,true];
+      if(_type == KEYDOWN) then
+      {
+          GVAR(movement_keys) set [3,true];
 
-  	}
-  	else
-  	{
-  		GVAR(movement_keys) set [3,false];
+      }
+      else
+      {
+          GVAR(movement_keys) set [3,false];
 
-  	};
+      };
   };
   case (_key == DIK_W) : {
-  	if(_type == KEYDOWN) then
-  	{
-  		GVAR(movement_keys) set [0,true];
-  	}
-  	else
-  	{
-  		GVAR(movement_keys) set [0,false];
-  		//_done = true;
-  	};
+      if(_type == KEYDOWN) then
+      {
+          GVAR(movement_keys) set [0,true];
+      }
+      else
+      {
+          GVAR(movement_keys) set [0,false];
+          //_done = true;
+      };
   };
   case (_key == DIK_S) : {
-  	if(_type == KEYDOWN) then
-  	{
-  		GVAR(movement_keys) set [2,true];
-  	} else {
-  		GVAR(movement_keys) set [2,false];
-  		//_done = true;
-  	};
+      if(_type == KEYDOWN) then
+      {
+          GVAR(movement_keys) set [2,true];
+      } else {
+          GVAR(movement_keys) set [2,false];
+          //_done = true;
+      };
   };
   case (_key == DIK_Q) : {
       if(_type == KEYDOWN) then
@@ -161,7 +161,7 @@ switch true do {
       };
   };
   case (_key in (actionKeys "NightVision") && _type == KEYDOWN && !GVAR(showmap)) : {
-		['vision',[uinamespace getVariable [QGVAR(vision),controlNull]]] call FUNC(menuhandler);
+        ['vision',[uinamespace getVariable [QGVAR(vision),controlNull]]] call FUNC(menuhandler);
   };
   case (_key == DIK_Z) : {
       if(_type == KEYDOWN) then
@@ -172,32 +172,32 @@ switch true do {
       };
   };
   case (_key in (actionKeys "ReloadMagazine")) : {
-  	if(_type == KEYDOWN) then {
-  		GVAR(showlines) = true;
-  	} else {
-  		GVAR(showlines) = false;
-  	};
+      if(_type == KEYDOWN) then {
+          GVAR(showlines) = true;
+      } else {
+          GVAR(showlines) = false;
+      };
   };
   case (_key in [DIK_RSHIFT,DIK_LSHIFT]) : {
-  	if(_type == KEYDOWN) then {
-  		GVAR(modifiers_keys) set [1,true];
-  	} else {
-  		GVAR(modifiers_keys) set [1,false];
-  	};
+      if(_type == KEYDOWN) then {
+          GVAR(modifiers_keys) set [1,true];
+      } else {
+          GVAR(modifiers_keys) set [1,false];
+      };
   };
   case (_key in [DIK_LMENU]) : { // Alt
-  	if(_type == KEYDOWN) then {
-  		GVAR(modifiers_keys) set [2,true];
-  	} else {
-  		GVAR(modifiers_keys) set [2,false];
-  	};
+      if(_type == KEYDOWN) then {
+          GVAR(modifiers_keys) set [2,true];
+      } else {
+          GVAR(modifiers_keys) set [2,false];
+      };
   };
   case (_key in [DIK_LCONTROL]) : { // Ctrl
-  	if(_type == KEYDOWN) then {
-  		GVAR(modifiers_keys) set [0,true];
-  	} else {
-  		GVAR(modifiers_keys) set [0,false];
-  	};
+      if(_type == KEYDOWN) then {
+          GVAR(modifiers_keys) set [0,true];
+      } else {
+          GVAR(modifiers_keys) set [0,false];
+      };
   };
   case (_key in actionKeys "ShowMap") : {
       if(_type == KEYDOWN) then {
@@ -212,15 +212,15 @@ switch true do {
       };
   };
   case (_key == GVAR(mute_key)) : {
-  	if(_type == KEYDOWN && (GVAR(modifiers_keys)) isEqualTo (GVAR(mute_modifers))) then {
-  		[] call acre_sys_core_fnc_toggleHeadset;
-  	};
+      if(_type == KEYDOWN && (GVAR(modifiers_keys)) isEqualTo (GVAR(mute_modifers))) then {
+          [] call acre_sys_core_fnc_toggleHeadset;
+      };
   };
   case (_key == DIK_T && _type == KEYDOWN): {
       GVAR(tracers) = !GVAR(tracers);
       _message = "Tracers have been toggled off";
       if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
-  	   [_message] call FUNC(notificationShow);
+         [_message] call FUNC(notificationShow);
   };
   case (_key == DIK_SPACE && _type == KEYDOWN) : {
       if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {["CAMERA MODE DISABLED"] call FUNC(notificationShow);};

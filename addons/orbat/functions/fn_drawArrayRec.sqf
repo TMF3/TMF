@@ -18,27 +18,27 @@ if (_hasChildren) then {
     if (_maxChildCenterDist < 0.0025) then {
         _drawMe = true;  
     };
-	if (_texture1 isEqualTo "") then { _drawMe = false;};
+    if (_texture1 isEqualTo "") then { _drawMe = false;};
 };
 
 // Draw this.
 if (_drawMe) then {
-	_size params ["_sizeX","_sizeY"];
-	
-	//Draw Text label (with shadow)
-	if (_minSiblingDist >=  0.0014) then {
-		_mapControl drawIcon ["#(argb,8,8,3)color(0,0,0,0)",[1,1,1,1],_pos, _sizeX, _sizeY,0,_text,2,0.035,'PuristaSemibold','right'];
-	}; 
-	
-	//Draw Icon
-	_mapControl drawIcon [_texture1, _color, _pos, _sizeX, _sizeY, 0];
-	
-	//Draw texture 2 on top.
-	if (_texture2 != "") then {
-		_mapControl drawIcon [_texture2,[1,1,1,1],_pos, _sizeX, _sizeY,0,"",0];  
-	};
+    _size params ["_sizeX","_sizeY"];
+    
+    //Draw Text label (with shadow)
+    if (_minSiblingDist >=  0.0014) then {
+        _mapControl drawIcon ["#(argb,8,8,3)color(0,0,0,0)",[1,1,1,1],_pos, _sizeX, _sizeY,0,_text,2,0.035,'PuristaSemibold','right'];
+    }; 
+    
+    //Draw Icon
+    _mapControl drawIcon [_texture1, _color, _pos, _sizeX, _sizeY, 0];
+    
+    //Draw texture 2 on top.
+    if (_texture2 != "") then {
+        _mapControl drawIcon [_texture2,[1,1,1,1],_pos, _sizeX, _sizeY,0,"",0];  
+    };
 } else { // Draw the children instead.
-	for "_i" from 1 to (count _in - 1) do {
-		[(_in select _i), _mapControl] call FUNC(drawArrayRec); 
-	};
+    for "_i" from 1 to (count _in - 1) do {
+        [(_in select _i), _mapControl] call FUNC(drawArrayRec); 
+    };
 };

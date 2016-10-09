@@ -29,7 +29,7 @@ if (_weapon isEqualTo "default") exitWith {};
 // Replace weapon, sanitize and add weapon items
 _unit removeWeapon (primaryWeapon _unit);
 if !(isNil "_weapon") then {
-	_unit addWeapon _weapon;
+    _unit addWeapon _weapon;
 };
 removeAllPrimaryWeaponItems _unit;
 if(count _this > 3) then {
@@ -43,16 +43,16 @@ if(count _this > 3) then {
     if(isNil "_attachment") then {_attachment = ""};
     if(isNil "_silencer") then {_silencer = ""};
     {
-    	if (!isNil "_x" && _x != "" ) then {
-    		_unit addPrimaryWeaponItem _x;
-    	};
+        if (!isNil "_x" && _x != "" ) then {
+            _unit addPrimaryWeaponItem _x;
+        };
     } forEach [_scope,_bipod,_attachment,_silencer];;
 }
 else
 {
     {
-    	if (!isNil "_x" && _x != "" ) then {
-    		_unit addPrimaryWeaponItem _x;
-    	};
+        if (!isNil "_x" && _x != "" ) then {
+            _unit addPrimaryWeaponItem _x;
+        };
     } forEach _scopeArray;
 };

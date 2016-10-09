@@ -16,11 +16,11 @@ waitUntil {missionNamespace getVariable ["BIS_fnc_feedback_allowDeathScreen",fal
 if(!isnil "BIS_fnc_feedback_allowPP") then { BIS_fnc_feedback_allowPP = false; };
 
 if(_isJip) then {
-	[] spawn {
-		["tmf_spectator",false] call BIS_fnc_blackOut;
-		uiSleep 3;
-		["tmf_spectator"] call BIS_fnc_blackIn;
-	};
+    [] spawn {
+        ["tmf_spectator",false] call BIS_fnc_blackOut;
+        uiSleep 3;
+        ["tmf_spectator"] call BIS_fnc_blackIn;
+    };
 };
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
@@ -219,6 +219,6 @@ if (isNil QGVAR(setupEH)) then {
 
 
 ["tmf_spectator", "onEachFrame", {
-	[] call FUNC(perFrameHandler);
+    [] call FUNC(perFrameHandler);
 }] call BIS_fnc_addStackedEventHandler;
 [QGVAR(init), _this] call EFUNC(event,emit);

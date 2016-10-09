@@ -4,18 +4,18 @@ disableSerialization;
 params["_fullmapWindow"];
 
 {
-	if(alive _x) then {
-		private _name = "";
-		if(isPlayer _x) then {_name = name _x};
-		if(leader _x == _x && {isPlayer _x} count units _x > 0) then {_name = format["%1 - %2",toString(toArray(groupID (group _x)) - [45]),_name]};
-		if(vehicle _x != _x && crew (vehicle _x) select 0 == _x || vehicle _x == _x) then
-		{
-			private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
-			if(_icon == "") then {_icon = gettext (configfile >> "CfgVehicles" >> typeOf (vehicle _x) >> "icon");vehicle _x setVariable ["f_cam_icon",_icon]};
+    if(alive _x) then {
+        private _name = "";
+        if(isPlayer _x) then {_name = name _x};
+        if(leader _x == _x && {isPlayer _x} count units _x > 0) then {_name = format["%1 - %2",toString(toArray(groupID (group _x)) - [45]),_name]};
+        if(vehicle _x != _x && crew (vehicle _x) select 0 == _x || vehicle _x == _x) then
+        {
+            private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
+            if(_icon == "") then {_icon = gettext (configfile >> "CfgVehicles" >> typeOf (vehicle _x) >> "icon");vehicle _x setVariable ["f_cam_icon",_icon]};
             private _color = (side _x) call tmf_common_fnc_sideToColor;
-			_fullmapWindow drawIcon [_icon,_color,getpos _x,19,19,getDir (vehicle _x),_name,1];
-		};
-	};
+            _fullmapWindow drawIcon [_icon,_color,getpos _x,19,19,getDir (vehicle _x),_name,1];
+        };
+    };
 
 } forEach allUnits;
 

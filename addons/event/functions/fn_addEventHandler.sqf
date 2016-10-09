@@ -16,17 +16,17 @@
  */
 #include "\x\tmf\addons\event\script_component.hpp"
 params [
-	"_name",
-	"_code",
-	["_args",[],[[]]],
-	["_id",-1,[0]]
+    "_name",
+    "_code",
+    ["_args",[],[[]]],
+    ["_id",-1,[0]]
 ];
 
 private _functions = missionNamespace getVariable [EVENT,[]];
 if !(_id < 0) then {
-	_functions set [_id,[_code,_args]];
+    _functions set [_id,[_code,_args]];
 } else {
-	_id = _functions pushBack [_code,_args];
+    _id = _functions pushBack [_code,_args];
 };
 missionNamespace setVariable [EVENT,_functions];
 

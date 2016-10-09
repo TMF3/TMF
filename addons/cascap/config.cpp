@@ -2,17 +2,17 @@
 
 class cfgPatches
 {
-	class ADDON
-	{
+    class ADDON
+    {
         name = "TMF: Casualty Cap";
-		author = "Nick";
-		url = "http://www.teamonetactical.com";
-		units[] = {QGVAR(module)};
-		weapons[] = {};
-		requiredVersion = REQUIRED_VERSION;
-		requiredAddons[] = {"tmf_common"};
-		VERSION_CONFIG;
-	};
+        author = "Nick";
+        url = "http://www.teamonetactical.com";
+        units[] = {QGVAR(module)};
+        weapons[] = {};
+        requiredVersion = REQUIRED_VERSION;
+        requiredAddons[] = {"tmf_common"};
+        VERSION_CONFIG;
+    };
 };
 
 #include "CfgFunctions.hpp"
