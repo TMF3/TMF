@@ -16,7 +16,7 @@
 
 private _idx = missionNamespace getVariable [QGVAR(mouseOverIdx),-1];
 if !(_idx == -1) then {
-	removeMissionEventHandler ["Draw3D",_idx];
+    removeMissionEventHandler ["Draw3D",_idx];
 };
 
 _idx = addMissionEventHandler ["Draw3D",FUNC(mouseOver)];
