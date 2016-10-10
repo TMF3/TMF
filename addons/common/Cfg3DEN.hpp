@@ -156,4 +156,13 @@ class Cfg3DEN
             };
         };
     };
+    class EventHandlers
+    {
+        class ADDON
+        {
+            onMissionLoad = QUOTE([] call FUNC(mouseOverInit));
+            onMissionNew = QUOTE([] call FUNC(mouseOverInit));
+            onMissionPreviewEnd = QUOTE([] call FUNC(mouseOverInit));
+        };
+    };
 };
