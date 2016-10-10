@@ -17,5 +17,5 @@ class cfgPatches
 #include "CfgFunctions.hpp"
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
-
+#include "RscTitles.hpp"
 #include "display3DEN.hpp"
