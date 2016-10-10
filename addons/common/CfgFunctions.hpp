@@ -33,6 +33,7 @@ class cfgFunctions {
             class randPosArea;
             class drawLines;
             class endMission;
+            class showEndingSplash;
         };
     };
 };
