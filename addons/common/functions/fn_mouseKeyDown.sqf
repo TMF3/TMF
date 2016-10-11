@@ -11,13 +11,16 @@
 // Exit if not left mouse button
 if !(0 in GVAR(mouseKeysPressed)) exitWith {};
 
+#define MANOBJECTS ((get3DENSelected "Object") select {_x isKindOf "CAManBase"})
+
 // Select  building from mouseOvers
 //TODO: Save bbox stuff setVariable on the object, monitor the changed EH?
 private _building = GVAR(edenMouseObjects);
-_building = _building select {!(_x in (get3DENSelected "object"))};
+_building = _building select {!(_x in (get3DENSelected "Object"))};
 if (count _building == 0) exitWith {};
 _building = _building select 0;
 private _positions = _building buildingPos -1;
+if (count _positions < 1) exitWith {};
 
 // Draw boundingbox
 if (!(typeOf _building isEqualTo "") && {count (_building buildingPos -1) > 0}) then {
@@ -48,18 +51,29 @@ if (!(typeOf _building isEqualTo "") && {count (_building buildingPos -1) > 0}) 
         drawLine3D [_box select (_i + 2),_box select (_i + 3),[0,1,0,1]];
         drawLine3D [_box select (_i + 3),_box select (_i + 1),[0,1,0,1]];
     };
-    _positions = _building buildingPos -1;
 };
-
-// Draw positions
+// Filter positions
+_validIdxs = [];
 {
     // Check for obstruction //TODO Zsorting?
-    _nearObjects = (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["CAManBase",2]) + (_x nearObjects ["AllVehicles",2]) - [_building];
-    _color = [];
-    if (count _nearObjects > 0) then {
-        _color = [0.5,0.5,0.5,1];
-    } else {
-        _color = [1,1,1,1];
+    // Care about nearby objects except the building itself and the currently selected eden objects.
+    private _nearObjects = (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["CAManBase",2]) + (_x nearObjects ["AllVehicles",2]);
+    _nearObjects = _nearObjects - [_building] - MANOBJECTS;
+    if (count _nearObjects == 0) then {
+        _validIdxs pushBack _forEachIndex;
     };
+} forEach _positions;
+
+// Set global Idx array variable if it doesn't exist
+if (GVAR(posIdxs) isEqualTo []) then {
+    GVAR(posIdxs) = _validIdxs;
+};
+
+// Draw positions. See code for filtering validPositions!
+{
+
+    private _color = if !(_forEachIndex in _validIdxs) then {[0.75,0.75,0.75,0.75]} else {[1,1,1,1]};
+    if ((count (MANOBJECTS arrayIntersect _nearObjects)) > 0) then {_color = [1,1,0.4,1]};
+    if (((GVAR(posIdxs) find _forEachIndex) <= (count MANOBJECTS - 1)) && {(GVAR(posIdxs) find _forEachIndex) != -1}) then {_color = [1,0.15,0.15,1]};
     drawIcon3D ["\a3\ui_f\data\map\Markers\Military\dot_ca.paa",_color,_x,1,1,0,str _forEachIndex,2]
 } forEach _positions;

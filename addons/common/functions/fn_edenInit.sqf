@@ -24,6 +24,7 @@ _idx = addMissionEventHandler ["Draw3D",FUNC(mouseOver)];
 GVAR(mouseOverIdx) = _idx;
 GVAR(edenMouseObjects) = [];
 GVAR(mouseKeysPressed) = [];
+GVAR(posIdxs) = [];
 
 // Do stuff with mouseOver EH
 // KeyDown
@@ -33,10 +34,18 @@ GVAR(mouseKeyDown) = ((findDisplay 313) displayAddEventHandler ["mouseButtonDown
 }]); // EDEN IDC 313
 // KeyUp
 GVAR(mouseKeyUp) = ((findDisplay 313) displayAddEventHandler ["mouseButtonUp",{
+    if !(0 in GVAR(mouseKeysPressed)) exitWith {};
     private _idx = missionNamespace getVariable [QGVAR(mouseKeyDownIdx),-1];
     if !(_idx == -1) then {
-    removeMissionEventHandler ["Draw3D",_idx];
+        removeMissionEventHandler ["Draw3D",_idx];
     };
     GVAR(mouseKeysPressed) = GVAR(mouseKeysPressed) - [(_this select 1)];
-    [] call FUNC(mouseKeyUp);
+    collect3DENHistory FUNC(mouseKeyUp); // Maybe only invoke history in mouseKeyUp?
+}]);
+// MouseZchanged
+GVAR(mouseZchanged) = ((findDisplay 313) displayAddEventHandler ["mouseZchanged",{
+    private _A =+ GVAR(posIdxs);
+    private _B = [];
+    while {count _A > 0} do {_B pushBack (_A deleteAt random floor count _A)};
+    GVAR(posIdxs) = +_B;
 }]);
