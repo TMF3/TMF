@@ -34,7 +34,9 @@ class cfgFunctions {
             class drawLines;
             class endMission;
             class mouseOver;
-            class mouseOverInit;
+            class mouseKeyDown;
+            class mouseKeyUp;
+            class edenInit;
         };
     };
 };
