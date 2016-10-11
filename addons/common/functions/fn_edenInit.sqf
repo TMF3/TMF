@@ -28,15 +28,15 @@ GVAR(mouseKeysPressed) = [];
 // Do stuff with mouseOver EH
 // KeyDown
 GVAR(mouseKeyDown) = ((findDisplay 313) displayAddEventHandler ["mouseButtonDown",{
-	GVAR(mouseKeysPressed) pushBackUnique (_this select 1);
+    GVAR(mouseKeysPressed) pushBackUnique (_this select 1);
     GVAR(mouseKeyDownIdx) = addMissionEventHandler ["Draw3D",FUNC(mouseKeyDown)];
 }]); // EDEN IDC 313
 // KeyUp
 GVAR(mouseKeyUp) = ((findDisplay 313) displayAddEventHandler ["mouseButtonUp",{
-	private _idx = missionNamespace getVariable [QGVAR(mouseKeyDownIdx),-1];
-	if !(_idx == -1) then {
+    private _idx = missionNamespace getVariable [QGVAR(mouseKeyDownIdx),-1];
+    if !(_idx == -1) then {
     removeMissionEventHandler ["Draw3D",_idx];
-	};
-	GVAR(mouseKeysPressed) = GVAR(mouseKeysPressed) - [(_this select 1)];
+    };
+    GVAR(mouseKeysPressed) = GVAR(mouseKeysPressed) - [(_this select 1)];
     [] call FUNC(mouseKeyUp);
 }]);
