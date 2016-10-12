@@ -1,17 +1,22 @@
 /*
-    On keyDown:
-    If no unit is being dragged: (possible other actions: "CreateObject","GroupWith","SyncWith") check if units are selected?
-    * Still check if mousing over a building
-    * Still check if building has positions
-    * Still draw the boundingbox
-    * Still draw the buildingpositions
-    * Still gray out occupied positions
-*/
+ * Name: TMF_common_fnc_mouseKeyDown
+ * Author: Nick
+ *
+ * Arguments:
+ * None
+ *
+ * Return:
+ * nil
+ *
+ * Description:
+ * Left mouse button down behaviour for drag to garrison
+ *
+ */
 #include "\x\tmf\addons\common\script_component.hpp"
+#define MANOBJECTS ((get3DENSelected "Object") select {_x isKindOf "CAManBase"})
+
 // Exit if not left mouse button
 if !(0 in GVAR(mouseKeysPressed)) exitWith {};
-
-#define MANOBJECTS ((get3DENSelected "Object") select {_x isKindOf "CAManBase"})
 
 // Select  building from mouseOvers
 //TODO: Save bbox stuff setVariable on the object, monitor the changed EH?
@@ -64,16 +69,18 @@ _validIdxs = [];
     };
 } forEach _positions;
 
-// Set global Idx array variable if it doesn't exist
-if (GVAR(posIdxs) isEqualTo []) then {
-    GVAR(posIdxs) = _validIdxs;
+// Set global Idx array variable if it doesn't exist or is wrong size
+if (GVAR(posIdxs) isEqualTo [] || {(count GVAR(posIdxs)) != count (_validIdxs)}) then {
+    private _A =+ _validIdxs;
+    private _B = [];
+    while {count _A > 0} do {_B pushBack (_A deleteAt random floor count _A)};
+    GVAR(posIdxs) = +_B;
 };
 
-// Draw positions. See code for filtering validPositions!
+// Draw positions.
 {
 
     private _color = if !(_forEachIndex in _validIdxs) then {[0.75,0.75,0.75,0.75]} else {[1,1,1,1]};
-    if ((count (MANOBJECTS arrayIntersect _nearObjects)) > 0) then {_color = [1,1,0.4,1]};
-    if (((GVAR(posIdxs) find _forEachIndex) <= (count MANOBJECTS - 1)) && {(GVAR(posIdxs) find _forEachIndex) != -1}) then {_color = [1,0.15,0.15,1]};
+    if (((GVAR(posIdxs) find _forEachIndex) <= (count MANOBJECTS - 1)) && {(GVAR(posIdxs) find _forEachIndex) != -1} && {(count get3DENSelected "Object") > 1}) then {_color = [1,0.15,0.15,1]};
     drawIcon3D ["\a3\ui_f\data\map\Markers\Military\dot_ca.paa",_color,_x,1,1,0,str _forEachIndex,2]
 } forEach _positions;

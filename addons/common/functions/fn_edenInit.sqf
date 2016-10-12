@@ -39,8 +39,8 @@ GVAR(mouseKeyUp) = ((findDisplay 313) displayAddEventHandler ["mouseButtonUp",{
     if !(_idx == -1) then {
         removeMissionEventHandler ["Draw3D",_idx];
     };
+    [_this select 1] call FUNC(mouseKeyUp);
     GVAR(mouseKeysPressed) = GVAR(mouseKeysPressed) - [(_this select 1)];
-    collect3DENHistory FUNC(mouseKeyUp); // Maybe only invoke history in mouseKeyUp?
 }]);
 // MouseZchanged
 GVAR(mouseZchanged) = ((findDisplay 313) displayAddEventHandler ["mouseZchanged",{
