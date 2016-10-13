@@ -14,6 +14,7 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 #define MANOBJECTS ((get3DENSelected "Object") select {_x isKindOf "CAManBase"})
+#define NEARCHECK (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["CAManBase",2]) + (_x nearObjects ["AllVehicles",2]) - [_building] - MANOBJECTS
 
 // Exit if not left mouse button
 if !(0 in GVAR(mouseKeysPressed)) exitWith {};
@@ -58,16 +59,19 @@ if (!(typeOf _building isEqualTo "") && {count (_building buildingPos -1) > 0}) 
     };
 };
 // Filter positions
-_validIdxs = [];
-{
-    // Check for obstruction //TODO Zsorting?
-    // Care about nearby objects except the building itself and the currently selected eden objects.
-    private _nearObjects = (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["CAManBase",2]) + (_x nearObjects ["AllVehicles",2]);
-    _nearObjects = _nearObjects - [_building] - MANOBJECTS;
-    if (count _nearObjects == 0) then {
-        _validIdxs pushBack _forEachIndex;
-    };
-} forEach _positions;
+private _validIdxs = _building getVariable [QGVAR(validIdxs),[]];
+    if ((count _validIdxs == 0) || {diag_frameno % 15 == 0}) then { // Also recalc every 15 frames, also seems to randomize order?
+    {
+        // Check for obstruction //TODO Zsorting?
+        // Care about nearby objects except the building itself and the currently selected eden objects.
+        // Lags for buildings with >10 positions
+        private _nearObjects = NEARCHECK;
+        if (count _nearObjects == 0) then {
+            _validIdxs pushBack _forEachIndex;
+        };
+    } forEach _positions;
+    _building setVariable [QGVAR(validIdxs),_validIdxs];
+};
 
 // Set global Idx array variable if it doesn't exist or is wrong size
 if (GVAR(posIdxs) isEqualTo [] || {(count GVAR(posIdxs)) != count (_validIdxs)}) then {
