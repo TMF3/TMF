@@ -60,7 +60,7 @@ private _renderGroups = _grpTagSize > 0;
     private _veh = vehicle _x;
     private _isVeh = false;
     _render = true;
-
+    _name = name _x;
     // if vehicles, set the appropriate variables
     if(_veh != _x && effectiveCommander _veh == _x) then {
         _x = _veh;
@@ -98,14 +98,19 @@ private _renderGroups = _grpTagSize > 0;
       private _unitColor = _color;
       private _hasFired = _veh getVariable [QGVAR(fired), 0];
       if(_hasFired > 0) then {
-          _unitColor = [0.8,0.8,0.8,0.7];
+          _unitColor = [0.8,0.8,0.8,1];
           _veh setVariable [QGVAR(fired), _hasFired-1];
       };
+      _unitIcon = "\A3\ui_f\data\map\markers\military\triangle_CA.paa";
+      if(_isVeh) then { _unitIcon = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";};
 
       // draw icon
-      drawIcon3D["\A3\ui_f\data\map\markers\military\triangle_CA.paa",_unitColor,_pos,_unitTagSize,_unitTagSize,180,"",2,0.03,"PuristaSemibold"];
+      drawIcon3D[_unitIcon,_unitColor,_pos,_unitTagSize,_unitTagSize,180,"",2,0.03,"PuristaSemibold"];
+      if(leader _x == _x) then {
+          drawIcon3D["\A3\ui_f\data\Map\Diary\back_gs.paa",[1,1,1,1],_pos,_unitTagSize*0.7,_unitTagSize*0.7,90,"",2,0.03,"PuristaSemibold"];
+      };
       // draw text
-      if(_name != "") then { drawIcon3D["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,1],_pos,_unitTagSize/2,_unitTagSize/2,0,_name,2,0.03,"PuristaSemibold"];};
+      if(_name != "") then { drawIcon3D["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,1],_pos,_unitTagSize,_unitTagSize,0,_name,2,0.035,"PuristaSemibold"];};
 
       // if showing the group lines, draw it.
       if(GVAR(showlines) && !_isAI) then {drawLine3D [_pos,_avgpos,_color]};
@@ -144,18 +149,17 @@ private _renderGroups = _grpTagSize > 0;
 // Dead units (skull icon upon death)
 ////////////////////////////////////////////////////////
 {
-    if(!(_x isEqualType 0)) then {
-        _x params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName"];
+    _x params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName","_weapon","_isplayer"];
 
-        _time = time - _time;
+    private _time = time - _time;
 
-        private _pos = (getPosATLVisual _unit);
-        if(surfaceIsWater _pos) then {_pos = getPosASLVisual _unit;};
-        _pos set [2,(_pos select 2)+1];
-
-        if(_time <= 10 && {_campos distance2d _pos <= 500}) then {
-            drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, _unitTagSize/2, _unitTagSize/2, 0,_dName, 2,0.04,"PuristaSemibold" ];
-        };
+    private _pos = (getPosATLVisual _unit);
+    if(surfaceIsWater _pos) then {_pos = getPosASLVisual _unit;};
+    _pos set [2,(_pos select 2)+1];
+    private _name = "";
+    if(_isplayer) then {_name = _dName;};
+    if(_time <= 10 && {_campos distance2d _pos <= 500}) then {
+        drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, _unitTagSize/2, _unitTagSize/2, 0,_name, 2,0.04,"PuristaSemibold" ];
     };
 } forEach GVAR(killedUnits);
 
