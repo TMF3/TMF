@@ -96,12 +96,12 @@ _map drawIcon ["\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCamera_ca.paa"
 
 
 {
-    if(!(_x isEqualType 0)) then {
-        _x params ["_unit","_time"];
-        _time = time - _time;
-        if(_time <= 10) then {
-            _map drawIcon ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa",[1,1,1,1 - (0.1 * _time)],getpos _unit,16,16,0,""];
-        };
+    _data params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName","_weapon","_isplayer"];
+    _time = time - _time;
+    _name = "";
+    if(_isplayer) then {_name = _dName};
+    if(_time <= 10) then {
+        _map drawIcon ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa",[1,1,1,1 - (0.1 * _time)],getpos _unit,16,16,0,_name,0,0.04,"PuristaSemibold"];
     };
 } foreach GVAR(killedUnits);
 
@@ -124,8 +124,9 @@ if(GVAR(tracers)) then {
             _map drawLine [_posArray select 0, _pos, [1,0,0,1]];
         };
         if(_type == 0 && !isNull _object) then {
-             _futurepos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
-             _map drawLine [_pos, _futurepos, [1,0,0,1]];
+            _pos = getpos _object;
+            _futurepos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
+            _map drawLine [_pos, _futurepos, [1,0,0,1]];
         };
     } forEach GVAR(rounds);
 };
