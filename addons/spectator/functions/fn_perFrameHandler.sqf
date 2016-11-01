@@ -58,8 +58,6 @@ for "_i" from 1 to 6 do {
         _time = time - _time;
         if(_time <= 12 && _i < 6) then {
             private _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _i;
-            if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _unit >> "displayName");_data set [5,_dName]; };
-            if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf vehicle _killer >> "displayName");_data set [6,_kName]; };
             if(_killer == _unit || isNull _killer) then {
                 _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sidetohexcolor)];
             } else {
