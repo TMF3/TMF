@@ -14,7 +14,7 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 #define MANOBJECTS ((get3DENSelected "Object") select {_x isKindOf "CAManBase"})
-#define NEARCHECK (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["CAManBase",2]) + (_x nearObjects ["AllVehicles",2]) - [_building] - MANOBJECTS
+#define NEARCHECK (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["AllVehicles",2]) - [_building] - MANOBJECTS
 
 // Exit if not left mouse button
 if !(0 in GVAR(mouseKeysPressed)) exitWith {};
@@ -65,6 +65,7 @@ private _validIdxs = _building getVariable [QGVAR(validIdxs),[]];
         // Check for obstruction //TODO Zsorting?
         // Care about nearby objects except the building itself and the currently selected eden objects.
         // Lags for buildings with >10 positions
+        _validIdxs = [];
         private _nearObjects = NEARCHECK;
         if (count _nearObjects == 0) then {
             _validIdxs pushBack _forEachIndex;
