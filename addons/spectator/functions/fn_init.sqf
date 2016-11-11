@@ -191,22 +191,24 @@ GVAR(notification) = [];
 
 if (isNil QGVAR(setupEH)) then {
     addMissionEventHandler ["EntityKilled",{
-        params ["_killed","_killer"];
-        if(!(side _killed in [blufor,opfor,independent,civilian]) || !(_killed isKindOf "CAManBase" || _killed isKindOf "AllVehicles") ) exitwith {};
-        private _acekiller = _killed getVariable ["ace_medical_lastDamageSource", objNull];
-        if (!isNull _acekiller) then {
+        params ["_deadMan","_killer"];
+        if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitwith {};
+    /*    private _acekiller = _killed getVariable ["ace_medical_lastDamageSource", objNull];
+        if (!isNull _acekiller ) then {
             _killer = _acekiller;
-        };
-        if(isNull _killer) then
+        };*/
+        if(isNull _killer || _killer == _deadMan) then
         {
-            _killer = _killed getVariable [QGVAR(lastDamage),objNull];
+            _killer = _deadMan getVariable [QGVAR(lastDamage),objNull];
         };
         private _kName = "";
         private _dName = "";
-        if(isPlayer _killed) then {_dName = name (_killed);};
+        private _isplayer = isPlayer _deadMan;
+        if(_isplayer) then {_dName = name (_deadMan);};
         if(isPlayer _killer) then {_kName = name (_killer);};
-
-        GVAR(killedUnits) pushback [_killed,time,_killer,side group _killed,side group _killer,_dName,_kName,currentWeapon _killer];
+        if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf _deadMan >> "displayName");_data set [5,_dName]; };
+        if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf _killer >> "displayName");_data set [6,_kName]; };
+        GVAR(killedUnits) pushback [_deadMan,time,_killer,side group _deadMan,side group _killer,_dName,_kName,currentWeapon _killer,_isplayer];
     }];
 
     ["AllVehicles", "fired", {if([] call FUNC(isOpen)) then { _this call FUNC(onFired)}}] call CBA_fnc_addClassEventHandler;
