@@ -58,14 +58,14 @@ if (!(typeOf _building isEqualTo "") && {count (_building buildingPos -1) > 0}) 
         drawLine3D [_box select (_i + 3),_box select (_i + 1),[0,1,0,1]];
     };
 };
-// Filter positions
+
 private _validIdxs = _building getVariable [QGVAR(validIdxs),[]];
-    if ((count _validIdxs == 0) || {diag_frameno % 15 == 0}) then { // Also recalc every 15 frames, also seems to randomize order?
+if ((count _validIdxs == 0) || {diag_frameno % 15 == 0}) then { // Also recalc every 15 frames, also seems to randomize order?
+    _validIdxs = [];
     {
         // Check for obstruction //TODO Zsorting?
         // Care about nearby objects except the building itself and the currently selected eden objects.
         // Lags for buildings with >10 positions
-        _validIdxs = [];
         private _nearObjects = NEARCHECK;
         if (count _nearObjects == 0) then {
             _validIdxs pushBack _forEachIndex;
