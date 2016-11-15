@@ -20,7 +20,6 @@ if ((_this select 0) != 0) exitWith {};
 if (!GVAR(Garrison)) exitWith {};
 if (current3DENOperation != "MoveItems") exitWith {};
 
-
 // Delay execution
 0 = [] spawn {
     // See if we have a suitable object
