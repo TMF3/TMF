@@ -17,8 +17,9 @@
 
 // Exit conditions
 if ((_this select 0) != 0) exitWith {};
+if (!GVAR(Garrison)) exitWith {};
 if (current3DENOperation != "MoveItems") exitWith {};
-if ((count get3DENSelected "Object") <= 1) exitWith {};
+
 
 // Delay execution
 0 = [] spawn {

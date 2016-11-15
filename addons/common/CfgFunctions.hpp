@@ -33,10 +33,11 @@ class cfgFunctions {
             class randPosArea;
             class drawLines;
             class endMission;
-            class mouseOver;
-            class mouseKeyDown;
-            class mouseKeyUp;
+            class edenMouseOver;
+            class edenMouseKeyDown;
+            class edenMouseKeyUp;
             class edenInit;
+            class edenDraw;
         };
     };
 };
