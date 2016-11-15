@@ -14,10 +14,7 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 #define MANOBJECTS ((get3DENSelected "Object") select {_x isKindOf "CAManBase"})
-#define NEARCHECK (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["AllVehicles",2]) - [_building] - MANOBJECTS
 
-// Exit if not left mouse button
-if !(0 in GVAR(mouseKeysPressed)) exitWith {};
 
 // Select  building from mouseOvers
 //TODO: Save bbox stuff setVariable on the object, monitor the changed EH?
@@ -66,7 +63,8 @@ if ((count _validIdxs == 0) || {diag_frameno % 15 == 0}) then { // Also recalc e
         // Check for obstruction //TODO Zsorting?
         // Care about nearby objects except the building itself and the currently selected eden objects.
         // Lags for buildings with >10 positions
-        private _nearObjects = NEARCHECK;
+        private _nearObjects = (_x nearObjects ["Static",2]) + (_x nearObjects ["ThingX",2]) + (_x nearObjects ["AllVehicles",2]) - [_building];
+        if (current3DENOperation == "MoveItems") then {_nearObjects = _nearObjects - MANOBJECTS};
         if (count _nearObjects == 0) then {
             _validIdxs pushBack _forEachIndex;
         };
@@ -78,14 +76,20 @@ if ((count _validIdxs == 0) || {diag_frameno % 15 == 0}) then { // Also recalc e
 if (GVAR(posIdxs) isEqualTo [] || {(count GVAR(posIdxs)) != count (_validIdxs)}) then {
     private _A =+ _validIdxs;
     private _B = [];
-    while {count _A > 0} do {_B pushBack (_A deleteAt random floor count _A)};
+    while {count _A > 0} do {_B pushBack (_A deleteAt floor random count _A)};
     GVAR(posIdxs) = +_B;
 };
 
 // Draw positions.
-{
-
-    private _color = if !(_forEachIndex in _validIdxs) then {[0.75,0.75,0.75,0.75]} else {[1,1,1,1]};
-    if (((GVAR(posIdxs) find _forEachIndex) <= (count MANOBJECTS - 1)) && {(GVAR(posIdxs) find _forEachIndex) != -1} && {(count get3DENSelected "Object") > 1}) then {_color = [1,0.15,0.15,1]};
-    drawIcon3D ["\a3\ui_f\data\map\Markers\Military\dot_ca.paa",_color,_x,1,1,0,str _forEachIndex,2]
-} forEach _positions;
+if (0 in GVAR(mouseKeysPressed) && (current3DENOperation == "MoveItems")) then { // if dragging group
+    {
+        private _color = if !(_forEachIndex in _validIdxs) then {[0.75,0.75,0.75,0.75]} else {[1,1,1,1]};
+        if (((GVAR(posIdxs) find _forEachIndex) <= (count MANOBJECTS - 1)) && {(GVAR(posIdxs) find _forEachIndex) != -1}) then {_color = [1,0.15,0.15,1]};
+        drawIcon3D ["\a3\ui_f\data\map\Markers\Military\dot_ca.paa",_color,_x,1,1,0,str _forEachIndex,2]
+    } forEach _positions;
+} else {
+    {
+        private _color = if !(_forEachIndex in _validIdxs) then {[0.75,0.75,0.75,0.75]} else {[1,1,1,1]};
+        drawIcon3D ["\a3\ui_f\data\map\Markers\Military\dot_ca.paa",_color,_x,1,1,0,str _forEachIndex,2]
+    } forEach _positions;    
+};
