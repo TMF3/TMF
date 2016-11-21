@@ -33,6 +33,9 @@ class CfgFunctions {
             class onLoadSettings;
             class setTarget;
             class handleCamera;
+            class createGroupControl;
+            class controlSetText;
+            class controlSetPicture;
         };
     };
 

@@ -62,23 +62,24 @@ class GVAR(EntityTag): RscControlsGroup
 		{
 			idc = 2;
 			text = "Head"; //--- ToDo: Localize;
-            style = 0 + 0x02; // single + center align
+            style = 0x02; // single + center align
+            colorBackground[] = { 1, 1, 1, 0 };
+    		colorText[] = { 1, 1, 1, 1 };
 			x = 0.00 * safezoneW;
 			y = 0.02 * safezoneH;
 			w = 0.05 * safezoneW;
 			h = 0.02 * safezoneH;
-			sizeEx = 0.55 * safeZoneH * GUI_GRID_H;
+			sizeEx = 0.018 * safeZoneH;
 		};
-		class GVAR(Detail): RscText
+		class GVAR(Detail): GVAR(Name)
 		{
 			idc = 3;
 			text = "Alpha 1"; //--- ToDo: Localize;
-            style = 0 + 0x02; // single + center align
 			x = 0.00 * safezoneW;
 			y = 0.04 * safezoneH;
 			w = 0.05 * safezoneW;
 			h = 0.02 * safezoneH;
-			sizeEx = 0.3 * safeZoneH * GUI_GRID_H;
+			sizeEx = 0.013 * safeZoneH;
 		};
 	};
 };
