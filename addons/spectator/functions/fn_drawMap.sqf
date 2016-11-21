@@ -34,7 +34,7 @@ _map drawIcon ["\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCamera_ca.paa"
         };
     };
 
-    _doneVehicles = [];
+    private _renderedVehicles = [];
     {
         private _isVeh = false;
         private _pos = (getPosVisual _x);
