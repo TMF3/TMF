@@ -64,7 +64,7 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             text = "Head"; //--- ToDo: Localize;
             style = 0x02; // single + center align
             colorBackground[] = { 1, 1, 1, 0 };
-    		colorText[] = { 1, 1, 1, 1 };
+            colorText[] = { 1, 1, 1, 1 };
             x = 0.00 * safezoneW;
             y = 0.02 * safezoneH;
             w = 0.05 * safezoneW;
