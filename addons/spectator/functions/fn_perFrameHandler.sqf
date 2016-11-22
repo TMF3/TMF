@@ -4,7 +4,7 @@
 disableSerialization;
 private _isOpen = [] call FUNC(isOpen);
 if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
-if(!(_isOpen) || GVAR(showMap)) exitWith {};
+//if(!(_isOpen) || GVAR(showMap)) exitWith {};
 
 with uiNamespace do { ctrlSetFocus GVAR(unitlist);};
 
@@ -84,6 +84,18 @@ GVAR(killedUnits) = GVAR(killedUnits) - [0];
 } foreach GVAR(rounds);
 
 GVAR(rounds) = GVAR(rounds) - [0];
-
+private _deadControls = GVAR(controls) select {
+    private _attached = _x getvariable [QGVAR(attached),objNull];
+    private _value = false;
+    if(!isNull  _x && _attached isEqualType grpNull) then {
+        _value = {alive _x} count units _attached <= 0;
+    };
+    if(!isNull  _x &&  _attached isEqualType objNull) then {
+        _value = !alive _attached;
+    };
+    _value
+};
+GVAR(controls) = GVAR(controls) - _deadControls;
+{ctrlDelete _x} foreach _deadControls;
 if(GVAR(tags)) then {call FUNC(drawTags)};
 GVAR(freecam_timestamp) = time;

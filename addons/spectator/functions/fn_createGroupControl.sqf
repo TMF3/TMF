@@ -19,9 +19,10 @@ if(count _twGrpMkr == 3) then {
    [_control,_gname] call FUNC(controlSetText);
 }
 else {
-  diag_log str (_color);
   [_control,"\A3\ui_f\data\map\markers\nato\b_unknown.paa",_color] call FUNC(controlSetPicture);
-  [_control,groupId _x,[1,1,1,1]] call FUNC(controlSetText);
+  [_control,groupId _grp] call FUNC(controlSetText);
 };
 
-_grp setVariable [QGVAR(tagControl), _control, false];
+_grp setVariable [QGVAR(tagControl), [_control]];
+_control setVariable [QGVAR(attached),_grp];
+GVAR(controls) pushBack _control;

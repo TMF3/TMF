@@ -36,6 +36,8 @@ class CfgFunctions {
             class createGroupControl;
             class controlSetText;
             class controlSetPicture;
+            class createUnitControl;
+            class createVehicleControl;
         };
     };
 

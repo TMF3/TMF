@@ -70,7 +70,7 @@ GVAR(bulletTrails) = false;
 // MAP
 GVAR(showMap) = false;
 
-
+GVAR(controls) = [];
 
 
 

@@ -2,5 +2,7 @@
 params ["_control","_picturePath","_color"];
 disableSerialization;
 private _image = (_control controlsGroupCtrl 1);
-_image ctrlSetText _picturePath;
+if(_picturePath != "") then {
+    _image ctrlSetText _picturePath;
+};
 _image ctrlSetTextColor _color;

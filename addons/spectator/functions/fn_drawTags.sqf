@@ -1,5 +1,4 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
-disableSerialization;
 // enable hud and grab the user settings variables
 cameraEffectEnableHUD true;
 private _campos = getPosVisual GVAR(camera);
@@ -12,11 +11,11 @@ private _renderGroups = _grpTagSize > 0;
   private _grpCache = _x getVariable [QGVAR(grpCache),[0,[0,0,0],[1,1,1,1],true]];
   _grpCache params ["_grpTime","_avgpos","_color","_isAI"];
 
-  diag_log "Hello:15";
-  _control = _x call {disableSerialization;_this getVariable "tmf_spectator_tagcontrol"};
-  if(isnil "_control") then {
+  // circumevent the restriction on storing controls in namespace
+  _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+  if(isNull _control) then {
       [_x] call FUNC(createGroupControl);
-      _control = _x call {disableSerialization;_this getVariable "tmf_spectator_tagcontrol"};
+      _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
   };
   // If we don't have a average pos for the group, or the time since the last the update as expired, generate a new one
   if(count _avgpos <= 0 || time > _grpTime) then
@@ -26,36 +25,138 @@ private _renderGroups = _grpTagSize > 0;
   };
 
   // check if the average pos is on the screen
-  private _render = [_avgpos] call FUNC(onScreen);
+  private _render = [_avgpos] call FUNC(onScreen) && !GVAR(showMap);
 
 
   ////////////////////////////////////////////////////////
   // Group tags
   ////////////////////////////////////////////////////////
   // Only draw the icon if the grp tags are "enabled"
-  diag_log "Hello:34";
   if(_render) then { //
       _control ctrlShow true;
-      _control ctrlSetPosition (worldToScreen _avgpos);
-      _control ctrlSetScale 2;
+      if(_avgpos distance2D _campos > 600) then {
+          (_control controlsGroupCtrl 2) ctrlShow false;
+      } else {
+          (_control controlsGroupCtrl 2) ctrlShow true;
+      };
+      if(_avgpos distance2D _campos > 300) then {
+          (_control controlsGroupCtrl 3) ctrlShow false;
+      } else {
+          (_control controlsGroupCtrl 3) ctrlShow true;
+      };
+      private _screenpos = (worldToScreen _avgpos);
+      _control ctrlSetPosition [(_screenpos select 0) - (0.025 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
       _control ctrlCommit 0;
   } else {
       _control ctrlShow false;
       _control ctrlCommit 0;
   };
-diag_log "Hello:41";
   ////////////////////////////////////////////////////////
   // Unit / vehicle tags
   ////////////////////////////////////////////////////////
 
-  private _renderedVehicles = [];
   {
+        private _isVeh = vehicle _x != _x;
 
+        private _pos = (getPosATLVisual _x);
+        if(surfaceIsWater _pos) then {_pos = getPosASLVisual _x;};
+        _pos = _pos vectorAdd [0,0,3.1];
+        // circumevent the restriction on storing controls in namespace
+        _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+        if(isNull _control) then {
+            [_x] call FUNC(createUnitControl);
+            _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+        };
+
+        if(alive _x && [_pos] call FUNC(onScreen) && !_isVeh && {_campos distance2D _x <= 500} ) then {
+            private _name = name _x;
+            private _unitColor = _color;
+            private _hasFired = _x getVariable [QGVAR(fired), 0];
+            if(_hasFired > 0) then {
+                _unitColor = [0.8,0.8,0.8,1];
+                _x setVariable [QGVAR(fired), _hasFired-1];
+            };
+            _control ctrlShow true;
+            [_control,"",_unitColor] call FUNC(controlSetPicture);
+
+
+            if(_pos distance _campos > 300) then {
+                (_control controlsGroupCtrl 2) ctrlShow false;
+            } else {
+                (_control controlsGroupCtrl 2) ctrlShow true;
+            };
+            if(_pos distance _campos > 150) then {
+                (_control controlsGroupCtrl 3) ctrlShow false;
+            } else {
+                (_control controlsGroupCtrl 3) ctrlShow true;
+            };
+
+            private _screenpos = (worldToScreen _pos);
+            if(count _screenpos == 2) then {
+                _control ctrlSetPosition [(_screenpos select 0) - (0.025 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
+            };
+            _control ctrlCommit 0;
+        } else {
+            _control ctrlShow false;
+            _control ctrlCommit 0;
+        }
   } forEach units _x;
 } forEach allGroups;
 
 
+{
+    private _pos = (getPosATLVisual _x);
+    if(surfaceIsWater _pos) then {_pos = getPosASLVisual _x;};
+    _pos = _pos vectorAdd [0,0,2 + (((boundingbox _x) select 1) select 2)];
+    // circumevent the restriction on storing controls in namespace
+    _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+    if(isNull _control) then {
+        [_x] call FUNC(createVehicleControl);
+        _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+    };
+    if(alive _x && {[_pos] call FUNC(onScreen)} && {(count crew _x) > 0} && {_campos distance2D _x <= 500} && !GVAR(showMap) ) then {
 
+
+        _color = (side group ((crew _x) select 0)) call CFUNC(sideToColor);
+        private _hasFired = _x getVariable [QGVAR(fired), 0];
+        if(_hasFired > 0) then {
+            _color = [0.8,0.8,0.8,1];
+            _x setVariable [QGVAR(fired), _hasFired-1];
+        };
+        _commanderName = name (effectiveCommander _x);
+        [_control,"",_color] call FUNC(controlSetPicture);
+        [_control,format ["%1 [%2]",_commanderName,count crew _x],[],true] call FUNC(controlSetText);
+
+        _control ctrlShow true;
+
+        if(_pos distance _campos > 300) then {
+            (_control controlsGroupCtrl 2) ctrlShow false;
+        } else {
+            (_control controlsGroupCtrl 2) ctrlShow true;
+        };
+        if(_pos distance _campos > 150) then {
+            (_control controlsGroupCtrl 3) ctrlShow false;
+        } else {
+            (_control controlsGroupCtrl 3) ctrlShow true;
+        };
+        private _screenpos = (worldToScreen _pos);
+        if(count _screenpos == 2) then {
+            _control ctrlSetPosition [(_screenpos select 0) - (0.025 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
+        };
+        _control ctrlCommit 0;
+    } else {
+        _control ctrlShow false;
+        _control ctrlCommit 0;
+    };
+} foreach vehicles select {_x isKindOf "AllVehicles"};
+
+
+
+
+
+
+
+if(GVAR(showMap)) exitWith {};
 
 ////////////////////////////////////////////////////////
 // Objectives tags

@@ -37,8 +37,8 @@ class CfgRespawnTemplates
 #include "CfgModules.hpp"
 
 
-
-class GVAR(EntityTag): RscControlsGroup
+class ctrlControlsGroupNoScrollbars;
+class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
 {
     idc = -1;
     x = 0 * safezoneW + safezoneX;
@@ -55,21 +55,22 @@ class GVAR(EntityTag): RscControlsGroup
             y = 0 * safezoneH;
             w = 0.05 * safezoneW;
             h = 0.02 * safezoneH;
-                    style = 48 + 0x800 + 0x02; // picture + no stretch + center (not sure if works)
-            sizeEx = 0.1 * GUI_GRID_H;
+            style = 48 + 0x800 + 0x02; // picture + no stretch + center (not sure if works)
+            sizeEx = 0.1 * safeZoneH;
         };
         class GVAR(Name): RscText
         {
             idc = 2;
             text = "Head"; //--- ToDo: Localize;
-                    style = 0x02; // single + center align
-                    colorBackground[] = { 1, 1, 1, 0 };
-            		colorText[] = { 1, 1, 1, 1 };
+            style = 0x02; // single + center align
+            colorBackground[] = { 1, 1, 1, 0 };
+    		colorText[] = { 1, 1, 1, 1 };
             x = 0.00 * safezoneW;
             y = 0.02 * safezoneH;
             w = 0.05 * safezoneW;
             h = 0.02 * safezoneH;
             sizeEx = 0.018 * safeZoneH;
+            shadow = 2;
         };
         class GVAR(Detail): GVAR(Name)
         {
