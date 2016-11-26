@@ -43,20 +43,35 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
     idc = -1;
     x = 0 * safezoneW + safezoneX;
     y = 0 * safezoneH + safezoneY;
-    w = 0.05 * safezoneW;
+    w = 0.08 * safezoneW;
     h = 0.06 * safezoneH;
+    onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
+    onMouseEnter = "diag_log str _this";
+    onMouseExit =  "diag_log str _this";
     class controls
     {
+        class GVAR(back) : IGUIBACK {
+            idc = 4;
+            x = 0.3 * safezoneW;
+            y = 0;
+            w = 0.05 * safezoneW;
+            h = 0.06 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            onMouseEnter = "diag_log str _this";
+            onMouseExit =  "diag_log str _this";
+        }
         class GVAR(Icon): RscPicture
         {
             idc = 1;
             text = "\A3\ui_f\data\map\markers\military\triangle_CA.paa";
-            x = 0 * safezoneW;
-            y = 0 * safezoneH;
-            w = 0.05 * safezoneW;
+            x = 0;
+            y = 0;
+            w = 0.08 * safezoneW;
             h = 0.02 * safezoneH;
             style = 48 + 0x800 + 0x02; // picture + no stretch + center (not sure if works)
             sizeEx = 0.1 * safeZoneH;
+            onMouseEnter = "diag_log str _this";
+            onMouseExit =  "diag_log str _this";
         };
         class GVAR(Name): RscText
         {
@@ -65,9 +80,9 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             style = 0x02; // single + center align
             colorBackground[] = { 1, 1, 1, 0 };
             colorText[] = { 1, 1, 1, 1 };
-            x = 0.00 * safezoneW;
+            x = 0;
             y = 0.02 * safezoneH;
-            w = 0.05 * safezoneW;
+            w = 0.08 * safezoneW;
             h = 0.02 * safezoneH;
             sizeEx = 0.018 * safeZoneH;
             shadow = 2;
@@ -76,9 +91,9 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
         {
             idc = 3;
             text = "Alpha 1"; //--- ToDo: Localize;
-            x = 0.00 * safezoneW;
+            x = 0;
             y = 0.04 * safezoneH;
-            w = 0.05 * safezoneW;
+            w = 0.08 * safezoneW;
             h = 0.02 * safezoneH;
             sizeEx = 0.013 * safeZoneH;
         };

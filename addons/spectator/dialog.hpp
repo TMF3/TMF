@@ -172,9 +172,11 @@ class tmf_spectator_dialog
             colorBackground[] = {0,0,0,0.0};
             text = "";
             style = 0x01;
+            size = 0.018 * safeZoneH;
             class Attributes {
               align = "right";
               valign = "middle";
+              size = 0.018 * safeZoneH;
             };
           };
           class Label2: Label1

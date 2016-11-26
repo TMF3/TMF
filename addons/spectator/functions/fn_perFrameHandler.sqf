@@ -84,6 +84,7 @@ GVAR(killedUnits) = GVAR(killedUnits) - [0];
 } foreach GVAR(rounds);
 
 GVAR(rounds) = GVAR(rounds) - [0];
+/** This is not a grrreat idea
 private _deadControls = GVAR(controls) select {
     private _attached = _x getvariable [QGVAR(attached),objNull];
     private _value = false;
@@ -97,5 +98,6 @@ private _deadControls = GVAR(controls) select {
 };
 GVAR(controls) = GVAR(controls) - _deadControls;
 {ctrlDelete _x} foreach _deadControls;
+*//
 if(GVAR(tags)) then {call FUNC(drawTags)};
 GVAR(freecam_timestamp) = time;
