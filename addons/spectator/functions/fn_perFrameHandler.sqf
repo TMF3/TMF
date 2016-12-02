@@ -98,6 +98,6 @@ private _deadControls = GVAR(controls) select {
 };
 GVAR(controls) = GVAR(controls) - _deadControls;
 {ctrlDelete _x} foreach _deadControls;
-*//
+**/
 if(GVAR(tags)) then {call FUNC(drawTags)};
 GVAR(freecam_timestamp) = time;
