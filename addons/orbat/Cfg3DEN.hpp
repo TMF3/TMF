@@ -189,7 +189,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_ORBAT_Tracker',_value];";
                             tooltip = "Use this option to disable elements of the ORBAT being displayed on the map.";
-                            defaultValue = true;
+                            defaultValue = false;
                             condition = "true";
                             wikiType = "[[String]]";
                         };
@@ -211,7 +211,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_ORBAT_MarkersFT',_value];";
                             tooltip = "Use this option to disable drawing members of the current player's fireteam on the map.";
-                            defaultValue = true;
+                            defaultValue = false;
                             condition = "true";
                             wikiType = "[[String]]";
                         };
@@ -222,7 +222,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "missionNamespace setVariable ['TMF_ORBAT_MarkersFT_Directional',_value,true];";
                             tooltip = "Set whether fireteam map markers are directional or not.";
-                            defaultValue = true;
+                            defaultValue = false;
                             condition = "true";
                             wikiType = "[[String]]";
                         };
