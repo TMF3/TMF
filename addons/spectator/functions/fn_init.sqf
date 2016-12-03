@@ -197,6 +197,7 @@ if (isNil QGVAR(setupEH)) then {
         if (!isNull _acekiller ) then {
             _killer = _acekiller;
         };*/
+        if(count (_deadMan getVariable [QGVAR(tagControl),[]] > 0)) then {ctrlDelete (_deadMan getVariable [QGVAR(tagControl)) select 0;};
         if(isNull _killer || _killer == _deadMan) then
         {
             _killer = _deadMan getVariable [QGVAR(lastDamage),objNull];
