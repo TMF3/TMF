@@ -64,7 +64,7 @@ private _renderGroups = _grpTagSize > 0;
             _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
         };
 
-        if(alive _x && {!GVAR(showMap)} && {[_pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
+        if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[_pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
             private _name = name _x;
             private _unitColor = _color;
             private _hasFired = _x getVariable [QGVAR(fired), 0];
@@ -104,7 +104,7 @@ private _renderGroups = _grpTagSize > 0;
         [_x] call FUNC(createVehicleControl);
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
-    if(alive _x && {!GVAR(showMap)} && {[_pos] call FUNC(onScreen)} && {(alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
+    if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[_pos] call FUNC(onScreen)} && {(alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
 
 
         _color = (side _x) call CFUNC(sideToColor);
