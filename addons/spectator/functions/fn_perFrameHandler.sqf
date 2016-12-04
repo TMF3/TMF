@@ -4,7 +4,7 @@
 disableSerialization;
 private _isOpen = [] call FUNC(isOpen);
 if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
-//if(!(_isOpen) || GVAR(showMap)) exitWith {};
+
 
 with uiNamespace do { ctrlSetFocus GVAR(unitlist);};
 
@@ -23,28 +23,7 @@ if(!isNil QGVAR(target) && {!isNull GVAR(target)} && {alive GVAR(target)} ) then
     (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText "";
 };
 
-// Handle notfications
-if(GVAR(currentnotification) == "" && count GVAR(notification) > 0) then {
-  GVAR(currentnotification) = (GVAR(notification) select 0);
-  GVAR(notification) = GVAR(notification) - [GVAR(currentnotification)];
-  with uiNamespace do {
-    GVAR(notificationbar) ctrlSetText " "+(missionNamespace getVariable QGVAR(currentnotification));
-    GVAR(notificationbar) ctrlSetPosition GVAR(notification_pos);
-    GVAR(notificationbar) ctrlCommit 0;
-    [] spawn {
-      disableSerialization;
-      waitUntil {ctrlCommitted GVAR(notificationbar)};
-      uiSleep 0.8;
-      _x = [] + GVAR(notification_pos);// make a new one;
-      _x set [2,0];
-      GVAR(notificationbar) ctrlSetPosition _x;
-      GVAR(notificationbar) ctrlCommit 0.3;
-      waitUntil {ctrlCommitted GVAR(notificationbar)};
-      GVAR(notificationbar) ctrlSetText "";
-      missionNamespace setVariable [QGVAR(currentnotification),""];
-    };
-  };
-};
+
 
 {
     _x ctrlSetStructuredText parseText "";
@@ -84,20 +63,6 @@ GVAR(killedUnits) = GVAR(killedUnits) - [0];
 } foreach GVAR(rounds);
 
 GVAR(rounds) = GVAR(rounds) - [0];
-/** This is not a grrreat idea
-private _deadControls = GVAR(controls) select {
-    private _attached = _x getvariable [QGVAR(attached),objNull];
-    private _value = false;
-    if(!isNull  _x && _attached isEqualType grpNull) then {
-        _value = {alive _x} count units _attached <= 0;
-    };
-    if(!isNull  _x &&  _attached isEqualType objNull) then {
-        _value = !alive _attached;
-    };
-    _value
-};
-GVAR(controls) = GVAR(controls) - _deadControls;
-{ctrlDelete _x} foreach _deadControls;
-**/
-if(GVAR(tags)) then {call FUNC(drawTags)};
+
+[] call FUNC(drawTags);
 GVAR(freecam_timestamp) = time;

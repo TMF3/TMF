@@ -145,7 +145,7 @@ private _renderGroups = _grpTagSize > 0;
 
 
 
-if(GVAR(showMap)) exitWith {};
+if(GVAR(showMap) || !GVAR(tags)) exitWith {};
 
 ////////////////////////////////////////////////////////
 // Objectives tags

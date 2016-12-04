@@ -25,7 +25,6 @@ class CfgFunctions {
             class handleSettingsMenu;
             class menuHandler;
             class mouseHandler;
-            class notificationShow;
             class onMapClick;
             class onChange;
             class onLoad;

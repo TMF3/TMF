@@ -128,7 +128,6 @@ class GVAR(settingControl) : RscControlsGroup
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASS    5453
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT    5454
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight    5455
-#define IDC_SPECTATOR_TMF_SPECTATOR_NOTIFICATION    5465
 #define IDC_SPECTATOR_TMF_SPECTATOR_MUTE 5467
 #define IDC_SPECTATOR_TMF_SPECTATOR_MAP 5468
 
@@ -147,7 +146,7 @@ class tmf_spectator_dialog
   fadeout = 0;
   duration = 2147483647;
   type = 0;
-  controlsBackground[] = {TMF_SPECTATOR_MOUSE,TMF_SPECTATOR_UNITLABEL,TMF_SPECTATOR_Compass,TMF_SPECTATOR_CompassLeft,TMF_SPECTATOR_CompassRight,TMF_SPECTATOR_NOTIFICATION,TMF_SPECTATOR_KILLLIST};
+  controlsBackground[] = {TMF_SPECTATOR_MOUSE,TMF_SPECTATOR_UNITLABEL,TMF_SPECTATOR_Compass,TMF_SPECTATOR_CompassLeft,TMF_SPECTATOR_CompassRight,TMF_SPECTATOR_KILLLIST};
   onKeyDown = "[0,_this] call tmf_spectator_fnc_keyhandler";
   onKeyUp= "[1,_this] call tmf_spectator_fnc_keyhandler";
   onLoad = "_this call tmf_spectator_fnc_onLoad";
@@ -229,6 +228,14 @@ class tmf_spectator_dialog
           };
       };
   };
+  class TMF_SPECTATOR_MESSAGELIST: TMF_SPECTATOR_KILLLIST
+  {
+      idc = 2301;
+      x = 0.763544 * safezoneW + safezoneX;
+      y = 1-((0.020*6.5) * safezoneH) * safezoneH + safezoneY;
+      w = 0.233576 * safezoneW;
+      h = (0.020*6.5) * safezoneH;
+  };
   class TMF_SPECTATOR_UNITLABEL: RscSpectatorText
   {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL;
@@ -284,18 +291,6 @@ class tmf_spectator_dialog
       0.7
     };
     font = "PuristaBold";
-  };
-  class TMF_SPECTATOR_NOTIFICATION: RscSpectatorText
-  {
-    idc = IDC_SPECTATOR_TMF_SPECTATOR_NOTIFICATION;
-    text = ""; //--- ToDo: Localize;
-    x = COLUMN(6);
-    y = 0.00719998 * safezoneH + safezoneY;
-    w = 0.135 * safezoneW;
-    h = BUTTON_HEIGHT;
-    style = 0;
-    font = "PuristaBold";
-    colorBackground[] = {0,0,0,0.8};
   };
   class controls {
     class TMF_SPECTATOR_FILTER: RscSpectatorShortcutButton

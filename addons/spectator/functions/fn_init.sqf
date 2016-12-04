@@ -183,9 +183,6 @@ GVAR(missileIcon) = "\x\tmf\addons\spectator\images\missile.paa";
 GVAR(grenadeIcon) = "\x\tmf\addons\spectator\images\grenade.paa";
 GVAR(smokeIcon) = "\x\tmf\addons\spectator\images\smokegrenade.paa";
 
-GVAR(currentnotification) = "";
-GVAR(notification) = [];
-
 
 // Add EH
 

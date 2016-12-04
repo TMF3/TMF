@@ -28,7 +28,6 @@ with uiNamespace do {
     GVAR(labels) = [_labelParent controlsGroupCtrl 1,_labelParent controlsGroupCtrl 2,_labelParent controlsGroupCtrl 3,_labelParent controlsGroupCtrl 4,_labelParent controlsGroupCtrl 5,_labelParent controlsGroupCtrl 6];
 
 
-    GVAR(notificationbar) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_NOTIFICATION;
     GVAR(map) ctrlShow (missionNamespace getVariable [QGVAR(showMap),false]);
     GVAR(map) mapCenterOnCamera false;
 
@@ -73,17 +72,5 @@ else // else remove it
 {
     with uiNamespace do {
         GVAR(mute) ctrlShow false; // hide mute button
-        _bpos = (ctrlPosition GVAR(mute));
-        _notepos = (ctrlPosition (GVAR(notificationbar)));
-        GVAR(notificationbar) ctrlSetPosition [_bpos select 0,_bpos select 1,_notepos select 2,_notepos select 3]; // move notfications label
-        GVAR(notificationbar) ctrlCommit 0;
     };
-};
-
-
-
-with uiNamespace do {
-    GVAR(notification_pos) = ctrlPosition GVAR(notificationbar);
-    GVAR(notificationbar) ctrlSetPosition [GVAR(notification_pos) select 0,GVAR(notification_pos) select 1,0,GVAR(notification_pos) select 3];
-    GVAR(notificationbar) ctrlCommit 0;
 };
