@@ -24,7 +24,7 @@ private _renderGroups = _grpTagSize > 0;
   };
 
   // check if the average pos is on the screen
-  private _render = [_avgpos] call FUNC(onScreen) && !GVAR(showMap);
+  private _render = [_avgpos] call FUNC(onScreen) && !GVAR(showMap) && GVAR(tags);
 
 
   ////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ private _renderGroups = _grpTagSize > 0;
         [_x] call FUNC(createVehicleControl);
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
-    if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[_pos] call FUNC(onScreen)} && {(alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
+    if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[_pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
 
 
         _color = (side _x) call CFUNC(sideToColor);
