@@ -235,6 +235,74 @@ class tmf_spectator_dialog
       y = 1-((0.020*6.5) * safezoneH) * safezoneH + safezoneY;
       w = 0.233576 * safezoneW;
       h = (0.020*6.5) * safezoneH;
+      class controls
+      {
+          class Label1: RscStructuredText
+          {
+            idc = 1;
+            x = 0.00352533 * safezoneW;
+            y = 0.005 * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+            style = 0x01;
+            class Attributes {
+              align = "right";
+              valign = "middle";
+            };
+          };
+          class Label2: Label1
+          {
+              idc = 2;
+              x = 0.00352533 * safezoneW;
+              y = (0.005+(0.020*1)) * safezoneH;
+              w = 0.230 * safezoneW;
+              h = 0.020 * safezoneH;
+              colorBackground[] = {0,0,0,0.0};
+              text = "";
+          };
+          class Label3: Label1
+          {
+              idc = 3;
+              x = 0.00352533 * safezoneW;
+              y = (0.005+(0.020*2)) * safezoneH;
+              w = 0.230 * safezoneW;
+              h = 0.020 * safezoneH;
+              colorBackground[] = {0,0,0,0.0};
+              text = "";
+          };
+          class Label4: Label1
+          {
+              idc = 4;
+              x = 0.00352533 * safezoneW;
+              y = (0.005+(0.020*3)) * safezoneH;
+              w = 0.230 * safezoneW;
+              h = 0.020 * safezoneH;
+              colorBackground[] = {0,0,0,0.0};
+              text = "";
+          };
+          class Label5: Label1
+          {
+              idc = 5;
+              x = 0.00352533 * safezoneW;
+              y = (0.005+(0.020*4)) * safezoneH;
+              w = 0.230 * safezoneW;
+              h = 0.020 * safezoneH;
+              colorBackground[] = {0,0,0,0.0};
+              text = "";
+          };
+          class Label6: Label1
+          {
+              idc = 6;
+              x = 0.00352533 * safezoneW;
+              y = (0.005+(0.020*5)) * safezoneH;
+              w = 0.230 * safezoneW;
+              h = 0.020 * safezoneH;
+              colorBackground[] = {0,0,0,0.0};
+              text = "";
+          };
+      };
   };
   class TMF_SPECTATOR_UNITLABEL: RscSpectatorText
   {

@@ -34,12 +34,8 @@ private _renderGroups = _grpTagSize > 0;
   if(_render) then {
       if(!ctrlShown _control) then {_control ctrlShow true};
 
-      if(_pos distance _campos > 600) then { (_control controlsGroupCtrl 2) ctrlShow false; }
-      else { (_control controlsGroupCtrl 2) ctrlShow true; };
-
-      if(_pos distance _campos > 300) then {(_control controlsGroupCtrl 3) ctrlShow false;}
-      else { (_control controlsGroupCtrl 3) ctrlShow true; };
-
+      (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 600);
+      (_control controlsGroupCtrl 3) ctrlShow (_pos distance _campos <= 300);
 
       private _screenpos = (worldToScreen _avgpos);
       _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
@@ -76,11 +72,8 @@ private _renderGroups = _grpTagSize > 0;
 
             [_control,"",_unitColor] call FUNC(controlSetPicture);
 
-            if(_pos distance _campos > 300) then { (_control controlsGroupCtrl 2) ctrlShow false; }
-            else { (_control controlsGroupCtrl 2) ctrlShow true; };
-
-            if(_pos distance _campos > 150) then {(_control controlsGroupCtrl 3) ctrlShow false;}
-            else { (_control controlsGroupCtrl 3) ctrlShow true; };
+            (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 300);
+            (_control controlsGroupCtrl 3) ctrlShow (_pos distance _campos <= 150);
 
             private _screenpos = (worldToScreen _pos);
             if(count _screenpos == 2) then {
@@ -118,17 +111,8 @@ private _renderGroups = _grpTagSize > 0;
         [_control,format ["%1 [%2]",_commanderName,count crew _x],[],true] call FUNC(controlSetText);
 
         if(!ctrlShown _control) then {_control ctrlShow true};
-
-        if(_pos distance _campos > 300) then {
-            (_control controlsGroupCtrl 2) ctrlShow false;
-        } else {
-            (_control controlsGroupCtrl 2) ctrlShow true;
-        };
-        if(_pos distance _campos > 150) then {
-            (_control controlsGroupCtrl 3) ctrlShow false;
-        } else {
-            (_control controlsGroupCtrl 3) ctrlShow true;
-        };
+        (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 300);
+        (_control controlsGroupCtrl 3) ctrlShow (_pos distance _campos <= 150);
         private _screenpos = (worldToScreen _pos);
         if(count _screenpos == 2) then {
             _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];

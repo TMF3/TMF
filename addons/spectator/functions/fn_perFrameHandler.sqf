@@ -40,7 +40,7 @@ for "_i" from 1 to 6 do {
             if(_killer == _unit || isNull _killer) then {
                 _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sidetohexcolor)];
             } else {
-                _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,getText (configFile >> "CfgWeapons" >> (_weapon) >> "displayName"),_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
+                _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,_weapon,_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
             };
         };
         if(_time > 12) then {
