@@ -46,8 +46,8 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
     w = 0.08 * safezoneW;
     h = 0.06 * safezoneH;
     onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
-    onMouseEnter = "diag_log str _this";
-    onMouseExit =  "diag_log str _this";
+    onMouseButtonDown = "[""MouseButtonDown"",_this] call tmf_spectator_fnc_mouseHandler";
+    onMouseButtonUp = "[""MouseButtonUp"",_this] call tmf_spectator_fnc_mouseHandler";
     class controls
     {
         class GVAR(back) : IGUIBACK {

@@ -191,10 +191,6 @@ if (isNil QGVAR(setupEH)) then {
         params ["_deadMan","_killer"];
         if(count (_deadMan getVariable [QGVAR(tagControl),[]]) > 0) then {ctrlDelete ((_deadMan getVariable [QGVAR(tagControl),[controlNull]]) select 0);};
         if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitwith {};
-    /*    private _acekiller = _killed getVariable ["ace_medical_lastDamageSource", objNull];
-        if (!isNull _acekiller ) then {
-            _killer = _acekiller;
-        };*/
         if(isNull _killer || _killer == _deadMan) then {
             _killer = _deadMan getVariable [QGVAR(lastDamage),objNull];
         };

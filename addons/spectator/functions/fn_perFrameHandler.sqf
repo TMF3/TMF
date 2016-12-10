@@ -3,6 +3,7 @@
 
 disableSerialization;
 private _isOpen = [] call FUNC(isOpen);
+if(!_isOpen) exitWith {{ctrlDelete _x} foreach GVAR(controls)};
 if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
 
 
@@ -17,7 +18,7 @@ with uiNamespace do { ctrlSetFocus GVAR(unitlist);};
 
 // update something horrible
 
-if(!isNil QGVAR(target) && {!isNull GVAR(target)} && {alive GVAR(target)} ) then {
+if(GVAR(mode) != FREECAM && !isNil QGVAR(target) && {!isNull GVAR(target)} && {alive GVAR(target)} ) then {
     (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText (name GVAR(target));
 } else {
     (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText "";
