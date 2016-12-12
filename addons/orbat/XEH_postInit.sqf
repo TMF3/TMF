@@ -29,6 +29,17 @@ if (isMultiplayer) then {
              ((findDisplay 53) displayctrl 51) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
         };
     };
+} else {
+    [] spawn { // Work for single player briefing (EDEN preview)
+        uiSleep 2;
+        disableSerialization;
+        {
+            private _control = _x displayCtrl 51;
+            if (ctrlMapScale _control != 0) then { // Is Map scale component
+                _control ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
+            };
+        } forEach allDisplays;
+    };
 };
 
 // Ingame Map
