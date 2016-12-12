@@ -32,9 +32,10 @@ if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then {
       _newUnit hideObjectGlobal true;
       _newUnit enableSimulationGlobal false;
       _newUnit setPos [0,0,5];
-
+      _newUnit setVariable [QGVAR(name),profileName,true];
       selectPlayer _newUnit;
       waitUntil{player isEqualTo _newUnit};
+
       if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
       GVAR(unit) = _newUnit;
   }

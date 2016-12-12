@@ -271,8 +271,9 @@ switch _input do {
             } forEach GVAR(selectedRespawnGroup);
             
             if (!_found) then {
-                private _idx = _ctrlDeadListBox lbAdd (name _deadPlayer);
-                _ctrlDeadListBox lbSetData[_idx,""+getPlayerUID _deadPlayer];
+                private _name = _deadPlayer getVariable ["tmf_spectator_name",name _deadPlayer];
+                private _idx = _ctrlDeadListBox lbAdd _name;
+                _ctrlDeadListBox lbSetData[_idx,_name];
             };
         } forEach GVAR(deadPlayerList);
     };
@@ -280,7 +281,8 @@ switch _input do {
         lbClear _ctrlGroupListBox;
         {
             _x params ["_rankIdx","_obj", "_roleIdx"];
-            private _idx = _ctrlGroupListBox lbAdd format["%1 - %2", name (_obj),(respawnMenuRoles select _roleIdx) select 1];
+            private _name = _obj getVariable ["tmf_spectator_name",name _obj];
+            private _idx = _ctrlGroupListBox lbAdd format["%1 - %2", _name, (respawnMenuRoles select _roleIdx) select 1];
            //Set image based on rank
             switch (_rankIdx) do {
                 case 0 : { _ctrlGroupListBox lbSetPicture[_idx,"\A3\Ui_f\data\GUI\Cfg\Ranks\private_gs.paa"]; };
@@ -302,7 +304,8 @@ switch _input do {
         
         private _obj = objNull;
         {
-            if (_selection == name _x) exitWith {
+            private _name = _x getVariable ["tmf_spectator_name",name _x];
+            if (_selection == _name) exitWith {
                 _obj = _x;
             };
         } forEach GVAR(deadPlayerList);
