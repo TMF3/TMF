@@ -2,7 +2,7 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params [["_target",GVAR(target),[objNull]]];
 
-
+if(isNull _target) exitWith {};
 
 _oldunit = GVAR(target);
 GVAR(target) = _target;
