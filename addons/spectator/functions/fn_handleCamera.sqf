@@ -16,13 +16,13 @@ if(_rightButton && !_leftButton) then {
 private _oldcam = GVAR(camera);
 
 GVAR(camera) = switch (tmf_spectator_mode) do {
-  case 0: { GVAR(followcam) };
+  case 0: { GVAR(followCam) };
   case 1: {
-    if(GVAR(camera) != GVAR(freecam)) then {
-      GVAR(freecam) setPos (getPos GVAR(followcam));
-      GVAR(freecam) setVectorDirAndUp [vectorDir GVAR(followcam),vectorUp GVAR(followcam) ];
+    if(GVAR(camera) != GVAR(freeCam)) then {
+      GVAR(freeCam) setPos (getPos GVAR(followCam));
+      GVAR(freeCam) setVectorDirAndUp [vectorDir GVAR(followCam),vectorUp GVAR(followCam) ];
     };
-    GVAR(freecam)
+    GVAR(freeCam)
   };
   case 2: { GVAR(target) };
 };
@@ -65,7 +65,7 @@ if(GVAR(mode) == FOLLOWCAM) then {
 };
 // Freecam
 if(GVAR(mode) == FREECAM) then {
-  private _currPos = getPosVisual GVAR(freecam);
+  private _currPos = getPosVisual GVAR(freeCam);
   private _height = (0.1 max ((_currPos select 2) + 0.4)) min 650;
   private _mod = (0.1 max ((log (_height/5)) + (_height / 115))) min 7;
   if(_shift) then {_mod = _mod * 3.5};

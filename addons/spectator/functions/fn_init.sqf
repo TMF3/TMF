@@ -1,8 +1,10 @@
 
 
 #include "\x\tmf\addons\spectator\script_component.hpp"
+
 if((_this select 2) isEqualType 0) then {_this set [2,false]};
 params ["_unit","_oldUnit",["_forced",false,[false]]];
+
 if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {createDialog QGVAR(dialog);};
 
 private _isJip = didJIP;
@@ -23,11 +25,15 @@ if(_isJip) then {
     };
 };
 
+if(isNil QGVAR(unit)) then {GVAR(unit) = objNull};
+
+
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then {
+if(isNull GVAR(unit) || !(typeof GVAR(unit) isEqualTo "VirtualCurator_F")) then {
   private _newGrp = createGroup sideLogic;
   private _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
-  if (!isNull _newUnit) then {
+  if (!isNull _newUnit) then {  if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };   GVAR(unit) = _oldUnit;  }
+  else {
       _newUnit allowDamage false;
       _newUnit hideObjectGlobal true;
       _newUnit enableSimulationGlobal false;
@@ -37,24 +43,25 @@ if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then {
       waitUntil{player isEqualTo _newUnit};
       if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
       GVAR(unit) = _newUnit;
-  }
-  else {
-      if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };
-      GVAR(unit) = _oldUnit;
   };
+}
+else {
+    selectPlayer _newUnit;
+    waitUntil{player isEqualTo _newUnit};
+    if(typeOf _unit == "seagull") then { deleteVehicle _unit; }; 
 };
 
 // If oldunit is null set a new starting target
 if(isNull _oldUnit ) then {_oldUnit = allUnits select 0};
 
-GVAR(entryside) = _oldUnit getVariable ["TMF_CreatedSide",side _oldUnit];
+GVAR(entrySide) = _oldUnit getVariable ["TMF_CreatedSide",side _oldUnit];
 
-if(!isNil QGVAR(freecam) && {!isNull GVAR(freecam)}) exitWith {createDialog "tmf_spectator_dialog";};
+if(!isNil QQGVAR(freeCam) && {!isNull QGVAR(freeCam)}) exitWith {createDialog "tmf_spectator_dialog";};
 
 
 
-GVAR(freecam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
-GVAR(followcam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
+QGVAR(freeCam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
+GVAR(followCam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
 GVAR(camera) = tmf_spectator_followcam;
 GVAR(target) = _oldUnit;
 #include "defines.hpp"
@@ -86,17 +93,17 @@ private _pos = getPosVisual GVAR(target);
 _pos set [2,(_pos select 2)+1.3];
 
 
-GVAR(followcam) camSetTarget _pos;
-GVAR(followcam) camSetRelPos [2,2,3];
+GVAR(followCam) camSetTarget _pos;
+GVAR(followCam) camSetRelPos [2,2,3];
 GVAR(relpos) = [2,2,3];
 
 
 // Set FOV
-GVAR(followcam) camSetFov 1.2;
-GVAR(freecam) camSetFov 1.2;
+GVAR(followCam) camSetFov 1.2;
+QGVAR(freeCam) camSetFov 1.2;
 
 // commit it
-GVAR(freecam) camCommit 0;
+QGVAR(freeCam) camCommit 0;
 GVAR(camera) camCommit 0;
 // 0 follow cam, 1 freecam, 2 firstperson
 GVAR(mode) = 0;

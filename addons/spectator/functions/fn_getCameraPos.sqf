@@ -6,10 +6,9 @@ switch (GVAR(mode)) do {
         _pos = getpos GVAR(target) vectoradd GVAR(relpos);
     };
     case 1: {
-        _pos = getpos GVAR(freecam);
+        _pos = getpos GVAR(freeCam);
     };
     default {
-         /* STATEMENT */
     };
 };
 _pos
