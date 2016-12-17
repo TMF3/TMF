@@ -56,7 +56,7 @@ if(isNull _oldUnit ) then {_oldUnit = allUnits select 0};
 
 GVAR(entrySide) = _oldUnit getVariable ["TMF_CreatedSide",side _oldUnit];
 
-if(!isNil QQGVAR(freeCam) && {!isNull QGVAR(freeCam)}) exitWith {createDialog "tmf_spectator_dialog";};
+if(!isNil QGVAR(freeCam) && {!isNull QGVAR(freeCam)}) exitWith {createDialog "tmf_spectator_dialog";};
 
 
 
