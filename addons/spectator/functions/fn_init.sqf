@@ -56,13 +56,13 @@ if(isNull _oldUnit ) then {_oldUnit = allUnits select 0};
 
 GVAR(entrySide) = _oldUnit getVariable ["TMF_CreatedSide",side _oldUnit];
 
-if(!isNil QGVAR(freeCam) && {!isNull QGVAR(freeCam)}) exitWith {createDialog "tmf_spectator_dialog";};
+if(!isNil QGVAR(freeCam) && {!isNull GVAR(freeCam)}) exitWith {createDialog "tmf_spectator_dialog";};
 
 
 
-QGVAR(freeCam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
+GVAR(freeCam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
 GVAR(followCam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
-GVAR(camera) = tmf_spectator_followcam;
+GVAR(camera) = GVAR(followCam);
 GVAR(target) = _oldUnit;
 #include "defines.hpp"
 
@@ -100,10 +100,10 @@ GVAR(relpos) = [2,2,3];
 
 // Set FOV
 GVAR(followCam) camSetFov 1.2;
-QGVAR(freeCam) camSetFov 1.2;
+GVAR(freeCam) camSetFov 1.2;
 
 // commit it
-QGVAR(freeCam) camCommit 0;
+GVAR(freeCam) camCommit 0;
 GVAR(camera) camCommit 0;
 // 0 follow cam, 1 freecam, 2 firstperson
 GVAR(mode) = 0;
@@ -167,6 +167,8 @@ GVAR(vehicles) = [];
 GVAR(clearGroups) = false;
 GVAR(unitUpdate) = 0;
 GVAR(killedUnits) = [];
+GVAR(killList_forceUpdate) = false;
+GVAR(killList_update) = time;
 // Set Modes
 cameraEffectEnableHUD true;
 showCinemaBorder false;
@@ -208,6 +210,7 @@ if (isNil QGVAR(setupEH)) then {
         if(isPlayer _killer) then {_kName = name (_killer);};
         if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf _deadMan >> "displayName");_data set [5,_dName]; };
         if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf _killer >> "displayName");_data set [6,_kName]; };
+        GVAR(killList_forceUpdate) = true;
         GVAR(killedUnits) pushback [_deadMan,time,_killer,side group _deadMan,side group _killer,_dName,_kName,getText (configFile >> "CfgWeapons" >> currentWeapon _killer >> "displayName"),_isplayer];
     }];
 

@@ -6,8 +6,10 @@ private _textControl = controlNull;
 
 if(!_subtext) then {_textControl = _control controlsGroupCtrl 2;}
 else {_textControl = _control controlsGroupCtrl 3;};
-
-_textControl ctrlSetText _text;
+if(!(_textControl getVariable [QGVAR(lastText),""] isEqualTo _text)) then {
+    _textControl ctrlSetText _text;
+    _textControl setVariable _text;
+};
 if(!isnil "_color" && {count _color == 4}) then {
     _textControl ctrlSetTextColor _color;
 };

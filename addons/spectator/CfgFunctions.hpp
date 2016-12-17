@@ -37,6 +37,7 @@ class CfgFunctions {
             class controlSetPicture;
             class createUnitControl;
             class createVehicleControl;
+            class updateKillList;
         };
     };
 

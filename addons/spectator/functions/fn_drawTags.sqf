@@ -49,7 +49,6 @@ private _renderGroups = _grpTagSize > 0;
 
   {
         private _isVeh = vehicle _x != _x;
-
         private _pos = (getPosASLVisual _x);
         _pos = _pos vectorAdd [0,0,3.1];
         // circumevent the restriction on storing controls in namespace
@@ -109,7 +108,7 @@ private _renderGroups = _grpTagSize > 0;
         if(!ctrlShown _control) then {_control ctrlShow true};
         (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 300);
         (_control controlsGroupCtrl 3) ctrlShow (_pos distance _campos <= 150);
-            private _screenpos = worldToScreen (ASLtoATL _pos);
+        private _screenpos = worldToScreen (ASLtoATL _pos);
         if(count _screenpos == 2) then {
             _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
         };

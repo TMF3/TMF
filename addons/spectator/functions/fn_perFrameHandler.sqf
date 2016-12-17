@@ -7,7 +7,7 @@ if(!_isOpen) exitWith {{ctrlDelete _x} foreach GVAR(controls)};
 if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
 
 
-with uiNamespace do { ctrlSetFocus GVAR(unitlist);};
+ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
 [] call FUNC(handleCamera);
 
@@ -25,31 +25,13 @@ if(GVAR(mode) != FREECAM && !isNil QGVAR(target) && {!isNull GVAR(target)} && {a
 };
 
 
-
-{
-    _x ctrlSetStructuredText parseText "";
-} forEach (uiNamespace getVariable [QGVAR(labels),[]]);
-
-for "_i" from 1 to 6 do {
-    _index = count GVAR(killedUnits) - _i;
-    if(_index < (count GVAR(killedUnits)) && _index >= 0 ) then {
-        _data = GVAR(killedUnits) select (count GVAR(killedUnits) - _i);
-        _data params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName","_weapon"];
-        _time = time - _time;
-        if(_time <= 12 && _i < 6) then {
-            private _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _i;
-            if(_killer == _unit || isNull _killer) then {
-                _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sidetohexcolor)];
-            } else {
-                _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,_weapon,_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
-            };
-        };
-        if(_time > 12) then {
-            GVAR(killedUnits) set [_index,0];
-        };
+if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
+    if(count GVAR(killedUnits) > 0) then {
+        GVAR(killList_update) = time - ((GVAR(killedUnits) select 0) select 1); // next update
     };
+    [] call FUNC(updateKillList);
 };
-GVAR(killedUnits) = GVAR(killedUnits) - [0];
+
 
 {
     _x params ["_object","_posArray","_last","_time","_type"];
