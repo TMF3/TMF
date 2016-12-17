@@ -24,7 +24,7 @@ private _renderGroups = _grpTagSize > 0;
   };
 
   // check if the average pos is on the screen
-  private _render = [_avgpos] call FUNC(onScreen) && !GVAR(showMap) && GVAR(tags);
+  private _render = [_avgpos] call FUNC(onScreen) && {!GVAR(showMap)} && {GVAR(tags)} && {side _x != sideLogic};
 
 
   ////////////////////////////////////////////////////////
@@ -34,8 +34,8 @@ private _renderGroups = _grpTagSize > 0;
   if(_render) then {
       if(!ctrlShown _control) then {_control ctrlShow true};
 
-      (_control controlsGroupCtrl 2) ctrlShow (_avgpos distance _campos <= 600);
-      (_control controlsGroupCtrl 3) ctrlShow (_avgpos distance _campos <= 300);
+      (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_avgpos distance _campos <= 600});
+      (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_avgpos distance _campos <= 300)};
 
       private _screenpos = worldToScreen (ASLtoAGL _avgpos);
       _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
