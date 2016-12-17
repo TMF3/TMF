@@ -46,8 +46,8 @@ if(isNull GVAR(unit) || !(typeof GVAR(unit) isEqualTo "VirtualCurator_F")) then 
   };
 }
 else {
-    selectPlayer _newUnit;
-    waitUntil{player isEqualTo _newUnit};
+    selectPlayer GVAR(unit);
+    waitUntil{player isEqualTo GVAR(unit)};
     if(typeOf _unit == "seagull") then { deleteVehicle _unit; }; 
 };
 
