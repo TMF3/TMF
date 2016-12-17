@@ -35,7 +35,7 @@ private _renderGroups = _grpTagSize > 0;
       if(!ctrlShown _control) then {_control ctrlShow true};
 
       (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_avgpos distance _campos <= 600});
-      (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_avgpos distance _campos <= 300)};
+      (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_avgpos distance _campos <= 300});
 
       private _screenpos = worldToScreen (ASLtoAGL _avgpos);
       _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
