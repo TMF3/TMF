@@ -95,11 +95,13 @@ private _renderGroups = _grpTagSize > 0;
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
     if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[ASLToATL _pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
-        _color = (side _x) call CFUNC(sideToColor);
         private _hasFired = _x getVariable [QGVAR(fired), 0];
         if(_hasFired > 0) then {
             _color = [0.8,0.8,0.8,1];
             _x setVariable [QGVAR(fired), _hasFired-1];
+        };
+        if(_hasFired < 0) {
+            _color = (side _x) call CFUNC(sideToColor);
         };
         _commanderName = name (effectiveCommander _x);
         [_control,"",_color] call FUNC(controlSetPicture);
