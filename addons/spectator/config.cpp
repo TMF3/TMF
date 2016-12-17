@@ -57,8 +57,6 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             w = 0.05 * safezoneW;
             h = 0.06 * safezoneH;
             colorBackground[] = {0,0,0,0.0};
-            onMouseEnter = "diag_log str _this";
-            onMouseExit =  "diag_log str _this";
         }
         class GVAR(Icon): RscPicture
         {
@@ -70,13 +68,11 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             h = 0.02 * safezoneH;
             style = 48 + 0x800 + 0x02; // picture + no stretch + center (not sure if works)
             sizeEx = 0.1 * safeZoneH;
-            onMouseEnter = "diag_log str _this";
-            onMouseExit =  "diag_log str _this";
         };
         class GVAR(Name): RscText
         {
             idc = 2;
-            text = "Head"; //--- ToDo: Localize;
+            text = ""; //--- ToDo: Localize;
             style = 0x02; // single + center align
             colorBackground[] = { 1, 1, 1, 0 };
             colorText[] = { 1, 1, 1, 1 };
@@ -90,7 +86,7 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
         class GVAR(Detail): GVAR(Name)
         {
             idc = 3;
-            text = "Alpha 1"; //--- ToDo: Localize;
+            text = ""; //--- ToDo: Localize;
             x = 0;
             y = 0.04 * safezoneH;
             w = 0.08 * safezoneW;

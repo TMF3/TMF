@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\spectator\script_component.hpp"
 for "_i" from 1 to 6 do {
     private _index = count GVAR(killedUnits) - _i;
     private _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _i;
@@ -16,7 +17,7 @@ for "_i" from 1 to 6 do {
         if(_deltaTime > 12) then {
             GVAR(killedUnits) set [_index,0];
         };
-    };
+    }
     else {
         _control ctrlSetStructuredText parseText "";
     }
