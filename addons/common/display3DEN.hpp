@@ -53,7 +53,7 @@ class display3DEN
                         class Garrison: ctrlCheckboxToolbar
                         {
                             idc=-1;
-                            onCheckedChanged=QUOTE(GVAR(Garrison) = !GVAR(Garrison;));
+                            onCheckedChanged=QUOTE(GVAR(Garrison) = !GVAR(Garrison));
                             onLoad=QUOTE(GVAR(Garrison) = false);
                             x="0 *     (    5 * (pixelW * pixelGrid *     0.50))";
                             y=0;

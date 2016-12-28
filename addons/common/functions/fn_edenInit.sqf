@@ -13,7 +13,6 @@
  *
  */
 #include "\x\tmf\addons\common\script_component.hpp"
-GVAR(Garrison) = missionNamespace getVariable [QGVAR(Garrison),false]; // Will be set on UI onLoad
 // Add mouseOver EH
 private _idx = missionNamespace getVariable [QGVAR(edenDrawIdx),-1];
 if !(_idx == -1) then {
@@ -21,11 +20,12 @@ if !(_idx == -1) then {
 };
 
 _idx = addMissionEventHandler ["Draw3D",FUNC(edenDraw)];
+
+GVAR(Garrison) = missionNamespace getVariable [QGVAR(Garrison),false]; // Will be set on UI onLoad
 GVAR(edenDrawIdx) = _idx;
 GVAR(edenMouseObjects) = [];
 GVAR(mouseKeysPressed) = [];
 GVAR(posIdxs) = [];
-
 
 // Do stuff with mouseOver EH
 // KeyDown
