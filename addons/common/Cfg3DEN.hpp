@@ -163,6 +163,7 @@ class Cfg3DEN
             onMissionLoad = QUOTE([] call FUNC(edenInit));
             onMissionNew = QUOTE([] call FUNC(edenInit));
             onMissionPreviewEnd = QUOTE([] call FUNC(edenInit));
+            onTerrainNew = QUOTE([] call FUNC(edenInit));
         };
     };
 };

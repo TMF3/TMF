@@ -17,7 +17,6 @@
 
 
 // Select  building from mouseOvers
-//TODO: Save bbox stuff setVariable on the object, monitor the changed EH?
 private _building = GVAR(edenMouseObjects);
 _building = _building select {!(_x in (get3DENSelected "Object"))};
 if (count _building == 0) exitWith {};
@@ -91,5 +90,5 @@ if (0 in GVAR(mouseKeysPressed) && (current3DENOperation == "MoveItems")) then {
     {
         private _color = if !(_forEachIndex in _validIdxs) then {[0.75,0.75,0.75,0.75]} else {[1,1,1,1]};
         drawIcon3D ["\a3\ui_f\data\map\Markers\Military\dot_ca.paa",_color,_x,1,1,0,str _forEachIndex,2]
-    } forEach _positions;    
+    } forEach _positions;
 };

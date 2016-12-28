@@ -24,6 +24,7 @@ if (current3DENOperation != "MoveItems") exitWith {};
 0 = [] spawn {
     // See if we have a suitable object
     private _building = GVAR(edenMouseObjects);
+    if isNil "_building" exitWith {};
     _building = _building select {!(_x in (get3DENSelected "Object"))};
     if (count _building == 0) exitWith {};
     if (count GVAR(posIdxs) == 0) exitWith {};
