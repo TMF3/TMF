@@ -49,5 +49,5 @@ if (!isNil "ocap_fnc_exportData") then {
 //TODO - Replace with our own splashscreen
 //[endName,isVictory,fadeType,playMusic,completeTasks] spawn BIS_fnc_endMission;
 [{time > GVAR(endMissionWait)},{
-    [_this,'BIS_fnc_endMission',true] call BIS_fnc_MP; // End the mission for everyone.
-}, [player]] call CBA_fnc_waitUntilAndExecute;
+    [(_this select 0),'BIS_fnc_endMission',true] call BIS_fnc_MP; // End the mission for everyone.
+}, [_this]] call CBA_fnc_waitUntilAndExecute;
