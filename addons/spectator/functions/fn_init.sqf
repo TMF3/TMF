@@ -108,7 +108,7 @@ GVAR(camera) camCommit 0;
 // 0 follow cam, 1 freecam, 2 firstperson
 GVAR(mode) = 0;
 
-
+GVAR(vehicles) = [];
 // Sides Button
 GVAR(sides) = [blufor,civilian,opfor,independent];
 GVAR(sides_button_state) = 0;
@@ -227,3 +227,4 @@ GVAR(messages) = [];
     [] call FUNC(perFrameHandler);
 }] call BIS_fnc_addStackedEventHandler;
 [QGVAR(init), _this] call EFUNC(event,emit);
+addMissionEventHandler ["Draw3D",{ [] call FUNC(drawTags); }];

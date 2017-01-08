@@ -57,7 +57,10 @@ private _renderGroups = _grpTagSize > 0;
             [_x] call FUNC(createUnitControl);
             _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
         };
-
+        if(_isVeh && isNull ((vehicle _x getVariable [QGVAR(tagControl),[controlNull]]) select 0)) then {
+                [vehicle _x] call FUNC(createVehicleControl);
+            	GVAR(vehicles) pushBack _x; // for speed reasons.
+        };
         if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[ASLToATL _pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
             private _name = name _x;
             private _unitColor = _color;
@@ -116,7 +119,7 @@ private _renderGroups = _grpTagSize > 0;
     } else {
       if(ctrlShown _control) then {_control ctrlShow false};
     };
-} foreach vehicles select {_x isKindOf "AllVehicles"};
+} foreach GVAR(vehicles);
 
 
 
@@ -124,7 +127,7 @@ private _renderGroups = _grpTagSize > 0;
 
 
 
-if(GVAR(showMap) || !GVAR(tags)) exitWith {};
+if(true || GVAR(showMap) || !GVAR(tags)) exitWith {};
 
 ////////////////////////////////////////////////////////
 // Objectives tags

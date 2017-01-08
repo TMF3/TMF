@@ -9,7 +9,7 @@ if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
 
 ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
-[] call FUNC(handleCamera);
+
 
 // update compass
 (uiNamespace getVariable QGVAR(compass)) ctrlSetText ([(getDir GVAR(camera))] call FUNC(getCardinal));
@@ -48,4 +48,5 @@ if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
 GVAR(rounds) = GVAR(rounds) - [0];
 
 [] call FUNC(drawTags);
+[] call FUNC(handleCamera);
 GVAR(freecam_timestamp) = time;

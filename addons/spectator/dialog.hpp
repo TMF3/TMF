@@ -11,14 +11,12 @@ class RscDebugConsole;
 class RscPicture;
 class RscXSliderH;
 
-class RscSpectatorText : RscText
-{
-  type = 0;
-  style = 0x02;
-  shadow = 1;
+class RscSpectatorText : RscText {
+    type = 0;
+    style = 0x02;
+    shadow = 1;
 };
-class RscSpectatorShortcutButton : RscPicture
-{
+class RscSpectatorShortcutButton : RscPicture {
     type = 1;
     shadow = 0;
     colorBorder[] = {0,0,0,1};
@@ -47,40 +45,35 @@ class RscSpectatorShortcutButton : RscPicture
 #define ROW(A) ((0.022) *safezoneH)+(((0.025) *safezoneH)*A)
 class GVAR(settingControl) : RscControlsGroup
 {
-  x = 0.632322 * safezoneW + safezoneX;
-  y = 0.225 * safezoneH + safezoneY;
-  w = SETTINGS_WDITH;
-  h = SETTINGS_HEIGHT;
+    x = 0.632322 * safezoneW + safezoneX;
+    y = 0.225 * safezoneH + safezoneY;
+    w = SETTINGS_WDITH;
+    h = SETTINGS_HEIGHT;
     onLoad = "_this call tmf_spectator_fnc_onLoadSettings;";
-  class Controls
-  {
-    class background : IGUIBACK
-    {
-        x = 0;
-        y = 0;
-        colorBackground[] = {0,0,0,0.7};
-        w = SETTINGS_WDITH;
-        h = SETTINGS_HEIGHT;
-    }
-    class title : RscTitle
-    {
-      colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-      text = "Settings"; //--- ToDo: Localize;
-      x = 0;
-      y = 0;
-      w = SETTINGS_WDITH;
-      h = 0.022 * safezoneH;
-    };
-        class grpTagTitle : RscTitle
-        {
+    class Controls {
+        class background : IGUIBACK {
+            x = 0;
+            y = 0;
+            colorBackground[] = {0,0,0,0.7};
+            w = SETTINGS_WDITH;
+            h = SETTINGS_HEIGHT;
+        }
+        class title : RscTitle {
+            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+            text = "Settings"; //--- ToDo: Localize;
+            x = 0;
+            y = 0;
+            w = SETTINGS_WDITH;
+            h = 0.022 * safezoneH;
+        };
+        class grpTagTitle : RscTitle {
             text = "Group tag size modifier"; //--- ToDo: Localize;
             x = 0;
             y = ROW(0);
             w = 0.19 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class grpTagSlider : RscXSliderH
-        {
+        class grpTagSlider : RscXSliderH {
             idc = 101;
             x = 0;
             y = ROW(1);
@@ -88,23 +81,21 @@ class GVAR(settingControl) : RscControlsGroup
             h = 0.022 * safezoneH;
             onSliderPosChanged = "hint format[""%1"",_this];";
         };
-        class unitTagTitle : RscTitle
-        {
+        class unitTagTitle : RscTitle {
             text = "Unit tag size modifier"; //--- ToDo: Localize;
             x = 0;
             y = ROW(2);
             w = 0.19 * safezoneW;
             h = 0.022 * safezoneH;
         };
-        class unitTagSlider : RscXSliderH
-        {
+        class unitTagSlider : RscXSliderH {
             idc = 102;
             x = 0;
             y = ROW(3);
             w = 0.2 * safezoneW;
             h = 0.022 * safezoneH;
         };
-  };
+    };
 };
 
 
@@ -151,161 +142,155 @@ class tmf_spectator_dialog
   onKeyUp= "[1,_this] call tmf_spectator_fnc_keyhandler";
   onLoad = "_this call tmf_spectator_fnc_onLoad";
   onUnload = "TMF_spectator_camera cameraEffect ['TERMINATE','BACK']";
-  class TMF_SPECTATOR_KILLLIST: RscControlsGroup
-  {
-      idc = 2300;
-      x = 0.763544 * safezoneW + safezoneX;
-      y = 0 * safezoneH + safezoneY;
-      w = 0.233576 * safezoneW;
-      h = (0.020*6.5) * safezoneH;
+  class TMF_SPECTATOR_KILLLIST: RscControlsGroup {
+    idc = 2300;
+    x = 0.763544 * safezoneW + safezoneX;
+    y = 0 * safezoneH + safezoneY;
+    w = 0.233576 * safezoneW;
+    h = (0.020*6.5) * safezoneH;
+    onMouseButtonDown = "false";
+    onMouseButtonUp = "false";
     colorBackground[] = {0,0,0,0};
-      class controls
-      {
-          class Label1: RscStructuredText
-          {
-            idc = 1;
+    class controls {
+        class Label1: RscStructuredText {
+        idc = 1;
+        onMouseButtonDown = "false";
+        onMouseButtonUp = "false";
+        x = 0.00352533 * safezoneW;
+        y = 0.005 * safezoneH;
+        w = 0.230 * safezoneW;
+        h = 0.020 * safezoneH;
+        colorBackground[] = {0,0,0,0.0};
+        text = "";
+        style = 0x01;
+        class Attributes {
+            align = "right";
+            valign = "middle";
+        };
+        };
+        class Label2: Label1 {
+            idc = 2;
             x = 0.00352533 * safezoneW;
-            y = 0.005 * safezoneH;
+            y = (0.005+(0.020*1)) * safezoneH;
             w = 0.230 * safezoneW;
             h = 0.020 * safezoneH;
             colorBackground[] = {0,0,0,0.0};
             text = "";
-            style = 0x01;
-            class Attributes {
-              align = "right";
-              valign = "middle";
-            };
-          };
-          class Label2: Label1
-          {
-              idc = 2;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*1)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label3: Label1
-          {
-              idc = 3;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*2)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label4: Label1
-          {
-              idc = 4;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*3)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label5: Label1
-          {
-              idc = 5;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*4)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label6: Label1
-          {
-              idc = 6;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*5)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-      };
-  };
-  class TMF_SPECTATOR_MESSAGELIST: TMF_SPECTATOR_KILLLIST
-  {
-      idc = 2301;
-      x = 0.763544 * safezoneW + safezoneX;
-      y = 1-((0.020*6.5) * safezoneH) * safezoneH + safezoneY;
-      w = 0.233576 * safezoneW;
-      h = (0.020*6.5) * safezoneH;
-      class controls
-      {
-          class Label1: RscStructuredText
-          {
-            idc = 1;
+        };
+        class Label3: Label1 {
+            idc = 3;
             x = 0.00352533 * safezoneW;
-            y = 0.005 * safezoneH;
+            y = (0.005+(0.020*2)) * safezoneH;
             w = 0.230 * safezoneW;
             h = 0.020 * safezoneH;
             colorBackground[] = {0,0,0,0.0};
             text = "";
-            style = 0x01;
-            class Attributes {
-              align = "right";
-              valign = "middle";
-            };
-          };
-          class Label2: Label1
-          {
-              idc = 2;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*1)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label3: Label1
-          {
-              idc = 3;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*2)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label4: Label1
-          {
-              idc = 4;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*3)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label5: Label1
-          {
-              idc = 5;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*4)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-          class Label6: Label1
-          {
-              idc = 6;
-              x = 0.00352533 * safezoneW;
-              y = (0.005+(0.020*5)) * safezoneH;
-              w = 0.230 * safezoneW;
-              h = 0.020 * safezoneH;
-              colorBackground[] = {0,0,0,0.0};
-              text = "";
-          };
-      };
+        };
+        class Label4: Label1 {
+            idc = 4;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*3)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+        class Label5: Label1 {
+            idc = 5;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*4)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+        class Label6: Label1 {
+            idc = 6;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*5)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+    };
   };
-  class TMF_SPECTATOR_UNITLABEL: RscSpectatorText
-  {
+  class TMF_SPECTATOR_MESSAGELIST: TMF_SPECTATOR_KILLLIST {
+    idc = 2301;
+    x = 0.763544 * safezoneW + safezoneX;
+    y = 1-((0.020*6.5) * safezoneH) * safezoneH + safezoneY;
+    w = 0.233576 * safezoneW;
+    h = (0.020*6.5) * safezoneH;
+    class controls
+    {
+        class Label1: RscStructuredText
+        {
+        idc = 1;
+        x = 0.00352533 * safezoneW;
+        y = 0.005 * safezoneH;
+        w = 0.230 * safezoneW;
+        h = 0.020 * safezoneH;
+        colorBackground[] = {0,0,0,0.0};
+        text = "";
+        style = 0x01;
+        class Attributes {
+            align = "right";
+            valign = "middle";
+        };
+        };
+        class Label2: Label1
+        {
+            idc = 2;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*1)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+        class Label3: Label1
+        {
+            idc = 3;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*2)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+        class Label4: Label1
+        {
+            idc = 4;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*3)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+        class Label5: Label1
+        {
+            idc = 5;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*4)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+        class Label6: Label1
+        {
+            idc = 6;
+            x = 0.00352533 * safezoneW;
+            y = (0.005+(0.020*5)) * safezoneH;
+            w = 0.230 * safezoneW;
+            h = 0.020 * safezoneH;
+            colorBackground[] = {0,0,0,0.0};
+            text = "";
+        };
+    };
+  };
+  class TMF_SPECTATOR_UNITLABEL: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL;
     text = "Arnold McFuckFace"; //--- ToDo: Localize;
     x = (0.50-0.15/2) * safezoneW + safezoneX;
@@ -314,8 +299,7 @@ class tmf_spectator_dialog
     h = 0.020 * safezoneH;
     font = "PuristaSemiBold";
   };
-  class TMF_SPECTATOR_Compass: RscSpectatorText
-  {
+  class TMF_SPECTATOR_Compass: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASS;
     text = "NW"; //--- ToDo: Localize;
     x = (0.5-(0.07/2)) * safezoneW + safezoneX;
@@ -324,8 +308,7 @@ class tmf_spectator_dialog
     h = 0.015 * safezoneH;
     font = "PuristaBold";
   };
-  class TMF_SPECTATOR_CompassLeft: RscSpectatorText
-  {
+  class TMF_SPECTATOR_CompassLeft: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT;
     text = "NW"; //--- ToDo: Localize;
     x = (0.5-(0.14)/2) * safezoneW + safezoneX;
@@ -342,8 +325,7 @@ class tmf_spectator_dialog
     };
     font = "PuristaBold";
   };
-  class TMF_SPECTATOR_CompassRight: RscSpectatorText
-  {
+  class TMF_SPECTATOR_CompassRight: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight;
     text = "NE"; //--- ToDo: Localize;
     x = (0.5) * safezoneW + safezoneX;
@@ -361,19 +343,17 @@ class tmf_spectator_dialog
     font = "PuristaBold";
   };
   class controls {
-    class TMF_SPECTATOR_FILTER: RscSpectatorShortcutButton
-    {
-      idc = IDC_SPECTATOR_TMF_SPECTATOR_FILTER;
-      x = COLUMN(1);
-      y = 0.002 * safezoneH + safezoneY;
-      w = BUTTON_WIDTH;
-      h = BUTTON_HEIGHT;
-      onButtonDown = "['disableAI',_this] call tmf_spectator_fnc_menuhandler;";
-      text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\enabledai_ca.paa";
-      tooltip = "PLAYERS + AI";
+    class TMF_SPECTATOR_FILTER: RscSpectatorShortcutButton {
+        idc = IDC_SPECTATOR_TMF_SPECTATOR_FILTER;
+        x = COLUMN(1);
+        y = 0.002 * safezoneH + safezoneY;
+        w = BUTTON_WIDTH;
+        h = BUTTON_HEIGHT;
+        onButtonDown = "['disableAI',_this] call tmf_spectator_fnc_menuhandler;";
+        text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\enabledai_ca.paa";
+        tooltip = "PLAYERS + AI";
     };
-    class TMF_SPECTATOR_BUTTON: RscSpectatorShortcutButton
-    {
+    class TMF_SPECTATOR_BUTTON: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_BUTTON;
       x = COLUMN(0);
       y = 0.002 * safezoneH + safezoneY;
@@ -383,8 +363,7 @@ class tmf_spectator_dialog
       onButtonDown = "['sidefilter',_this] call tmf_spectator_fnc_menuhandler;";
       tooltip = "SHOWING ALL SIDES";
     };
-    class TMF_SPECTATOR_TAGS: RscSpectatorShortcutButton
-    {
+    class TMF_SPECTATOR_TAGS: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_TAGS;
       x = COLUMN(3);
       y = 0.002 * safezoneH + safezoneY;
@@ -394,8 +373,7 @@ class tmf_spectator_dialog
       onButtonDown = "['tags',_this] call tmf_spectator_fnc_menuhandler;";
       tooltip = "DISABLE TAGS";
     };
-    class TMF_SPECTATOR_VISION: RscSpectatorShortcutButton
-    {
+    class TMF_SPECTATOR_VISION: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VISION;
       x = COLUMN(4);
       y = 0.002 * safezoneH + safezoneY;
@@ -405,8 +383,7 @@ class tmf_spectator_dialog
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\nvgs_ca.paa";
       tooltip = "CHANGE VISION MODE";
     };
-    class TMF_SPECTATOR_VIEW: RscSpectatorShortcutButton
-    {
+    class TMF_SPECTATOR_VIEW: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VIEW;
       onButtonDown = "['camera',_this] call tmf_spectator_fnc_menuhandler;";
       x = COLUMN(2);
@@ -416,8 +393,7 @@ class tmf_spectator_dialog
       text = "\A3\ui_f\data\IGUI\Cfg\IslandMap\iconcamera_ca.paa";
       tooltip = "SWITCH TO FIRST PERSON";
     };
-    class TMF_SPECTATOR_MUTE: RscSpectatorShortcutButton
-    {
+    class TMF_SPECTATOR_MUTE: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_MUTE;
       onButtonDown = "['mute',_this] call tmf_spectator_fnc_menuhandler;";
       x = COLUMN(5);
@@ -427,18 +403,16 @@ class tmf_spectator_dialog
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\voice_ca.paa";
       tooltip = "MUTE SPECTATORS";
     };
-    class TMF_SPECTATOR_MAP : RscMapControl
-    {
+    class TMF_SPECTATOR_MAP : RscMapControl {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_MAP;
       x = 0 * safezoneW + safezoneX;
       y = 0 * safezoneH + safezoneY;
       w = 1 * safezoneW;
       h = 1 * safezoneH;
-      onDraw = "_this call tmf_spectator_fnc_drawmap";
+      onDraw = "_this call tmf_spectator_fnc_drawMap";
       onMouseButtonDown = "_this call tmf_spectator_fnc_onMapClick;";
     };
-    class TMF_SPECTATOR_UNITLIST: RscTree
-    {
+    class TMF_SPECTATOR_UNITLIST: RscTree {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLIST;
       x = 0.002 * safezoneW + safezoneX;
       y = 0.038 * safezoneH + safezoneY;
@@ -447,25 +421,20 @@ class tmf_spectator_dialog
       shadow = 2;
       colorBackground[] = {0,0,0,0};
       disableKeyboardSearch = 1;
-
-
       colorSelectText[] = {1,1,1,1}; // Selected text color (when multiselectEnabled is 0)
-
-
       onTreeSelChanged = "_this call tmf_spectator_fnc_onChange";
       multiselectEnabled = 0;
       //onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
       // Scrollbar configuration
-      class ScrollBar
-      {
-        width = 0; // width of ScrollBar
-        height = 0; // height of ScrollBar
-        scrollSpeed = 0.01; // scroll speed of ScrollBar
+      class ScrollBar {
+        width = 0; 
+        height = 0; 
+        scrollSpeed = 0.01; 
 
-        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa"; // Arrow
-        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa"; // Arrow when clicked on
-        border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa"; // Slider background (stretched vertically)
-        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa"; // Dragging element (stretched vertically)
+        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa"; 
+        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa"; 
+        border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa"; 
 
         color[] = {1,1,1,0}; // Scrollbar color
       };
@@ -473,8 +442,7 @@ class tmf_spectator_dialog
     };
   };
   class TMF_SPECTATOR_MOUSE: RscControlsGroup {
-      class ListScrollBar
-      {
+      class ListScrollBar {
           color[] = {1,1,1,0.6};
           colorActive[] = {1,1,1,1};
           colorDisabled[] = {1,1,1,0.0};
@@ -492,84 +460,74 @@ class tmf_spectator_dialog
       w = SafeZoneW; h = SafeZoneH;
       colorBackground[] = {0.2, 0.0, 0.0, 0.0};
   };
-
 };
 
 #define HELP_WIDTH 0.2 * safezoneW
 #define HELP_HEIGHT  0.478 * safezoneH
 
-class tmf_spectator_exit
-{
-  idd = 5454;
-  movingEnable = 1;
+class tmf_spectator_exit {
+    idd = 5454;
+    movingEnable = 1;
     enableSimulation = 1;
     enableDisplay = 1;
     onLoad = "['onLoad',_this] spawn tmf_spectator_fnc_escmenuHandler;";
-//    onUnload = "['onUnload',_this] spawn tmf_spectator_fnc_escmenuHandler;"; // disabled, ate all the data for debug console
     class controlsBackground {
-    class windowBackground: IGUIBack
-      {
-        idc = 2201;
-        x = 0.4 * safezoneW + safezoneX;
-        y = 0.225 * safezoneH + safezoneY;
-        w = HELP_WIDTH;
-        h = HELP_HEIGHT;
-        colorBackground[] = {0,0,0,0.7};
-      };
+        class windowBackground: IGUIBack
+        {
+            idc = 2201;
+            x = 0.4 * safezoneW + safezoneX;
+            y = 0.225 * safezoneH + safezoneY;
+            w = HELP_WIDTH;
+            h = HELP_HEIGHT;
+            colorBackground[] = {0,0,0,0.7};
+        };
     };
-  class controls {
-    class AbortSpectator: RscButtonMenuOK
-    {
-      idc = 3424324;
-      text = "Lobby"; //--- ToDo: Localize;
-      x = 0.4 * safezoneW + safezoneX;
-      y = (0.705) * safezoneH + safezoneY;
-      w = 0.098 * safezoneW;
-      h = 0.022 * safezoneH;
-      sizeEx = (      (      (      ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1) * GUI_GRID_H;
-      onButtonClick = "['abortClicked',_this] spawn tmf_spectator_fnc_escmenuHandler;";
+    class controls {
+        class AbortSpectator: RscButtonMenuOK
+        {
+            idc = 3424324;
+            text = "Lobby"; //--- ToDo: Localize;
+            x = 0.4 * safezoneW + safezoneX;
+            y = (0.705) * safezoneH + safezoneY;
+            w = 0.098 * safezoneW;
+            h = 0.022 * safezoneH;
+            sizeEx = (      (      (      ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1) * GUI_GRID_H;
+            onButtonClick = "['abortClicked',_this] spawn tmf_spectator_fnc_escmenuHandler;";
+        };
+        class ContinueSpectator: RscButtonMenuOK {
+            idc = 4234234;
+            text = "Continue"; //--- ToDo: Localize;
+            x = 0.5 * safezoneW + safezoneX;
+            y = (0.705) * safezoneH + safezoneY;
+            w = 0.1 * safezoneW;
+            h = 0.022 * safezoneH;
+            sizeEx = (      (      (      ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1) * GUI_GRID_H;
+            onButtonClick = "['continueClicked',_this] spawn tmf_spectator_fnc_escmenuHandler;";
+        };
+        class Title: RscTitle {
+            idc = 1000;
+            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+            text = "Spectator"; //--- ToDo: Localize;
+            x = 0.4 * safezoneW + safezoneX;
+            y = 0.225 * safezoneH + safezoneY;
+            w = 0.2 * safezoneW;
+            h = 0.022 * safezoneH;
+        };
+        class InfoText: RscStructuredText {
+            idc = 1100;
+            x = 0.4 * safezoneW + safezoneX;
+            y = 0.247 * safezoneH + safezoneY;
+            w = HELP_WIDTH;
+            h = 0.450 * safezoneH;
+            text = "Hey there!";
+        };
+        class Debug : RscDebugConsole {
+            x = 0.0306637 * safezoneW + safezoneX;
+            y = 0.225 * safezoneH + safezoneY;
+            w = 0.30 * safezoneW;
+            h = 0.55 * safezoneH;
+        };
+        class Settings : GVAR(settingControl) {
+        };
     };
-    class ContinueSpectator: RscButtonMenuOK
-    {
-      idc = 4234234;
-      text = "Continue"; //--- ToDo: Localize;
-      x = 0.5 * safezoneW + safezoneX;
-      y = (0.705) * safezoneH + safezoneY;
-      w = 0.1 * safezoneW;
-      h = 0.022 * safezoneH;
-      sizeEx = (      (      (      ((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1) * GUI_GRID_H;
-      onButtonClick = "['continueClicked',_this] spawn tmf_spectator_fnc_escmenuHandler;";
-
-    };
-    class Title: RscTitle
-    {
-      idc = 1000;
-      colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.77])","(profilenamespace getvariable ['GUI_BCG_RGB_G',0.51])","(profilenamespace getvariable ['GUI_BCG_RGB_B',0.08])","(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-      text = "Spectator"; //--- ToDo: Localize;
-      x = 0.4 * safezoneW + safezoneX;
-      y = 0.225 * safezoneH + safezoneY;
-      w = 0.2 * safezoneW;
-      h = 0.022 * safezoneH;
-    };
-    class InfoText: RscStructuredText
-    {
-      idc = 1100;
-      x = 0.4 * safezoneW + safezoneX;
-      y = 0.247 * safezoneH + safezoneY;
-      w = HELP_WIDTH;
-      h = 0.450 * safezoneH;
-      text = "Hey there!";
-    };
-    class Debug : RscDebugConsole
-    {
-      x = 0.0306637 * safezoneW + safezoneX;
-      y = 0.225 * safezoneH + safezoneY;
-      w = 0.30 * safezoneW;
-      h = 0.55 * safezoneH;
-    };
-
-    class Settings : GVAR(settingControl)
-    {
-    }
-  };
 };
