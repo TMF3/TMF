@@ -21,3 +21,9 @@ class cfgPatches
 #include "CfgEventHandlers.hpp"
 
 #include "display3DEN.hpp"
+
+class TMF_autotest {
+    class GVAR(test) {
+        code = QUOTE([] call FUNC(testBriefings));
+    };
+};
