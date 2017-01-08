@@ -23,7 +23,7 @@ class cfgPatches
 #include "display3DEN.hpp"
 
 class TMF_autotest {
-    class tmf_briefing_test {
+    class GVAR(test) {
         code = QUOTE([] call FUNC(testBriefings));
     };
 };
