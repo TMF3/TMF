@@ -67,7 +67,7 @@ class GVAR(settingControl) : RscControlsGroup
             w = SETTINGS_WDITH;
             h = 0.022 * safezoneH;
         };
-        class grpTagTitle : RscTitle {
+      /*  class grpTagTitle : RscTitle {
             text = "Group tag size modifier"; //--- ToDo: Localize;
             x = 0;
             y = ROW(0);
@@ -95,7 +95,7 @@ class GVAR(settingControl) : RscControlsGroup
             y = ROW(3);
             w = 0.2 * safezoneW;
             h = 0.022 * safezoneH;
-        };
+        };*/
     };
 };
 
