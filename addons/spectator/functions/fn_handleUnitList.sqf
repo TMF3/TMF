@@ -14,7 +14,6 @@ if(GVAR(clearGroups)) then { /* Used by UI which groups to display */
     tvClear _unitListControl;
     GVAR(groups) = [];
     GVAR(allunits) = [];
-    GVAR(vehicles) = [];
 };
 private _newGroups = [];
 if(!GVAR(playersOnly)) then { _newGroups = (allGroups select {{alive _x && side _x in tmf_spectator_sides} count units _x > 0}) - GVAR(groups); }
@@ -28,8 +27,6 @@ if((count _newGroups) > 0) then {
     //Reset/redraw all.
     tvClear _unitListControl;
     GVAR(groups) = [];
-    GVAR(allunits) = [];
-    GVAR(vehicles) = [];
     //Remove AI
     if (GVAR(playersOnly)) then { _grps = _grps select {{isPlayer _x || _x in playableUnits} count (units _x) > 0}; };
     // create tee nodes

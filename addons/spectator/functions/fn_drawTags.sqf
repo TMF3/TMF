@@ -49,7 +49,7 @@ private _renderGroups = _grpTagSize > 0;
   ////////////////////////////////////////////////////////
 
   {
-        private _isVeh = vehicle _x != _x;
+        private _isVeh = !isNull (objectParent _x);
         private _pos = (getPosASLVisual _x);
         _pos = _pos vectorAdd [0,0,3.1];
         // circumevent the restriction on storing controls in namespace
@@ -58,9 +58,9 @@ private _renderGroups = _grpTagSize > 0;
             [_x] call FUNC(createUnitControl);
             _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
         };
-        if(_isVeh && isNull ((vehicle _x getVariable [QGVAR(tagControl),[controlNull]]) select 0)) then {
-            [vehicle _x] call FUNC(createVehicleControl);
-            GVAR(vehicles) pushBack _x; // for speed reasons.
+        if(_isVeh && isNull (((objectParent _x) getVariable [QGVAR(tagControl),[controlNull]]) select 0)) then {
+            [objectParent _x] call FUNC(createVehicleControl);
+            GVAR(vehicles) pushBack (objectParent _x); // for speed reasons.
         };
         if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[ASLToATL _pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
             private _name = name _x;
@@ -73,9 +73,9 @@ private _renderGroups = _grpTagSize > 0;
             if(!ctrlShown _control) then {_control ctrlShow true};
 
             [_control,"",_unitColor] call FUNC(controlSetPicture);
-
-            (_control controlsGroupCtrl 2) ctrlShow (isPlayer _x && {_pos distance _campos <= 300});
-            (_control controlsGroupCtrl 3) ctrlShow (isPlayer _x && {_pos distance _campos <= 150});
+            private _isAI = {isPlayer _x} count crew _x <= 0;
+            (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_pos distance _campos <= 300});
+            (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
 
             private _screenpos = worldToScreen (ASLtoATL _pos);
             if(count _screenpos == 2) then {
@@ -91,7 +91,7 @@ private _renderGroups = _grpTagSize > 0;
 
 {
     private _pos = (getPosASLVisual _x);
-    _pos = _pos vectorAdd [0,0,2 + (((boundingbox _x) select 1) select 2)];
+    _pos = _pos vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];
     // circumevent the restriction on storing controls in namespace
     _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     if(isNull _control) then {
@@ -110,8 +110,11 @@ private _renderGroups = _grpTagSize > 0;
         [_control,format ["%1 [%2]",_commanderName,count crew _x],[],true] call FUNC(controlSetText);
 
         if(!ctrlShown _control) then {_control ctrlShow true};
+
+        private _isAI = {isPlayer _x} count crew _x <= 0;
         (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 300);
-        (_control controlsGroupCtrl 3) ctrlShow (_pos distance _campos <= 150);
+        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
+        
         private _screenpos = worldToScreen (ASLtoATL _pos);
         if(count _screenpos == 2) then {
             _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
