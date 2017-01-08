@@ -8,27 +8,28 @@ _oldunit = GVAR(target);
 GVAR(target) = _target;
 
 switch (GVAR(mode)) do {
-    case 0: {
+    case FOLLOWCAM: {
         GVAR(camera) cameraEffect ["internal","back"];
         selectPlayer tmf_spectator_unit;
     };
 
-    case 1: {
+    case FREECAM: {
         GVAR(camera) cameraEffect ["internal","back"];
         selectPlayer GVAR(unit);
         if(_target == _oldunit) exitWith {};
-        (getpos GVAR(target)) params ["_x","_y","_z"];
-
-        _xrand = random 15;
-        if(random 1 > 0.5) then { _xrand = -_xrand;};
-        _yrand = random 15;
-        if(random 1 > 0.5) then { _yrand = -_yrand;};
-
-        GVAR(camera) setPosASL [_x+_xrand,_y+_yrand,(_z max getTerrainHeightASL[_x,_y])+2];
+        private _camPos = getPosASL GVAR(camera);
+        private _targetPos = getPosASL GVAR(target);
+        private _newPos = _targetPos vectorAdd ((vectorNormalized (_camPos vectorDiff _targetPos)) vectorMultiply 30);/*_camPos vectorAdd ((_targetPos vectorDiff _camPos) vectorMultiply 0.5);*/
+        _newPos params ["_x","_y","_z"];
+        
+        _camPos = [_x,_y,(_z max (getTerrainHeightASL[_x,_y] + 10))];
+        GVAR(camera) setPosASL _camPos;
         _dir = (getPos GVAR(camera)) getDir (getpos GVAR(target));
-        GVAR(followcam_angle) set [0,_dir];
+       // GVAR(camera) setDir _dir;
+        private _angleY = atan (((_camPos select 2) - (_targetPos select 2) )/ (_camPos distance2D _targetPos));
+        GVAR(followcam_angle) = [_dir,_angleY];
     };
-    case 2: {
+    case FIRSTPERSON: {
         GVAR(target) SwitchCamera "internal";
         if(vehicle GVAR(target) != GVAR(target)) then
         {

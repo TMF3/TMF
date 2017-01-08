@@ -305,8 +305,9 @@ class tmf_spectator_dialog
         onMouseButtonDown = "true";
         onMouseButtonUp = "true";
         class controls {
-            class shit : RscText {
-                idc = 666;
+            class dummy : RscText { 
+                // REQUIRED
+                idc = -1;
                 x = 0.0 * safezoneW;
                 y = -5.0 * safezoneH;
             }
