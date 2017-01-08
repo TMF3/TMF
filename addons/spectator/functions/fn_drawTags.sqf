@@ -25,7 +25,7 @@ private _renderGroups = _grpTagSize > 0;
   };
 
   // check if the average pos is on the screen
-  private _render = [_avgpos] call FUNC(onScreen) && {!GVAR(showMap)} && {GVAR(tags)} && {side _x != sideLogic};
+  private _render = [_avgpos] call FUNC(onScreen) && {!GVAR(showMap)} && {GVAR(tags)};
 
 
   ////////////////////////////////////////////////////////
