@@ -1,4 +1,5 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
+if(!([] call FUNC(isOpen))) exitWith {};
 // enable hud and grab the user settings variables
 cameraEffectEnableHUD true;
 private _campos = getPosVisual GVAR(camera);
@@ -127,7 +128,7 @@ private _renderGroups = _grpTagSize > 0;
 
 
 
-if(true || GVAR(showMap) || !GVAR(tags)) exitWith {};
+if(GVAR(showMap) || !GVAR(tags)) exitWith {};
 
 ////////////////////////////////////////////////////////
 // Objectives tags

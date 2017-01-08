@@ -227,4 +227,6 @@ GVAR(messages) = [];
     [] call FUNC(perFrameHandler);
 }] call BIS_fnc_addStackedEventHandler;
 [QGVAR(init), _this] call EFUNC(event,emit);
-addMissionEventHandler ["Draw3D",{ [] call FUNC(drawTags); }];
+if(isNil QGVAR(drawEvent)) then {
+    GVAR(drawEvent) = addMissionEventHandler ["Draw3D",{ [] call FUNC(drawTags); }];
+};

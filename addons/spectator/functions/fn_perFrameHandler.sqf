@@ -47,6 +47,6 @@ if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
 
 GVAR(rounds) = GVAR(rounds) - [0];
 
-[] call FUNC(drawTags);
+
 [] call FUNC(handleCamera);
 GVAR(freecam_timestamp) = time;

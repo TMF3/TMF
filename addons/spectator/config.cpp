@@ -37,7 +37,7 @@ class CfgRespawnTemplates
 #include "CfgModules.hpp"
 
 
-class ctrlControlsGroupNoScrollbars;
+
 class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
 {
     idc = -1;

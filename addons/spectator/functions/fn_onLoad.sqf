@@ -25,7 +25,14 @@ with uiNamespace do {
     GVAR(compassR) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight;
 
     _labelParent = _display displayCtrl 2300;
-    GVAR(labels) = [_labelParent controlsGroupCtrl 1,_labelParent controlsGroupCtrl 2,_labelParent controlsGroupCtrl 3,_labelParent controlsGroupCtrl 4,_labelParent controlsGroupCtrl 5,_labelParent controlsGroupCtrl 6];
+    GVAR(labels) = [
+    _labelParent controlsGroupCtrl 6
+    ,_labelParent controlsGroupCtrl 7
+    ,_labelParent controlsGroupCtrl 8
+    ,_labelParent controlsGroupCtrl 9
+    ,_labelParent controlsGroupCtrl 10
+    ,_labelParent controlsGroupCtrl 11
+    ];
 
 
     GVAR(map) ctrlShow (missionNamespace getVariable [QGVAR(showMap),false]);

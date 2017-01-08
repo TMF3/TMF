@@ -19,7 +19,7 @@ for "_i" from 1 to 6 do {
         };
     }
     else {
-        _control ctrlSetStructuredText parseText "";
+        _control ctrlSetStructuredText parseText " ";
     }
 };
 GVAR(killedUnits) = GVAR(killedUnits) - [0];
