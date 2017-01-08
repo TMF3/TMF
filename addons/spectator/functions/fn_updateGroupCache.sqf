@@ -14,7 +14,7 @@ if (count _cluster > 0) then {
   } forEach _cluster;
   private _c = count _cluster;
   _avgpos = _avgpos vectorMultiply (1/_c);
-  _avgpos set [2,((_avgpos select 2) max 30)];
+  _avgpos set [2,(_avgpos select 2)+10];
 };
 
 private _color = (side _grp) call CFUNC(sideToColor);

@@ -1,5 +1,10 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
 if(!([] call FUNC(isOpen))) exitWith {};
+if(GVAR(showMap) || !GVAR(tags)) exitWith {
+    {_x ctrlShow false} foreach GVAR(controls);
+};
+
+
 // enable hud and grab the user settings variables
 cameraEffectEnableHUD true;
 private _campos = getPosVisual GVAR(camera);
@@ -25,7 +30,7 @@ private _renderGroups = _grpTagSize > 0;
   };
 
   // check if the average pos is on the screen
-  private _render = [_avgpos] call FUNC(onScreen) && {!GVAR(showMap)} && {GVAR(tags)};
+  private _render = [_avgpos] call FUNC(onScreen);
 
 
   ////////////////////////////////////////////////////////
@@ -50,26 +55,26 @@ private _renderGroups = _grpTagSize > 0;
 
   {
         private _isVeh = !isNull (objectParent _x);
-        private _pos = (getPosASLVisual _x);
-        _pos = _pos vectorAdd [0,0,3.1];
+        private _pos = (getPosASLVisual _x) vectorAdd [0,0,3.1];
         // circumevent the restriction on storing controls in namespace
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
         if(isNull _control && alive _x) then {
             [_x] call FUNC(createUnitControl);
             _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
         };
-        if(_isVeh && isNull (((objectParent _x) getVariable [QGVAR(tagControl),[controlNull]]) select 0)) then {
+        if(_isVeh && {isNull (((objectParent _x) getVariable [QGVAR(tagControl),[controlNull]]) select 0)}) then {
             [objectParent _x] call FUNC(createVehicleControl);
             GVAR(vehicles) pushBack (objectParent _x); // for speed reasons.
         };
-        if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[ASLToATL _pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
-            private _name = name _x;
+        if(alive _x && {[ASLToATL _pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
+
             private _unitColor = _color;
             private _hasFired = _x getVariable [QGVAR(fired), 0];
             if(_hasFired > 0) then {
                 _unitColor = [0.8,0.8,0.8,1];
                 _x setVariable [QGVAR(fired), _hasFired-1];
             };
+
             if(!ctrlShown _control) then {_control ctrlShow true};
 
             [_control,"",_unitColor] call FUNC(controlSetPicture);
@@ -82,7 +87,8 @@ private _renderGroups = _grpTagSize > 0;
                 _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
             };
             _control ctrlCommit 0;
-        } else {
+        } 
+        else {
             if(ctrlShown _control) then {_control ctrlShow false};
         };
   } forEach units _x;
@@ -90,21 +96,22 @@ private _renderGroups = _grpTagSize > 0;
 
 
 {
-    private _pos = (getPosASLVisual _x);
-    _pos = _pos vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];
+    private _pos = (getPosASLVisual _x) vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];
     // circumevent the restriction on storing controls in namespace
     _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     if(isNull _control) then {
         [_x] call FUNC(createVehicleControl);
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
-    if(alive _x && {!GVAR(showMap)} && {GVAR(tags)} && {[ASLToATL _pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
+    if(alive _x && {[ASLToATL _pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
+
         _color = (side _x) call CFUNC(sideToColor);
         private _hasFired = _x getVariable [QGVAR(fired), 0];
         if(_hasFired > 0) then {
             _color = [0.8,0.8,0.8,1];
             _x setVariable [QGVAR(fired), _hasFired-1];
         };
+
         _commanderName = name (effectiveCommander _x);
         [_control,"",_color] call FUNC(controlSetPicture);
         [_control,format ["%1 [%2]",_commanderName,count crew _x],[],true] call FUNC(controlSetText);
@@ -120,18 +127,13 @@ private _renderGroups = _grpTagSize > 0;
             _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
         };
         _control ctrlCommit 0;
-    } else {
-      if(ctrlShown _control) then {_control ctrlShow false};
+    }
+    else {
+        if(ctrlShown _control) then {_control ctrlShow false};
     };
 } foreach GVAR(vehicles);
 
 
-
-
-
-
-
-if(GVAR(showMap) || !GVAR(tags)) exitWith {};
 
 ////////////////////////////////////////////////////////
 // Objectives tags
