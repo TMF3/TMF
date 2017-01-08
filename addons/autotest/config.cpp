@@ -18,3 +18,9 @@ class cfgPatches
 #include "CfgFunctions.hpp"
 #include "Cfg3DEN.hpp"
 #include "display3DEN.hpp"
+
+class TMF_autotest {
+  /* class exampleTest {
+      code = "";
+  };*/
+};

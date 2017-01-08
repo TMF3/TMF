@@ -9,13 +9,12 @@ _ctrlListbox lnbSetColumnsPos [0,0.05];
 
 // Do the tests.
 private _output = [];
-_output append ([] call FUNC(testBriefings));
 _output append ([] call FUNC(testGear));
 _output append ([] call FUNC(testInit));
 _output append ([] call FUNC(testEndings));
 
 
-//Group check.
+//Group count check.
 {
     private _side = _x;
     private _groupCount = {(side _x isEqualTo _side)} count allGroups;
@@ -43,6 +42,20 @@ if (!((getMissionConfigValue ["respawn",0] == 1) and ("TMF_Spectator" in (getMis
     _output pushBack [0,"TMF Spectator is not setup correctly. See wiki for instructions."];
 };
 
+// Process the Config based auto-tests.
+
+{
+    private _test = _x;
+    private _code = getText (_test >> "code");
+
+    private _outputTest = call compile _code;
+    if (_outputTest isEqualType []) then {
+        _output append _outputTest;
+    }
+} forEach (configProperties [configFile >> "TMF_autoTest","isClass _x"]);
+
+
+// Display them on the auto-test UI page in Eden.
 {
     _x params ["_type","_message"];
     _lnbAdd = _ctrlListbox lnbAddRow ["",_message];
