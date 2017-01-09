@@ -95,7 +95,7 @@ switch _input do {
                  _factionCategoryPlayerCounts set [_idx,(_factionCategoryPlayerCounts select _idx) + _players];
             };
         } forEach (configProperties [configFile >> "CfgLoadouts", "isClass _x"]);
-        test = _factionCategoryPlayerCounts;
+
         // Sort Alphabetically.
         _factionCategories sort true;
 
