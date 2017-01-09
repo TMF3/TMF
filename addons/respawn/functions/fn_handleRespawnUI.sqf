@@ -13,6 +13,7 @@ switch _input do {
         
         GVAR(deadPlayerList) = [];
         GVAR(selectedRespawnGroup) = [];
+        if (isNil QGVAR(lastFactionSelection)) then {GVAR(lastFactionSelection) = [0,0];};
         // GVAR(selectedRespawnGroup) format 
         // Rank: Int (0-6), Object: Player, Role: Int (0 -> count respawnMenuRoles)
         
@@ -33,72 +34,146 @@ switch _input do {
                 };
             } forEach allPlayers;
         };
-        
-        /* Fill Faction categories */
+
+
         private _control = (RESPAWN_DISPLAY displayCtrl 26894); /* respawnMenuFactionCategoryCombo */
         private _missionConfig = (configProperties [missionConfigFile >> "CfgLoadouts","isClass _x"]);
         private _index = -1;
 
-        if (count _missionConfig > 0) then {
-            _index = _control lbAdd "From Mission File";
-            _control lbSetData [_index, "mission"];
+        // Handle all the factions
 
+        // Build up a pool of who is using what faction from assign gear.
+        private _playerFactions = [] call CBA_fnc_hashCreate;
+        {
+            private _faction = _x getVariable ["tmf_assignGear_faction",""];
+            if (_faction != "") then {
+                if ([_playerFactions,_faction] call CBA_fnc_hashHasKey) then {
+                    private _value = [_playerFactions,_faction] call CBA_fnc_hashGet;
+                    [_playerFactions,_faction,_value + 1] call CBA_fnc_hashSet;
+                } else {
+                    [_playerFactions,_faction,1] call CBA_fnc_hashSet;
+                };
+            };
+        } forEach (allPlayers);
+
+        if (count _missionConfig > 0) then {
+            private _players = 0;
             {
                 private _factionName = (toLower(configName _x));
+                 if ([_playerFactions,_factionName] call CBA_fnc_hashHasKey) then {
+                    _players = _players + ([_playerFactions,_factionName] call CBA_fnc_hashGet);
+                };
             } forEach _missionConfig;
+
+            private _text = "From Mission File";
+            if (_players > 0) then {
+                _text = format ["From Mission File (%1p)",_players];
+            };
+            private _index = _control lbAdd _text;
+            _control lbSetData [_index, "mission"];
         };
 
         private _factionCategories = [];
+        private _factionCategoryPlayerCounts = [];
         {
             private _category = getText (_x >> "category");
             if (_category isEqualTo "") then {_category = "Other";};
+            private _configName = toLower (configName _x);
+            private _players = 0;
+            // Mission faction class overrides so show 0 if configFile class is of same name.
+            if (!isClass (missionConfigFile >> "CfgLoadouts" >> _configName)) then {
+                if ([_playerFactions,_configName] call CBA_fnc_hashHasKey) then {
+                    _players = [_playerFactions,_configName] call CBA_fnc_hashGet;
+                };
+            };
 
-            _factionCategories pushBackUnique _category;
+            private _idx = _factionCategories find _category;
+            if (_idx == -1) then {
+                _idx = _factionCategories pushBack _category;
+                _factionCategoryPlayerCounts set [_idx,_players];
+            } else {
+                 _factionCategoryPlayerCounts set [_idx,(_factionCategoryPlayerCounts select _idx) + _players];
+            };
         } forEach (configProperties [configFile >> "CfgLoadouts", "isClass _x"]);
-
+        test = _factionCategoryPlayerCounts;
         // Sort Alphabetically.
         _factionCategories sort true;
 
         {
-            private _index = _control lbAdd _x;
+            private _text = _x;
+            private _players = _factionCategoryPlayerCounts select _forEachIndex;
+            if (_players > 0) then {
+                _text = format ["%1 (%2p)",_x,_players];
+            };
+            private _index = _control lbAdd _text;
             _control lbSetData [_index,_x];
         } forEach (_factionCategories);
 
         GVAR(currentFactionCategory) = "";
         if (lbSize _control > 0) then {
-            _control lbSetCurSel 0; // set to first element.
-            GVAR(currentFactionCategory) = _control lbData 0;
+            private _lastIndex = GVAR(lastFactionSelection) select 0;
+            if (lbSize _control <= _lastIndex) then {
+                _lastIndex = 0;
+            };
+            _control lbSetCurSel _lastIndex; // set to previously used element.
+            GVAR(currentFactionCategory) = _control lbData _lastIndex;
+            GVAR(lastFactionSelection) set [0,_lastIndex];
         };
         _control ctrlAddEventHandler ["LBSelChanged",{["factionCategoryChanged"] call FUNC(handleRespawnUI);}];
         
-        /* Fill Faction files respawnMenuFactionCombo */
+
+        private _lastIndex = GVAR(lastFactionSelection) select 1; // Store this before executing below code, otherwise it will override.
         
+         /* Fill Faction files respawnMenuFactionCombo */
         _control = (RESPAWN_DISPLAY displayCtrl 26928); /* respawnMenuFactionCombo */
         _control ctrlAddEventHandler ["LBSelChanged",{["factionChanged"] call FUNC(handleRespawnUI);}];
         ["refreshFactionCategoryChanged"] call FUNC(handleRespawnUI);
-                
+
+        if (lbSize _control > 0) then {
+            private _newIdx = lbCurSel _control;
+            if (lbSize _control > _lastIndex) then {
+                _control lbSetCurSel _lastIndex; // set to previously used element.
+                _newIdx = _lastIndex;
+            };
+            GVAR(lastFactionSelection) set [1,_newIdx];
+        };
         /* Fill Roles */
         
-        _control = (RESPAWN_DISPLAY displayCtrl 26896); /* Role control */
+        //_control = (RESPAWN_DISPLAY displayCtrl 26896); /* Role control */
         
         ["factionChanged"] call FUNC(handleRespawnUI);
         
         /* Fill Side selection */
         
+        private _west = 0; private _east = 0; private _resistance = 0; private _civilian = 0;
+        {
+            switch (side _x) do {
+                case blufor: {_west = _west + 1;};
+                case opfor: {_east = _east + 1;};
+                case independent: {_resistance = _resistance + 1;};
+                case civilian: {_civilian = _civilian + 1;};
+            };
+        } forEach (allPlayers select {alive _x});
+
+
         _control = (RESPAWN_DISPLAY displayCtrl 26929); /* Side control */
-        private _idx = _control lbAdd "BLUFOR";
+        private _idx = _control lbAdd format["BLUFOR (%1p)",_west];
         _control lbSetValue [_idx,1];
-        _control lbSetColor [_idx,[0,0,1,1]];
-        private _idx = _control lbAdd "OPFOR";
+        _control lbSetColor [_idx,(west) call EFUNC(common,sideToColor)];
+        private _idx = _control lbAdd format["OPFOR (%1p)",_east];
         _control lbSetValue [_idx,0];
-        _control lbSetColor [_idx,[1,0,0,1]];
-        private _idx = _control lbAdd "GREENFOR";
+        _control lbSetColor [_idx,(east) call EFUNC(common,sideToColor)];
+        private _idx = _control lbAdd format["GREENFOR (%1p)",_resistance];
         _control lbSetValue [_idx,2];
-        _control lbSetColor [_idx,[0,1,0,1]];
-        private _idx = _control lbAdd "Civilian";
+        _control lbSetColor [_idx,(independent) call EFUNC(common,sideToColor)];
+        private _idx = _control lbAdd format["Civilian (%1p)",_civilian];
         _control lbSetValue [_idx,3];
-        _control lbSetCurSel 0;
-        GVAR(selectedSide) = 1;
+        if (!isNil QGVAR(selectedSide)) then {
+            _control lbSetCurSel ([1,0,2,3] find GVAR(selectedSide));
+        } else {
+            _control lbSetCurSel 0;
+            GVAR(selectedSide) = 1;
+        };
         _control ctrlAddEventHandler ["LBSelChanged",{GVAR(selectedSide) = (_this select 0) lbValue (_this select 1);}];
         
         //Default Rank listbox
@@ -123,20 +198,53 @@ switch _input do {
             _markerImg = (_x select 0);
             if (_markerImg != "") then {
                 _control lbSetPicture[_idx,_markerImg]; 
-                _control lbSetColor[_idx,[1,0,0,1]];
+                _control lbSetColor[_idx,[1,1,1,1]];
             };
         } forEach GVAR(respawnMenuMarkers);
-        _control lbSetCurSel 0;
+        _control ctrlAddEventHandler ["LBSelChanged",{GVAR(MarkerIdx) = (_this select 1);}];
+        if (!isNil QGVAR(MarkerIdx)) then {
+            _control lbSetCurSel GVAR(MarkerIdx);
+        } else {
+            _control lbSetCurSel 0;
+        };
         
         // Marker Colours
-         _control = (RESPAWN_DISPLAY displayCtrl 26901);
+        _control = (RESPAWN_DISPLAY displayCtrl 26901);
         {
             private _idx = _control lbAdd (_x select 1);
             _control lbSetColor [_idx,(_x select 0)];
         } forEach GVAR(respawnMenuMarkerColours);
-        _control lbSetCurSel 0;
+
+        _control ctrlAddEventHandler ["LBSelChanged",{GVAR(MarkerColour) = (_this select 1);}];
+        if (!isNil QGVAR(MarkerColour)) then {
+            _control lbSetCurSel GVAR(MarkerColour);
+        } else {
+            _control lbSetCurSel 0;
+        };
+
+        // Group ID
+        _control = (RESPAWN_DISPLAY displayCtrl 26898);
+        if (isNil QGVAR(groupName)) then {
+            GVAR(groupName) = "INSERT_GROUP_NAME";
+        } else {
+            _control ctrlSetText GVAR(groupName);
+        };
+        _control ctrlAddEventHandler ["KeyUp",{GVAR(groupName) = ctrlText (_this select 0);}];
+
+        // Marker Name
+        _control = (RESPAWN_DISPLAY displayCtrl 26899);
+        if (isNil QGVAR(markerName)) then {
+            GVAR(markerName) = "INSERT_MARKER_NAME";
+        } else {
+            _control ctrlSetText GVAR(markerName);
+        };
+        _control ctrlAddEventHandler ["KeyUp",{GVAR(markerName) = ctrlText (_this select 0);}];
         
-        GVAR(respawnGroupMarkerCheckBoxVal) = false;
+        if (!isNil QGVAR(respawnGroupMarkerCheckBoxVal)) then {
+            (RESPAWN_DISPLAY displayCtrl 26903) cbSetChecked GVAR(respawnGroupMarkerCheckBoxVal);
+        } else {
+            GVAR(respawnGroupMarkerCheckBoxVal) = false;
+        };
         
        ["refreshDeadListBox"] call FUNC(handleRespawnUI);
        
@@ -182,17 +290,33 @@ switch _input do {
     };
     case "factionCategoryChanged": {
         private _control = (RESPAWN_DISPLAY displayCtrl 26894); /* respawnMenuFactionCategoryCombo */
-        GVAR(currentFactionCategory) = _control lbData (lbCurSel _control);
+        private _newIdx = (lbCurSel _control);
+        GVAR(currentFactionCategory) = _control lbData _newIdx;
+        GVAR(lastFactionSelection) set [0,_newIdx];
         ["refreshFactionCategoryChanged"] call FUNC(handleRespawnUI);
     };
     case "refreshFactionCategoryChanged": {
-        private _control = (RESPAWN_DISPLAY displayCtrl 26928); //Faction Category
+        private _control = (RESPAWN_DISPLAY displayCtrl 26928); //Faction list control (for given category)
         lbClear _control;
         private _activeFactionCategory = GVAR(currentFactionCategory);
 
         if (_activeFactionCategory == "other") then {_activeFactionCategory = "";};
 
         private _factions = [];
+
+        /* Fill Faction categories */
+        private _playerFactions = [] call CBA_fnc_hashCreate;
+        {
+            private _faction = _x getVariable ["tmf_assignGear_faction",""];
+            if (_faction != "") then {
+                if ([_playerFactions,_faction] call CBA_fnc_hashHasKey) then {
+                    private _value = [_playerFactions,_faction] call CBA_fnc_hashGet;
+                    [_playerFactions,_faction,_value + 1] call CBA_fnc_hashSet;
+                } else {
+                    [_playerFactions,_faction,1] call CBA_fnc_hashSet;
+                };
+            };
+        } forEach (allPlayers);
 
         if (_activeFactionCategory == "mission") then {
             // use missionConfigFile
@@ -217,7 +341,20 @@ switch _input do {
 
         {
             _x params ["_displayName","_configName"];
-            private _index = _control lbAdd _displayName;
+            private _players = 0;
+            // Mission factioni class overrides so show 0 if configFile class is of same name.
+            if (_activeFactionCategory != "mission" && {isClass (missionConfigFile >> "CfgLoadouts" >> _configName)}) then {
+                _players = 0;
+            } else {
+                if ([_playerFactions,_configName] call CBA_fnc_hashHasKey) then {
+                    _players = [_playerFactions,_configName] call CBA_fnc_hashGet;
+                };
+            };
+            private _text = _displayName;
+            if (_players > 0) then {
+                _text = format ["%1 (%2p)",_displayName,_players];
+            };
+            private _index = _control lbAdd _text;
             _control lbSetData [_index, _configName];
         } forEach _factions;
         // missionConfigFile first, only add unique factions now
@@ -230,7 +367,7 @@ switch _input do {
 
         private _control = (RESPAWN_DISPLAY displayCtrl 26928);  /* Faction Control */
         private _faction = _control lbData (lbCurSel _control);
-        
+        GVAR(lastFactionSelection) set [1,lbCurSel _control];
         private _classes = [];
 
         //MissionConfigFile overrides.
