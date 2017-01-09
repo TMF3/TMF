@@ -17,6 +17,9 @@ The framework is addon based, keeping filesize down and ensuring that even old m
 - Wave Spawner module that preserves waypoints, supports trigger activation and headless client
 - Map Click Teleport module for group leaders
 
+## Common Issues
+- On dedicated servers the briefing files may not load - To fix the issue in server.cfg to add the `sqf` extension to the `allowedHTMLLoadExtensions` whitelist. For example `allowedHTMLLoadExtensions[] = {"htm","html","xml","txt","sqf"};`
+
 
 ## Credits
 The TMF Team:
