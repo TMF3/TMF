@@ -50,30 +50,36 @@ params ["_groupName", "_position", "_faction", "_selectedRespawnGroup", "_marker
 _groupVarName = format ["GrpRespawn_%1",GVAR(serverRespawnGroupCounter)];
 GVAR(serverRespawnGroupCounter) = GVAR(serverRespawnGroupCounter) + 1;
 
-[_groupVarName,_markerType,_markerName,_markerColor] spawn {
-    params["_groupVarName","_markerType","_markerName","_markerColor"];
+[_groupVarName,_markerType,_markerName,_markerColor,_groupName] spawn {
+    params["_groupVarName","_markerType","_markerName","_markerColor","_groupName"];
 
     waitUntil{!isNil _groupVarName};
 
     sleep 2; // Give some time to allow clients time to make their players transfer across the network.
 
     //Check if a marker was requested before sending to all clients to be created.
-    if (_markerType != -1) then {        
-        
+
+    if (_groupName != "INSERT_GROUP_NAME") then {
+        private _group = missionNamespace getVariable [_groupVarName,grpNull];
+        _group setGroupIdGlobal [_groupName];
+    };
+
+    if (_markerType != -1) then {
+
         //
         // Garbage collector: Cleanup GVAR(respawnedGroupsMarkerData) of old invalid groups.
         //
         
-        _x = 0;
-        _length = count GVAR(respawnedGroupsMarkerData);
+        private _x = 0;
+        private _length = count GVAR(respawnedGroupsMarkerData);
         while {_x < _length} do {
             // 0 for target, 0 for s
-            _entry = GVAR(respawnedGroupsMarkerData) select _x;
-            _toRemove = false;
+            private _entry = GVAR(respawnedGroupsMarkerData) select _x;
+            private _toRemove = false;
             if (isNil (_entry select 0)) then {
                 _toRemove = true;   
             } else {
-                _entity = missionNamespace getVariable [(_entry select 0),objNull];
+                private _entity = missionNamespace getVariable [(_entry select 0),objNull];
                 if (isNull _entity) then {
                     _toRemove = true;   
                 } else {
@@ -88,7 +94,7 @@ GVAR(serverRespawnGroupCounter) = GVAR(serverRespawnGroupCounter) + 1;
 
             if (_toRemove) then {
                 GVAR(respawnedGroupsMarkerData) deleteAt _x;
-                 _x = _x - 1; 
+                _x = _x - 1;
                 _length = _length - 1;
             };
             _x = _x + 1;
