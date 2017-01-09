@@ -197,4 +197,15 @@ class Cfg3DEN
             };
         };
     };
+    class EventHandlers
+    {
+        class ADDON
+        {
+            onMissionLoad = QUOTE([] call FUNC(onEdenMissionChange));
+            onMissionNew = QUOTE([] call FUNC(onEdenMissionChange));
+            onMissionPreviewEnd = QUOTE([] call FUNC(onEdenMissionChange));
+            onTerrainNew = QUOTE([] call FUNC(onEdenMissionChange));
+            onMessage = QUOTE(_this call FUNC(onEdenMessageRecieved));
+        };
+    };
 };

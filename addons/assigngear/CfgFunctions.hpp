@@ -15,6 +15,8 @@ class cfgFunctions {
             class replaceSidearmWeapon;
             class helper;
             class saveRole;
+            class onEdenMessageRecieved;
+            class onEdenMissionChange;
         };
     };
 };
