@@ -8,13 +8,13 @@ private _avgpos = [0,0,0];
 
 
 if (count _cluster > 0) then {
-  {
-      _pos = (getPosASLVisual _x);
-      _avgpos = _avgpos vectorAdd _pos;
-  } forEach _cluster;
-  private _c = count _cluster;
-  _avgpos = _avgpos vectorMultiply (1/_c);
-  _avgpos set [2,(_avgpos select 2)+10];
+    {
+        _pos = (getPosASLVisual _x);
+        _avgpos = _avgpos vectorAdd _pos;
+    } forEach _cluster;
+    private _c = count _cluster;
+    _avgpos = _avgpos vectorMultiply (1/_c);
+    _avgpos set [2,(_avgpos select 2)+10];
 };
 
 private _color = (side _grp) call CFUNC(sideToColor);

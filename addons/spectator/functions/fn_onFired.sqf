@@ -8,7 +8,7 @@ _unit setVariable [QGVAR(fired), 5];
 if (isNull _projectile) then {
     _projectile = nearestObject [_unit, _ammo];
 };
-_type = 0; // bullet
+private _type = 0; // bullet
 if(_ammo isKindOf "Grenade") then {_type = 1};
 if(_ammo isKindOf "SmokeShell") then {_type = 2};
 if(_ammo isKindOf "MissileCore" || _ammo isKindOf "RocketCore") then {_type = 3};

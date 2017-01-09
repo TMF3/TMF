@@ -223,8 +223,8 @@ switch true do {
   };
   case (_key == DIK_SPACE && _type == KEYDOWN) : {
       if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {}; // camrea mode disabled
-      if(GVAR(mode) == 0 || GVAR(mode) == 2) then {
-          GVAR(mode) = 1;
+      if(GVAR(mode) == FOLLOWCAM || GVAR(mode) == FIRSTPERSON) then {
+          GVAR(mode) = FREECAM;
       }
       else {
           GVAR(mode) = 0;

@@ -12,9 +12,17 @@ ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
 
 // update compass
-(uiNamespace getVariable QGVAR(compass)) ctrlSetText ([(getDir GVAR(camera))] call FUNC(getCardinal));
-(uiNamespace getVariable QGVAR(compassL)) ctrlSetText ([(getDir GVAR(camera))-45] call FUNC(getCardinal));
-(uiNamespace getVariable QGVAR(compassR)) ctrlSetText ([(getDir GVAR(camera))+45] call FUNC(getCardinal));
+private _dirArray = ["N","NE","E","SE","S","SW","W","NW","N","NE"];
+private _leftDir = ([(getDir GVAR(camera))-45] call FUNC(getCardinal));
+private _idx = _dirArray find _leftDir;
+_dirArray = [_leftDir, _dirArray select (_idx +1), _dirArray select (_idx +2)];
+(uiNamespace getVariable "tmf_spectator_compass") params ["_compassL","_compass","_compassR"];
+if (!(_dirArray isEqualTo GVAR(lastCompassValue))) then {
+    _compassL ctrlSetText (_dirArray select 0);
+    _compass ctrlSetText (_dirArray select 1);
+    _compassR ctrlSetText (_dirArray select 2);
+    GVAR(lastCompassValue) = _dirArray;
+};
 
 // update something horrible
 

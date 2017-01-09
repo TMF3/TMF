@@ -29,22 +29,22 @@ if(isNil QGVAR(unit)) then {GVAR(unit) = objNull};
 
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNull GVAR(unit) || !(typeof GVAR(unit) isEqualTo "VirtualCurator_F")) then {
-  private _newGrp = createGroup sideLogic;
-  private _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
-  if (!isNull _newUnit) then {  if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };   GVAR(unit) = _oldUnit;  }
-  else {
-      _newUnit allowDamage false;
-      _newUnit hideObjectGlobal true;
-      _newUnit enableSimulationGlobal false;
-      _newUnit setPos [0,0,5];
-      _newUnit setVariable [QGVAR(name),profileName,true];
-      selectPlayer _newUnit;
-      waitUntil{player isEqualTo _newUnit};
+if(isNull GVAR(unit) || !(typeof GVAR(unit) isEqualTo QGVAR(unit))) then {
+    private _newGrp = createGroup sideLogic;
+    private _newUnit = _newGrp createUnit [QGVAR(unit), [0,0,5], [], 0, "FORM"];
+    if (!isNull _newUnit) then {  if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };   GVAR(unit) = _oldUnit;  }
+    else {
+        _newUnit allowDamage false;
+        _newUnit hideObjectGlobal true;
+        _newUnit enableSimulationGlobal false;
+        _newUnit setPos [0,0,5];
+        _newUnit setVariable [QGVAR(name),profileName,true];
+        selectPlayer _newUnit;
+        waitUntil{player isEqualTo _newUnit};
 
-      if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
-      GVAR(unit) = _newUnit;
-  };
+        if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
+        GVAR(unit) = _newUnit;
+    };
 }
 else {
     selectPlayer GVAR(unit);
@@ -107,7 +107,7 @@ GVAR(freeCam) camSetFov 1.2;
 GVAR(freeCam) camCommit 0;
 GVAR(camera) camCommit 0;
 // 0 follow cam, 1 freecam, 2 firstperson
-GVAR(mode) = 0;
+GVAR(mode) = FOLLOWCAM;
 
 
 // Sides Button
@@ -117,7 +117,7 @@ GVAR(sides_button_mode) = [ [blufor,civilian,opfor,independent],[blufor],[opfor]
 GVAR(sides_button_strings) = ["SHOWING ALL SIDES","SHOWING BLUFOR","SHOWING OPFOR","SHOWING INDEPENDENT","SHOWING CIVILIAN"];
 
 
-if(!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
+if (!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
   GVAR(sides) = [tmf_spectator_entryside];
   GVAR(sides_button_mode) = [[tmf_spectator_entryside],[]];
   GVAR(sides_button_strings) = ["SHOWING YOUR SIDE","NONE"];
@@ -129,7 +129,7 @@ GVAR(visionMode_strings) = ["NORMAL","NIGHTVISION","WHITE HOT"];
 
 // Show Players only
 GVAR(playersOnly) = false;
-if(isMultiplayer) then {
+if (isMultiplayer) then {
     GVAR(playersOnly) = true;
 };
 
@@ -222,6 +222,7 @@ if (isNil QGVAR(setupEH)) then {
 };
 
 GVAR(messages) = [];
+GVAR(lastCompassValue) = ["A","B","C"];
 
 
 ["tmf_spectator", "onEachFrame", {

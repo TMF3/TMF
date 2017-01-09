@@ -14,6 +14,7 @@ class cfgPatches
         VERSION_CONFIG;
     };
 };
+
 class CfgRespawnTemplates
 {
     class TMF_Spectator
@@ -25,31 +26,11 @@ class CfgRespawnTemplates
 };
 
 
-
 #include "CfgEventHandlers.hpp"
 #include "CfgFunctions.hpp"
-
 #include "Cfg3DEN.hpp"
 #include "display3DEN.hpp"
-
 #include "dialog.hpp"
+#include "CfgVehicles.hpp"
+#include "tags.hpp"
 
-#include "CfgModules.hpp"
-
-
-
-#include "tags.hpp";
-
-
-
-class CfgVehicles {
-    class VirtualMan_F;
-    class GVAR(unit) : VirtualMan_F {
-        author = ADDON;
-        scope = 1;
-        scopeCurator = 1,
-        scopeArsenal = 1;
-        delete ACE_SelfActions;
-        delete ACE_Actions;
-    };
-};

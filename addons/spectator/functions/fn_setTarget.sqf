@@ -2,9 +2,9 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params [["_target",GVAR(target),[objNull]]];
 
-if(isNull _target) exitWith {};
+if (isNull _target) exitWith {};
 
-_oldunit = GVAR(target);
+private _oldunit = GVAR(target);
 GVAR(target) = _target;
 
 switch (GVAR(mode)) do {
@@ -16,7 +16,7 @@ switch (GVAR(mode)) do {
     case FREECAM: {
         GVAR(camera) cameraEffect ["internal","back"];
         selectPlayer GVAR(unit);
-        if(_target == _oldunit) exitWith {};
+        if (_target == _oldunit) exitWith {};
         private _camPos = getPosASL GVAR(camera);
         private _targetPos = getPosASL GVAR(target);
         private _newPos = _targetPos vectorAdd ((vectorNormalized (_camPos vectorDiff _targetPos)) vectorMultiply 30);/*_camPos vectorAdd ((_targetPos vectorDiff _camPos) vectorMultiply 0.5);*/
@@ -31,7 +31,7 @@ switch (GVAR(mode)) do {
     };
     case FIRSTPERSON: {
         GVAR(target) SwitchCamera "internal";
-        if(vehicle GVAR(target) != GVAR(target)) then
+        if (vehicle GVAR(target) != GVAR(target)) then
         {
             _vehicle = vehicle GVAR(target);
             _mode = "internal";
@@ -43,7 +43,7 @@ switch (GVAR(mode)) do {
 };
 
 if(GVAR(showMap)) then {
-    if(_target == _oldunit) exitWith {};
+    if (_target == _oldunit) exitWith {};
     with uiNamespace do {
         GVAR(map) ctrlMapAnimAdd [0.3,ctrlMapScale GVAR(map),_target ];
         ctrlMapAnimCommit GVAR(map);
