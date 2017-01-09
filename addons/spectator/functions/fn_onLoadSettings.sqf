@@ -2,8 +2,8 @@ params ["_display"];
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
 
-_grpTagSlider = _display controlsGroupCtrl 101;
-_unitTagSlider = _display controlsGroupCtrl 102;
+private _grpTagSlider = _display controlsGroupCtrl 101;
+private _unitTagSlider = _display controlsGroupCtrl 102;
 
 
 

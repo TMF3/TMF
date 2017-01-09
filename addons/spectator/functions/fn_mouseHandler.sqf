@@ -6,7 +6,7 @@ switch (_type) do {
         _args params ["_control","_button","_x","_y","_shift","_ctrl","_alt"];
         GVAR(mButtons) set [_button,true];
         // Switches to the unit when clicked
-        if(_button == 0 && (GVAR(mode) == 0 || GVAR(mode) == 1) && ctrlClassName _control == QGVAR(EntityTag)) then {
+        if(_button == 0 && (GVAR(mode) == FOLLOWCAM || GVAR(mode) == FREECAM) && ctrlClassName _control == QGVAR(EntityTag)) then {
             private _target = _control getVariable [QGVAR(attached), objNull];
             if(_target isEqualType grpNull) then {
                 private _units = units _target select {alive _x};
@@ -37,10 +37,10 @@ switch (_type) do {
             if(_value > 0) then {GVAR(followcam_fov) = (GVAR(followcam_fov) - 0.05 * _value) max 0.1;};
             if(_value < 0) then {GVAR(followcam_fov) = (GVAR(followcam_fov) + 0.05 * (abs _value)) min 2.0;};
         };
-        if(GVAR(mode) == 0 && {_x} count GVAR(modifiers_keys) <= 0) then {
+        if(GVAR(mode) == FOLLOWCAM && {_x} count GVAR(modifiers_keys) <= 0) then {
             GVAR(followcam_zoom) = ((GVAR(followcam_zoom) - ((_value)*GVAR(followcam_zoom)/5)) max 0.1) min 650;
         };
-        if(GVAR(mode) == 1 && {_x} count GVAR(modifiers_keys) <= 1) then
+        if(GVAR(mode) == FREECAM && {_x} count GVAR(modifiers_keys) <= 1) then
         {
             private _nvalue = GVAR(movement_keys) select 6;
             GVAR(movement_keys) set [6,_nvalue + _value];

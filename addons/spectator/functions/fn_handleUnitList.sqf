@@ -23,7 +23,7 @@ else { _newGroups = (allGroups select {{alive _x && {side _x in tmf_spectator_si
 // check if any new groups appeard
 if((count _newGroups) > 0) then {
 
-    _grps = (GVAR(groups)+_newGroups);
+    private _grps = (GVAR(groups)+_newGroups);
     //Reset/redraw all.
     tvClear _unitListControl;
     GVAR(groups) = [];
@@ -37,8 +37,8 @@ if((count _newGroups) > 0) then {
 
 private _deadGroups = [];
 {
-    _path = [_forEachIndex];
-    _count = _unitListControl tvCount _path;
+    private _path = [_forEachIndex];
+    private _count = _unitListControl tvCount _path;
     if(_count != {alive _x} count units _x) then {
         // Delete all units
         while {_count > 0} do {

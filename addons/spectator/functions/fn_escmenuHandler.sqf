@@ -7,7 +7,7 @@ disableSerialization;
 switch (_mode) do {
     case "onLoad": {
       if(serverCommandAvailable "#kick" || !isMultiplayer) then {
-            ["onLoad",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
+          ["onLoad",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
       }
       else {
           ((_args select 0) displayCtrl 13184) ctrlShow false;
@@ -28,16 +28,16 @@ switch (_mode) do {
 
     };
     case "onUnload" : {
-      _args params ["_display"];
-      if(serverCommandAvailable "#kick" || !isMultiplayer) then {
-          ["onUnload",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
-      };
+        _args params ["_display"];
+        if (serverCommandAvailable "#kick" || !isMultiplayer) then {
+            ["onUnload",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
+        };
     };
     case "abortClicked": {
-            _display = ctrlparent (_args select 0);
-            _abort = [localize "str_msg_confirm_return_lobby","Back to lobby?",localize "str_disp_xbox_hint_yes",localize "str_disp_xbox_hint_no",_display,false,false] call BIS_fnc_guiMessage;
+        private _display = ctrlparent (_args select 0);
+        private _abort = [localize "str_msg_confirm_return_lobby","Back to lobby?",localize "str_disp_xbox_hint_yes",localize "str_disp_xbox_hint_no",_display,false,false] call BIS_fnc_guiMessage;
 
-            if (_abort) then {_display closeDisplay 2; failMission "loser"};
+        if (_abort) then {_display closeDisplay 2; failMission "loser"};
     };
     case "continueClicked": {
         closeDialog 1;

@@ -27,7 +27,7 @@ switch _input do {
                 if (isPlayer _x) then { //not all of them will be players.
                     GVAR(deadPlayerList) pushBack _x;  
                 };
-            } forEach ([0,0,0] nearEntities ["VirtualCurator_F",500]);
+            } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
             {
                 if (!alive _x) then { //not all of them will be players.
                     GVAR(deadPlayerList) pushBackUnique _x;  
@@ -267,7 +267,7 @@ switch _input do {
                     if (isPlayer _x) then { //not all of them will be players.
                         _deadList pushBack _x;  
                     };
-                } forEach ([0,0,0] nearEntities ["VirtualCurator_F",500]);
+                } forEach ([0,0,0] nearEntities ["tmf_spectator_unit",500]);
                 {
                     if (!alive _x) then { //not all of them will be players.
                         _deadList pushBackUnique _x;
@@ -513,7 +513,7 @@ switch _input do {
     case "respawnMapLoaded": {
         private _mapCtrl = ((findDisplay 26950) displayCtrl 26902);//_this select 0;//
         private _pos = [0,0,0];
-        if (alive player && !(player isKindOf "VirtualCurator_F")) then {
+        if (alive player && !(player isKindOf "tmf_spectator_unit")) then {
           _pos = getPos player;  
         } else {
             if (count playableUnits > 0) then {
