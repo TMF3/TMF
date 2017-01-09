@@ -2,7 +2,7 @@
 params ["_map"];
 
 if(!GVAR(showMap)) exitWith {};
-with uiNamespace do { ctrlSetFocus GVAR(unitlist); };
+ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 // Draw camera location
 _map drawIcon ["\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCamera_ca.paa", [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(camera),"",0];
 

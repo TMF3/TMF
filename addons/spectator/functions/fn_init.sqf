@@ -1,8 +1,10 @@
 
 
 #include "\x\tmf\addons\spectator\script_component.hpp"
+
 if((_this select 2) isEqualType 0) then {_this set [2,false]};
 params ["_unit","_oldUnit",["_forced",false,[false]]];
+
 if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {createDialog QGVAR(dialog);};
 
 private _isJip = didJIP;
@@ -23,11 +25,15 @@ if(_isJip) then {
     };
 };
 
+if(isNil QGVAR(unit)) then {GVAR(unit) = objNull};
+
+
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then {
+if(isNull GVAR(unit) || !(typeof GVAR(unit) isEqualTo "VirtualCurator_F")) then {
   private _newGrp = createGroup sideLogic;
   private _newUnit = _newGrp createUnit ["VirtualCurator_F", [0,0,5], [], 0, "FORM"];
-  if (!isNull _newUnit) then {
+  if (!isNull _newUnit) then {  if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };   GVAR(unit) = _oldUnit;  }
+  else {
       _newUnit allowDamage false;
       _newUnit hideObjectGlobal true;
       _newUnit enableSimulationGlobal false;
@@ -38,25 +44,26 @@ if(isNil QGVAR(unit) || (!isNil QGVAR(unit) && {!isNull GVAR(unit)}) ) then {
 
       if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
       GVAR(unit) = _newUnit;
-  }
-  else {
-      if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };
-      GVAR(unit) = _oldUnit;
   };
+}
+else {
+    selectPlayer GVAR(unit);
+    waitUntil{player isEqualTo GVAR(unit)};
+    if(typeOf _unit == "seagull") then { deleteVehicle _unit; }; 
 };
 
 // If oldunit is null set a new starting target
 if(isNull _oldUnit ) then {_oldUnit = allUnits select 0};
 
-GVAR(entryside) = _oldUnit getVariable ["TMF_CreatedSide",side _oldUnit];
+GVAR(entrySide) = _oldUnit getVariable ["TMF_CreatedSide",side _oldUnit];
 
-if(!isNil QGVAR(freecam) && {!isNull GVAR(freecam)}) exitWith {createDialog "tmf_spectator_dialog";};
+if(!isNil QGVAR(freeCam) && {!isNull GVAR(freeCam)}) exitWith {createDialog "tmf_spectator_dialog";};
 
 
 
-GVAR(freecam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
-GVAR(followcam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
-GVAR(camera) = tmf_spectator_followcam;
+GVAR(freeCam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
+GVAR(followCam) = "camera" camCreate [position _oldUnit select 0,position _oldUnit select 1,3];
+GVAR(camera) = GVAR(followCam);
 GVAR(target) = _oldUnit;
 #include "defines.hpp"
 
@@ -71,7 +78,7 @@ GVAR(bulletTrails) = false;
 // MAP
 GVAR(showMap) = false;
 
-
+GVAR(controls) = [];
 
 
 
@@ -87,17 +94,17 @@ private _pos = getPosVisual GVAR(target);
 _pos set [2,(_pos select 2)+1.3];
 
 
-GVAR(followcam) camSetTarget _pos;
-GVAR(followcam) camSetRelPos [2,2,3];
+GVAR(followCam) camSetTarget _pos;
+GVAR(followCam) camSetRelPos [2,2,3];
 GVAR(relpos) = [2,2,3];
 
 
 // Set FOV
-GVAR(followcam) camSetFov 1.2;
-GVAR(freecam) camSetFov 1.2;
+GVAR(followCam) camSetFov 1.2;
+GVAR(freeCam) camSetFov 1.2;
 
 // commit it
-GVAR(freecam) camCommit 0;
+GVAR(freeCam) camCommit 0;
 GVAR(camera) camCommit 0;
 // 0 follow cam, 1 freecam, 2 firstperson
 GVAR(mode) = 0;
@@ -161,6 +168,8 @@ GVAR(vehicles) = [];
 GVAR(clearGroups) = false;
 GVAR(unitUpdate) = 0;
 GVAR(killedUnits) = [];
+GVAR(killList_forceUpdate) = false;
+GVAR(killList_update) = time;
 // Set Modes
 cameraEffectEnableHUD true;
 showCinemaBorder false;
@@ -184,22 +193,15 @@ GVAR(missileIcon) = "\x\tmf\addons\spectator\images\missile.paa";
 GVAR(grenadeIcon) = "\x\tmf\addons\spectator\images\grenade.paa";
 GVAR(smokeIcon) = "\x\tmf\addons\spectator\images\smokegrenade.paa";
 
-GVAR(currentnotification) = "";
-GVAR(notification) = [];
-
 
 // Add EH
 
 if (isNil QGVAR(setupEH)) then {
     addMissionEventHandler ["EntityKilled",{
         params ["_deadMan","_killer"];
+        if(count (_deadMan getVariable [QGVAR(tagControl),[]]) > 0) then {ctrlDelete ((_deadMan getVariable [QGVAR(tagControl),[controlNull]]) select 0);};
         if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitwith {};
-    /*    private _acekiller = _killed getVariable ["ace_medical_lastDamageSource", objNull];
-        if (!isNull _acekiller ) then {
-            _killer = _acekiller;
-        };*/
-        if(isNull _killer || _killer == _deadMan) then
-        {
+        if(isNull _killer || _killer == _deadMan) then {
             _killer = _deadMan getVariable [QGVAR(lastDamage),objNull];
         };
         private _kName = "";
@@ -209,7 +211,8 @@ if (isNil QGVAR(setupEH)) then {
         if(isPlayer _killer) then {_kName = name (_killer);};
         if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf _deadMan >> "displayName");_data set [5,_dName]; };
         if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf _killer >> "displayName");_data set [6,_kName]; };
-        GVAR(killedUnits) pushback [_deadMan,time,_killer,side group _deadMan,side group _killer,_dName,_kName,currentWeapon _killer,_isplayer];
+        GVAR(killList_forceUpdate) = true;
+        GVAR(killedUnits) pushback [_deadMan,time,_killer,side group _deadMan,side group _killer,_dName,_kName,getText (configFile >> "CfgWeapons" >> currentWeapon _killer >> "displayName"),_isplayer];
     }];
 
     ["AllVehicles", "fired", {if([] call FUNC(isOpen)) then { _this call FUNC(onFired)}}] call CBA_fnc_addClassEventHandler;
@@ -218,10 +221,13 @@ if (isNil QGVAR(setupEH)) then {
     GVAR(setupEH) = true;
 };
 
-
+GVAR(messages) = [];
 
 
 ["tmf_spectator", "onEachFrame", {
     [] call FUNC(perFrameHandler);
 }] call BIS_fnc_addStackedEventHandler;
 [QGVAR(init), _this] call EFUNC(event,emit);
+if(isNil QGVAR(drawEvent)) then {
+    GVAR(drawEvent) = addMissionEventHandler ["Draw3D",{ [] call FUNC(drawTags); }];
+};

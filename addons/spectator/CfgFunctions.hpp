@@ -25,7 +25,6 @@ class CfgFunctions {
             class handleSettingsMenu;
             class menuHandler;
             class mouseHandler;
-            class notificationShow;
             class onMapClick;
             class onChange;
             class onLoad;
@@ -33,6 +32,12 @@ class CfgFunctions {
             class onLoadSettings;
             class setTarget;
             class handleCamera;
+            class createGroupControl;
+            class controlSetText;
+            class controlSetPicture;
+            class createUnitControl;
+            class createVehicleControl;
+            class updateKillList;
         };
     };
 

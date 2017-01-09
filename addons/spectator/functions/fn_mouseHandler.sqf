@@ -6,12 +6,17 @@ switch (_type) do {
         _args params ["_control","_button","_x","_y","_shift","_ctrl","_alt"];
         GVAR(mButtons) set [_button,true];
         // Switches to the unit when clicked
-        if(_button == 0 && (GVAR(mode) == 0 || GVAR(mode) == 1)) then {
-          private _ints = lineIntersectsWith [getPosASL GVAR(camera),ATLToASL screenToWorld getMousePosition,GVAR(camera),objNull,true];
-          reverse _ints;
-          _ints = _int select {!isNull _x && {_x in GVAR(allunits)}};
-          if (count _ints < 0) exitWith {};
-          [_ints select 0] call FUNC(setTarget);
+        if(_button == 0 && (GVAR(mode) == 0 || GVAR(mode) == 1) && ctrlClassName _control == QGVAR(EntityTag)) then {
+            private _target = _control getVariable [QGVAR(attached), objNull];
+            if(_target isEqualType grpNull) then {
+                private _units = units _target select {alive _x};
+                if(count _units > 0) then {_target = _units select 0}
+                else {_target = objNull};
+            }
+            else {
+                _target = (crew _target) select 0
+            };
+            [_target] call FUNC(setTarget);
         };
     };
 

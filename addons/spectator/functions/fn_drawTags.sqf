@@ -1,4 +1,9 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
+if(!([] call FUNC(isOpen))) exitWith {};
+if(GVAR(showMap) || !GVAR(tags)) exitWith {
+    {_x ctrlShow false} foreach GVAR(controls);
+};
+
 
 // enable hud and grab the user settings variables
 cameraEffectEnableHUD true;
@@ -8,23 +13,21 @@ private _unitTagSize = 1 * GVAR(unitTagScale);
 private _renderGroups = _grpTagSize > 0;
 
 {
-
   // grab the group infomation cache
   private _grpCache = _x getVariable [QGVAR(grpCache),[0,[0,0,0],[1,1,1,1],true]];
   _grpCache params ["_grpTime","_avgpos","_color","_isAI"];
 
-
-  // default fontsize
-  private _fontSize = 0.04;
-
+  // circumevent the restriction on storing controls in namespace
+  _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+  if(isNull _control) then {
+      [_x] call FUNC(createGroupControl);
+      _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+  };
   // If we don't have a average pos for the group, or the time since the last the update as expired, generate a new one
-  if(count _avgpos <= 0 || time > _grpTime) then
-  {
+  if(count _avgpos <= 0 || time > _grpTime) then {
       _grpCache = ([_x] call FUNC(updateGroupCache));
       _avgpos = _grpCache select 1; // update pos ASAP
   };
-  // reset the cache
-
 
   // check if the average pos is on the screen
   private _render = [_avgpos] call FUNC(onScreen);
@@ -34,90 +37,101 @@ private _renderGroups = _grpTagSize > 0;
   // Group tags
   ////////////////////////////////////////////////////////
   // Only draw the icon if the grp tags are "enabled"
-  if(_render && {_renderGroups && !_isAI}) then { //
-    if(_campos distance2d _avgpos > 400) then { _fontSize = 0;};
+  if(_render) then {
+      if(!ctrlShown _control) then {_control ctrlShow true};
 
-    // get marker data from the teamwork groupmarker system if there is some.
-    private _twGrpMkr = [_x] call EFUNC(orbat,getGroupMarkerData);
+      (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_avgpos distance _campos <= 600});
+      (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_avgpos distance _campos <= 300});
 
-    // if the data exists, read it.
-    if(count _twGrpMkr == 3) then {
-      _twGrpMkr params ["_grpTexture","_gname","_grpTextureSize"];
-      drawIcon3D [_grpTexture, [1,1,1,1],_avgpos,_grpTagSize,_grpTagSize, 0,_gname, 2,_fontSize,"PuristaSemibold" ];
-    }
-    else {
-      drawIcon3D ["\A3\ui_f\data\map\markers\nato\b_unknown.paa", _color,_avgpos, _grpTagSize, _grpTagSize, 0,"", 2,_fontSize,"PuristaSemibold" ];
-      drawIcon3D ["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,1],_avgpos, _grpTagSize, _grpTagSize, 0,groupID _x, 2,_fontSize,"PuristaSemibold" ];
-    };
+      private _screenpos = worldToScreen (ASLtoAGL _avgpos);
+      _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
+      _control ctrlCommit 0;
+  } else {
+      if(ctrlShown _control) then {_control ctrlShow false};
   };
-
   ////////////////////////////////////////////////////////
   // Unit / vehicle tags
   ////////////////////////////////////////////////////////
 
-  private _renderedVehicles = [];
   {
-    private _veh = vehicle _x;
-    private _isVeh = false;
-    _render = true;
-    _name = name _x;
-    // if vehicles, set the appropriate variables
-    if(_veh != _x && effectiveCommander _veh == _x) then {
-        _x = _veh;
-        _render = ((_renderedVehicles pushBackUnique _x) != -1);
-        _isVeh = true;
-    };
-
-    private _pos = (getPosATLVisual _x);
-
-    if(alive _x && {[_pos] call FUNC(onScreen)} && {_render} && {_campos distance2d _x <= 500} ) then {
-
-        if(_isVeh) then {
-            private _vehicleName = _x getVariable [QGVAR(vehiclename),""];
-            if(_vehicleName == "") then {
-                _vehicleName = getText ( configFile >> "CfgVehicles" >> typeOf _x >> "displayname");
-                _x setVariable [QGVAR(vehiclename),_vehicleName];
-            };
-            if(isPlayer _x) then {
-                _vehicleName = name (effectiveCommander _x);
-            };
-            _name = format ["%1 [%2]",_vehicleName, count crew _x];
+        private _isVeh = !isNull (objectParent _x);
+        private _pos = (getPosASLVisual _x) vectorAdd [0,0,3.1];
+        // circumevent the restriction on storing controls in namespace
+        _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+        if(isNull _control && alive _x) then {
+            [_x] call FUNC(createUnitControl);
+            _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
         };
+        if(_isVeh && {isNull (((objectParent _x) getVariable [QGVAR(tagControl),[controlNull]]) select 0)}) then {
+            [objectParent _x] call FUNC(createVehicleControl);
+            GVAR(vehicles) pushBack (objectParent _x); // for speed reasons.
+        };
+        if(alive _x && {[ASLToATL _pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
 
-        // AI HAVE NO NAMES, THEY ARE DRIVING A VEHICLE
-        if(!isPlayer _x && !_isVeh) then {_name = ""}
+            private _unitColor = _color;
+            private _hasFired = _x getVariable [QGVAR(fired), 0];
+            if(_hasFired > 0) then {
+                _unitColor = [0.8,0.8,0.8,1];
+                _x setVariable [QGVAR(fired), _hasFired-1];
+            };
+
+            if(!ctrlShown _control) then {_control ctrlShow true};
+
+            [_control,"",_unitColor] call FUNC(controlSetPicture);
+            private _isAI = {isPlayer _x} count crew _x <= 0;
+            (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_pos distance _campos <= 300});
+            (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
+
+            private _screenpos = worldToScreen (ASLtoATL _pos);
+            if(count _screenpos == 2) then {
+                _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
+            };
+            _control ctrlCommit 0;
+        } 
         else {
-            _format = _x getVariable [QGVAR(nameLabel),0]; // can we omit this?, most missions don't use it
-            if(!(_format isEqualType 0)) then { _name = format[_format,_name]; }; // passes name to the format
+            if(ctrlShown _control) then {_control ctrlShow false};
         };
-
-      if(surfaceIsWater _pos) then {_pos = getPosASLVisual _x;};
-      _pos = _pos vectorAdd [0,0,3.1];
-
-      // make the tag white if the target is shooting
-      private _unitColor = _color;
-      private _hasFired = _veh getVariable [QGVAR(fired), 0];
-      if(_hasFired > 0) then {
-          _unitColor = [0.8,0.8,0.8,1];
-          _veh setVariable [QGVAR(fired), _hasFired-1];
-      };
-      _unitIcon = "\A3\ui_f\data\map\markers\military\triangle_CA.paa";
-      if(_isVeh) then { _unitIcon = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";};
-
-      // draw icon
-      drawIcon3D[_unitIcon,_unitColor,_pos,_unitTagSize,_unitTagSize,180,"",2,0.03,"PuristaSemibold"];
-      if(leader _x == _x) then {
-          drawIcon3D["\A3\ui_f\data\Map\Diary\back_gs.paa",[1,1,1,1],_pos,_unitTagSize*0.7,_unitTagSize*0.7,90,"",2,0.03,"PuristaSemibold"];
-      };
-      // draw text
-      if(_name != "") then { drawIcon3D["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,1],_pos,_unitTagSize,_unitTagSize,0,_name,2,0.035,"PuristaSemibold"];};
-
-      // if showing the group lines, draw it.
-      if(GVAR(showlines) && !_isAI) then {drawLine3D [_pos,_avgpos,_color]};
-    };
   } forEach units _x;
 } forEach allGroups;
 
+
+{
+    private _pos = (getPosASLVisual _x) vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];
+    // circumevent the restriction on storing controls in namespace
+    _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+    if(isNull _control) then {
+        [_x] call FUNC(createVehicleControl);
+        _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+    };
+    if(alive _x && {[ASLToATL _pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
+
+        _color = (side _x) call CFUNC(sideToColor);
+        private _hasFired = _x getVariable [QGVAR(fired), 0];
+        if(_hasFired > 0) then {
+            _color = [0.8,0.8,0.8,1];
+            _x setVariable [QGVAR(fired), _hasFired-1];
+        };
+
+        _commanderName = name (effectiveCommander _x);
+        [_control,"",_color] call FUNC(controlSetPicture);
+        [_control,format ["%1 [%2]",_commanderName,count crew _x],[],true] call FUNC(controlSetText);
+
+        if(!ctrlShown _control) then {_control ctrlShow true};
+
+        private _isAI = {isPlayer _x} count crew _x <= 0;
+        (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 300);
+        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
+        
+        private _screenpos = worldToScreen (ASLtoATL _pos);
+        if(count _screenpos == 2) then {
+            _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
+        };
+        _control ctrlCommit 0;
+    }
+    else {
+        if(ctrlShown _control) then {_control ctrlShow false};
+    };
+} foreach GVAR(vehicles);
 
 
 

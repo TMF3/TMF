@@ -42,7 +42,6 @@ switch (_button) do {
       _control ctrlSetTooltip (GVAR(sides_button_strings) select GVAR(sides_button_state) );
 
       GVAR(clearGroups) = true;
-      [(GVAR(sides_button_strings) select GVAR(sides_button_state) )] call FUNC(notificationShow);
     };
 
 
@@ -52,17 +51,13 @@ switch (_button) do {
     case "disableAI": {
       GVAR(playersOnly) = !GVAR(playersOnly);
 
-
       _text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\enabledai_ca.paa";
       _messsage = "AI + PLAYERS";
-
 
       if(GVAR(playersOnly)) then {_messsage = "PLAYERS ONLY";_text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\disabledai_ca.paa";};
 
       GVAR(clearGroups) = true;
 
-
-      [_messsage] call FUNC(notificationShow);
       _control ctrlSetText ( _text);
       _control ctrlSetTooltip _messsage;
     };
@@ -83,7 +78,6 @@ switch (_button) do {
       };
 
 
-      [_msg] call FUNC(notificationShow);
       _control ctrlSetTooltip _tooltip;
     };
     case "mute" : {
@@ -102,9 +96,8 @@ switch (_button) do {
                 true setCamUseTi 0;
             };
         };
-        [format ["SWITCHED TO %1", GVAR(visionMode_strings) select GVAR(visionMode) ]] call FUNC(notificationShow);;
         _i = (GVAR(visionMode))+1;
-        if(_i > 4) then {_i = 0};
+        if(_i > 2) then {_i = 0};
     if(isNil "_control" || {isNull _control}) then {_control = uinamespace getVariable [QGVAR(vision),controlNull];};
         _control ctrlSetTooltip format ["Switch to %1", GVAR(visionMode_strings) select _i ];
     };
@@ -138,6 +131,5 @@ switch (_button) do {
         [] call FUNC(setTarget);
 
         _control ctrlSetTooltip _tooltip;
-        [_messsage] call FUNC(notificationShow);
     };
 };

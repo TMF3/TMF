@@ -220,10 +220,9 @@ switch true do {
       GVAR(tracers) = !GVAR(tracers);
       _message = "Tracers have been toggled off";
       if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
-         [_message] call FUNC(notificationShow);
   };
   case (_key == DIK_SPACE && _type == KEYDOWN) : {
-      if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {["CAMERA MODE DISABLED"] call FUNC(notificationShow);};
+      if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {}; // camrea mode disabled
       if(GVAR(mode) == 0 || GVAR(mode) == 2) then {
           GVAR(mode) = 1;
       }
