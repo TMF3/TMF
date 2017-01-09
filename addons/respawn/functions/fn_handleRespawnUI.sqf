@@ -355,9 +355,6 @@ switch _input do {
         if (count GVAR(selectedRespawnGroup) < 1) exitWith { hint "No players selected"; };
    
         private _groupName = ctrlText (RESPAWN_DISPLAY displayCtrl 26898);
-        if (_groupName=="INSERT_GROUP_NAME") then {
-            _groupName = "Untitled Group";  
-        };
         
         // respawnMenuFactions control.
         private _control = (RESPAWN_DISPLAY displayCtrl 26928);
