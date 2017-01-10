@@ -6,12 +6,14 @@ switch (_type) do {
         _args params ["_control","_button","_x","_y","_shift","_ctrl","_alt"];
         GVAR(mButtons) set [_button,true];
         // Switches to the unit when clicked
-        if(_button == 0 && (GVAR(mode) == FOLLOWCAM || GVAR(mode) == FREECAM) && ctrlClassName _control == QGVAR(EntityTag)) then {
+        if(_button == 0 && (GVAR(mode) == FOLLOWCAM || GVAR(mode) == FREECAM) && (ctrlClassName _control == QGVAR(EntityTag) || ctrlClassName _control == QGVAR(GroupTag))) then {
             private _target = _control getVariable [QGVAR(attached), objNull];
             if(_target isEqualType grpNull) then {
                 private _units = units _target select {alive _x};
                 if(count _units > 0) then {_target = _units select 0}
-                else {_target = objNull};
+                else {
+                    _target = objNull
+                };
             }
             else {
                 _target = (crew _target) select 0
