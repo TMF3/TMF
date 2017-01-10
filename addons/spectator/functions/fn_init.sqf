@@ -29,10 +29,13 @@ if(isNil QGVAR(unit)) then {GVAR(unit) = objNull};
 
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNull GVAR(unit) || !(typeof GVAR(unit) isEqualTo QGVAR(unit))) then {
+if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
     private _newGrp = createGroup sideLogic;
     private _newUnit = _newGrp createUnit [QGVAR(unit), [0,0,5], [], 0, "FORM"];
-    if (!isNull _newUnit) then {  if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };   GVAR(unit) = _oldUnit;  }
+    if (isNull _newUnit) then {
+        // Unable to create new unit - Usually if too many groups for sideLogic exist.
+        if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };   GVAR(unit) = _oldUnit;
+    }
     else {
         _newUnit allowDamage false;
         _newUnit hideObjectGlobal true;
