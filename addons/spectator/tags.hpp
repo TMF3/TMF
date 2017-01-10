@@ -8,6 +8,7 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
     onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseButtonDown = "[""MouseButtonDown"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseButtonUp = "[""MouseButtonUp"",_this] call tmf_spectator_fnc_mouseHandler";
+    onMouseMoving = "['MouseMoving',_this] call tmf_spectator_fnc_mouseHandler";
     class controls
     {
         class GVAR(back) : IGUIBACK {
