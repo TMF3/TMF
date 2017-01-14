@@ -30,7 +30,7 @@ private _renderGroups = _grpTagSize > 0;
     };
 
     // check if the average pos is on the screen
-    private _render = [_avgpos] call FUNC(onScreen);
+    private _render = !_isAI && {[_avgpos] call FUNC(onScreen)};
 
 
     ////////////////////////////////////////////////////////
