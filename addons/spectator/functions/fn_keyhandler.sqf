@@ -93,12 +93,12 @@
 #define KEYDOWN 0
 
 
-
-
-
-
-
 #include "\x\tmf\addons\spectator\script_component.hpp"
+
+
+
+
+
 params ["_type","_args"];
 _args params ["_control","_key","_shift","_ctrl","_alt"];
 

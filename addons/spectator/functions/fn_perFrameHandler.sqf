@@ -11,6 +11,16 @@ ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
 
 
+for [{private _end = GVAR(lastControlIndex)+10;private _count = (count GVAR(controls))}, {GVAR(lastControlIndex) < _end && GVAR(lastControlIndex) < _count }, {GVAR(lastControlIndex) = GVAR(lastControlIndex) + 1}] do {
+    private _x  = GVAR(controls) select GVAR(lastControlIndex);
+    private _value = isNull (_x getVariable [QGVAR(attached),objNull]);
+    if(_value) then {ctrlDelete _x};
+    !_value
+};
+if(GVAR(lastControlIndex) >= count GVAR(controls)) then {GVAR(lastControlIndex) = 0;};
+
+
+GVAR(vehicles) = GVAR(vehicles) select {!isNull _x};
 // update compass
 private _dirArray = ["N","NE","E","SE","S","SW","W","NW","N","NE"];
 private _leftDir = ([(getDir GVAR(camera))-45] call FUNC(getCardinal));

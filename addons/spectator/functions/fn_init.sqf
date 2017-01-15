@@ -226,7 +226,7 @@ if (isNil QGVAR(setupEH)) then {
 
 GVAR(messages) = [];
 GVAR(lastCompassValue) = ["A","B","C"];
-
+GVAR(lastControlIndex) = 0;
 
 ["tmf_spectator", "onEachFrame", {
     [] call FUNC(perFrameHandler);
