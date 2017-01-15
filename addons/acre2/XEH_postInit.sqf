@@ -36,7 +36,7 @@ if (getMissionConfigValue ['TMF_AcreFullDuplex',false]) then {
 if (!(getMissionConfigValue ['TMF_AcreInterference',true])) then {
     [(getMissionConfigValue ['TMF_AcreInterference',false])] call acre_api_fnc_setInterference;
 };
-if (getMissionConfigValue ['TMF_AcreAIReveal',true]) then {
+if (!getMissionConfigValue ['TMF_AcreAIReveal',false]) then {
     [false] call acre_api_fnc_setRevealToAI;
 };
 
