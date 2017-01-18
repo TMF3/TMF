@@ -10,8 +10,6 @@ cameraEffectEnableHUD true;
 private _campos = getPosVisual GVAR(camera);
 private _grpTagSize = 1 * GVAR(grpTagScale);
 private _unitTagSize = 1 * GVAR(unitTagScale);
-private _renderGroups = _grpTagSize > 0;
-
 {
     // grab the group infomation cache
     private _grpCache = _x getVariable [QGVAR(grpCache),[0,[0,0,0],[1,1,1,1],true]];
@@ -43,7 +41,7 @@ private _renderGroups = _grpTagSize > 0;
         (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_avgpos distance _campos <= 600});
         (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_avgpos distance _campos <= 300});
 
-        private _screenpos = worldToScreen (ASLtoAGL _avgpos);
+        private _screenpos = worldToScreen (_avgpos);
         _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
         _control ctrlCommit 0;
     } else {
@@ -55,7 +53,7 @@ private _renderGroups = _grpTagSize > 0;
 
     {
         private _isVeh = !isNull (objectParent _x);
-        private _pos = (getPosASLVisual _x) vectorAdd [0,0,3.1];
+        private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,3.1];
         // circumevent the restriction on storing controls in namespace
         private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
         if (isNull _control && alive _x) then {
@@ -66,7 +64,7 @@ private _renderGroups = _grpTagSize > 0;
             [objectParent _x] call FUNC(createVehicleControl);
             GVAR(vehicles) pushBack (objectParent _x); // for speed reasons.
         };
-        if (alive _x && {[ASLToATL _pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
+        if (alive _x && {[_pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
 
             private _unitColor = _color;
             private _hasFired = _x getVariable [QGVAR(fired), 0];
@@ -82,7 +80,7 @@ private _renderGroups = _grpTagSize > 0;
             (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_pos distance _campos <= 300});
             (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
 
-            private _screenpos = worldToScreen (ASLtoATL _pos);
+            private _screenpos = worldToScreen (_pos);
             if (count _screenpos == 2) then {
                 _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
             };
@@ -96,7 +94,7 @@ private _renderGroups = _grpTagSize > 0;
 
 
 {
-    private _pos = (getPosASLVisual _x) vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];
+    private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,2 + (((boundingBox _x) select 1) select 2)];
     // circumevent the restriction on storing controls in namespace
     private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     if (isNull _control) then {
@@ -122,7 +120,7 @@ private _renderGroups = _grpTagSize > 0;
         (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 300);
         (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
         
-        private _screenpos = worldToScreen (ASLtoATL _pos);
+        private _screenpos = worldToScreen (_pos);
         if (count _screenpos == 2) then {
             _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
         };
@@ -144,8 +142,7 @@ private _renderGroups = _grpTagSize > 0;
         _data params ["_icon","_text","_color"];
         private _fontSize = 0.04;
 
-        private _pos = (getPosATLVisual _x);
-        if (surfaceIsWater _pos) then {_pos = getPosASLVisual _x;};
+        private _pos = ([_x] call CFUNC(getPosVisual));
         if (_campos distance2d _pos > 400) then {_fontSize = 0};
 
         // draw icon
@@ -167,8 +164,7 @@ private _renderGroups = _grpTagSize > 0;
 
     private _time = time - _time;
 
-    private _pos = (getPosATLVisual _unit);
-    if (surfaceIsWater _pos) then {_pos = getPosASLVisual _unit;};
+    private _pos = [_unit] call CFUNC(getPosVisual);
     _pos set [2,(_pos select 2)+1];
     private _name = "";
     if (_isplayer) then {_name = _dName;};
@@ -188,8 +184,7 @@ if(!GVAR(tracers)) exitWith {};
     _x params ["_object","_posArray","_last","_time","_type"];
     private _pos = _posArray select (count _posArray-1);
     if (!isNull _object) then {
-        private _pos = (getPosATLVisual _object);
-        if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
+        private _pos = [_object] call CFUNC(getPosVisual);
     };
     private _render = (_campos distance2d _pos <= 400);
     if (_type > 0 && _render) then {

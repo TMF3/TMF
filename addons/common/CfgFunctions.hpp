@@ -38,6 +38,7 @@ class cfgFunctions {
             class edenMouseKeyUp;
             class edenInit;
             class edenDraw;
+            class getPosVisual;
         };
     };
 };

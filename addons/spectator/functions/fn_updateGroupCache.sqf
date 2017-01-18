@@ -9,7 +9,7 @@ private _avgpos = [0,0,0];
 
 if (count _cluster > 0) then {
     {
-        _pos = (getPosASLVisual _x);
+        _pos = [_x] call CFUNC(getPosVisual);
         _avgpos = _avgpos vectorAdd _pos;
     } forEach _cluster;
     private _c = count _cluster;
