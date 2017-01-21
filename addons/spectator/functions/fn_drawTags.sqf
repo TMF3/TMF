@@ -101,7 +101,7 @@ private _unitTagSize = 1 * GVAR(unitTagScale);
         [_x] call FUNC(createVehicleControl);
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
-    if (alive _x && {[ASLToATL _pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
+    if (alive _x && {[_pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
 
         private _color = (side _x) call CFUNC(sideToColor);
         private _hasFired = _x getVariable [QGVAR(fired), 0];
