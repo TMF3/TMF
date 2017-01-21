@@ -96,17 +96,20 @@ switch _input do {
             };
         } forEach (configProperties [configFile >> "CfgLoadouts", "isClass _x"]);
 
+        // Combine array for sorting.
+        { _factionCategories set [_forEachIndex,[_x,_factionCategoryPlayerCounts select _forEachIndex]]} forEach _factionCategories;
+
         // Sort Alphabetically.
         _factionCategories sort true;
 
         {
-            private _text = _x;
-            private _players = _factionCategoryPlayerCounts select _forEachIndex;
+            _x params ["_factionName","_players"];
+            private _displayText = _factionName;
             if (_players > 0) then {
-                _text = format ["%1 (%2p)",_x,_players];
+                _displayText = format ["%1 (%2p)",_displayText,_players];
             };
-            private _index = _control lbAdd _text;
-            _control lbSetData [_index,_x];
+            private _index = _control lbAdd _displayText;
+            _control lbSetData [_index,_factionName];
         } forEach (_factionCategories);
 
         GVAR(currentFactionCategory) = "";
