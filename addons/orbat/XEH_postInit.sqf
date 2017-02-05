@@ -123,27 +123,20 @@ if (count GVAR(orbatTrackerCodeCondition) == 0) then { GVAR(orbatTrackerCodeCond
 };
 //check if return is a boolean.
 
-
+GVAR(ftMarkersEnabled) = getMissionConfigValue ['TMF_ORBATMarkersFT', false];
 FUNC(PFHUpdate) = {
     GVAR(orbatTrackerCodeCached) = [] call GVAR(orbatTrackerCodeCondition);
     if (GVAR(orbatTrackerCodeCached)) then {
         GVAR(orbatMarkerArray) call FUNC(updateArray);
     };
     
-    if (!(getMissionConfigValue ['TMF_ORBATMarkersFT', false])) exitWith {};
-    private _fireTeamMarkers = [];
-    {
-        if (!isNull _x) then {
-            private _color = switch (assignedTeam _x) do {
-              case "RED": {[0.9,0,0,0.85]};
-              case "GREEN": {[0.25,0.45,0.15,0.85]};
-              case "BLUE": {[0,0,0.9,0.85]};
-              case "YELLOW": {[0.9,0.9,0,0.85]};
-              default {[0.81,0.81,0.81,0.85]};
-            };
-            _fireTeamMarkers pushBack [(getPos _x),(getDir _x),_color];
-        };
-    } forEach (units (group player));
+    if (!GVAR(ftMarkersEnabled)) exitWith {};
+    private _fireTeamMarkers = (units player) select {!isNull _x} apply {
+        [getPos _x, getDir _x,
+            ([[0.81,0.81,0.81,0.85],[0.9,0,0,0.85],[0.25,0.45,0.15,0.85],[0,0,0.9,0.85],[0.81,0.81,0.81,0.85]]
+            select ((["RED","GREEN","BLUE","YELLOW"] find (assignedTeam _x))+1))
+        ];
+    };
     GVAR(fireteamMarkerArray) = _fireTeamMarkers; // atomic :)
 };
 
