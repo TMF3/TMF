@@ -37,7 +37,7 @@ switch _mode do {
                 _parts = "_" + (_parts joinString '_');
                 
                 private _toolBoxIcon = ["","_cross.paa","_chevrons.paa","_sl_flag.paa","_sl_flag_s"];
-                private _colours = ["yellow", "blue", "green", "red"];
+                private _colours = ["yellow", "blue", "green", "red", "orange", "gray"];
                 
                 
                 _ctrlColourToolBox lbsetcursel (_colours find _colour);
@@ -58,7 +58,7 @@ switch _mode do {
         private _ctrlNameEdit = _ctrlGroup controlsGroupCtrl 102;
 
         private _toolBoxIcon = ["","_cross.paa","_chevrons.paa","_sl_flag.paa","_sl_flag_s"];
-        private _colours = ["yellow", "blue", "green", "red"];
+        private _colours = ["yellow", "blue", "green", "red", "orange", "gray"];
 
         private _icon = _toolBoxIcon select (lbcursel _ctrlIconToolbox);
         private _path = "";
