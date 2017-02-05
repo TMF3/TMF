@@ -8,15 +8,17 @@ _data = _logic getVariable [QGVAR(waveData), []];
     private _grp = createGroup _side;
 
     {
-        _x params ["_type","_pos","_gear"];
+        _x params ["_type","_pos","_dir","_gear"];
         _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
         _unit setUnitLoadout [_gear, false];
+        _unit setDir _dir;
     } foreach _units;
 
 
     {
-        _x params ["_type","_pos","_units"];
+        _x params ["_type","_pos","_dir","_units"];
         _vehicle = createVehicle [_type, _pos, [], 0, "NONE"];
+        _vehicle setDir _dir;
         {
             _x params ["_type","_pos","_gear"];
             _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
