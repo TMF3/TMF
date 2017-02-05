@@ -495,7 +495,8 @@ class Cfg3DEN
                         "x\tmf\addons\orbat\textures\green_blank.paa",
                         "x\tmf\addons\orbat\textures\red_blank.paa",
                         "x\tmf\addons\orbat\textures\orange_blank.paa",
-                        "x\tmf\addons\orbat\textures\gray_blank.paa"
+                        "x\tmf\addons\orbat\textures\gray_blank.paa",
+                        "x\tmf\addons\orbat\textures\purple_blank.paa"
                     };
                     tooltips[] = {
                         "Yellow",
@@ -503,7 +504,8 @@ class Cfg3DEN
                         "Green",
                         "Red",
                         "Orange",
-                        "Gray"
+                        "Gray",
+                        "Purple"
                     };
                     values[] = {
                         "yellow",
@@ -511,7 +513,8 @@ class Cfg3DEN
                         "green",
                         "red",
                         "orange",
-                        "gray"
+                        "gray",
+                        "purple"
                     };
 
                     onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
@@ -644,7 +647,8 @@ class Cfg3DEN
                         "x\tmf\addons\orbat\textures\green_blank.paa",
                         "x\tmf\addons\orbat\textures\red_blank.paa",
                         "x\tmf\addons\orbat\textures\orange_blank.paa",
-                        "x\tmf\addons\orbat\textures\gray_blank.paa"
+                        "x\tmf\addons\orbat\textures\gray_blank.paa",
+                        "x\tmf\addons\orbat\textures\purple_blank.paa"
                     };
                     tooltips[] = {
                         "Yellow",
@@ -652,7 +656,8 @@ class Cfg3DEN
                         "Green",
                         "Red",
                         "Orange",
-                        "Gray"
+                        "Gray",
+                        "Purple"
                     };
                     values[] = {
                         "yellow",
@@ -660,7 +665,8 @@ class Cfg3DEN
                         "green",
                         "red",
                         "orange",
-                        "gray"
+                        "gray",
+                        "purple"
                     };
 
                     onToolboxSelChanged = "";
@@ -979,7 +985,8 @@ class Cfg3DEN
                         "x\tmf\addons\orbat\textures\green_blank.paa",
                         "x\tmf\addons\orbat\textures\red_blank.paa",
                         "x\tmf\addons\orbat\textures\orange_blank.paa",
-                        "x\tmf\addons\orbat\textures\gray_blank.paa"
+                        "x\tmf\addons\orbat\textures\gray_blank.paa",
+                        "x\tmf\addons\orbat\textures\purple_blank.paa"
                     };
                     tooltips[] = {
                         "Yellow",
@@ -987,7 +994,8 @@ class Cfg3DEN
                         "Green",
                         "Red",
                         "Orange",
-                        "Gray"
+                        "Gray",
+                        "Purple"
                     };
                     values[] = {
                         "yellow",
@@ -995,7 +1003,8 @@ class Cfg3DEN
                         "green",
                         "red",
                         "orange",
-                        "gray"
+                        "gray",
+                        "purple"
                     };
 
                     onToolboxSelChanged = ""; // missionnamespace setvariable ['Rank_value',_this select 1];
