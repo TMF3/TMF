@@ -12,6 +12,11 @@ if(_reset) then
     tmf_orbatTracker_id = 0;
 };
 
+// Raw Data is used for briefing creation so ensure it is set regardless.
+GVAR(orbatRawData) = getMissionConfigValue ["TMF_ORBATSettings",[]];
+if (GVAR(orbatRawData) isEqualType "") then { GVAR(orbatRawData) = call compile GVAR(orbatRawData)};
+
+
 if ((getMissionConfigValue ["TMF_ORBATTracker",false]) isEqualTo false) exitWith {};
 
 
@@ -33,9 +38,6 @@ OrbatSettings_Array = [
         ];
 
 */
-
-GVAR(orbatRawData) = getMissionConfigValue ["TMF_ORBATSettings",[]];
-if (GVAR(orbatRawData) isEqualType "") then { GVAR(orbatRawData) = call compile GVAR(orbatRawData)};
 
 private _ourIdx = -1;
 private _groups = [];
