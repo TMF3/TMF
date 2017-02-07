@@ -10,6 +10,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
     {
         _x params ["_type","_pos","_dir","_gear"];
         _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
+        _unit setPosATL _pos;
         _unit setUnitLoadout [_gear, false];
         _unit setDir _dir;
     } foreach _units;
@@ -18,6 +19,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
     {
         _x params ["_type","_pos","_dir","_units"];
         _vehicle = createVehicle [_type, _pos, [], 0, "NONE"];
+        _vehicle setPosATL _pos;
         _vehicle setDir _dir;
         {
             _x params ["_type","_pos","_gear"];
