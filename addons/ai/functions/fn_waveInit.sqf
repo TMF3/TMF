@@ -17,8 +17,8 @@ if(!(_logic getVariable [QGVAR(init),false])) then
         _vehicles = [];
         { if(vehicle _x != _x) then {_vehicles pushBackUnique (vehicle _x)}; } foreach units _x;
         _units = (units _x select {vehicle _x == _x});
-        _units = _units apply {[typeof _x,getpos _x,getUnitLoadout _x]};
-        _vehicles  = _vehicles apply {[typeof _x,getpos _x,crew _x apply {[typeof _x,getpos _x,getUnitLoadout _x]}]};
+        _units = _units apply {[typeof _x,getposATL _x,getDir _x,getUnitLoadout _x]};
+        _vehicles  = _vehicles apply {[typeof _x,getposATL _x,getDir _x,crew _x apply {[typeof _x,getpos _x,getUnitLoadout _x]}]};
         [side _x,_units ,_vehicles,[_x] call CFUNC(serializeWaypoints)];
     };
 
