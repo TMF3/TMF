@@ -22,7 +22,7 @@ lbClear _control;
 if (_activeFactionCategory == "") then {
     _activeFactionCategory = GVAR(currentFactionCategory);
 };
-if (_activeFactionCategory == "other") then {_activeFactionCategory = "";};
+
 
 
 // Get the selected unit
@@ -52,6 +52,7 @@ if (_activeFactionCategory == "mission") then {
     // Then configFile
     {
         private _category = toLower (getText (_x >> "category"));
+        if (_category == "") then {_category = "Other";};
         if (_activeFactionCategory == _category) then {
             private _factionName = (toLower(configName _x));
             _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
