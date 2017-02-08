@@ -303,7 +303,6 @@ switch _input do {
         lbClear _control;
         private _activeFactionCategory = GVAR(currentFactionCategory);
 
-        if (_activeFactionCategory == "other") then {_activeFactionCategory = "";};
 
         private _factions = [];
 
@@ -332,6 +331,7 @@ switch _input do {
             // Then configFile
             {
                 private _category = toLower (getText (_x >> "category"));
+                if (_category == "") then {_category = "Other";};
                 if (_activeFactionCategory == _category) then {
                     private _factionName = (toLower(configName _x));
                     _factions pushBackUnique [getText(_x >> "displayName"),_factionName];
