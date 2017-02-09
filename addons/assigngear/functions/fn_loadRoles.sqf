@@ -34,12 +34,13 @@ private _classes = [];
 //MissionConfigFile overrides.
 call {
     if(isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [missionConfigFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
-    if(isClass (configFile >> "CfgLoadouts" >> _faction) && count _classes <= 0) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
+    if(isClass (configFile >> "CfgLoadouts" >> _faction)) exitWith {_classes = configProperties [configFile >> "CfgLoadouts" >> _faction,"isClass _x"];};
 };
 
 {
     private _index = _control lbAdd getText(_x >> "displayName");
     _control lbSetData [_index,configName _x];
+    _control lbSetTooltip [_index,getText(_x >> "tooltip")];
     if(configName _x == _role) then {_control lbSetCurSel _index};
 } forEach _classes;
 
