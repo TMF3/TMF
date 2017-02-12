@@ -9,4 +9,7 @@ if (!isNil "ace_common_fnc_addCanInteractWithCondition") then {
 if (isServer) then {
     GVAR(radioChannel) = radioChannelCreate [[0.96, 0.34, 0.13, 0.8],"Spectator Chat","[SPECTATOR] %UNIT_NAME",[]];
     publicVariable QGVAR(radioChannel);
+
+    GVAR(group) = createGroup sideLogic;
+    publicVariable QGVAR(group);
 };
