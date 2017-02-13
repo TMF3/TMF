@@ -3,7 +3,7 @@
 
 disableSerialization;
 private _isOpen = [] call FUNC(isOpen);
-if(!_isOpen) exitWith {{ctrlDelete _x} foreach GVAR(controls)};
+if(!_isOpen) exitWith {{ctrlDelete _x} forEach GVAR(controls); GVAR(controls) = [];};
 if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
 
 

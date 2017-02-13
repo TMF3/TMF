@@ -40,13 +40,29 @@ if(!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
     GVAR(sides_button_strings) = ["SHOWING YOUR SIDE","NONE"];
 };
 
-private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
-{
-    if(_x) exitWith {
-        GVAR(mode) = _forEachIndex;
-        [] call FUNC(setTarget);
-    };
-} forEach _allowedModes;
+if (!isNil QGVAR(zeusPos) && {getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]}) then {
+
+    GVAR(mode) = FREECAM;
+    [] call FUNC(setTarget);
+    //GVAR(zeusPos) = getPos curatorCamera; GVAR(zeusDir) = getDir curatorCamera; GVAR(zeusPitchBank) = curatorCamera call BIS_fnc_getPitchBank;
+
+    private _pitch = GVAR(zeusPitchBank) select 0;
+    GVAR(followcam_angle) = [GVAR(zeusDir),_pitch];
+    GVAR(camera) setPos GVAR(zeusPos);
+    GVAR(camera) setDir GVAR(zeusDir);
+    [GVAR(camera),_pitch,0] call BIS_fnc_setPitchBank;
+    GVAR(camera) camSetFov GVAR(followcam_fov);
+    GVAR(camera) camCommit 0;
+    GVAR(zeusPos) = nil;
+} else {
+    private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
+    {
+        if(_x) exitWith {
+            GVAR(mode) = _forEachIndex;
+            [] call FUNC(setTarget);
+        };
+    } forEach _allowedModes;
+};
 
 // if ACRE2 is enabled, enable the mute button
 if (isClass(configFile >> "CfgPatches" >> "acre_main")) then {
@@ -57,10 +73,7 @@ if (isClass(configFile >> "CfgPatches" >> "acre_main")) then {
 
     // Add all languages
     if (!isNil "tmf_acre2_languagesTable") then {
-        private _languages = [];
-        {
-            _languages pushBack (_x select 0);
-        } forEach tmf_acre2_languagesTable;
+        private _languages = tmf_acre2_languagesTable apply {_x select 0};
         _languages call acre_api_fnc_babelSetSpokenLanguages;
     };
 }

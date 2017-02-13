@@ -237,15 +237,24 @@ switch true do {
     _done = false;
   };
   case (_key in (actionKeys "curatorInterface") && _type == KEYDOWN): {
-    if(!isnull getAssignedCuratorLogic player) then {
-      closeDialog 2;
-      [] spawn {
-          sleep 0.1;
-          openCuratorInterface;
-          waitUntil {sleep 0.1;!isNull (findDisplay 312)}; // wait until open
-          (findDisplay 312) displayAddEventHandler ["Unload",{_this spawn FUNC(zeusUnload);}];
-      };
-    };
+        if(!isNull getAssignedCuratorLogic player) then {
+            private _pos = getPos GVAR(camera);
+            private _vectorUp = vectorUp GVAR(camera);
+            private _vectorDir = vectorDir GVAR(camera);
+            closeDialog 2;
+            [_pos,_vectorUp,_vectorDir] spawn {
+                params ["_pos", "_vectorUp", "_vectorDir"];
+                sleep 0.1;
+                openCuratorInterface;
+                waitUntil {sleep 0.1;!isNull (findDisplay 312)}; // wait until open
+                curatorCamera setPos _pos;
+                curatorCamera setVectorDirAndUp [_vectorDir,_vectorUp];
+                (findDisplay 312) displayAddEventHandler ["Unload",{GVAR(zeusPos) = getPos curatorCamera; GVAR(zeusDir) = getDir curatorCamera; GVAR(zeusPitchBank) = curatorCamera call BIS_fnc_getPitchBank;_this spawn FUNC(zeusUnload);}];
+                sleep 0.5;
+                curatorCamera setPos _pos;
+                curatorCamera setVectorDirAndUp [_vectorDir,_vectorUp];
+            };
+        };
   };
   case default {
       _done =false;

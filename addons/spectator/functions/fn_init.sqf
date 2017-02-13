@@ -30,6 +30,19 @@ if(isNil QGVAR(unit)) then {GVAR(unit) = objNull};
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
 if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
+
+    if (isNull GVAR(group)) then { /* Incase spectator group is null */
+        createCenter sideLogic;
+        GVAR(group) = createGroup sideLogic;
+
+        if (isNull GVAR(group)) then {
+            createCenter civilian;
+            GVAR(group) = createGroup civilian;
+        };
+
+        publicVariable QGVAR(group);
+    };
+
     private _newUnit = (GVAR(group)) createUnit [QGVAR(unit), [0,0,5], [], 0, "FORM"];
     if (isNull _newUnit) then {
         // Unable to create new unit - Usually if too many groups for sideLogic exist.

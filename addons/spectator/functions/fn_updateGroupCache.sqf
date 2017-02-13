@@ -18,7 +18,7 @@ if (count _cluster > 0) then {
 };
 
 private _color = (side _grp) call CFUNC(sideToColor);
-_color set [3,0.7];
+//_color set [3,0.7];
 private _isAI = {isPlayer _x || _x in playableUnits } count units _grp <= 0;
 
 private _cache = [time + 0.1 + random 0.45,_avgpos,_color,_isAI];
