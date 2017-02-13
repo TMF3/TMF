@@ -10,6 +10,10 @@ cameraEffectEnableHUD true;
 private _campos = getPosVisual GVAR(camera);
 private _grpTagSize = 1 * GVAR(grpTagScale);
 private _unitTagSize = 1 * GVAR(unitTagScale);
+private _viewDistance = ((getObjectViewDistance) select 0);
+private _screenSizeX = (0.04 * safezoneW);
+private _screenSizeY = (0.01 * safezoneW);
+
 {
     // grab the group infomation cache
     private _grpCache = _x getVariable [QGVAR(grpCache),[0,[0,0,0],[1,1,1,1],true]];
@@ -28,24 +32,24 @@ private _unitTagSize = 1 * GVAR(unitTagScale);
     };
 
     // check if the average pos is on the screen
-    private _render = !_isAI && {[_avgpos] call FUNC(onScreen)};
 
+    private _screenPos = worldToScreen _avgpos;
+    private _distToCam = _avgpos distance _campos;
+    private _render = !_isAI && {count _screenPos > 0 && _distToCam <= _viewDistance};
 
     ////////////////////////////////////////////////////////
     // Group tags
     ////////////////////////////////////////////////////////
     // Only draw the icon if the grp tags are "enabled"
     if (_render) then {
-        if (!ctrlShown _control) then {_control ctrlShow true};
+        _control ctrlShow true;
+        (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 600);
+        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 300);
 
-        (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_avgpos distance _campos <= 600});
-        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_avgpos distance _campos <= 300});
-
-        private _screenpos = worldToScreen (_avgpos);
-        _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
+        _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
         _control ctrlCommit 0;
     } else {
-        if (ctrlShown _control) then {_control ctrlShow false};
+        _control ctrlShow false;
     };
     ////////////////////////////////////////////////////////
     // Unit / vehicle tags
@@ -56,16 +60,20 @@ private _unitTagSize = 1 * GVAR(unitTagScale);
         private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,3.1];
         // circumevent the restriction on storing controls in namespace
         private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
-        if (isNull _control && alive _x) then {
-            [_x] call FUNC(createUnitControl);
-            _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
-        };
+
         if (_isVeh && {isNull (((objectParent _x) getVariable [QGVAR(tagControl),[controlNull]]) select 0)}) then {
             [objectParent _x] call FUNC(createVehicleControl);
-            GVAR(vehicles) pushBack (objectParent _x); // for speed reasons.
+            GVAR(vehicles) pushBackUnique (objectParent _x); // for speed reasons.
         };
-        if (alive _x && {[_pos] call FUNC(onScreen)} && {!_isVeh} && {_campos distance2D _x <= 500} ) then {
 
+        private _screenPos = worldToScreen _pos;
+        private _distToCam = _pos distance _campos;
+
+        if (alive _x && count _screenPos > 0 && {!_isVeh && _distToCam <= 500}) then {
+            if (isNull _control) then {
+                [_x] call FUNC(createUnitControl);
+                _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+            };
             private _unitColor = _color;
             private _hasFired = _x getVariable [QGVAR(fired), 0];
             if (_hasFired > 0) then {
@@ -73,21 +81,22 @@ private _unitTagSize = 1 * GVAR(unitTagScale);
                 _x setVariable [QGVAR(fired), _hasFired-1];
             };
 
-            if (!ctrlShown _control) then {_control ctrlShow true};
-
             [_control,"",_unitColor] call FUNC(controlSetPicture);
-            private _isAI = {isPlayer _x} count crew _x <= 0;
-            (_control controlsGroupCtrl 2) ctrlShow (!_isAI && {_pos distance _campos <= 300});
-            (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
 
-            private _screenpos = worldToScreen (_pos);
-            if (count _screenpos == 2) then {
-                _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
-            };
+            _control ctrlShow true;
+
+            private _isAI = isPlayer _x;
+
+            (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 300);
+            (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 150);
+
+            // Screenpos already has 2 elements
+            _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
+
             _control ctrlCommit 0;
         } 
         else {
-            if (ctrlShown _control) then {_control ctrlShow false};
+            _control ctrlShow false;
         };
     } forEach units _x;
 } forEach allGroups;
@@ -101,35 +110,36 @@ private _unitTagSize = 1 * GVAR(unitTagScale);
         [_x] call FUNC(createVehicleControl);
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
-    if (alive _x && {[_pos] call FUNC(onScreen)} && {({alive _x} count crew _x) > 0} && {_campos distance2D _x <= 500} ) then {
 
+    private _screenPos = worldToScreen _pos;
+    private _distToCam = _pos distance _campos;
+
+    if (alive _x && count _screenPos > 0 && {({alive _x} count crew _x) > 0} && {_distToCam <= 500} ) then {
         private _color = (side _x) call CFUNC(sideToColor);
         private _hasFired = _x getVariable [QGVAR(fired), 0];
         if (_hasFired > 0) then {
             _color = [0.8,0.8,0.8,1];
             _x setVariable [QGVAR(fired), _hasFired-1];
         };
+        [_control,"",_color] call FUNC(controlSetPicture);
 
         private _commanderName = name (effectiveCommander _x);
-        [_control,"",_color] call FUNC(controlSetPicture);
+
         [_control,format ["%1 [%2]",_commanderName,count crew _x],[],true] call FUNC(controlSetText);
 
-        if (!ctrlShown _control) then {_control ctrlShow true};
+        _control ctrlShow true;
 
         private _isAI = {isPlayer _x} count crew _x <= 0;
-        (_control controlsGroupCtrl 2) ctrlShow (_pos distance _campos <= 300);
-        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_pos distance _campos <= 150});
-        
-        private _screenpos = worldToScreen (_pos);
-        if (count _screenpos == 2) then {
-            _control ctrlSetPosition [(_screenpos select 0) - (0.04 * safezoneW),(_screenpos select 1) - (0.01 * safezoneW)];
-        };
+        (_control controlsGroupCtrl 2) ctrlShow (_distToCam <= 300);
+        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_distToCam <= 150});
+
+        _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
         _control ctrlCommit 0;
     }
     else {
-        if (ctrlShown _control) then {_control ctrlShow false};
+        _control ctrlShow false;
     };
-} foreach GVAR(vehicles);
+} forEach GVAR(vehicles);
 
 
 
