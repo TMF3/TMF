@@ -85,10 +85,10 @@ private _screenSizeY = (0.01 * safezoneW);
 
             _control ctrlShow true;
 
-            private _isAI = isPlayer _x;
+            private _isPlayer = isPlayer _x;
 
-            (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 300);
-            (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 150);
+            (_control controlsGroupCtrl 2) ctrlShow (_isPlayer && _distToCam <= 300);
+            (_control controlsGroupCtrl 3) ctrlShow (_isPlayer && _distToCam <= 150);
 
             // Screenpos already has 2 elements
             _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
