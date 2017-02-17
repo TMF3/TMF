@@ -119,7 +119,7 @@ switch (_button) do {
                 _messsage = "SWITCHED TO FOLLOWCAM";
             };
             case (FREECAM): {
-                _tooltip = "SWITCH TO FRISTPERSON";
+                _tooltip = "SWITCH TO FIRST PERSON";
                 _messsage = "SWITCHED TO FREECAM";
             };
             case (FIRSTPERSON): {
