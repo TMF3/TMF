@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
 if (!([] call FUNC(isOpen))) exitWith {};
 if (GVAR(showMap) || !GVAR(tags)) exitWith {
-    {_x ctrlShow false} foreach GVAR(controls);
+    {_x ctrlShow false} forEach GVAR(controls);
 };
 
 

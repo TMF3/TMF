@@ -16,9 +16,11 @@ if(GVAR(clearGroups)) then { /* Used by UI which groups to display */
     GVAR(allunits) = [];
 };
 private _newGroups = [];
-if(!GVAR(playersOnly)) then { _newGroups = (allGroups select {{alive _x && side _x in tmf_spectator_sides} count units _x > 0}) - GVAR(groups); }
-else { _newGroups = (allGroups select {{alive _x && {side _x in tmf_spectator_sides} &&
-{{isPlayer _x || _x in playableUnits} count (units _x) > 0}} count units _x > 0}) - GVAR(groups); };
+if(!GVAR(playersOnly)) then {
+    _newGroups = (allGroups select {side _x in tmf_spectator_sides && {alive _x} count units _x > 0}) - GVAR(groups);
+} else { 
+    _newGroups = (allGroups select {side _x in tmf_spectator_sides && {alive _x && {{isPlayer _x || _x in playableUnits} count (units _x) > 0}} count units _x > 0 }) - GVAR(groups);
+};
 
 // check if any new groups appeard
 if((count _newGroups) > 0) then {
@@ -39,19 +41,18 @@ private _deadGroups = [];
 {
     private _path = [_forEachIndex];
     private _count = _unitListControl tvCount _path;
-    if(_count != {alive _x} count units _x) then {
-        // Delete all units
-        while {_count > 0} do {
+    private _units = (units _x select {alive _x});
+    if(_count != count _units) then {
+        // Erase all unit entries in the tree.
+        for "_i" from 0 to _count do {
             _unitListControl tvDelete [_forEachIndex,0];
-            _count = _unitListControl tvCount _path;
-        };
+        }
 
-        private _units = (units _x select {alive _x});
         if(count _units > 0) then {
             //Re-create units
             {
                 [_x,_path select 0] call FUNC(createUnitNode);
-            } forEach (units _x select {alive _x});
+            } forEach _units;
         } else {
             //Mark group for deletion.
             _deadGroups pushBack [_forEachIndex,_x];
