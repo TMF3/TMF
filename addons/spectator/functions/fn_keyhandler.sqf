@@ -221,15 +221,21 @@ switch true do {
       _message = "Tracers have been toggled off";
       if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
   };
-  case (_key == DIK_SPACE && _type == KEYDOWN) : {
-      if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {}; // camrea mode disabled
-      if(GVAR(mode) == FOLLOWCAM || GVAR(mode) == FIRSTPERSON) then {
+    case (_key == DIK_SPACE && _type == KEYDOWN) : {
+        if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {}; // camrea mode disabled
+        if(GVAR(mode) == FOLLOWCAM || GVAR(mode) == FIRSTPERSON) then {
+            if (GVAR(mode) == FOLLOWCAM) then {
+                private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
+                GVAR(followcam_angle) = [getDir GVAR(camera),_pitch];
+            };
           GVAR(mode) = FREECAM;
-      }
-      else {
-          GVAR(mode) = 0;
-      };
-  };
+        }
+        else {
+            GVAR(mode) = FOLLOWCAM;
+            private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
+            GVAR(followcam_angle) = [(getDir GVAR(camera) + 180) mod 360,(_pitch+180) mod 360];
+        };
+    };
   case (_key == DIK_U && _type == KEYDOWN) : {
     [] call FUNC(toggleUI);
   };

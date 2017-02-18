@@ -46,7 +46,7 @@ private _deadGroups = [];
         // Erase all unit entries in the tree.
         for "_i" from 0 to _count do {
             _unitListControl tvDelete [_forEachIndex,0];
-        }
+        };
 
         if(count _units > 0) then {
             //Re-create units
