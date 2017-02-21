@@ -13,7 +13,7 @@ class display3DEN
             {
                 items[] += {"TMF_Folder"};
                 class TMF_Folder {
-                    text = "Teamwork";
+                    text = "TMF";
                     items[] = {"TMF_Documentation", "TMF_Settings"};
                 };
                 class TMF_Settings
@@ -24,7 +24,7 @@ class display3DEN
                 };
                 class TMF_Documentation
                 {
-                    text = "TMF Wiki...";
+                    text = "TMF Wiki"; // engine adds ... to links
                     data = "HelpFeedback";
                     picture = "\a3\3DEN\Data\Controls\ctrlMenu\link_ca.paa";
                     weblink = "http://teamonetactical.com/wiki/doku.php?id=tmf:start";
@@ -59,7 +59,7 @@ class display3DEN
                             y=0;
                             h="(    5 * (pixelH * pixelGrid *     0.50))";
                             w="(    5 * (pixelW * pixelGrid *     0.50))";
-                            tooltip="Toggle garrison on drag";
+                            tooltip="TMF: Toggle garrison on dragging units";
                             textureChecked="\x\tmf\addons\common\UI\logo_tmf_small_toolbar_active_ca.paa";
                             textureUnchecked="\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
                             textureFocusedChecked="\x\tmf\addons\common\UI\logo_tmf_small_toolbar_active_ca.paa";

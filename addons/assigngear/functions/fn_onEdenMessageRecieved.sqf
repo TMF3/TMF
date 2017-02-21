@@ -40,7 +40,7 @@ if (_messageId isEqualTo 0) then { //Mission saved.
                 [_x,_value] call tmf_assignGear_fnc_helper;
             } forEach (allUnits);
             GVAR(descriptionExt) = _newdescription;
-            ["Scenario Saved - description.ext changed reapplying TMF gear"] call BIS_fnc_3DENNotification;
+            ["Scenario Saved - description.ext changed, reapplying TMF gear"] call BIS_fnc_3DENNotification;
             _return = true;
         };
     } else {

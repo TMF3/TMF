@@ -34,6 +34,6 @@ class CfgFactionClasses
     class NO_CATEGORY;
     class TEAMWORK: NO_CATEGORY
     {
-        displayName = "Teamwork";
+        displayName = "TMF";
     };
 };

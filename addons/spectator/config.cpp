@@ -19,7 +19,7 @@ class CfgRespawnTemplates
 {
     class TMF_Spectator
     {
-        displayName = "Teamwork Spectator";
+        displayName = "TMF Spectator";
         onPlayerRespawn  = "tmf_spectator_fnc_init";
         onPlayerKilled = "";
     };
