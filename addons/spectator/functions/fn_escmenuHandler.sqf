@@ -6,7 +6,7 @@ params ["_mode","_args"];
 disableSerialization;
 switch (_mode) do {
     case "onLoad": {
-      if(serverCommandAvailable "#kick" || !isMultiplayer) then {
+      if ([] call tmf_common_fnc_isAdmin) then {
           ["onLoad",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
       }
       else {
@@ -29,7 +29,7 @@ switch (_mode) do {
     };
     case "onUnload" : {
         _args params ["_display"];
-        if (serverCommandAvailable "#kick" || !isMultiplayer) then {
+        if ([] call tmf_common_fnc_isAdmin) then {
             ["onUnload",[(_args select 0)],"RscDebugConsole"] execVM "A3\ui_f\scripts\gui\RscDebugConsole.sqf";
         };
     };

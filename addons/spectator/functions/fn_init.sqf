@@ -101,7 +101,7 @@ GVAR(grpTagScale) = profileNamespace getVariable [QGVAR(grpTagScale),1.0];
 GVAR(unitTagScale) = profileNamespace getVariable [QGVAR(unitTagScale),1.0];
 
 
-
+showCinemaBorder false;
 GVAR(camera) cameraEffect ["internal","back"];
 
 // Set the location of the track point

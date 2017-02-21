@@ -9,15 +9,19 @@ if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
 
 ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
-
-
-for [{private _end = GVAR(lastControlIndex)+10;private _count = (count GVAR(controls))}, {GVAR(lastControlIndex) < _end && GVAR(lastControlIndex) < _count }, {GVAR(lastControlIndex) = GVAR(lastControlIndex) + 1}] do {
-    private _x  = GVAR(controls) select GVAR(lastControlIndex);
-    private _value = isNull (_x getVariable [QGVAR(attached),objNull]);
-    if(_value) then {ctrlDelete _x};
-    !_value
+// Cleanup - unused controls.
+private _newIdx = ((count GVAR(controls) - 1) min (GVAR(lastControlIndex)+10));
+for "_idx" from GVAR(lastControlIndex) to _newIdx step 1 do {
+    private _x = GVAR(controls) select _idx;
+    if(isNull (_x getVariable [QGVAR(attached),objNull])) then {
+        ctrlDelete _x;
+    };
 };
-if(GVAR(lastControlIndex) >= count GVAR(controls)) then {GVAR(lastControlIndex) = 0;};
+if (GVAR(lastControlIndex) >= (count GVAR(controls) - 1)) then {
+    GVAR(lastControlIndex) = 0;
+} else {
+    GVAR(lastControlIndex) = _newIdx;
+};
 
 
 GVAR(vehicles) = GVAR(vehicles) select {!isNull _x};
@@ -34,9 +38,9 @@ if (!(_dirArray isEqualTo GVAR(lastCompassValue))) then {
     GVAR(lastCompassValue) = _dirArray;
 };
 
-// update something horrible
+// update something horrible (alive also checks for isNull)
 
-if(GVAR(mode) != FREECAM && !isNil QGVAR(target) && {!isNull GVAR(target)} && {alive GVAR(target)} ) then {
+if(GVAR(mode) != FREECAM && !isNil QGVAR(target) && {alive GVAR(target)} ) then {
     (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText (name GVAR(target));
 } else {
     (uiNamespace getVariable QGVAR(unitlabel)) ctrlSetText "";

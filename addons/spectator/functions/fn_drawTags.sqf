@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
 if (!([] call FUNC(isOpen))) exitWith {};
 if (GVAR(showMap) || !GVAR(tags)) exitWith {
-    {_x ctrlShow false} foreach GVAR(controls);
+    {_x ctrlShow false} forEach GVAR(controls);
 };
 
 
@@ -43,8 +43,8 @@ private _screenSizeY = (0.01 * safezoneW);
     // Only draw the icon if the grp tags are "enabled"
     if (_render) then {
         _control ctrlShow true;
-        (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 600);
-        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 300);
+        (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 600); // Nametag
+        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 300); // Detail
 
         _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
         _control ctrlCommit 0;
@@ -85,10 +85,10 @@ private _screenSizeY = (0.01 * safezoneW);
 
             _control ctrlShow true;
 
-            private _isAI = isPlayer _x;
+            private _isPlayer = isPlayer _x;
 
-            (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 300);
-            (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 150);
+            (_control controlsGroupCtrl 2) ctrlShow (_isPlayer && _distToCam <= 300); // NameTag
+            (_control controlsGroupCtrl 3) ctrlShow (_isPlayer && _distToCam <= 150); // Detail
 
             // Screenpos already has 2 elements
             _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];

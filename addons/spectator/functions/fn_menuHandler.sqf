@@ -119,7 +119,7 @@ switch (_button) do {
                 _messsage = "SWITCHED TO FOLLOWCAM";
             };
             case (FREECAM): {
-                _tooltip = "SWITCH TO FRISTPERSON";
+                _tooltip = "SWITCH TO FIRST PERSON";
                 _messsage = "SWITCHED TO FREECAM";
             };
             case (FIRSTPERSON): {
@@ -127,6 +127,18 @@ switch (_button) do {
                 _messsage = "SWITCHED TO FIRST PERSON";
             };
         };
+
+        // Update variables based off previous mode.
+        if (GVAR(mode) == FOLLOWCAM) then {
+            private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
+            GVAR(followcam_angle) = [getDir GVAR(camera),_pitch];
+        };
+        if (GVAR(mode) == FREECAM) then {
+            GVAR(mode) = FOLLOWCAM;
+            private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
+            GVAR(followcam_angle) = [(getDir GVAR(camera) + 180) mod 360,(_pitch+180) mod 360];
+        };
+
         GVAR(mode) = _nextMode;
         [] call FUNC(setTarget);
 
