@@ -23,7 +23,7 @@ class CfgWaypoints
 {
     class Teamwork
     {
-        displayName = "Teamwork";
+        displayName = "TMF";
         class Paradrop
         {
             displayName = "Paradrop";

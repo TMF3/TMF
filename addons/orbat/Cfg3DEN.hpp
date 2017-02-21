@@ -288,7 +288,7 @@ class Cfg3DEN
             };
             class TMF_orbat_vehicleCallsign
             {
-                displayName = "TMF Vehicle Callsign";
+                displayName = "TMF: Vehicle Callsign";
                 collapsed = 0;
                 class Attributes
                 {
