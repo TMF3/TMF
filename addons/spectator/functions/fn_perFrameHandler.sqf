@@ -11,10 +11,17 @@ ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
 // Cleanup - unused controls.
 private _newIdx = ((count GVAR(controls) - 1) min (GVAR(lastControlIndex)+10));
-for "_idx" from GVAR(lastControlIndex) to _newIdx step 1 do {
-    private _x = GVAR(controls) select _idx;
-    if(isNull (_x getVariable [QGVAR(attached),objNull])) then {
-        ctrlDelete _x;
+for "_idx" from GVAR(lastControlIndex) to _newIdx do {
+    private _control = GVAR(controls) select _idx;
+    private _thing = _control getVariable [QGVAR(attached),objNull];
+    if (_thing isEqualType objNull) then {
+        if(!alive _thing) then { /* alive also does a isNull check */
+            ctrlDelete _control;
+        };
+    } else {
+        if(isNull _thing) then {
+            ctrlDelete _control;
+        };
     };
 };
 if (GVAR(lastControlIndex) >= (count GVAR(controls) - 1)) then {

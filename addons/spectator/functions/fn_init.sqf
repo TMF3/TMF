@@ -214,7 +214,9 @@ GVAR(smokeIcon) = "\x\tmf\addons\spectator\images\smokegrenade.paa";
 if (isNil QGVAR(setupEH)) then {
     addMissionEventHandler ["EntityKilled",{
         params ["_deadMan","_killer"];
-        if(count (_deadMan getVariable [QGVAR(tagControl),[]]) > 0) then {ctrlDelete ((_deadMan getVariable [QGVAR(tagControl),[controlNull]]) select 0);};
+        if(count (_deadMan getVariable [QGVAR(tagControl),[]]) > 0) then {
+            ctrlDelete ((_deadMan getVariable [QGVAR(tagControl),[controlNull]]) select 0);
+        };
         if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitwith {};
         if(isNull _killer || _killer == _deadMan) then {
             _killer = _deadMan getVariable [QGVAR(lastDamage),objNull];
@@ -224,10 +226,12 @@ if (isNil QGVAR(setupEH)) then {
         private _isplayer = isPlayer _deadMan;
         if(_isplayer) then {_dName = name (_deadMan);};
         if(isPlayer _killer) then {_kName = name (_killer);};
-        if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf _deadMan >> "displayName");_data set [5,_dName]; };
-        if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf _killer >> "displayName");_data set [6,_kName]; };
+        if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf _deadMan >> "displayName"); };
+        if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf _killer >> "displayName"); };
+        private _weapon = getText (configFile >> "CfgWeapons" >> currentWeapon _killer >> "displayName");
+        if (!isNull (objectParent _killer)) then { _weapon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _killer) >> "displayName");};
         GVAR(killList_forceUpdate) = true;
-        GVAR(killedUnits) pushback [_deadMan,time,_killer,side group _deadMan,side group _killer,_dName,_kName,getText (configFile >> "CfgWeapons" >> currentWeapon _killer >> "displayName"),_isplayer];
+        GVAR(killedUnits) pushback [_deadMan,time,_killer,side group _deadMan,side group _killer,_dName,_kName,_weapon,_isplayer];
     }];
 
     ["AllVehicles", "fired", {if([] call FUNC(isOpen)) then { _this call FUNC(onFired)}}] call CBA_fnc_addClassEventHandler;
