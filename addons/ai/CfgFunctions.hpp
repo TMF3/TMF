@@ -15,6 +15,7 @@ class cfgFunctions {
             class emptyFunction;
             class arty;
             class doArty;
+            class vehicleAttack;
         };
     };
 };
