@@ -7,7 +7,7 @@ class GVAR(vehicleAttackModule) : Module_F
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
     // Name of function triggered once conditions are met
-    function = QFUNC(vehicleAttack);
+    function = QFUNC(vehicleAttackInit);
     // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
     functionPriority = 0;
     // 0 for server only execution, 1 for global execution, 2 for persistent global execution
