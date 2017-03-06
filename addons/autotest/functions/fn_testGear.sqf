@@ -38,7 +38,7 @@ private _fnc_checkExists = {
     params ["_subarray","_config"];
     
     {
-        if (_x != "") then {
+        if ((_x != "") and (_x != "default")) then {
             if (!isClass (_config >> _x)) then {
                 _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];  
             };
@@ -64,9 +64,7 @@ private _fnc_checkExists = {
         private _headgear = GETGEAR("headgear"); //cfgweapons
         [_headgear, configFile >> "CfgWeapons"] call _fnc_checkExists;
         private _goggles = GETGEAR("goggles"); //CfgGlasses
-        if (!(_goggles isEqualTo ["default"])) then {
-            [_goggles, configFile >> "CfgGlasses"] call _fnc_checkExists;
-        };
+        [_goggles, configFile >> "CfgGlasses"] call _fnc_checkExists;
         private _hmd = GETGEAR("hmd"); // "Cfgweapons" 
         [_hmd, configFile >> "CfgGlasses"] call _fnc_checkExists;
         // Get primary weapon and items
