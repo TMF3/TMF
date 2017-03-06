@@ -2,7 +2,7 @@ class GVAR(vehicleAttackModule) : Module_F
 {
     // Standard object definitions
     scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
-    displayName = "Vehicle AI attack"; // Name displayed in the menu
+    displayName = "Vehicle Combat AI"; // Name displayed in the menu
 
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
