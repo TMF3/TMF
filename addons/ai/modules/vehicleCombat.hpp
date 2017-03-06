@@ -7,7 +7,7 @@ class GVAR(vehicleAttackModule) : Module_F
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
     // Name of function triggered once conditions are met
-    function = QFUNC(vehicleAttackInit);
+    function = QFUNC(vehicleCombat);
     // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
     functionPriority = 0;
     // 0 for server only execution, 1 for global execution, 2 for persistent global execution
@@ -21,22 +21,35 @@ class GVAR(vehicleAttackModule) : Module_F
 
 
     class EventHandlers {
-        //TODO prepare initVehicleAttack similar to huntInit
-        //init = "if (isServer) then {[_this select 0] call tmf_AI_fnc_huntInit;}; _this call bis_fnc_moduleInit;";
+        init = "_this call bis_fnc_moduleInit;";
     };
     
-    class Arguments: ArgumentsBaseUnits
+    class Arguments : ArgumentsBaseUnits
     {
         // Module specific arguments
-        class Range
+        class Radius
         {
-            displayName = "Radius"; // Argument label
-            description = "How far can be vehicle waypoint set after attack (10 to 120m)."; // Tooltip description
-            typeName = "NUMBER"; // Value type, can be "NUMBER", "STRING" or "BOOL"
-            defaultValue = "20";
+            displayName = "Radius";
+            tooltip = "How far can be vehicle waypoint set in combat (20 to 1000m).";
+            control = "Edit";
+            property = "Radius";
+            defaultValue = 20;
+            expression = "_this setVariable ['%s',_value];";
+            typeName = "NUMBER";
+        };
+        class Time
+        {
+            displayName = "Waypoint reload time";
+            tooltip = "Time in seconds. Bigger increse server performance";
+            control = "Edit";
+            property = "Time";
+            defaultValue = 20;
+            expression = "_this setVariable ['%s',_value];";
+            typeName = "NUMBER";
+            
         };
     };
     class ModuleDescription: ModuleDescription {
-        description = "Better vehicle AI behaviour after under attack."; // Short description, will be formatted as structured text
+        description = "Better combat behavior for vehicles.";
     };
 };

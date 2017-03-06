@@ -18,5 +18,5 @@ class CfgVehicles
     #include "modules\rearm.hpp"
     #include "modules\garrison.hpp"
     #include "modules\arty.hpp"
-    #include "modules\vehicleAttack.hpp"
+    #include "modules\vehicleCombat.hpp"
 };
