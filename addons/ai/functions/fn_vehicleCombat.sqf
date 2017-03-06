@@ -1,9 +1,9 @@
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
 
-//VERSION 1.0
+//VERSION 1.1
 //TODO return previous waypoints when no target
-//TODO improve waypoint pathfinding, (when 50 cycles without match, use next waypoint)
+//TODO improve waypoint pathfinding, (maybe nearRoads, isOnRoad), (maybe withnout findNearestEnemy)
 //TODO add more configurable atributes to module
 
 if(is3DEN) exitWith{};
@@ -16,6 +16,8 @@ _radius = _logic getVariable ["Radius", 20];
 _time = _logic getVariable ["Time", 10];
 
 _count = 0;
+_prevWaypoint = -1;
+
 _syncObjects = [];
 _syncObjects = synchronizedObjects _logic;
 _isFirstContact = true;
@@ -46,10 +48,23 @@ while {true} do {
                         _isFirstContact = false;
                     };
 
+                    //unstuck vehicle
+                    //systemChat format["Before check: %1 | prev %2", (count (waypoints _vehicleGroup)), _prevWaypoint];
                     if ((count (waypoints _vehicleGroup)) > 0) then {
-                        //systemChat format["Waypoints count: %1 | Waypoint timer: %2 | Current: %3", count waypoints _vehicleGroup, waypointTimeoutCurrent _vehicleGroup, currentWaypoint _vehicleGroup];
-                    } else {
-                        //systemChat format["Waypoints count: %1", count waypoints _vehicleGroup];
+                        //systemChat "Wehicle check.";
+                        if ((currentWaypoint _vehicleGroup) > _prevWaypoint) then {
+                            //systemChat "Prev Waypoint add.";
+                            _prevWaypoint = (currentWaypoint _vehicleGroup);
+                            _count = 0;
+                        } else {
+                            //systemChat format["Prev Waypoint [%1] same count: [%2].", _prevWaypoint, _count];
+                            if (_count > 6) then {
+                                //systemChat format["Restart"];
+                                _prevWaypoint = -1;
+                                _isFirstContact = true;
+                                _count = 0;
+                            };
+                        };
                     };
 
                     switch ((count (waypoints _vehicleGroup))) do { 
@@ -94,5 +109,6 @@ while {true} do {
 
     //systemChat format["[END] %1 --------------------------------------------------", _count];
     _count = _count + 1;
+    //systemChat "LOOP";
     sleep(_time);
 };
