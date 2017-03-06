@@ -47,8 +47,7 @@ while {true} do {
                     };
 
                     if ((count (waypoints _vehicleGroup)) > 0) then {
-                        //systemChat format["Waypoints count: %1 | Waypoint timer: %2 | Current: %3", 
-                        count waypoints _vehicleGroup, waypointTimeoutCurrent _vehicleGroup, currentWaypoint _vehicleGroup];
+                        //systemChat format["Waypoints count: %1 | Waypoint timer: %2 | Current: %3", count waypoints _vehicleGroup, waypointTimeoutCurrent _vehicleGroup, currentWaypoint _vehicleGroup];
                     } else {
                         //systemChat format["Waypoints count: %1", count waypoints _vehicleGroup];
                     };
@@ -69,13 +68,10 @@ while {true} do {
                             //systemChat format["Targer: %1 | Added First Waypoint: %2 | Radius: %3", _closestTarget, _waypoint, _radius];
                         };
                         default {
-                            //systemChat format["Targer: %1 | WaypointCurr: %2 | WaypointsCount: %3 | Radius: %4", 
-                                _closestTarget, currentWaypoint _vehicleGroup, (count (waypoints _vehicleGroup)), _radius];
+                            //systemChat format["Targer: %1 | WaypointCurr: %2 | WaypointsCount: %3 | Radius: %4", _closestTarget, currentWaypoint _vehicleGroup, (count (waypoints _vehicleGroup)), _radius];
                             if (((count (waypoints _vehicleGroup)) - 1) == currentWaypoint _vehicleGroup) then {
-                                //_prevWaypoint = currentWaypoint _vehicleGroup;
                                 _waypoint = _vehicleGroup addWaypoint [getPosATL _closestTarget, _radius, (count (waypoints _vehicleGroup)), format["WP:%1", _closestTarget]];
                                 
-                                //_waypoint synchronizeWaypoint [_prevWaypoint];
                                 _waypoint setWaypointType ("MOVE");
                                 _waypoint setWaypointBehaviour ("COMBAT");
                                 _waypoint setWaypointCombatMode ("YELLOW");
@@ -84,9 +80,7 @@ while {true} do {
                                 _waypoint setWaypointTimeout [5, 10, 15];
                                 _waypoint setWaypointForceBehaviour true;
 
-                                //_vehicleGroup setCurrentWaypoint [_vehicleGroup, ((count (waypoints _vehicleGroup)) - 1)];
-                                //systemChat format["Targer: %1 | Added Next Waypoint: %2 | WaypointCurr: %3 | WaypointsCount: %4 | Radius: %5", 
-                                _closestTarget, _waypoint, currentWaypoint _vehicleGroup, (count (waypoints _vehicleGroup)), _radius];
+                                //systemChat format["Targer: %1 | Added Next Waypoint: %2 | WaypointCurr: %3 | WaypointsCount: %4 | Radius: %5", _closestTarget, _waypoint, currentWaypoint _vehicleGroup, (count (waypoints _vehicleGroup)), _radius];
                             };
                         }; 
                     };
