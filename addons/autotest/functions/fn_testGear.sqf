@@ -66,7 +66,7 @@ private _fnc_checkExists = {
         private _goggles = GETGEAR("goggles"); //CfgGlasses
         [_goggles, configFile >> "CfgGlasses"] call _fnc_checkExists;
         private _hmd = GETGEAR("hmd"); // "Cfgweapons" 
-        [_hmd, configFile >> "CfgGlasses"] call _fnc_checkExists;
+        [_hmd, configFile >> "Cfgweapons"] call _fnc_checkExists;
         // Get primary weapon and items
         private _primaryWeapon = GETGEAR("primaryWeapon"); //Cfgweapons"
         [_primaryWeapon, configFile >> "CfgWeapons"] call _fnc_checkExists;
