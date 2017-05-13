@@ -23,8 +23,8 @@ _ints append lineIntersectsObjs [AGLToASL(_logic modelToWorld [0,0,-2]), AGLToAS
 _ints = _ints select {str(_x) find ".p3d" > 0};
 _ints = _ints arrayIntersect _ints;
 {
-	_x hideObject true;
-	_x setPosATL ((getPosATL _x) vectorAdd [0,0,-1000]);
+    _x hideObject true;
+    _x setPosATL ((getPosATL _x) vectorAdd [0,0,-1000]);
 } forEach _ints;
 
 deleteVehicle _logic;
