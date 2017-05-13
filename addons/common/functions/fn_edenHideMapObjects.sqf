@@ -28,11 +28,6 @@
 
 #define ICON "\a3\ui_f\data\map\Markers\Military\dot_ca.paa"
 {
-    _x removeAllEventHandlers "UnregisteredFromWorld3DEN";
-    _x addEventHandler ["UnregisteredFromWorld3DEN", {
-        { _x hideObjectGlobal false } forEach ((_this select 0) getVariable [QGVAR(intersections),[]]);
-    }];
-
     drawLine3D [_x modelToWorld X1, _x modelToWorld X2, COLX];
     drawLine3D [_x modelToWorld Y1, _x modelToWorld Y2, COLY];
     drawLine3D [_x modelToWorld Z1, _x modelToWorld Z2, COLZ];
@@ -48,6 +43,11 @@
 
 if (current3DENOperation == "MoveItems" || current3DENOperation == "RotateItems") then {
     {
+        _x removeAllEventHandlers "UnregisteredFromWorld3DEN";
+        _x addEventHandler ["UnregisteredFromWorld3DEN", {
+            { _x hideObjectGlobal false } forEach ((_this select 0) getVariable [QGVAR(intersections),[]]);
+        }];
+
         { _x hideObjectGlobal false } forEach (_x getVariable [QGVAR(intersections),[]]);
 
         private _ints = [];
