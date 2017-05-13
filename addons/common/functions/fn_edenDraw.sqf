@@ -1,5 +1,5 @@
 /*
- * Name: TMF_common_fnc_edenInit
+ * Name: TMF_common_fnc_edenDraw
  * Author: Snippers
  *
  * Arguments:
@@ -18,3 +18,5 @@ if (GVAR(Garrison)) then {
     [] call FUNC(edenMouseOver);
     [] call FUNC(edenMouseKeyDown);
 };
+
+[] call FUNC(edenHideMapObjects);
