@@ -18,20 +18,21 @@ class Extended_Init_EventHandlers {
             init = "if (isTMF && local (_this select 0)) then {(_this select 0) addRating 100000;};"; // prevent AI friendly fire.
         };
     };
+    class GVAR(hideMapObjects) {
+        class ADDON {
+            init = QUOTE(_this call FUNC(hideMapObjectsInit));
+        };
+    };
 };
 
 class Extended_InitPost_EventHandlers {
-    class Car
-    {
-        class ADDON
-        {
+    class Car {
+        class ADDON {
             init = "(_this select 0) allowCrewInImmobile true;";
         };
     };
-    class Tank
-    {
-        class ADDON
-        {
+    class Tank {
+        class ADDON {
             init = "(_this select 0) allowCrewInImmobile true;";
         };
     };
