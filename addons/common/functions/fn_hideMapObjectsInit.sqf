@@ -15,6 +15,8 @@
 #include "\x\tmf\addons\common\script_component.hpp"
 params ["_logic"];
 
+if !(isServer) exitWith {};
+
 private _ints = [];
 _ints append lineIntersectsObjs [AGLToASL(_logic modelToWorld [-2,0,0]), AGLToASL(_logic modelToWorld [2,0,0]), objNull, _logic, true, 32];
 _ints append lineIntersectsObjs [AGLToASL(_logic modelToWorld [0,-2,0]), AGLToASL(_logic modelToWorld [0,2,0]), objNull, _logic, true, 32];
@@ -23,7 +25,7 @@ _ints append lineIntersectsObjs [AGLToASL(_logic modelToWorld [0,0,-2]), AGLToAS
 _ints = _ints select {str(_x) find ".p3d" > 0};
 _ints = _ints arrayIntersect _ints;
 {
-    _x hideObject true;
+    _x hideObjectGlobal true;
     _x setPosATL ((getPosATL _x) vectorAdd [0,0,-1000]);
 } forEach _ints;
 
