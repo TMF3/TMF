@@ -55,38 +55,38 @@ private _fnc_checkExists = {
     };
 
     if (isClass _config) then {
-        private _uniform = GETGEAR("uniform"); //cfgweapons
+        private _uniform = GETGEAR("uniform"); //CfgWeapons
         [_uniform, configFile >> "CfgWeapons"] call _fnc_checkExists;
         private _vest = GETGEAR("vest"); //CfgWeapons
         [_vest, configFile >> "CfgWeapons"] call _fnc_checkExists;
         private _backpack = GETGEAR("backpack"); /// cfghivecles
         [_backpack, configFile >> "CfgVehicles"] call _fnc_checkExists;
-        private _headgear = GETGEAR("headgear"); //cfgweapons
+        private _headgear = GETGEAR("headgear"); //CfgWeapons
         [_headgear, configFile >> "CfgWeapons"] call _fnc_checkExists;
         private _goggles = GETGEAR("goggles"); //CfgGlasses
         [_goggles, configFile >> "CfgGlasses"] call _fnc_checkExists;
-        private _hmd = GETGEAR("hmd"); // "Cfgweapons" 
-        [_hmd, configFile >> "Cfgweapons"] call _fnc_checkExists;
+        private _hmd = GETGEAR("hmd"); // "CfgWeapons" 
+        [_hmd, configFile >> "CfgWeapons"] call _fnc_checkExists;
         // Get primary weapon and items
-        private _primaryWeapon = GETGEAR("primaryWeapon"); //Cfgweapons"
+        private _primaryWeapon = GETGEAR("primaryWeapon"); //CfgWeapons"
         [_primaryWeapon, configFile >> "CfgWeapons"] call _fnc_checkExists;
-        private _scope = GETGEAR("scope"); // "Cfgweapons"
+        private _scope = GETGEAR("scope"); // "CfgWeapons"
         [_scope, configFile >> "CfgWeapons"] call _fnc_checkExists;
-        private _bipod = GETGEAR("bipod"); //"Cfgweapons"
+        private _bipod = GETGEAR("bipod"); //"CfgWeapons"
         [_bipod, configFile >> "CfgWeapons"] call _fnc_checkExists;
-        private _attachment = GETGEAR("attachment"); // "Cfgweapons"
+        private _attachment = GETGEAR("attachment"); // "CfgWeapons"
         [_attachment, configFile >> "CfgWeapons"] call _fnc_checkExists;
-        private _silencer = GETGEAR("attachment"); //"Cfgweapons"
+        private _silencer = GETGEAR("attachment"); //"CfgWeapons"
         [_silencer, configFile >> "CfgWeapons"] call _fnc_checkExists;
 
         // Get other weapon and items
-        private _secondaryWeapon = GETGEAR("secondaryWeapon"); //Cfgweapons"
+        private _secondaryWeapon = GETGEAR("secondaryWeapon"); //CfgWeapons"
         [_secondaryWeapon, configFile >> "CfgWeapons"] call _fnc_checkExists;
-        private _secondaryAttachments = GETGEAR("secondaryAttachments");//"Cfgweapons"
+        private _secondaryAttachments = GETGEAR("secondaryAttachments");//"CfgWeapons"
         [_secondaryAttachments, configFile >> "CfgWeapons"] call _fnc_checkExists;
-        private _sidearmWeapon = GETGEAR("sidearmWeapon"); //Cfgweapons"
+        private _sidearmWeapon = GETGEAR("sidearmWeapon"); //CfgWeapons"
         [_sidearmWeapon, configFile >> "CfgWeapons"] call _fnc_checkExists;
-        private _sidearmAttachments = GETGEAR("sidearmAttachments");//"Cfgweapons"
+        private _sidearmAttachments = GETGEAR("sidearmAttachments");//"CfgWeapons"
         [_sidearmAttachments, configFile >> "CfgWeapons"] call _fnc_checkExists;
 
         private _linkedItems = GETGEAR("linkedItems");// "Cfgmagazines"
