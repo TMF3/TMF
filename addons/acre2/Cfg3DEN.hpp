@@ -35,46 +35,6 @@ class Cfg3DEN
                     collapsed = 0; // When 1, the category is collapsed by default
                     class Attributes
                     {
-                        class TMF_ACRE_TerrainLoss
-                        {
-                            property = "TMF_AcreTerrainLoss";
-                            displayName = "ACRE2 Terrain Loss:";
-                            control = "Slider";
-                            //expression = "[_value] call acre_api_fnc_setLossModelScale;";
-                            tooltip = "How much should terrain affect radio signal strength? (0% disables terrain loss completely)";
-                            defaultValue = 1;
-                            condition = "true";
-                        };
-                        class TMF_ACRE_fullDuplex
-                        {
-                            property = "TMF_AcreFullDuplex";
-                            displayName = "ACRE2 Radio Full-duplex:";
-                            control = "Checkbox";
-                            //expression = "[_value] call acre_api_fnc_setFullDuplex;";
-                            tooltip = "Should radios be able to transmit and recieve simultaneously?";
-                            defaultValue = false;
-                            condition = "true";
-                        };
-                        class TMF_ACRE_interfecence
-                        {
-                            property = "TMF_AcreInterference";
-                            displayName = "ACRE2 Radio interference:";
-                            control = "Checkbox";
-                            //expression = "[_value] call acre_api_fnc_setInterference;";
-                            tooltip = "Should radio signals intefer with each other?";
-                            defaultValue = true;
-                            condition = "true";
-                        };
-                        class TMF_ACRE_AI_reveal
-                        {
-                            property = "TMF_AcreAIReveal";
-                            displayName = "ACRE2 AI Reveal:";
-                            control = "Checkbox";
-                            //expression = "[_value] call acre_api_fnc_setRevealToAI;";
-                            tooltip = "Allow AI to hear players talking? This feature will reveal a player's location to nearby AI if they are talking.";
-                            defaultValue = false;
-                            condition = "true";
-                        };
                         class Network_Enabled
                         {
                             property = "TMF_AcreNetworkEnabled";
@@ -105,9 +65,7 @@ class Cfg3DEN
                             defaultValue = "['ACRE_PRC343','ACRE_PRC148']";
                             condition = "true";
                         };
-                        
                     };
-
                 };
                 class TMF_AcreBabelSettings
                 {
