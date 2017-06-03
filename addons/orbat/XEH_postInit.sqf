@@ -15,52 +15,6 @@ GVAR(fireteamMarkerArray) = [];
 GVAR(directionalFTMarkers) = getMissionConfigValue ["TMF_ORBATMarkersFT_Directional",false];
 
 // ====================================================================================
-// Actively monitor the BIS displays so that they function properly.
-
-// Briefing
-if (isMultiplayer) then {
-    [] spawn {
-        uiSleep 2;
-        if(isServer) then {
-            waitUntil {!isNull (findDisplay 52)};
-             ((findDisplay 52) displayctrl 51) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
-        } else {
-            waitUntil {!isNull (findDisplay 53)};
-             ((findDisplay 53) displayctrl 51) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
-        };
-    };
-} else {
-    [] spawn { // Work for single player briefing (EDEN preview)
-        uiSleep 2;
-        disableSerialization;
-        {
-            private _control = _x displayCtrl 51;
-            if (ctrlMapScale _control != 0) then { // Is Map scale component
-                _control ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
-            };
-        } forEach allDisplays;
-    };
-};
-
-// Ingame Map
-[{
-    if (isNull findDisplay 12) exitWith {};
-
-    ((findDisplay 12) displayctrl 51) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
-    [_this select 1] call CBA_fnc_removePerFrameHandler;
-}, 0] call CBA_fnc_addPerFrameHandler;
-
-//GPS
-[{
-    if (isNull (uiNamespace getVariable "RscMiniMap")) exitWith {};
-
-    if ((((uiNamespace getVariable "RscMiniMap") displayctrl 101) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}]) > 0) then {
-        [_this select 1] call CBA_fnc_removePerFrameHandler;
-    };
-}, 1] call CBA_fnc_addPerFrameHandler;
-
-
-// ====================================================================================
 // Actively monitor displays that are not created using createDialog as they are not easily trackable e.g. tao's folding map.
 
 //Tao Folding map support.
@@ -78,7 +32,7 @@ if (isClass(configFile >> "CfgPatches" >> "tao_foldmap_a3")) then {
 };
 
 //ACE3 Micro Dagr
-if (isClass(configFile >> "CfgPatches" >> "ace_microdagr")) then {
+/*if (isClass(configFile >> "CfgPatches" >> "ace_microdagr")) then {
 
     [{
         disableSerialization;
@@ -103,7 +57,7 @@ if (isClass(configFile >> "CfgPatches" >> "ace_microdagr")) then {
 
     }, 1,[controlNull,controlNull]] call CBA_fnc_addPerFrameHandler;
 
-};
+};*/
 
 
 GVAR(orbatTrackerCodeCondition) = getMissionConfigValue ["TMF_ORBATTrackerCondition","true"];
@@ -139,18 +93,6 @@ FUNC(PFHUpdate) = {
     };
     GVAR(fireteamMarkerArray) = _fireTeamMarkers; // atomic :)
 };
-
-
-// Ensure player is loaded.
-
-[{
-    if (isNull (uiNamespace getVariable "RscMiniMap")) exitWith {};
-
-    if ((((uiNamespace getVariable "RscMiniMap") displayctrl 101) ctrlAddEventHandler ["draw",{_this call tmf_orbat_fnc_draw}]) > 0) then {
-        [_this select 1] call CBA_fnc_removePerFrameHandler;
-    };
-}, 1] call CBA_fnc_addPerFrameHandler;
-
 
 
 // Force a 1 second wait.
