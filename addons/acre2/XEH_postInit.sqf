@@ -19,31 +19,6 @@ if (getMissionConfigValue ['TMF_AcreBabelEnabled',false]) then {
     } forEach (TMF_BabelArray);
 };
 
-// ACRE 2 API functions.
-
-// TODO Allow again
-/*if (getMissionConfigValue ['TMF_AcreTerrainLoss',1] != 1) then {
-    [(getMissionConfigValue ['TMF_AcreTerrainLoss',1])] call acre_api_fnc_setLossModelScale;
-};*/
-
-// OVERRIDE 1TAC
-[0.5] call acre_api_fnc_setLossModelScale;
-[true] call acre_api_fnc_ignoreAntennaDirection;
-
-if (getMissionConfigValue ['TMF_AcreFullDuplex',false]) then {
-    [true] call acre_api_fnc_setFullDuplex;
-};
-if (!(getMissionConfigValue ['TMF_AcreInterference',true])) then {
-    [(getMissionConfigValue ['TMF_AcreInterference',false])] call acre_api_fnc_setInterference;
-};
-if (!getMissionConfigValue ['TMF_AcreAIReveal',false]) then {
-    [false] call acre_api_fnc_setRevealToAI;
-};
-
-
-
-//getMissionConfigValue
-
 /// Parse Radios
 
 if (getMissionConfigValue ['TMF_AcreNetworkEnabled',false]) then {
