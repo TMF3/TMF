@@ -107,7 +107,8 @@ _done = true;
 switch true do {
   case (_key == DIK_ESCAPE && _type == KEYDOWN) :
   {
-      createDialog "tmf_spectator_exit";
+      closeDialog 0;
+      RSCLAYER cutRsc [QGVAR(escDisplay), "BLACK", 1, true];
       _done = true;
   };
   case (_key == DIK_A) : {
