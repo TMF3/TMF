@@ -37,3 +37,9 @@ class Extended_InitPost_EventHandlers {
         };
     };
 };
+
+class Extended_DisplayLoad_EventHandlers {
+    class RscDisplayMultiplayerSetup {
+        tmf_slotting = QUOTE(_this call (uiNamespace getVariable 'FUNC(initDisplayMultiplayerSetup)'));
+    };
+};

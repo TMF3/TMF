@@ -41,6 +41,8 @@ class cfgFunctions {
             class edenHideMapObjects;
             class hideMapObjectsInit;
             class getPosVisual;
+            class initDisplayMultiplayerSetup;
+            class testGroupsSlottingScreen;
         };
     };
 };

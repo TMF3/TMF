@@ -20,3 +20,9 @@ class cfgPatches
 #include "CfgVehicles.hpp"
 
 #include "display3DEN.hpp"
+
+class TMF_autotest {
+    class GVAR(groupNamesSlottingScreen) {
+        code = QUOTE([] call FUNC(testGroupsSlottingScreen));
+    };
+};
