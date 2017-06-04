@@ -32,7 +32,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
 
     _lastIndex = (count waypoints _grp)-1;
     [_grp,_lastIndex] setWPPos (position leader _grp);
-    for "_i" from 0 to (count _waypoints) step 1 do {
+    for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
         _way = _waypoints select _i;
 
         // TODO fix this shit
