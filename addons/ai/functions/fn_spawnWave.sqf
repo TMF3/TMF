@@ -5,7 +5,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
 {
     _x params ["_side","_units","_vehicles","_waypoints"];
 
-    private _grp = createGroup _side;
+    private _grp = createGroup [_side, true]; // Delete group when empty
 
     {
         _x params ["_type","_pos","_dir","_gear"];
@@ -13,7 +13,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
         _unit setPosATL _pos;
         _unit setUnitLoadout [_gear, false];
         _unit setDir _dir;
-    } foreach _units;
+    } forEach _units;
 
 
     {
@@ -26,13 +26,13 @@ _data = _logic getVariable [QGVAR(waveData), []];
             _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
             _unit moveInAny _vehicle;
             _unit setUnitLoadout [_gear, false];
-        } foreach _units;
-    } foreach _vehicles;
+        } forEach _units;
+    } forEach _vehicles;
 
 
     _lastIndex = (count waypoints _grp)-1;
     [_grp,_lastIndex] setWPPos (position leader _grp);
-    for [{_i=0},{_i<(count _waypoints)},{_i=_i+1}] do {
+    for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
         _way = _waypoints select _i;
 
         // TODO fix this shit
@@ -53,7 +53,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
 
     _grp setCurrentWaypoint [_grp,_lastIndex];
     _spawnedGroups pushBack _grp;
-} foreach _data;
+} forEach _data;
 
 _wave = _logic getVariable ["Waves",1];
 _logic setVariable ["Waves", (_wave-1)];
@@ -62,7 +62,7 @@ _handlers = _logic getVariable ["Handlers",[]];
     if(_x isEqualType {}) then {
         [_wave,_spawnedGroups] call _x;
     };
-} foreach _handlers;
+} forEach _handlers;
 // Check if there is another wave
 if(_logic getVariable ["Waves",1] > 0) then {
 
