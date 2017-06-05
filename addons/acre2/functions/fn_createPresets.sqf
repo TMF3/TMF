@@ -99,7 +99,7 @@ private _sharedRadioChannelListing = [];
                 
                 _channels = [];
                 for "_i" from 0 to 15 do {
-                    private _channel = [] call acre_main_fnc_fastHashCreate;//;HASHLIST_CREATEHASH(_channels);
+                    private _channel = [] call acre_main_fnc_fastHashCreate;//HASHLIST_CREATEHASH(_channels);
                     _channel setVariable ["frequencyTX",0];
                     _channels pushBack _channel;
                 };
