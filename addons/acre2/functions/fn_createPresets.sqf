@@ -95,11 +95,11 @@ private _sharedRadioChannelListing = [];
             private _return = [_radioName, (_radioSettingEntry select 5), _presetName] call acre_api_fnc_copyPreset; // tweak
             //Preset Data doesn't exist, create fake preset.
             if (!_return) then {
-                private _radioPresetData = createLocation ["AcreHashType", [-10000,-10000,-10000], 0, 0];//HASH_CREATE;
+                private _radioPresetData = [] call acre_main_fnc_fastHashCreate;//HASH_CREATE;
                 
                 _channels = [];
                 for "_i" from 0 to 15 do {
-                    private _channel = createLocation ["AcreHashType", [-10000,-10000,-10000], 0, 0];//;HASHLIST_CREATEHASH(_channels);
+                    private _channel = [] call acre_main_fnc_fastHashCreate;//;HASHLIST_CREATEHASH(_channels);
                     _channel setVariable ["frequencyTX",0];
                     _channels pushBack _channel;
                 };
