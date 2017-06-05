@@ -36,8 +36,6 @@ class CfgFunctions {
             class createUnitControl;
             class createVehicleControl;
             class updateKillList;
-            class onLoadTitle;
-            class onKeyTitle;
         };
     };
 

@@ -107,8 +107,7 @@ _done = true;
 switch true do {
   case (_key == DIK_ESCAPE && _type == KEYDOWN) :
   {
-      closeDialog 0;
-      RSCLAYER cutRsc [QGVAR(escDisplay), "BLACK", 1, true];
+      (findDisplay DISPLAY_ID) createDisplay (["RscDisplayInterrupt","RscDisplayMPInterrupt"] select isMultiplayer);
       _done = true;
   };
   case (_key == DIK_A) : {
