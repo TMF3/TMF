@@ -36,6 +36,7 @@ class CfgRespawnTemplates
 #include "CfgVehicles.hpp"
 #include "tags.hpp"
 class ctrlStaticBackgroundDisableTiles;
+class RscListBox;
 class RscTitles {
     class GVAR(escDisplay) {    
         idd = -1;
@@ -60,6 +61,18 @@ class RscTitles {
                 colorText[] = {1,1,1,1};
                 sizeEx = 0.05 * safeZoneW;
                 text = "PRESS ENTER TO RETURN TO SPECTATOR";
+            };
+            class MissionHeader : RscText {
+                idc = 101;
+                x = (0.25 * safezoneW + safezoneX) - (0.25 * safezoneW);
+                y = (0.025 * safezoneH + safezoneY) - (0.15 * safezoneH);
+                w = 0.50 * safezoneW;
+                h = 0.30 * safezoneH;
+                shadow = 2;
+                font = "RobotoCondensedBold"
+                colorText[] = {1,1,1,1};
+                sizeEx = 0.05 * safeZoneW;
+                text = "Unknown Mission";
             };
         };
     };
