@@ -107,8 +107,16 @@ _done = true;
 switch true do {
   case (_key == DIK_ESCAPE && _type == KEYDOWN) :
   {
-      (findDisplay DISPLAY_ID) createDisplay (["RscDisplayInterrupt","RscDisplayMPInterrupt"] select isMultiplayer);
-      _done = true;
+    [QGVAR(black),false] call BIS_fnc_blackOut;
+    with uiNamespace do {
+      closeDialog 0;
+      _display = (findDisplay 46) createDisplay (["RscDisplayInterrupt","RscDisplayMPInterrupt"] select isMultiplayer);
+      _display displayAddEventHandler  ["Unload", {
+        [player,player,true] call FUNC(init);
+        [QGVAR(black)] call BIS_fnc_blackIn;
+      }];
+    };
+    _done = true;
   };
   case (_key == DIK_A) : {
       if(_type == KEYDOWN) then
