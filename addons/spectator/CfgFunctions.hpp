@@ -22,14 +22,12 @@ class CfgFunctions {
             class isOpen;
             class keyhandler;
             class updateGroupCache;
-            class handleSettingsMenu;
             class menuHandler;
             class mouseHandler;
             class onMapClick;
             class onChange;
             class onLoad;
             class perFrameHandler;
-            class onLoadSettings;
             class setTarget;
             class handleCamera;
             class createGroupControl;
