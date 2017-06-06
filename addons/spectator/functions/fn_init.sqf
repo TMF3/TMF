@@ -213,25 +213,33 @@ GVAR(smokeIcon) = "\x\tmf\addons\spectator\images\smokegrenade.paa";
 
 if (isNil QGVAR(setupEH)) then {
     addMissionEventHandler ["EntityKilled",{
-        params ["_deadMan","_killer"];
+        params ["_deadMan","_killer","_instigator"];
+
+        if (isNull _instigator) then {_instigator = UAVControl vehicle _killer select 0}; // UAV/UGV player operated road kill
+        if (isNull _instigator) then {_instigator = _killer}; // player driven vehicle road kill
+
+
         if(count (_deadMan getVariable [QGVAR(tagControl),[]]) > 0) then {
             ctrlDelete ((_deadMan getVariable [QGVAR(tagControl),[controlNull]]) select 0);
         };
+
+
         if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitwith {};
-        if(isNull _killer || _killer == _deadMan) then {
-            _killer = _deadMan getVariable [QGVAR(lastDamage),objNull];
+        if(isNull _instigator || _instigator == _deadMan) then {
+            _instigator = _deadMan getVariable [QGVAR(lastDamage),objNull];
         };
+
         private _kName = "";
         private _dName = "";
         private _isplayer = isPlayer _deadMan;
         if(_isplayer) then {_dName = name (_deadMan);};
-        if(isPlayer _killer) then {_kName = name (_killer);};
+        if(isPlayer _instigator) then {_kName = name (_instigator);};
         if(_dName == "") then { _dName = getText (configFile >> "CfgVehicles" >> typeOf _deadMan >> "displayName"); };
-        if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf _killer >> "displayName"); };
-        private _weapon = getText (configFile >> "CfgWeapons" >> currentWeapon _killer >> "displayName");
-        if (!isNull (objectParent _killer)) then { _weapon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _killer) >> "displayName");};
+        if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf _instigator >> "displayName"); };
+        private _weapon = getText (configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName");
+        if (!isNull (objectParent _instigator)) then { _weapon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _instigator) >> "displayName");};
         GVAR(killList_forceUpdate) = true;
-        GVAR(killedUnits) pushback [_deadMan,time,_killer,side group _deadMan,side group _killer,_dName,_kName,_weapon,_isplayer];
+        GVAR(killedUnits) pushback [_deadMan,time,_instigator,side group _deadMan,side group _instigator,_dName,_kName,_weapon,_isplayer];
     }];
 
     ["AllVehicles", "fired", {if([] call FUNC(isOpen)) then { _this call FUNC(onFired)}}] call CBA_fnc_addClassEventHandler;
@@ -247,6 +255,7 @@ GVAR(lastControlIndex) = 0;
 ["tmf_spectator", "onEachFrame", {
     [] call FUNC(perFrameHandler);
 }] call BIS_fnc_addStackedEventHandler;
+
 [QGVAR(init), _this] call EFUNC(event,emit);
 if(isNil QGVAR(drawEvent)) then {
     GVAR(drawEvent) = addMissionEventHandler ["Draw3D",{ [] call FUNC(drawTags); }];
