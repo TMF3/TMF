@@ -8,21 +8,22 @@ if(count _headless > 0 && isServer) exitWith {
 };
 
 // check if we have done the setup.
-if(!(_logic getVariable [QGVAR(init),false])) then
-{
-    _allgroups = [];
+if(!(_logic getVariable [QGVAR(init),false])) then {
+    private _allgroups = [];
+    
     {if(side group _x in [blufor,opfor,independent,civilian]) then {_allgroups pushBackUnique group _x};} foreach (synchronizedObjects _logic);
 
     _data = _allgroups apply {
         _vehicles = [];
         { if(vehicle _x != _x) then {_vehicles pushBackUnique (vehicle _x)}; } foreach units _x;
-        _units = (units _x select {vehicle _x == _x});
-        _units = _units apply {[typeof _x,getposATL _x,getDir _x,getUnitLoadout _x]};
-        _vehicles  = _vehicles apply {[typeof _x,getposATL _x,getDir _x,crew _x apply {[typeof _x,getpos _x,getUnitLoadout _x]}]};
+        private _units = (units _x select {vehicle _x == _x}) apply {[typeof _x,getposATL _x,getDir _x,getUnitLoadout _x]};
+        private _vehicles  = _vehicles apply {[typeof _x,getposATL _x,getDir _x,crew _x apply {[typeof _x,getpos _x,getUnitLoadout _x]}]};
         [side _x,_units ,_vehicles,[_x] call CFUNC(serializeWaypoints)];
     };
 
     _logic setVariable [QGVAR(waveData), _data];
+
+    // Delete the old units/grps
     {
         _units = units _x;
         {
@@ -36,5 +37,6 @@ if(!(_logic getVariable [QGVAR(init),false])) then
 
 
 if(_activated) then {
-    [_logic] call FUNC(spawnWave);
+    private _delay = _logic getVariable ["Delay",0];
+    [FUNC(spawnWave),[_logic],_delay] call CBA_fnc_waitAndExecute;
 };

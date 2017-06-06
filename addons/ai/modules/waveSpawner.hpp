@@ -1,5 +1,4 @@
-class GVAR(wavespawn) : Module_F
-{
+class GVAR(wavespawn) : Module_F {
     // Standard object definitions
     scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
     displayName = "Wave Spawner"; // Name displayed in the menu
@@ -23,25 +22,27 @@ class GVAR(wavespawn) : Module_F
         init = "if(isServer && !is3DEN) then {[{_this call tmf_AI_fnc_waveInit;}, [_this select 0,[],false]] call CBA_fnc_execNextFrame;};_this call bis_fnc_moduleInit;";
     };
 
-    class Arguments: ArgumentsBaseUnits
-    {
+    class Arguments: ArgumentsBaseUnits {
         // Module specific arguments
-        class Waves
-        {
+        class Delay {
+            displayName = "Execution delay";
+            description = "The time in seconds to wait before spawning the first wave"
+            typeName = "NUMBER";
+            defaultValue = "0";
+        }
+        class Waves {
             displayName = "Number of waves"; // Argument label
             description = ""; // Tooltip description
             typeName = "NUMBER"; // Value type, can be "NUMBER", "STRING" or "BOOL"
             defaultValue = "1";
         };
-        class Time
-        {
+        class Time {
             displayName = "Time between waves"; // Argument label
             description = "In seconds."; // Tooltip description
             typeName = "NUMBER"; // Value type, can be "NUMBER", "STRING" or "BOOL"
             defaultValue = "10";
         };
-        class WhenDead
-        {
+        class WhenDead {
             displayName = "Previous wave must be dead"; // Argument label
             description = "Well should they?"; // Tooltip description
             typeName = "bool"; // Value type, can be "NUMBER", "STRING" or "BOOL"
