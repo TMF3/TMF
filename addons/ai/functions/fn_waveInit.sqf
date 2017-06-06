@@ -10,6 +10,7 @@ if(count _headless > 0 && isServer) exitWith {
 // check if we have done the setup.
 if(!(_logic getVariable [QGVAR(init),false])) then {
     private _allgroups = [];
+    
     {if(side group _x in [blufor,opfor,independent,civilian]) then {_allgroups pushBackUnique group _x};} foreach (synchronizedObjects _logic);
 
     _data = _allgroups apply {
@@ -36,6 +37,6 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
 
 
 if(_activated) then {
-    private _delay = logic getVariable ["Delay",0];
+    private _delay = _logic getVariable ["Delay",0];
     [QFUNC(spawnWave),[_logic],_delay] call CBA_fnc_waitAndExecute;
 };
