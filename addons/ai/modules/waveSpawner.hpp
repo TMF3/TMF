@@ -26,7 +26,7 @@ class GVAR(wavespawn) : Module_F {
         // Module specific arguments
         class Delay {
             displayName = "Execution delay";
-            description = "The time in seconds to wait before spawning the first wave"
+            description = "The time in seconds to wait before spawning the first wave";
             typeName = "NUMBER";
             defaultValue = "0";
         }
