@@ -1,8 +1,8 @@
-
+// Legacy module.
 class GVAR(garrison) : Module_F
 {
-    scope = 2;
-    displayName = "Garrison";
+    scope = 0;
+    displayName = "Garrison (Legacy)";
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
     function = QFUNC(garrison);
@@ -51,13 +51,13 @@ class GVAR(garrison) : Module_F
     };
 };
 
-class GVAR(garrisonNumber) : Module_F
+class GVAR(garrisonQuantity) : Module_F
 {
     scope = 2;
-    displayName = "Garrison (Number)";
+    displayName = "Garrison";
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
-    function = QFUNC(garrisonNumber);
+    function = QFUNC(garrisonQuantity);
     // 0 for server only execution, 1 for global execution, 2 for persistent global execution
     isGlobal = 0;
     isTriggerActivated = 1;
@@ -79,12 +79,12 @@ class GVAR(garrisonNumber) : Module_F
             tooltip = "Forces units to stay put and never move.";
             property = "holdPos";
             control = "Checkbox";
-            defaultValue = false;
+            defaultValue = true;
             expression = "_this setVariable ['%s',_value];";
         };
         class aiNumberToSpawn
         {
-            displayName = "Quantity of AI";
+            displayName = "AI count";
             tooltip = "Number of AI units to spawn.";
             property = "aiNumberToSpawn";
             control = "EditShort";
