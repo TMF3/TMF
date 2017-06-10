@@ -29,6 +29,7 @@ private _fn_update_group_names_in_lobby = {
             _descriptions = _descriptions apply {(/*toLower*/ _x) splitString " "};
             if (count _descriptions > 1) then {
                 private _common = _descriptions select 0;
+                _common = _common select [0,count _common -1]; // Ensure the last word isn't used so every description has at least one word.
                 {
                     // Ensure common is not more tokens than the present description.
                     _common resize ((count _x) min (count _common));
