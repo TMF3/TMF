@@ -57,7 +57,7 @@ class RscTitles {
                 w = 0.50 * safezoneW;
                 h = 0.30 * safezoneH;
                 shadow = 2;
-                font = "RobotoCondensedBold"
+                font = "RobotoCondensedBold";
                 colorText[] = {1,1,1,1};
                 sizeEx = 0.05 * safeZoneW;
                 text = "PRESS ENTER TO RETURN TO SPECTATOR";
@@ -69,7 +69,7 @@ class RscTitles {
                 w = 0.50 * safezoneW;
                 h = 0.30 * safezoneH;
                 shadow = 2;
-                font = "RobotoCondensedBold"
+                font = "RobotoCondensedBold";
                 colorText[] = {1,1,1,1};
                 sizeEx = 0.05 * safeZoneW;
                 text = "Unknown Mission";
