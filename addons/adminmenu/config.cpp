@@ -16,7 +16,6 @@ class CfgPatches
 };
 
 #include "CfgFunctions.hpp"
-
-//#include "defines.hpp"
+#include "CfgEventHandlers.hpp"
 
 #include "gui\adminMenu.hpp"
