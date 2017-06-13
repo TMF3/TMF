@@ -62,6 +62,11 @@ class GVAR(garrisonQuantity) : Module_F
     isGlobal = 0;
     isTriggerActivated = 1;
     isDisposable = 0; // broken in EDEN;
+    canSetArea=1;
+    class AttributeValues {
+        size3[] = {20, 20, -1};
+        IsRectangle = 1;
+    };
     class Attributes
     {
         class Debug
