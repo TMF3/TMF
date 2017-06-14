@@ -126,7 +126,7 @@ private _oldGroups = [];
             };
 
             if (!isNull _closestTarget) then {
-                _unit doMove (getPos _closestTarget); //doMove
+                _unit doMove (getPosATL _closestTarget); //doMove
             };
 
         } forEach _hunters;
