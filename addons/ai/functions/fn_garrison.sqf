@@ -1,8 +1,7 @@
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
 
-
-_headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
+private _headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
 if(count _headless > 0 && isServer) exitWith {
     _this remoteExec [QFUNC(garrison), _headless select 0];
 };
@@ -10,47 +9,76 @@ if(count _headless > 0 && isServer) exitWith {
 if(!(_logic getVariable [QGVAR(init),false])) then
 {
     private _grps = [];
-    {_grps pushBackUnique group _x} foreach (synchronizedObjects _logic);
-    private _units = [];
+    {_grps pushBackUnique group _x} forEach (synchronizedObjects _logic);
+    private _unitData = [];
     {
-        if(side _x != sideLogic) then
+        private _grp = _x;
         {
-            {
-                _units pushBack [side _x,typeof _x,getUnitLoadout _x];
-                deleteVehicle _x;
-            } foreach units _x;
-        };
-    } foreach _grps;
-    _logic setVariable [QGVAR(units),_units];
+            _unitData pushBack [side _x,typeOf _x,getUnitLoadout _x];
+            deleteVehicle _x;
+        } forEach units _grp;
+        deleteGroup _grp;
+    } forEach (_grps select {side _x != sideLogic});
+    _logic setVariable [QGVAR(unitData),_unitData];
     _logic setVariable [QGVAR(init),true];
 };
 
 if(!_activated) exitWith {};
 
-_houseRatio = _logic getVariable ["houseratio", 0.7];
-_unitRatio = _logic getVariable ["unitRatio", 0.7];
-_debug = _logic getVariable ["Debug",false];
-_areas = (synchronizedObjects _logic) select {side _x == sideLogic && _x isKindOf QGVAR(area)};
-_units = _logic getVariable [QGVAR(units),[]];
-_mainGroup = createGroup ((_units select 0) select 0);
-_holdPos = _logic getVariable ["hold", false];
+private _houseRatio = _logic getVariable ["houseratio", 0.7];
+private _unitRatio = _logic getVariable ["unitRatio", 0.7];
+private _debug = _logic getVariable ["Debug",false];
+private _areas = (synchronizedObjects _logic) select {side _x == sideLogic && _x isKindOf QGVAR(area)};
+private _unitData = _logic getVariable [QGVAR(unitData),[]];
+private _mainGroup = createGroup ((_unitData select 0) select 0);
+private _holdPos = _logic getVariable ["hold", false];
+
 if(count _areas > 0) then {
     {
-        _areaLogic = _x;
-        (_areaLogic getvariable ["objectArea",[0,0,0,false,0]]) params ["_a","_b","_dir","_isrect"];
-        _houses = ((getpos _x) nearObjects ["House", _a * _b]) select {count (_x buildingPos -1) > 0 && (getpos _x) inArea [getpos _areaLogic,_a , _b, _dir, _isrect]};
-        _numberOfHouses =  count _houses * _houseRatio;
-        while {_numberOfHouses > 0} do {
-            _house = selectRandom _houses;
-            _bPoses = _house buildingPos -1;
-            _numberOfUnits = count _bPoses * _unitRatio;
-            while {_numberOfUnits > 0} do {
-                _bPosIndex = floor random count _bPoses;
-                _bPos = _bPoses select _bPosIndex;
+        private _areaLogic = _x;
+        (_areaLogic getVariable ["objectArea",[0,0,0,false,0]]) params ["_a","_b","_dir","_isrect"];
+        private _buildings = ((getPos _x) nearObjects ["Static", _a * _b]) select {count (_x buildingPos -1) > 0 && {(getPos _x) inArea [getPos _areaLogic,_a , _b, _dir, _isrect]}};
 
-                _unitData = selectRandom _units;
-                _unit = _mainGroup createUnit [_unitData select 1, _bPos, [], 0, "NONE"];
-                _unit setPosATL _bPos;
+        
+        private _freeBuildings = []; // List of buildings that list have free positions.
+        { 
+            private _building = _x;
+            private _freePoses = _building getVariable [QGVAR(freeSpawnPoses),-1];
+
+            // If building has not been initialized find the free positions.
+            if (_freePoses isEqualTo -1) then {
+                private _buildingPoses = _x buildingPos -1;
+
+                // TODO - Test if positions are blocked.
+                [_buildingPoses,true] call CBA_fnc_shuffle; // Shuffle for easy randomisation.
+                _x setVariable [QGVAR(freeSpawnPoses),_buildingPoses];
+                _freePoses = _buildingPoses;
+
+            };
+            if (count _freePoses > 0) then {
+                _freeBuildings pushBack _building;
+            };
+
+        } forEach _buildings;
+        
+        [_freeBuildings,true] call CBA_fnc_shuffle;
+        private _numberOfHouses = round (count _freeBuildings * _houseRatio);
+        for "-" from 1 to _numberOfHouses do {
+            private _building = _freeBuildings deleteAt 0;
+            private _freeBuildingPositions = _building getVariable [QGVAR(freeSpawnPoses),[]];
+            // Select position
+            
+            _building setVariable [QGVAR(freeSpawnPoses),_freeBuildingPositions];
+            
+            private _numberOfUnits = round (count _freeBuildingPositions * _unitRatio);
+            for "-" from 1 to _numberOfUnits do {
+                private _posToUse = _freeBuildingPositions deleteAt 0;
+
+                private _unitData = selectRandom _unitData;
+                _unitData params ["","_unitClassname","_unitLoadout"];
+                private _unit = _mainGroup createUnit [_unitClassname, _posToUse, [], 0, "NONE"];
+                _unit setPosATL _posToUse;
+                _unit setUnitLoadout [_unitLoadout,false];
 
                 if(_holdPos) then {
                     _unit disableAI "PATH";
@@ -58,21 +86,22 @@ if(count _areas > 0) then {
                 };
 
                 if(_debug) then {
-                    _mkr = createMarker [str (random 999),_bPos];
+                    private _mkr = createMarker [str (random 999),_posToUse];
                     _mkr setMarkerShape "ICON";
                     _mkr setMarkerType "mil_dot";
                     _mkr setMarkerSize [0.5,0.5];
                     _mkr setMarkerColor "ColorRed";
-                    _mkr setMarkerText (_unitData select 1);
+                    _mkr setMarkerText (_unitClassname);
                 };
-
-                _bPoses set [_bPosIndex,0];
-                _bPoses = _bPoses - [0];
-                _numberOfUnits = _numberOfUnits -1;
             };
-
-            _numberofHouses = _numberofHouses -1;
-            _houses = _houses - [_houses];
+            
+            // Set free positions left in building.
+            _building setVariable [QGVAR(freeSpawnPoses),_freeBuildingPositions];
         };
-    } foreach _areas;
+    } forEach _areas;
+} else {
+    DEBUG_ERR("TMF Garrison module has no TMF Area connected to it.");
+    systemChat "TMF Garrison module has no TMF Area connected to it.";
 };
+
+_logic setVariable ["spawned_units",units _mainGroup,true]; // global set variable
