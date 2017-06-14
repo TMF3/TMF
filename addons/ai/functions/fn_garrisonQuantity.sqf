@@ -75,7 +75,13 @@ private _freeBuildings = []; // List of buildings that list have free positions.
 
 
 if (_aiNumberToSpawn > _freeBuildingSpaces) then {
-    systemChat ("TMF Garrison - Insufficent free building positions to spawn all intended AI (only " + _freeBuildingSpaces + "/" + _aiNumberToSpawn + " spaces)");
+    systemChat "TMF Garrison - Insufficent free building positions check your map for location and details.";
+    private _mkr = createMarkerLocal [str (random 99999),getPos _logic];
+    _mkr setMarkerShape "ICON";
+    _mkr setMarkerType "mil_dot";
+    _mkr setMarkerSize [0.5,0.5];
+    _mkr setMarkerColor "ColorRed";
+    _mkr setMarkerText format ["Error - TMF Garrison Module - Unable to find sufficent building places (%1 available / %2 needed)", _freeBuildingSpaces, _aiNumberToSpawn];
 };
 
 for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
