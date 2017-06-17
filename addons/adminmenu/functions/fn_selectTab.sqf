@@ -11,5 +11,3 @@ private _display = ctrlParent (_button param [0]);
 		(_display displayCtrl _x) ctrlEnable false;
 	};
 } forEach [56200, 56300, 56400];
-
-(_display displayCtrl 56105) ctrlSetText str (round (random 360));

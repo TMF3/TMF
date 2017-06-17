@@ -4,7 +4,7 @@ params [["_add", true, [true]]];
 if (_add) then {
 	if (isNil "tmf_adminMenu_fps_pfh") then {
 		tmf_adminMenu_fps_pfh = [{
-			tmf_adminMenu_fps = diag_fps; 
+			tmf_adminMenu_fps = round diag_fps;
 			
 			{
 				_x publicVariableClient "tmf_adminMenu_fps";
@@ -12,7 +12,7 @@ if (_add) then {
 		}, 1] call CBA_fnc_addPerFrameHandler;
 	};
 
-	tmf_adminMenu_activeClients pushBackUnique [remoteExecutedOwner];
+	tmf_adminMenu_activeClients pushBackUnique remoteExecutedOwner;
 } else {
 	tmf_adminMenu_activeClients = tmf_adminMenu_activeClients - [remoteExecutedOwner];
 	

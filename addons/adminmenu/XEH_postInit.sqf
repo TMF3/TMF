@@ -1,7 +1,7 @@
 if (isServer) then {
 	tmf_adminMenu_activeClients = [];
 	
-	addMissionEventHandler ["PlayerDisconnected", {
+	private _id = addMissionEventHandler ["HandleDisconnect", {
 		private _clientOwnerId = _this select 4;
 		tmf_adminMenu_activeClients = tmf_adminMenu_activeClients - [_clientOwnerId];
 
@@ -19,6 +19,15 @@ if (hasInterface) then {
 		private _ctrl = (uiNamespace getVariable ["tmf_adminMenu_display", displayNull]) displayCtrl 56105;
 		if (isNull _ctrl) exitWith {};
 		
-		_ctrl setText format ["%1 SFPS", _this select 1];
+		_ctrl ctrlSetText format ["%1 SFPS", _this select 1];
+	};
+	
+	"tmf_adminMenu_currentAdmin" addPublicVariableEventHandler {
+		disableSerialization;
+		
+		private _ctrl = (uiNamespace getVariable ["tmf_adminMenu_display", displayNull]) displayCtrl 561052;
+		if (isNull _ctrl) exitWith {};
+		
+		_ctrl ctrlSetText (_this select 1);
 	};
 };

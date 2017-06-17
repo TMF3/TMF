@@ -1,0 +1,1 @@
+[] remoteExec ["tmf_adminMenu_getCurrentAdminServer", 2];

@@ -5,6 +5,8 @@ class RscButtonMenu: RscShortcutButton {};
 class RscButtonMenuCancel: RscButtonMenu {};
 class RscButtonMenuOK: RscButtonMenu {};
 class RscControlsGroup;
+class RscListBox;
+class RscCheckBox;
 
 class ADDON
 {
@@ -13,7 +15,7 @@ class ADDON
 	enableDisplay = 1;
     enableSimulation = 1;
 	
-    onLoad = "uiNamespace setVariable ['tmf_adminMenu_display', _this]; _this spawn tmf_adminMenu_fnc_open;";
+    onLoad = "uiNamespace setVariable ['tmf_adminMenu_display', _this select 0]; _this spawn tmf_adminMenu_fnc_open;";
     onUnload = "[false] remoteExec ['tmf_adminMenu_fnc_fpsHandlerServer', 2];";
 	
 	class controls
@@ -74,8 +76,7 @@ class ADDON
 		{
 			idc = -1;
 			text = "Close";
-			//action = "(ctrlParent (_this select 0)) closeDisplay 1;";
-			action = "closeDialog 56100;";
+			onButtonClick = "closeDialog 56100; false";
 			x = "32.75 *(((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "24.1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "6.25 *(((safezoneW / safezoneH) min 1.2) / 40)";
@@ -97,21 +98,7 @@ class ADDON
 			idc = 56200;
 			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-			class Controls
-			{
-				class BackgroundColor: RscText
-				{
-					idc = -1;
-					x = 0;
-					y = 0;
-					w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-					h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-					colorBackground[] = {1, 0, 0, 0.5};
-					text = "";
-				};
-				
-				#include "dashboard.hpp"
-			};
+			#include "dashboard.hpp"
 		};
 		
 		class GroupEndMission: GroupBase
@@ -119,21 +106,7 @@ class ADDON
 			idc = 56300;
 			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-			class Controls
-			{
-				class BackgroundColor: RscText
-				{
-					idc = -1;
-					x = 0;
-					y = 0;
-					w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-					h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-					colorBackground[] = {0, 1, 0, 0.5};
-					text = "";
-				};
-				
-				#include "endMission.hpp"
-			};
+			#include "endMission.hpp"
 		};
 		
 		class GroupRespawn: GroupBase 
@@ -141,21 +114,7 @@ class ADDON
 			idc = 56400;
 			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-			class Controls
-			{
-				class BackgroundColor: RscText
-				{
-					idc = -1;
-					x = 0;
-					y = 0;
-					w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-					h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-					colorBackground[] = {1, 1, 1, 0.5};
-					text = "";
-				};
-				
-				#include "respawn.hpp"
-			};
+			#include "respawn.hpp"
 		};
 	};
 	
