@@ -1,7 +1,7 @@
 class ctrlMenuStrip;
 class ctrlControlsGroupNoScrollbars;
 class ctrlCheckboxToolbar;
-class ctrlStatic;
+class Separator1;
 
 class display3DEN
 {
@@ -34,7 +34,7 @@ class display3DEN
         };
         class Toolbar : ctrlControlsGroupNoScrollbars{
             class Controls {
-                class Separator3: ctrlStatic
+                class Separator3: Separator1
                 {
                     colorBackground[]={0,0,0,0.5};
                     x="33.5 *     (    5 * (pixelW * pixelGrid *     0.50))";
