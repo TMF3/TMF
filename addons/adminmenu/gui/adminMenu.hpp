@@ -6,7 +6,10 @@ class RscButtonMenuCancel: RscButtonMenu {};
 class RscButtonMenuOK: RscButtonMenu {};
 class RscControlsGroup;
 class RscListBox;
+class RscListNBox;
 class RscCheckBox;
+class RscCombo;
+class RscLineBreak;
 
 class ADDON
 {
@@ -22,7 +25,6 @@ class ADDON
 	{
 		class Title: RscTitle
 		{
-			idc = -1;
 			text = "TMF Admin Menu";
 			style = 0;
 			colorBackground[] = {0, 0, 0, 0};
@@ -43,36 +45,43 @@ class ADDON
 		
 		class TabDashboard: RscButtonMenu
 		{
-			idc = -1;
 			text = "Dashboard";
 			tooltip = "";
 			onButtonClick = "[_this, 56200] call tmf_adminMenu_fnc_selectTab;";
 			colorBackground[] = {0, 0, 0, 0};
 			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-			w = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			w = "6 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		};
 		
-		class TabEndMission: TabDashboard
+		class TabPlayerManagement: TabDashboard
 		{
-			idc = -1;
-			text = "End Mission";
-			tooltip = "Select and execute a mission ending";
-			onButtonClick = "[_this, 56300] call tmf_adminMenu_fnc_selectTab;";
-			x = "9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			text = "Player Management";
+			tooltip = "Perform various administrative actions on players";
+			onButtonClick = "[_this, 56400] call tmf_adminMenu_fnc_selectTab;";
+			x = "7.1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			w = "9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
 		
 		class TabRespawnPlayers: TabDashboard
 		{
-			idc = -1;
 			text = "Respawn";
 			tooltip = "Respawn dead players back in the game";
 			onButtonClick = "[_this, 56400] call tmf_adminMenu_fnc_selectTab;";
-			x = "17 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			x = "16.2 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			w = "5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
 		
-		class ButtonClose: RscButtonMenu
+		class TabEndMission: TabDashboard
+		{
+			text = "End Mission";
+			tooltip = "Select and execute a mission ending";
+			onButtonClick = "[_this, 56300] call tmf_adminMenu_fnc_selectTab;";
+			x = "21.2 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+		};
+		
+		/*class ButtonClose: RscButtonMenu
 		{
 			idc = -1;
 			text = "Close";
@@ -81,11 +90,10 @@ class ADDON
 			y = "24.1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "6.25 *(((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		};
+		};*/
 		
 		class GroupBase: RscControlsGroup 
 		{
-			idc = -1;
 			x = "1.1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "0";
@@ -98,15 +106,17 @@ class ADDON
 			idc = 56200;
 			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+
 			#include "dashboard.hpp"
 		};
 		
-		class GroupEndMission: GroupBase
+		class GroupPlayerManagement: GroupBase 
 		{
 			idc = 56300;
 			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-			#include "endMission.hpp"
+
+			#include "playerManagement.hpp"
 		};
 		
 		class GroupRespawn: GroupBase 
@@ -114,7 +124,17 @@ class ADDON
 			idc = 56400;
 			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+
 			#include "respawn.hpp"
+		};
+		
+		class GroupEndMission: GroupBase
+		{
+			idc = 56500;
+			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+
+			#include "endMission.hpp"
 		};
 	};
 	
@@ -122,7 +142,6 @@ class ADDON
 	{
 		class TitleBackground: RscText
 		{
-			idc = -1;
 			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
 			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -132,14 +151,12 @@ class ADDON
 		
 		class TabsBackgroundLeft: TitleBackground
 		{
-			idc = -1;
 			colorBackground[] = {0, 0, 0, 1};
 			y = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		};
 		
 		class MainBackground: TabsBackgroundLeft
 		{
-			idc = -1;
 			colorBackground[] = {0, 0, 0, 0.7};
 			y = "3.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			h = "20.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
