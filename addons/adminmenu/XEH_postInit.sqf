@@ -1,3 +1,5 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
+
 #include "initKeybinds.sqf"
 
 if (isServer) then {

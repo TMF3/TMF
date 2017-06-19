@@ -1,3 +1,5 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
+
 disableSerialization;
 params ["_button", ["_tab", 56200]];
 private _display = ctrlParent (_button param [0]);

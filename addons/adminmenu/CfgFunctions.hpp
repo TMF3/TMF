@@ -6,8 +6,8 @@ class CfgFunctions {
             class getCurrentAdmin;
             class getCurrentAdminClient;
             class getCurrentAdminServer;
-            class onOpen;
-            class open;
+            class onLoad;
+            class open; // ?
             class selectTab;
         };
     };

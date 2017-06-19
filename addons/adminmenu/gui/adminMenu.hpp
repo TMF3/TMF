@@ -18,10 +18,7 @@ class ADDON
 	enableDisplay = 1;
     enableSimulation = 1;
 	
-    //onLoad = "uiNamespace setVariable ['tmf_adminMenu_display', _this select 0]; _this spawn tmf_adminMenu_fnc_open;";
-    //onUnload = "[false] remoteExec ['tmf_adminMenu_fnc_fpsHandlerServer', 2];";
-    //onLoad = QUOTE(uiNamespace setVariable [QGVAR(display), _this select 0]; _this call FUNC(onOpen));
-    onLoad = QUOTE(_this call FUNC(onOpen););
+    onLoad = QUOTE(_this call FUNC(onLoad););
     onUnload = QUOTE([false] remoteExec [ARR_2(QUOTE(QFUNC(fpsHandlerServer)), 2)]; uiNamespace setVariable [ARR_2(QUOTE(QGVAR(display)), nil)];);
 	class controls
 	{
@@ -40,7 +37,7 @@ class ADDON
 		class TitleRight: Title
 		{
 			idc = 56105;
-			text = "- SFPS";
+			text = "";
 			style = 1;
 			x = "16 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "23 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -49,10 +46,8 @@ class ADDON
 		class TabDashboard: RscButtonMenu
 		{
 			text = "Dashboard";
-			default = 1;
 			tooltip = "";
-			//onButtonClick = "[_this, 56200] call tmf_adminMenu_fnc_selectTab;";
-			onButtonClick = QUOTE([_this, 56200] call FUNC(selectTab));
+			onButtonClick = QUOTE([ARR_2(_this, 56200)] call FUNC(selectTab));
 			colorBackground[] = {0, 0, 0, 0};
 			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -62,9 +57,8 @@ class ADDON
 		class TabPlayerManagement: TabDashboard
 		{
 			text = "Player Management";
-			tooltip = "Perform various administrative actions on players";
-			//onButtonClick = "[_this, 56300] call tmf_adminMenu_fnc_selectTab;";
-			onButtonClick = QUOTE([_this, 56300] call FUNC(selectTab));
+			tooltip = "Perform actions on players";
+			onButtonClick = QUOTE([ARR_2(_this, 56300)] call FUNC(selectTab));
 			x = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
@@ -72,8 +66,7 @@ class ADDON
 		{
 			text = "Respawn";
 			tooltip = "Respawn dead players back in the game";
-			//onButtonClick = "[_this, 56400] call tmf_adminMenu_fnc_selectTab;";
-			onButtonClick = QUOTE([_this, 56400] call FUNC(selectTab));
+			onButtonClick = QUOTE([ARR_2(_this, 56400)] call FUNC(selectTab));
 			x = "16 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "4.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
@@ -81,8 +74,7 @@ class ADDON
 		{
 			text = "End Mission";
 			tooltip = "Select and execute a mission ending";
-			//onButtonClick = "[_this, 56500] call tmf_adminMenu_fnc_selectTab;";
-			onButtonClick = QUOTE([_this, 56500] call FUNC(selectTab));
+			onButtonClick = QUOTE([ARR_2(_this, 56500)] call FUNC(selectTab));
 			x = "20.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "5.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
@@ -91,8 +83,7 @@ class ADDON
 		{
 			idc = 56999999;
 			text = "Close";
-			//onButtonClick = "(uiNamespace getVariable ['tmf_adminMenu_display', displayNull]) closeDisplay 1; false";
-			onButtonClick = QUOTE((uiNamespace getVariable [QGVAR(display), displayNull]) closeDisplay 1; false);
+			onButtonClick = QUOTE((uiNamespace getVariable [ARR_2(QUOTE(QGVAR(display)), displayNull)]) closeDisplay 1; false);
 			x = "35.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "24.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "3.1 * (((safezoneW / safezoneH) min 1.2) / 40)";

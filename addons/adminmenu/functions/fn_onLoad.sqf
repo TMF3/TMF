@@ -1,3 +1,5 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
+
 disableSerialization;
 params ["_display"];
 uiNamespace setVariable [QGVAR(display), _display];

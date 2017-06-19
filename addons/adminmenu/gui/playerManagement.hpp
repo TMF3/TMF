@@ -4,8 +4,6 @@ class Controls
 	{
 		text = "Filter:";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-
-        //colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "0.2"};
 		
 		x = "0";
 		y = "0";
@@ -63,7 +61,7 @@ class Controls
 		h = "19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
-    class LabelSelectBy: RscText
+    class LabelSelect: RscText
 	{
 		text = "Select...";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
@@ -111,6 +109,7 @@ class Controls
 
 	class LabelWithSelected: RscText
 	{
+		idc = -1;
 		text = "With Selected...";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 

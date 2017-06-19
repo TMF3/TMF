@@ -1,3 +1,5 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
+
 if (!isRemoteExecuted && {isMultiplayer}) exitWith {};
 
 private _adminId = -1;

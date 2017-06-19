@@ -1,3 +1,5 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
+
 if (!isServer) exitWith {};
 params [["_add", true, [true]]];
 
