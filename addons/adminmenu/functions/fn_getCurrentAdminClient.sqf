@@ -1,10 +1,10 @@
-if (!isRemoteExecuted && {isMultiplayer}) exitWith {};
+if (!isRemoteExecuted && isMultiplayer) exitWith {};
 
 params ["_origin", "_adminLevel"];
 
-tmf_adminMenu_currentAdmin = profileName;
+GVAR(currentAdmin) = profileName;
 if (_adminLevel == 1) then {
-	tmf_adminMenu_currentAdmin = tmf_adminMenu_currentAdmin + " (voted)";
+	GVAR(currentAdmin) = GVAR(currentAdmin) + " (voted)";
 };
 
-_origin publicVariableClient tmf_adminMenu_currentAdmin;
+_origin publicVariableClient GVAR(currentAdmin);

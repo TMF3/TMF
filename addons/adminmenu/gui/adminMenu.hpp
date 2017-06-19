@@ -86,9 +86,9 @@ class ADDON
 			idc = 56999999;
 			text = "Close";
 			onButtonClick = "(uiNamespace getVariable ['tmf_adminMenu_display', displayNull]) closeDisplay 1; false";
-			x = "36.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			x = "35.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "24.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-			w = "2.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			w = "3.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		};
 		

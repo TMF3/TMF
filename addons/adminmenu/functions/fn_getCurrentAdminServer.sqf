@@ -8,8 +8,8 @@ private _adminId = -1;
 } forEach allPlayers;
 
 if (_adminId == -1) exitWith {
-	tmf_adminMenu_currentAdmin = "nobody";
-	remoteExecutedOwner publicVariableClient tmf_adminMenu_currentAdmin;
+	GVAR(currentAdmin) = "nobody";
+	remoteExecutedOwner publicVariableClient GVAR(currentAdmin);
 };
 
-[remoteExecutedOwner, admin _adminId] remoteExec ["tmf_adminMenu_getCurrentAdminClient", _adminId];
+[remoteExecutedOwner, admin _adminId] remoteExec [QFUNC(getCurrentAdminClient), _adminId];

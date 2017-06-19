@@ -9,4 +9,4 @@ params ["_display"];
 	(_display displayCtrl _x) ctrlEnable false;
 } forEach [56300, 56400, 56500];
 
-[true] remoteExec ["tmf_adminMenu_fnc_fpsHandlerServer", 2];
+[true] remoteExec [QFUNC(fpsHandlerServer), 2];

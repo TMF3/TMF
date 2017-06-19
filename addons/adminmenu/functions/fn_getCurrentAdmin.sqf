@@ -1,1 +1,1 @@
-[] remoteExec ["tmf_adminMenu_getCurrentAdminServer", 2];
+[] remoteExec [QFUNC(getCurrentAdminServer), 2];
