@@ -25,6 +25,7 @@ class ADDON
 	{
 		class Title: RscTitle
 		{
+			idc = -1;
 			text = "TMF Admin Menu";
 			style = 0;
 			colorBackground[] = {0, 0, 0, 0};
@@ -37,7 +38,7 @@ class ADDON
 		class TitleRight: Title
 		{
 			idc = 56105;
-			text = "";
+			text = "- SFPS";
 			style = 1;
 			x = "16 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "23 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -51,46 +52,44 @@ class ADDON
 			colorBackground[] = {0, 0, 0, 0};
 			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-			w = "6 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			w = "5.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		};
-		
 		class TabPlayerManagement: TabDashboard
 		{
 			text = "Player Management";
 			tooltip = "Perform various administrative actions on players";
-			onButtonClick = "[_this, 56400] call tmf_adminMenu_fnc_selectTab;";
-			x = "7.1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			onButtonClick = "[_this, 56300] call tmf_adminMenu_fnc_selectTab;";
+			x = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
-		
 		class TabRespawnPlayers: TabDashboard
 		{
 			text = "Respawn";
 			tooltip = "Respawn dead players back in the game";
 			onButtonClick = "[_this, 56400] call tmf_adminMenu_fnc_selectTab;";
-			x = "16.2 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-			w = "5 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			x = "16 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			w = "4.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
-		
 		class TabEndMission: TabDashboard
 		{
 			text = "End Mission";
 			tooltip = "Select and execute a mission ending";
-			onButtonClick = "[_this, 56300] call tmf_adminMenu_fnc_selectTab;";
-			x = "21.2 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			onButtonClick = "[_this, 56500] call tmf_adminMenu_fnc_selectTab;";
+			x = "20.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			w = "5.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
 		
-		/*class ButtonClose: RscButtonMenu
+		class ButtonClose: RscButtonMenu
 		{
-			idc = -1;
+			idc = 56999999;
 			text = "Close";
-			onButtonClick = "closeDialog 56100; false";
+			onButtonClick = "(uiNamespace getVariable ['tmf_adminMenu_display', displayNull]) closeDisplay 1; false";
 			x = "32.75 *(((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "24.1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "6.25 *(((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		};*/
+		};
 		
 		class GroupBase: RscControlsGroup 
 		{

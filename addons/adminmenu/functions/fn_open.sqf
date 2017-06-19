@@ -7,6 +7,6 @@ params ["_display"];
 {
 	(_display displayCtrl _x) ctrlShow false;
 	(_display displayCtrl _x) ctrlEnable false;
-} forEach [56300, 56400];
+} forEach [56300, 56400, 56500];
 
 [true] remoteExec ["tmf_adminMenu_fnc_fpsHandlerServer", 2];

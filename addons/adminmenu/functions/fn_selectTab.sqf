@@ -10,4 +10,4 @@ private _display = ctrlParent (_button param [0]);
 		(_display displayCtrl _x) ctrlShow false;
 		(_display displayCtrl _x) ctrlEnable false;
 	};
-} forEach [56200, 56300, 56400];
+} forEach [56200, 56300, 56400, 56500];

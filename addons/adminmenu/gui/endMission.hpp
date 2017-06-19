@@ -21,10 +21,6 @@ class Controls
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "18.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		
-		/*colorBackground[] = {0,0,0,0.5};
-		colorSelectBackground[] = {0,0,0,0.7};
-		colorSelectBackground2[] = {0.1,0.1,0.1,0.7};*/
 	};
 
 	class ButtonEndMission: RscButtonMenu
@@ -42,7 +38,7 @@ class Controls
 	class CheckboxExportAAR: RscCheckBox
 	{
 		idc = 56503;
-		onCheckBoxesSelChanged = "systemChat format ['Checkbox ExportAAR: %1', _this];";
+		onCheckedChanged = "systemChat format ['Checkbox ExportAAR: %1', _this];";
 		x = "5.45 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -65,9 +61,9 @@ class Controls
 		text = "Activate AI Hunt";
 		onButtonClick = "systemChat 'Button: Activate AI Hunt';";
 		
-		x = "31.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		x = "30.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		w = "6 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 };
