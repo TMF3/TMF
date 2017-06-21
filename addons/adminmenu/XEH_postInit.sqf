@@ -30,7 +30,7 @@ if (isMultiplayer) then {
 		QGVAR(currentAdmin) addPublicVariableEventHandler {
 			disableSerialization;
 			
-			private _ctrl = (uiNamespace getVariable [QGVAR(display), displayNull]) displayCtrl 561052;
+			private _ctrl = ((uiNamespace getVariable [QGVAR(display), displayNull]) displayCtrl 56200) controlsGroupCtrl 56208;
 			if (isNull _ctrl) exitWith {};
 			
 			_ctrl ctrlSetText (_this select 1);

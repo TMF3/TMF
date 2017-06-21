@@ -10,6 +10,7 @@ class RscListNBox;
 class RscCheckBox;
 class RscCombo;
 class RscLineBreak;
+class RscEdit;
 
 class ADDON
 {
