@@ -21,7 +21,7 @@ if (isMultiplayer) then {
 		QGVAR(fps) addPublicVariableEventHandler {
 			disableSerialization;
 			
-			private _ctrl = (uiNamespace getVariable [QGVAR(display), displayNull]) displayCtrl 56105;
+			private _ctrl = (uiNamespace getVariable [QGVAR(display), displayNull]) displayCtrl 56101;
 			if (isNull _ctrl) exitWith {};
 			
 			_ctrl ctrlSetText format ["%1 SFPS", _this select 1];

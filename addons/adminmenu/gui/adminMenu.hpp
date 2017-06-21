@@ -34,9 +34,9 @@ class ADDON
 			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		};
 		
-		class TitleRight: Title
+		class TitleFPS: Title
 		{
-			idc = 56105;
+			idc = 56101;
 			text = "";
 			style = 1;
 			x = "16 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
@@ -45,6 +45,7 @@ class ADDON
 		
 		class TabDashboard: RscButtonMenu
 		{
+			idc = 56102;
 			text = "Dashboard";
 			tooltip = "";
 			onButtonClick = QUOTE([ARR_2(_this,56200)] call FUNC(selectTab));
@@ -56,6 +57,7 @@ class ADDON
 		};
 		class TabPlayerManagement: TabDashboard
 		{
+			idc = 56103;
 			text = "Player Management";
 			tooltip = "Perform actions on players";
 			onButtonClick = QUOTE([ARR_2(_this,56300)] call FUNC(selectTab));
@@ -64,6 +66,7 @@ class ADDON
 		};
 		class TabRespawnPlayers: TabDashboard
 		{
+			idc = 56104;
 			text = "Respawn";
 			tooltip = "Respawn dead players back in the game";
 			onButtonClick = QUOTE([ARR_2(_this,56400)] call FUNC(selectTab));
@@ -72,6 +75,7 @@ class ADDON
 		};
 		class TabEndMission: TabDashboard
 		{
+			idc = 56105;
 			text = "End Mission";
 			tooltip = "Select and execute a mission ending";
 			onButtonClick = QUOTE([ARR_2(_this,56500)] call FUNC(selectTab));
