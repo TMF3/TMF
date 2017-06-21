@@ -61,6 +61,10 @@ class Controls
 		h = "19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
+	/*
+	* Right-hand side vertical menu
+	*/
+
     class LabelSelect: RscText
 	{
 		text = "Select...";
@@ -69,7 +73,7 @@ class Controls
         colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "0";
+		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -80,7 +84,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Select All';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -91,7 +95,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Select by Role';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -102,7 +106,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Select by Loadout';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -116,7 +120,7 @@ class Controls
         colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "4.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "5.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -127,7 +131,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Teleport';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "6.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -138,7 +142,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Message';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "7.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -149,7 +153,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Assign Gear';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "8.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -160,7 +164,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Assign Radio';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "9.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "10.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -171,7 +175,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Heal';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "10.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "11.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -182,7 +186,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Kick';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "11.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "12.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -193,7 +197,7 @@ class Controls
 		onButtonClick = "systemChat 'Button: Run Code On';";
 		
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "12.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "13.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
