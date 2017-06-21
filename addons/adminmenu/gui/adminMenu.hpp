@@ -79,7 +79,7 @@ class ADDON
 			w = "5.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
 		
-		class ButtonClose: RscButtonMenu
+		/*class ButtonClose: RscButtonMenu
 		{
 			idc = 56999999;
 			text = "Close";
@@ -88,7 +88,7 @@ class ADDON
 			y = "24.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "3.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		};
+		};*/
 		
 		class GroupBase: RscControlsGroup 
 		{
