@@ -58,7 +58,7 @@ class Controls
 	};
 
 	// Current admin (voted or logged in)
-	class TitleCurrentAdmin: TitleShortcuts
+	/*class TitleCurrentAdmin: TitleShortcuts
 	{
 		text = "Current Admin";
 		y = "8.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -69,12 +69,61 @@ class Controls
 		colorDisabled[] = {0.8, 0.8, 0.8, 1};
 		text = "";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-        x = "0";
 		y = "9.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-	};
+	};*/
 
 	// Units stats table
 	#include "dashboard_table.hpp"
+
+	class LabelInformation: RscText
+	{
+		text = "General Information";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		y = "8.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class StatsLabel_VirtualCurators: RscText
+	{
+		text = "Virtual Curators";
+		colorBackground[] = {1, 1, 1, 0.2};
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		y = "9.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		w = "4.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class StatsValue_VirtualCurators: StatsLabel_VirtualCurators
+	{
+		idc = IDC_TMF_ADMINMENU_DASH_VIRTUALS;
+		text = "0";
+		colorBackground[] = {0.5, 0.5, 0.5, 0.1};
+        x = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "8.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+	};
+	class StatsLabel_CurrentAdmin: StatsLabel_VirtualCurators
+	{
+		text = "Current Admin";
+		y = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
+	class StatsValue_CurrentAdmin: StatsValue_VirtualCurators
+	{
+		idc = IDC_TMF_ADMINMENU_DASH_CURRADMIN;
+		text = "no data";
+		y = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
+	class StatsLabel_MissionRuntime: StatsLabel_VirtualCurators
+	{
+		text = "Mission Runtime";
+		y = "12 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
+	class StatsValue_MissionRuntime: StatsValue_VirtualCurators
+	{
+		idc = IDC_TMF_ADMINMENU_DASH_RUNTIME;
+		text = "18m 37s";
+		y = "12 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
 };

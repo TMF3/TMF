@@ -13,6 +13,7 @@ class LabelUnitStats: RscText
 class UnitStats_SideBackground: RscText
 {
     text = "";
+    colorBackground[] = {1, 1, 1, 0.2};
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
     x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -24,19 +25,25 @@ class UnitStats_AI: UnitStats_SideBackground
     text = "AI";
     colorBackground[] = {1, 1, 1, 0.2};
     x = "8.1 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-    w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+    w = "2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
 class UnitStats_Players: UnitStats_AI
 {
     text = "Players";
-    x = "11.2 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "10.2 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
 class UnitStats_Spectators: UnitStats_AI
 {
     text = "Spectators";
-    x = "14.3 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "13.3 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     w = "4 * (((safezoneW / safezoneH) min 1.2) / 40)";
+};
+class UnitStats_Total: UnitStats_AI
+{
+    text = "Total";
+    x = "17.4 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
 
 // Blufor
@@ -77,6 +84,13 @@ class UnitStats_Spectators_Blufor: UnitStats_Spectators
     colorBackground[] = {0.5, 0.5, 0.5, 0.1};
     y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 };
+class UnitStats_Total_Blufor: UnitStats_Total
+{
+    idc = IDC_TMF_ADMINMENU_DASH_STATS_BLUFOR_TOTAL;
+    text = "";
+    colorBackground[] = {0.5, 0.5, 0.5, 0.1};
+    y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+};
 
 // Opfor
 class UnitStats_SideBackground_Opfor: UnitStats_SideBackground
@@ -110,6 +124,13 @@ class UnitStats_Spectators_Opfor: UnitStats_Spectators
     colorBackground[] = {1, 1, 1, 0.1};
     y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 };
+class UnitStats_Total_Opfor: UnitStats_Total
+{
+    idc = IDC_TMF_ADMINMENU_DASH_STATS_OPFOR_TOTAL;
+    text = "";
+    colorBackground[] = {1, 1, 1, 0.1};
+    y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+};
 
 // Indep
 class UnitStats_SideBackground_Indep: UnitStats_SideBackground_Blufor
@@ -136,6 +157,11 @@ class UnitStats_Spectators_Indep: UnitStats_Spectators_Blufor
     idc = IDC_TMF_ADMINMENU_DASH_STATS_INDEP_SPECTATORS;
     y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 };
+class UnitStats_Total_Indep: UnitStats_Total_Blufor
+{
+    idc = IDC_TMF_ADMINMENU_DASH_STATS_INDEP_TOTAL;
+    y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+};
 
 // Civilian
 class UnitStats_SideBackground_Civilian: UnitStats_SideBackground_Opfor
@@ -160,6 +186,11 @@ class UnitStats_Players_Civilian: UnitStats_Players_Opfor
 class UnitStats_Spectators_Civilian: UnitStats_Spectators_Opfor
 {
     idc = IDC_TMF_ADMINMENU_DASH_STATS_CIV_SPECTATORS;
+    y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+};
+class UnitStats_Total_Civilian: UnitStats_Total_Opfor
+{
+    idc = IDC_TMF_ADMINMENU_DASH_STATS_CIV_TOTAL;
     y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 };
 
@@ -191,5 +222,10 @@ class UnitStats_Players_Total: UnitStats_Players_Blufor
 class UnitStats_Spectators_Total: UnitStats_Spectators_Blufor
 {
     idc = IDC_TMF_ADMINMENU_DASH_STATS_TOTAL_SPECTATORS;
+    y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+};
+class UnitStats_Total_Total: UnitStats_Total_Blufor
+{
+    idc = IDC_TMF_ADMINMENU_DASH_STATS_TOTAL_TOTAL;
     y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 };

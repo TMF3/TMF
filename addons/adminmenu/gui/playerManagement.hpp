@@ -201,4 +201,15 @@ class Controls
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
+    class ButtonGrantZeus: RscButtonMenu
+	{
+		idc = IDC_TMF_ADMINMENU_PMAN_GRANTZEUS;
+		text = "Grant Zeus";
+		onButtonClick = "systemChat 'Button: Grant Zeus';";
+		
+		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "14.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
 };

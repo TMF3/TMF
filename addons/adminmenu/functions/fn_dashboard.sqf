@@ -9,13 +9,18 @@ private _ind = [0, 5, 2];
 private _civ = [0, 0, 0];
 
 if (random 5 > 3) then {
-	_blu = [floor random 20, floor random 20, floor random 20];
- 	_opf = [floor random 20, floor random 20, floor random 20];
-	_ind = [floor random 20, floor random 20, floor random 20];
-	_civ = [floor random 20, floor random 20, floor random 20];
+	_blu = [floor random 10, floor random 10, floor random 10];
+ 	_opf = [floor random 10, floor random 10, floor random 10];
+	_ind = [floor random 10, floor random 10, floor random 10];
+	_civ = [floor random 10, floor random 10, floor random 10];
 };
 
-for "_i" from 0 to 2 do {
+_blu pushBack ((_blu select 0) + (_blu select 1) + (_blu select 2));
+_opf pushBack ((_opf select 0) + (_opf select 1) + (_opf select 2));
+_ind pushBack ((_ind select 0) + (_ind select 1) + (_ind select 2));
+_civ pushBack ((_civ select 0) + (_civ select 1) + (_civ select 2));
+
+for "_i" from 0 to 3 do {
 	private _vblu = _blu select _i;
 	private _vopf = _opf select _i;
 	private _vind = _ind select _i;
