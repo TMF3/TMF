@@ -12,7 +12,7 @@ class Controls
 	};
     class ComboFilterSide: RscCombo
 	{
-		idc = 56302;
+		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterSide';";
 		
 		x = "2.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -22,7 +22,7 @@ class Controls
 	};
     class ComboFilterState: RscCombo
 	{
-		idc = 56302;
+		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterState';";
 		
 		x = "10.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -32,7 +32,7 @@ class Controls
 	};
     class ButtonFilterReset: RscButtonMenu
 	{
-		idc = 56303;
+		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_RESET;
 		text = "Reset";
 		onButtonClick = "systemChat 'Button: Reset Filter';";
 		
@@ -45,7 +45,7 @@ class Controls
     //class ListPlayers: RscListNBox // apparently doesnt show any background
     class ListPlayers: RscListBox
 	{
-		idc = 56304;
+		idc = IDC_TMF_ADMINMENU_PMAN_LIST;
         //style = 32;
 		tooltip = "Select several players with SHIFT or CTRL.";
         onLBSelChanged = "systemChat 'LB Sel Changed: ListPlayers';";
@@ -79,7 +79,7 @@ class Controls
 	};
     class ButtonSelectAll: RscButtonMenu
 	{
-		idc = 56305;
+		idc = IDC_TMF_ADMINMENU_PMAN_SEL_ALL;
 		text = "All";
 		onButtonClick = "systemChat 'Button: Select All';";
 		
@@ -90,7 +90,7 @@ class Controls
 	};
     class ButtonSelectByRole: RscButtonMenu
 	{
-		idc = 56306;
+		idc = IDC_TMF_ADMINMENU_PMAN_SEL_ROLE;
 		text = "By Role";
 		onButtonClick = "systemChat 'Button: Select by Role';";
 		
@@ -101,7 +101,7 @@ class Controls
 	};
     class ButtonSelectByLoadout: RscButtonMenu
 	{
-		idc = 56307;
+		idc = IDC_TMF_ADMINMENU_PMAN_SEL_LOADOUT;
 		text = "By Loadout";
 		onButtonClick = "systemChat 'Button: Select by Loadout';";
 		
@@ -126,7 +126,7 @@ class Controls
 	};
     class ButtonTeleport: RscButtonMenu
 	{
-		idc = 56308;
+		idc = IDC_TMF_ADMINMENU_PMAN_TELEPORT;
 		text = "Teleport";
 		onButtonClick = "systemChat 'Button: Teleport';";
 		
@@ -137,7 +137,7 @@ class Controls
 	};
     class ButtonMessage: RscButtonMenu
 	{
-		idc = 56309;
+		idc = IDC_TMF_ADMINMENU_PMAN_MESSAGE;
 		text = "Message";
 		onButtonClick = "systemChat 'Button: Message';";
 		
@@ -148,7 +148,7 @@ class Controls
 	};
     class ButtonAssignGear: RscButtonMenu
 	{
-		idc = 56310;
+		idc = IDC_TMF_ADMINMENU_PMAN_ASSIGNGEAR;
 		text = "Assign Gear";
 		onButtonClick = "systemChat 'Button: Assign Gear';";
 		
@@ -159,7 +159,7 @@ class Controls
 	};
     class ButtonAssignRadio: RscButtonMenu
 	{
-		idc = 56311;
+		idc = IDC_TMF_ADMINMENU_PMAN_ASSIGNRADIO;
 		text = "Assign Radio";
 		onButtonClick = "systemChat 'Button: Assign Radio';";
 		
@@ -170,7 +170,7 @@ class Controls
 	};
     class ButtonHeal: RscButtonMenu
 	{
-		idc = 56312;
+		idc = IDC_TMF_ADMINMENU_PMAN_HEAL;
 		text = "Heal";
 		onButtonClick = "systemChat 'Button: Heal';";
 		
@@ -181,7 +181,7 @@ class Controls
 	};
     class ButtonKick: RscButtonMenu
 	{
-		idc = 56313;
+		idc = IDC_TMF_ADMINMENU_PMAN_KICK;
 		text = "Kick";
 		onButtonClick = "systemChat 'Button: Kick';";
 		
@@ -192,7 +192,7 @@ class Controls
 	};
     class ButtonRunCode: RscButtonMenu
 	{
-		idc = 56313;
+		idc = IDC_TMF_ADMINMENU_PMAN_RUNCODE;
 		text = "Run Code On";
 		onButtonClick = "systemChat 'Button: Run Code On';";
 		

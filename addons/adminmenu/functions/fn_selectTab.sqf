@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
 disableSerialization;
-params ["_button", ["_tab", 56200]];
+params ["_button", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 _button = _button param [0];
 private _display = ctrlParent _button;
 
@@ -13,14 +13,14 @@ private _display = ctrlParent _button;
 		(_display displayCtrl _x) ctrlShow false;
 		(_display displayCtrl _x) ctrlEnable false;
 	};
-} forEach [56200, 56300, 56400, 56500];
+} forEach IDCS_TMF_ADMINMENU_GRPS;
 
 ctrlSetFocus _button;
 
-/*switch (_tab) do {
+switch (_tab) do {
 	case 56200: { _display call FUNC(dashboard); };
 	case 56300: {  };
 	case 56400: {  };
 	case 56500: {  };
 	default {};
-}*/
+};

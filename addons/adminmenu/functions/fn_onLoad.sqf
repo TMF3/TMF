@@ -5,18 +5,18 @@ params ["_display"];
 uiNamespace setVariable [QGVAR(display), _display];
 
 // Show dashboard when opening the admin menu, hide other tabs
-(_display displayCtrl 56200) ctrlEnable true;
-(_display displayCtrl 56200) ctrlShow true;
+(_display displayCtrl IDC_TMF_ADMINMENU_G_DASH) ctrlEnable true;
+(_display displayCtrl IDC_TMF_ADMINMENU_G_DASH) ctrlShow true;
 {
 	(_display displayCtrl _x) ctrlShow false;
 	(_display displayCtrl _x) ctrlEnable false;
-} forEach [56300, 56400, 56500];
+} forEach IDCS_TMF_ADMINMENU_GRPS - [IDC_TMF_ADMINMENU_G_DASH];
 
-// Disable current admin textfield
-(_display displayCtrl 56207) ctrlEnable false;
+// Disable 'current admin' field
+(_display displayCtrl IDC_TMF_ADMINMENU_DASH_CURRADMIN) ctrlEnable false;
 
 if (!isMultiplayer) then {
-	(_display displayCtrl 56207) ctrlSetText "none (singleplayer)";
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_CURRADMIN) ctrlSetText "none (singleplayer)";
 };
 
 [true] remoteExec [QFUNC(fpsHandlerServer), 2];
