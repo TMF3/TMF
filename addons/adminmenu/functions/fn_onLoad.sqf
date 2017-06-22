@@ -12,12 +12,11 @@ uiNamespace setVariable [QGVAR(display), _display];
 	(_display displayCtrl _x) ctrlEnable false;
 } forEach [56300, 56400, 56500];
 
-[true] remoteExec [QFUNC(fpsHandlerServer), 2];
-
-
-(_display displayCtrl 56207) ctrlEnable false; // disable safestart cancel button for demo
+// Disable current admin textfield
+(_display displayCtrl 56207) ctrlEnable false;
 
 if (!isMultiplayer) then {
-	//((_display displayCtrl 56200) controlsGroupCtrl 56208) ctrlSetText "none (singleplayer)";
-	(_display displayCtrl 56208) ctrlSetText "none (singleplayer)";
+	(_display displayCtrl 56207) ctrlSetText "none (singleplayer)";
 };
+
+[true] remoteExec [QFUNC(fpsHandlerServer), 2];
