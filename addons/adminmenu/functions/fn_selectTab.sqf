@@ -22,14 +22,17 @@ switch (_tab) do {
 	case IDC_TMF_ADMINMENU_G_PMAN:
 	{ 
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_PMAN);
+		_display call FUNC(playerManagement);
 	};
 	case IDC_TMF_ADMINMENU_G_RESP:
 	{ 
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_RESP);
+		_display call FUNC(respawn);
 	};
 	case IDC_TMF_ADMINMENU_G_ENDM:
 	{ 
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_ENDM);
+		_display call FUNC(endMission);
 	};
 	default {};
 };

@@ -14,21 +14,19 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterSide';";
-		
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		font = "PuristaLight";
 		x = "2.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "0";
 		w = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-    class ComboFilterState: RscCombo
+    class ComboFilterState: ComboFilterSide
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterState';";
-		
 		x = "10.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "0";
 		w = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
     class ButtonFilterReset: GVAR(RscButtonMenu)
 	{

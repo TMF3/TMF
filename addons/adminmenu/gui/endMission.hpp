@@ -3,7 +3,7 @@ class Controls
 	class CheckboxUseMissionEnding: RscCheckBox
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_FROMMISSION;
-		onCheckedChanged = "systemChat format ['Checkbox UseMissionEnding: %1', _this];";
+		onCheckedChanged = QUOTE(systemChat format [ARR_2(QUOTE(QUOTE(Checkbox UseMissionEnding: %1)), _this)]; [ARR_2(ctrlParent (param [0]), 1 - (param [1]))] call FUNC(endMissionOccluder););
 		x = "0";
 		y = "0";
 		w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -24,7 +24,7 @@ class Controls
 		idc = IDC_TMF_ADMINMENU_ENDM_LIST;
 		tooltip = "These endings are present in the mission";
 		x = "0";
-		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "18.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -66,7 +66,7 @@ class Controls
 	class CheckboxUseSideSpecificEnding: CheckboxUseMissionEnding
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC;
-		onCheckedChanged = "systemChat format ['Checkbox UseSideSpecificEnding: %1', _this];";
+		onCheckedChanged = QUOTE(systemChat format [ARR_2(QUOTE(QUOTE(Checkbox UseSideSpecificEnding: %1)), _this)]; [ARR_2(ctrlParent (param [0]), param [1])] call FUNC(endMissionOccluder););
 		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 	class LabelEndingsGenericSide: LabelEndings
@@ -81,8 +81,8 @@ class Controls
 		text = "\a3\ui_f\data\GUI\Rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
 		colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-		x = "23.9 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		y = "1.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		x = "24.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "1.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "1.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -91,8 +91,8 @@ class Controls
 		idc = -1;
 		text = "BLUFOR";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-		x = "26.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		x = "25.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -100,8 +100,10 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_BLUFOR;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Blufor';";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		font = "PuristaLight";
 		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "12.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -109,52 +111,52 @@ class Controls
 	class IconSide_Opfor: IconSide_Blufor
 	{
 		colorText[] = {"(profilenamespace getvariable ['Map_OPFOR_R',1])", "(profilenamespace getvariable ['Map_OPFOR_G',0])", "(profilenamespace getvariable ['Map_OPFOR_B',0])", 0.8};
-		y = "3.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "3.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class LabelSide_Opfor: LabelSide_Blufor
 	{
 		text = "OPFOR";
-		y = "3.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "3.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class EndingSide_Opfor: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_OPFOR;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Opfor';";
-		y = "4.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "4.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
 	class IconSide_Indep: IconSide_Blufor
 	{
 		colorText[] = {"(profilenamespace getvariable ['Map_Independent_R',0])", "(profilenamespace getvariable ['Map_Independent_G',1])", "(profilenamespace getvariable ['Map_Independent_B',0])", 0.8};
-		y = "5.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "5.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class LabelSide_Indep: LabelSide_Blufor
 	{
 		text = "Independent";
-		y = "5.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "5.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class EndingSide_Indep: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_INDEP;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Indep';";
-		y = "7.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "7.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
 	class IconSide_Civilian: IconSide_Blufor
 	{
 		colorText[] = {"(profilenamespace getvariable ['Map_Civilian_R',0.5])", "(profilenamespace getvariable ['Map_Civilian_G',0])", "(profilenamespace getvariable ['Map_Civilian_B',0.5])", 0.8};
-		y = "8.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "8.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class LabelSide_Civilian: LabelSide_Blufor
 	{
 		text = "Civilian";
-		y = "8.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "8.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class EndingSide_Civilian: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_CIVILIAN;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Civilian';";
-		y = "9.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "9.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
 	class CheckboxEndingSideDraw: CheckboxUseMissionEnding
@@ -170,5 +172,27 @@ class Controls
 		x = "26.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "11.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
+	};
+
+	class OccluderLeft: RscText
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_L;
+		text = "Using Side-Specific Ending";
+		colorBackground[] = {0, 0, 0, 0.75};
+		style = "0x02";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		x = "0";
+		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "18.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class OccluderRight: OccluderLeft
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_R;
+		text = "Using Ending from Mission";
+		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "12.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 };
