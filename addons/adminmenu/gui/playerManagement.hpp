@@ -30,18 +30,14 @@ class Controls
 		w = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-    class ButtonFilterReset: RscButtonMenu
+    class ButtonFilterReset: GVAR(RscButtonMenu)
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_RESET;
 		text = "Reset";
 		onButtonClick = "systemChat 'Button: Reset Filter';";
-		style = "0x02 + 0x0C";
-		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
-		size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 		x = "18.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "0";
 		w = "3.35 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
     //class ListPlayers: RscListNBox // apparently doesnt show any background
@@ -86,19 +82,26 @@ class Controls
 		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
+    class ButtonSelectByGroup: ButtonSelectAll
+	{
+		idc = IDC_TMF_ADMINMENU_PMAN_SEL_GROUP;
+		text = "By Group";
+		onButtonClick = "systemChat 'Button: Select by Group';";
+		y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
     class ButtonSelectByRole: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_SEL_ROLE;
 		text = "By Role";
 		onButtonClick = "systemChat 'Button: Select by Role';";
-		y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonSelectByLoadout: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_SEL_LOADOUT;
 		text = "By Loadout";
 		onButtonClick = "systemChat 'Button: Select by Loadout';";
-		y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
 
 	class LabelWithSelected: RscText
@@ -108,7 +111,7 @@ class Controls
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 
 		x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "5.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "6.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
@@ -117,62 +120,62 @@ class Controls
 		idc = IDC_TMF_ADMINMENU_PMAN_TELEPORT;
 		text = "Teleport";
 		onButtonClick = "systemChat 'Button: Teleport';";
-		y = "6.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonMessage: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_MESSAGE;
 		text = "Message";
 		onButtonClick = "systemChat 'Button: Message';";
-		y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonAssignGear: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_ASSIGNGEAR;
 		text = "Assign Gear";
 		onButtonClick = "systemChat 'Button: Assign Gear';";
-		y = "9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "10.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonAssignRadio: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_ASSIGNRADIO;
 		text = "Assign Radio";
 		onButtonClick = "systemChat 'Button: Assign Radio';";
-		y = "10.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "11.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonHeal: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_HEAL;
 		text = "Heal";
 		onButtonClick = "systemChat 'Button: Heal';";
-		y = "11.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "12.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonKick: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_KICK;
 		text = "Kick";
 		onButtonClick = "systemChat 'Button: Kick';";
-		y = "12.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "13.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonRunCode: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_RUNCODE;
 		text = "Run Code On";
 		onButtonClick = "systemChat 'Button: Run Code On';";
-		y = "13.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "14.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonGrantZeus: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_GRANTZEUS;
 		text = "Grant Zeus";
 		onButtonClick = "systemChat 'Button: Grant Zeus';";
-		y = "14.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "15.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonACRE2Languages: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_ACRELANGUAGES;
 		text = "ACRE2 Languages";
 		onButtonClick = "systemChat 'Button: ACRE2 Languages';";
-		y = "15.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "16.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
 };

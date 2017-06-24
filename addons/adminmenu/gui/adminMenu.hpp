@@ -13,6 +13,13 @@ class RscLineBreak;
 class RscEdit;
 class RscPicture;
 
+class GVAR(RscButtonMenu): RscButtonMenu {
+	style = "0x02 + 0x0C";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
+	size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
+	h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+};
+
 class ADDON
 {
 	idd = IDD_TMF_ADMINMENU;

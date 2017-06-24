@@ -11,18 +11,14 @@ class Controls
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-    class ButtonDebugConsole: RscButtonMenu
+    class ButtonDebugConsole: GVAR(RscButtonMenu)
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_DEBUGCON;
 		text = "Debug Console";
 		onButtonClick = "systemChat 'Button: Debug Console';";
-		style = "0x02 + 0x0C";
-		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
-		size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 		x = "0";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
     class ButtonClaimZeus: ButtonDebugConsole
 	{

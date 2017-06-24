@@ -19,18 +19,14 @@ class Controls
 		w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "18.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-	class ButtonEndMission: RscButtonMenu
+	class ButtonEndMission: GVAR(RscButtonMenu)
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_ENDMISSION;
 		text = "End Mission";
 		onButtonClick = "systemChat 'Button: End Mission';";
-		style = "0x02 + 0x0C";
-		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
-		size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 		x = "0";
 		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "5.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class CheckboxExportAAR: RscCheckBox
 	{
