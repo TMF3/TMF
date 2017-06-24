@@ -9,9 +9,9 @@ class RscListBox;
 class RscListNBox;
 class RscCheckBox;
 class RscCombo;
-class RscLineBreak;
 class RscEdit;
 class RscPicture;
+class RscToolbox;
 
 class GVAR(RscButtonMenu): RscButtonMenu {
 	style = "0x02 + 0x0C";
@@ -57,7 +57,7 @@ class ADDON
 			idc = IDC_TMF_ADMINMENU_DASH;
 			text = "Dashboard";
 			tooltip = "";
-			onButtonClick = QUOTE([ARR_2(_this,IDC_TMF_ADMINMENU_G_DASH)] call FUNC(selectTab));
+			onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_DASH)] call FUNC(selectTab));
 			colorBackground[] = {0, 0, 0, 0};
 			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -69,7 +69,7 @@ class ADDON
 			idc = IDC_TMF_ADMINMENU_PMAN;
 			text = "Player Management";
 			tooltip = "Perform actions on players";
-			onButtonClick = QUOTE([ARR_2(_this,IDC_TMF_ADMINMENU_G_PMAN)] call FUNC(selectTab));
+			onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_PMAN)] call FUNC(selectTab));
 			x = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
@@ -78,7 +78,7 @@ class ADDON
 			idc = IDC_TMF_ADMINMENU_RESP;
 			text = "Respawn";
 			tooltip = "Respawn dead players back in the game";
-			onButtonClick = QUOTE([ARR_2(_this,IDC_TMF_ADMINMENU_G_RESP)] call FUNC(selectTab));
+			onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_RESP)] call FUNC(selectTab));
 			x = "16 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "4.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
@@ -87,7 +87,7 @@ class ADDON
 			idc = IDC_TMF_ADMINMENU_ENDM;
 			text = "End Mission";
 			tooltip = "Select and execute a mission ending";
-			onButtonClick = QUOTE([ARR_2(_this,IDC_TMF_ADMINMENU_G_ENDM)] call FUNC(selectTab));
+			onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_ENDM)] call FUNC(selectTab));
 			x = "20.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "5.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
