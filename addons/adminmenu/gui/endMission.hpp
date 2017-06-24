@@ -10,7 +10,6 @@ class Controls
 		w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-
 	class ListEndings: RscListBox
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_LIST;
@@ -20,18 +19,19 @@ class Controls
 		w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "18.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-
 	class ButtonEndMission: RscButtonMenu
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_ENDMISSION;
 		text = "End Mission";
 		onButtonClick = "systemChat 'Button: End Mission';";
+		style = "0x02 + 0x0C";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
+		size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 		x = "0";
 		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "5.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-
 	class CheckboxExportAAR: RscCheckBox
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_EXPORTAAR;
@@ -41,25 +41,23 @@ class Controls
 		w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-
 	class LabelExportAAR: LabelEndings
 	{
 		idc = -1;
 		text = "Export AAR";
-		x = "6.45 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		colorText[] = {0.8, 0.8, 0.8, 1};
+		x = "6.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "6.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-
-	class ButtonActivateHunt: RscButtonMenu
+	class ButtonActivateHunt: ButtonEndMission
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_ACTIVATEHUNT;
 		text = "Activate AI Hunt";
 		onButtonClick = "systemChat 'Button: Activate AI Hunt';";
 		x = "30.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 };

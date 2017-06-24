@@ -2,7 +2,6 @@ class LabelUnitStats: RscText
 {
     text = "Statistics";
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-    //colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
     x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     y = "0";
     w = "21 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -23,7 +22,6 @@ class UnitStats_SideBackground: RscText
 class UnitStats_AI: UnitStats_SideBackground
 {
     text = "AI";
-    colorBackground[] = {1, 1, 1, 0.2};
     x = "8.1 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     w = "2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
@@ -54,9 +52,9 @@ class UnitStats_SideBackground_Blufor: UnitStats_SideBackground
 };
 class UnitStats_SideIcon_Blufor: RscPicture
 {
-    colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
     style = 48 + 2048; // picture + keep aspect ratio
     text = "\a3\ui_f\data\GUI\Rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
+    colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
     x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     y = "2.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";

@@ -1,7 +1,7 @@
 class Controls
 {
     // Shortcuts
-    class TitleShortcuts: RscText
+    class LabelShortcuts: RscText
 	{
 		text = "Shortcuts";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
@@ -16,6 +16,9 @@ class Controls
 		idc = IDC_TMF_ADMINMENU_DASH_DEBUGCON;
 		text = "Debug Console";
 		onButtonClick = "systemChat 'Button: Debug Console';";
+		style = "0x02 + 0x0C";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
+		size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 		x = "0";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -25,8 +28,8 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_CLAIMZEUS;
 		text = "Claim Zeus";
-		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		onButtonClick = "systemChat 'Button: Claim Zeus';";
+		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonCamera: ButtonDebugConsole
 	{
@@ -44,17 +47,36 @@ class Controls
 	};
 
     // Safestart
-    class TitleSafestart: TitleShortcuts
+    class LabelSafestart: LabelShortcuts
 	{
 		text = "Safestart";
 		y = "5.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
-    class ButtonSafestartToggle: ButtonDebugConsole
+    /*class ButtonSafestartToggle: ButtonDebugConsole
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_SAFESTART;
 		text = "Toggle";
 		onButtonClick = "systemChat 'Button: Toggle Safestart';";
 		y = "6.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};*/
+	class CheckboxSafestartEnabled: RscCheckBox
+	{
+		idc = IDC_TMF_ADMINMENU_DASH_SAFESTART;
+		onCheckedChanged = "systemChat format ['Checkbox Safestart: %1', _this];";
+		x = "0.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class LabelSafestartEnabled: LabelShortcuts
+	{
+		idc = -1;
+		text = "Enabled";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		colorText[] = {0.8, 0.8, 0.8, 1};
+		x = "0.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "5.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 
 	// Current admin (voted or logged in)
@@ -88,7 +110,7 @@ class Controls
 	};
 	class StatsLabel_VirtualCurators: RscText
 	{
-		text = "Virtual Curators";
+		text = "Virtual Zeuses";
 		colorBackground[] = {1, 1, 1, 0.2};
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
