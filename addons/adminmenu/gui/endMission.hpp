@@ -3,7 +3,7 @@ class Controls
 	class CheckboxUseMissionEnding: RscCheckBox
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_FROMMISSION;
-		onCheckedChanged = QUOTE(systemChat format [ARR_2(QUOTE(QUOTE(Checkbox UseMissionEnding: %1)), _this)]; [ARR_2(ctrlParent (param [0]), 1 - (param [1]))] call FUNC(endMissionOccluder););
+		onCheckedChanged = QUOTE(systemChat format [ARR_2(QUOTE(QUOTE(Checkbox UseMissionEnding: %1)), _this)]; [ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
 		x = "0";
 		y = "0";
 		w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -26,7 +26,7 @@ class Controls
 		x = "0";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "18.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		h = "14 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class ButtonEndMission: GVAR(RscButtonMenu)
 	{
@@ -66,7 +66,7 @@ class Controls
 	class CheckboxUseSideSpecificEnding: CheckboxUseMissionEnding
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC;
-		onCheckedChanged = QUOTE(systemChat format [ARR_2(QUOTE(QUOTE(Checkbox UseSideSpecificEnding: %1)), _this)]; [ARR_2(ctrlParent (param [0]), param [1])] call FUNC(endMissionOccluder););
+		onCheckedChanged = QUOTE(systemChat format [ARR_2(QUOTE(QUOTE(Checkbox UseSideSpecificEnding: %1)), _this)]; [ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
 		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 	class LabelEndingsGenericSide: LabelEndings
@@ -189,55 +189,74 @@ class Controls
 		w = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 
-	class OccluderLeft: RscText
+	class CheckboxUseCustomEnding: CheckboxUseMissionEnding
 	{
-		idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_L;
-		text = "Using Side-Specific Ending";
+		idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM;
+		onCheckedChanged = QUOTE(systemChat format [ARR_2(QUOTE(QUOTE(Checkbox UseSideCustomEnding: %1)), _this)]; [ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
+		y = "16.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class LabelCustomEnding: LabelEndings
+	{
+		text = "Use Custom Ending";
+		y = "16.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class LabelCustomEndingTitle: LabelExportAAR
+	{
+		text = "Title";
+		x = "0";
+		y = "17.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "2.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class TextfieldCustomEndingTitle: RscEdit
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_TITLE;
+		colorBackground[] = {0.5, 0.5, 0.5, 0.1};
+		colorBorder[] = {1, 1, 1, 0.33};
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		x = "2.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "17.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "21.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class LabelCustomEndingSubtext: LabelCustomEndingTitle
+	{
+		text = "Subtext";
+		y = "18.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class TextfieldCustomEndingSubtext: TextfieldCustomEndingTitle
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_SUBTEXT;
+		y = "18.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+
+	class OccluderLeftUp: RscText
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LU;
+		//text = "OccluderLeftUp";
 		colorBackground[] = {0, 0, 0, 0.75};
 		style = "0x02";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		x = "0";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "18.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		h = "14 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-	class OccluderRight: OccluderLeft
+	class OccluderLeftDown: OccluderLeftUp
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LD;
+		//text = "OccluderLeftDown";
+		y = "17.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class OccluderRight: OccluderLeftUp
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_R;
-		text = "Using Ending from Mission";
+		//text = "OccluderRight";
 		x = "25.15 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "12.65 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-
-	delete Toolbox;
-
-	/*class Toolbox: RscToolbox
-	{
-		idc = IDC_TMF_ADMINMENU_ENDM_TOOLBOX;
-		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-
-		rows = 1;
-		columns = 2;
-		strings[] = {"Defeat", "Victory"};
-		values[] = {0, 1};
-
-		color[] = {0.4, 0.4, 1, 0.25};
-		colorText[] = {1, 1, 1, 1};
-		colorSelect[] = {0.4, 0.4, 1, 0.75};
-		colorTextSelect[] = {1, 1, 1, 1};
-
-		colorDisable[] = {1, 1, 0, 0.75};
-		colorTextDisable[] = {0, 0, 0, 1};
-		colorSelectedBg[] = {1, 1, 1, 0.2};
-		colorBackground[] = {0.5, 0.5, 0.5, 0.1};
-
-		onToolBoxSelChanged = "systemChat format ['Toolbox onToolBoxSelChanged: %1', _this];";
-
-		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "12.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		w = "12.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-	};*/
 };

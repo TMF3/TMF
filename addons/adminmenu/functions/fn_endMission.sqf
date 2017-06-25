@@ -6,4 +6,8 @@ params ["_display"];
 // Populate ending list
 // Populate side-specific combos with victory, defeat - or change to toolboxes
 
-[_display, 0] call FUNC(endMissionOccluder);
+/*if (!isNil QGVAR(selectedEndMissionCheckbox)) then {
+	[_display] call FUNC(endMissionOccluder);
+};*/
+
+[_display] call FUNC(endMissionOccluder);
