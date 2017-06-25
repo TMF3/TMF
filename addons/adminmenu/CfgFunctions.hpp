@@ -10,6 +10,7 @@ class CfgFunctions {
             class getCurrentAdminClient;
             class getCurrentAdminServer;
             class onLoad;
+            class onUnload;
             class open; // ?
             class playerManagement;
             class playerManagementFilter;

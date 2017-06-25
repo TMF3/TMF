@@ -15,7 +15,8 @@ class Controls
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterSide';";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-		font = "PuristaLight";
+		//font = "PuristaLight";
+		font = "RobotoCondensed";
 		x = "2.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "0";
 		w = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";

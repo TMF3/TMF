@@ -2,6 +2,8 @@
 
 #include "initKeybinds.sqf"
 
+GVAR(tabPFHHandles) = [];
+
 if (isMultiplayer) then {
 	if (isServer) then {
 		GVAR(activeClients) = [];

@@ -12,12 +12,12 @@ if (!isMultiplayer) then {
 };
 
 private _ctrl;
-{
+/*{
 	_ctrl = _display displayCtrl _x;
 	_ctrl lbAdd "Defeat";
 	_ctrl lbAdd "Victory";
 	_ctrl lbSetCurSel 0;
-} forEach IDCS_TMF_ADMINMENU_ENDM_SIDES;
+} forEach IDCS_TMF_ADMINMENU_ENDM_SIDES;*/
 
 _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
 {
@@ -29,8 +29,7 @@ _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
 {
 	_x params ["_color", "_text"];
 	_ctrl lbAdd _text;
-	//(_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE) lbSetPicture [_forEachIndex, "\a3\ui_f\data\IGUI\RscIngameUI\RscOptics\square.paa"];
-	_ctrl lbSetPicture [_forEachIndex, "\a3\ui_f\data\IGUI\RscIngameUI\RscHint\indent_square.paa"];
+	_ctrl lbSetPicture [_forEachIndex, QPATHTOF(square_ca.paa)];
 	_ctrl lbSetPictureColor [_forEachIndex, _color];
 	_ctrl lbSetPictureColorSelected [_forEachIndex, _color];
 } forEach [

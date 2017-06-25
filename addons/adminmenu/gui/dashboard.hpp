@@ -104,9 +104,9 @@ class Controls
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-	class StatsLabel_VirtualCurators: RscText
+	class StatsLabel_HeadlessClients: RscText
 	{
-		text = "Virtual Zeuses";
+		text = "Headless Clients";
 		colorBackground[] = {1, 1, 1, 0.2};
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -114,34 +114,45 @@ class Controls
 		w = "4.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-	class StatsValue_VirtualCurators: StatsLabel_VirtualCurators
+	class StatsValue_HeadlessClients: StatsLabel_HeadlessClients
 	{
-		idc = IDC_TMF_ADMINMENU_DASH_VIRTUALS;
+		idc = IDC_TMF_ADMINMENU_DASH_HEADLESS;
 		text = "0";
 		colorBackground[] = {0.5, 0.5, 0.5, 0.1};
         x = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "8.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
-	class StatsLabel_CurrentAdmin: StatsLabel_VirtualCurators
+	class StatsLabel_VirtualCurators: StatsLabel_HeadlessClients
 	{
-		text = "Current Admin";
+		text = "Virtual Zeuses";
 		y = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
-	class StatsValue_CurrentAdmin: StatsValue_VirtualCurators
+	class StatsValue_VirtualCurators: StatsValue_HeadlessClients
+	{
+		idc = IDC_TMF_ADMINMENU_DASH_VIRTUALS;
+		text = "0";
+		y = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
+	class StatsLabel_CurrentAdmin: StatsLabel_HeadlessClients
+	{
+		text = "Current Admin";
+		y = "12 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
+	class StatsValue_CurrentAdmin: StatsValue_HeadlessClients
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_CURRADMIN;
 		text = "no data";
-		y = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-	};
-	class StatsLabel_MissionRuntime: StatsLabel_VirtualCurators
-	{
-		text = "Mission Runtime";
 		y = "12 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
-	class StatsValue_MissionRuntime: StatsValue_VirtualCurators
+	class StatsLabel_MissionRuntime: StatsLabel_HeadlessClients
+	{
+		text = "Mission Runtime";
+		y = "13.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
+	class StatsValue_MissionRuntime: StatsValue_HeadlessClients
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_RUNTIME;
 		text = "18m 37s";
-		y = "12 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		y = "13.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
 };

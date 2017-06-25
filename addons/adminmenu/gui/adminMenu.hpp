@@ -15,6 +15,7 @@ class RscToolbox;
 
 class GVAR(RscButtonMenu): RscButtonMenu {
 	style = "0x02 + 0x0C";
+	font = "RobotoCondensed";
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 	size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 	h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -28,7 +29,7 @@ class ADDON
     enableSimulation = 1;
 	
     onLoad = QUOTE(_this call FUNC(onLoad););
-    onUnload = QUOTE([false] remoteExec [ARR_2(QUOTE(QFUNC(fpsHandlerServer)),2)]; uiNamespace setVariable [ARR_2(QUOTE(QGVAR(display)),nil)];);
+    onUnload = QUOTE(_this call FUNC(onUnload););
 	class controls
 	{
 		class Title: RscTitle

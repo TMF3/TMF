@@ -75,6 +75,7 @@ class Controls
 		x = "26.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		w = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
+
 	class IconSide_Blufor: RscPicture
 	{
 		style = 48 + 2048; // picture + keep aspect ratio
@@ -96,12 +97,26 @@ class Controls
 		w = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
-	class EndingSide_Blufor: RscCombo
+	class EndingSide_Blufor: RscToolbox
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_BLUFOR;
-		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Blufor';";
+		onToolBoxSelChanged = "systemChat format ['blufor onToolBoxSelChanged: %1', _this];";
+		
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-		font = "PuristaLight";
+		rows = 1;
+		columns = 2;
+		strings[] = {"Defeat", "Victory"};
+		values[] = {0, 1};
+
+		color[] = {0.4, 0.4, 1, 0.25};
+		colorText[] = {1, 1, 1, 1};
+		colorSelect[] = {0.4, 0.4, 1, 0.75};
+		colorTextSelect[] = {1, 1, 1, 1};
+		colorDisable[] = {1, 1, 0, 0.75};
+		colorTextDisable[] = {0, 0, 0, 1};
+		colorSelectedBg[] = {1, 1, 1, 0.2};
+		colorBackground[] = {0.5, 0.5, 0.5, 0.1};
+
 		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "12.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -121,7 +136,7 @@ class Controls
 	class EndingSide_Opfor: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_OPFOR;
-		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Opfor';";
+		onToolBoxSelChanged = "systemChat format ['opfor onToolBoxSelChanged: %1', _this];";
 		y = "4.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
@@ -138,7 +153,7 @@ class Controls
 	class EndingSide_Indep: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_INDEP;
-		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Indep';";
+		onToolBoxSelChanged = "systemChat format ['indep onToolBoxSelChanged: %1', _this];";
 		y = "7.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
@@ -155,7 +170,7 @@ class Controls
 	class EndingSide_Civilian: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_CIVILIAN;
-		onMouseButtonClick = "systemChat 'Mouse Button Click: EndingSide_Civilian';";
+		onToolBoxSelChanged = "systemChat format ['civ onToolBoxSelChanged: %1', _this];";
 		y = "9.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
@@ -190,9 +205,39 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_R;
 		text = "Using Ending from Mission";
-		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		x = "25.15 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		w = "12.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "12.65 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
+
+	delete Toolbox;
+
+	/*class Toolbox: RscToolbox
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_TOOLBOX;
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+
+		rows = 1;
+		columns = 2;
+		strings[] = {"Defeat", "Victory"};
+		values[] = {0, 1};
+
+		color[] = {0.4, 0.4, 1, 0.25};
+		colorText[] = {1, 1, 1, 1};
+		colorSelect[] = {0.4, 0.4, 1, 0.75};
+		colorTextSelect[] = {1, 1, 1, 1};
+
+		colorDisable[] = {1, 1, 0, 0.75};
+		colorTextDisable[] = {0, 0, 0, 1};
+		colorSelectedBg[] = {1, 1, 1, 0.2};
+		colorBackground[] = {0.5, 0.5, 0.5, 0.1};
+
+		onToolBoxSelChanged = "systemChat format ['Toolbox onToolBoxSelChanged: %1', _this];";
+
+		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "12.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "12.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};*/
 };

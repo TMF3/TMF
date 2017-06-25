@@ -3,33 +3,45 @@
 disableSerialization;
 params ["_display"];
 
-private _blu = [0, 34, 11];
-private _opf = [41, 0, 0];
-private _ind = [0, 5, 2];
-private _civ = [0, 0, 0];
+private _pfhDashboard = [{
+	disableSerialization;
+	private _display = uiNamespace getVariable [QGVAR(display), displayNull];
+	if (isNull _display) exitWith { systemChat format ["pfhDashboard display null %1", time]; };
 
-if (random 5 > 3) then {
-	_blu = [floor random 10, floor random 10, floor random 10];
- 	_opf = [floor random 10, floor random 10, floor random 10];
-	_ind = [floor random 10, floor random 10, floor random 10];
-	_civ = [floor random 10, floor random 10, floor random 10];
-};
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_RUNTIME) ctrlSetText format ["%1m %2s", round ((time - (time % 60)) / 60), round (time % 60)];
 
-_blu pushBack ((_blu select 0) + (_blu select 1) + (_blu select 2));
-_opf pushBack ((_opf select 0) + (_opf select 1) + (_opf select 2));
-_ind pushBack ((_ind select 0) + (_ind select 1) + (_ind select 2));
-_civ pushBack ((_civ select 0) + (_civ select 1) + (_civ select 2));
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_HEADLESS) ctrlSetText str (count entities "HeadlessClient_F");
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_VIRTUALS) ctrlSetText str (count entities "VirtualCurator_F");
 
-for "_i" from 0 to 3 do {
-	private _vblu = _blu select _i;
-	private _vopf = _opf select _i;
-	private _vind = _ind select _i;
-	private _vciv = _civ select _i;
+	//private _deadUnits = ((allPlayers - _liveUnits) - _spectators) - _headlessClients;
 
-	(_display displayCtrl (IDCS_TMF_ADMINMENU_DASH_STATS_BLUFOR select _i)) ctrlSetText str _vblu;
-	(_display displayCtrl (IDCS_TMF_ADMINMENU_DASH_STATS_OPFOR select _i)) ctrlSetText str _vopf;
-	(_display displayCtrl (IDCS_TMF_ADMINMENU_DASH_STATS_INDEP select _i)) ctrlSetText str _vind;
-	(_display displayCtrl (IDCS_TMF_ADMINMENU_DASH_STATS_CIV select _i)) ctrlSetText str _vciv;
+	private _liveUnits = allUnits;
+	private _spectatorUnits = entities QEGVAR(spectator,unit);
+	{
+		_x params ["_ai", "_players", "_spectators", "_total"];
+		private _side = [blufor, opfor, resistance, civilian] param [_forEachIndex];
+		private _sideUnits = _liveUnits select {side _x == _side};
 
-	(_display displayCtrl (IDCS_TMF_ADMINMENU_DASH_STATS_TOTAL select _i)) ctrlSetText str (_vblu + _vopf + _vind + _vciv);
-};
+		private _numAI = {!isPlayer _x} count _sideUnits;
+		(_display displayCtrl _ai) ctrlSetText str _numAI;
+
+		private _numSideUnits = count _sideUnits;
+		(_display displayCtrl _players) ctrlSetText str (_numSideUnits - _numAI);
+
+		private _numSpectators = {(_x getVariable [QEGVAR(spectator,side), sideLogic]) isEqualTo _side} count _spectatorUnits;
+		(_display displayCtrl _spectators) ctrlSetText str _numSpectators;
+		(_display displayCtrl _total) ctrlSetText str (_numSideUnits + _numSpectators);
+	} forEach IDCS_TMF_ADMINMENU_DASH_STATS_ALLSIDES;
+
+	private _numAI = {!isPlayer _x} count _liveUnits;
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_STATS_TOTAL_AI) ctrlSetText str _numAI;
+
+	private _numLiveUnits = count _liveUnits;
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_STATS_TOTAL_PLAYERS) ctrlSetText str (_numLiveUnits - _numAI);
+
+	private _numSpectators = count _spectatorUnits;
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_STATS_TOTAL_SPECTATORS) ctrlSetText str _numSpectators;
+	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_STATS_TOTAL_TOTAL) ctrlSetText str (_numLiveUnits + _numSpectators);
+}, 1] call CBA_fnc_addPerFrameHandler;
+
+GVAR(tabPFHHandles) pushBack _pfhDashboard;

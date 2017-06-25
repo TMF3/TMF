@@ -4,6 +4,10 @@ disableSerialization;
 params ["_display", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 
 {
+	[_x] call CBA_fnc_removePerFrameHandler;
+} forEach GVAR(tabPFHHandles);
+
+{
 	if (_tab == _x) then {
 		(_display displayCtrl _x) ctrlShow true;
 		(_display displayCtrl _x) ctrlEnable true;
