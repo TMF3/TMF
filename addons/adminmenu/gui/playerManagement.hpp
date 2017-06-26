@@ -7,7 +7,7 @@ class Controls
 		
 		x = "0";
 		y = "0";
-		w = "2.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "2.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
     class ComboFilterSide: RscCombo
@@ -17,26 +17,26 @@ class Controls
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		//font = "PuristaLight";
 		font = "RobotoCondensed";
-		x = "2.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		x = "2.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "0";
-		w = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "6 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
     class ComboFilterState: ComboFilterSide
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
 		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterState';";
-		x = "10.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		w = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		x = "8.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
     class ButtonFilterReset: GVAR(RscButtonMenu)
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_RESET;
 		text = "Reset";
 		onButtonClick = "systemChat 'Button: Reset Filter';";
-		x = "18.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		x = "13.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "0";
-		w = "3.35 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "2.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 
     //class ListPlayers: RscListNBox // apparently doesnt show any background

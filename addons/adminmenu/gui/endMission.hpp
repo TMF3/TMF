@@ -23,6 +23,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_LIST;
 		tooltip = "These endings are present in the mission";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		x = "0";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -32,17 +33,18 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_ENDMISSION;
 		text = "End Mission";
-		onButtonClick = "systemChat 'Button: End Mission';";
-		x = "0";
+		colorBackground[] = {0.8,0.27,0.133,1};
+		onButtonClick = QUOTE(systemChat 'Button: End Mission'; (ctrlParent (param [0])) call FUNC(endMissionCommit));
+		x = "32.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		w = "5.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "5.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 	class CheckboxExportAAR: CheckboxUseMissionEnding
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_EXPORTAAR;
 		onCheckedChanged = "systemChat format ['Checkbox ExportAAR: %1', _this];";
-		x = "5.45 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		x = "32.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "18.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class LabelExportAAR: LabelEndings
 	{
@@ -50,16 +52,18 @@ class Controls
 		text = "Export AAR";
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		colorText[] = {0.8, 0.8, 0.8, 1};
-		x = "6.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		w = "6.25 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		x = "33.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "18.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "4.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
-	class ButtonActivateHunt: ButtonEndMission
+	class ButtonActivateHunt: GVAR(RscButtonMenu)
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_ACTIVATEHUNT;
 		text = "Activate AI Hunt";
 		onButtonClick = "systemChat 'Button: Activate AI Hunt';";
-		x = "30.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		colorBackground[] = {0, 0, 0, 1};
+		x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 
@@ -100,7 +104,7 @@ class Controls
 	class EndingSide_Blufor: RscToolbox
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_BLUFOR;
-		onToolBoxSelChanged = "systemChat format ['blufor onToolBoxSelChanged: %1', _this];";
+		onToolBoxSelChanged = QUOTE(systemChat format ['blufor onToolBoxSelChanged: %1', _this]; GVAR(endingSideBlufor) = param [1];);
 		
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		rows = 1;
@@ -136,7 +140,7 @@ class Controls
 	class EndingSide_Opfor: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_OPFOR;
-		onToolBoxSelChanged = "systemChat format ['opfor onToolBoxSelChanged: %1', _this];";
+		onToolBoxSelChanged = QUOTE(systemChat format ['opfor onToolBoxSelChanged: %1', _this]; GVAR(endingSideOpfor) = param [1];);
 		y = "4.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
@@ -153,7 +157,7 @@ class Controls
 	class EndingSide_Indep: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_INDEP;
-		onToolBoxSelChanged = "systemChat format ['indep onToolBoxSelChanged: %1', _this];";
+		onToolBoxSelChanged = QUOTE(systemChat format ['indep onToolBoxSelChanged: %1', _this]; GVAR(endingSideIndependent) = param [1];);
 		y = "7.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
@@ -170,7 +174,7 @@ class Controls
 	class EndingSide_Civilian: EndingSide_Blufor
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_CIVILIAN;
-		onToolBoxSelChanged = "systemChat format ['civ onToolBoxSelChanged: %1', _this];";
+		onToolBoxSelChanged = QUOTE(systemChat format ['civ onToolBoxSelChanged: %1', _this]; GVAR(endingSideCivilian) = param [1];);
 		y = "9.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
@@ -216,7 +220,7 @@ class Controls
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		x = "2.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "17.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		w = "21.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		w = "10.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class LabelCustomEndingSubtext: LabelCustomEndingTitle
@@ -228,6 +232,21 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_SUBTEXT;
 		y = "18.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		//w = "21.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+	};
+	class CheckboxCustomEndingVictory: CheckboxUseMissionEnding
+	{
+		idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_ISVICTORY;
+		onCheckedChanged = "systemChat format ['Checkbox CustomEndingVictory: %1', _this];";
+		x = "0";
+		y = "19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
+	class LabelCustomEndingVictory: LabelExportAAR
+	{
+		text = "Mission is a Victory (determines music played)";
+		x = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "23.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 
 	class OccluderLeftUp: RscText
@@ -248,7 +267,7 @@ class Controls
 		//text = "OccluderLeftDown";
 		y = "17.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		h = "3.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 	class OccluderRight: OccluderLeftUp
 	{

@@ -35,5 +35,6 @@ private _useCustom = (_checkboxIdc isEqualTo IDC_TMF_ADMINMENU_ENDM_CUSTOM);
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM) cbSetChecked _useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_TITLE) ctrlEnable _useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_SUBTEXT) ctrlEnable _useCustom;
+(_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_ISVICTORY) ctrlEnable _useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LD) ctrlEnable !_useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LD) ctrlShow !_useCustom;

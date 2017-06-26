@@ -4,11 +4,13 @@ class CfgFunctions {
             file = QPATHTO_FOLDER(functions);
             class dashboard;
             class endMission;
+            class endMissionCommit;
             class endMissionOccluder;
             class fpsHandlerServer;
             class getCurrentAdmin;
             class getCurrentAdminClient;
             class getCurrentAdminServer;
+            class grantZeus;
             class onLoad;
             class onUnload;
             class open; // ?
