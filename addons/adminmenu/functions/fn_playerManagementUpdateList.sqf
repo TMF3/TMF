@@ -9,7 +9,6 @@ private _filterState = lbCurSel (_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FIL
 private _allPlayers = (allPlayers - entities "HeadlessClient_F") apply {[name _x, _x]};
 _allPlayers sort true;
 _allPlayers = _allPlayers apply {_x param [1]};
-
 private _newPlayers = [];
 
 {
@@ -61,7 +60,7 @@ private _newPlayers = [];
 	};
 } forEach _allPlayers;
 
-GVAR(playerManagement_players) = _allPlayers;
+GVAR(playerManagement_players) = _newPlayers;
 GVAR(playerManagement_selected) = GVAR(playerManagement_selected) arrayIntersect GVAR(playerManagement_players);
 
 for "_i" from (count _newPlayers) to ((lbSize _list) - 1) do {
