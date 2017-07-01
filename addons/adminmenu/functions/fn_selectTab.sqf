@@ -3,9 +3,9 @@
 disableSerialization;
 params ["_display", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 
-{
-	[_x] call CBA_fnc_removePerFrameHandler;
-} forEach GVAR(tabPFHHandles);
+while {count GVAR(tabPFHHandles) > 0} do {
+	[GVAR(tabPFHHandles) deleteAt 0] call CBA_fnc_removePerFrameHandler;
+};
 
 {
 	if (_tab == _x) then {
@@ -38,5 +38,4 @@ switch (_tab) do {
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_ENDM);
 		_display call FUNC(endMission);
 	};
-	default {};
 };

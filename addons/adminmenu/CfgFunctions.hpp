@@ -13,9 +13,11 @@ class CfgFunctions {
             class grantZeus;
             class onLoad;
             class onUnload;
-            class open; // ?
             class playerManagement;
             class playerManagementFilter;
+            class playerManagementUpdateControls;
+            class playerManagementUpdateList;
+            class quickRespawn;
             class respawn;
             class selectTab;
         };

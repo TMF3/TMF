@@ -39,25 +39,35 @@ class Controls
 		w = "2.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 
-    //class ListPlayers: RscListNBox // apparently doesnt show any background
-    class ListPlayers: RscListBox
+	class GroupList: RscControlsGroup 
 	{
-		idc = IDC_TMF_ADMINMENU_PMAN_LIST;
-        //style = 32;
-		tooltip = "Select several players with SHIFT or CTRL.";
-        onLBSelChanged = "systemChat 'LB Sel Changed: ListPlayers';";
-        colorBackground[] = {0, 0, 0, 0.3};
-        /*drawSideArrows = 0;
-        idcLeft = -1;
-        idcRight = -1;
-        disableOverflow = 1;*/
-
+		idc = IDC_TMF_ADMINMENU_PMAN_GROUPLIST;
 		x = "0";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-		w = "29.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-	};
+		w = TMF_ADMINMENU_PMAN_W_LISTGROUP;
+		h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+		colorBackground[] = {0, 0, 0, 0.3};
 
+		class Controls
+		{
+			class ListPlayers: RscListBox
+			{
+				idc = IDC_TMF_ADMINMENU_PMAN_LIST;
+				style = 32; // LB_MULTI
+				onLBSelChanged = "systemChat 'LB Sel Changed: ListPlayers';";
+				
+				sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+				rowHeight = TMF_ADMINMENU_STD_HEIGHT;
+				colorBackground[] = {0, 0, 0, 0};
+
+				x = TMF_ADMINMENU_PMAN_X_LIST;
+				y = 0;
+				w = TMF_ADMINMENU_PMAN_W_LIST;
+				h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+			};
+		};
+	};
+	
 	/*
 	* Right-hand side vertical menu
 	*/

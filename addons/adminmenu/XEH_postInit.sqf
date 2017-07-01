@@ -9,8 +9,10 @@ GVAR(sideColors) = [
 	[profilenamespace getvariable ['Map_Civilian_R',0.5], profilenamespace getvariable ['Map_Civilian_G',0], profilenamespace getvariable ['Map_Civilian_B',0.5], 0.8]
 ];
 
-GVAR(playerManagement_players) = [];
 GVAR(tabPFHHandles) = [];
+GVAR(playerManagement_listControls) = [];
+GVAR(playerManagement_players) = [];
+GVAR(playerManagement_selected) = [];
 
 if (isMultiplayer) then {
 	if (isServer) then {
