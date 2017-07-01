@@ -49,7 +49,9 @@ switch (_endingType) do {
 				["", _isVictory] call (param [0]); // win/lose auto from _isVictory ?
 			}] remoteExec ["BIS_fnc_call", -2];
 
-			[] remoteExec [_endMissionFunc, 2];
+			if (!isServer) then {
+				[] remoteExec [_endMissionFunc, 2];
+			};
 		};
 	};
 
