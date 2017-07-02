@@ -3,18 +3,14 @@
 disableSerialization;
 params ["_display"];
 
-private _list = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
+private _ctrlUpdateFlash = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_UPDATEFLASH;
+_ctrlUpdateFlash ctrlSetFade 1;
+_ctrlUpdateFlash ctrlCommit 0;
 
-/*if (count (lbSelection _list) == 0) then {
-	for "_i" from 0 to ((lbSize _list) - 1) do {
-		_list lbSetSelected [_i, (_list lbData _i) in GVAR(playerManagement_selected)];
-	};
-};*/
 
 _display call FUNC(playerManagementUpdateList);
 
-private _pfhRefresh = [{
+private _pfhUpdate = [{
 	(param [1]) call FUNC(playerManagementUpdateList);
 }, 3, _display] call CBA_fnc_addPerFrameHandler;
-
-GVAR(tabPFHHandles) pushBack _pfhRefresh;
+GVAR(tabPFHHandles) pushBack _pfhUpdate;

@@ -38,6 +38,18 @@ class Controls
 		y = "0";
 		w = "2.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
+	class LabelRefreshed: RscText
+	{
+		idc = IDC_TMF_ADMINMENU_PMAN_UPDATEFLASH;
+		text = "Refreshed";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		colorText[] = {1, 0.64, 0, 1};
+		
+		x = "(26.9 * (((safezoneW / safezoneH) min 1.2) / 40))";
+		y = "0";
+		w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+	};
 
 	class GroupList: RscControlsGroup 
 	{
@@ -54,7 +66,7 @@ class Controls
 			{
 				idc = IDC_TMF_ADMINMENU_PMAN_LIST;
 				style = 32; // LB_MULTI
-				onLBSelChanged = "systemChat 'LB Sel Changed: ListPlayers';";
+				onLBSelChanged = QUOTE(_this call FUNC(playerManagementListSelChange););
 				
 				sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 				rowHeight = TMF_ADMINMENU_STD_HEIGHT;

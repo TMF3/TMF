@@ -102,7 +102,7 @@ _list ctrlCommit 0;
 	_ctrlSide ctrlSetTextColor _color;
 
 	private _steamLink = parseText format [
-		"<a href='http://steamcommunity.com/profiles/%1'><img image='%2'/></a>", 
+		"<a color='#FFFFFF' size='1' href='http://steamcommunity.com/profiles/%1'><img image='%2'/></a>", 
 		getPlayerUID _player, 
 		"\a3\ui_f\data\GUI\RscCommon\RscButtonMenuSteam\steam_ca.paa"
 	];
@@ -116,4 +116,4 @@ private _ctrlUpdateFlash = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_UPDATEFLA
 _ctrlUpdateFlash ctrlSetFade 0;
 _ctrlUpdateFlash ctrlCommit 0;
 _ctrlUpdateFlash ctrlSetFade 1;
-_ctrlUpdateFlash ctrlCommit 2;
+_ctrlUpdateFlash ctrlCommit 1.5;

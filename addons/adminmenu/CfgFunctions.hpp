@@ -14,7 +14,9 @@ class CfgFunctions {
             class onLoad;
             class onUnload;
             class playerManagement;
+            class playerManagementButton;
             class playerManagementFilter;
+            class playerManagementListSelChange;
             class playerManagementUpdateControls;
             class playerManagementUpdateList;
             class quickRespawn;

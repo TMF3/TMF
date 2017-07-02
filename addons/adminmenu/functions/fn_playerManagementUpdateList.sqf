@@ -3,12 +3,16 @@
 disableSerialization;
 params ["_display"];
 
+systemChat format ["%1 %2", QFUNC(playerManagementUpdateList), time];
+
 private _filterSide = [sideUnknown, blufor, opfor, resistance, civilian] param [lbCurSel (_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE)];
 private _filterState = lbCurSel (_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE);
 
-private _allPlayers = (allPlayers - entities "HeadlessClient_F") apply {[name _x, _x]};
+private _allPlayers = allPlayers - entities "HeadlessClient_F";
+/*private _allPlayers = (allPlayers - entities "HeadlessClient_F") apply {[name _x, _x]};
 _allPlayers sort true;
-_allPlayers = _allPlayers apply {_x param [1]};
+_allPlayers = _allPlayers apply {_x param [1]};*/
+
 private _newPlayers = [];
 
 {
