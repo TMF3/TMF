@@ -1,7 +1,7 @@
 // Legacy module.
 class GVAR(garrison) : Module_F
 {
-    scope = 0;
+    scope = 1;
     displayName = "Garrison (Legacy)";
     category = "Teamwork";
     icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
