@@ -5,25 +5,16 @@ params ["_display"];
 uiNamespace setVariable [QGVAR(display), _display];
 
 
-// Populate fields
-
 if (!isMultiplayer) then {
 	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_CURRADMIN) ctrlSetText "none (singleplayer)";
 };
 
-private _ctrl;
-/*{
-	_ctrl = _display displayCtrl _x;
-	_ctrl lbAdd "Defeat";
-	_ctrl lbAdd "Victory";
-	_ctrl lbSetCurSel 0;
-} forEach IDCS_TMF_ADMINMENU_ENDM_SIDES;*/
-
-_ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
+private _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
 {
 	_ctrl lbAdd _x;
 } forEach ["Alive and Dead", "Alive", "Dead"];
 _ctrl lbSetCurSel 0;
+_ctrl ctrlAddEventHandler ["LBSelChanged", format ["[ctrlParent (param [0])] call %1;", QFUNC(playerManagementFilter)]];
 
 _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
 {
@@ -40,6 +31,7 @@ _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
 	[[profilenamespace getvariable ['Map_Civilian_R',0.5], profilenamespace getvariable ['Map_Civilian_G',0], profilenamespace getvariable ['Map_Civilian_B',0.5], 0.8], "Civilian"]
 ];
 _ctrl lbSetCurSel 0;
+_ctrl ctrlAddEventHandler ["LBSelChanged", format ["[ctrlParent (param [0])] call %1;", QFUNC(playerManagementFilter)]];
 
 // Register client as server FPS receiver
 [true] remoteExec [QFUNC(fpsHandlerServer), 2];

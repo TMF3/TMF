@@ -7,10 +7,4 @@ private _ctrlUpdateFlash = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_UPDATEFLA
 _ctrlUpdateFlash ctrlSetFade 1;
 _ctrlUpdateFlash ctrlCommit 0;
 
-
 _display call FUNC(playerManagementUpdateList);
-
-private _pfhUpdate = [{
-	(param [1]) call FUNC(playerManagementUpdateList);
-}, 3, _display] call CBA_fnc_addPerFrameHandler;
-GVAR(tabPFHHandles) pushBack _pfhUpdate;

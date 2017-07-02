@@ -7,6 +7,9 @@ private _display = ctrlParent _ctrl;
 private _ctrlIDC = ctrlIDC _ctrl;
 private _list = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
 
+if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_REFRESH) exitWith {
+	_display call FUNC(playerManagementUpdateList);
+};
 if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_SEL_ALL) exitWith {
 	GVAR(playerManagement_selected) = GVAR(playerManagement_players);
 	

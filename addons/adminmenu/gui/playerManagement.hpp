@@ -13,7 +13,7 @@ class Controls
     class ComboFilterSide: RscCombo
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
-		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterSide';";
+		//onLBSelChanged = QUOTE([ctrlParent (param [0])] call FUNC(playerManagementFilter););
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		//font = "PuristaLight";
 		font = "RobotoCondensed";
@@ -25,7 +25,7 @@ class Controls
     class ComboFilterState: ComboFilterSide
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
-		onMouseButtonClick = "systemChat 'Mouse Button Click: ComboFilterState';";
+		//onLBSelChanged = QUOTE([ctrlParent (param [0])] call FUNC(playerManagementFilter););
 		x = "8.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		w = "5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
@@ -33,24 +33,30 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_FILTER_RESET;
 		text = "Reset";
-		onButtonClick = "systemChat 'Button: Reset Filter';";
+		onButtonClick = QUOTE([ARR_2(ctrlParent (param [0]),true)] call FUNC(playerManagementFilter););
 		x = "13.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "0";
 		w = "2.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
-	class LabelRefreshed: RscText
+	class ButtonRefresh: GVAR(RscButtonMenu)
 	{
-		idc = IDC_TMF_ADMINMENU_PMAN_UPDATEFLASH;
-		text = "Refreshed";
-		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-		colorText[] = {1, 0.64, 0, 1};
-		
-		x = "(26.9 * (((safezoneW / safezoneH) min 1.2) / 40))";
+		idc = IDC_TMF_ADMINMENU_PMAN_REFRESH;
+		text = "Refresh";
+		onButtonClick = QUOTE(_this call FUNC(playerManagementButton););
+		x = "26.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		y = "0";
 		w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
-		h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 	};
 
+	class BackgroundGroupList: RscText
+	{
+		x = "0";
+		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		w = TMF_ADMINMENU_PMAN_W_LISTGROUP;
+		h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+		colorBackground[] = {0, 0, 0, 0.3};
+		style = "0x02";
+	};
 	class GroupList: RscControlsGroup 
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_GROUPLIST;
@@ -58,19 +64,21 @@ class Controls
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = TMF_ADMINMENU_PMAN_W_LISTGROUP;
 		h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
-		colorBackground[] = {0, 0, 0, 0.3};
 
 		class Controls
 		{
 			class ListPlayers: RscListBox
 			{
 				idc = IDC_TMF_ADMINMENU_PMAN_LIST;
-				style = 32; // LB_MULTI
+				style = 32 + 16; // LB_MULTI + ST_MULTI
 				onLBSelChanged = QUOTE(_this call FUNC(playerManagementListSelChange););
 				
 				sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-				rowHeight = TMF_ADMINMENU_STD_HEIGHT;
+				sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+				rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
 				colorBackground[] = {0, 0, 0, 0};
+				shadow = 0;
+				itemSpacing = 0.001;
 
 				x = TMF_ADMINMENU_PMAN_X_LIST;
 				y = 0;
