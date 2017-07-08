@@ -68,9 +68,9 @@ private _cfgMagazines = configFile >> "CfgMagazines";
         private _headgear = GETGEAR("headgear"); //CfgWeapons
         [_headgear, _cfgWeapons] call _fnc_checkExists;
         private _goggles = GETGEAR("goggles"); //CfgWeapons
-        [_goggles, CfgWeapons] call _fnc_checkExists;
+        [_goggles, _cfgGlasses] call _fnc_checkExists;
         private _hmd = GETGEAR("hmd"); // "CfgGlasses"
-        [_hmd, _cfgGlasses] call _fnc_checkExists;
+        [_hmd, _cfgWeapons] call _fnc_checkExists;
         // Get primary weapon and items
         private _primaryWeapon = GETGEAR("primaryWeapon"); //CfgWeapons"
         [_primaryWeapon, _cfgWeapons] call _fnc_checkExists;
