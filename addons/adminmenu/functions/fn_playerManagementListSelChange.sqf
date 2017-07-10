@@ -3,6 +3,13 @@
 disableSerialization;
 params ["_list"];
 
-GVAR(playerManagement_selected) = (lbSelection _list) apply {_list lbData _x};
+private _selected = [];
+for "_i" from 0 to ((lbSize _list) - 1) do {
+	if (_list lbIsSelected _i) then {
+		_selected pushBack (_list lbData _i);
+	};
+};
 
-systemChat format ["%1 %2", QFUNC(playerManagementListSelChange), time];
+GVAR(playerManagement_selected) = _selected;
+
+//GVAR(playerManagement_selected) = (lbSelection _list) apply {_list lbData _x}; // doesnt catch last selected item?

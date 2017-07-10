@@ -48,13 +48,6 @@ class Controls
 		text = "Safestart";
 		y = "5.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
-    /*class ButtonSafestartToggle: ButtonDebugConsole
-	{
-		idc = IDC_TMF_ADMINMENU_DASH_SAFESTART;
-		text = "Toggle";
-		onButtonClick = "systemChat 'Button: Toggle Safestart';";
-		y = "6.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-	};*/
 	class CheckboxSafestartEnabled: RscCheckBox
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_SAFESTART;
@@ -75,22 +68,32 @@ class Controls
 		w = "5.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
 	};
 
-	// Current admin (voted or logged in)
-	/*class TitleCurrentAdmin: TitleShortcuts
+    // Toggle Spectator Talk
+    class LabelSpectatorTalk: LabelShortcuts
 	{
-		text = "Current Admin";
-		y = "8.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		text = "Talk with Spectators";
+		y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
-	class TextfieldCurrentAdmin: RscEdit
+	class CheckboxSpectatorTalkEnabled: RscCheckBox
 	{
-		idc = IDC_TMF_ADMINMENU_DASH_CURRADMIN;
-		colorDisabled[] = {0.8, 0.8, 0.8, 1};
-		text = "";
-		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-		y = "9.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		idc = IDC_TMF_ADMINMENU_DASH_SPECTATORTALK;
+		onCheckedChanged = "systemChat format ['Checkbox SpectatorTalk: %1', _this];";
+		x = "0.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-	};*/
+	};
+	class LabelSpectatorTalkEnabled: LabelShortcuts
+	{
+		idc = -1;
+		text = "Enabled";
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		colorText[] = {0.8, 0.8, 0.8, 1};
+		x = "0.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		w = "5.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+	};
+
 
 	// Units stats table
 	#include "dashboard_table.hpp"

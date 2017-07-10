@@ -75,15 +75,21 @@ class Controls
 				
 				sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 				sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+				//rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
 				rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
+				//rowHeight = 0;
 				colorBackground[] = {0, 0, 0, 0};
 				shadow = 0;
-				itemSpacing = 0.001;
+				//itemSpacing = 0.001;
+				itemSpacing = 0;
+
+				tooltip = "tooltip test";
 
 				x = TMF_ADMINMENU_PMAN_X_LIST;
 				y = 0;
 				w = TMF_ADMINMENU_PMAN_W_LIST;
-				h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+				//h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+				h = 0;
 			};
 		};
 	};
