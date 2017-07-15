@@ -7,12 +7,12 @@ class RscControlsGroupNoScrollbars;
 class RscDisplayCurator {
     class Controls {
         class GVAR(zeusControls) : RscControlsGroupNoScrollbars
-		{
+        {
             idc=99575;
-			x="safezoneX + 12.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
-			w="safezoneW - 25 * (((safezoneW / safezoneH) min 1.2) / 40)";
-			y="(safezoneY + safeZoneH) - (1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25))";
-			h="1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            x="safezoneX + 12.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
+            w="safezoneW - 25 * (((safezoneW / safezoneH) min 1.2) / 40)";
+            y="(safezoneY + safeZoneH) - (1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25))";
+            h="1.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             class controls
             {
                 class GVAR(frame): RscFrame
@@ -25,14 +25,14 @@ class RscDisplayCurator {
                     colorText[]={0,0,0,1};
                 };
                 class GVAR(background): RscText
-				{
+                {
                     idc=99577;
-					w="safezoneW - 25 * (((safezoneW / safezoneH) min 1.2) / 40)";
-					x="0 * (((safezoneW / safezoneH) min 1.2) / 40)";
-					y="0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-					h="1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-					colorBackground[]={0.1,0.1,0.1,0.5};
-				};
+                    w="safezoneW - 25 * (((safezoneW / safezoneH) min 1.2) / 40)";
+                    x="0 * (((safezoneW / safezoneH) min 1.2) / 40)";
+                    y="0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+                    h="1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+                    colorBackground[]={0.1,0.1,0.1,0.5};
+                };
                 class GVAR(logo): RscPicture
                 {
                     idc=99578;
