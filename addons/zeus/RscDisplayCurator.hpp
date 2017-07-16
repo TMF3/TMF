@@ -43,9 +43,21 @@ class RscDisplayCurator {
                     h="1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
                     colorText[]={0,0,0,1};
                 };
+                class GVAR(label): RscText
+                {
+                    idc=99577;
+                    style=0x02; // Center
+                    x = "0";
+                    w="4 * (((safezoneW / safezoneH) min 1.2) / 40)";
+                    y="0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+                    h="1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+                    text = "Add Objects:";
+                    SizeEx = "((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8";
+                    colorBackground[]={0,0,0,0};
+                };
                 class GVAR(toggleUnitsZeus): RscButton {
                     idc = IDC_ToggleUnitsZeus;
-                    x = "0";
+                    x ="4 * (((safezoneW / safezoneH) min 1.2) / 40)";
                     y="0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
                     w="5 * (((safezoneW / safezoneH) min 1.2) / 40)";
                     h="1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -56,7 +68,7 @@ class RscDisplayCurator {
                 };
                 class GVAR(toggleStaticsZeus): GVAR(toggleUnitsZeus) {
                     idc = IDC_ToggleStaticsZeus;
-                    x ="5 * (((safezoneW / safezoneH) min 1.2) / 40)";
+                    x ="9 * (((safezoneW / safezoneH) min 1.2) / 40)";
                     text = "Static Objects";
                     action = QUOTE(_this call FUNC(toggleAllStaticsZeus));
                     toolip = "Toggle making Static objects 'editable'"
