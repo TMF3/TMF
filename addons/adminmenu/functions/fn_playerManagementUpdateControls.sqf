@@ -68,7 +68,7 @@ diag_log (_stdHeight / _ctrlHeight);
 {
 	_x params ["_ctrlDead", "_ctrlSide", "_ctrlQResp", "_ctrlSteam"];
 
-	for "_i" from 0 to ((count _x) - 1) do {
+	/*for "_i" from 0 to ((count _x) - 1) do {
 		(_x param [_i]) ctrlSetPosition [
 			_grpX + (_xPos param [_i]),
 			_grpY + (_stdHeight * (_forEachIndex - 1)) - (0.1 * _stdHeight),
@@ -76,7 +76,7 @@ diag_log (_stdHeight / _ctrlHeight);
 			_stdHeight
 		];
 		(_x param [_i]) ctrlCommit 0;
-	};
+	};*/
 
 	/*{
 		_x ctrlSetPosition [
@@ -91,7 +91,7 @@ diag_log (_stdHeight / _ctrlHeight);
 	private _player = (_list lbData _forEachIndex) call BIS_fnc_objectFromNetId;
 	private _isSpectator = _player isKindOf QEGVAR(spectator,unit);
 	private _side = side _player;
-	if (_isSpectator || isPlayer _player) then { // debug
+	/*if (_isSpectator || isPlayer _player) then { // debug
 		//_side = _player getVariable [QEGVAR(spectator,side), sideUnknown];
 		_ctrlDead ctrlShow true; // player must be dead; show dead icon
 		_ctrlDead ctrlSetTooltip format ["'%1' is in spectator", name _player];
@@ -111,32 +111,62 @@ diag_log (_stdHeight / _ctrlHeight);
 		_ctrlDead ctrlShow false;
 		_ctrlQResp ctrlShow false;
 		_ctrlQResp ctrlEnable false;
-	};
+	};*/
 
-	private _color = [0.9,0.8,0,0.8];
-	switch (_side) do {
-		case blufor: { 
-			_color = GVAR(sideColors) param [0];
-		};
-		case opfor: { 
-			_color = GVAR(sideColors) param [1];
-		};
-		case independent: { 
-			_color = GVAR(sideColors) param [2];
-		};
-		case civilian: { 
-			_color = GVAR(sideColors) param [3];
-		};
-		case sideLogic: { 
-			_color = [1,1,1,0.8];
-		};
-	};
+	private _sideColor = [1,1,1,0.8];
+	private _sideTexture = "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa";
 
-	_ctrlSide ctrlSetTextColor _color;
+	if (_isSpectator) then {
+		switch (_side) do {
+			case blufor: { 
+				_sideColor = GVAR(sideColors) param [0];
+			};
+			case opfor: { 
+				_sideColor = GVAR(sideColors) param [1];
+			};
+			case independent: { 
+				_sideColor = GVAR(sideColors) param [2];
+			};
+			case civilian: { 
+				_sideColor = GVAR(sideColors) param [3];
+			};
+			case sideLogic: {
+				_sideColor = [0.9,0.8,0,0.8];
+			};
+		};
+		
+		_list lbSetPicture [_forEachIndex, _sideTexture];
+		_list lbSetPictureColor [_forEachIndex, _sideColor];
+	} else {
+		switch (_side) do {
+			case blufor: { 
+				_sideTexture = "W:\Steam\SteamApps\common\Arma 3\Addons\ui_f_data\a3\ui_f\data\Map\Diary\Icons\playerWest_ca.paa"; 
+			};
+			case opfor: { 
+				_sideTexture = "W:\Steam\SteamApps\common\Arma 3\Addons\ui_f_data\a3\ui_f\data\Map\Diary\Icons\playerEast_ca.paa";
+			};
+			case independent: { 
+				_sideTexture = "W:\Steam\SteamApps\common\Arma 3\Addons\ui_f_data\a3\ui_f\data\Map\Diary\Icons\playerGuer_ca.paa";
+			};
+			case civilian: { 
+				_sideTexture = "W:\Steam\SteamApps\common\Arma 3\Addons\ui_f_data\a3\ui_f\data\Map\Diary\Icons\playerCiv_ca.paa";
+			};
+			case sideLogic: {
+				_sideTexture = "W:\Steam\SteamApps\common\Arma 3\Addons\ui_f_data\a3\ui_f\data\Map\Diary\Icons\playerVirtual_ca.paa";
+			};
+			default {
+				_sideTexture = "W:\Steam\SteamApps\common\Arma 3\Addons\ui_f_data\a3\ui_f\data\Map\Diary\Icons\playerBriefUnknown_ca.paa";
+			};
+		};
+
+		_list lbSetPicture [_forEachIndex, _sideTexture];
+		_list lbSetPictureColor [_forEachIndex, _sideColor];
+	};
+	
 	/*if (random 2 > 1) then {
 		_ctrlSide ctrlSetText "\a3\ui_f\data\Map\Markers\Military\box_CA.paa";
 	};*/
-	_ctrlSide ctrlCommit 0;
+	//_ctrlSide ctrlCommit 0;
 
 	//_ctrlSide ctrlSetText format (["#(argb,8,8,3)color(%1,%2,%3,%4)"] + _color);
 	//_ctrlSide ctrlSetText format ["#(argb,8,8,3)color(%1,%2,%3,%4)", _color param [0], _color param [1], _color param [2], _color param [3]];

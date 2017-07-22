@@ -53,6 +53,8 @@ class ADDON
 			w = "23 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
 		
+
+		// Buttons for Tabs
 		class TabDashboard: RscButtonMenu
 		{
 			idc = IDC_TMF_ADMINMENU_DASH;
@@ -92,7 +94,18 @@ class ADDON
 			x = "20.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			w = "5.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
 		};
+		class TabMessageLog: TabDashboard
+		{
+			idc = IDC_TMF_ADMINMENU_MSGS;
+			text = "Logs";
+			tooltip = "Status and debug messages from TMF components";
+			onButtonClick = QUOTE([ARR_2(ctrlParent param [0],IDC_TMF_ADMINMENU_G_MSGS)] call FUNC(selectTab));
+			x = "26.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+		};
 		
+
+		// Groups for Tabs
 		class GroupBase: RscControlsGroup 
 		{
 			x = "1.1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
@@ -101,7 +114,7 @@ class ADDON
 			h = "0";
 			class Controls {};
 		};
-		
+
 		class GroupDashboard: GroupBase 
 		{
 			idc = IDC_TMF_ADMINMENU_G_DASH;
@@ -136,6 +149,15 @@ class ADDON
 			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 
 			#include "endMission.hpp"
+		};
+
+		class GroupMessageLog: GroupBase
+		{
+			idc = IDC_TMF_ADMINMENU_G_MSGS;
+			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+
+			#include "messageLog.hpp"
 		};
 	};
 	

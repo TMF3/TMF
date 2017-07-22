@@ -3,4 +3,4 @@
 disableSerialization;
 params ["_display"];
 
-_display call FUNC(playerManagementUpdateList);
+systemChat "fn_messageLog.sqf";

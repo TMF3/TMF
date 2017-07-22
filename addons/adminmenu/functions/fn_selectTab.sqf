@@ -38,4 +38,9 @@ switch (_tab) do {
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_ENDM);
 		_display call FUNC(endMission);
 	};
+	case IDC_TMF_ADMINMENU_G_MSGS:
+	{ 
+		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_MSGS);
+		_display call FUNC(messageLog);
+	};
 };

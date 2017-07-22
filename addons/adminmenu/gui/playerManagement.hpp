@@ -57,7 +57,30 @@ class Controls
 		colorBackground[] = {0, 0, 0, 0.3};
 		style = "0x02";
 	};
-	class GroupList: RscControlsGroup 
+
+	class ListPlayers: RscListBox
+	{
+		idc = IDC_TMF_ADMINMENU_PMAN_LIST;
+		style = 32 + 16; // LB_MULTI + ST_MULTI
+		onLBSelChanged = QUOTE(_this call FUNC(playerManagementListSelChange););
+		
+		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+		//rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
+		rowHeight = TMF_ADMINMENU_STD_HEIGHT;
+		colorBackground[] = {0, 0, 0, 1};
+		shadow = 0;
+		itemSpacing = 0.05;
+
+		tooltip = "tooltip test";
+
+		x = 0;
+		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+		w = TMF_ADMINMENU_PMAN_W_LISTGROUP;
+		h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+	};
+
+	/*class GroupList: RscControlsGroup 
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_GROUPLIST;
 		x = "0";
@@ -67,32 +90,8 @@ class Controls
 
 		class Controls
 		{
-			class ListPlayers: RscListBox
-			{
-				idc = IDC_TMF_ADMINMENU_PMAN_LIST;
-				style = 32 + 16; // LB_MULTI + ST_MULTI
-				onLBSelChanged = QUOTE(_this call FUNC(playerManagementListSelChange););
-				
-				sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-				sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-				//rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
-				rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
-				//rowHeight = 0;
-				colorBackground[] = {0, 0, 0, 0};
-				shadow = 0;
-				//itemSpacing = 0.001;
-				itemSpacing = 0;
-
-				tooltip = "tooltip test";
-
-				x = TMF_ADMINMENU_PMAN_X_LIST;
-				y = 0;
-				w = TMF_ADMINMENU_PMAN_W_LIST;
-				//h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
-				h = 0;
-			};
 		};
-	};
+	};*/
 	
 	/*
 	* Right-hand side vertical menu

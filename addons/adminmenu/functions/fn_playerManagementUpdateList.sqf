@@ -17,12 +17,12 @@ private _newPlayers = [];
 {
 	private _addPlayer = [true, alive _x, !alive _x] param [_filterState];
 
+	private _playerSide = sideUnknown;
 	if (_addPlayer && !(_filterSide isEqualTo sideUnknown)) then {
-		private _playerSide = _x call {
-			if (_this isKindOf QEGVAR(spectator,unit)) exitWith {
-				_this getVariable [QEGVAR(spectator,side), sideUnknown];
-			};
-			side _this;
+		_playerSide = if (_x isKindOf QEGVAR(spectator,unit)) then {
+			_x getVariable [QEGVAR(spectator,side), sideUnknown];
+		} else {
+			side _x;
 		};
 
 		_addPlayer = _playerSide isEqualTo _filterSide;
@@ -31,7 +31,9 @@ private _newPlayers = [];
 	if (_addPlayer) then {
 		private _text = "";
 		private _role = "";
-		if (_x isKindOf QEGVAR(spectator,unit)) then {
+		private _isSpectator = _player isKindOf QEGVAR(spectator,unit);
+
+		if (_isSpectator) then {
 			_text = groupId (_x getVariable [QEGVAR(spectator,group), grpNull]);
 			_role = toUpper (_x getVariable [QEGVAR(spectator,role), ""]);
 		} else {
@@ -41,7 +43,7 @@ private _newPlayers = [];
 
 		if (count _role > 0) then {
 			if (count _text > 0) then {
-				_text = format ["%1:    %2", _text, _role];
+				_text = format ["%1: %2", _text, _role];
 			} else {
 				_text = _role;
 			};
@@ -60,7 +62,67 @@ private _newPlayers = [];
 		_list lbSetSelected [_idx, _netId in GVAR(playerManagement_selected)];
 		_list lbSetData [_idx, _netId];
 		_newPlayers pushBack _netId;
+
+		private _sideColor = [1,1,1,0.8];
+		private _sideTexture = "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa";
+
+		if (_isSpectator) then {
+			switch (_playerSide) do {
+				case blufor: { 
+					_sideColor = GVAR(sideColors) param [0];
+				};
+				case opfor: { 
+					_sideColor = GVAR(sideColors) param [1];
+				};
+				case independent: { 
+					_sideColor = GVAR(sideColors) param [2];
+				};
+				case civilian: { 
+					_sideColor = GVAR(sideColors) param [3];
+				};
+				case sideLogic: {
+					_sideColor = [0.9,0.8,0,0.8];
+				};
+			};
+			
+			_list lbSetPicture [_idx, _sideTexture];
+			_list lbSetPictureColor [_idx, _sideColor];
+
+			if ((random 1) > 0.9) then {
+				_list lbSetPictureRight [_idx, "\a3\ui_f\data\IGUI\RscTitles\MPProgress\respawn_ca.paa"];
+				_list lbSetPictureRightColor [_idx, [1,1,1,0.8]];
+			} else {
+				_list lbSetPictureRightColor [_idx, [1,1,1,0]];
+			};
+		} else {
+			switch (_playerSide) do {
+				case blufor: { 
+					_sideTexture = "\a3\ui_f\data\Map\Diary\Icons\playerWest_ca.paa"; 
+				};
+				case opfor: { 
+					_sideTexture = "\a3\ui_f\data\Map\Diary\Icons\playerEast_ca.paa";
+				};
+				case independent: { 
+					_sideTexture = "\a3\ui_f\data\Map\Diary\Icons\playerGuer_ca.paa";
+				};
+				case civilian: { 
+					_sideTexture = "\a3\ui_f\data\Map\Diary\Icons\playerCiv_ca.paa";
+				};
+				case sideLogic: {
+					_sideTexture = "\a3\ui_f\data\Map\Diary\Icons\playerVirtual_ca.paa";
+				};
+				default {
+					_sideTexture = "\a3\ui_f\data\Map\Diary\Icons\playerBriefUnknown_ca.paa";
+				};
+			};
+
+			_list lbSetPicture [_idx, _sideTexture];
+			_list lbSetPictureColor [_idx, _sideColor];
+			_list lbSetPictureRightColor [_idx, [1,1,1,0]];
+		};
 	};
+	
+	diag_log format ["PMAN LIST ICON for idx %1: %2 | %3 | %4 | %5", _idx, _x, _playerSide, _sideColor, _sideTexture];
 } forEach _allPlayers;
 
 GVAR(playerManagement_players) = +_newPlayers;
@@ -70,19 +132,14 @@ while {(lbSize _list) > count _newPlayers} do {
 	_list lbDelete ((lbSize _list) - 1);
 };
 
+
+private _player = (_list lbData _forEachIndex) call BIS_fnc_objectFromNetId;
+
+
 // update list and controlgroup heights
 private _listPos = ctrlPosition _list;
-//_listPos set [3, ((lbSize _list) + (linearConversion [0, 200, lbSize _list, 0, 2])) * TMF_ADMINMENU_STD_HEIGHT];
-_listPos set [3, ((lbSize _list) min 1) * TMF_ADMINMENU_STD_HEIGHT];
+_listPos set [3, ((lbSize _list) max 1) * 2 * TMF_ADMINMENU_STD_HEIGHT];
 _list ctrlSetPosition _listPos;
 _list ctrlCommit 0;
 
-diag_log "_list height 1 2:";
-diag_log ((lbSize _list) * TMF_ADMINMENU_STD_HEIGHT);
-diag_log (((lbSize _list) + (linearConversion [0, 200, lbSize _list, 0, 2])) * TMF_ADMINMENU_STD_HEIGHT);
-
 lbSort _list;
-
-[{
-	_this call FUNC(playerManagementUpdateControls);
-}, _display, 0.1] call CBA_fnc_waitAndExecute;
