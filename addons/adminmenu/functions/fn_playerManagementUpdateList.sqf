@@ -17,12 +17,12 @@ private _newPlayers = [];
 {
 	private _addPlayer = [true, alive _x, !alive _x] param [_filterState];
 
-	private _playerSide = sideUnknown;
+	private _isSpectator = _x isKindOf QEGVAR(spectator,unit);
+	private _playerSide = side _x;
+
 	if (_addPlayer && !(_filterSide isEqualTo sideUnknown)) then {
-		_playerSide = if (_x isKindOf QEGVAR(spectator,unit)) then {
-			_x getVariable [QEGVAR(spectator,side), sideUnknown];
-		} else {
-			side _x;
+		if (_isSpectator) then {
+			_playerSide = (_x getVariable [QEGVAR(spectator,side), sideUnknown]);
 		};
 
 		_addPlayer = _playerSide isEqualTo _filterSide;
@@ -31,7 +31,6 @@ private _newPlayers = [];
 	if (_addPlayer) then {
 		private _text = "";
 		private _role = "";
-		private _isSpectator = _player isKindOf QEGVAR(spectator,unit);
 
 		if (_isSpectator) then {
 			_text = groupId (_x getVariable [QEGVAR(spectator,group), grpNull]);
@@ -63,10 +62,16 @@ private _newPlayers = [];
 		_list lbSetData [_idx, _netId];
 		_newPlayers pushBack _netId;
 
+
+		_list lbSetPictureRight [_idx, "\a3\ui_f\data\IGUI\RscTitles\MPProgress\respawn_ca.paa"];
 		private _sideColor = [1,1,1,0.8];
 		private _sideTexture = "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa";
 
-		if (_isSpectator) then {
+		//if (_isSpectator) then {
+		if ((random 1) < 0.5) then {
+			_list lbSetColor [_idx, [0.6,0.6,0.6,1]];
+			_list lbSetColorRight [_idx, [0.6,0.6,0.6,1]];
+
 			switch (_playerSide) do {
 				case blufor: { 
 					_sideColor = GVAR(sideColors) param [0];
@@ -87,14 +92,17 @@ private _newPlayers = [];
 			
 			_list lbSetPicture [_idx, _sideTexture];
 			_list lbSetPictureColor [_idx, _sideColor];
+			_list lbSetPictureColorSelected [_idx, _sideColor];
 
-			if ((random 1) > 0.9) then {
-				_list lbSetPictureRight [_idx, "\a3\ui_f\data\IGUI\RscTitles\MPProgress\respawn_ca.paa"];
+			if ((random 1) < 0.5) then {
 				_list lbSetPictureRightColor [_idx, [1,1,1,0.8]];
 			} else {
 				_list lbSetPictureRightColor [_idx, [1,1,1,0]];
 			};
 		} else {
+			_list lbSetColor [_idx, [1,1,1,1]];
+			_list lbSetColorRight [_idx, [1,1,1,1]];
+
 			switch (_playerSide) do {
 				case blufor: { 
 					_sideTexture = "\a3\ui_f\data\Map\Diary\Icons\playerWest_ca.paa"; 
@@ -118,11 +126,12 @@ private _newPlayers = [];
 
 			_list lbSetPicture [_idx, _sideTexture];
 			_list lbSetPictureColor [_idx, _sideColor];
+			_list lbSetPictureColorSelected [_idx, _sideColor];
 			_list lbSetPictureRightColor [_idx, [1,1,1,0]];
 		};
 	};
 	
-	diag_log format ["PMAN LIST ICON for idx %1: %2 | %3 | %4 | %5", _idx, _x, _playerSide, _sideColor, _sideTexture];
+	//diag_log format ["PMAN LIST ICON for idx %1: %2 | %3 | %4 | %5 | %6", _idx, _x, str _playerSide, str _sideColor, str _sideTexture, str _isSpectator];
 } forEach _allPlayers;
 
 GVAR(playerManagement_players) = +_newPlayers;
@@ -131,15 +140,5 @@ GVAR(playerManagement_selected) = GVAR(playerManagement_selected) arrayIntersect
 while {(lbSize _list) > count _newPlayers} do {
 	_list lbDelete ((lbSize _list) - 1);
 };
-
-
-private _player = (_list lbData _forEachIndex) call BIS_fnc_objectFromNetId;
-
-
-// update list and controlgroup heights
-private _listPos = ctrlPosition _list;
-_listPos set [3, ((lbSize _list) max 1) * 2 * TMF_ADMINMENU_STD_HEIGHT];
-_list ctrlSetPosition _listPos;
-_list ctrlCommit 0;
 
 lbSort _list;

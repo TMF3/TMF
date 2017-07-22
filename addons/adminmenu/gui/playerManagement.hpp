@@ -67,10 +67,20 @@ class Controls
 		sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 		//rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
-		rowHeight = TMF_ADMINMENU_STD_HEIGHT;
-		colorBackground[] = {0, 0, 0, 1};
-		shadow = 0;
-		itemSpacing = 0.05;
+		//rowHeight = TMF_ADMINMENU_STD_HEIGHT;
+		//colorBackground[] = {0, 0, 0, 1};
+		//shadow = 0;
+		//itemSpacing = 0.05;
+
+		pictureColor[] = {1,1,1,1}; // Picture color
+		pictureColorSelect[] = {1,1,1,1}; // Selected picture color
+		pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
+
+		rowHeight = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		colorText[] = {1,1,1,1};
+		colorBackground[] = {0,0,0,0};
+		itemBackground[] = {1,1,1,0.2};
+		itemSpacing = 0;
 
 		tooltip = "tooltip test";
 
