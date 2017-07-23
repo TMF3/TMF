@@ -60,7 +60,31 @@ private _groups = [];
     };
 } forEach (GVAR(orbatRawData));
 
-if (_ourIdx == -1) exitWith {};
+// Root entry does not exist for us, so let's create one.
+if (_ourIdx == -1) then {
+    private _type = 0; // What are the other conditions that already exist sides (number) or factions (string)
+    if (count GVAR(orbatRawData) > 0) then {
+        private _firstEntry = GVAR(orbatRawData) select 0;
+        if (count _firstEntry > 0) then {
+            _type = _firstEntry select 0;
+        };
+    };
+    
+    // Use faction
+    private _condition = (side _unit) call EFUNC(common,sideToNum);
+    _groups = allGroups select {side _x == side _unit};
+    if (_type isEqualType "") then {
+        private _faction = faction (leader (group _unit));
+        _condition = _faction;
+        _groups = allGroups select {faction (leader _x) == _faction};
+    };
+    
+    // Sub groups won't exist so ensure they are invalid.
+    {_x setVariable ["TMF_OrbatParent",-1]} forEach _groups;
+    
+    private _newEntry = [_condition,[[0,"","","","Platoon",0],[]]];
+    _ourIdx = GVAR(orbatRawData) pushBack _newEntry;
+};
 private _ourData = (GVAR(orbatRawData) select _ourIdx) select 1; //list of children
 private _toPlace = [];
 private _reserveId = (_ourData select 0) select 0;
