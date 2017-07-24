@@ -30,16 +30,16 @@ player setVariable [QGVAR(firedEH),_eh];
 player setVariable [QGVAR(action),_action];
 
 if(_duration > 0) then {
-	while {_duration > 0 && _logic getVariable [QGVAR(enabled),false] } do {
-		uiSleep 1;
-		_duration = _duration - 1;
-		private _minutes = floor (_duration / 60);
-		private _seconds = floor (_duration - (_minutes * 60));
-		if(_minutes < 10) then {_minutes = "0"+str _minutes }  else {_minutes = str _minutes};
-		if(_seconds <10) then {_seconds = "0"+str _seconds} else {_seconds = str _seconds};
-	  	((uiNamespace getVariable [QGVAR(display),displayNull]) displayCtrl 101) ctrlSetText (format ["SAFESTART %1:%2", _minutes,_seconds]);
-	};
-	[] call FUNC(playerEnd);
+    while {_duration > 0 && _logic getVariable [QGVAR(enabled),false] } do {
+        uiSleep 1;
+        _duration = _duration - 1;
+        private _minutes = floor (_duration / 60);
+        private _seconds = floor (_duration - (_minutes * 60));
+        if(_minutes < 10) then {_minutes = "0"+str _minutes }  else {_minutes = str _minutes};
+        if(_seconds <10) then {_seconds = "0"+str _seconds} else {_seconds = str _seconds};
+        ((uiNamespace getVariable [QGVAR(display),displayNull]) displayCtrl 101) ctrlSetText (format ["SAFESTART %1:%2", _minutes,_seconds]);
+    };
+    [] call FUNC(playerEnd);
 } else {
-	[{ !((_this select 0) getVariable [QGVAR(enabled),false]) },{[] call FUNC(playerEnd)},[_logic]] call CBA_fnc_waitUntilAndExecute;
+    [{ !((_this select 0) getVariable [QGVAR(enabled),false]) },{[] call FUNC(playerEnd)},[_logic]] call CBA_fnc_waitUntilAndExecute;
 };
