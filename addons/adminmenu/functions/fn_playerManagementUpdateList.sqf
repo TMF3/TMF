@@ -51,10 +51,10 @@ private _newPlayers = [];
 		private _idx = count _newPlayers;
 		if (_idx >= lbSize _list) then {
 			_idx = _list lbAdd name _x;
+			_list lbSetPictureRight [_idx, "\a3\ui_f\data\IGUI\RscTitles\MPProgress\respawn_ca.paa"];
 		} else {
 			_list lbSetText [_idx, name _x];
 		};
-
 		_list lbSetTextRight [_idx, _text];
 		
 		private _netId = _x call BIS_fnc_netId;
@@ -62,8 +62,6 @@ private _newPlayers = [];
 		_list lbSetData [_idx, _netId];
 		_newPlayers pushBack _netId;
 
-
-		_list lbSetPictureRight [_idx, "\a3\ui_f\data\IGUI\RscTitles\MPProgress\respawn_ca.paa"];
 		private _sideColor = [1,1,1,0.8];
 		private _sideTexture = "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa";
 
