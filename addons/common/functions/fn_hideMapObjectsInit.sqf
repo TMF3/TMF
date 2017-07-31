@@ -26,6 +26,7 @@ _ints append lineIntersectsObjs [AGLToASL(_logic modelToWorld [0,0,-2]), AGLToAS
 
 _ints = _ints select {str(_x) find ".p3d" > 0};
 _ints = _ints arrayIntersect _ints;
+_ints = _ints arrayIntersect (nearestTerrainObjects [_logic, [], 50]);
 
 {
     if (isServer) then { _x hideObjectGlobal true } else { _x hideObject true };

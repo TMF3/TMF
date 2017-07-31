@@ -15,16 +15,16 @@ class RscControlsGroup;
 class RscDisplayMainMap {
     class controls {
         class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
-            h = "18 *  ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
+            h = "18 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };
         class CA_DiaryGroup: RscControlsGroup {
             h = "safezoneH - 7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 *           (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
             class controls {
                 class CA_Diary: RscHTML {
                     h = 100;
-                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
                 };
             };
         };
@@ -34,16 +34,16 @@ class RscDisplayMainMap {
 class RscDisplayDiary {
     class controls {
         class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
-            h = "18 *  ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
+            h = "18 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };
         class CA_DiaryGroup: RscControlsGroup {
             h = "safezoneH - 7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 *           (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
             class controls {
                 class CA_Diary: RscHTML {
                     h = 100;
-                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
                 };
             };
         };
@@ -53,16 +53,16 @@ class RscDisplayDiary {
 class RscDisplayGetReady: RscDisplayMainMap {
     class controls {
         class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
-            h = "18 *  ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
+            h = "18 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };
         class CA_DiaryGroup: RscControlsGroup {
             h = "safezoneH - 7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 *           (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
             class controls {
                 class CA_Diary: RscHTML {
                     h = 100;
-                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
                 };
             };
         };
@@ -72,16 +72,16 @@ class RscDisplayGetReady: RscDisplayMainMap {
 class RscDisplayServerGetReady: RscDisplayGetReady {
     class controls {
         class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
-            h = "18 *  ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
+            h = "18 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };
         class CA_DiaryGroup: RscControlsGroup {
             h = "safezoneH - 7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 *           (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
             class controls {
                 class CA_Diary: RscHTML {
                     h = 100;
-                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
                 };
             };
         };
@@ -91,16 +91,16 @@ class RscDisplayServerGetReady: RscDisplayGetReady {
 class RscDisplayClientGetReady: RscDisplayGetReady {
     class controls {
         class CA_ContentBackgroundd: RscText {
-            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
-            h = "18 *  ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
+            h = "18 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };
         class CA_DiaryGroup: RscControlsGroup {
             h = "safezoneH - 7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-            w = "21.5 *           (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+            w = "21.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
             class controls {
                 class CA_Diary: RscHTML {
                     h = 100;
-                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 3"; // *3 = TMF
+                    w = "20.5 * (((safezoneW / safezoneH) min 1.2) / 40) * 1.25"; // *1.25 = TMF
                 };
             };
         };
