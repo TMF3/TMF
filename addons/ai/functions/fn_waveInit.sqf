@@ -32,7 +32,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
         } foreach _units;
     } foreach _allgroups;
 
-    _logic setVariable [QGVAR(init),true];
+    _logic setVariable [QGVAR(init),true,true];
 };
 
 
