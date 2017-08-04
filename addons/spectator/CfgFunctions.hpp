@@ -20,7 +20,7 @@ class CfgFunctions {
             class toggleUI;
             class init;
             class isOpen;
-            class keyhandler;
+            class keyHandler;
             class updateGroupCache;
             class menuHandler;
             class mouseHandler;
