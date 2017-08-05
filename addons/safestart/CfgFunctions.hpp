@@ -7,6 +7,8 @@ class cfgFunctions {
             class playerEnd;
             class serverInit;
             class serverEnd;
+            class end;
+            class create;
         };
     };
 };
