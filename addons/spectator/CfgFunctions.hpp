@@ -7,7 +7,6 @@ class CfgFunctions {
             class createGroupNode;
             class createUnitNode;
             class drawMap;
-            class escmenuHandler;
             class handleUnitList;
             class getCameraPos;
             class getCardinal;
