@@ -3,6 +3,8 @@
 disableSerialization;
 params ["_display", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 
+GVAR(selectedTab) = _tab;
+
 while {count GVAR(tabPFHHandles) > 0} do {
 	[GVAR(tabPFHHandles) deleteAt 0] call CBA_fnc_removePerFrameHandler;
 };

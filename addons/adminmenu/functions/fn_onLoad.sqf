@@ -4,7 +4,6 @@ disableSerialization;
 params ["_display"];
 uiNamespace setVariable [QGVAR(display), _display];
 
-
 if (!isMultiplayer) then {
 	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_CURRADMIN) ctrlSetText "none (singleplayer)";
 };
@@ -35,6 +34,9 @@ _ctrl ctrlAddEventHandler ["LBSelChanged", format ["[ctrlParent (param [0])] cal
 
 // Register client as server FPS receiver
 [true] remoteExec [QFUNC(fpsHandlerServer), 2];
+
+// Hide Modal
+[_display] call FUNC(modalClose);
 
 // Show dashboard when opening the admin menu, hide other tabs
 [_display] call FUNC(selectTab);

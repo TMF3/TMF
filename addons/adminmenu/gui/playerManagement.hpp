@@ -222,4 +222,18 @@ class Controls
 		onButtonClick = "systemChat 'Button: ACRE2 Languages';";
 		y = "16.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
+    class ButtonSteamProfile: ButtonSelectAll
+	{
+		idc = IDC_TMF_ADMINMENU_PMAN_STEAM;
+		text = "Steam Profile";
+		onButtonClick = QUOTE([ARR_2(_this,'steamprofile')] call FUNC(modalOpen););
+		y = "17.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
+    class ButtonQuickRespawn: ButtonSelectAll
+	{
+		idc = IDC_TMF_ADMINMENU_PMAN_QRESPAWN;
+		text = "Quick Respawn";
+		onButtonClick = "systemChat 'Button: Quick Respawn';";
+		y = "18.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+	};
 };
