@@ -19,11 +19,36 @@ if (ctrlShown (_display displayCtrl IDC_TMF_ADMINMENU_G_MODAL)) then {
 	_display call FUNC(modalClose);
 };
 
+if (!isNil QGVAR(selectedTab)) then {
+	private _outsideCtrls = IDCS_TMF_ADMINMENU_BTNS;
+	switch (GVAR(selectedTab)) do {
+		case IDC_TMF_ADMINMENU_DASH: {
+			_outsideCtrls pushBack IDC_TMF_ADMINMENU_G_DASH;
+		};
+		case IDC_TMF_ADMINMENU_PMAN: {
+			_outsideCtrls pushBack IDC_TMF_ADMINMENU_G_PMAN;
+		};
+		case IDC_TMF_ADMINMENU_RESP: { 
+			_outsideCtrls pushBack IDC_TMF_ADMINMENU_G_RESP;
+		};
+		case IDC_TMF_ADMINMENU_ENDM: { 
+			_outsideCtrls pushBack IDC_TMF_ADMINMENU_G_ENDM;
+		};
+		case IDC_TMF_ADMINMENU_MSGS: { 
+			_outsideCtrls pushBack IDC_TMF_ADMINMENU_G_MSGS;
+		};
+	};
+
+	{
+		(_display displayCtrl _x) ctrlEnable false;
+	} forEach _outsideCtrls;
+};
+
 private _controls = IDCS_TMF_ADMINMENU_MODAL apply {_display displayCtrl _x};
 {
 	_x ctrlShow true;
 	_x ctrlEnable true;
-} forEach IDCS_TMF_ADMINMENU_MODAL;
+} forEach _controls;
 
 if (isNil QGVAR(modalEscapeEH)) then {
 	GVAR(modalEscapeEH) = [1, [false, false, false], {

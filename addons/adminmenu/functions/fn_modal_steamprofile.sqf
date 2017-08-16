@@ -14,14 +14,14 @@ private _text = "";
 {
 	if ((_forEachIndex % 2) == 0) then {
 		_text = format [
-			"%1<t align='left'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t>", 
+			"%1<t size='1' align='left'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t>", 
 			_text,
 			getPlayerUID _x,
 			name _x
 		];
 	} else {
 		_text = format [
-			"%1<t align='right'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t><br/>", 
+			"%1<t size='1' align='right'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t><br/>", 
 			_text,
 			getPlayerUID _x,
 			name _x
@@ -29,4 +29,5 @@ private _text = "";
 	};
 } forEach _data;
 
+diag_log _text;
 _ctrlText ctrlSetStructuredText parseText _text;

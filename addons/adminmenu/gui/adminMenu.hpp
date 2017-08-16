@@ -165,11 +165,11 @@ class ADDON
 		class ModalBackground: RscText
 		{
 			idc = IDC_TMF_ADMINMENU_MODAL_BACK;
-			colorBackground[] = {0, 0, 0, 0.5};
+			colorBackground[] = {0, 0, 0, 0.7};
 			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "38 * (((safezoneW / safezoneH) min 1.2) / 40)";
-			h = "24 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			h = "23 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		};
 		class ModalTitleBackground: RscText
 		{
@@ -194,7 +194,10 @@ class ADDON
 		class ModalGroupBackground: RscText
 		{
 			idc = IDC_TMF_ADMINMENU_MODAL_GBACK;
-			colorBackground[] = {0, 0, 0, 0.5};
+			colorBackground[] = {0, 0, 0, 0.8};
+			shadow = 2;
+			colorShadow[] = {1, 1, 1, 1};
+			colorText[] = {1, 1, 1, 1};
 			x = "1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
 			y = "3.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "37 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -218,9 +221,9 @@ class ADDON
 			tooltip = "Close Modal Window";
 			onMouseButtonClick = QUOTE(call FUNC(modalClose));
 			colorBackground[] = {0, 0, 0, 0};
-			colorText[] = {1, 0, 0, 1};
-			x = "1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-			y = "36 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+			colorText[] = {1, 1, 1, 1};
+			x = "37.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			y = "2.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 		};
