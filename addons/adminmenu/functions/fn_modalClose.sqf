@@ -5,6 +5,7 @@ params [["_display", uiNamespace getVariable QGVAR(display)]];
 
 if (!isNil QGVAR(modalEscapeEH)) then {
 	[GVAR(modalEscapeEH), "keydown"] call CBA_fnc_removeKeyHandler;
+	GVAR(modalEscapeEH) = nil;
 };
 
 if (!isNil QGVAR(modalControls)) then {

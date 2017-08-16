@@ -22,6 +22,11 @@ class CfgFunctions {
             class quickRespawn;
             class respawn;
             class selectTab;
+
+            class modalClose;
+            class modalOpen;
+
+            class modal_steamprofile;
         };
     };
 };

@@ -1,12 +1,10 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
 disableSerialization;
-params ["_button", "_modalFunction", ["_data", false]];
-private _display = ctrlParent _button;
+params ["_display", "_modalFunction", ["_data", false]];
 
-private _modalFunctionFull = format ["%1_fnc_modal_%2", ADDON, _modalFunction];
-if (isNil _modalFunctionFull) exitWith {
-	systemChat format ["A TMF Admin Menu modal function with the name '%1' is not defined.", _modalFunctionFull];
+if (isNil _modalFunction) exitWith {
+	systemChat format ["A TMF Admin Menu modal function with the name '%1' is not defined.", _modalFunction];
 };
 
 if ((missionNamespace getVariable [QGVAR(selectedTab), 0]) isEqualTo IDC_TMF_ADMINMENU_G_PMAN) then {
@@ -15,6 +13,10 @@ if ((missionNamespace getVariable [QGVAR(selectedTab), 0]) isEqualTo IDC_TMF_ADM
 	}) select {
 		!isNull _x
 	};
+};
+
+if (ctrlShown (_display displayCtrl IDC_TMF_ADMINMENU_G_MODAL)) then {
+	_display call FUNC(modalClose);
 };
 
 private _controls = IDCS_TMF_ADMINMENU_MODAL apply {_display displayCtrl _x};
@@ -31,4 +33,4 @@ if (isNil QGVAR(modalEscapeEH)) then {
 
 ctrlSetFocus (_controls select 0);
 
-[_display, _display displayCtrl IDC_TMF_ADMINMENU_G_MODAL, _display displayCtrl IDC_TMF_ADMINMENU_MODAL_TITLE, _data] call (missionNamespace getVariable _modalFunctionFull);
+[_display, _display displayCtrl IDC_TMF_ADMINMENU_G_MODAL, _display displayCtrl IDC_TMF_ADMINMENU_MODAL_TITLE, _data] call (missionNamespace getVariable _modalFunction);

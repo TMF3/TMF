@@ -226,7 +226,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_STEAM;
 		text = "Steam Profile";
-		onButtonClick = QUOTE([ARR_2(_this,'steamprofile')] call FUNC(modalOpen););
+		onButtonClick = QUOTE([ARR_2(ctrlParent (_this select 0),QUOTE(QFUNC(modal_steamprofile)))] call FUNC(modalOpen););
 		y = "17.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonQuickRespawn: ButtonSelectAll
