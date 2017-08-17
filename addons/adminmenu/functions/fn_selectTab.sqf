@@ -3,6 +3,11 @@
 disableSerialization;
 params ["_display", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 
+private _utilityTab = _display displayCtrl IDC_TMF_ADMINMENU_G_UTIL;
+if (ctrlEnabled _utilityTab) then {
+	_display call FUNC(utilityClose);
+};
+
 GVAR(selectedTab) = _tab;
 
 while {count GVAR(tabPFHHandles) > 0} do {

@@ -163,7 +163,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_TELEPORT;
 		text = "Teleport";
-		onButtonClick = "systemChat 'Button: Teleport';";
+		onButtonClick = QUOTE([ARR_4(ctrlParent (_this select 0),QUOTE(QFUNC(utility_teleport)),ctrlText (_this select 0),true)] call FUNC(utilityOpen););
 		y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonMessage: ButtonSelectAll
@@ -226,7 +226,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_STEAM;
 		text = "Steam Profile";
-		onButtonClick = QUOTE([ARR_2(ctrlParent (_this select 0),QUOTE(QFUNC(modal_steamprofile)))] call FUNC(modalOpen););
+		onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_steamprofile)),ctrlText (_this select 0))] call FUNC(utilityOpen););
 		y = "17.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonQuickRespawn: ButtonSelectAll

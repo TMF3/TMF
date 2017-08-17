@@ -21,6 +21,12 @@ class GVAR(RscButtonMenu): RscButtonMenu {
 	h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 };
 
+class GVAR(RscTextMultiline): RscText {
+	style = "0x00 + 0x10 + 0x0200";
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+	lineSpacing = 1;
+};
+
 class ADDON
 {
 	idd = IDD_TMF_ADMINMENU;
@@ -160,9 +166,44 @@ class ADDON
 			#include "messageLog.hpp"
 		};
 
+		// Utility Tab
+		class UtilityTitleBackground: RscText
+		{
+			idc = IDC_TMF_ADMINMENU_UTIL_TBACK;
+			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			y = "3.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+			w = "38 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class UtilityTitle: RscTitle
+		{
+			idc = IDC_TMF_ADMINMENU_UTIL_TITLE;
+			text = "Utility Title";
+			style = 0;
+			colorBackground[] = {0, 0, 0, 0};
+			x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+			y = "3.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+			w = "38 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
+		class UtilityGroup: GroupBase
+		{
+			idc = IDC_TMF_ADMINMENU_G_UTIL;
+			y = "4.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+			w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
+			h = "19.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+		};
 
 		// Modal
-		class ModalBackground: RscText
+		delete ModalBackground;
+		delete ModalTitleBackground;
+		delete ModalTitle;
+		delete ModalGroupBackground;
+		delete ModalGroup;
+		delete ModalClose;
+
+		/*class ModalBackground: RscText
 		{
 			idc = IDC_TMF_ADMINMENU_MODAL_BACK;
 			colorBackground[] = {0, 0, 0, 0.7};
@@ -226,7 +267,7 @@ class ADDON
 			y = "2.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 			w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
 			h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-		};
+		};*/
 	};
 	
 	class ControlsBackground
