@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
 disableSerialization;
-params ["_display", "_ctrlGroup", "_data"];
+params ["_display", "_ctrlGroup"];
 
 private _ctrlTextPos = [0, 0];
 _ctrlTextPos append ((ctrlPosition _ctrlGroup) select [2, 2]);
@@ -22,7 +22,7 @@ private _text = "";
 		getPlayerUID _x,
 		name _x
 	];
-} forEach _data;
+} forEach GVAR(utility_data);
 
 diag_log _text;
 _ctrlText ctrlSetStructuredText parseText _text;

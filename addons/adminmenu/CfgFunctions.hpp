@@ -25,9 +25,18 @@ class CfgFunctions {
 
             class utilityClose;
             class utilityOpen;
-
+            class utilityDirect;
+            class utility_grantzeus;
+            class utility_heal;
+            class utility_kick;
+            class utility_message;
+            class utility_runcode;
             class utility_steamprofile;
             class utility_teleport;
+
+            class zeusServerMake;
+            class zeusServerObjectPlayedSync;
+            class zeusSetupSync;
         };
     };
 };

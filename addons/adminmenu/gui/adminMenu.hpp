@@ -21,9 +21,12 @@ class GVAR(RscButtonMenu): RscButtonMenu {
 	h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 };
 
-class GVAR(RscTextMultiline): RscText {
-	style = "0x00 + 0x10 + 0x0200";
+class GVAR(RscText): RscText {
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+};
+
+class GVAR(RscTextMultiline): GVAR(RscText) {
+	style = "0x00 + 0x10 + 0x0200";
 	lineSpacing = 1;
 };
 

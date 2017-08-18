@@ -1,8 +1,7 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
 disableSerialization;
-params ["_display", "_ctrlGroup", "_data"];
-GVAR(utility_teleport_players) = _data;
+params ["_display", "_ctrlGroup"];
 
 private _ctrlMap = _display ctrlCreate ["RscMapControl", -1, _ctrlGroup];
 GVAR(utilityTabControls) = [_ctrlMap];
@@ -17,14 +16,17 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
 	//systemChat format ["_ctrlMap mouseButtonClick | x/y: %1 | %2: %3", [_pos_x, _pos_y], QGVAR(utility_teleport_toggle), missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]];
 
 	if (missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]) then {
+		{
+			_x ctrlEnable false;
+		} forEach GVAR(utilityTabControls);
+		
 		private _pos = (_ctrlMap ctrlMapScreenToWorld [_pos_x, _pos_y]) findEmptyPosition [0, 25];
 		{
 			_x setPos _pos;
 			"[TMF Admin Menu] You were teleported" remoteExec ["systemChat", _x];
-		} forEach GVAR(utility_teleport_players);
+		} forEach GVAR(utility_data);
 
-		systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utility_teleport_players)];
-
+		systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utility_data)];
 		/*_ctrlMap ctrlEnable false;
 		if (!isNil QGVAR(selectedTab)) then {
 			[ctrlParent _ctrlMap, GVAR(selectedTab)] call FUNC(selectTab);
