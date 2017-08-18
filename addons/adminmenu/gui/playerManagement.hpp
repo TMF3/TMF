@@ -170,7 +170,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_MESSAGE;
 		text = "Message";
-		onButtonClick = "systemChat 'Button: Message';";
+		onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_message)),ctrlText (_this select 0))] call FUNC(utilityOpen););
 		y = "9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonAssignGear: ButtonSelectAll
@@ -191,20 +191,20 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_HEAL;
 		text = "Heal";
-		onButtonClick = "systemChat 'Button: Heal';";
+		onButtonClick = QUOTE([ARR_4(ctrlParent (_this select 0),QUOTE(QFUNC(utility_heal)),ctrlText (_this select 0),true)] call FUNC(utilityDirect););
 		y = "12.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonKick: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_KICK;
 		text = "Kick";
-		onButtonClick = "systemChat 'Button: Kick';";
+		onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_kick)),ctrlText (_this select 0))] call FUNC(utilityOpen););
 		y = "13.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonRunCode: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_RUNCODE;
-		text = "Run Code On";
+		text = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_runCode)),ctrlText (_this select 0))] call FUNC(utilityOpen););
 		onButtonClick = "systemChat 'Button: Run Code On';";
 		y = "14.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
@@ -212,7 +212,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_GRANTZEUS;
 		text = "Grant Zeus";
-		onButtonClick = "systemChat 'Button: Grant Zeus';";
+		onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_grantZeus)),ctrlText (_this select 0))] call FUNC(utilityDirect););
 		y = "15.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonACRE2Languages: ButtonSelectAll

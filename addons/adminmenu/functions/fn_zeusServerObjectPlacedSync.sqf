@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-params["_curator", "_placed"];
+params ["_curator", "_placed"];
 
 {   
     if (_x getVariable [QGVAR(zeus), false]) then {
