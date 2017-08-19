@@ -3,7 +3,9 @@
 disableSerialization;
 params ["_display", "_ctrlGroup"];
 
-private _ctrlEdit = _display ctrlCreate ["RscEditMulti", -1, _ctrlGroup];
+if (!isNil QGVAR(utilityTabControls)) then { systemChat format ["!isNil teleport : %1", str GVAR(utilityTabControls)]; };
+
+private _ctrlEdit = _display ctrlCreate [QGVAR(RscEditMultiCode), -1, _ctrlGroup];
 GVAR(utilityTabControls) = [_ctrlEdit];
 private _ctrlEditPos = ctrlPosition _ctrlGroup;
 private _ctrlGrpHeight = _ctrlEditPos select 3;
@@ -45,12 +47,14 @@ _ctrlButton ctrlSetPosition [_newX, _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, _
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Execute";
 _ctrlButton ctrlAddEventHandler ["buttonClick", {
+	disableSerialization;
 	private _editText = ctrlText (GVAR(utilityTabControls) select 0);
 	if (_editText isEqualTo "") then {
 		systemChat "[TMF Admin Menu] Code can't be empty";
 	} else {
 		(_this select 0) ctrlEnable false;
 		private _foo = (_this select 0) spawn {
+			disableSerialization;
 			sleep 0.5;
 			_this ctrlEnable true;
 		};

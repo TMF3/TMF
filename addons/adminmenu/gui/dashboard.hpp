@@ -15,7 +15,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_DEBUGCON;
 		text = "Debug Console";
-		onButtonClick = "systemChat 'Button: Debug Console'; (ctrlParent param [0]) closeDisplay 1; createDialog 'RscDisplayDebugPublic';";
+		onButtonClick = "(ctrlParent param [0]) closeDisplay 1; createDialog 'RscDisplayDebugPublic';";
 		x = "0";
 		y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 		w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -24,21 +24,21 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_CLAIMZEUS;
 		text = "Claim Zeus";
-		onButtonClick = QUOTE(systemChat 'Button: Claim Zeus'; call FUNC(grantZeus));
+		onButtonClick = QUOTE(call FUNC(claimZeus));
 		y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonCamera: ButtonDebugConsole
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_CAMERA;
 		text = "Camera";
-		onButtonClick = "systemChat 'Button: Camera'; (ctrlParent param [0]) closeDisplay 1; [] spawn BIS_fnc_camera;";
+		onButtonClick = "(ctrlParent param [0]) closeDisplay 1; [] spawn BIS_fnc_camera;";
 		y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonArsenal: ButtonDebugConsole
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_ARSENAL;
 		text = "Arsenal";
-		onButtonClick = "systemChat 'Button: Arsenal'; (ctrlParent param [0]) closeDisplay 1; ['Open', true] spawn BIS_fnc_arsenal;";
+		onButtonClick = "(ctrlParent param [0]) closeDisplay 1; ['Open', true] spawn BIS_fnc_arsenal;";
 		y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
 

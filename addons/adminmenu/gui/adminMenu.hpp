@@ -10,6 +10,7 @@ class RscListNBox;
 class RscCheckBox;
 class RscCombo;
 class RscEdit;
+class RscEditMulti: RscEdit {};
 class RscPicture;
 class RscToolbox;
 
@@ -28,6 +29,10 @@ class GVAR(RscText): RscText {
 class GVAR(RscTextMultiline): GVAR(RscText) {
 	style = "0x00 + 0x10 + 0x0200";
 	lineSpacing = 1;
+};
+
+class GVAR(RscEditMultiCode): RscEditMulti {
+	autocomplete = "scripting";
 };
 
 class ADDON
@@ -199,14 +204,14 @@ class ADDON
 		};
 
 		// Modal
-		delete ModalBackground;
+		/*delete ModalBackground;
 		delete ModalTitleBackground;
 		delete ModalTitle;
 		delete ModalGroupBackground;
 		delete ModalGroup;
 		delete ModalClose;
 
-		/*class ModalBackground: RscText
+		class ModalBackground: RscText
 		{
 			idc = IDC_TMF_ADMINMENU_MODAL_BACK;
 			colorBackground[] = {0, 0, 0, 0.7};

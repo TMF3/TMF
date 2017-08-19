@@ -6,11 +6,11 @@ class CfgFunctions {
             class endMission;
             class endMissionCommit;
             class endMissionOccluder;
+            class claimZeus;
             class fpsHandlerServer;
             class getCurrentAdmin;
             class getCurrentAdminClient;
             class getCurrentAdminServer;
-            class grantZeus;
             class onLoad;
             class onUnload;
             class playerManagement;
@@ -35,7 +35,7 @@ class CfgFunctions {
             class utility_teleport;
 
             class zeusServerMake;
-            class zeusServerObjectPlayedSync;
+            class zeusServerObjectPlacedSync;
             class zeusSetupSync;
         };
     };

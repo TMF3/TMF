@@ -3,6 +3,8 @@
 disableSerialization;
 params ["_display", "_utilityFunction", "_utilityName", ["_requireAlive", false]];
 
+systemChat format ["utilityOpen %1", time];
+
 GVAR(utility_data) = [];
 if (!isNil QGVAR(selectedTab)) then {
 	if (GVAR(selectedTab) isEqualTo IDC_TMF_ADMINMENU_G_PMAN && !isNil QGVAR(playerManagement_selected)) then {

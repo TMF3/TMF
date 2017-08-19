@@ -3,20 +3,19 @@
 disableSerialization;
 params ["_display", "_ctrlGroup"];
 
+if (!isNil QGVAR(utilityTabControls)) then { systemChat format ["!isNil teleport : %1", str GVAR(utilityTabControls)]; };
+
+(ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
+
 private _ctrlEdit = _display ctrlCreate ["RscEditMulti", -1, _ctrlGroup];
 GVAR(utilityTabControls) = [_ctrlEdit];
-private _ctrlEditPos = ctrlPosition _ctrlGroup; // map controls dont support pos relative to group
-private _ctrlGrpHeight = _ctrlEditPos select 3;
-_ctrlEditPos set [2, _ctrlGrpHeight * (3/4)];
+private _ctrlEditPos = [0, 0, _ctrlGrpWidth, _ctrlGrpHeight - (1.1 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlEdit ctrlSetPosition _ctrlEditPos;
 _ctrlEdit ctrlCommit 0;
 
-private _newX = (_ctrlGrpHeight * (3/4)) + (0.1 * TMF_ADMINMENU_STD_WIDTH);
-private _newW = ((ctrlPosition _ctrlGroup) select 2) - _newX;
-
 private _ctrlCombo = _display ctrlCreate ["RscCombo", -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlCombo;
-_ctrlCombo ctrlSetPosition [_newX, 0, _newW, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlCombo ctrlSetPosition [_ctrlGrpWidth * 0.5, _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth * 0.25, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlCombo ctrlCommit 0;
 _ctrlCombo lbAdd "Show in Chat";
 _ctrlCombo lbAdd "Show in Hint";
@@ -25,7 +24,7 @@ _ctrlCombo lbSetCurSel 0;
 
 private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlButton;
-_ctrlButton ctrlSetPosition [_newX, _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, _newW, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlButton ctrlSetPosition [(_ctrlGrpWidth * 0.75) + (0.1 * TMF_ADMINMENU_STD_HEIGHT), _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.25) - (0.1 * TMF_ADMINMENU_STD_HEIGHT), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Send Message";
 _ctrlButton ctrlAddEventHandler ["buttonClick", {

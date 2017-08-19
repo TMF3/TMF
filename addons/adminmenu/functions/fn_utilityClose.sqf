@@ -3,6 +3,8 @@
 disableSerialization;
 params ["_display"];
 
+systemChat format ["utilityClose %1", time];
+
 if (!isNil QGVAR(utilityTabControls)) then {
 	{
 		ctrlDelete _x;

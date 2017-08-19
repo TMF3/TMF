@@ -204,8 +204,8 @@ class Controls
     class ButtonRunCode: ButtonSelectAll
 	{
 		idc = IDC_TMF_ADMINMENU_PMAN_RUNCODE;
-		text = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_runCode)),ctrlText (_this select 0))] call FUNC(utilityOpen););
-		onButtonClick = "systemChat 'Button: Run Code On';";
+		text = "Run Code On";
+		onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_runCode)),ctrlText (_this select 0))] call FUNC(utilityOpen););
 		y = "14.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
     class ButtonGrantZeus: ButtonSelectAll
