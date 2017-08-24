@@ -12,7 +12,10 @@ GVAR(utility_teleport_toggle) = false;
 private _ctrlMap = _display ctrlCreate ["RscMapControl", -1, _ctrlGroup];
 GVAR(utilityTabControls) = [_ctrlMap];
 private _ctrlMapPos = ctrlPosition _ctrlGroup; // map controls dont support pos relative to group
-_ctrlMapPos set [3, (_ctrlMapPos select 3) - (1.1 * TMF_ADMINMENU_STD_HEIGHT)];
+_ctrlMapPos set [0, (_ctrlMapPos select 0) + (0.5 * TMF_ADMINMENU_STD_WIDTH)];
+_ctrlMapPos set [1, (_ctrlMapPos select 1) + (0.5 * TMF_ADMINMENU_STD_HEIGHT)];
+_ctrlMapPos set [2, (_ctrlMapPos select 2) - (1 * TMF_ADMINMENU_STD_WIDTH)];
+_ctrlMapPos set [3, (_ctrlMapPos select 3) - (2.1 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMap ctrlSetPosition _ctrlMapPos;
 _ctrlMap ctrlCommit 0;
 _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
@@ -21,14 +24,14 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
 
 	if (missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]) then {
 		_ctrlMap ctrlEnable false;
-		
+
 		private _pos = (_ctrlMap ctrlMapScreenToWorld [_pos_x, _pos_y]) findEmptyPosition [0, 25];
 		{
 			_x setPos _pos;
 			"[TMF Admin Menu] You were teleported" remoteExec ["systemChat", _x];
-		} forEach GVAR(utility_data);
+		} forEach GVAR(utilityData);
 
-		systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utility_data)];
+		systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utilityData)];
 		/*_ctrlMap ctrlEnable false;
 		if (!isNil QGVAR(selectedTab)) then {
 			[ctrlParent _ctrlMap, GVAR(selectedTab)] call FUNC(selectTab);

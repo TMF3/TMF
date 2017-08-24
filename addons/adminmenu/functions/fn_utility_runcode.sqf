@@ -55,22 +55,22 @@ _ctrlButton ctrlAddEventHandler ["buttonClick", {
 		(_this select 0) ctrlEnable false;
 		private _foo = (_this select 0) spawn {
 			disableSerialization;
-			sleep 0.5;
+			uiSleep 0.5;
 			_this ctrlEnable true;
 		};
 
 		private _target = [clientOwner, _x, 2, 0] select (lbCurSel (GVAR(utilityTabControls) select 3));
 		if (_target isEqualType objNull) then { // individual remoteExec's
 			{
-				[_x, compile _editText] remoteExec ["call", _target];
-			} forEach GVAR(utility_data);
+				[_x, compile _editText] remoteExec ["BIS_fnc_call", _target];
+			} forEach GVAR(utilityData);
 		} else { // remoteExec once
-			[[GVAR(utility_data), compile _editText], {
+			[[GVAR(utilityData), compile _editText], {
 				params ["_data", "_code"];
 				{
 					_x call _code;
 				} forEach _data;
-			}] remoteExec ["call", _target];
+			}] remoteExec ["BIS_fnc_call", _target];
 		};
 
 		systemChat format ["[TMF Admin Menu] Code was executed on %1", lbText (GVAR(utilityTabControls) select 3)];

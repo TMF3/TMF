@@ -15,14 +15,14 @@ private _text = "";
 	if (_forEachIndex > 0) then {
 		_text = format ["%1, ", _text];
 	};
-	
+
 	_text = format [
-		"%1<t size='1'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t>", 
+		"%1<t size='1'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t>",
 		_text,
 		getPlayerUID _x,
 		name _x
 	];
-} forEach GVAR(utility_data);
+} forEach GVAR(utilityData);
 
 diag_log _text;
 _ctrlText ctrlSetStructuredText parseText _text;

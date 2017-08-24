@@ -10,7 +10,7 @@ private _had = [];
 	} else {
 		_had pushBack _x;
 	};
-} forEach GVAR(utility_data);
+} forEach GVAR(utilityData);
 
 if (count _given > 0) then {
 	_given = str (_given apply {name _x});
