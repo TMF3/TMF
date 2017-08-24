@@ -16,5 +16,4 @@ if (isClass (configFile >> "CfgPatches" >> "ace_medical")) then {
 	} forEach GVAR(utilityData);
 };
 
-
 systemChat format ["[TMF Admin Menu] %1 players had their health restored", count GVAR(utilityData)];

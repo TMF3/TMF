@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-if (!isRemoteExecuted && {isMultiplayer}) exitWith {};
+if (!isServer) exitWith {};
 
 private _adminId = -1;
 {
@@ -11,7 +11,7 @@ private _adminId = -1;
 
 if (_adminId == -1) exitWith {
 	GVAR(currentAdmin) = "nobody";
-	remoteExecutedOwner publicVariableClient GVAR(currentAdmin);
+	remoteExecutedOwner publicVariableClient QGVAR(currentAdmin);
 };
 
 [remoteExecutedOwner, admin _adminId] remoteExec [QFUNC(getCurrentAdminClient), _adminId];
