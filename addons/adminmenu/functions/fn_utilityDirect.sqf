@@ -3,7 +3,7 @@
 disableSerialization;
 params ["_display", "_utilityFunction", "_utilityName", ["_requireAlive", false]];
 
-systemChat format ["utilityDirect %1", time];
+//systemChat format ["utilityDirect %1", time];
 
 GVAR(utilityData) = [];
 if (!isNil QGVAR(selectedTab)) then {

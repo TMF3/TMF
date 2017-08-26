@@ -26,6 +26,7 @@ class CfgFunctions {
             class utilityClose;
             class utilityOpen;
             class utilityDirect;
+            class utility_assigngear;
             class utility_grantzeus;
             class utility_heal;
             class utility_kick;

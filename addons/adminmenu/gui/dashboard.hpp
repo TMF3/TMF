@@ -38,7 +38,7 @@ class Controls
 	{
 		idc = IDC_TMF_ADMINMENU_DASH_ARSENAL;
 		text = "Arsenal";
-		onButtonClick = "(ctrlParent param [0]) closeDisplay 1; ['Open', true] spawn BIS_fnc_arsenal;";
+		onButtonClick = "if (player isKindOf 'CAManBase') then {(ctrlParent param [0]) closeDisplay 1; ['Open', true] spawn BIS_fnc_arsenal;} else {systemChat '[TMF Admin Menu] Player object not comptatible with Arsenal';};";
 		y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
 	};
 
