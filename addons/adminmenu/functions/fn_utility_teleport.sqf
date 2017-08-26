@@ -3,8 +3,6 @@
 disableSerialization;
 params ["_display", "_ctrlGroup"];
 
-if (!isNil QGVAR(utilityTabControls)) then { systemChat format ["!isNil teleport : %1", str GVAR(utilityTabControls)]; };
-
 GVAR(utility_teleport_toggle) = false;
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
@@ -15,15 +13,17 @@ private _ctrlMapPos = ctrlPosition _ctrlGroup; // map controls dont support pos 
 _ctrlMapPos set [0, (_ctrlMapPos select 0) + (0.5 * TMF_ADMINMENU_STD_WIDTH)];
 _ctrlMapPos set [1, (_ctrlMapPos select 1) + (0.5 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMapPos set [2, (_ctrlMapPos select 2) - (1 * TMF_ADMINMENU_STD_WIDTH)];
-_ctrlMapPos set [3, (_ctrlMapPos select 3) - (2.1 * TMF_ADMINMENU_STD_HEIGHT)];
+//_ctrlMapPos set [3, (_ctrlMapPos select 3) - (2.1 * TMF_ADMINMENU_STD_HEIGHT)];
+_ctrlMapPos set [3, (_ctrlMapPos select 3) - (5.1 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMap ctrlSetPosition _ctrlMapPos;
 _ctrlMap ctrlCommit 0;
 _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
 	params ["_ctrlMap", "", "_pos_x", "_pos_y"];
-	//systemChat format ["_ctrlMap mouseButtonClick | x/y: %1 | %2: %3", [_pos_x, _pos_y], QGVAR(utility_teleport_toggle), missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]];
 
-	if (missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]) then {
-		_ctrlMap ctrlEnable false;
+	private _toggle = missionNamespace getVariable [QGVAR(utility_teleport_toggle), false];
+	if (_toggle) then {
+		GVAR(utility_teleport_toggle) = !_toggle;
+		(GVAR(utilityTabControls) select 2) ctrlSetText (["Enable Teleport", "Disable Teleport"] select GVAR(utility_teleport_toggle));
 
 		private _pos = (_ctrlMap ctrlMapScreenToWorld [_pos_x, _pos_y]) findEmptyPosition [0, 25];
 		{
@@ -32,10 +32,6 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
 		} forEach GVAR(utilityData);
 
 		systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utilityData)];
-		/*_ctrlMap ctrlEnable false;
-		if (!isNil QGVAR(selectedTab)) then {
-			[ctrlParent _ctrlMap, GVAR(selectedTab)] call FUNC(selectTab);
-		};*/
 	};
 }];
 
@@ -56,5 +52,4 @@ _ctrlButton ctrlSetText "Enable Teleport";
 _ctrlButton ctrlAddEventHandler ["buttonClick", {
 	GVAR(utility_teleport_toggle) = !(missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]);
 	(_this select 0) ctrlSetText (["Enable Teleport", "Disable Teleport"] select GVAR(utility_teleport_toggle));
-	//systemChat format ["_ctrlButton buttonClick | %1: %2", QGVAR(utility_teleport_toggle), GVAR(utility_teleport_toggle)];
 }];

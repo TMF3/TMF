@@ -3,23 +3,21 @@
 disableSerialization;
 params ["_display", "_ctrlGroup"];
 
-if (!isNil QGVAR(utilityTabControls)) then { systemChat format ["!isNil teleport : %1", str GVAR(utilityTabControls)]; };
-
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
 private _ctrlEdit = _display ctrlCreate ["RscEditMulti", -1, _ctrlGroup];
 GVAR(utilityTabControls) = [_ctrlEdit];
-private _ctrlEditPos = [0.5 * TMF_ADMINMENU_STD_WIDTH, 0.5 * TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth - (1 * TMF_ADMINMENU_STD_WIDTH), _ctrlGrpHeight - (2.1 * TMF_ADMINMENU_STD_HEIGHT)];
+private _ctrlEditPos = [0.1 * TMF_ADMINMENU_STD_WIDTH, 0.1 * TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth - (0.2 * TMF_ADMINMENU_STD_WIDTH), _ctrlGrpHeight - (1.3 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlEdit ctrlSetPosition _ctrlEditPos;
 _ctrlEdit ctrlCommit 0;
 
-private _ctrlCombo = _display ctrlCreate ["RscCombo", -1, _ctrlGroup];
+private _ctrlCombo = _display ctrlCreate [QGVAR(RscCombo), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlCombo;
-_ctrlCombo ctrlSetPosition [_ctrlGrpWidth * 0.7, _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth * 0.15, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlCombo ctrlSetPosition [_ctrlGrpWidth * 0.55, _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth * 0.3, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlCombo ctrlCommit 0;
 _ctrlCombo lbAdd "Show in Chat";
 _ctrlCombo lbAdd "Show in Hint";
-_ctrlCombo lbAdd "Show in Pop-up Dialog";
+_ctrlCombo lbAdd "Show in Pop-up Window";
 _ctrlCombo lbSetCurSel 0;
 
 private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
@@ -33,11 +31,18 @@ _ctrlButton ctrlAddEventHandler ["buttonClick", {
 	if (_editText isEqualTo "") then {
 		systemChat "[TMF Admin Menu] Message can't be empty";
 	} else {
+		private _venue = ["systemChat", "hint", "hintC"] select (lbCurSel (GVAR(utilityTabControls) select 1));
+
+		if (_venue isEqualTo "hint") then {
+			_editText = format ["[TMF Admin Message]\n\n%1", _editText];
+		} else {
+			_editText = format ["[TMF Admin Message] %1", _editText];
+		};
+
 		{
 			_x ctrlEnable false;
 		} forEach GVAR(utilityTabControls);
 
-		private _venue = ["systemChat", "hint", "hintC"] select (lbCurSel (GVAR(utilityTabControls) select 1));
 		_editText remoteExec [_venue, GVAR(utilityData)];
 		systemChat "[TMF Admin Menu] Message sent to player(s)";
 	};

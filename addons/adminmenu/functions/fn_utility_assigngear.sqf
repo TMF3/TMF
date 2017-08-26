@@ -5,6 +5,29 @@ params ["_display", "_ctrlGroup"];
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
+// Control setVariable Array (since Arma 3 v1.55.133553)
+// ! ! ! ! !
+
+/*GVAR(utility_assigngear_itemctrls) = [
+	[combobox,x,x],
+	[checkbox,x,x]
+] ??
+ctrlAddEventHandler format [
+	"%1 select %2",
+	QGVAR(utility_assigngear_itemctrls),
+	_forEachIndex
+]*/
+
+/* create faction combo, checkbox
+checkbox EH to populate combo
+trigger EH with script command and have it populated immediately
+remember last toggle setting, faction?
+
+for role combos, have EH tick the change checkbox when new item selected
+*/
+
+
+
 private _ctrlCheckLoadout = _display ctrlCreate ["RscCheckBox", -1, _ctrlGroup];
 GVAR(utilityTabControls) = [_ctrlCheckLoadout];
 
@@ -15,7 +38,9 @@ _ctrlText ctrlCommit 0;
 private _ctrlLabelLoadout = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
 
 
-if (serverCommandAvailable "#kick") then {
+//if (serverCommandAvailable "#kick") then {
+
+if (true) then {
     private _names = "";
     {
         if (_forEachIndex > 0) then {

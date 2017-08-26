@@ -24,5 +24,4 @@ private _text = "";
 	];
 } forEach GVAR(utilityData);
 
-diag_log _text;
 _ctrlText ctrlSetStructuredText parseText _text;
