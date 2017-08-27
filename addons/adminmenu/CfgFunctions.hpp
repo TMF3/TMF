@@ -7,6 +7,7 @@ class CfgFunctions {
             class endMissionCommit;
             class endMissionOccluder;
             class claimZeus;
+            class debounceButton;
             class fpsHandlerServer;
             class getCurrentAdmin;
             class getCurrentAdminClient;
