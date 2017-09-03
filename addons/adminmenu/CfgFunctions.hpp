@@ -12,6 +12,7 @@ class CfgFunctions {
             class getCurrentAdmin;
             class getCurrentAdminClient;
             class getCurrentAdminServer;
+            class keyPressed;
             class onLoad;
             class onUnload;
             class playerManagement;

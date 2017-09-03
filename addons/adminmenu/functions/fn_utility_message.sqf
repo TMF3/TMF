@@ -17,7 +17,7 @@ _ctrlCombo ctrlSetPosition [_ctrlGrpWidth * 0.55, _ctrlGrpHeight - TMF_ADMINMENU
 _ctrlCombo ctrlCommit 0;
 _ctrlCombo lbAdd "Show in Chat";
 _ctrlCombo lbAdd "Show in Hint";
-_ctrlCombo lbAdd "Show in Pop-up Window";
+_ctrlCombo lbAdd "Show in Subtitle from 'PAPA BEAR'";
 _ctrlCombo lbSetCurSel 0;
 
 private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
@@ -31,7 +31,11 @@ _ctrlButton ctrlAddEventHandler ["buttonClick", {
 	if (_editText isEqualTo "") then {
 		systemChat "[TMF Admin Menu] Message can't be empty";
 	} else {
-		private _venue = ["systemChat", "hint", "hintC"] select (lbCurSel (GVAR(utilityTabControls) select 1));
+		private _venue = ["systemChat", "hint", "BIS_fnc_showSubtitle"] select (lbCurSel (GVAR(utilityTabControls) select 1));
+
+		{
+			_x ctrlEnable false;
+		} forEach GVAR(utilityTabControls);
 
 		if (_venue isEqualTo "hint") then {
 			_editText = format ["[TMF Admin Message]\n\n%1", _editText];
@@ -39,11 +43,12 @@ _ctrlButton ctrlAddEventHandler ["buttonClick", {
 			_editText = format ["[TMF Admin Message] %1", _editText];
 		};
 
-		{
-			_x ctrlEnable false;
-		} forEach GVAR(utilityTabControls);
+		if (_venue isEqualTo "BIS_fnc_showSubtitle") then {
+			["PAPA BEAR", _editText] remoteExec [_venue, GVAR(utilityData)];
+		} else {
+			_editText remoteExec [_venue, GVAR(utilityData)];
+		};
 
-		_editText remoteExec [_venue, GVAR(utilityData)];
 		systemChat "[TMF Admin Menu] Message sent to player(s)";
 	};
 }];

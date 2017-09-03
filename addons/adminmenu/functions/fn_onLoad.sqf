@@ -13,7 +13,11 @@ if (!isMultiplayer) then {
 	(_display displayCtrl IDC_TMF_ADMINMENU_DASH_CURRADMIN) ctrlSetText "none (singleplayer)";
 };
 
-private _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
+private _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_DASH_SPECTATORTALK;
+_ctrl cbSetChecked ([] call acre_api_fnc_isSpectator);
+_ctrl ctrlAddEventHandler ["CheckedChanged", {[[false, true] select (param [1])] call acre_api_fnc_setSpectator;}];
+
+_ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
 {
 	_ctrl lbAdd _x;
 } forEach ["Alive and Dead", "Alive", "Dead"];
@@ -28,7 +32,7 @@ _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
 	_ctrl lbSetPictureColor [_forEachIndex, _color];
 	_ctrl lbSetPictureColorSelected [_forEachIndex, _color];
 } forEach [
-	[[1,1,1,0.8], "All Sides"], 
+	[[1,1,1,0.8], "All Sides"],
 	[[profilenamespace getvariable ['Map_BLUFOR_R',0], profilenamespace getvariable ['Map_BLUFOR_G',0], profilenamespace getvariable ['Map_BLUFOR_B',1], 0.8], "BLUFOR"], // fetch from profile vars
 	[[profilenamespace getvariable ['Map_OPFOR_R',1], profilenamespace getvariable ['Map_OPFOR_G',0], profilenamespace getvariable ['Map_OPFOR_B',0], 0.8], "OPFOR"],
 	[[profilenamespace getvariable ['Map_Independent_R',0], profilenamespace getvariable ['Map_Independent_G',1], profilenamespace getvariable ['Map_Independent_B',0], 0.8], "Independent"],

@@ -144,6 +144,18 @@ _ctrlComboFaction ctrlAddEventHandler ["onLBSelChanged", {
     private _rolesSimple = _roles apply {_x select 1};
     private _tickCheckbox = false;
 
+
+    /*private _rolesOld = _ctrlComboFaction getVariable [QGVAR(utility_assigngear_roles), []];
+    private _rolesAdded = [];
+    {
+        if (_x in _rolesOld) then {
+            _rolesOld deleteAt (_rolesOld find _x);
+        } else {
+            _rolesAdded pushBack _x;
+        };
+    } forEach _rolesSimple;*/
+    //private _rolesRemoved = _rolesOld;
+
     {
         (_x getVariable [QGVAR(utility_assigngear_association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
 

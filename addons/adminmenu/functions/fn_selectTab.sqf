@@ -3,7 +3,7 @@
 disableSerialization;
 params ["_display", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 
-systemChat format ["selectTab %1", time];
+//systemChat format ["selectTab %1", time];
 
 _display call FUNC(utilityClose);
 
@@ -24,23 +24,23 @@ while {count GVAR(tabPFHHandles) > 0} do {
 } forEach IDCS_TMF_ADMINMENU_GRPS;
 
 switch (_tab) do {
-	case IDC_TMF_ADMINMENU_G_DASH: { 
+	case IDC_TMF_ADMINMENU_G_DASH: {
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_DASH);
 		_display call FUNC(dashboard);
 	};
-	case IDC_TMF_ADMINMENU_G_PMAN: { 
+	case IDC_TMF_ADMINMENU_G_PMAN: {
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_PMAN);
 		_display call FUNC(playerManagement);
 	};
-	case IDC_TMF_ADMINMENU_G_RESP: { 
+	case IDC_TMF_ADMINMENU_G_RESP: {
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_RESP);
 		_display call FUNC(respawn);
 	};
-	case IDC_TMF_ADMINMENU_G_ENDM: { 
+	case IDC_TMF_ADMINMENU_G_ENDM: {
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_ENDM);
 		_display call FUNC(endMission);
 	};
-	case IDC_TMF_ADMINMENU_G_MSGS: { 
+	case IDC_TMF_ADMINMENU_G_MSGS: {
 		ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_MSGS);
 		_display call FUNC(messageLog);
 	};

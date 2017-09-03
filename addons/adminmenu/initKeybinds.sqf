@@ -1,19 +1,22 @@
-["TMF", QGVAR(openKey), ["Open Admin Menu", "Only available for admins and in singleplayer"],
-{
-	_authorized = true;
-    if (_authorized || isServer) then {
-		if (isNull (findDisplay 312)) then {
-			if (!isNil "tmf_spectator_fnc_init") then {
-				closeDialog 5454;
-			};
+["TMF", QGVAR(openKey), ["Open Admin Menu", "Only available for admins and in singleplayer"], FUNC(keyPressed), {false}, [59, [true, false, false]], false, 0] call CBA_fnc_addKeybind; // Shift + F1
 
-			(findDisplay 46) createDisplay QUOTE(ADDON);
-		} else {
-			systemChat "[TMF Admin Menu] Can't open the admin menu while in Zeus";
-		};
-	} else {
-		systemChat "[TMF Admin Menu] You're not authorized to use the admin menu";
-	};
+if (!isNil "TMF_event_fnc_addEventHandler") then {
+    [QEGVAR(spectator,keyDown), {
+		params ["", "_args"];
+		private _keyPressed = _args select 1;
+		private _modifiersPressed = _args select [2, 3];
 
-	false
-}, {false}, [59, [true, false, false]], false, 0] call CBA_fnc_addKeybind; // Shift + F1
+        private _binding = ["TMF", QGVAR(openKey)] call CBA_fnc_getKeybind;
+        if (isNil "_binding") exitWith {};
+		_binding = _binding select 5;
+		_binding params ["_DIK", "_modifiers"];
+
+		/*systemChat format ["[KeyDown] Pressed: %1 _ %2", _keyPressed, _modifiersPressed];
+		systemChat format ["[KeyDown] Binding: %1 _ %2", _DIK, _modifiers];*/
+
+		if !(_keyPressed isEqualTo _DIK) exitWith {};
+		if !(_modifiersPressed isEqualTo _modifiers) exitWith {};
+
+        call FUNC(keyPressed);
+    }] call EFUNC(event,addEventHandler);
+};

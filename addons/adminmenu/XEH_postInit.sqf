@@ -17,7 +17,7 @@ GVAR(playerManagement_selected) = [];
 if (isMultiplayer) then {
 	if (isServer) then {
 		GVAR(activeClients) = [];
-		
+
 		private _id = addMissionEventHandler ["HandleDisconnect", {
 			private _clientOwnerId = _this select 4;
 			GVAR(activeClients) = GVAR(activeClients) - [_clientOwnerId];
@@ -32,19 +32,19 @@ if (isMultiplayer) then {
 	if (hasInterface) then {
 		QGVAR(fps) addPublicVariableEventHandler {
 			disableSerialization;
-			
+
 			private _ctrl = (uiNamespace getVariable [QGVAR(display), displayNull]) displayCtrl IDC_TMF_ADMINMENU_FPS;
 			if (isNull _ctrl) exitWith {};
-			
+
 			_ctrl ctrlSetText format ["%1 SFPS", _this select 1];
 		};
-		
+
 		QGVAR(currentAdmin) addPublicVariableEventHandler {
 			disableSerialization;
-			
+
 			private _ctrl = ((uiNamespace getVariable [QGVAR(display), displayNull]) displayCtrl IDC_TMF_ADMINMENU_G_DASH) controlsGroupCtrl IDC_TMF_ADMINMENU_DASH_CURRADMIN;
 			if (isNull _ctrl) exitWith {};
-			
+
 			_ctrl ctrlSetText (_this select 1);
 		};
 	};
