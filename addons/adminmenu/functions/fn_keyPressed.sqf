@@ -2,10 +2,7 @@
 
 systemChat "[TMF Admin Menu] Key pressed";
 
-private _localID = [] call tac1_admin_local_uid;
-private _authorized = (_localID isEqualTo "76561198014669991") || (_localID in ([] call tac1_adminIDs)) || serverCommandAvailable "#kick";
-
-if (_authorized || isServer) then {
+if (((getPlayerUID player) in (getArray (configFile >> QGVAR(authorized_uids)))) || (serverCommandAvailable "#kick") || isServer) then {
     if (dialog && !isNull (findDisplay IDD_TMF_ADMINMENU)) exitWith {
         systemChat "[TMF Admin Menu] The dialog is already open"
     };
