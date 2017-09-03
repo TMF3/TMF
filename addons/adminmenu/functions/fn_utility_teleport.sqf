@@ -34,6 +34,22 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
 		systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utilityData)];
 	};
 }];
+_ctrlMap ctrlAddEventHandler ["draw", {
+	params ["_ctrlMap"];
+	private _units = switchableUnits;
+	_units append playableUnits;
+	private _pos = [];
+	{
+		/*private _color = [
+			[1,1,1,1],
+			[0.250,0.533,1,1],
+		] select (([blufor, opfor, resistance, civilian] find (side _x)) + 1);*/
+		_pos = getPos _x;
+		_ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [0,0,0,1], _pos, 24, 24, 0];
+		_ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, 0];
+		//_ctrlMap drawIcon ["\a3\ui_f_curator\Data\CfgCurator\area_ca.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, _dir, name _x, 2, 0.06, "Zeppelin32"];
+	} forEach _units;
+}];
 
 private _newX = (_ctrlGrpHeight * (3/4)) + (0.1 * TMF_ADMINMENU_STD_WIDTH);
 private _newW = ((ctrlPosition _ctrlGroup) select 2) - _newX;

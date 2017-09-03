@@ -76,7 +76,7 @@ _ctrlCheckFromMission ctrlAddEventHandler ["onCheckedChanged", {
 
     _factionClasses sort true;
 
-    private _ctrlComboFaction = _ctrlCheckBox getVariable [QGVAR(utility_assigngear_association), controlNull];
+    private _ctrlComboFaction = _ctrlCheckBox getVariable [QGVAR(association), controlNull];
     {
         params ["_displayName", "_className", "_isFromMissionConfig", "_count"];
         private _name = _displayName;
@@ -130,7 +130,7 @@ private _ctrlComboFaction = _display ctrlCreate ["RscCombo", -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlComboFaction;
 _ctrlComboFaction ctrlSetPosition [(0.1 * TMF_ADMINMENU_STD_WIDTH), (1.1 * TMF_ADMINMENU_STD_HEIGHT), _ctrlGrpWidth - (0.2 * TMF_ADMINMENU_STD_WIDTH), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlComboFaction ctrlCommit 0;
-_ctrlCheckFromMission setVariable [QGVAR(utility_assigngear_association), _ctrlComboFaction];
+_ctrlCheckFromMission setVariable [QGVAR(association), _ctrlComboFaction];
 _ctrlComboFaction ctrlAddEventHandler ["onLBSelChanged", {
     params ["_ctrlComboFaction", "_index"];
     private _faction = _ctrlComboFaction lbData _index;
@@ -157,7 +157,7 @@ _ctrlComboFaction ctrlAddEventHandler ["onLBSelChanged", {
     //private _rolesRemoved = _rolesOld;
 
     {
-        (_x getVariable [QGVAR(utility_assigngear_association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
+        (_x getVariable [QGVAR(association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
 
         private _playerRole = toLower (_player getVariable [QEGVAR(assigngear,role), ""]);
         if (_playerRole isEqualTo "" || !(_playerRole in _rolesSimple)) then {
@@ -241,7 +241,7 @@ private _ctrlCheckChangeX = _ctrlGrpRolesWidth - TMF_ADMINMENU_STD_WIDTH;
     GVAR(utility_assigngear_rolectrls) pushBack _ctrlCheckChange;
     _ctrlCheckChange ctrlSetPosition [_ctrlCheckChangeX, _ctrlLineY, TMF_ADMINMENU_STD_WIDTH, TMF_ADMINMENU_STD_HEIGHT];
     _ctrlCheckChange ctrlCommit 0;
-    _ctrlCheckChange setVariable [QGVAR(utility_assigngear_association), [_x, _ctrlComboRole]];
+    _ctrlCheckChange setVariable [QGVAR(association), [_x, _ctrlComboRole]];
 } forEach GVAR(utilityData);
 
 private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
@@ -249,17 +249,17 @@ GVAR(utilityTabControls) pushBack _ctrlButton;
 _ctrlButton ctrlSetPosition [_ctrlGrpWidth - (_ctrlGrpWidth * 0.2), _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.2), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Assign Gear";
-_ctrlButton setVariable [QGVAR(utility_assigngear_association), [_ctrlCheckFaction, _ctrlComboFaction]];
+_ctrlButton setVariable [QGVAR(association), [_ctrlCheckFaction, _ctrlComboFaction]];
 _ctrlButton ctrlAddEventHandler ["buttonClick", {
     params ["_ctrlButton"];
     _ctrlButton call FUNC(debounceButton);
 
-    (_ctrlButton getVariable [QGVAR(utility_assigngear_association), [controlNull, controlNull]]) params ["_ctrlCheckFaction", "_ctrlComboFaction"];
+    (_ctrlButton getVariable [QGVAR(association), [controlNull, controlNull]]) params ["_ctrlCheckFaction", "_ctrlComboFaction"];
     private _setFaction = cbChecked _ctrlCheckFaction;
     private _selectedFaction = _ctrlComboFaction lbData (lbCurSel _ctrlComboFaction);
 
     {
-        (_x getVariable [QGVAR(utility_assigngear_association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
+        (_x getVariable [QGVAR(association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
 
         private _playerRole = _player getVariable [QEGVAR(assigngear,role), ""];
         if (cbChecked _x || _playerRole isEqualTo "") then {

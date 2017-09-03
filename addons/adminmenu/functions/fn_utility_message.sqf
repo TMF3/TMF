@@ -25,28 +25,27 @@ GVAR(utilityTabControls) pushBack _ctrlButton;
 _ctrlButton ctrlSetPosition [(_ctrlGrpWidth * 0.85) + (0.1 * TMF_ADMINMENU_STD_HEIGHT), _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.15) - (0.1 * TMF_ADMINMENU_STD_HEIGHT), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Send Message";
+_ctrlButton setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];
 _ctrlButton ctrlAddEventHandler ["buttonClick", {
-	disableSerialization;
-	private _editText = ctrlText (GVAR(utilityTabControls) select 0);
+	params ["_ctrlButton"];
+	_ctrlButton call FUNC(debounceButton);
+
+	(_ctrlButton getVariable [QGVAR(association), [controlNull, controlNull]]) params ["_ctrlEdit", "_ctrlCombo"];
+	private _editText = ctrlText _ctrlEdit;
+	_ctrlEdit ctrlSetText "";
+
 	if (_editText isEqualTo "") then {
 		systemChat "[TMF Admin Menu] Message can't be empty";
 	} else {
-		private _venue = ["systemChat", "hint", "BIS_fnc_showSubtitle"] select (lbCurSel (GVAR(utilityTabControls) select 1));
+		private _venue = ["systemChat", "hint", QFUNC(showSubtitle)] select (lbCurSel (GVAR(utilityTabControls) select 1));
 
-		{
-			_x ctrlEnable false;
-		} forEach GVAR(utilityTabControls);
-
-		if (_venue isEqualTo "hint") then {
-			_editText = format ["[TMF Admin Message]\n\n%1", _editText];
-		} else {
-			_editText = format ["[TMF Admin Message] %1", _editText];
-		};
-
-		if (_venue isEqualTo "BIS_fnc_showSubtitle") then {
+		if (_venue isEqualTo QFUNC(showSubtitle)) then {
 			["PAPA BEAR", _editText] remoteExec [_venue, GVAR(utilityData)];
 		} else {
-			_editText remoteExec [_venue, GVAR(utilityData)];
+			if (_venue isEqualTo "hint") then {
+				_editText = format ["\n\n%1", _editText];
+			};
+			(format ["[TMF Admin Message] %1", _editText]) remoteExec [_venue, GVAR(utilityData)];
 		};
 
 		systemChat "[TMF Admin Menu] Message sent to player(s)";

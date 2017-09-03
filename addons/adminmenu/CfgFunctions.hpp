@@ -24,6 +24,7 @@ class CfgFunctions {
             class quickRespawn;
             class respawn;
             class selectTab;
+            class showSubtitle;
 
             class utilityClose;
             class utilityOpen;
