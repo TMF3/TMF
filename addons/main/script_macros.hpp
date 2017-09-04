@@ -6,6 +6,7 @@
 #define QGVARMAIN(var) QUOTE(GVARMAIN(var))
 #define CFUNC(var) EFUNC(common,var)
 #define QFUNC(var1) QUOTE(FUNC(var1))
+#define QCFUNC(var) QUOTE(CFUNC(var))
 
 #ifndef PATHTO_FOLDER_SYS
     #define PATHTO_FOLDER_SYS(var1,var2,var3) \MAINPREFIX\##var1\SUBPREFIX\##var2\##var3
