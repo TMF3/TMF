@@ -53,7 +53,16 @@ if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
         _newUnit hideObjectGlobal true;
         _newUnit enableSimulationGlobal false;
         _newUnit setPos [0,0,5];
+
+        // save some infomation regarding the units death and role etc.
         _newUnit setVariable [QGVAR(name),profileName,true];
+        _newUnit setVariable [QGVAR(group),group _oldUnit,true];
+        _newUnit setVariable [QGVAR(faction),_oldUnit getVariable ["tmf_assignGear_faction",""],true];
+        _newUnit setVariable [QGVAR(role),_oldUnit getVariable ["tmf_assignGear_role",""],true];
+        _newUnit setVariable [QGVAR(side),side (group _oldUnit),true];   
+        _newUnit setVariable [QGVAR(pos),getPos _oldUnit,true];   
+        _newUnit setVariable [QGVAR(vehicle),objectParent _oldUnit,true];
+
         selectPlayer _newUnit;
         waitUntil{player isEqualTo _newUnit};
 
@@ -66,6 +75,8 @@ else {
     waitUntil{player isEqualTo GVAR(unit)};
     if(typeOf _unit == "seagull") then { deleteVehicle _unit; }; 
 };
+
+
 
 // If oldunit is null set a new starting target
 if(isNull _oldUnit ) then {_oldUnit = allUnits select 0};
