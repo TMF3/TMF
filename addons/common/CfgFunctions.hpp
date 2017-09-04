@@ -43,6 +43,7 @@ class cfgFunctions {
             class getPosVisual;
             class initDisplayMultiplayerSetup;
             class testGroupsSlottingScreen;
+            class secondsToTime;
         };
     };
 };
