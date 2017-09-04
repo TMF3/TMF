@@ -1,6 +1,17 @@
-/// input [seconds,padding]
-// when _padding is true, return value is a string!
-/// output : [hours,minutes,seconds]
+/*
+ * Name: TMF_common_fnc_secondsToTime
+ * Author: Head
+ *
+ * Arguments:
+ * seconds,padding (false)
+ *
+ * Return:
+ * array with numbers if padding is false or not used
+ * array with strings if padding is used
+ *
+ * Description:
+ * Returns seconds to H,M,S or with padding HH,MM,SS
+ */
 params ["_time",["_padding",false]];
 
 private _hours = 0;
