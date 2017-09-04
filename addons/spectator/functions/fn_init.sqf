@@ -66,7 +66,8 @@ if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
                 side (group _oldUnit),
                 getPos _oldUnit,
                 objectParent _oldUnit
-            ];
+            ],
+            true
         ];
 
         selectPlayer _newUnit;
