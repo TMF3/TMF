@@ -46,14 +46,30 @@ if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
     private _newUnit = (GVAR(group)) createUnit [QGVAR(unit), [0,0,5], [], 0, "FORM"];
     if (isNull _newUnit) then {
         // Unable to create new unit - Usually if too many groups for sideLogic exist.
-        if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };   GVAR(unit) = _oldUnit;
+        if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };
+        GVAR(unit) = _oldUnit;
     }
     else {
         _newUnit allowDamage false;
         _newUnit hideObjectGlobal true;
         _newUnit enableSimulationGlobal false;
         _newUnit setPos [0,0,5];
+
+        // save some infomation regarding the units death and role etc.
         _newUnit setVariable [QGVAR(name),profileName,true];
+
+        _newUnit setVariable [QGVAR(unitData),
+            [
+                group _oldUnit,
+                _oldUnit getVariable [QEGVAR(assignGear,faction),""],
+                _oldUnit getVariable [QEGVAR(assignGear,role),""],
+                side (group _oldUnit),
+                getPos _oldUnit,
+                objectParent _oldUnit
+            ],
+            true
+        ];
+
         selectPlayer _newUnit;
         waitUntil{player isEqualTo _newUnit};
 
@@ -66,6 +82,8 @@ else {
     waitUntil{player isEqualTo GVAR(unit)};
     if(typeOf _unit == "seagull") then { deleteVehicle _unit; }; 
 };
+
+
 
 // If oldunit is null set a new starting target
 if(isNull _oldUnit ) then {_oldUnit = allUnits select 0};
