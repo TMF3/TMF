@@ -56,17 +56,17 @@ if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
 
         // save some infomation regarding the units death and role etc.
         _newUnit setVariable [QGVAR(name),profileName,true];
-        
-        private _unitData = [
-            group _oldUnit,
-            _oldUnit getVariable [QEGVAR(assignGear,faction),""],
-            _oldUnit getVariable [QEGVAR(assignGear,role),""],
-            side (group _oldUnit),
-            getPos _oldUnit,
-            objectParent _oldUnit
-        ];
 
-        _newUnit setVariable [QGVAR(unitData),_unitData];
+        _newUnit setVariable [QGVAR(unitData),
+            [
+                group _oldUnit,
+                _oldUnit getVariable [QEGVAR(assignGear,faction),""],
+                _oldUnit getVariable [QEGVAR(assignGear,role),""],
+                side (group _oldUnit),
+                getPos _oldUnit,
+                objectParent _oldUnit
+            ];
+        ];
 
         selectPlayer _newUnit;
         waitUntil{player isEqualTo _newUnit};
