@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-//if (!isRemoteExecuted && isMultiplayer) exitWith {};
+//if (!isRemoteExecuted && isMultiplayer) exitWith {}; // ??
 
 params ["_origin", "_adminLevel"];
 

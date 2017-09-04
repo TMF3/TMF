@@ -12,12 +12,15 @@ if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_REFRESH) exitWith {
 };
 if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_SEL_ALL) exitWith {
     GVAR(playerManagement_selected) = GVAR(playerManagement_players);
-    
+
     for "_i" from 0 to ((lbSize _list) - 1) do {
         _list lbSetSelected [_i, true];
     };
 };
-if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_SEL_GROUP) exitWith {
+
+systemChat format ["[TMF Admin Menu] Player Management button code '%1' not recognized", _ctrlIDC];
+
+/*if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_SEL_GROUP) exitWith {
     systemChat "Not Implemented";
 };
 if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_SEL_ROLE) exitWith {
@@ -26,7 +29,6 @@ if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_SEL_ROLE) exitWith {
 if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_SEL_LOADOUT) exitWith {
     systemChat "Not Implemented";
 };
-
 if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_TELEPORT) exitWith {
     systemChat "Not Implemented";
 };
@@ -53,6 +55,4 @@ if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_GRANTZEUS) exitWith {
 };
 if (_ctrlIDC isEqualTo IDC_TMF_ADMINMENU_PMAN_ACRELANGUAGES) exitWith {
     systemChat "Not Implemented";
-};
-
-systemChat format ["[TMF Admin Menu] Player Management button code '%1' not recognized", _ctrlIDC];
+};*/

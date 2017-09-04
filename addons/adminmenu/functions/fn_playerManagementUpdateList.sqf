@@ -58,43 +58,26 @@ private _newPlayers = [];
         _list lbSetTextRight [_idx, _text];
 
         private _netId = _x call BIS_fnc_netId;
-        //_list lbSetSelected [_idx, _netId in GVAR(playerManagement_selected)];
         _list lbSetData [_idx, _netId];
         _newPlayers pushBack _netId;
 
-        private _sideColor = [1,1,1,0.8];
+        private _sideColor = _playerSide call CFUNC(sideToColor);
         private _sideTexture = "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa";
 
         if (_isSpectator) then {
             _list lbSetColor [_idx, [0.6,0.6,0.6,1]];
             _list lbSetColorRight [_idx, [0.6,0.6,0.6,1]];
-
-            switch (_playerSide) do {
-                case blufor: {
-                    _sideColor = GVAR(sideColors) param [0];
-                };
-                case opfor: {
-                    _sideColor = GVAR(sideColors) param [1];
-                };
-                case independent: {
-                    _sideColor = GVAR(sideColors) param [2];
-                };
-                case civilian: {
-                    _sideColor = GVAR(sideColors) param [3];
-                };
-                case sideLogic: {
-                    _sideColor = [0.9,0.8,0,0.8];
-                };
-            };
-
             _list lbSetPicture [_idx, _sideTexture];
             _list lbSetPictureColor [_idx, _sideColor];
             _list lbSetPictureColorSelected [_idx, _sideColor];
 
+            // if quick respawnable
             if (false) then {
                 _list lbSetPictureRightColor [_idx, [1,1,1,0.8]];
+                _list lbSetPictureRightColorSelected [_idx, [1,1,1,0.8]];
             } else {
                 _list lbSetPictureRightColor [_idx, [1,1,1,0]];
+                _list lbSetPictureRightColorSelected [_idx, [1,1,1,0]];
             };
         } else {
             _list lbSetColor [_idx, [1,1,1,1]];
@@ -127,8 +110,6 @@ private _newPlayers = [];
             _list lbSetPictureRightColor [_idx, [1,1,1,0]];
         };
     };
-
-    //diag_log format ["PMAN LIST ICON for idx %1: %2 | %3 | %4 | %5 | %6", _idx, _x, str _playerSide, str _sideColor, str _sideTexture, str _isSpectator];
 } forEach _allPlayers;
 
 GVAR(playerManagement_players) = +_newPlayers;

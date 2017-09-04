@@ -2,5 +2,3 @@
 
 disableSerialization;
 params ["_display"];
-
-systemChat "fn_messageLog.sqf";

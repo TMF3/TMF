@@ -10,9 +10,7 @@ GVAR(utilityTabControls) = [_ctrlTextLarge];
 _ctrlTextLarge ctrlSetPosition [0, 0, _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlTextLarge ctrlCommit 0;
 
-//if (serverCommandAvailable "#kick") then {
-
-if (true) then {
+if (serverCommandAvailable "#kick") then {
     _ctrlTextLarge ctrlSetText "You are about to kick the following player(s):";
 
     private _names = "";
@@ -46,30 +44,3 @@ if (true) then {
 } else {
     _ctrlTextLarge ctrlSetText "The #kick command is not executable on this client.";
 };
-
-
-/*private _xPositions = [];
-{
-    private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
-    GVAR(utilityTabControls) pushBack _ctrlButton;
-
-    private _lineIndex = (_forEachIndex - (_forEachIndex % 4)) / 4;
-    _ctrlButton ctrlSetPosition [_xPositions select (_forEachIndex % 4), _lineIndex * 1.1 * TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.2), TMF_ADMINMENU_STD_HEIGHT];
-    _ctrlButton ctrlCommit 0;
-    _ctrlButton ctrlSetText format ["Kick %1", name _x];
-    _ctrlButton ctrlAddEventHandler ["buttonClick", {
-        disableSerialization;
-        private _editText = ctrlText (GVAR(utilityTabControls) select 0);
-        if (_editText isEqualTo "") then {
-            systemChat "[TMF Admin Menu] Message can't be empty";
-        } else {
-            {
-                _x ctrlEnable false;
-            } forEach GVAR(utilityTabControls);
-
-            private _venue = ["systemChat", "hint", "hintC"] select (lbCurSel (GVAR(utilityTabControls) select 1));
-            _editText remoteExec [_venue, GVAR(utilityData)];
-            systemChat "[TMF Admin Menu] Message sent to player(s)";
-        };
-    }];
-} forEach GVAR(utilityData);*/

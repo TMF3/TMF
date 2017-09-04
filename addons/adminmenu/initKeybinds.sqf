@@ -11,9 +11,6 @@ if (!isNil "TMF_event_fnc_addEventHandler") then {
         _binding = _binding select 5;
         _binding params ["_DIK", "_modifiers"];
 
-        /*systemChat format ["[KeyDown] Pressed: %1 _ %2", _keyPressed, _modifiersPressed];
-        systemChat format ["[KeyDown] Binding: %1 _ %2", _DIK, _modifiers];*/
-
         if !(_keyPressed isEqualTo _DIK) exitWith {};
         if !(_modifiersPressed isEqualTo _modifiers) exitWith {};
 

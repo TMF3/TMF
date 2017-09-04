@@ -2,13 +2,6 @@
 
 #include "initKeybinds.sqf"
 
-GVAR(sideColors) = [
-    [profilenamespace getvariable ['Map_BLUFOR_R',0], profilenamespace getvariable ['Map_BLUFOR_G',0], profilenamespace getvariable ['Map_BLUFOR_B',1], 0.8],
-    [profilenamespace getvariable ['Map_OPFOR_R',1], profilenamespace getvariable ['Map_OPFOR_G',0], profilenamespace getvariable ['Map_OPFOR_B',0], 0.8],
-    [profilenamespace getvariable ['Map_Independent_R',0], profilenamespace getvariable ['Map_Independent_G',1], profilenamespace getvariable ['Map_Independent_B',0], 0.8],
-    [profilenamespace getvariable ['Map_Civilian_R',0.5], profilenamespace getvariable ['Map_Civilian_G',0], profilenamespace getvariable ['Map_Civilian_B',0.5], 0.8]
-];
-
 GVAR(tabPFHHandles) = [];
 GVAR(playerManagement_listControls) = [];
 GVAR(playerManagement_players) = [];

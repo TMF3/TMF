@@ -28,25 +28,17 @@ if (!isNil QGVAR(selectedTab)) then {
     switch (GVAR(selectedTab)) do {
         case IDC_TMF_ADMINMENU_DASH: {
             _outsideCtrls pushBack IDC_TMF_ADMINMENU_G_DASH;
-
-            /*_outsideCtrls append IDCS_TMF_ADMINMENU_DASH_ALL1;
-            _outsideCtrls append IDCS_TMF_ADMINMENU_DASH_ALL2;
-            _outsideCtrls append IDCS_TMF_ADMINMENU_DASH_STATS_BLUFOR;
-            _outsideCtrls append IDCS_TMF_ADMINMENU_DASH_STATS_OPFOR;
-            _outsideCtrls append IDCS_TMF_ADMINMENU_DASH_STATS_INDEP;
-            _outsideCtrls append IDCS_TMF_ADMINMENU_DASH_STATS_CIV;
-            _outsideCtrls append IDCS_TMF_ADMINMENU_DASH_STATS_TOTAL;*/
         };
         case IDC_TMF_ADMINMENU_PMAN: {
             _outsideCtrls pushBack IDC_TMF_ADMINMENU_G_PMAN;
         };
-        case IDC_TMF_ADMINMENU_RESP: { 
+        case IDC_TMF_ADMINMENU_RESP: {
             _outsideCtrls pushBack IDC_TMF_ADMINMENU_G_RESP;
         };
-        case IDC_TMF_ADMINMENU_ENDM: { 
+        case IDC_TMF_ADMINMENU_ENDM: {
             _outsideCtrls pushBack IDC_TMF_ADMINMENU_G_ENDM;
         };
-        case IDC_TMF_ADMINMENU_MSGS: { 
+        case IDC_TMF_ADMINMENU_MSGS: {
             _outsideCtrls pushBack IDC_TMF_ADMINMENU_G_MSGS;
         };
     };

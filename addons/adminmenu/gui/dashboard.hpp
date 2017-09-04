@@ -5,7 +5,6 @@ class Controls
     {
         text = "Shortcuts";
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-        //colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
         x = "0";
         y = "0";
         w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -38,7 +37,7 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_DASH_ARSENAL;
         text = "Arsenal";
-        onButtonClick = "if (player isKindOf 'CAManBase') then {(ctrlParent param [0]) closeDisplay 1; ['Open', true] spawn BIS_fnc_arsenal;} else {systemChat '[TMF Admin Menu] Player object not comptatible with Arsenal';};";
+        onButtonClick = "if (player isKindOf 'CAManBase') then {(ctrlParent param [0]) closeDisplay 1; ['Open', true] spawn BIS_fnc_arsenal;} else {systemChat '[TMF Admin Menu] Player object not compatible with Arsenal';};";
         y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
 
@@ -51,7 +50,6 @@ class Controls
     class CheckboxSafestartEnabled: RscCheckBox
     {
         idc = IDC_TMF_ADMINMENU_DASH_SAFESTART;
-        onCheckedChanged = "systemChat format ['Checkbox Safestart: %1', _this];";
         x = "0.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -77,7 +75,6 @@ class Controls
     class CheckboxSpectatorTalkEnabled: RscCheckBox
     {
         idc = IDC_TMF_ADMINMENU_DASH_SPECTATORTALK;
-        onCheckedChanged = "systemChat format ['Checkbox SpectatorTalk: %1', _this];";
         x = "0.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";

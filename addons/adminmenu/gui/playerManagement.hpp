@@ -1,10 +1,10 @@
-class Controls 
+class Controls
 {
     class LabelFilter: RscText
     {
         text = "Filter:";
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-        
+
         x = "0";
         y = "0";
         w = "2.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -13,9 +13,7 @@ class Controls
     class ComboFilterSide: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
-        //onLBSelChanged = QUOTE([ctrlParent (param [0])] call FUNC(playerManagementFilter););
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-        //font = "PuristaLight";
         font = "RobotoCondensed";
         x = "2.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "0";
@@ -25,7 +23,6 @@ class Controls
     class ComboFilterState: ComboFilterSide
     {
         idc = IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
-        //onLBSelChanged = QUOTE([ctrlParent (param [0])] call FUNC(playerManagementFilter););
         x = "8.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         w = "5 * (((safezoneW / safezoneH) min 1.2) / 40)";
     };
@@ -63,7 +60,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_PMAN_LIST;
         style = 32 + 16; // LB_MULTI + ST_MULTI
         onLBSelChanged = QUOTE(_this call FUNC(playerManagementListSelChange););
-        
+
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         //rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
@@ -90,23 +87,9 @@ class Controls
         h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
     };
 
-    /*class GroupList: RscControlsGroup 
-    {
-        idc = IDC_TMF_ADMINMENU_PMAN_GROUPLIST;
-        x = "0";
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-        w = TMF_ADMINMENU_PMAN_W_LISTGROUP;
-        h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
-
-        class Controls
-        {
-        };
-    };*/
-    
     /*
     * Right-hand side vertical menu
     */
-
     class LabelSelect: RscText
     {
         text = "Select...";

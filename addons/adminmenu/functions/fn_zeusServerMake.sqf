@@ -10,7 +10,7 @@ private _isValidCurator = false;
 {
     _isValidCurator = false;
     if (_x getVariable [QGVAR(zeus), false]) then {
-        if (isNull (getAssignedCuratorUnit _x)) then { 
+        if (isNull (getAssignedCuratorUnit _x)) then {
             _isValidCurator = true;
         } else {
             if (!isPlayer (getAssignedCuratorUnit _x)) then {
@@ -42,7 +42,6 @@ if (!_isValidCurator) then {
         _curator setCuratorCoef [_x, 0];
     } forEach ["place","edit","delete","destroy","group","synchronize"];
 
-    //_curator remoteExec [QFUNC(zeusSetupSync), _unit];
     _unit assignCurator _curator;
     "[TMF Admin Menu] You were given access to Zeus" remoteExec ["systemChat", _unit];
 };

@@ -3,8 +3,6 @@
 disableSerialization;
 params ["_display", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 
-//systemChat format ["selectTab %1", time];
-
 _display call FUNC(utilityClose);
 
 GVAR(selectedTab) = _tab;

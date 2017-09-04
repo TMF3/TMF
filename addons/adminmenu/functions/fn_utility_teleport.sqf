@@ -13,7 +13,6 @@ private _ctrlMapPos = ctrlPosition _ctrlGroup; // map controls dont support pos 
 _ctrlMapPos set [0, (_ctrlMapPos select 0) + (0.5 * TMF_ADMINMENU_STD_WIDTH)];
 _ctrlMapPos set [1, (_ctrlMapPos select 1) + (0.5 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMapPos set [2, (_ctrlMapPos select 2) - (1 * TMF_ADMINMENU_STD_WIDTH)];
-//_ctrlMapPos set [3, (_ctrlMapPos select 3) - (2.1 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMapPos set [3, (_ctrlMapPos select 3) - (5.1 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMap ctrlSetPosition _ctrlMapPos;
 _ctrlMap ctrlCommit 0;
@@ -46,8 +45,7 @@ _ctrlMap ctrlAddEventHandler ["draw", {
         ] select (([blufor, opfor, resistance, civilian] find (side _x)) + 1);*/
         _pos = getPos _x;
         _ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [0,0,0,1], _pos, 24, 24, 0];
-        _ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, 0];
-        //_ctrlMap drawIcon ["\a3\ui_f_curator\Data\CfgCurator\area_ca.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, _dir, name _x, 2, 0.06, "Zeppelin32"];
+        _ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", (side _x) call CFUNC(sideToColor), _pos, 20, 20, 0];
     } forEach _units;
 }];
 

@@ -10,15 +10,13 @@ private _pfhRefresh = [{
     (_display displayCtrl IDC_TMF_ADMINMENU_DASH_RUNTIME) ctrlSetText format ["%1m %2s", round ((time - (time % 60)) / 60), round (time % 60)];
 
     (_display displayCtrl IDC_TMF_ADMINMENU_DASH_HEADLESS) ctrlSetText str (count entities "HeadlessClient_F");
-    (_display displayCtrl IDC_TMF_ADMINMENU_DASH_VIRTUALS) ctrlSetText str (count entities "VirtualCurator_F");
-
-    //private _deadUnits = ((allPlayers - _liveUnits) - _spectators) - _headlessClients;
+    (_display displayCtrl IDC_TMF_ADMINMENU_DASH_VIRTUALS) ctrlSetText str (count entities "VirtualCurator_F"); // ?
 
     private _liveUnits = allUnits;
     private _spectatorUnits = (entities QEGVAR(spectator,unit)) select {isPlayer _x};
     {
         _x params ["_ai", "_players", "_spectators", "_total"];
-        private _side = [blufor, opfor, resistance, civilian] param [_forEachIndex];
+        private _side = [blufor, opfor, resistance, civilian] select _forEachIndex;
         private _sideUnits = _liveUnits select {side _x == _side};
 
         private _numAI = {!isPlayer _x} count _sideUnits;

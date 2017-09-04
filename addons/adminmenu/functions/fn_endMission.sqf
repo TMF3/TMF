@@ -5,6 +5,14 @@ params ["_display"];
 
 [_display] call FUNC(endMissionOccluder);
 
+
+
+
+// rewrite dis
+
+
+
+
 // Populate mission ending list
 private _endingList = (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_LIST);
 if ((lbSize _endingList) > 0) exitWith {};
@@ -12,7 +20,7 @@ if ((lbSize _endingList) > 0) exitWith {};
 {
     private _title = getText (_x >> "title");
     private _description = getText (_x >> "description");
-    
+
     if (!isText (_x >> "subtitle")) then {
         if (_description isEqualTo "") then {
             _endingList lbAdd format ["%1", _title];
