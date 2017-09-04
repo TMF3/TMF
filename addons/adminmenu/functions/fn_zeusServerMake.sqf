@@ -10,20 +10,20 @@ private _isValidCurator = false;
 {
     _isValidCurator = false;
     if (_x getVariable [QGVAR(zeus), false]) then {
-		if (isNull (getAssignedCuratorUnit _x)) then { 
-			_isValidCurator = true;
-		} else {
-			if (!isPlayer (getAssignedCuratorUnit _x)) then {
-				_isValidCurator = true;
-			};
-		};
+        if (isNull (getAssignedCuratorUnit _x)) then { 
+            _isValidCurator = true;
+        } else {
+            if (!isPlayer (getAssignedCuratorUnit _x)) then {
+                _isValidCurator = true;
+            };
+        };
     };
 
     if (_isValidCurator) exitWith {
         unassignCurator _x;
         _unit assignCurator _x;
-		//_x remoteExec [QFUNC(zeusSetupSync), _unit];
-		"[TMF Admin Menu] You were given access to Zeus" remoteExec ["systemChat", _unit];
+        //_x remoteExec [QFUNC(zeusSetupSync), _unit];
+        "[TMF Admin Menu] You were given access to Zeus" remoteExec ["systemChat", _unit];
     };
 } forEach allCurators;
 
@@ -39,10 +39,10 @@ if (!_isValidCurator) then {
 
     _curator setCuratorWaypointCost 0;
     {
-		_curator setCuratorCoef [_x, 0];
-	} forEach ["place","edit","delete","destroy","group","synchronize"];
+        _curator setCuratorCoef [_x, 0];
+    } forEach ["place","edit","delete","destroy","group","synchronize"];
 
-	//_curator remoteExec [QFUNC(zeusSetupSync), _unit];
+    //_curator remoteExec [QFUNC(zeusSetupSync), _unit];
     _unit assignCurator _curator;
     "[TMF Admin Menu] You were given access to Zeus" remoteExec ["systemChat", _unit];
 };

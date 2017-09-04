@@ -18,37 +18,37 @@ _ctrlMapPos set [3, (_ctrlMapPos select 3) - (5.1 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMap ctrlSetPosition _ctrlMapPos;
 _ctrlMap ctrlCommit 0;
 _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
-	params ["_ctrlMap", "", "_pos_x", "_pos_y"];
+    params ["_ctrlMap", "", "_pos_x", "_pos_y"];
 
-	private _toggle = missionNamespace getVariable [QGVAR(utility_teleport_toggle), false];
-	if (_toggle) then {
-		GVAR(utility_teleport_toggle) = !_toggle;
-		(GVAR(utilityTabControls) select 2) ctrlSetText (["Enable Teleport", "Disable Teleport"] select GVAR(utility_teleport_toggle));
+    private _toggle = missionNamespace getVariable [QGVAR(utility_teleport_toggle), false];
+    if (_toggle) then {
+        GVAR(utility_teleport_toggle) = !_toggle;
+        (GVAR(utilityTabControls) select 2) ctrlSetText (["Enable Teleport", "Disable Teleport"] select GVAR(utility_teleport_toggle));
 
-		private _pos = (_ctrlMap ctrlMapScreenToWorld [_pos_x, _pos_y]) findEmptyPosition [0, 25];
-		{
-			_x setPos _pos;
-			"[TMF Admin Menu] You were teleported" remoteExec ["systemChat", _x];
-		} forEach GVAR(utilityData);
+        private _pos = (_ctrlMap ctrlMapScreenToWorld [_pos_x, _pos_y]) findEmptyPosition [0, 25];
+        {
+            _x setPos _pos;
+            "[TMF Admin Menu] You were teleported" remoteExec ["systemChat", _x];
+        } forEach GVAR(utilityData);
 
-		systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utilityData)];
-	};
+        systemChat format ["[TMF Admin Menu] Teleported %1 players", count GVAR(utilityData)];
+    };
 }];
 _ctrlMap ctrlAddEventHandler ["draw", {
-	params ["_ctrlMap"];
-	private _units = switchableUnits;
-	_units append playableUnits;
-	private _pos = [];
-	{
-		/*private _color = [
-			[1,1,1,1],
-			[0.250,0.533,1,1],
-		] select (([blufor, opfor, resistance, civilian] find (side _x)) + 1);*/
-		_pos = getPos _x;
-		_ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [0,0,0,1], _pos, 24, 24, 0];
-		_ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, 0];
-		//_ctrlMap drawIcon ["\a3\ui_f_curator\Data\CfgCurator\area_ca.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, _dir, name _x, 2, 0.06, "Zeppelin32"];
-	} forEach _units;
+    params ["_ctrlMap"];
+    private _units = switchableUnits;
+    _units append playableUnits;
+    private _pos = [];
+    {
+        /*private _color = [
+            [1,1,1,1],
+            [0.250,0.533,1,1],
+        ] select (([blufor, opfor, resistance, civilian] find (side _x)) + 1);*/
+        _pos = getPos _x;
+        _ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [0,0,0,1], _pos, 24, 24, 0];
+        _ctrlMap drawIcon ["\a3\ui_f\data\Map\Markers\Military\dot_CA.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, 0];
+        //_ctrlMap drawIcon ["\a3\ui_f_curator\Data\CfgCurator\area_ca.paa", [side _x, false] call BIS_fnc_sideColor, _pos, 20, 20, _dir, name _x, 2, 0.06, "Zeppelin32"];
+    } forEach _units;
 }];
 
 private _newX = (_ctrlGrpHeight * (3/4)) + (0.1 * TMF_ADMINMENU_STD_WIDTH);
@@ -66,6 +66,6 @@ _ctrlButton ctrlSetPosition [0.8 * _ctrlGrpWidth, _ctrlGrpHeight - TMF_ADMINMENU
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Enable Teleport";
 _ctrlButton ctrlAddEventHandler ["buttonClick", {
-	GVAR(utility_teleport_toggle) = !(missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]);
-	(_this select 0) ctrlSetText (["Enable Teleport", "Disable Teleport"] select GVAR(utility_teleport_toggle));
+    GVAR(utility_teleport_toggle) = !(missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]);
+    (_this select 0) ctrlSetText (["Enable Teleport", "Disable Teleport"] select GVAR(utility_teleport_toggle));
 }];

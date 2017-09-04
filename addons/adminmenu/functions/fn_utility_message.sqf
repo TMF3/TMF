@@ -27,27 +27,27 @@ _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Send Message";
 _ctrlButton setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];
 _ctrlButton ctrlAddEventHandler ["buttonClick", {
-	params ["_ctrlButton"];
-	_ctrlButton call FUNC(debounceButton);
+    params ["_ctrlButton"];
+    _ctrlButton call FUNC(debounceButton);
 
-	(_ctrlButton getVariable [QGVAR(association), [controlNull, controlNull]]) params ["_ctrlEdit", "_ctrlCombo"];
-	private _editText = ctrlText _ctrlEdit;
-	_ctrlEdit ctrlSetText "";
+    (_ctrlButton getVariable [QGVAR(association), [controlNull, controlNull]]) params ["_ctrlEdit", "_ctrlCombo"];
+    private _editText = ctrlText _ctrlEdit;
+    _ctrlEdit ctrlSetText "";
 
-	if (_editText isEqualTo "") then {
-		systemChat "[TMF Admin Menu] Message can't be empty";
-	} else {
-		private _venue = ["systemChat", "hint", QFUNC(showSubtitle)] select (lbCurSel (GVAR(utilityTabControls) select 1));
+    if (_editText isEqualTo "") then {
+        systemChat "[TMF Admin Menu] Message can't be empty";
+    } else {
+        private _venue = ["systemChat", "hint", QFUNC(showSubtitle)] select (lbCurSel (GVAR(utilityTabControls) select 1));
 
-		if (_venue isEqualTo QFUNC(showSubtitle)) then {
-			["PAPA BEAR", _editText] remoteExec [_venue, GVAR(utilityData)];
-		} else {
-			if (_venue isEqualTo "hint") then {
-				_editText = format ["\n\n%1", _editText];
-			};
-			(format ["[TMF Admin Message] %1", _editText]) remoteExec [_venue, GVAR(utilityData)];
-		};
+        if (_venue isEqualTo QFUNC(showSubtitle)) then {
+            ["PAPA BEAR", _editText] remoteExec [_venue, GVAR(utilityData)];
+        } else {
+            if (_venue isEqualTo "hint") then {
+                _editText = format ["\n\n%1", _editText];
+            };
+            (format ["[TMF Admin Message] %1", _editText]) remoteExec [_venue, GVAR(utilityData)];
+        };
 
-		systemChat "[TMF Admin Menu] Message sent to player(s)";
-	};
+        systemChat "[TMF Admin Menu] Message sent to player(s)";
+    };
 }];

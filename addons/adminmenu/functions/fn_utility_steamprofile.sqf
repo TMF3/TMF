@@ -12,16 +12,16 @@ _ctrlText ctrlCommit 0;
 
 private _text = "";
 {
-	if (_forEachIndex > 0) then {
-		_text = format ["%1, ", _text];
-	};
+    if (_forEachIndex > 0) then {
+        _text = format ["%1, ", _text];
+    };
 
-	_text = format [
-		"%1<t size='1'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t>",
-		_text,
-		getPlayerUID _x,
-		name _x
-	];
+    _text = format [
+        "%1<t size='1'><a color='#FFC04D' href='http://steamcommunity.com/profiles/%2'>%3</a></t>",
+        _text,
+        getPlayerUID _x,
+        name _x
+    ];
 } forEach GVAR(utilityData);
 
 _ctrlText ctrlSetStructuredText parseText _text;

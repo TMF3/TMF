@@ -7,14 +7,14 @@ params ["_display", ["_checkboxIDC", IDC_TMF_ADMINMENU_ENDM_FROMMISSION, [0]]];
 GVAR(selectedEndMissionCheckbox) = _checkboxIdc;*/
 
 private _occluderText = switch (_checkboxIdc) do {
-	case IDC_TMF_ADMINMENU_ENDM_FROMMISSION: { "Using Ending from Mission" };
-	case IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC: { "Using Side-Specific Ending" };
-	case IDC_TMF_ADMINMENU_ENDM_CUSTOM: { "Using Custom Ending" };
-	default { "..." };
+    case IDC_TMF_ADMINMENU_ENDM_FROMMISSION: { "Using Ending from Mission" };
+    case IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC: { "Using Side-Specific Ending" };
+    case IDC_TMF_ADMINMENU_ENDM_CUSTOM: { "Using Custom Ending" };
+    default { "..." };
 };
 
 {
-	(_display displayCtrl _x) ctrlSetText _occluderText;
+    (_display displayCtrl _x) ctrlSetText _occluderText;
 } forEach IDCS_TMF_ADMINMENU_ENDM_OCCLUDERS;
 
 private _useFromMission = (_checkboxIdc isEqualTo IDC_TMF_ADMINMENU_ENDM_FROMMISSION);
@@ -26,7 +26,7 @@ private _useFromMission = (_checkboxIdc isEqualTo IDC_TMF_ADMINMENU_ENDM_FROMMIS
 private _useSideSpecific = (_checkboxIdc isEqualTo IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC);
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC) cbSetChecked _useSideSpecific;
 {
-	(_display displayCtrl _x) ctrlEnable _useSideSpecific;
+    (_display displayCtrl _x) ctrlEnable _useSideSpecific;
 } forEach IDCS_TMF_ADMINMENU_ENDM_SIDESPECIFIC;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_R) ctrlEnable !_useSideSpecific;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_R) ctrlShow !_useSideSpecific;

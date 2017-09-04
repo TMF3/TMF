@@ -42,35 +42,35 @@ _ctrlButton ctrlSetPosition [3 * _newW, _newY, _newW, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Execute";
 _ctrlButton ctrlAddEventHandler ["buttonClick", {
-	params ["_button"];
-	_button ctrlEnable false;
+    params ["_button"];
+    _button ctrlEnable false;
 
-	private _foo = [_button] spawn {
-		disableSerialization;
-		params ["_button"];
-		uiSleep 0.5;
-		_button ctrlEnable true;
-	};
+    private _foo = [_button] spawn {
+        disableSerialization;
+        params ["_button"];
+        uiSleep 0.5;
+        _button ctrlEnable true;
+    };
 
-	private _editText = ctrlText (GVAR(utilityTabControls) select 0);
-	if (_editText isEqualTo "") then {
-		systemChat "[TMF Admin Menu] Code field is empty";
-	} else {
-		private _combo = GVAR(utilityTabControls) select 3;
-		private _target = [clientOwner, _x, 2, 0] select (lbCurSel _combo);
-		if (_target isEqualType objNull) then { // individual remoteExec's
-			{
-				[_x, compile _editText] remoteExec ["BIS_fnc_call", _target];
-			} forEach GVAR(utilityData);
-		} else { // remoteExec once
-			[[GVAR(utilityData), compile _editText], {
-				params ["_data", "_code"];
-				{
-					_x call _code;
-				} forEach _data;
-			}] remoteExec ["BIS_fnc_call", _target];
-		};
+    private _editText = ctrlText (GVAR(utilityTabControls) select 0);
+    if (_editText isEqualTo "") then {
+        systemChat "[TMF Admin Menu] Code field is empty";
+    } else {
+        private _combo = GVAR(utilityTabControls) select 3;
+        private _target = [clientOwner, _x, 2, 0] select (lbCurSel _combo);
+        if (_target isEqualType objNull) then { // individual remoteExec's
+            {
+                [_x, compile _editText] remoteExec ["BIS_fnc_call", _target];
+            } forEach GVAR(utilityData);
+        } else { // remoteExec once
+            [[GVAR(utilityData), compile _editText], {
+                params ["_data", "_code"];
+                {
+                    _x call _code;
+                } forEach _data;
+            }] remoteExec ["BIS_fnc_call", _target];
+        };
 
-		systemChat format ["[TMF Admin Menu] Code was executed on %1", _combo lbText (lbCurSel _combo)];
-	};
+        systemChat format ["[TMF Admin Menu] Code was executed on %1", _combo lbText (lbCurSel _combo)];
+    };
 }];

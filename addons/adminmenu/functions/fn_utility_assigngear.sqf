@@ -9,13 +9,13 @@ params ["_display", "_ctrlGroup"];
 // ! ! ! ! !
 
 /*GVAR(utility_assigngear_itemctrls) = [
-	[combobox,x,x],
-	[checkbox,x,x]
+    [combobox,x,x],
+    [checkbox,x,x]
 ] ??
 ctrlAddEventHandler format [
-	"%1 select %2",
-	QGVAR(utility_assigngear_itemctrls),
-	_forEachIndex
+    "%1 select %2",
+    QGVAR(utility_assigngear_itemctrls),
+    _forEachIndex
 ]*/
 
 /* create faction combo, checkbox

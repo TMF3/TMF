@@ -3,9 +3,9 @@
 params ["_curator"];
 
 if (getAssignedCuratorLogic player == _curator) then {
-	systemChat "[TMF Admin Menu] You were given Zeus powers";
+    systemChat "[TMF Admin Menu] You were given Zeus powers";
 
-	_curator addEventHandler ["CuratorObjectPlaced", {
-		_this remoteExec [QFUNC(zeusServerObjectPlacedSync), 2];
-	}];
+    _curator addEventHandler ["CuratorObjectPlaced", {
+        _this remoteExec [QFUNC(zeusServerObjectPlacedSync), 2];
+    }];
 };

@@ -35,13 +35,13 @@ if (true) then {
     _ctrlButton ctrlCommit 0;
     _ctrlButton ctrlSetText "Confirm";
     _ctrlButton ctrlAddEventHandler ["buttonClick", {
-    	disableSerialization;
-    	ctrlEnable (GVAR(utilityTabControls) select 1);
+        disableSerialization;
+        ctrlEnable (GVAR(utilityTabControls) select 1);
 
         {
             serverCommand format ["#kick %1", name _x];
         } forEach GVAR(utilityData);
-    	systemChat "[TMF Admin Menu] Player(s) kicked";
+        systemChat "[TMF Admin Menu] Player(s) kicked";
     }];
 } else {
     _ctrlTextLarge ctrlSetText "The #kick command is not executable on this client.";
@@ -58,18 +58,18 @@ if (true) then {
     _ctrlButton ctrlCommit 0;
     _ctrlButton ctrlSetText format ["Kick %1", name _x];
     _ctrlButton ctrlAddEventHandler ["buttonClick", {
-    	disableSerialization;
-    	private _editText = ctrlText (GVAR(utilityTabControls) select 0);
-    	if (_editText isEqualTo "") then {
-    		systemChat "[TMF Admin Menu] Message can't be empty";
-    	} else {
-    		{
-    			_x ctrlEnable false;
-    		} forEach GVAR(utilityTabControls);
+        disableSerialization;
+        private _editText = ctrlText (GVAR(utilityTabControls) select 0);
+        if (_editText isEqualTo "") then {
+            systemChat "[TMF Admin Menu] Message can't be empty";
+        } else {
+            {
+                _x ctrlEnable false;
+            } forEach GVAR(utilityTabControls);
 
-    		private _venue = ["systemChat", "hint", "hintC"] select (lbCurSel (GVAR(utilityTabControls) select 1));
-    		_editText remoteExec [_venue, GVAR(utilityData)];
-    		systemChat "[TMF Admin Menu] Message sent to player(s)";
-    	};
+            private _venue = ["systemChat", "hint", "hintC"] select (lbCurSel (GVAR(utilityTabControls) select 1));
+            _editText remoteExec [_venue, GVAR(utilityData)];
+            systemChat "[TMF Admin Menu] Message sent to player(s)";
+        };
     }];
 } forEach GVAR(utilityData);*/

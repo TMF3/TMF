@@ -2,20 +2,20 @@
 
 if (!isNil "TMF_event_fnc_addEventHandler") then {
     [QEGVAR(spectator,keyDown), {
-		params ["", "_args"];
-		private _keyPressed = _args select 1;
-		private _modifiersPressed = _args select [2, 3];
+        params ["", "_args"];
+        private _keyPressed = _args select 1;
+        private _modifiersPressed = _args select [2, 3];
 
         private _binding = ["TMF", QGVAR(openKey)] call CBA_fnc_getKeybind;
         if (isNil "_binding") exitWith {};
-		_binding = _binding select 5;
-		_binding params ["_DIK", "_modifiers"];
+        _binding = _binding select 5;
+        _binding params ["_DIK", "_modifiers"];
 
-		/*systemChat format ["[KeyDown] Pressed: %1 _ %2", _keyPressed, _modifiersPressed];
-		systemChat format ["[KeyDown] Binding: %1 _ %2", _DIK, _modifiers];*/
+        /*systemChat format ["[KeyDown] Pressed: %1 _ %2", _keyPressed, _modifiersPressed];
+        systemChat format ["[KeyDown] Binding: %1 _ %2", _DIK, _modifiers];*/
 
-		if !(_keyPressed isEqualTo _DIK) exitWith {};
-		if !(_modifiersPressed isEqualTo _modifiers) exitWith {};
+        if !(_keyPressed isEqualTo _DIK) exitWith {};
+        if !(_modifiersPressed isEqualTo _modifiers) exitWith {};
 
         call FUNC(keyPressed);
     }] call EFUNC(event,addEventHandler);

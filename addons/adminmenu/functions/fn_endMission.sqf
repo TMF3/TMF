@@ -20,7 +20,7 @@ if ((lbSize _endingList) > 0) exitWith {};
             _endingList lbAdd format ["%1 | %2", _title, _description];
         };
     } else {
-		private _subtitle = getText (_x >> "subtitle");
+        private _subtitle = getText (_x >> "subtitle");
 
         if (_description isEqualTo "") then {
             _endingList lbAdd format ["%1 | %2", _title, _subtitle];
@@ -40,7 +40,7 @@ _endingList lbSetData [_idx, "defeat"];*/
 
 // Set per-side toolboxes
 /*{
-	if (isNil _x) then {
-		missionNamespace setVariable [_x, 0];
-	};
+    if (isNil _x) then {
+        missionNamespace setVariable [_x, 0];
+    };
 } forEach [QGVAR(endingSideBlufor), QGVAR(endingSideOpfor), QGVAR(endingSideIndependent), QGVAR(endingSideCivilian)];*/

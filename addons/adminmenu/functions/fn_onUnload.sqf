@@ -3,7 +3,7 @@
 disableSerialization;
 
 {
-	[_x] call CBA_fnc_removePerFrameHandler;
+    [_x] call CBA_fnc_removePerFrameHandler;
 } forEach GVAR(tabPFHHandles);
 
 [false] remoteExec [QFUNC(fpsHandlerServer), 2];
