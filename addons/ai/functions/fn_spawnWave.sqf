@@ -31,7 +31,6 @@ _data = _logic getVariable [QGVAR(waveData), []];
 
 
     _lastIndex = (count waypoints _grp)-1;
-    [_grp,_lastIndex] setWPPos (position leader _grp);
     for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
         _way = _waypoints select _i;
 
@@ -50,8 +49,9 @@ _data = _logic getVariable [QGVAR(waveData), []];
         _w setWaypointTimeout (_way select 11);
         _w setWaypointVisible (_way select 12);
     };
-
-    _grp setCurrentWaypoint [_grp,_lastIndex];
+    if((count waypoints _grp) > 1) then {
+        _grp setCurrentWaypoint [_grp,1]; // skip the next one okeyyo..
+    };
     _spawnedGroups pushBack _grp;
 } forEach _data;
 
