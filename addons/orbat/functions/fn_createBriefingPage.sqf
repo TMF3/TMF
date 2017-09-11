@@ -52,7 +52,7 @@ private _reserveId = (_ourData select 0) select 0;
 
 // Scan for valid indexes.
 private _validParents = [];
-fnc_findValidParents = {
+private _fnc_findValidParents = {
     if (count _this == 0) exitWith {false};
     
     _this params ["_data", ["_children",[]]];
@@ -60,13 +60,13 @@ fnc_findValidParents = {
     _validParents pushBackUnique _uniqueID;
   
     {
-        _x call fnc_findValidParents;
+        _x call _fnc_findValidParents;
     } forEach _children;
     
     _data pushBack _added;
 };
 
-_ourData call fnc_findValidParents;
+_ourData call _fnc_findValidParents;
 _validParents = _validParents - [-1];
 
 private _playableUnits = (playableUnits+switchableUnits);
@@ -85,7 +85,7 @@ private _playableUnits = (playableUnits+switchableUnits);
 //Identify which ones to add.
 
 //Same as in orbat_tracker fn_setup.sqf
-fnc_processOrbatTrackerBriefingRawData = {
+private _fnc_processOrbatTrackerBriefingRawData = {
     if (count _this == 0) exitWith {false};
     private _added = false;
 
@@ -101,7 +101,7 @@ fnc_processOrbatTrackerBriefingRawData = {
 
 
     {
-        if (_x call fnc_processOrbatTrackerBriefingRawData) then { _added = true;};
+        if (_x call _fnc_processOrbatTrackerBriefingRawData) then { _added = true;};
     } forEach _children;
 
     _data pushBack _added;
@@ -109,11 +109,11 @@ fnc_processOrbatTrackerBriefingRawData = {
     _added;
 };
 
-_ourData call fnc_processOrbatTrackerBriefingRawData;
+_ourData call _fnc_processOrbatTrackerBriefingRawData;
 
 
 // [NODE,[NODE,CHILD],[NODE],[NODE]]
-fnc_processOrbatTrackerBriefingRawData = {
+_fnc_processOrbatTrackerBriefingRawData = {
     private _briefingText = "";
     if (count _this == 0) exitWith {_briefingText};
 
@@ -140,7 +140,7 @@ fnc_processOrbatTrackerBriefingRawData = {
             if (count _data > 5) then {
                 private _sortId = _data select 5; // ID
                 if (isNil "_sortId") then { _sortId = 0;};
-                _childrenBriefings pushBack [_sortId, ([_x, _indent] call fnc_processOrbatTrackerBriefingRawData)];
+                _childrenBriefings pushBack [_sortId, ([_x, _indent] call _fnc_processOrbatTrackerBriefingRawData)];
             };
         };
     } forEach _children;
@@ -344,8 +344,8 @@ fnc_processOrbatTrackerBriefingRawData = {
     _briefingText;
 };
 
-private _briefingText = [_ourData, ""] call fnc_processOrbatTrackerBriefingRawData;
+private _briefingText = [_ourData, ""] call _fnc_processOrbatTrackerBriefingRawData;
 _briefingText = "Note: This is only valid at time of creation.<br/><font size='18'>ORBAT:</font><br/>" + _briefingText;
 _unit createDiaryRecord ["diary", ["ORBAT", _briefingText]];
-fnc_processOrbatTrackerBriefingRawData = nil;
+_fnc_processOrbatTrackerBriefingRawData = nil;
 
