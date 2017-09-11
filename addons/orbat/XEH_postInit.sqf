@@ -103,7 +103,7 @@ FUNC(PFHUpdate) = {
         //Ensure a 0.5 second delay.
         params ["_params"];
         _params params ["_tickTime"];
-        if (diag_tickTime < _tickTime + 0.5) exitWith {};
+        if (diag_tickTime < _tickTime + 1.5) exitWith {};
         
         [_this select 1] call CBA_fnc_removePerFrameHandler; 
         
