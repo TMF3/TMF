@@ -49,11 +49,31 @@ private _ourData = (GVAR(orbatRawData) select _ourIdx) select 1; //list of child
 private _toPlace = [];
 private _reserveId = (_ourData select 0) select 0;
 
+
+// Scan for valid indexes.
+private _validParents = [];
+fnc_findValidParents = {
+    if (count _this == 0) exitWith {false};
+    
+    _this params ["_data", ["_children",[]]];
+    _data params ["_uniqueID"];
+    _validParents pushBackUnique _uniqueID;
+  
+    {
+        _x call fnc_findValidParents;
+    } forEach _children;
+    
+    _data pushBack _added;
+};
+
+_ourData call fnc_findValidParents;
+_validParents = _validParents - [-1];
+
 private _playableUnits = (playableUnits+switchableUnits);
 {
     private _var = _x getVariable ["TMF_OrbatParent",-1];
     if ({_x in _playableUnits} count (units _x) > 0) then {
-        if (_var != -1) then {
+        if (_var in _validParents) then {
             _toPlace pushBack [_var, _x];
         } else {
             _toPlace pushBack [_reserveId, _x];
