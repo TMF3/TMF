@@ -143,7 +143,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_DASH;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "dashboard.hpp"
         };
 
@@ -152,7 +151,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_PMAN;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "playerManagement.hpp"
         };
 
@@ -161,7 +159,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_RESP;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "respawn.hpp"
         };
 
@@ -170,7 +167,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_ENDM;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "endMission.hpp"
         };
 
@@ -179,7 +175,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_MSGS;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "messageLog.hpp"
         };
 

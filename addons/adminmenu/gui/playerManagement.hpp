@@ -146,14 +146,14 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_PMAN_TELEPORT;
         text = "Teleport";
-        onButtonClick = QUOTE([ARR_4(ctrlParent (_this select 0),QUOTE(QFUNC(utility_teleport)),ctrlText (_this select 0),true)] call FUNC(modal););
+        onButtonClick = QUOTE([ARR_4(ctrlParent (_this select 0),QUOTE(QFUNC(modal_teleport)),ctrlText (_this select 0),true)] call FUNC(modal););
         y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonMessage: ButtonSelectAll
     {
         idc = IDC_TMF_ADMINMENU_PMAN_MESSAGE;
         text = "Message";
-        onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(utility_message)),ctrlText (_this select 0))] call FUNC(modal););
+        onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(modal_message)),ctrlText (_this select 0))] call FUNC(modal););
         y = "9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonAssignGear: ButtonSelectAll
@@ -181,14 +181,14 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_PMAN_KICK;
         text = "Kick";
-        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(utility_kick)),ctrlText (_this select 0))] call FUNC(modal););
+        onButtonClick = "";
         y = "13.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonRunCode: ButtonSelectAll
     {
         idc = IDC_TMF_ADMINMENU_PMAN_RUNCODE;
         text = "Run Code On";
-        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(utility_runCode)),ctrlText (_this select 0))] call FUNC(modal););
+        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(modal_runCode)),ctrlText (_this select 0))] call FUNC(modal););
         y = "14.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonGrantZeus: ButtonSelectAll
@@ -202,21 +202,21 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_PMAN_ACRELANGUAGES;
         text = "ACRE2 Languages";
-        onButtonClick = "systemChat 'Button: ACRE2 Languages';";
+        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(modal_ACRE2Languages)),ctrlText (_this select 0))] call FUNC(modal););
         y = "16.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonSteamProfile: ButtonSelectAll
     {
         idc = IDC_TMF_ADMINMENU_PMAN_STEAM;
         text = "Steam Profile";
-        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(utility_steamProfile)),ctrlText (_this select 0))] call FUNC(modal););
+        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(modal_steamProfile)),ctrlText (_this select 0))] call FUNC(modal););
         y = "17.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonQuickRespawn: ButtonSelectAll
     {
         idc = IDC_TMF_ADMINMENU_PMAN_QRESPAWN;
         text = "Quick Respawn";
-        onButtonClick = "systemChat 'Button: Quick Respawn';";
+        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(utility_quickRespawn)),ctrlText (_this select 0))] call FUNC(utility););
         y = "18.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
 };

@@ -9,6 +9,8 @@ private _pfhRefresh = [{
 
     remoteExec [QFUNC(getCurrentAdminServer), 2];
 
+    (_display displayCtrl IDC_TMF_ADMINMENU_DASH_VEHICLES) ctrlSetText str (count vehicles);
+    (_display displayCtrl IDC_TMF_ADMINMENU_DASH_DEADMEN) ctrlSetText str (count allDeadMen);
     (_display displayCtrl IDC_TMF_ADMINMENU_DASH_RUNTIME) ctrlSetText format ["%1m %2s", round ((time - (time % 60)) / 60), round (time % 60)];
     (_display displayCtrl IDC_TMF_ADMINMENU_DASH_HEADLESS) ctrlSetText str (count entities "HeadlessClient_F");
 

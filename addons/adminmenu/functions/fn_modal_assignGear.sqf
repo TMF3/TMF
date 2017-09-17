@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
 disableSerialization;
-params ["_display", "_ctrlGroup"];
+params ["_ctrlGroup"];
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
