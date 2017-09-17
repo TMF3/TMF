@@ -5,14 +5,14 @@ class GVAR(modal)
     enableDisplay = 1;
     enableSimulation = 1;
 
-    onLoad = QUOTE(_this call FUNC(onLoadModal););
-    onUnload = QUOTE(_this call FUNC(onUnloadModal););
-    class controls
+    onLoad = QUOTE(_this call FUNC(modalOnLoad););
+    onUnload = QUOTE(_this call FUNC(modalOnUnload););
+    class Controls
     {
         class Background: RscText
         {
             idc = IDC_TMF_ADMINMENU_MODAL_BACK;
-            colorBackground[] = {0, 0, 0, 0.7};
+            colorBackground[] = {0, 0, 0, 0};
             x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
             y = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
             w = "38 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -75,3 +75,4 @@ class GVAR(modal)
             h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };
     };
+};

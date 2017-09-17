@@ -146,14 +146,14 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_PMAN_TELEPORT;
         text = "Teleport";
-        onButtonClick = QUOTE([ARR_4(ctrlParent (_this select 0),QUOTE(QFUNC(modal_teleport)),ctrlText (_this select 0),true)] call FUNC(modal););
+        onButtonClick = QUOTE([ARR_3(QUOTE(QFUNC(modal_teleport)),ctrlText (_this select 0),true)] call FUNC(modal););
         y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonMessage: ButtonSelectAll
     {
         idc = IDC_TMF_ADMINMENU_PMAN_MESSAGE;
         text = "Message";
-        onButtonClick = QUOTE([ARR_3(ctrlParent (_this select 0),QUOTE(QFUNC(modal_message)),ctrlText (_this select 0))] call FUNC(modal););
+        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(modal_message)),ctrlText (_this select 0))] call FUNC(modal););
         y = "9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonAssignGear: ButtonSelectAll

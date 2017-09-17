@@ -61,13 +61,14 @@ private _newPlayers = [];
         _list lbSetData [_idx, _netId];
         _newPlayers pushBack _netId;
 
-        private _sideColor = _playerSide call FUNC(sideToColor);
         private _sideTexture = "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa";
 
         if (_isSpectator) then {
             _list lbSetColor [_idx, [0.6,0.6,0.6,1]];
             _list lbSetColorRight [_idx, [0.6,0.6,0.6,1]];
             _list lbSetPicture [_idx, _sideTexture];
+
+            private _sideColor = _playerSide call FUNC(sideToColor);
             _list lbSetPictureColor [_idx, _sideColor];
             _list lbSetPictureColorSelected [_idx, _sideColor];
 
@@ -105,9 +106,10 @@ private _newPlayers = [];
             };
 
             _list lbSetPicture [_idx, _sideTexture];
-            _list lbSetPictureColor [_idx, _sideColor];
-            _list lbSetPictureColorSelected [_idx, _sideColor];
+            _list lbSetPictureColor [_idx, [1,1,1,0.8]];
+            _list lbSetPictureColorSelected [_idx, [1,1,1,0.8]];
             _list lbSetPictureRightColor [_idx, [1,1,1,0]];
+            _list lbSetPictureRightColorSelected [_idx, [1,1,1,0]];
         };
     };
 } forEach _allPlayers;

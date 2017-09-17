@@ -5,7 +5,7 @@ params ["_ctrlGroup"];
 
 private _ctrlTextPos = [0, 0];
 _ctrlTextPos append ((ctrlPosition _ctrlGroup) select [2, 2]);
-private _ctrlText = GVAR(modalDisplay) ctrlCreate ["RscStructuredText", -1, _ctrlGroup];
+private _ctrlText = (uiNamespace getVariable [QGVAR(modalDisplay), displayNull]) ctrlCreate ["RscStructuredText", -1, _ctrlGroup];
 _ctrlText ctrlSetPosition _ctrlTextPos;
 _ctrlText ctrlCommit 0;
 

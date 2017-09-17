@@ -8,7 +8,8 @@ GVAR(utility_teleport_toggle) = false;
 (ctrlPosition _ctrlGroup) params ["_ctrlGrpX", "_ctrlGrpY", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 _ctrlGroup ctrlEnable false;
 
-private _ctrlMap = GVAR(modalDisplay) ctrlCreate ["RscMapControl", -1];
+private _display = uiNamespace getVariable [QGVAR(modalDisplay), displayNull];
+private _ctrlMap = _display ctrlCreate ["RscMapControl", -1];
 _ctrlMap ctrlSetPosition [_ctrlGrpX, _ctrlGrpY, _ctrlGrpWidth, _ctrlGrpHeight - (1.1 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlMap ctrlCommit 0;
 _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
@@ -40,12 +41,12 @@ _ctrlMap ctrlAddEventHandler ["draw", {
     } forEach _units;
 }];
 
-private _ctrlHint = GVAR(modalDisplay) ctrlCreate [QGVAR(RscText), -1];
+private _ctrlHint = _display ctrlCreate [QGVAR(RscText), -1];
 _ctrlHint ctrlSetPosition [_ctrlGrpX, _ctrlGrpY + _ctrlGrpHeight - (0.1 * TMF_ADMINMENU_STD_HEIGHT), 0.8 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlHint ctrlCommit 0;
 _ctrlHint ctrlSetText "After locating the destination area, press the Enable Teleport button and then click the desired location on the map.";
 
-private _ctrlButton = GVAR(modalDisplay) ctrlCreate [QGVAR(RscButtonMenu), -1];
+private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1];
 _ctrlButton ctrlSetPosition [0.8 * _ctrlGrpWidth, _ctrlGrpY + _ctrlGrpHeight - (0.1 * TMF_ADMINMENU_STD_HEIGHT), 0.2 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Enable Teleport";

@@ -1,3 +1,5 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
+
 private _enableDebugConsole =
 // 0 - not allowed
 // 1 - allowed for server host and logged in admin

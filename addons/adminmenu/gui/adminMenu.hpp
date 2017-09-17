@@ -13,6 +13,7 @@ class RscEdit;
 class RscEditMulti: RscEdit {};
 class RscPicture;
 class RscToolbox;
+class RscStructuredText;
 
 class GVAR(RscButtonMenu): RscButtonMenu {
     style = "0x02 + 0x0C";
@@ -53,7 +54,7 @@ class ADDON
 
     onLoad = QUOTE(_this call FUNC(onLoad););
     onUnload = QUOTE(_this call FUNC(onUnload););
-    class controls
+    class Controls
     {
         class Title: RscTitle
         {

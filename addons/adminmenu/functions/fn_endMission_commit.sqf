@@ -20,7 +20,7 @@ if (cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC)) then {
     };
 };
 
-private _endMissionFunc = [QCFUNC(endMission), "BIS_fnc_endMission"] select (isNil QCFUNC(endMission));
+private _endMissionFunc = [QEFUNC(common,endMission), "BIS_fnc_endMission"] select (isNil QEFUNC(common,endMission));
 
 switch (_endingType) do {
     // Endings from description.ext CfgDebriefing

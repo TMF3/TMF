@@ -5,24 +5,25 @@ params ["_ctrlGroup"];
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
-private _ctrlEdit = GVAR(modalDisplay) ctrlCreate [QGVAR(RscEditMultiCode), -1, _ctrlGroup];
+private _display = uiNamespace getVariable [QGVAR(modalDisplay), displayNull];
+private _ctrlEdit = _display ctrlCreate [QGVAR(RscEditMultiCode), -1, _ctrlGroup];
 _ctrlEdit ctrlSetPosition [0.1 * TMF_ADMINMENU_STD_WIDTH, 1.1 * TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth - (0.2 * TMF_ADMINMENU_STD_WIDTH), _ctrlGrpHeight - (2.3 * TMF_ADMINMENU_STD_HEIGHT)];
 _ctrlEdit ctrlCommit 0;
 _ctrlEdit ctrlSetText (missionNamespace getVariable [QGVAR(utility_runcode_last), ""]);
 
-private _ctrlHintEdit = GVAR(modalDisplay) ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
+private _ctrlHintEdit = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
 _ctrlHintEdit ctrlSetPosition [0, 0, _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlHintEdit ctrlCommit 0;
 _ctrlHintEdit ctrlSetText "'_this' is the targetted player object";
 
 private _bottomY = _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT;
 
-private _ctrlHintCombo = GVAR(modalDisplay) ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
+private _ctrlHintCombo = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
 _ctrlHintCombo ctrlSetPosition [0, _bottomY, 0.15 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlHintCombo ctrlCommit 0;
 _ctrlHintCombo ctrlSetText "Execute on:";
 
-private _ctrlCombo = GVAR(modalDisplay) ctrlCreate [QGVAR(RscCombo), -1, _ctrlGroup];
+private _ctrlCombo = _display ctrlCreate [QGVAR(RscCombo), -1, _ctrlGroup];
 _ctrlCombo ctrlSetPosition [0.15 * _ctrlGrpWidth, _bottomY, 0.25 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlCombo ctrlCommit 0;
 _ctrlCombo lbAdd "Your Client";
@@ -31,7 +32,7 @@ _ctrlCombo lbAdd "Server";
 _ctrlCombo lbAdd "All Clients and Server";
 _ctrlCombo lbSetCurSel 0;
 
-private _ctrlButton = GVAR(modalDisplay) ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
+private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
 _ctrlButton ctrlSetPosition [0.8 * _ctrlGrpWidth, _bottomY, 0.2 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Execute";
