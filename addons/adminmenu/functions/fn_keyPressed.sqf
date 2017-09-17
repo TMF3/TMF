@@ -2,9 +2,10 @@
 
 systemChat "[TMF Admin Menu] Key pressed";
 
+// call BIS_fnc_isDebugConsoleAllowed
 if (((getPlayerUID player) in (getArray (configFile >> QGVAR(authorized_uids)))) || (serverCommandAvailable "#kick") || isServer) then {
     if (dialog && !isNull (findDisplay IDD_TMF_ADMINMENU)) exitWith {
-        systemChat "[TMF Admin Menu] The dialog is already open"
+        systemChat "[TMF Admin Menu] The admin menu is already open"
     };
 
     GVAR(fromSpectator) = !isNull (findDisplay 5454);

@@ -22,7 +22,6 @@ private _isValidCurator = false;
     if (_isValidCurator) exitWith {
         unassignCurator _x;
         _unit assignCurator _x;
-        //_x remoteExec [QFUNC(zeusSetupSync), _unit];
         "[TMF Admin Menu] You were given access to Zeus" remoteExec ["systemChat", _unit];
     };
 } forEach allCurators;

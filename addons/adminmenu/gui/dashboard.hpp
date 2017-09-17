@@ -122,14 +122,14 @@ class Controls
         x = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "8.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     };
-    class StatsLabel_VirtualCurators: StatsLabel_HeadlessClients
+    class StatsLabel_Curators: StatsLabel_HeadlessClients
     {
-        text = "Virtual Zeuses";
+        text = "Zeuses";
         y = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
-    class StatsValue_VirtualCurators: StatsValue_HeadlessClients
+    class StatsValue_Curators: StatsValue_HeadlessClients
     {
-        idc = IDC_TMF_ADMINMENU_DASH_VIRTUALS;
+        idc = IDC_TMF_ADMINMENU_DASH_CURATORS;
         text = "0";
         y = "10.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };

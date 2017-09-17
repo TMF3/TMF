@@ -61,7 +61,7 @@ private _newPlayers = [];
         _list lbSetData [_idx, _netId];
         _newPlayers pushBack _netId;
 
-        private _sideColor = _playerSide call CFUNC(sideToColor);
+        private _sideColor = _playerSide call FUNC(sideToColor);
         private _sideTexture = "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa";
 
         if (_isSpectator) then {
