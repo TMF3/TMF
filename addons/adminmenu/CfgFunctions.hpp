@@ -27,6 +27,7 @@ class CfgFunctions {
             class playerManagement_filter;
             class playerManagement_listSelChange;
             class playerManagement_updateList;
+            class remoteControl;
             class respawn;
             class selectTab;
             class showSubtitle;
