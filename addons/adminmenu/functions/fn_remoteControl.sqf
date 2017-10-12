@@ -1,15 +1,17 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-systemChat format [
+/*systemChat format [
     "RC _this: %1",
     _this
-];
+];*/
 
 params [["_unit", objNull, [objNull]], ["_toggle", true, [true]]];
 
 if (!_toggle) exitWith { // Bad or toggle off
+    systemChat "RC: toggle off A";
     private _rcUnit = missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull];
     if (!isNull _rcUnit && ((_rcUnit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)) then {
+        systemChat "RC: toggle off B";
         _rcUnit setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
         objNull remoteControl _rcUnit;
         bis_fnc_moduleRemoteControl_unit = nil;
@@ -41,6 +43,8 @@ call {
 };
 
 if (_error isEqualTo "") then {
+    systemChat "RC: no error";
+
     bis_fnc_moduleRemoteControl_unit = _unit;
     _unit setVariable ["bis_fnc_moduleRemoteControl_owner", player, true];
 
@@ -48,11 +52,13 @@ if (_error isEqualTo "") then {
         if (dialog) then {
             closeDialog 2;
         } else {
-            (_this select 1) call CBA_fnc_addPerFrameHandler;
+            [_this select 1] call CBA_fnc_removePerFrameHandler;
+            systemChat "RC: removePFH";
         };
-    }] call CBA_fnc_addPerFrameHandler;
+    }, 0, 0] call CBA_fnc_addPerFrameHandler;
 
     [{!dialog}, {
+        systemChat "RC: waitUntilAndExecute 1";
         private _vehicle = vehicle _this;
         player remoteControl _this;
         if (cameraOn != _vehicle) then {
@@ -61,10 +67,19 @@ if (_error isEqualTo "") then {
 
         [{
             !alive _this ||
+            (cameraOn isEqualTo player) ||
             !(player isKindOf QEGVAR(spectator,unit)) ||
-            !((_this getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this) ||
+            !((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this) ||
             !((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)
         }, {
+            systemChat format [
+                "RC: w2: %1 %2 %3 %4 %5",
+                !alive _this,
+                (cameraOn isEqualTo player),
+                !(player isKindOf QEGVAR(spectator,unit)),
+                !((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this),
+                !((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)
+            ];
             if ((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player) then {
                 _this setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
                 objNull remoteControl _this;
@@ -72,11 +87,12 @@ if (_error isEqualTo "") then {
             };
 
             [{
+                systemChat "RC: waitAndExecute 3";
                 if (isNull (findDisplay 5454)) then {
                     createDialog QEGVAR(spectator,dialog);
                 };
-            }] call CBA_fnc_execNextFrame;
-        }, _unit] call CBA_fnc_waitUntilAndExecute;
+            }, 0, 1] call CBA_fnc_waitAndExecute;
+        }, _this] call CBA_fnc_waitUntilAndExecute;
     }, _unit] call CBA_fnc_waitUntilAndExecute;
 } else {
     systemChat format [

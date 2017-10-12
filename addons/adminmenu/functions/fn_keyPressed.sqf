@@ -1,18 +1,18 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-params ["", "_args"];
+params ["", "_keyPressed"];
+private _modifiersPressed = _this select [2, 3];
 
 //private _authorized = call BIS_fnc_isDebugConsoleAllowed;
 private _authorized = (((getPlayerUID player) in (getArray (configFile >> QGVAR(authorized_uids)))) || (serverCommandAvailable "#kick") || isServer);
 
-private _keyPressed = _args select 1;
-private _modifiersPressed = _args select [2, 3];
 private _binding = ["TMF", QGVAR(openKey)] call CBA_fnc_getKeybind;
 if (isNil "_binding") exitWith {};
 (_binding select 5) params ["_DIK", "_modifiers"];
 
 private _handleKeypress = (_keyPressed isEqualTo _DIK) && (_modifiersPressed isEqualTo _modifiers);
 if (_handleKeypress) then {
+    systemChat "RC: handle open";
     if (_authorized) then {
         if (dialog && !isNull (uiNamespace getVariable [QGVAR(display), displayNull])) then {
             systemChat "[TMF Admin Menu] The admin menu is already open"
@@ -31,14 +31,15 @@ if (_handleKeypress) then {
 
     _handleKeypress = (_keyPressed isEqualTo _DIK) && (_modifiersPressed isEqualTo _modifiers);
     if (_handleKeypress) then {
+        systemChat "RC: handle rc";
         if (_authorized) then {
             if (isNull (findDisplay 5454)) then {
                 if (isNull (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull])) then {
                     systemChat "[TMF Admin Menu] Remote Control is available only through TMF Spectator";
                 } else {
                     if (player isKindOf QEGVAR(spectator,unit)) then {
-                        systemChat "[TMF Admin Menu] RC toggle off";
-                        [objNull, false] call FUNC(remoteControl);
+                        systemChat "[TMF Admin Menu] RC toggle off disabled; use scroll action";
+                        //[objNull, false] call FUNC(remoteControl);
                     };
                 };
             } else {
