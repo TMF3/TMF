@@ -12,7 +12,6 @@ if (isNil "_binding") exitWith {};
 
 private _handleKeypress = (_keyPressed isEqualTo _DIK) && (_modifiersPressed isEqualTo _modifiers);
 if (_handleKeypress) then {
-    systemChat "RC: handle open";
     if (_authorized) then {
         if (dialog && !isNull (uiNamespace getVariable [QGVAR(display), displayNull])) then {
             systemChat "[TMF Admin Menu] The admin menu is already open"
@@ -31,22 +30,19 @@ if (_handleKeypress) then {
 
     _handleKeypress = (_keyPressed isEqualTo _DIK) && (_modifiersPressed isEqualTo _modifiers);
     if (_handleKeypress) then {
-        systemChat "RC: handle rc";
         if (_authorized) then {
             if (isNull (findDisplay 5454)) then {
                 if (isNull (missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull])) then {
                     systemChat "[TMF Admin Menu] Remote Control is available only through TMF Spectator";
                 } else {
                     if (player isKindOf QEGVAR(spectator,unit)) then {
-                        systemChat "[TMF Admin Menu] RC toggle off disabled; use scroll action";
-                        //[objNull, false] call FUNC(remoteControl);
+                        systemChat "[TMF Admin Menu] Use scroll menu action to stop remote control";
                     };
                 };
             } else {
                 if (isNil QEGVAR(spectator,target)) then {
                     systemChat "[TMF Admin Menu] No unit selected for Remote Control.";
                 } else {
-                    systemChat "[TMF Admin Menu] RC toggle on";
                     [EGVAR(spectator,target), true] call FUNC(remoteControl);
                 };
             };

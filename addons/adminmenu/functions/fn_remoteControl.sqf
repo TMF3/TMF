@@ -1,24 +1,17 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-/*systemChat format [
-    "RC _this: %1",
-    _this
-];*/
-
 params [["_unit", objNull, [objNull]], ["_toggle", true, [true]]];
 
-if (!_toggle) exitWith { // Bad or toggle off
-    systemChat "RC: toggle off A";
+if (!_toggle) exitWith { // Bad, can still command group via map click when back in spectator
     private _rcUnit = missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull];
     if (!isNull _rcUnit && ((_rcUnit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)) then {
-        systemChat "RC: toggle off B";
         _rcUnit setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
         objNull remoteControl _rcUnit;
         bis_fnc_moduleRemoteControl_unit = nil;
     };
 };
 
-systemChat format [
+/*systemChat format [
     "RC UNIT: %1 | %2 | %3 | %4 | %5 | %6 | %7 | %8",
     vehicleVarName _unit,
     name _unit,
@@ -28,7 +21,7 @@ systemChat format [
     getText (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "displayName"),
     typeOf (vehicle _unit),
     assignedVehicleRole _unit
-];
+];*/
 
 private _error = "";
 call {
@@ -43,8 +36,6 @@ call {
 };
 
 if (_error isEqualTo "") then {
-    systemChat "RC: no error";
-
     bis_fnc_moduleRemoteControl_unit = _unit;
     _unit setVariable ["bis_fnc_moduleRemoteControl_owner", player, true];
 
@@ -53,12 +44,10 @@ if (_error isEqualTo "") then {
             closeDialog 2;
         } else {
             [_this select 1] call CBA_fnc_removePerFrameHandler;
-            systemChat "RC: removePFH";
         };
     }, 0, 0] call CBA_fnc_addPerFrameHandler;
 
     [{!dialog}, {
-        systemChat "RC: waitUntilAndExecute 1";
         private _vehicle = vehicle _this;
         player remoteControl _this;
         if (cameraOn != _vehicle) then {
@@ -67,19 +56,36 @@ if (_error isEqualTo "") then {
 
         [{
             !alive _this ||
+            (_this getVariable ["ACE_isUnconscious", false]) ||
             (cameraOn isEqualTo player) ||
             !(player isKindOf QEGVAR(spectator,unit)) ||
             !((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this) ||
             !((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)
         }, {
+            private _reasons = [];
+            if (!alive _this) then {
+                _reasons pushBack "RC unit is dead";
+            };
+            if (_this getVariable ["ACE_isUnconscious", false]) then {
+                _reasons pushBack "RC unit is unconscious";
+            };
+            if (cameraOn isEqualTo player) then {
+                _reasons pushBack "Camera is on player";
+            };
+            if (!(player isKindOf QEGVAR(spectator,unit))) then {
+                _reasons pushBack "Player is not a spectator unit (respawned?)";
+            };
+            if (!((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this)) then {
+                _reasons pushBack "Mission RC var says current unit shouldn't be RC'd";
+            };
+            if (!((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)) then {
+                _reasons pushBack "Unit RC var says player shouldn't be remote controlling it";
+            };
             systemChat format [
-                "RC: w2: %1 %2 %3 %4 %5",
-                !alive _this,
-                (cameraOn isEqualTo player),
-                !(player isKindOf QEGVAR(spectator,unit)),
-                !((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this),
-                !((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)
+                "[TMF Admin Menu] Remote Control stopped because: %1",
+                _reasons joinString " | "
             ];
+
             if ((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player) then {
                 _this setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
                 objNull remoteControl _this;
@@ -87,16 +93,15 @@ if (_error isEqualTo "") then {
             };
 
             [{
-                systemChat "RC: waitAndExecute 3";
                 if (isNull (findDisplay 5454)) then {
                     createDialog QEGVAR(spectator,dialog);
                 };
-            }, 0, 1] call CBA_fnc_waitAndExecute;
+            }, 0, 0.33] call CBA_fnc_waitAndExecute;
         }, _this] call CBA_fnc_waitUntilAndExecute;
     }, _unit] call CBA_fnc_waitUntilAndExecute;
 } else {
     systemChat format [
-        "[TMF Admin Menu] Spectator Remote Control: %1",
+        "[TMF Admin Menu] Spectator Remote Control error: %1",
         _error
     ];
 };
