@@ -18,7 +18,9 @@ _data = _logic getVariable [QGVAR(waveData), []];
 
     {
         _x params ["_type","_pos","_dir","_units"];
-        _vehicle = createVehicle [_type, _pos, [], 0, "NONE"];
+        private _formationType = "NONE";
+        if((_pos select 2) > 3) then {_formationType = "FLY"};
+        _vehicle = createVehicle [_type, _pos, [], 0, _formationType];
         _vehicle setPosATL _pos;
         _vehicle setDir _dir;
         {
