@@ -28,7 +28,7 @@ if (getMissionConfigValue ['TMF_AcreNetworkEnabled',false]) then {
             [["ACRE_PRC343"],2400,2420,0.01,0.1,"default2"],
             [["ACRE_PRC148","ACRE_PRC152","ACRE_PRC117F"],60,360,0.00625,1,"default"],
             [["ACRE_SEM52SL"],46,64,0.025,1,"default"],
-            [["ACRE_PRC77"],30,75,0.05,1,"default"]
+            [["ACRE_PRC77"],30,75,0.05,10,"default"]
         ];
     };
 
