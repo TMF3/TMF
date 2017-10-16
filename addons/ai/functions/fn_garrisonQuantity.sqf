@@ -116,6 +116,9 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         _mkr setMarkerText (_unitClassname);
     };
 };
+
+// Ensure side is corrected -- https://feedback.bistudio.com/T70739.
+private _units = units _mainGroup;
+_units join _mainGroup;
     
-    
-_logic setVariable ["spawned_units",units _mainGroup,true]; // global set variable
+_logic setVariable ["spawned_units",_units,true]; // global set variable
