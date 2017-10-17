@@ -20,6 +20,10 @@ The framework is addon based, keeping filesize down and ensuring that even old m
 ## Common Issues
 - On dedicated servers the briefing files may not load - To fix the issue in server.cfg to add the `sqf` extension to the `allowedHTMLLoadExtensions` whitelist. For example `allowedHTMLLoadExtensions[] = {"htm","html","xml","txt","sqf"};`
 
+## Discord
+[![Discord](https://img.shields.io/discord/162548584342880256.svg)](https://discord.gg/0uICmkBFR3w3dKbJ)
+
+Join us on discord by clicking on the shield above.
 
 ## Credits
 The TMF Team:
