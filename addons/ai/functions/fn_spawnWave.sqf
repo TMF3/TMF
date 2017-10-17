@@ -31,6 +31,8 @@ _data = _logic getVariable [QGVAR(waveData), []];
         } forEach _units;
     } forEach _vehicles;
 
+    // Ensure side is corrected -- https://feedback.bistudio.com/T70739.
+    (units _grp) join _grp;
 
     _lastIndex = (count waypoints _grp)-1;
     for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
