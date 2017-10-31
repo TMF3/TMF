@@ -137,8 +137,26 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
     
     // Gear assignment always runs at init, this runs after init.
  
-    private _side = toLower ([(_unit getVariable ["tmf_assignGear_side",3])] call CFUNC(sideType));
-    private _radiosToGive = ["CfgLoadouts", _side, _unit getVariable ["tmf_assignGear_faction","civ_f"], _unit getVariable ["tmf_assignGear_role","baseMan"], "radios"] call EFUNC(common,getCfgEntry);
+    private _side = _unit getVariable ["tmf_assignGear_side",-1];
+    private _faction = _unit getVariable ["tmf_assignGear_faction","civ_f"];
+    private _role =  _unit getVariable ["tmf_assignGear_role","baseMan"];
+
+    // Config look up
+    private _cfg = configNull;
+
+    if (_side isEqualTo -1) then {
+        _cfg = missionConfigFile >> "cfgLoadouts" >> _faction;
+    } else {
+         _side = toLower ([_side] call CFUNC(sideType));
+        // OLD ASSIGN GEAR SYSTEM
+        _cfg = missionConfigFile >> "cfgLoadouts" >> _side >> _faction;
+    };
+
+    // Faction not found in mission try in modpack.
+    if (!isClass _cfg) then {
+        _cfg = configFile >> "cfgLoadouts" >> _faction;
+    };
+    private _radiosToGive = getArray(_cfg >> _role >> "radios");
 
     if (isNil "_radiosToGive") then { _radiosToGive = []; };
     //CfgLoadouts >> WEST >> BLU_F >> KIT
