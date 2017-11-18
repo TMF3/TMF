@@ -5,6 +5,7 @@ class cfgFunctions {
             class init;
             class playerInit;
             class serverInit;
+            class briefingTextLoad;
         };
     };
 };
