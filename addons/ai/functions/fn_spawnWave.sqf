@@ -40,7 +40,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
 
         // TODO fix this shit
 
-        _w = _grp addWaypoint [_way select 1, 0,_i,_way select 0];
+        _w = _grp addWaypoint [_way select 1, 0,(_i+1),_way select 0];
         _w setWaypointType (_way select 2);
         _w setWaypointBehaviour (_way select 3);
         _w setWaypointCombatMode (_way select 4);
