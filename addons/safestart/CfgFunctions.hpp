@@ -3,8 +3,12 @@ class cfgFunctions {
         class COMPONENT {
             file = QPATHTO_FOLDER(functions);
             class init;
-            class playerInit;
+            class playerStart;
+            class playerEnd;
             class serverInit;
+            class serverEnd;
+            class end;
+            class create;
         };
     };
 };

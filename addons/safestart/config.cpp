@@ -21,7 +21,7 @@ class cfgPatches
 class RscText; // assume external declaration
 class RscTitles {
     class GVAR(dialog) {
-        idd = 5434;
+        idd = DIALOG_IDD;
         duration = 999999999;
         fadein = 0;
         fadeout = 0;
@@ -31,7 +31,7 @@ class RscTitles {
             class Text : RscText 
             {
                 idc = 101;
-                text = "00:00"; //--- ToDo: Localize;
+                text = "SAFESTART ACTIVE"; //--- ToDo: Localize;
                 x = (0.50-0.5/2) * safezoneW + safezoneX;
                 y = safezoneY;
                 w = 0.5 * safezoneW;

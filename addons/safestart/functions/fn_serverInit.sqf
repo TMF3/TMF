@@ -2,57 +2,39 @@
 
 
 params ["_logic","_units","_activated"];
-
-switch (_logic getVariable ["TMFUnits",-1]) do {
-    case (-1): {
-        _units append allUnits;
-    };
-    case (0): {
-        _units = synchronizedObjects _logic;
-    };
-    case (1): {
-        {
-          _grpUnits = units _x;
-          {
-            if(!(_x in _units)) then {_units pushBack _x};
-          } forEach _grpUnits;
-        } forEach synchronizedObjects _logic;
-        
-    };
-    case (2): {
-      {
-        _side = side _x;
-        {
-          if(_side == side _x ) then {
-            if(!(_x in _units)) then {_units pushBack _x};
-          };
-        } forEach allUnits;
-      } forEach synchronizedObjects _logic;
-    };
-};
-
+_units = [_logic] call CFUNC(moduleUnits);
 if(_activated) then {
-    _duration = _logic getVariable ["Duration",120];
-    _broadcastUnits = _units select {isPlayer _x};
-    _units = _broadcastUnits - _units;
+    private _duration =_logic getVariable ["Duration",-1];
+    _logic setVariable [QGVAR(enabled),true,true];
+    private _broadcastUnits = _units select {isPlayer _x};
+    _units = _units - _broadcastUnits;
+
     if(count _broadcastUnits > 0) then {
-        [_duration] remoteExec [QFUNC(playerInit), _broadcastUnits];
+        [_logic,_duration] remoteExec [QFUNC(playerStart), _broadcastUnits];
     };
+
+    _logic setVariable [QGVAR(units),_units];
+
+    // take care of AI units.
     {
         _x setVariable [QGVAR(eventhandler), (_x addEventHandler ["fired",{deleteVehicle (_this select 6)}])];
         _x disableAI "TARGET";
         _x disableAI "AUTOTARGET";
         _x allowDamage false;
     } forEach _units;
-    uiSleep _duration;
-    {
-        private _EH = _x getVariable [QGVAR(eventhandler),-1];
-        // Ensure unit wasn't created after safe start started.
-        if (_EH != -1) then {
-            _x removeEventHandler ["fired",_EH];
-            _x enableAI "TARGET";
-            _x enableAI "AUTOTARGET";
-            _x allowDamage true;
-        };
-    } forEach _units;
+
+    // if we dont have a duration set, we have to disable it manually
+    if(_duration > 0) then {
+        [{
+            params ["_params"];
+            _params params ["_logic"];
+            _duration = _logic getVariable ["Duration",-1];
+            if(_duration > 0) then {
+                _duration = _duration - 1;
+            } else {
+              [_logic] call FUNC(serverEnd);
+            };
+            _logic setVariable ["Duration",_duration];
+        },1,[_logic]] call CBA_fnc_addPerFrameHandler;
+    };
 };
