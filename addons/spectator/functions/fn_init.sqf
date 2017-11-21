@@ -7,6 +7,9 @@ params ["_unit","_oldUnit",["_forced",false,[false]]];
 
 if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {createDialog QGVAR(dialog);};
 
+// Wait until mission is loaded properly. Prevents JIP issues.
+waitUntil {!isNull ([] call BIS_fnc_DisplayMission)};
+
 private _isJip = didJIP;
 
 // disable this to instantly switch to the spectator script.
