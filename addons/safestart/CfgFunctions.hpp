@@ -6,6 +6,7 @@ class cfgFunctions {
             class playerStart;
             class playerEnd;
             class serverInit;
+            class briefingTextLoad;
             class serverEnd;
             class end;
             class create;
