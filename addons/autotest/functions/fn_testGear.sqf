@@ -97,16 +97,80 @@ private _cfgMagazines = configFile >> "CfgMagazines";
         [_linkedItems, _cfgWeapons] call _fnc_checkExists;
         
         // Get items in inventory
-        private _magsAndItems = (GETGEAR("magazines")) + (GETGEAR("items")) + (GETGEAR("backpackItems"));
-        
-        private _mags = [];
+        // CfgWeapons >> "weaponName" >> WeaponSlotsInfo >> mass
+        // CfgWeapons >> ItemName >> ItemInfo >> mass
+        //TODO: factor in allowedSlots - 701 vest, 801 uniform, 901 backpacks
+
+        private _freeBackpackSpace = -1;
+        // select smallest.
+        if (count _backpack > 0) then {
+            private _sizes = _backpack apply {getContainerMaxLoad _x};
+            _sizes sort true;
+            _freeBackpackSpace = _sizes select 0;
+        };
+        private _freeUniformSpace = -1;
+        if (count _uniform > 0) then {
+            private _sizes = _uniform apply {getContainerMaxLoad _x};
+            _sizes sort true;
+            _freeUniformSpace = _sizes select 0;
+        };
+        private _freeVestSpace = -1;
+        if (count _vest > 0) then {
+            private _sizes = _vest apply {getContainerMaxLoad _x};
+            _sizes sort true;
+            _freeVestSpace = _sizes select 0;
+        };
+        private _mags = []; // For checking number compatible
+
         {
-            private _exists = false;
-            if (isClass (_cfgMagazines >> _x)) then { _exists = true; _mags pushBack (toLower _x);};
-            if (isClass (_cfgWeapons >> _x)) then { _exists = true; };
-            if (!_exists) then {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3 - %4)", _x,_side,_faction,_role]]; 
-            }
+            private _mass = -1;
+            if (isClass (_cfgMagazines >> _x)) then {
+                _mass = getNumber (_cfgMagazines >> _x >> "ItemInfo" >> "mass");
+                _mags pushBack (toLower _x);
+            };
+            if (isClass (_cfgWeapons >> _x)) then {
+                _mass = getNumber (_cfgMagazines >> _x >> "ItemInfo" >> "mass");
+            };
+            if (_mass >= 0) then {
+                if (_mass <= _freeBackpackSpace) then {
+                    _freeBackpackSpace = _freeBackpackSpace - _mass;
+                } else {
+                    _output pushBack [0,format["'%1' won't fit in backpack (for: %2 - %3)", _x,_faction,_role]];
+                };
+            } else {
+                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+            };
+        } forEach (GETGEAR("backpackItems"));
+
+        private _magsAndItems = (GETGEAR("magazines")) + (GETGEAR("items"));
+
+        
+        {
+            private _mass = -1;
+            if (isClass (_cfgMagazines >> _x)) then {
+                _mass = getNumber (_cfgMagazines >> _x >> "ItemInfo" >> "mass");
+                _mags pushBack (toLower _x);
+            };
+            if (isClass (_cfgWeapons >> _x)) then {
+                _mass = getNumber (_cfgMagazines >> _x >> "ItemInfo" >> "mass");
+            };
+            if (_mass >= 0) then {
+                if (_mass <= _freeUniformSpace) then {
+                    _freeUniformSpace = _freeUniformSpace - _mass;
+                } else {
+                    if (_mass <= _freeVestSpace) then {
+                        _freeVestSpace = _freeVestSpace - _mass;
+                    } else {
+                        if (_mass <= _freeBackpackSpace) then {
+                            _freeBackpackSpace = _freeBackpackSpace - _mass;
+                        } else {
+                            _output pushBack [0,format["'%1' won't fit (for: %2 - %3)", _x,_faction,_role]];
+                        };
+                    };
+                };
+            } else {
+                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+            };
         } forEach _magsAndItems;
 
         //Mag check 
