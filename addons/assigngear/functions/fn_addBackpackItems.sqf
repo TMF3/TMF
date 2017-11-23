@@ -20,10 +20,6 @@ if (isNil "_unit" || isNil "_items") exitWith {};
     if (!(isNil "_x") && {_unit canAddItemToBackpack _x}) then {
         _unit addItemToBackpack _x;
     } else {
-        if (is3DEN && {!isNil QEGVAR(autotest,GEAR_OUTPUT)}) then {
-            private _return = [1,format["'%1' no room in inventory ( %2 - %3 )",_x,_unit getVariable [QGVAR(faction),""],_unit getVariable [QGVAR(role),""]]];
-            EGVAR(autotest,GEAR_OUTPUT) pushBack _return;
-        };
         DEBUG_LOG_3("Adding item to backpack failed. Unit: %1, Item: %2.",_unit,_x);
     };
 } forEach _items;
