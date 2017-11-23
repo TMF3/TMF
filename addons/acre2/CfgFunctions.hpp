@@ -4,6 +4,7 @@ class cfgFunctions {
             file = QPATHTO_FOLDER(functions);
             class clientInit;
             class createPresets;
+            class edenUnitToRadios;
         };
     };
 };

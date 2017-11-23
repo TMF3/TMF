@@ -2,37 +2,16 @@
 //
 #include "\x\tmf\addons\autotest\script_component.hpp"
 
-private _loadoutsToTest = [];
+
+private _cfgWeapons = configFile >> "CfgWeapons";
+private _cfgVehicles = configFile >> "CfgVehicles";
+private _cfgGlasses = configFile >> "CfgGlasses";
+private _cfgMagazines = configFile >> "CfgMagazines";
+
+
 private _output = [];
 
-// do arrays, error type and text
-// errortypes: 0 = red, 1 = warning
-
-GVAR(GEAR_OUTPUT) = []; // Hook for addbackpackItems when we do assignGear.
-{
-    (_x get3DENAttribute 'TMF_assignGear_enabled') params [["_enabled",false]];
-
-    if (_enabled) then {
-        (_x get3DENAttribute 'TMF_assignGear_role') params [["_role","r"]];
-        (_x get3DENAttribute 'TMF_assignGear_faction') params [["_faction",toLower(faction _unit)]];
-        
-        private _index = _loadoutsToTest pushBackUnique [_faction, _role];
-        if (_index != -1) then {
-            _x call EFUNC(assigngear,assignGear);
-            private _weight = (loadAbs _x) * 0.1;
-            _weight = (round (_weight * (1/2.2046) * 100)) / 100; // ACE calculation
-            if (_weight >= 35) then {
-                _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",_weight,_faction,_role]];
-            };
-        };
-    };
-} forEach allUnits;
-
-_output append GVAR(GEAR_OUTPUT);
-GVAR(GEAR_OUTPUT) = nil;
-
 #define GETGEAR(var) [_config >> var] call CFUNC(getCfgEntryFromPath)
-
 
 private _fnc_checkExists = {
     params ["_subarray","_config"];
@@ -46,18 +25,14 @@ private _fnc_checkExists = {
     } forEach _subarray;
 };
 
-private _cfgWeapons = configFile >> "CfgWeapons";
-private _cfgVehicles = configFile >> "CfgVehicles";
-private _cfgGlasses = configFile >> "CfgGlasses";
-private _cfgMagazines = configFile >> "CfgMagazines";
-{
-    _x params ["_faction","_role"];
+private _fncTestUnit = {
+    params ["_faction",["_role","r"]];
 
     private _config = missionConfigFile >> "cfgLoadouts" >> _faction >> _role;
     if (!isClass (_config)) then { 
         _config = configFile >> "cfgLoadouts" >> _faction >> _role;
     };
-
+    private _return = [0,0,0];
     if (isClass _config) then {
         private _uniform = GETGEAR("uniform"); //CfgWeapons
         [_uniform, _cfgWeapons] call _fnc_checkExists;
@@ -97,16 +72,86 @@ private _cfgMagazines = configFile >> "CfgMagazines";
         [_linkedItems, _cfgWeapons] call _fnc_checkExists;
         
         // Get items in inventory
-        private _magsAndItems = (GETGEAR("magazines")) + (GETGEAR("items")) + (GETGEAR("backpackItems"));
-        
-        private _mags = [];
+        // CfgWeapons >> "weaponName" >> WeaponSlotsInfo >> mass
+        // CfgWeapons >> ItemName >> ItemInfo >> mass
+        //TODO: factor in allowedSlots - 701 vest, 801 uniform, 901 backpacks
+
+        private _freeBackpackSpace = -1;
+        // select smallest.
+        if (count _backpack > 0) then {
+            private _sizes = _backpack apply {getContainerMaxLoad _x};
+            _sizes sort true;
+            _freeBackpackSpace = _sizes select 0;
+        };
+        private _freeUniformSpace = -1;
+        if (count _uniform > 0) then {
+            private _sizes = _uniform apply {getContainerMaxLoad _x};
+            _sizes sort true;
+            _freeUniformSpace = _sizes select 0;
+        };
+        private _freeVestSpace = -1;
+        if (count _vest > 0) then {
+            private _sizes = _vest apply {getContainerMaxLoad _x};
+            _sizes sort true;
+            _freeVestSpace = _sizes select 0;
+        };
+        private _mags = []; // For checking number compatible
+
         {
-            private _exists = false;
-            if (isClass (_cfgMagazines >> _x)) then { _exists = true; _mags pushBack (toLower _x);};
-            if (isClass (_cfgWeapons >> _x)) then { _exists = true; };
-            if (!_exists) then {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3 - %4)", _x,_side,_faction,_role]]; 
-            }
+            private _mass = -1;
+            if (isClass (_cfgMagazines >> _x)) then {
+                _mass = getNumber (_cfgMagazines >> _x >> "mass");
+                _mags pushBack (toLower _x);
+            };
+            if (isClass (_cfgWeapons >> _x)) then {
+                _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                if (_mass isEqualTo 0) then {
+                    _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                };
+            };
+            if (_mass >= 0) then {
+                if (_mass <= _freeBackpackSpace) then {
+                    _freeBackpackSpace = _freeBackpackSpace - _mass;
+                } else {
+                    _output pushBack [0,format["'%1' won't fit in backpack (for: %2 - %3)", _x,_faction,_role]];
+                };
+            } else {
+                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+            };
+        } forEach (GETGEAR("backpackItems"));
+
+        private _magsAndItems = (GETGEAR("magazines")) + (GETGEAR("items"));
+
+        
+        {
+            private _mass = -1;
+            if (isClass (_cfgMagazines >> _x)) then {
+                _mass = getNumber (_cfgMagazines >> _x >> "mass");
+                _mags pushBack (toLower _x);
+            };
+            if (isClass (_cfgWeapons >> _x)) then {
+                _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                if (_mass isEqualTo 0) then {
+                    _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                };
+            };
+            if (_mass >= 0) then {
+                if (_mass <= _freeUniformSpace) then {
+                    _freeUniformSpace = _freeUniformSpace - _mass;
+                } else {
+                    if (_mass <= _freeVestSpace) then {
+                        _freeVestSpace = _freeVestSpace - _mass;
+                    } else {
+                        if (_mass <= _freeBackpackSpace) then {
+                            _freeBackpackSpace = _freeBackpackSpace - _mass;
+                        } else {
+                            _output pushBack [0,format["'%1' won't fit (for: %2 - %3)", _x,_faction,_role]];
+                        };
+                    };
+                };
+            } else {
+                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+            };
         } forEach _magsAndItems;
 
         //Mag check 
@@ -128,11 +173,77 @@ private _cfgMagazines = configFile >> "CfgMagazines";
             };
         };
 
+        _return = [_freeUniformSpace,_freeVestSpace,_freeBackpackSpace];
     } else {
         _output pushBack [0,format["Missing kit %1 - %2",_faction,_role]];
     };
-    
-} forEach _loadoutsToTest;
+    _return;
+};
+
+// do arrays, error type and text
+// errortypes: 0 = red, 1 = warning
+private _loadoutsTested = [];
+private _loadoutFreespace = [];
+{
+    private _unit = _x;
+    (_unit get3DENAttribute 'TMF_assignGear_enabled') params [["_enabled",false]];
+
+    if (_enabled) then {
+        (_unit get3DENAttribute 'TMF_assignGear_role') params [["_role","r"]];
+        (_unit get3DENAttribute 'TMF_assignGear_faction') params [["_faction",toLower(faction _unit)]];
+        
+        private _index = _loadoutsTested pushBackUnique [_faction, _role];
+        private _freespace = []; // Uniform,Vest,Backpack;
+        if (_index != -1) then {
+            _freespace = [_faction,_role] call _fncTestUnit;
+            _loadoutFreespace pushBack _freespace;
+            _unit call EFUNC(assigngear,assignGear);
+            private _weight = (loadAbs _unit) * 0.1;
+            _weight = (round (_weight * (1/2.2046) * 100)) / 100; // ACE calculation
+            if (_weight >= 35) then {
+                _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",_weight,_faction,_role]];
+            };
+        } else {
+            _freespace = _loadoutFreespace select (_loadoutsTested find [_faction, _role]);
+        };
+        private _radios = [_unit] call EFUNC(acre2,edenUnitToRadios);
+        _freespace params ["_freeUniformSpace","_freeVestSpace","_freeBackpackSpace"];
+        {
+            private _mass = -1;
+            if (isClass (_cfgMagazines >> _x)) then {
+                _mass = getNumber (_cfgMagazines >> _x >> "mass");
+                _mags pushBack (toLower _x);
+            };
+            if (isClass (_cfgWeapons >> _x)) then {
+                _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                if (_mass isEqualTo 0) then {
+                    _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                };
+            };
+            if (_mass >= 0) then {
+                if (_mass <= _freeUniformSpace) then {
+                    _freeUniformSpace = _freeUniformSpace - _mass;
+                } else {
+                    if (_mass <= _freeVestSpace) then {
+                        _freeVestSpace = _freeVestSpace - _mass;
+                    } else {
+                        if (_mass <= _freeBackpackSpace) then {
+                            _freeBackpackSpace = _freeBackpackSpace - _mass;
+                        } else {
+                            _output pushBack [0,format["'%1' radio won't fit for: %2 (%3)", _x,_unit,group _unit]];
+                        };
+                    };
+                };
+            } else {
+                _output pushBack [0,format["Missing radio classname: %1 (for: %2)", _x,_unit]];
+            };
+        } forEach _radios;
+    };
+} forEach allUnits;
+
+
+
+
 
 _output pushBack [-1,"AssignGear checks complete."];
 
