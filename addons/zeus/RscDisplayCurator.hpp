@@ -73,6 +73,13 @@ class RscDisplayCurator {
                     action = QUOTE(_this call FUNC(toggleAllStaticsZeus));
                     toolip = "Toggle making Static objects 'editable'"
                 };
+                class GVAR(toggleACRESpectator): GVAR(toggleStaticsZeus) {
+                    idc = IDC_ToggleACRESpectator;
+                    x ="14 * (((safezoneW / safezoneH) min 1.2) / 40)";
+                    text = "ACRE Spectator";
+                    action = QUOTE(_this call FUNC(toggleACRESpectator));
+                    toolip = "Toggle ACRE Spectator, allowing you to hear specators and in-game players via the Zeus interface."
+                };
             };
         };
     };

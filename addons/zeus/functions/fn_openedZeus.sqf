@@ -18,6 +18,11 @@
     } else {
         (_display displayCtrl IDC_ToggleStaticsZeus) ctrlSetTextColor [1,1,1,1];
     };
+    if (missionNamespace getVariable ["ACRE_IS_SPECTATOR", true]) then {
+        (_display displayCtrl IDC_ToggleACRESpectator) ctrlSetTextColor [0,1,0,1];
+    } else {
+        (_display displayCtrl IDC_ToggleACRESpectator) ctrlSetTextColor [1,1,1,1];
+    };
         
 }, 0.5, []] call CBA_fnc_addPerFrameHandler;
 

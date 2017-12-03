@@ -8,6 +8,7 @@ class cfgFunctions {
             class toggleAllStaticsZeusServer;
             class toggleAllUnitsZeus;
             class toggleAllUnitsZeusServer;
+            class toggleACRESpectator;
         };
     };
 };
