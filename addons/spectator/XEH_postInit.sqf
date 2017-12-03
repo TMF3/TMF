@@ -22,7 +22,7 @@ if (isServer) then {
 
     // Clean up disconnected spectator units.
     private _spectator_disconnect_eh = addMissionEventHandler ["HandleDisconnect",{
-        params ["unit"];
+        params ["_unit"];
         if (_unit isKindOf QGVAR(unit)) then { deleteVehicle _unit; };
         false;
     }];
