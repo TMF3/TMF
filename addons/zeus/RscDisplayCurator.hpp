@@ -64,21 +64,21 @@ class RscDisplayCurator {
                     SizeEx = "((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8";
                     text = "All Units";
                     action = QUOTE(_this call FUNC(toggleAllUnitsZeus));
-                    toolip = "Toggle making AI units 'editable'"
+                    tooltip = "Toggle making AI units 'editable'";
                 };
                 class GVAR(toggleStaticsZeus): GVAR(toggleUnitsZeus) {
                     idc = IDC_ToggleStaticsZeus;
                     x ="9 * (((safezoneW / safezoneH) min 1.2) / 40)";
                     text = "Static Objects";
                     action = QUOTE(_this call FUNC(toggleAllStaticsZeus));
-                    toolip = "Toggle making Static objects 'editable'"
+                    tooltip = "Toggle making Static objects 'editable'";
                 };
                 class GVAR(toggleACRESpectator): GVAR(toggleStaticsZeus) {
                     idc = IDC_ToggleACRESpectator;
                     x ="14 * (((safezoneW / safezoneH) min 1.2) / 40)";
                     text = "ACRE Spectator";
                     action = QUOTE(_this call FUNC(toggleACRESpectator));
-                    toolip = "Toggle ACRE Spectator, allowing you to hear specators and in-game players via the Zeus interface."
+                    tooltip = "Toggle ACRE Spectator, allowing you to hear specators and in-game players via the Zeus interface.";
                 };
             };
         };
