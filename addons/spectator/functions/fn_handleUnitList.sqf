@@ -13,7 +13,6 @@ if(GVAR(clearGroups)) then { /* Used by UI which groups to display */
     // clear everything
     tvClear _unitListControl;
     GVAR(groups) = [];
-    GVAR(allunits) = [];
 };
 private _newGroups = [];
 if(!GVAR(playersOnly)) then {

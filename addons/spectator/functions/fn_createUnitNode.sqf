@@ -19,8 +19,6 @@ params["_unit","_parentIndex"];
 
 disableSerialization;
 
-GVAR(allunits) pushBackUnique _unit;
-
 private _name = name _unit;
 if ((_unit getVariable ["tmf_list_name",0]) isEqualTo 0) then {
     _unit setVariable ["tmf_list_name",name _unit]

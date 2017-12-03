@@ -1,14 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
 #include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_button","_args"];
@@ -66,19 +56,22 @@ switch (_button) do {
 
     // Tags button
     case "tags" : {
-      GVAR(tags) = !GVAR(tags);
+        GVAR(tags) = !GVAR(tags);
 
 
-      _tooltip = "ENABLE TAGS";
-      _msg = "TAGS DISABLED";
+        private _tooltip = "ENABLE TAGS";
 
-      if(GVAR(tags)) then {
-          _tooltip = "DISABLE TAGS";
-          _msg = "TAGS ENABLED";
-      };
+        if(GVAR(tags)) then {
+            _tooltip = "DISABLE TAGS";
+        } else {
+            // Remove controls.
+            {_x setVariable [QGVAR(tagControl),nil];} forEach allUnits;
+            {_x setVariable [QGVAR(tagControl),nil];} forEach allGroups;
+            {ctrlDelete _x} forEach GVAR(controls);
+            GVAR(controls) = [];
+        };
 
-
-      _control ctrlSetTooltip _tooltip;
+        _control ctrlSetTooltip _tooltip;
     };
     case "mute" : {
       [] call acre_sys_core_fnc_toggleHeadset;

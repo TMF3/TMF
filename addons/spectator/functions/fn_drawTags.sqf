@@ -57,47 +57,57 @@ private _screenSizeY = (0.01 * safezoneW);
 
     {
         private _isVeh = !isNull (objectParent _x);
-        private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,3.1];
-        // circumevent the restriction on storing controls in namespace
         private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
 
-        if (_isVeh && {isNull (((objectParent _x) getVariable [QGVAR(tagControl),[controlNull]]) select 0)}) then {
-            [objectParent _x] call FUNC(createVehicleControl);
+        if (_isVeh) then {
             GVAR(vehicles) pushBackUnique (objectParent _x); // for speed reasons.
-        };
-
-        private _screenPos = worldToScreen _pos;
-        private _distToCam = _pos distance _campos;
-
-        if (alive _x && count _screenPos > 0 && {!_isVeh && _distToCam <= 500}) then {
-            if (isNull _control) then {
-                [_x] call FUNC(createUnitControl);
-                _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
-            };
-            private _unitColor = _color;
-            private _hasFired = _x getVariable [QGVAR(fired), 0];
-            if (_hasFired > 0) then {
-                _unitColor = [0.8,0.8,0.8,1];
-                _x setVariable [QGVAR(fired), _hasFired-1];
-            };
-
-            [_control,"",_unitColor] call FUNC(controlSetPicture);
-
-            _control ctrlShow true;
-
-            private _isPlayer = isPlayer _x;
-
-            (_control controlsGroupCtrl 2) ctrlShow (_isPlayer && _distToCam <= 300); // NameTag
-            (_control controlsGroupCtrl 3) ctrlShow (_isPlayer && _distToCam <= 150); // Detail
-
-            // Screenpos already has 2 elements
-            _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
-
-            _control ctrlCommit 0;
-        } 
-        else {
             _control ctrlShow false;
+        } else {
+            if (alive _x) then {
+                private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,3.1];
+                private _screenPos = worldToScreen _pos;
+                private _distToCam = _pos distance _campos;
+                
+                // circumevent the restriction on storing controls in namespace
+
+                if (count _screenPos > 0 && _distToCam <= 500) then {
+                    if (isNull _control) then {
+                        [_x] call FUNC(createUnitControl);
+                        _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+                    };
+                    private _unitColor = _color;
+                    private _hasFired = _x getVariable [QGVAR(fired), 0];
+                    if (_hasFired > 0) then {
+                        _unitColor = [0.8,0.8,0.8,1];
+                        _x setVariable [QGVAR(fired), _hasFired-1];
+                    };
+
+                    [_control,"",_unitColor] call FUNC(controlSetPicture);
+
+                    _control ctrlShow true;
+
+                    private _isPlayer = isPlayer _x;
+
+                    (_control controlsGroupCtrl 2) ctrlShow (_isPlayer && _distToCam <= 300); // NameTag
+                    (_control controlsGroupCtrl 3) ctrlShow (_isPlayer && _distToCam <= 150); // Detail
+
+                    // Screenpos already has 2 elements
+                    _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
+
+                    _control ctrlCommit 0;
+                } 
+                else {
+                    _control ctrlShow false;
+                };
+            } else {
+                //Unit is dead.
+                _x setVariable [QGVAR(tagControl), nil];
+                ctrlDelete _control;
+            };
+
         };
+
+        
     } forEach units _x;
 } forEach allGroups;
 

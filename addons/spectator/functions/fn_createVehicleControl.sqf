@@ -2,7 +2,7 @@
 params ["_veh"];
 disableSerialization;
 private _color = [1,1,1,1];
-private _control = (findDisplay 5454) ctrlCreate [QGVAR(EntityTag), -1];
+private _control = (uiNamespace getVariable [QGVAR(display),displayNull]) ctrlCreate [QGVAR(EntityTag), -1];
 
 _control ctrlShow false;
 

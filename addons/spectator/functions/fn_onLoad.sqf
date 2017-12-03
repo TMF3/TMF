@@ -2,6 +2,9 @@ params ["_display"];
 #include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
+GVAR(groups) = [];
+GVAR(vehicles) = [];
+GVAR(unitUpdate) = -1; // Force unit list to update.
 
 with uiNamespace do {
     GVAR(display) = _display;
@@ -34,6 +37,8 @@ with uiNamespace do {
 };
 
 
+
+
 if(!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
     GVAR(sides) = [tmf_spectator_entryside];
     GVAR(sides_button_mode) = [[tmf_spectator_entryside],[]];
@@ -55,13 +60,18 @@ if (!isNil QGVAR(zeusPos) && {getMissionConfigValue ["TMF_Spectator_AllowFreeCam
     GVAR(camera) camCommit 0;
     GVAR(zeusPos) = nil;
 } else {
-    private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
-    {
-        if(_x) exitWith {
-            GVAR(mode) = _forEachIndex;
-            [] call FUNC(setTarget);
-        };
-    } forEach _allowedModes;
+    if (missionNamespace getVariable [QGVAR(mode),-1] isEqualTo - 1) then {
+        private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
+        {
+            if(_x) exitWith {
+                GVAR(mode) = _forEachIndex;
+                [] call FUNC(setTarget);
+            };
+        } forEach _allowedModes;
+    } else {
+        // use pre-existing GVAR(mode)
+        [] call FUNC(setTarget);
+    };
 };
 
 // if ACRE2 is enabled, enable the mute button
