@@ -49,3 +49,15 @@ if (isTMF) then {
         };
     };
 }, []] call CBA_fnc_waitUntilAndExecute;
+
+
+if (isServer) then {
+    // As group init variables are sent frame after init, wait double frames before sending VarSync.
+    // This should then go to the end of the network traffic queue.
+    [{
+        [{
+            GVAR(VarSync) = true;
+            publicVariable QGVAR(VarSync);
+        }] call CBA_fnc_execNextFrame;
+    }] call CBA_fnc_execNextFrame;
+};
