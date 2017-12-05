@@ -112,8 +112,10 @@ switch true do {
       closeDialog 0;
       _display = (findDisplay 46) createDisplay (["RscDisplayInterrupt","RscDisplayMPInterrupt"] select isMultiplayer);
       _display displayAddEventHandler  ["Unload", {
-        [player,player,true] call FUNC(init);
-        [QGVAR(black)] call BIS_fnc_blackIn;
+          with missionNamespace do {
+            [player,player,true] call FUNC(init);
+            [QGVAR(black)] call BIS_fnc_blackIn;
+          };
       }];
     };
     _done = true;

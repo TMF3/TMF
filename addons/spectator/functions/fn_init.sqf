@@ -5,7 +5,18 @@
 if((_this select 2) isEqualType 0) then {_this set [2,false]};
 params ["_unit","_oldUnit",["_forced",false,[false]]];
 
-if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {createDialog QGVAR(dialog);};
+// On Re-Open purge any old controls (as they will exist on an old display)
+if (!isNil QGVAR(controls)) then {
+    {_x setVariable [QGVAR(tagControl),nil];} forEach allUnits;
+    {_x setVariable [QGVAR(tagControl),nil];} forEach allGroups;
+    {ctrlDelete _x} forEach GVAR(controls);
+    GVAR(controls) = [];
+};
+
+if(!isNil QGVAR(unit) && {player == GVAR(unit)}) exitWith {
+    createDialog QGVAR(dialog);
+
+};
 
 // Wait until mission is loaded properly. Prevents JIP issues.
 waitUntil {!isNull ([] call BIS_fnc_DisplayMission)};
@@ -114,6 +125,7 @@ GVAR(bulletTrails) = false;
 // MAP
 GVAR(showMap) = false;
 
+
 GVAR(controls) = [];
 
 
@@ -144,6 +156,12 @@ GVAR(freeCam) camCommit 0;
 GVAR(camera) camCommit 0;
 // 0 follow cam, 1 freecam, 2 firstperson
 GVAR(mode) = FOLLOWCAM;
+private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
+{
+    if(_x) exitWith {
+        GVAR(mode) = _forEachIndex;
+    };
+} forEach _allowedModes;
 
 
 // Sides Button
@@ -198,7 +216,6 @@ GVAR(modifiers_keys) = [false,false,false];
 GVAR(tags) = true;
 GVAR(showlines) = false;
 
-GVAR(allunits) = [];
 GVAR(groups) = [];
 GVAR(vehicles) = [];
 GVAR(clearGroups) = false;

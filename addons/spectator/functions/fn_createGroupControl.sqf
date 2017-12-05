@@ -9,7 +9,7 @@ if (count _avgpos <= 0 || time > _grpTime) then {
 };
 _grpCache params ["_grpTime","_avgpos","_color","_isAI"];
 
-private _control = (findDisplay 5454) ctrlCreate [QGVAR(GroupTag), -1];
+private _control = (uiNamespace getVariable [QGVAR(display),displayNull]) ctrlCreate [QGVAR(GroupTag), -1];
 _control ctrlShow false;
 
 private _twGrpMkr = [_x] call EFUNC(orbat,getGroupMarkerData);

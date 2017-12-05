@@ -61,7 +61,7 @@ class RscSpectatorShortcutButton : RscPicture {
 
 class tmf_spectator_dialog
 {
-  idd = 5454;
+  idd = DISPLAY_ID;
   movingEnable = 1;
   enableSimulation = 1;
   enableDisplay = 1;
