@@ -109,6 +109,7 @@ FUNC(PFHUpdate) = {
         
         [{
             if (isNull player) exitWith {};
+            if (isNil QEGVAR(common,VarSync)) exitWith {};
             [_this select 1] call CBA_fnc_removePerFrameHandler;
 
             [player, true] call FUNC(setup);

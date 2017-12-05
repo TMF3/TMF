@@ -16,6 +16,7 @@ GVAR(addLoadoutNotes) = getMissionConfigValue ["TMF_Briefing_Loadout",false];
    // [{
         [{
             if (isNull player) exitWith {};
+            if (isNil QEGVAR(common,VarSync)) exitWith {};
             //if (GVAR(briefingFrame) == 0) exitWith {GVAR(briefingFrame) = 1;};
 
             [player] call FUNC(generateBriefing);

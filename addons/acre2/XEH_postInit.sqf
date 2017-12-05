@@ -89,6 +89,7 @@ if (hasInterface) then {
     [{
         if (isNull player) exitWith {};
         if (isNil "tmf_acre2_networksCreated") exitWith {}; //Ensure presets are created
+        if (isNil QEGVAR(common,VarSync)) exitWith {}; // Ensure vars are recieved.
         
         [] call FUNC(clientInit);
         [_this select 1] call CBA_fnc_removePerFrameHandler;
