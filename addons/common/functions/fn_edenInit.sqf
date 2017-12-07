@@ -25,6 +25,7 @@ if !(_idx == -1) then {
 _idx = addMissionEventHandler ["Draw3D",FUNC(edenDraw)];
 
 GVAR(Garrison) = missionNamespace getVariable [QGVAR(Garrison),false]; // Will be set on UI onLoad
+(uiNamespace getVariable [QGVAR(GarrisonControl),controlNull]) cbSetChecked GVAR(Garrison); // Reset garrison toggle.
 GVAR(edenDrawIdx) = _idx;
 GVAR(edenMouseObjects) = [];
 GVAR(mouseKeysPressed) = [];

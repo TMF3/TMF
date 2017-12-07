@@ -54,7 +54,7 @@ class display3DEN
                         {
                             idc=-1;
                             onCheckedChanged=QUOTE(GVAR(Garrison) = !GVAR(Garrison));
-                            onLoad=QUOTE(GVAR(Garrison) = false);
+                            onLoad="uiNamespace setVariable [""tmf_common_GarrisonControl"",_this select 0]; tmf_common_Garrison = false";
                             x="0 *     (    5 * (pixelW * pixelGrid *     0.50))";
                             y=0;
                             h="(    5 * (pixelH * pixelGrid *     0.50))";
