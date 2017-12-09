@@ -5,6 +5,7 @@ class cfgFunctions {
             class clientInit;
             class createPresets;
             class edenUnitToRadios;
+            class unitToPreset;
         };
     };
 };
