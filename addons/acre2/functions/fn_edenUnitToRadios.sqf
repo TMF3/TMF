@@ -1,10 +1,19 @@
+/*
+ * Name: TMF_acre2_fnc_edenUnitToRadios
+ * Author: Snippers
+ *
+ * Arguments:
+ * 0: The Unit <OBJECT>
+ *
+ * Return:
+ * Array of radio classnames <ARRAY>
+ *
+ * Description:
+ * Returns the list of radios that a unit should recieve with the current settings.
+ */
 #include "\x\tmf\addons\acre2\script_component.hpp"
 
 params[["_unit",objNull]];
-
-
-
-
 
 // Gear assignment always runs at init, this runs after init.
 
@@ -33,11 +42,8 @@ if (isNil "_radiosToGive") then { _radiosToGive = []; };
 
 GVAR(giveMissingRadios) = true;
 if (GVAR(giveMissingRadios)) then {
-
-    
     
     private _unitGroup = group _unit;
-
 
     GVAR(radioCoreSettings) = [
         // Array of Radio names, min freq, max freq, freq step, freq spacing between channels (for channel alloication
@@ -50,86 +56,61 @@ if (GVAR(giveMissingRadios)) then {
     // ====================================================================================
     // Determine what radio channel the unit is suppose to be on.
 
-
     // Setup the correct presets.
 
-    private _ourPresetIndex = -1;
+    private _ourPresetIndex = [_unit] call FUNC(unitToPreset);
 
-    private _channelsProcessed = []; // This will store channels, binned by radio type.
-    { _channelsProcessed pushBack []; } forEach GVAR(radioCoreSettings);
-
-    
-    
-    private _unitVarChannelList = (_unit get3DENAttribute "TMF_Channellist") param [0,[]];
-    if (_unitVarChannelList isEqualType "") then { _unitVarChannelList = call compile _unitVarChannelList; };
-    private _groupVarChannelList = (_unitGroup get3DENAttribute "TMF_Channellist") param [0,[]];
-    if (_groupVarchannelList isEqualType "") then { _groupVarchannelList = call compile _groupVarchannelList; };
-    private _groupVarLeaderChannelList = (_unitGroup get3DENAttribute "TMF_ChannellistLeader") param [0,[]];
-    if (_groupVarLeaderChannelList isEqualType "") then { _groupVarLeaderChannelList = call compile _groupVarLeaderChannelList; };
-
-    
-    private _usedRadioIndexs = []; // Used for tracking colours, so that we know which ones we have already used.
-
-
-    private _isGroupLeader = (leader _unitGroup == _unit);
-    
     private _networksWithRadioChannels = getMissionConfigValue ['TMF_AcreSettings', []];
     if (_networksWithRadioChannels isEqualType "") then { _networksWithRadioChannels = call compile _networksWithRadioChannels};
-    //TODO - Debug below is broken should work though.
-    {
-        private _radioPresetSetting = _x;
-        private _radioPresetIdx = _forEachIndex;
-        _radioPresetSetting params ["_conditions"];
-        private _passes = [_unit, _conditions] call EFUNC(common,evaluateCondArray);
+    if (_ourPresetIndex != -1) then {       
+        private _unitVarChannelList = (_unit get3DENAttribute "TMF_Channellist") param [0,[]];
+        if (_unitVarChannelList isEqualType "") then { _unitVarChannelList = call compile _unitVarChannelList; };
+        private _groupVarChannelList = (_unitGroup get3DENAttribute "TMF_Channellist") param [0,[]];
+        if (_groupVarchannelList isEqualType "") then { _groupVarchannelList = call compile _groupVarchannelList; };
+        private _groupVarLeaderChannelList = (_unitGroup get3DENAttribute "TMF_ChannellistLeader") param [0,[]];
+        if (_groupVarLeaderChannelList isEqualType "") then { _groupVarLeaderChannelList = call compile _groupVarLeaderChannelList; };
 
-        private _groupCond = (_unitGroup get3DENAttribute "TMF_Network") param [0,-1];
-        if (_groupCond == _radioPresetIdx) then { _passes = true; };
-        private _unitCond = (_unit get3DENAttribute "TMF_Network") param [0,-1];
-        if (_unitCond == _radioPresetIdx) then { _passes = true; };
-        if (_passes) exitWith {
-            //uses these presets.
-            _ourPresetIndex = _radioPresetIdx;
+        private _usedRadioIndexs = []; // Used for tracking colours, so that we know which ones we have already used.
 
+        private _isGroupLeader = (leader _unitGroup == _unit);
+        private _radioPresetSetting = _networksWithRadioChannels select _ourPresetIndex;
+        {
+            _x params ["", "", "_radio", ["_chanConditions",[]]];
 
-            {
-                _x params ["", "", "_radio", ["_chanConditions",[]]];
-
-                private _unitOnThisChannel = false;
-                call {
-                    if ([_unit, _chanConditions] call EFUNC(common,evaluateCondArray)) exitWith { _unitOnThisChannel = true; };
-                    if (_forEachIndex in _groupVarChannelList) exitWith { _unitOnThisChannel = true; };
-                    if (_forEachIndex in _unitVarChannelList) exitWith { _unitOnThisChannel = true; };
-                    if (_isGroupLeader && {_forEachIndex in _groupVarLeaderChannelList}) exitWith { _unitOnThisChannel = true; };
-                };
-                if (_unitOnThisChannel) then {
-                    private _radioList = [_radio];
-                    {
-                        _x params ["_innerRadioList"];
-                        if (_radio in _innerRadioList) exitWith {
-                            _radioList = _innerRadioList;
+            private _unitOnThisChannel = false;
+            call {
+                if ([_unit, _chanConditions] call EFUNC(common,evaluateCondArray)) exitWith { _unitOnThisChannel = true; };
+                if (_forEachIndex in _groupVarChannelList) exitWith { _unitOnThisChannel = true; };
+                if (_forEachIndex in _unitVarChannelList) exitWith { _unitOnThisChannel = true; };
+                if (_isGroupLeader && {_forEachIndex in _groupVarLeaderChannelList}) exitWith { _unitOnThisChannel = true; };
+            };
+            if (_unitOnThisChannel) then {
+                private _radioList = [_radio];
+                {
+                    _x params ["_innerRadioList"];
+                    if (_radio in _innerRadioList) exitWith {
+                        _radioList = _innerRadioList;
+                    };
+                } forEach GVAR(radioCoreSettings);
+                
+                private _radioFndIdx = -1;
+                {
+                    if (_radioFndIdx != -1) exitWith {};
+                    private _radioID = _forEachIndex;
+                    if (!(_radioID in _usedRadioIndexs)) then {
+                        if (_x in _radioList) then {
+                            _radioFndIdx = _radioID;
+                            _usedRadioIndexs pushBack _radioID;
                         };
-                    } forEach GVAR(radioCoreSettings);
-                    
-                    
-                    private _radioFndIdx = -1;
-                    {
-                        if (_radioFndIdx != -1) exitWith {};
-                        private _radioID = _forEachIndex;
-                        if (!(_radioID in _usedRadioIndexs)) then {
-                            if (_x in _radioList) then {
-                                _radioFndIdx = _radioID;
-                                _usedRadioIndexs pushBack _radioID;
-                            };
-                        };
-                    } forEach _radiosToGive;
-                    // No matching radio - add Radio;
-                    if (_radioFndIdx isEqualTo -1) then {
-                        _usedRadioIndexs pushBack (_radiosToGive pushBack _radio);
-                    };             
-                };
-            } forEach ((_radioPresetSetting select 1)); // loop through channels for the preset
-        };
-    } forEach _networksWithRadioChannels;
+                    };
+                } forEach _radiosToGive;
+                // No matching radio - add Radio;
+                if (_radioFndIdx isEqualTo -1) then {
+                    _usedRadioIndexs pushBack (_radiosToGive pushBack _radio);
+                };             
+            };
+        } forEach (_radioPresetSetting select 1); // loop through channels for the preset
+    };
 };
 
 _radiosToGive;

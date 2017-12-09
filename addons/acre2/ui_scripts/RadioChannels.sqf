@@ -749,6 +749,45 @@ switch _mode do {
                                 
             private _radioChannels = (RadioChannelArray select RadioCurrentNetwork) select 1;
             _radioChannels deleteAt _curSel;
+            // Update all channel lists for units/groups on same preset.
+            private _units = allUnits select {([_x] call TMF_acre2_fnc_unitToPreset) == 1};
+            private _groups = []; {_groups pushBackUnique (group _x);} forEach _units;
+            {
+                private _entity = _x;
+                private _list = (_entity get3DENAttribute "TMF_Channellist") params [["_value",[]]];
+                if (_value isEqualType "") then {
+                    _value = call compile _value;
+                };
+                _value = _value - [_curSel]; // Remove current channel.
+                // Decrement channel numbers above.
+                _value = _value apply {
+                    if (_x > _curSel) then {
+                        _x - 1;
+                    } else {
+                        _x;
+                    }
+                };
+                _entity set3DENAttribute ["TMF_Channellist",str _value];
+            } forEach (_units + _groups);
+            // Cycle through groups to remove leader.
+            {
+                private _entity = _x;
+                private _list = (_entity get3DENAttribute "TMF_ChannellistLeader") params [["_value",[]]];
+                if (_value isEqualType "") then {
+                    _value = call compile _value;
+                };
+                _value = _value - [_curSel]; // Remove current channel.
+                // Decrement channel numbers above.
+                _value = _value apply {
+                    if (_x > _curSel) then {
+                        _x - 1;
+                    } else {
+                        _x;
+                    }
+                };
+                _entity set3DENAttribute ["TMF_ChannellistLeader",str _value];
+            } forEach _groups;
+
             ["refreshChannelList"] call RadioChannels_script;
             ["save"] call RadioChannels_script;                
         };
