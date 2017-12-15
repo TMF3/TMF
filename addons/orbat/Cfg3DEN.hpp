@@ -157,13 +157,14 @@ class ctrlListNBox;// : ctrlDefaultText;
 class ctrlTree;// : ctrlDefaultText;
 class ctrlEdit;// : ctrlDefaultText;
 class ctrlToolBox;// : ctrlDefaultText;
+class ctrlCombo;
 
 class RscButtonMenu;
 class RscText;
 
 class cfgScriptPaths
 {
-    TMF_orbat = "x\tmf\addons\orbat\ui_scripts\";
+    TMF_orbat = "x\tmf\addons\orbat\ui_scripts\"; // " // comment here for Bad parser.
 };
 
 class Cfg3DEN
@@ -288,7 +289,7 @@ class Cfg3DEN
             };
             class TMF_orbat_vehicleCallsign
             {
-                displayName = "TMF: Vehicle Callsign";
+                displayName = "TMF: Vehicle ORBAT";
                 collapsed = 0;
                 class Attributes
                 {
@@ -296,12 +297,43 @@ class Cfg3DEN
                     {
                         property = "TMF_orbat_vehicleCallsign";
                         displayName = "Callsign";
-                        tooltip = "Give vehicle a callsign.";
+                        tooltip = "Give vehicle a callsign to show on briefing screen.";
                         condition = "objectVehicle";
                         control = "Edit";
                         defaultValue = "''";
                         expression = "_this setVariable ['TMF_orbat_vehicleCallsign',_value,true];";
                         wikiType = "[[String]]";
+                    };
+                    class TMF_orbat_team
+                    {
+                        property = "TMF_orbat_team";
+                        displayName = "ORBAT Team";
+                        tooltip = "Which team's ORBAT should this vehicle be apart of.";
+                        condition = "objectVehicle";
+                        control = "TMF_ORBAT_team";
+                        expression = "_this setVariable ['TMF_orbat_team',_value,true];";
+                        defaultValue = "''";
+                        value = "''";
+                        wikiType = "[[String]]";
+                    };
+                    class TMF_groupMarker
+                    {
+                        property = "TMF_groupMarker"; // Unique config property name saved in SQM
+                        control = "twGroupMarker"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
+                        unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
+                        condition = "objectVehicle"; // Condition for attribute to appear (see the table below)
+                        expression = "_this setVariable ['TMF_groupMarker',_value,true];";//"[_this,['TMF_groupMarker',_value]] remoteExecCall ['setVariable',0,true];" //"_this setVariable ['TMF_groupMarker',_value,true];";
+                        defaultValue = "'[]'";
+                        wikiType = "[[String]]";
+                    };
+                    class TMF_OrbatParent
+                    {
+                        property = "TMF_OrbatParent"; // Unique config property name saved in SQM
+                        control = "None"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
+                        unique = 0; // When 1, only one entity of the type can have the value in the mission (used for example for variable names or player control)
+                        condition = "objectVehicle"; // Condition for attribute to appear (see the table below)
+                        expression = "_this setVariable ['TMF_OrbatParent',_value,true];";//"[_this,['TMF_OrbatParent',_value]] remoteExecCall ['setVariable',0,true];"; //_this setVariable ['TMF_OrbatParent',_value,true];";
+                        defaultValue = "-1";
                     };
                 };
             };
@@ -345,13 +377,41 @@ class Cfg3DEN
     class Attributes
     {
         class Toolbox; //class Toolbox: Title
-        
+        class Combo;
         class Default;
         class Title : Default
         {
             class Controls
             {
                 class Title;
+            };
+        };
+        class TMF_ORBAT_team: Combo
+        {
+            onLoad = "uiNamespace setVariable ['AttributeTMF_Orbat_team',(_this select 0) controlsGroupCtrl 100];";
+            attributeLoad = "\
+                _ctrlTeams = _this controlsGroupCtrl 100 ;\
+                [_ctrlTeams,_value] call TMF_orbat_fnc_loadTeams;\
+            ";
+            attributeSave = " _ctrlTeams = _this controlsGroupCtrl 100;\
+                private _output = _ctrlTeams lbData lbCurSel _ctrlTeams; _output";
+            class Controls
+            {
+                class Title: ctrlStatic {
+                    style = 0x01;
+                    x = 0;
+                    w = ATTRIBUTE_TITLE_W * GRID_W;
+                    h = SIZE_M * GRID_H;
+                    colorBackground[] = {0,0,0,0};
+                };
+                class ValueRole: ctrlCombo
+                {
+                    idc = 100;
+                    onLoad = "uiNamespace setVariable ['AttributeTMF_Orbat_team',_this select 0];";
+                    x = ATTRIBUTE_TITLE_W * GRID_W;
+                    w = ATTRIBUTE_CONTENT_W * GRID_W;
+                    h = SIZE_M * GRID_H;
+                };
             };
         };
         class TMF_ORBAT_Renamer : Title
@@ -435,7 +495,7 @@ class Cfg3DEN
             onLoad = "['onLoad',_this,'GroupMarker','TMF_orbat',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'GroupMarker','TMF_orbat',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
 
-            attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'GroupMarker_script');";
+            attributeLoad = "['attributeLoad',_this,_value] call (uinamespace getvariable 'GroupMarker_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'GroupMarker_script');";
 
             h = (16.75+0.45) * SIZE_M * GRID_H;

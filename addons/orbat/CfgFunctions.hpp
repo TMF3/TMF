@@ -11,6 +11,7 @@ class cfgFunctions {
             class getGroupMarkerData;
             class findOrbatParent;
             class renameUnitAndGroups;
+            class loadTeams;
         };
     };
 };

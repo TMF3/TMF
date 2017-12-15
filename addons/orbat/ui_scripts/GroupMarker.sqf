@@ -1,4 +1,4 @@
-params ["_mode",["_params",[]]];
+params ["_mode",["_params",[]],["_value","[]"]];
 
 // with uiNameSpace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; };  with uiNameSpace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };  with uiNameSpace do { AcreAddRadioActions_script = compile preprocessFileLineNumbers "AcreAddRadioActions.sqf"; }; with uiNameSpace do { ORBATSettings_script = compile preprocessFileLineNumbers "OrbatSettings.sqf"; }; with uiNameSpace do { GroupMarker_script = compile preprocessFileLineNumbers "GroupMarker.sqf"; };
 
@@ -9,18 +9,19 @@ switch _mode do {
     case "onLoad": {
         private _ctrlGroup = _params select 0;
         GroupMarker_ctrlGroup = _ctrlGroup;
-    
-        private _entity = (get3DENSelected "group") select 0;
-        
+
         _ctrlGroup ctrladdeventhandler ["setfocus",{with uinamespace do {GroupMarker_ctrlGroup = _this select 0;};}];
         _ctrlGroup ctrladdeventhandler ["killfocus",{with uinamespace do {GroupMarker_ctrlGroup = nil;};}];
+    };
+
+    case "attributeLoad": {
+        private _ctrlGroup = _params;
         
-        private _groupMarkerArray = (_entity get3DENAttribute "TMF_groupMarker") select 0;
+        private _groupMarkerArray = _value;
         if (_groupMarkerArray isEqualType "") then {
             _groupMarkerArray = call compile _groupMarkerArray;
         };
-        
-
+        diag_log str ["ORBAT: attrLoad",_params,_ctrlGroup];
         private _ctrlIconToolbox = _ctrlGroup controlsGroupCtrl 100;
         private _ctrlColourToolBox = _ctrlGroup controlsGroupCtrl 101;
         private _ctrlNameEdit = _ctrlGroup controlsGroupCtrl 102;
@@ -52,11 +53,11 @@ switch _mode do {
             };
             _ctrlNameEdit ctrlSetText _mName;
         } else {
-            _ctrlNameEdit ctrlSetText (GroupID _entity);
+            if (count (get3DENSelected "group") > 0) then {
+                private _entity = (get3DENSelected "group") select 0;
+                _ctrlNameEdit ctrlSetText (GroupID _entity);
+            };
         };
-    };
-
-    case "attributeLoad": {
     };
     case "attributeSave": {
         private _ctrlGroup = uiNameSpace getVariable "GroupMarker_ctrlGroup";
