@@ -41,22 +41,28 @@ OrbatSettings_Array = [
 
 private _ourIdx = -1;
 private _groups = [];
+private _vehicles = [];
 {
     _x params ["_condition", "_array"];
     if (_condition isEqualType 0 and {(_condition call EFUNC(common,numToSide)) == (side _unit)}) exitWith {
         private _side = _condition call EFUNC(common,numToSide);
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
+        private _sideStr = str (_side call EFUNC(common,sideToNum));
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
     };
     if ((side _unit) isEqualTo _condition) exitWith {
         private _side = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {side _x == _side};
+        private _sideStr = str (_side call EFUNC(common,sideToNum));
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo _sideStr};
     };
     if ((faction (leader (group _unit)) isEqualTo _condition)) exitWith {
         private _faction = _condition;
         _ourIdx = _forEachIndex;
         _groups = allGroups select {faction (leader _x) == _faction};
+        _vehicles = vehicles select {((_x getVariable ["tmf_orbat_team",""]) param [0,""]) isEqualTo (toLower _faction)};
     };
 } forEach (GVAR(orbatRawData));
 
@@ -133,6 +139,15 @@ private _playableUnits = (playableUnits+switchableUnits);
     };
 } forEach _groups;
 
+{
+    private _var = _x getVariable ["TMF_OrbatParent",-1];
+    if (_var in _validParents) then {
+        _toPlace pushBack [_var, _x];
+    } else {
+        _toPlace pushBack [_reserveId, _x];
+    };
+} forEach _vehicles;
+
 //Identify which ones to add.
 
 private _fnc_processOrbatTrackerRawData = {
@@ -172,36 +187,41 @@ _fnc_processOrbatTrackerRawData = {
     
     if (!_toAdd) exitWith {[]};
     
-    
-
     private _createdChildren = [];
     
     {
         _x params ["_id", "_entity"];
         if (_id == _uniqueID) then {
-            if (_entity isEqualType grpNull) then {
+            private _isVeh = _entity in vehicles;
+            if (_entity isEqualType grpNull || _isVeh) then {
                 private _markerEntry = _entity getVariable ["TMF_groupMarker",[]];
                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                 if (count _markerEntry > 0) then {
                     _markerEntry params ["_textureC", "_markerNameC", ["_texture2C", ""]];
                     if (_textureC != "") then {
-                        private _newLine = [_markerNameC, _textureC, [1,1,1,1], [32,32], (getPos leader _entity),[0,0,0],[0,0,0], _texture2C, _entity];
+                        private _newLine = [];
+                        if (_isVeh) then {
+                            _newLine = [_markerNameC, _textureC, [1,1,1,1], [32,32], (getPos _entity),[0,0,0],[0,0,0], _texture2C, _entity];
+                        } else {
+                            _newLine = [_markerNameC, _textureC, [1,1,1,1], [32,32], (getPos leader _entity),[0,0,0],[0,0,0], _texture2C, _entity];
+                        };
                         _createdChildren pushBack [_newLine];
                     };
                 };
                 _toPlace set [_forEachIndex,-1];
-            };
-            if (_entity isEqualType objNull) then {
-                private _markerEntry = _entity getVariable ["TMF_SpecialistMarker",[]];
-                if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
-                if (count _markerEntry > 0) then {
-                    _markerEntry params ["_textureC", "_markerNameC"];
-                    if (_textureC != "") then {
-                        private _newLine = [_markerNameC, _textureC, [1,1,1,1], [20,20], (getPos _entity),[0,0,0],[0,0,0], "", _entity];
-                        _createdChildren pushBack [_newLine];
+            } else {
+                if (_entity isEqualType objNull) then {
+                    private _markerEntry = _entity getVariable ["TMF_SpecialistMarker",[]];
+                    if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
+                    if (count _markerEntry > 0) then {
+                        _markerEntry params ["_textureC", "_markerNameC"];
+                        if (_textureC != "") then {
+                            private _newLine = [_markerNameC, _textureC, [1,1,1,1], [20,20], (getPos _entity),[0,0,0],[0,0,0], "", _entity];
+                            _createdChildren pushBack [_newLine];
+                        };
                     };
+                    _toPlace set [_forEachIndex,-1];
                 };
-                _toPlace set [_forEachIndex,-1];
             };
         };
     } forEach _toPlace;
