@@ -132,8 +132,9 @@ private _items = GETGEAR("items");
 private _linkedItems = GETGEAR("linkedItems");
 private _backpackItems = GETGEAR("backpackItems");
 
-// Get code line
+// Other
 private _code = GETGEAR("code");
+private _faces = GETGEAR("faces");
 
 // Strip unit
 removeAllWeapons _unit;
@@ -165,6 +166,9 @@ else {
 // Replace secondary weapon and sidearm
 [_unit,_secondaryWeapon,_secondaryAttachments] call FUNC(replaceSecondaryWeapon);
 [_unit,_sidearmWeapon,_sidearmAttachments]     call FUNC(replaceSidearmWeapon);
+
+// Set Face
+[_unit,_faces] call FUNC(setFace);
 
 // Execute code statement
 if ((count _code) > 0) then {_unit call compile _code};
