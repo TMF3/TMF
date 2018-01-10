@@ -20,8 +20,8 @@ if (getMissionConfigValue ['TMF_AcreBabelEnabled',false]) then {
 };
 
 /// Parse Radios
-
-if (getMissionConfigValue ['TMF_AcreNetworkEnabled',false]) then {
+private _tmfNetworkEnabled = (getMissionConfigValue ['TMF_AcreNetworkEnabled',false]);
+if (_tmfNetworkEnabled) then {
     if (isNil QGVAR(radioCoreSettings)) then {
         GVAR(radioCoreSettings) = [
             // Array of Radio names, min freq, max freq, freq step, freq spacing between channels (for channel alloication
@@ -88,10 +88,11 @@ if (getMissionConfigValue ['TMF_AcreNetworkEnabled',false]) then {
 if (hasInterface) then {
     [{
         if (isNull player) exitWith {};
-        if (isNil "tmf_acre2_networksCreated") exitWith {}; //Ensure presets are created
+        params ["_tmfNetworkEnabled"];
+        if (_tmfNetworkEnabled && isNil "tmf_acre2_networksCreated") exitWith {}; //Ensure presets are created
         if (isNil QEGVAR(common,VarSync)) exitWith {}; // Ensure vars are recieved.
         
         [] call FUNC(clientInit);
         [_this select 1] call CBA_fnc_removePerFrameHandler;
-    }, 1] call CBA_fnc_addPerFrameHandler;
+    }, 1,_tmfNetworkEnabled] call CBA_fnc_addPerFrameHandler;
 };
