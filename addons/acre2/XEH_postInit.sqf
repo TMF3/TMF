@@ -88,12 +88,11 @@ if (_tmfNetworkEnabled) then {
 if (hasInterface) then {
     [{
         if (isNull player) exitWith {};
-        params ["_args"];
-        _args params ["_tmfNetworkEnabled"];
+        params ["_tmfNetworkEnabled"];
         if (_tmfNetworkEnabled && isNil "tmf_acre2_networksCreated") exitWith {}; //Ensure presets are created
         if (isNil QEGVAR(common,VarSync)) exitWith {}; // Ensure vars are recieved.
         
         [] call FUNC(clientInit);
         [_this select 1] call CBA_fnc_removePerFrameHandler;
-    }, 1,[_tmfNetworkEnabled]] call CBA_fnc_addPerFrameHandler;
+    }, 1,_tmfNetworkEnabled] call CBA_fnc_addPerFrameHandler;
 };
