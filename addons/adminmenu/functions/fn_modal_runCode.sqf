@@ -46,18 +46,33 @@ _ctrlButton ctrlAddEventHandler ["buttonClick", {
     if (_editText isEqualTo "") then {
         systemChat "[TMF Admin Menu] Code field is empty";
     } else {
-        private _target = [clientOwner, _x, 2, 0] select (lbCurSel _ctrlCombo);
-        if (_target isEqualType objNull) then { // individual remoteExec's
+        private _code = compile _editText;
+        private _selected = lbCurSel _ctrlCombo;
+        private _target = call {
+            if (_selected isEqualTo 0) exitWith {-1};
+            if (_selected isEqualTo 1) exitWith {GVAR(utilityData)};
+            if (_selected isEqualTo 2) exitWith {2};
+            0
+        };
+
+        if (_target isEqualTo -1) then {
             {
-                [_x, compile _editText] remoteExec ["BIS_fnc_call", _target];
+                _x call _code;
             } forEach GVAR(utilityData);
-        } else { // remoteExec once
-            [[GVAR(utilityData), compile _editText], {
-                params ["_data", "_code"];
-                {
-                    _x call _code;
-                } forEach _data;
-            }] remoteExec ["BIS_fnc_call", _target];
+        } else {
+            if (_target isEqualType []) then {
+                [compile _editText, {
+                    params ["_code"];
+                    player call _code;
+                }] remoteExec ["call", GVAR(utilityData)];
+            } else {
+                [[GVAR(utilityData), compile _editText], {
+                    params ["_players", "_code"];
+                    {
+                        _x call _code;
+                    } forEach _players;
+                }] remoteExec ["call", _target];
+            };
         };
 
         systemChat format ["[TMF Admin Menu] Code was executed on %1", _ctrlCombo lbText (lbCurSel _ctrlCombo)];
