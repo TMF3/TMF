@@ -1,18 +1,14 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-private _enableDebugConsole =
-// 0 - not allowed
-// 1 - allowed for server host and logged in admin
-// 2 - allowed always
-[
+if (isServer || serverCommandAvailable "#kick") exitWith {true};
+
+private _authorizedByUID = (getPlayerUID player) in (("true" configClasses (configFile >> QGVAR(authorized_players))) apply {getText (_x >> "uid")});
+if (_authorizedByUID) exitWith {true};
+
+private _enableDebugConsole = [
     "DebugConsole",
     getMissionConfigValue ["enableDebugConsole", 0]
-]
-call (missionNamespace getVariable "BIS_fnc_getParamValue");
-
-// IN ANY MODE
-if (_enableDebugConsole isEqualTo 2 || isServer) exitWith {true};
-
-if ((getPlayerUID player) in (getArray (configFile >> QGVAR(authorized_uids))) || serverCommandAvailable "#kick") exitWith {true};
+] call (missionNamespace getVariable "BIS_fnc_getParamValue");
+if (_enableDebugConsole isEqualTo 2) exitWith {true};
 
 false

@@ -3,8 +3,7 @@
 params ["", "_keyPressed"];
 private _modifiersPressed = _this select [2, 3];
 
-//private _authorized = call BIS_fnc_isDebugConsoleAllowed;
-private _authorized = (((getPlayerUID player) in (getArray (configFile >> QGVAR(authorized_uids)))) || (serverCommandAvailable "#kick") || isServer);
+private _authorized = call BIS_fnc_isDebugConsoleAllowed;
 
 private _binding = ["TMF", QGVAR(openKey)] call CBA_fnc_getKeybind;
 if (isNil "_binding") exitWith {};
