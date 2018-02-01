@@ -17,12 +17,13 @@ _data = _logic getVariable [QGVAR(waveData), []];
 
 
     {
-        _x params ["_type","_pos","_dir","_units"];
+        _x params ["_type","_pos","_dir","_custom","_units"];
         private _formationType = "NONE";
         if((_pos select 2) > 3) then {_formationType = "FLY"};
         _vehicle = createVehicle [_type, _pos, [], 0, _formationType];
         _vehicle setPosATL _pos;
         _vehicle setDir _dir;
+        [_vehicle,_custom select 0,_custom select 1] call BIS_fnc_initVehicle;
         {
             _x params ["_type","_pos","_gear"];
             _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
