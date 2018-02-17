@@ -16,6 +16,8 @@
 
 if !is3DEN exitWith {};
 
+call FUNC(edenDisplayFactionIcons);
+
 // Add mouseOver EH
 private _idx = missionNamespace getVariable [QGVAR(edenDrawIdx),-1];
 if !(_idx == -1) then {

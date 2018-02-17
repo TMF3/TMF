@@ -44,6 +44,7 @@ class cfgFunctions {
             class initDisplayMultiplayerSetup;
             class testGroupsSlottingScreen;
             class secondsToTime;
+            class edenDisplayFactionIcons;
         };
     };
 };
