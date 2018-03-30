@@ -11,18 +11,6 @@ if (!_toggle) exitWith { // Bad, can still command group via map click when back
     };
 };
 
-/*systemChat format [
-    "RC UNIT: %1 | %2 | %3 | %4 | %5 | %6 | %7 | %8",
-    vehicleVarName _unit,
-    name _unit,
-    getText (configFile >> "CfgVehicles" >> typeOf _unit >> "displayName"),
-    typeOf _unit,
-    side _unit,
-    getText (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "displayName"),
-    typeOf (vehicle _unit),
-    assignedVehicleRole _unit
-];*/
-
 private _error = "";
 call {
     if (isNull _unit) exitWith {_error = localize "str_a3_cfgvehicles_moduleremotecontrol_f_errorNull";};
