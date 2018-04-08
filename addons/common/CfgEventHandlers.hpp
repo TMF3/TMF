@@ -42,4 +42,7 @@ class Extended_DisplayLoad_EventHandlers {
     class RscDisplayMultiplayerSetup {
         tmf_slotting = QUOTE(_this call (uiNamespace getVariable 'FUNC(initDisplayMultiplayerSetup)'));
     };
+    class RscDisplayDebriefing {
+        tmf_override_end_text = QUOTE(_this call (uiNamespace getVariable 'FUNC(initDisplayDebriefing)'));
+    };
 };

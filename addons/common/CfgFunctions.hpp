@@ -41,6 +41,7 @@ class cfgFunctions {
             class edenHideMapObjects;
             class hideMapObjectsInit;
             class getPosVisual;
+            class initDisplayDebriefing;
             class initDisplayMultiplayerSetup;
             class testGroupsSlottingScreen;
             class secondsToTime;
