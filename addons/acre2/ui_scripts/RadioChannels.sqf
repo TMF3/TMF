@@ -18,7 +18,7 @@ fn_removeUnitFromChannel = {
     _list = (_unit get3DENAttribute "TMF_Channellist") params ["_value"];
     if (_value isEqualType []) then {
         //Is default do nothing
-        _//unit set3DENAttribute ["TMF_Channellist",str []];
+        //_unit set3DENAttribute ["TMF_Channellist",str []];
     } else {
         _value = call compile _value;
         _value = _value - [_channel];
