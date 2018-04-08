@@ -99,14 +99,19 @@ private _fncTestUnit = {
 
         {
             private _mass = -1;
-            if (isClass (_cfgMagazines >> _x)) then {
-                _mass = getNumber (_cfgMagazines >> _x >> "mass");
-                _mags pushBack (toLower _x);
-            };
-            if (isClass (_cfgWeapons >> _x)) then {
-                _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
-                if (_mass isEqualTo 0) then {
-                    _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+            call {
+                if (isClass (_cfgMagazines >> _x)) exitWith {
+                    _mass = getNumber (_cfgMagazines >> _x >> "mass");
+                    _mags pushBack (toLower _x);
+                };
+                if (isClass (_cfgWeapons >> _x)) exitWith {
+                    _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
+                    if (_mass isEqualTo 0) then {
+                        _mass = getNumber (_CfgWeapons >> _x >> "WeaponSlotsInfo" >> "mass");
+                    };
+                };
+                if (isClass (_cfgGlasses >> _x)) exitWith {
+                    _mass = getNumber (_cfgGlasses >> _x >> "mass");
                 };
             };
             if (_mass >= 0) then {
