@@ -52,9 +52,15 @@ fn_removeGroupFromBrief = {
 
 switch _mode do {
     case "onLoad": {
-        private _playableUnits = playableUnits;
-        _playableUnits pushBackUnique player;
-        cacheAllPlayerGroups = allGroups select {{_x in _playableUnits} count (units _x) > 0};
+        private _playableUnits = ((AllMissionObjects "") select {
+            (_x get3DENAttribute "ControlMP") IsEqualTo [true]
+            ||
+            (_x get3DENAttribute "ControlSP") IsEqualTo [true]
+        });
+        cacheAllPlayerGroups = [];//allGroups select {{_x in _playableUnits} count (units _x) > 0};
+        {
+            cacheAllPlayerGroups pushBackUnique (group _x);
+        } forEach _playableUnits;
         BriefingArray = ("TMF_MissionBriefingAttributes" get3DENMissionAttribute "TMF_Briefing");
         if (BriefingArray isEqualType "") then { BriefingArray = call compile BriefingArray;};
         if (isNil "BriefingArray") then {            
@@ -160,7 +166,7 @@ switch _mode do {
             private _color = (side _unit) call TMF_common_fnc_sideToColor;
             
             if (_roleDesc == "") then {
-                _roleDesc =    getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
+                _roleDesc =  getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
             };
             private _unitIdx = _ctrlTree tvAdd [ _treeRoot, _roleDesc];
             private _location = _treeRoot + [_unitIdx];
@@ -198,22 +204,26 @@ switch _mode do {
             params ["_ctrlTree", "_treeRoot", "_doSpeak", "_group"];
             
             private _side = side _group;
-            private _color = _side call TMF_common_fnc_sideToColor;
-            private _grpIdx = _ctrlTree tvAdd [ _treeRoot, groupID _group];
-            private _location = _treeRoot + [_grpIdx];
-            private _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";
-            
-            //Found in (configfile >> "Cfg3DEN" >> "Group" >> "Draw" >> "textureCivilian")
-            call {
-                if (_side == west) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\b_unknown.paa";};
-                if (_side == east) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\o_unknown.paa"; };
-                if (_side == guerilla) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
-                if (_side == civilian) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
+            private _render = _side != sideLogic; // Do not render for Zeus Group
+            private _location = +_treeRoot;
+            if (_render) then {
+                private _color = _side call TMF_common_fnc_sideToColor;
+                private _grpIdx = _ctrlTree tvAdd [ _treeRoot, groupID _group];
+                _location = _location + [_grpIdx];
+                private _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";
+                
+                //Found in (configfile >> "Cfg3DEN" >> "Group" >> "Draw" >> "textureCivilian")
+                call {
+                    if (_side == west) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\b_unknown.paa";};
+                    if (_side == east) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\o_unknown.paa"; };
+                    if (_side == guerilla) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
+                    if (_side == civilian) exitWith { _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";};
+                };
+                
+                _ctrlTree tvSetPicture [_location, _grpIcon];
+                _ctrlTree tvSetPictureColor [_location, _color];
+                _ctrlTree tvSetValue [_location, BriefingTree_data pushBack _group];
             };
-            
-            _ctrlTree tvSetPicture [_location, _grpIcon];
-            _ctrlTree tvSetPictureColor [_location, _color];
-            _ctrlTree tvSetValue [_location, BriefingTree_data pushBack _group];
             
             if (!_doSpeak) then {
                 private _grpChanList = (_group get3DENAttribute "TMF_Briefinglist") select 0;
@@ -226,24 +236,38 @@ switch _mode do {
             };            
             
             private _hasSpeaker = false;
+            private _units = units _group;
+            if (_side == sideLogic) then {
+                _units = _units select {
+                    (_x get3DENAttribute "ControlMP") IsEqualTo [true]
+                    ||
+                    (_x get3DENAttribute "ControlSP") IsEqualTo [true]
+                };
+            };
             {
                 if ([_ctrlTree, _location, _doSpeak, _x] call fn_BriefTreeProcessUnit != 3) then { 
                     _hasSpeaker = true;
                 };
-            } forEach (units _group);
+            } forEach _units;
 
             private _returnCode = 3;
             if (_doSpeak) then {
-                _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\check_small_ca.paa"];
+                if (_render) then {
+                    _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\check_small_ca.paa"];
+                };
                 _returnCode = 0;
             } else {
                 if (_hasSpeaker) then {
-                    _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
-                    _ctrlTree tvExpand _location;
+                    if (_render) then {
+                        _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
+                        _ctrlTree tvExpand _location;
+                    };
                     _returnCode = 1;
                 } else {
-                    _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
-                    _ctrlTree tvExpand _location;
+                    if (_render) then {
+                        _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
+                        _ctrlTree tvExpand _location;
+                    };
                 };
             };
             
@@ -256,17 +280,21 @@ switch _mode do {
         
             (BriefingArray select BriefingCurrentBrief) params ["","_BriefConditions"];
             
+            private _render = _faction != "";
+            private _location = +_treeRoot;
             if (!_doSpeak and {_faction in _BriefConditions}) then {
                 _doSpeak = true;
             };
             
-            private _factionIdx = _ctrlTree tvAdd [ _treeRoot,getText (configfile >> "CfgFactionClasses" >> _faction >> "displayName")];
-            private _location = _treeRoot + [_factionIdx];
-    
-            _ctrlTree tvSetValue [_location, BriefingTree_data pushBack _faction];
-            
-            private _factionImg = getText (configfile >> "CfgFactionClasses" >> _faction >> "icon");
-            _ctrlTree tvSetPicture [_location, _factionImg];
+            if (_render) then {
+                private _factionIdx = _ctrlTree tvAdd [ _treeRoot,getText (configfile >> "CfgFactionClasses" >> _faction >> "displayName")];
+                _location = _location + [_factionIdx];
+        
+                _ctrlTree tvSetValue [_location, BriefingTree_data pushBack _faction];
+                
+                private _factionImg = getText (configfile >> "CfgFactionClasses" >> _faction >> "icon");
+                _ctrlTree tvSetPicture [_location, _factionImg];
+            };
             
             private _hasSpeaker = false;            
             {
@@ -278,16 +306,22 @@ switch _mode do {
             private _returnCode = 3;
             
             if (_doSpeak) then {
-                _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\check_small_ca.paa"];
+                if (_render) then {
+                    _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\check_small_ca.paa"];
+                };
                 _returnCode = 0;
             } else {
                 if (_hasSpeaker) then {
-                    _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
-                    _ctrlTree tvExpand _location;
+                    if (_render) then {
+                        _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
+                        _ctrlTree tvExpand _location;
+                    };
                     _returnCode = 1;
                 } else {
-                    _ctrlTree tvExpand _location;
-                    _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
+                    if (_render) then {
+                        _ctrlTree tvExpand _location;
+                        _ctrlTree tvSetPictureRight [_location, "x\tmf\addons\briefing\UI\plus_small_ca.paa"];
+                    };
                 };
             };
             _returnCode
@@ -469,13 +503,13 @@ switch _mode do {
                     //remove groups
                     {
                         [_curSel, _x] call fn_removeGroupFromBrief;
-                    } forEach (allGroups select {side _x == _entity});
+                    } forEach (cacheAllPlayerGroups select {side _x == _entity});
                 };
                 //Also remove faction.
                 if (_entity isEqualType "") then {
                     {
                         [_curSel, _x] call fn_removeUnitFromBrief;
-                    } forEach (allGroups select {faction (leader _x) == _entity});
+                    } forEach (cacheAllPlayerGroups select {faction (leader _x) == _entity});
                 };
             } else {
                 if (_entity isEqualType grpNull) then {

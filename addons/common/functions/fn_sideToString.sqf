@@ -16,4 +16,5 @@ if (_this == west) exitWith {  "BLUFOR";};
 if (_this == east) exitWith {  "OPFOR"; };
 if (_this == independent) exitWith {"Independent"};
 if (_this == civilian) exitWith {  "Civilian";};
+if (_this == sideLogic) exitWith { "Logic";};
 "Unknown"
