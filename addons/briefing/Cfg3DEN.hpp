@@ -15,7 +15,7 @@ class RscText;
 
 class cfgScriptPaths 
 {
-    TMF_briefing = "x\tmf\addons\briefing\ui_scripts\";
+    TMF_briefing = "x\tmf\addons\briefing\ui_scripts\"; //" - Escape for VS code linter
 };
 
 class Cfg3DEN
@@ -105,6 +105,32 @@ class Cfg3DEN
                         defaultValue = "[]";
                         wikiType = "[[String]]";
                         condition = "objectBrain"; // Condition for attribute to appear (see the table below)
+                    };
+                };
+            };
+        };
+    };
+    // Zeus Entities
+    class Logic
+    {
+        // Categories collapsible in "Edit Attributes" window
+        class AttributeCategories
+        {
+            // Category class, can be anything
+            class TeamworkMarker
+            {
+                class Attributes
+                {
+                    class TMF_Briefinglist
+                    {
+                        displayName = ""; // Name assigned to UI control class Title
+                        tooltip = ""; // Tooltip assigned to UI control class Title
+                        property = "TMF_Briefinglist"; // Unique config property name saved in SQM
+                        control = "None"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
+                        expression = "_this setVariable ['TMF_Briefinglist',_value,true];";
+                        defaultValue = "[]";
+                        wikiType = "[[String]]";
+                        condition = "objectControllable"; // Condition for attribute to appear (see the table below)
                     };
                 };
             };
