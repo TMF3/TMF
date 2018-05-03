@@ -2,6 +2,8 @@
 
 if (isServer || serverCommandAvailable "#kick") exitWith {true};
 
+if (str missionConfigFile == "A3\Missions_F_Bootcamp\Scenarios\Arsenal.VR\description.ext") exitWith {true};
+
 private _authorizedByUID = (getPlayerUID player) in (("true" configClasses (configFile >> QGVAR(authorized_players))) apply {getText (_x >> "uid")});
 if (_authorizedByUID) exitWith {true};
 
