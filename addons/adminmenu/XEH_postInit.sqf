@@ -40,5 +40,9 @@ if (isMultiplayer) then {
 
             _ctrl ctrlSetText (_this select 1);
         };
+
+        [QGVAR(quickRespawn), {
+            call FUNC(utility_quickRespawn_local);
+        }] call CBA_fnc_addEventHandler;
     };
 };

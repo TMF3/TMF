@@ -47,7 +47,7 @@ class CfgFunctions {
             class utility_grantZeus;
             class utility_heal;
             class utility_quickRespawn;
-
+            class utility_quickRespawn_local;
         };
     };
 };
