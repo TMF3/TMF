@@ -52,7 +52,7 @@ fn_removeGroupFromBrief = {
 
 switch _mode do {
     case "onLoad": {
-        private _playableUnits = ((AllMissionObjects "") select {
+        private _playableUnits = (((all3DENEntities select 0)+(all3DENEntities select 3)) select {
             (_x get3DENAttribute "ControlMP") IsEqualTo [true]
             ||
             (_x get3DENAttribute "ControlSP") IsEqualTo [true]
