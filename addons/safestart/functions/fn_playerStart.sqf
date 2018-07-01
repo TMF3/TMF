@@ -27,7 +27,7 @@ _eh = player addEventHandler ["fired",_code];
 
 // save to player object
 player setVariable [QGVAR(firedEH),_eh];
-player setVariable [QGVAR(action),_action];
+player setVariable [QGVAR(disableAction),_action];
 
 if(_duration > 0) then {
     while {_duration > 0 && _logic getVariable [QGVAR(enabled),false] } do {
