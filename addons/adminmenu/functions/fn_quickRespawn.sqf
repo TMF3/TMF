@@ -1,1 +1,0 @@
-// take netId string parameter

@@ -2,9 +2,9 @@ class LabelUnitStats: RscText
 {
     text = "Statistics";
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-    x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "0";
-    w = "21 * (((safezoneW / safezoneH) min 1.2) / 40)";
+    w = "13.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
     h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 };
 
@@ -14,7 +14,7 @@ class UnitStats_SideBackground: RscText
     text = "";
     colorBackground[] = {1, 1, 1, 0.2};
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-    x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
     h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -22,25 +22,25 @@ class UnitStats_SideBackground: RscText
 class UnitStats_AI: UnitStats_SideBackground
 {
     text = "AI";
-    x = "8.1 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "9.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
     w = "2 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
 class UnitStats_Players: UnitStats_AI
 {
     text = "Players";
-    x = "10.2 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "11.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
     w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
 class UnitStats_Spectators: UnitStats_AI
 {
     text = "Spectators";
-    x = "13.3 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "14.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
     w = "4 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
 class UnitStats_Total: UnitStats_AI
 {
     text = "Total";
-    x = "17.4 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "18.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
     w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
 };
 
@@ -56,7 +56,7 @@ class UnitStats_SideIcon_Blufor: RscPicture
     text = "\a3\ui_f\data\GUI\Rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
     colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-    x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "2.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
     h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -202,7 +202,7 @@ class UnitStats_SideIcon_Total: RscText
     style = 2; // Center
     text = "*";
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-    x = "7 * (((safezoneW / safezoneH) min 1.2) / 40) + 1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
     h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";

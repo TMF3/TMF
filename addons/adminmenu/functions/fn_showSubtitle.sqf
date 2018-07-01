@@ -21,8 +21,8 @@ params [
     ["_text", "", [""]]
 ];
 
-if (_from == "") exitWith {"No speaker defined!" call BIS_fnc_error; scriptNull};
-if (_text == "") exitWith {"No text defined!" call BIS_fnc_error; scriptNull};
+if (_from isEqualTo "") exitWith {"No speaker defined!" call BIS_fnc_error; scriptNull};
+if (_text isEqualTo "") exitWith {"No text defined!" call BIS_fnc_error; scriptNull};
 
 // Terminate previous script
 if (!(isNil {BIS_fnc_showSubtitle_subtitle})) then {terminate BIS_fnc_showSubtitle_subtitle};

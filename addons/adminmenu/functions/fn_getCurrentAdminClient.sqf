@@ -5,7 +5,7 @@
 params ["_origin", "_adminLevel"];
 
 GVAR(currentAdmin) = profileName;
-if (_adminLevel == 1) then {
+if (_adminLevel isEqualTo 1) then {
     GVAR(currentAdmin) = GVAR(currentAdmin) + " (voted)";
 };
 
