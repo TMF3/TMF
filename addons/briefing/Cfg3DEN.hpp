@@ -41,7 +41,7 @@ class Cfg3DEN
                             tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_Briefing_Loadout',_value];";
-                            defaultValue = "true";
+                            defaultValue = "false";
                             condition = "true";
                         };
                         class TMF_Briefing
