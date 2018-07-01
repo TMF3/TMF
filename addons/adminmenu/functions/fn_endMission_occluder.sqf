@@ -3,9 +3,6 @@
 disableSerialization;
 params ["_display", ["_checkboxIDC", IDC_TMF_ADMINMENU_ENDM_FROMMISSION, [0]]];
 
-/*if (!isNil QGVAR(selectedEndMissionCheckbox) && {GVAR(selectedEndMissionCheckbox) isEqualTo _checkboxIdc}) exitWith {};
-GVAR(selectedEndMissionCheckbox) = _checkboxIdc;*/
-
 private _occluderText = switch (_checkboxIdc) do {
     case IDC_TMF_ADMINMENU_ENDM_FROMMISSION: { "Using Ending from Mission" };
     case IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC: { "Using Side-Specific Ending" };

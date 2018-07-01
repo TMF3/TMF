@@ -8,7 +8,7 @@ if (isMultiplayer) then {
         if (isNil QGVAR(fps_pfh)) then {
             GVAR(fps_pfh) = [{
                 GVAR(fps) = round diag_fps;
-                
+
                 {
                     _x publicVariableClient QGVAR(fps);
                 } forEach GVAR(activeClients);
@@ -18,8 +18,8 @@ if (isMultiplayer) then {
         GVAR(activeClients) pushBackUnique remoteExecutedOwner;
     } else {
         GVAR(activeClients) = GVAR(activeClients) - [remoteExecutedOwner];
-        
-        if (count GVAR(activeClients) == 0 && {!isNil QGVAR(fps_pfh)}) then {
+
+        if (((count GVAR(activeClients)) isEqualTo 0) && {!isNil QGVAR(fps_pfh)}) then {
             [GVAR(fps_pfh)] call CBA_fnc_removePerFrameHandler;
             GVAR(fps_pfh) = nil;
         };

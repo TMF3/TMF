@@ -3,7 +3,7 @@ class Controls
     class CheckboxUseMissionEnding: RscCheckBox
     {
         idc = IDC_TMF_ADMINMENU_ENDM_FROMMISSION;
-        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
+        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMission_occluder););
         x = "0";
         y = "0";
         w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -34,7 +34,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_ENDM_ENDMISSION;
         text = "End Mission";
         colorBackground[] = {0.8,0.27,0.133,1};
-        onButtonClick = QUOTE((ctrlParent (param [0])) call FUNC(endMissionCommit));
+        onButtonClick = QUOTE((ctrlParent (param [0])) call FUNC(endMission_commit));
         x = "32.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "5.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -69,7 +69,7 @@ class Controls
     class CheckboxUseSideSpecificEnding: CheckboxUseMissionEnding
     {
         idc = IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC;
-        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
+        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMission_occluder););
         x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
     };
     class LabelEndingsGenericSide: LabelEndings
@@ -190,7 +190,7 @@ class Controls
     class CheckboxUseCustomEnding: CheckboxUseMissionEnding
     {
         idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM;
-        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
+        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMission_occluder););
         y = "16.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
     class LabelCustomEnding: LabelEndings

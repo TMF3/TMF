@@ -3,7 +3,7 @@
 disableSerialization;
 params ["_display"];
 
-[_display] call FUNC(endMissionOccluder);
+[_display] call FUNC(endMission_occluder);
 
 
 
