@@ -142,7 +142,7 @@ removeAllAssignedItems _unit;
 removeAllItemsWithMagazines _unit;
 _unit setVariable ["BIS_enableRandomization", false];
 
-if(!isNil "_traits" && count _traits > 0) then {
+if(!isNil "_traits" && {count _traits > 0}) then {
     {
         if(_x isEqualType [] && count _x >= 2) then {
             _x params ["_traitName","_value"];
