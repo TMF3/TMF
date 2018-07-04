@@ -5,50 +5,28 @@ params ["_display"];
 
 [_display] call FUNC(endMission_occluder);
 
-
-
-
-// rewrite dis
-
-
-
-
 // Populate mission ending list
 private _endingList = (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_LIST);
-if ((lbSize _endingList) > 0) exitWith {};
+if ((lbSize _endingList) == 0) then {
+    {
+        private _title = getText (_x >> "title");
 
-{
-    private _title = getText (_x >> "title");
-    private _description = getText (_x >> "description");
-
-    if (!isText (_x >> "subtitle")) then {
-        if (_description isEqualTo "") then {
-            _endingList lbAdd format ["%1", _title];
-        } else {
-            _endingList lbAdd format ["%1 | %2", _title, _description];
+        private _extra = getText (_x >> "description");
+        if !(_extra isEqualTo "") then {
+            _title = _title + " | " + _extra;
         };
-    } else {
-        private _subtitle = getText (_x >> "subtitle");
 
-        if (_description isEqualTo "") then {
-            _endingList lbAdd format ["%1 | %2", _title, _subtitle];
-        } else {
-            _endingList lbAdd format ["%1 | %2 | %3", _title, _subtitle, _description];
+        _extra = getText (_x >> "subtitle");
+        if !(_extra isEqualTo "") then {
+            _title = _title + " | " + _extra;
         };
-    };
 
-    _endingList lbSetData [_forEachIndex, configName _x];
-} forEach ("true" configClasses (missionConfigFile >> "CfgDebriefing"));
+        _endingList lbAdd _title;
+        _endingList lbSetData [_forEachIndex, configName _x];
+    } forEach ("true" configClasses (missionConfigFile >> "CfgDebriefing"));
 
-/*private _idx = _endingList lbAdd "Generic Victory";
-_endingList lbSetData [_idx, "victory"];
-_idx = _endingList lbAdd "Generic Defeat";
-_endingList lbSetData [_idx, "defeat"];*/
-
-
-// Set per-side toolboxes
-/*{
-    if (isNil _x) then {
-        missionNamespace setVariable [_x, 0];
-    };
-} forEach [QGVAR(endingSideBlufor), QGVAR(endingSideOpfor), QGVAR(endingSideIndependent), QGVAR(endingSideCivilian)];*/
+    _endingList lbSetData [(_endingList lbAdd "Generic Success"), QGVAR(victory)];
+    _endingList lbSetData [(_endingList lbAdd "Generic Fail"), QGVAR(defeat)];
+    _endingList lbSetData [(_endingList lbAdd "Generic Draw"), QGVAR(draw)];
+    _endingList lbSetData [(_endingList lbAdd "Generic Technical Issues"), QGVAR(technical_issues)];
+};

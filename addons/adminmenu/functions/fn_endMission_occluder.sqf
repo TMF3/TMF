@@ -17,6 +17,7 @@ private _occluderText = switch (_checkboxIdc) do {
 private _useFromMission = (_checkboxIdc isEqualTo IDC_TMF_ADMINMENU_ENDM_FROMMISSION);
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_FROMMISSION) cbSetChecked _useFromMission;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_LIST) ctrlEnable _useFromMission;
+(_display displayCtrl IDC_TMF_ADMINMENU_ENDM_FROMMISSION_ISDEFEAT) ctrlEnable _useFromMission;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LU) ctrlEnable !_useFromMission;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LU) ctrlShow !_useFromMission;
 
@@ -32,6 +33,6 @@ private _useCustom = (_checkboxIdc isEqualTo IDC_TMF_ADMINMENU_ENDM_CUSTOM);
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM) cbSetChecked _useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_TITLE) ctrlEnable _useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_SUBTEXT) ctrlEnable _useCustom;
-(_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_ISVICTORY) ctrlEnable _useCustom;
+(_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_ISDEFEAT) ctrlEnable _useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LD) ctrlEnable !_useCustom;
 (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LD) ctrlShow !_useCustom;
