@@ -14,12 +14,13 @@ private _pfhRefresh = [{
     (_display displayCtrl IDC_TMF_ADMINMENU_DASH_RUNTIME) ctrlSetText format ["%1m %2s", round ((time - (time % 60)) / 60), round (time % 60)];
     (_display displayCtrl IDC_TMF_ADMINMENU_DASH_HEADLESS) ctrlSetText str (count entities "HeadlessClient_F");
 
-    private _ctrlCuratorCount = _display displayCtrl IDC_TMF_ADMINMENU_DASH_CURATORS;
-    private _curatorNames = (allCurators select {!isNull getAssignedCuratorUnit _x}) apply {name getAssignedCuratorUnit _x};
-    _ctrlCuratorCount ctrlSetText str (count _curatorNames);
-    if ((count _curatorNames) > 0) then {
-        _ctrlCuratorCount ctrlSetTooltip (_curatorNames joinString "\n");
+    private _ctrlCurators = _display displayCtrl IDC_TMF_ADMINMENU_DASH_CURATORS;
+    private _curatorNames = ((allCurators select {!isNull getAssignedCuratorUnit _x}) apply {name getAssignedCuratorUnit _x}) joinString ", ";
+    if (_curatorNames isEqualTo "") then {
+        _curatorNames = "none";
     };
+    _ctrlCurators ctrlSetText _curatorNames;
+    _ctrlCurators ctrlSetTooltip _curatorNames;
 
     private _liveUnits = allUnits;
     private _spectatorUnits = (entities QEGVAR(spectator,unit)) select {isPlayer _x};
