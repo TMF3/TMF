@@ -5,10 +5,6 @@ params ["_ctrlGroup"];
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
-
-// move faction listbox code to function
-
-
 private _ctrlCheckFaction = _display ctrlCreate ["RscCheckBox", -1, _ctrlGroup];
 GVAR(utilityTabControls) = [_ctrlCheckFaction];
 _ctrlCheckFaction ctrlSetPosition [0, 0, TMF_ADMINMENU_STD_WIDTH, TMF_ADMINMENU_STD_HEIGHT];
@@ -20,73 +16,11 @@ _ctrlLabelFaction ctrlSetPosition [TMF_ADMINMENU_STD_WIDTH, 0, (0.25 * _ctrlGrpW
 _ctrlLabelFaction ctrlCommit 0;
 _ctrlLabelFaction ctrlSetText "Change Faction";
 
-
 private _ctrlCheckFromMission = _display ctrlCreate ["RscCheckBox", -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlCheckFromMission;
 _ctrlCheckFromMission ctrlSetPosition [(2 * TMF_ADMINMENU_STD_WIDTH) + (0.25 * _ctrlGrpWidth), 0, TMF_ADMINMENU_STD_WIDTH, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlCheckFromMission ctrlCommit 0;
-_ctrlCheckFromMission ctrlAddEventHandler ["CheckedChanged", {
-    params ["_ctrlCheckBox", "_onlyPresent"];
-    GVAR(utility_assigngear_onlypresent) = [false, true] select _onlyPresent;
-
-    private _factions = [];
-
-    if (GVAR(utility_assigngear_onlypresent)) then {
-        _missionFactionsFound = [];
-        {
-            private _faction = _x getVariable [QEGVAR(assigngear,faction), ""];
-            if !(_faction isEqualTo "") then {
-                _missionFactionsFound pushBackUnique toLower _faction;
-            };
-        } forEach allPlayers;
-
-        {
-            private _displayName = getText (missionConfigFile >> "CfgLoadouts" >> _x >> "displayName");
-            private _fromMissionConfig = 1;
-            if (_displayName isEqualTo "") then {
-                _displayName = getText (configFile >> "CfgLoadouts" >> _x >> "displayName");
-                _fromMissionConfig = 0;
-            };
-
-            _factions pushBack [_displayName, _x, _fromMissionConfig];
-        } forEach _missionFactionsFound;
-    } else {
-        private _missionConfigFactions = [];
-        {
-            _missionConfigFactions pushBack toLower configName _x;
-            _factions pushBack [getText (_x >> "displayName"), configName _x, true];
-        } forEach ("true" configClasses (missionConfigFile >> "CfgLoadouts"));
-
-        {
-            if !((toLower configName _x) in _missionConfigFactions) then {
-                _factions pushBack [getText (_x >> "displayName"), configName _x, false];
-            };
-        } forEach ("true" configClasses (configFile >> "CfgLoadouts"));
-    };
-    
-    _factions sort true;
-
-    private _ctrlComboFaction = _ctrlCheckBox getVariable [QGVAR(association), controlNull];
-    {
-        _x params ["_displayName", "_className", "_fromMissionConfig"];
-        if (_isFromMissionConfig isEqualTo 1) then {
-            _displayName = format ["%1 [mission file]", _displayName];
-        };
-
-        _ctrlComboFaction lbAdd _displayName;
-        _ctrlComboFaction lbSetData [_forEachIndex, _className];
-        _ctrlComboFaction lbSetValue [_forEachIndex, _fromMissionConfig];
-    } forEach _factions;
-    
-    private _numFactions = count _factions;
-    while {lbSize _ctrlComboFaction > _numFactions} do {
-        _ctrlComboFaction lbDelete _numFactions;
-    };
-}];
-
-// ADD FACTIONS TO COMBO, ATTACH USER COUNT
-// ADD CHECK EH; SELECT ITEM 0 ?
-// TRIGGER EH BY SCRIPT ? (AFTER ADDING COMBO EH)
+_ctrlCheckFromMission ctrlAddEventHandler ["CheckedChanged", FUNC(modal_assignGear_listboxFactions)];
 
 private _ctrlLabelFromMission = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlLabelFromMission;
@@ -99,59 +33,13 @@ GVAR(utilityTabControls) pushBack _ctrlComboFaction;
 _ctrlComboFaction ctrlSetPosition [(0.1 * TMF_ADMINMENU_STD_WIDTH), (1.1 * TMF_ADMINMENU_STD_HEIGHT), _ctrlGrpWidth - (0.2 * TMF_ADMINMENU_STD_WIDTH), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlComboFaction ctrlCommit 0;
 _ctrlCheckFromMission setVariable [QGVAR(association), _ctrlComboFaction];
-_ctrlComboFaction ctrlAddEventHandler ["LBSelChanged", {
-    params ["_ctrlComboFaction", "_index"];
-    private _faction = _ctrlComboFaction lbData _index;
-
-    private _factionConfig = configNull;
-    if ((_ctrlComboFaction lbValue _index) isEqualTo 1) then {
-        _factionConfig = (missionConfigFile >> "CfgLoadouts" >> _faction);
-    } else {
-        _factionConfig = (configFile >> "CfgLoadouts" >> _faction);
-    };
-
-    private _roles = ("true" configClasses _factionConfig) apply {[format ["%1 [%2]", getText (_x >> "displayName"), configName _x], toLower configName _x]};
-    _roles sort true;
-    private _rolesSimple = _roles apply {_x select 1};
-    private _tickCheckbox = false;
-
-    {
-        (_x getVariable [QGVAR(association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
-
-        private _playerRole = toLower (_player getVariable [QEGVAR(assigngear,role), ""]);
-        if (_playerRole isEqualTo "" || !(_playerRole in _rolesSimple)) then {
-            _playerRole = "r";
-            _tickCheckbox = true;
-        };
-
-        while {(count _roles) < (lbSize _ctrlComboRole)} do {
-            _ctrlComboRole lbDelete ((lbSize _ctrlComboRole) - 1);
-        };
-
-        {
-            if (_forEachIndex >= (lbSize _ctrlComboRole)) then {
-                _ctrlComboRole lbAdd (_x select 0);
-            } else {
-                _ctrlComboRole lbSetText [_forEachIndex, _x select 0];
-            };
-
-            _ctrlComboRole lbSetData [_forEachIndex, _x select 1];
-            if ((_x select 1) isEqualTo _playerRole) then {
-                _ctrlComboRole lbSetCurSel _forEachIndex;
-            };
-        } forEach _roles;
-
-        if (_tickCheckbox) then {
-            _x cbSetChecked true;
-        };
-    } forEach GVAR(utility_assigngear_rolectrls);
-}];
+_ctrlComboFaction ctrlAddEventHandler ["LBSelChanged", FUNC(modal_assignGear_listboxRoles)];
 
 private _ctrlLabelBracketNumbers = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlLabelBracketNumbers;
 _ctrlLabelBracketNumbers ctrlSetPosition [0, (2.2 * TMF_ADMINMENU_STD_HEIGHT), _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlLabelBracketNumbers ctrlCommit 0;
-_ctrlLabelBracketNumbers ctrlSetText "Number in brackets tell how many players use the loadout. * denotes a mission config loadout.";
+_ctrlLabelBracketNumbers ctrlSetText "* denotes a mission config loadout. To change role, tick the adjacent checkbox.";
 
 private _ctrlLabelRoles = _display ctrlCreate [QGVAR(RscTextLarge), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlLabelRoles;
@@ -185,10 +73,6 @@ private _ctrlCheckChangeX = _ctrlGrpRolesWidth - TMF_ADMINMENU_STD_WIDTH;
     _ctrlComboRole ctrlSetPosition [_ctrlComboRoleX, _ctrlLineY, _ctrlComboRoleW, TMF_ADMINMENU_STD_HEIGHT];
     _ctrlComboRole ctrlCommit 0;
 
-    // ADD ROLES
-    // SELECT ROLE OR RIFLEMAN IF UNDEF
-    // ADD COMBO SELECT EH: TICK CHECKBOX
-
     private _ctrlCheckChange = _display ctrlCreate ["RscCheckBox", -1, _ctrlGrpRoles];
     GVAR(utilityTabControls) pushBack _ctrlCheckChange;
     GVAR(utility_assigngear_rolectrls) pushBack _ctrlCheckChange;
@@ -217,6 +101,9 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
         private _playerRole = _player getVariable [QEGVAR(assigngear,role), ""];
         if (cbChecked _x || _playerRole isEqualTo "") then {
             _playerRole = _ctrlComboRole lbData (lbCurSel _ctrlComboRole);
+            if (_playerRole isEqualTo "") then {
+                _playerRole = "r";
+            };
         };
 
         private _playerFaction = _player getVariable [QEGVAR(assigngear,faction), ""];
@@ -229,3 +116,5 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
 
     systemChat format ["[TMF Admin Menu] Assigned gear to %1 players", count GVAR(utility_assigngear_rolectrls)];
 }];
+
+[_ctrlCheckFromMission, false] call FUNC(modal_assignGear_listboxFactions);

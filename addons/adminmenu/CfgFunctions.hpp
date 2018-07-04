@@ -38,7 +38,9 @@ class CfgFunctions {
             class modalOnLoad;
             class modalOnUnload;
             class modalState;
-            class modal_assigngear;
+            class modal_assignGear;
+            class modal_assignGear_listboxFactions;
+            class modal_assignGear_listboxRoles;
             class modal_message;
             class modal_runCode;
             class modal_steamProfile;
