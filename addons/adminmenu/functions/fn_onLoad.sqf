@@ -21,11 +21,45 @@ _notesPos set [3, ctrlTextHeight _ctrlMissionNotes];
 _ctrlMissionNotes ctrlSetPosition _notesPos;
 _ctrlMissionNotes ctrlCommit 0;
 
-private _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_DASH_SPECTATORTALK;
-_ctrl cbSetChecked ([] call acre_api_fnc_isSpectator);
-_ctrl ctrlAddEventHandler ["CheckedChanged", {[[false, true] select (param [1])] call acre_api_fnc_setSpectator;}];
+private _ctrlCheckSafestart = _display displayCtrl IDC_TMF_ADMINMENU_DASH_SAFESTART;
+(entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
+if (isNull _safestartModule) then {
+    _ctrlCheckSafestart cbSetChecked false;
+} else {
+    _ctrlCheckSafestart cbSetChecked (_safestartModule getVariable [QEGVAR(safestart,enabled), false]);
+};
 
-_ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
+_ctrlCheckSafestart ctrlAddEventHandler ["CheckedChanged", {
+    (entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
+
+    if ((param [1]) isEqualTo 0) then {
+        if (!isNull _safestartModule) then {
+            [_safestartModule] call EFUNC(safestart,end);
+        };
+    } else {
+        if (isNull _safestartModule) then {
+            _safestartModule = call EFUNC(safestart,create);
+        };
+
+        _safestartModule setVariable ["Duration", -1, true];
+        [_safestartModule, allUnits, true] remoteExecCall [QEFUNC(safestart,serverInit), 2];
+    };
+}];
+
+private _ctrlCheckSpectatorTalk = _display displayCtrl IDC_TMF_ADMINMENU_DASH_SPECTATORTALK;
+_ctrlCheckSpectatorTalk cbSetChecked ([player] call acre_api_fnc_isSpectator);
+if (alive player) then {
+    _ctrlCheckSpectatorTalk ctrlAddEventHandler ["CheckedChanged", {
+        params ["", "_state"];
+        [_state isEqualTo 1] call acre_api_fnc_setSpectator;
+        systemChat format ["[TMF Admin Menu] Spectator talk toggled %1", ["off", "on"] select _state];
+    }];
+} else {
+    _ctrlCheckSpectatorTalk ctrlEnable false;
+    _ctrlCheckSpectatorTalk ctrlSetTooltip "Can't toggle when in spectator yourself.";
+};
+
+private _ctrl = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
 {
     _ctrl lbAdd _x;
 } forEach ["Alive and Dead", "Alive", "Dead"];
