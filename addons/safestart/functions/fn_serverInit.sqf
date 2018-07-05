@@ -25,16 +25,22 @@ if(_activated) then {
 
     // if we dont have a duration set, we have to disable it manually
     if(_duration > 0) then {
-        [{
-            params ["_params"];
+        _condition = {
+            params ["_params","_handle"];
             _params params ["_logic"];
             _duration = _logic getVariable ["Duration",-1];
             if(_duration > 0) then {
                 _duration = _duration - 1;
-            } else {
-              [_logic] call FUNC(serverEnd);
+                _logic setVariable ["Duration",_duration];
             };
-            _logic setVariable ["Duration",_duration];
-        },1,[_logic]] call CBA_fnc_addPerFrameHandler;
-    };
+            if(_duration <= 0 || !(_logic getVariable [QGVAR(enabled),false])) then {
+                [_handle] call CBA_fnc_removePerFrameHandler;
+                [_logic] call FUNC(serverEnd);
+            };
+        };
+        [_condition,1,[_logic]] call CBA_fnc_addPerFrameHandler;
+    } else {
+        [{ !((_this select 0) getVariable [QGVAR(enabled),false]) },{[] call FUNC(serverEnd)},[_logic]] call CBA_fnc_waitUntilAndExecute;
+    }
 };
+
