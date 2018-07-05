@@ -37,7 +37,9 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_DASH_ARSENAL;
         text = "Arsenal";
-        onButtonClick = "if (player isKindOf 'CAManBase') then {(ctrlParent param [0]) closeDisplay 1; ['Open', true] spawn BIS_fnc_arsenal;} else {systemChat '[TMF Admin Menu] Player object not compatible with Arsenal';};";
+        tooltip = "ACE Arsenal. Hold Shift to open vanilla Arsenal.";
+        onButtonClick = "";
+        onMouseButtonClick = "if (player isKindOf 'CAManBase' && alive player) then {(ctrlParent param [0]) closeDisplay 1; if (!param [4]) then {[player, player, true] call ACE_arsenal_fnc_openBox;} else {['Open', true] spawn BIS_fnc_arsenal;};} else {systemChat '[TMF Admin Menu] Player object not compatible with Arsenal';};";
         y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
 
@@ -201,6 +203,8 @@ class Controls
             class TextMissionNotes: RscStructuredText
             {
                 idc = IDC_TMF_ADMINMENU_DASH_MISSIONNOTES;
+                size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+                sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
                 x = "0";
                 y = "0";
                 w = "14.9 * (((safezoneW / safezoneH) min 1.2) / 40)"; // Margin for vertical scrollbar
