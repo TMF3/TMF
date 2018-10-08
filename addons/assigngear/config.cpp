@@ -33,4 +33,6 @@ class RscDisplayArsenal
 #include "CfgFunctions.hpp"
 #include "CfgLoadouts.hpp"
 #include "Cfg3DEN.hpp"
+#include "CfgFaceSets.hpp"
 #include "display3DEN.hpp"
+

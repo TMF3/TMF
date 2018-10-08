@@ -46,6 +46,26 @@ private _fncTestUnit = {
         [_goggles, _cfgGlasses] call _fnc_checkExists;
         private _hmd = GETGEAR("hmd"); // "CfgGlasses"
         [_hmd, _cfgWeapons] call _fnc_checkExists;
+
+        // Test faces;
+        private _faces = GETGEAR("faces");
+        private _validFaces = uiNamespace getVariable ["tmf_assignGear_validFaces",[]];
+
+        {
+            private _face = toLower _x;
+             if ((_face find "faceset:") isEqualTo 0) then {
+                private _facesetName = _face select [8];
+                private _array = uiNamespace getVariable ["tmf_assignGear_faceset_" + _facesetName,0];
+                if (_array isEqualTo 0) then {
+                     _output pushBack [0,format["Invalid faceset: %1 (for: %2 - %3)", _face,_faction,_role]];  
+                };
+            } else {
+                if (!(_face in _validFaces)) then {
+                    _output pushBack [0,format["Invalid face classname: %1 (for: %2 - %3)", _face,_faction,_role]];  
+                };
+            };
+        } forEach _faces;
+
         // Get primary weapon and items
         private _primaryWeapon = GETGEAR("primaryWeapon"); //CfgWeapons"
         [_primaryWeapon, _cfgWeapons] call _fnc_checkExists;
