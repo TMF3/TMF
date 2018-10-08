@@ -44,7 +44,6 @@ class Cfg3DEN
                             //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
                             control = "TMF_autoTest_missionName";
                             defaultValue = "true";
-                            condition = "true";
                         };
                         class TMF_AutoTest_MissionSummary
                         {
@@ -53,7 +52,6 @@ class Cfg3DEN
                             tooltip = "Checks a mission description has been set. Throws a warning if it does not include the word slot, as you may have forgotten slotting instructions.";
                             control = "TMF_autoTest_missionSummary";
                             defaultValue = "true";
-                            condition = "true";
                         };
                         class TMF_AutoTest_Author
                         {
@@ -62,7 +60,6 @@ class Cfg3DEN
                             tooltip = "Checks the author field has your arma profile in it.";
                             control = "TMF_autoTest_Author";
                             defaultValue = "true";
-                            condition = "true";
                         };
                         class TMF_AutoTest_MinPlayer
                         {
@@ -71,7 +68,6 @@ class Cfg3DEN
                             //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
                             control = "TMF_autoTest_minPlayer";
                             defaultValue = "true";
-                            condition = "true";
                         };
                         class TMF_AutoTest_MaxPlayer
                         {
@@ -80,7 +76,6 @@ class Cfg3DEN
                             //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
                             control = "TMF_autoTest_maxPlayer";
                             defaultValue = "true";
-                            condition = "true";
                         };
                         class TMF_AutoTest_Test
                         {
@@ -89,7 +84,6 @@ class Cfg3DEN
                             //tooltip = "Create briefing section that contains a list of all equipment of everyone in the players group and theirself.";
                             control = "TMF_autoTest_Test";
                             defaultValue = "true";
-                            condition = "true";
                         };
                     };
                 };
