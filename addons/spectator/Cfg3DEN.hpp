@@ -21,7 +21,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "true";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                         };
                         class TMF_Spectator_AllowFollowCam
                         {
@@ -31,7 +31,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "true";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                         };
                         class TMF_Spectator_AllowFreeCam
                         {
@@ -41,7 +41,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "true";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                         };
                         class TMF_Spectator_AllowFPCam
                         {
@@ -51,7 +51,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "true";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                         };
                     };
                 };
