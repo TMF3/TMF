@@ -24,7 +24,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "true";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                         };
                         class TMF_Debug_Diag_log
                         {
@@ -34,7 +34,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "true";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                         };
                         class TMF_Debug_SystemChat
                         {
@@ -44,7 +44,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             expression = "true";
                             defaultValue = "false";
-                            condition = "true";
+                            condition = "1";
                         };
                     };
                 };
@@ -84,7 +84,7 @@ class Cfg3DEN
                                 };\
                             ";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1  ";
                         };
                     };
                 };

@@ -191,7 +191,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_ORBAT_Tracker',_value];";
                             tooltip = "Use this option to disable elements of the ORBAT being displayed on the map.";
                             defaultValue = false;
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                         class TMF_ORBATTrackerCondition
@@ -202,7 +202,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_ORBAT_Tracker',_value];";
                             tooltip = "[Advanced] Use this text box to specify a code condition to evaluate to check if the orbat should be drawn. Must return a boolean. e.g. ('ItemGPS' in (assignedItems player)). Do not edit this if you do understand this description. Default value: true";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                         class TMF_ORBATMarkersFT
@@ -213,7 +213,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_ORBAT_MarkersFT',_value];";
                             tooltip = "Use this option to disable drawing members of the current player's fireteam on the map.";
                             defaultValue = false;
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                         class TMF_ORBATMarkersFT_Directional
@@ -224,7 +224,7 @@ class Cfg3DEN
                             expression = "missionNamespace setVariable ['TMF_ORBAT_MarkersFT_Directional',_value,true];";
                             tooltip = "Set whether fireteam map markers are directional or not.";
                             defaultValue = false;
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                         class TMF_ORBATSettings
@@ -234,7 +234,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_ORBAT_Array',_value];";
                             tooltip = "";
                             defaultValue = "[]";
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                         class TMF_ORBATRenameFakeAttribute
@@ -243,7 +243,7 @@ class Cfg3DEN
                             control = "TMF_ORBAT_Renamer";
                             tooltip = "";
                             defaultValue = "true";
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                     };

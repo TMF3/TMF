@@ -42,7 +42,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_Briefing_Loadout',_value];";
                             defaultValue = "false";
-                            condition = "true";
+                            condition = "1";
                         };
                         class TMF_Briefing
                         {
@@ -52,7 +52,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_BriefingArray',_value];";
                             //tooltip = "How much should terrain affect radio signal strength? (0 disables)";
                             defaultValue = "[]";
-                            condition = "true";
+                            condition = "1";
                         };
                     };
                 };

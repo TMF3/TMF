@@ -16,7 +16,7 @@ class RscText;
 
 class cfgScriptPaths 
 {
-    TMF_acre2 = "x\tmf\addons\acre2\ui_scripts\";
+    TMF_acre2 = "x\tmf\addons\acre2\ui_scripts\"; //"
 };
 
 class Cfg3DEN
@@ -43,7 +43,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_NetworkEnabled',_value];";
                             tooltip = "Enable the custom ACRE network and channel feature. Configure this in the 'Radios' section below. If disabled the below networks and channels will not be created.";
                             defaultValue = false;
-                            condition = "true";
+                            condition = "1";
                         };
                         class Babel_Enabled
                         {
@@ -53,7 +53,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_BabelEnabled',_value];";
                             tooltip = "Enable ACRE's Babel feature? Configure this is in the next section";
                             defaultValue = false;
-                            condition = "true";
+                            condition = "1";
                         };
                         class Action_Radios
                         {
@@ -63,7 +63,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_AcreAddRadioActions',_value];";
                             tooltip = "These radios will be available for selection (via scroll wheel action) for the first 5 minutes after the player has spawned.";
                             defaultValue = "['ACRE_PRC343','ACRE_PRC148']";
-                            condition = "true";
+                            condition = "1";
                         };
                     };
                 };
@@ -80,7 +80,7 @@ class Cfg3DEN
                             //expression = "missionNamespace setVariable ['TMF_BabelArray',_value];";
                             tooltip = "";
                             defaultValue = "[]";
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                     };
@@ -100,7 +100,7 @@ class Cfg3DEN
                             tooltip = "";
                             //expression = "missionNamespace setVariable ['TMF_RadioArray', _value];";
                             defaultValue = "[]";
-                            condition = "true";
+                            condition = "1";
                             wikiType = "[[String]]";
                         };
                     };
