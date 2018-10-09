@@ -63,6 +63,9 @@ class GVAR(garrisonQuantity) : Module_F
     isTriggerActivated = 1;
     isDisposable = 0; // broken in EDEN;
     canSetArea=1;
+    class EventHandlers {
+        init = "if(isServer && !is3DEN) then {[{_this call tmf_AI_fnc_garrisonQuantity;}, [_this select 0,[],false]] call CBA_fnc_execNextFrame;};_this call bis_fnc_moduleInit;";
+    };
     class AttributeValues {
         size3[] = {20, 20, -1};
         IsRectangle = 1;

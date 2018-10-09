@@ -1,3 +1,4 @@
+if(is3DEN) exitWith {};
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
 
