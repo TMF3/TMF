@@ -18,7 +18,7 @@ class baseMan {// Weaponless baseclass
     goggles[] = {"default"};
     hmd[] = {};
     // Leave empty to remove all. "Default" > leave original item.
-    faces[] = {};
+    faces[] = {"faceset:greek"};
     // Leave empty to not change faces.
 
     // All randomized
