@@ -21,20 +21,16 @@ if(!GVAR(playersOnly)) then {
     _newGroups = (allGroups select {side _x in tmf_spectator_sides && {alive _x && {{isPlayer _x || _x in playableUnits} count (units _x) > 0}} count units _x > 0 }) - GVAR(groups);
 };
 
-// check if any new groups appeard
-if((count _newGroups) > 0) then {
-
-    private _grps = (GVAR(groups)+_newGroups);
-    //Reset/redraw all.
-    tvClear _unitListControl;
-    GVAR(groups) = [];
-    //Remove AI
-    if (GVAR(playersOnly)) then { _grps = _grps select {{isPlayer _x || _x in playableUnits} count (units _x) > 0}; };
-    // create tee nodes
-    {
-        [_x] call FUNC(createGroupNode);
-    } forEach _grps;
-};
+private _grps = (GVAR(groups)+_newGroups);
+//Reset/redraw all.
+tvClear _unitListControl;
+GVAR(groups) = [];
+//Remove AI
+if (GVAR(playersOnly)) then { _grps = _grps select {{isPlayer _x || _x in playableUnits} count (units _x) > 0}; };
+// create tee nodes
+{
+    [_x] call FUNC(createGroupNode);
+} forEach _grps;
 
 private _deadGroups = [];
 {

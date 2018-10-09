@@ -221,16 +221,19 @@ switch true do {
           };
       };
   };
-  case (_key == GVAR(mute_key)) : {
-      if(_type == KEYDOWN && (GVAR(modifiers_keys)) isEqualTo (GVAR(mute_modifers))) then {
-          [] call acre_sys_core_fnc_toggleHeadset;
-      };
-  };
-  case (_key == DIK_T && _type == KEYDOWN): {
-      GVAR(tracers) = !GVAR(tracers);
-      _message = "Tracers have been toggled off";
-      if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
-  };
+    case (_key == GVAR(mute_key)) : {
+        if(_type == KEYDOWN && (GVAR(modifiers_keys)) isEqualTo (GVAR(mute_modifers))) then {
+            [] call acre_sys_core_fnc_toggleHeadset;
+        };
+    };
+    case (_key == DIK_T && _type == KEYDOWN): {
+        GVAR(tracers) = !GVAR(tracers);
+        _message = "Tracers have been toggled off";
+        if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
+    };
+    case (_key == DIK_K && _type == KEYDOWN): {
+        GVAR(bulletTrails) = !GVAR(bulletTrails);
+    };
     case (_key == DIK_SPACE && _type == KEYDOWN) : {
         if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {}; // camrea mode disabled
         if(GVAR(mode) == FOLLOWCAM || GVAR(mode) == FIRSTPERSON) then {
@@ -246,14 +249,14 @@ switch true do {
             GVAR(followcam_angle) = [(getDir GVAR(camera) + 180) mod 360,(_pitch+180) mod 360];
         };
     };
-  case (_key == DIK_U && _type == KEYDOWN) : {
-    [] call FUNC(toggleUI);
-  };
-  case (_key in actionKeys "Chat") : {
-    _done = false;
-  };
+    case (_key == DIK_U && _type == KEYDOWN) : {
+        [] call FUNC(toggleUI);
+    };
+    case (_key in actionKeys "Chat") : {
+        _done = false;
+    };
     case (_key == DIK_P && _type == KEYDOWN) : {
-      _time = ([serverTime,true] call CFUNC(secondsToTime));
+      _time = ([missionStart,true] call CFUNC(secondsToTime));
       systemChat format["Mission time: %1:%2:%3",_time select 0,_time select 1,_time select 2];
   };
   case (_key in (actionKeys "curatorInterface") && _type == KEYDOWN): {

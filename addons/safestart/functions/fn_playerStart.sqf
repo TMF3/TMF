@@ -7,7 +7,7 @@ player allowDamage false;
 ace_advanced_throwing_enabled = false;
 
 // Add action to hijack shooting!
-private _action = player addAction ["", {playSound3D ['a3\sounds_f\weapons\Other\dry9.wss', _this select 0]; 5412 cutRsc [QGVAR(refusefire),"PLAIN"]; }, "", 0, false, true, "DefaultAction", "true"];
+private _action = player addAction ["", {5412 cutRsc [QGVAR(refusefire),"PLAIN"]; }, "", 0, false, true, "DefaultAction", "true"];
 
 // show safestart indicator
 DIALOG_IDD cutRsc [QGVAR(dialog),"PLAIN"];
@@ -17,7 +17,7 @@ _code = {
   deleteVehicle (_this select 6);
   if((_this select 1) == "Throw") then {
     player addMagazine (_this select 5);
-    playSound3D ['a3\sounds_f\weapons\Other\dry9.wss', _this select 0];
+  
     5412 cutRsc [QGVAR(refusefire),"PLAIN"];
   };
 };
@@ -27,7 +27,7 @@ _eh = player addEventHandler ["fired",_code];
 
 // save to player object
 player setVariable [QGVAR(firedEH),_eh];
-player setVariable [QGVAR(action),_action];
+player setVariable [QGVAR(disableAction),_action];
 
 if(_duration > 0) then {
     while {_duration > 0 && _logic getVariable [QGVAR(enabled),false] } do {

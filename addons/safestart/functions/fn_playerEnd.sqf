@@ -1,8 +1,7 @@
 #include "\x\tmf\addons\safeStart\script_component.hpp"
 
-
 private _eh = player getVariable [QGVAR(firedEH),-1];
-private _action = player getVariable [QGVAR(action),-1];
+private _action = player getVariable [QGVAR(disableAction),-1];
 
 if(_eh == -1 || _action == -1) exitWith {
     // do some form of error logging here ;D

@@ -17,7 +17,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
         _vehicles = [];
         { if(vehicle _x != _x) then {_vehicles pushBackUnique (vehicle _x)}; } foreach units _x;
         private _units = (units _x select {vehicle _x == _x}) apply {[typeof _x,getposATL _x,getDir _x,getUnitLoadout _x]};
-        private _vehicles  = _vehicles apply {[typeof _x,getposATL _x,getDir _x,crew _x apply {[typeof _x,getpos _x,getUnitLoadout _x]}]};
+        private _vehicles  = _vehicles apply {[typeof _x,getposATL _x,getDir _x,[_x] call BIS_fnc_getVehicleCustomization,crew _x apply {[typeof _x,getpos _x,getUnitLoadout _x]}]};
         [side _x,_units ,_vehicles,[_x] call CFUNC(serializeWaypoints)];
     };
 
@@ -40,3 +40,4 @@ if(_activated) then {
     private _delay = _logic getVariable ["Delay",0];
     [FUNC(spawnWave),[_logic],_delay] call CBA_fnc_waitAndExecute;
 };
+
