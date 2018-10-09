@@ -8,6 +8,8 @@ class baseMan {// Weaponless baseclass
     goggles[] = {"default"};
     hmd[] = {};
     // Leave empty to remove all. "Default" > leave original item.
+    faces[] = {"faceset:persian"};
+    // Leave empty to not change faces.
 
     // All randomized
     primaryWeapon[] = {};
@@ -72,7 +74,7 @@ class car : r
     displayName = "Carabinier";
     primaryWeapon[] = {"arifle_Katiba_C_F"};
 };
-class m : car 
+class m : car
 {
     displayName = "Medic";
 };
