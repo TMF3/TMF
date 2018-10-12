@@ -181,7 +181,7 @@ private _fncTestUnit = {
 
         //Mag check 
         if (count _primaryWeapon > 0) then {
-            private _weaponMags = getArray (_cfgWeapons >> (_primaryWeapon select 0) >> "magazines");
+            private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount < 3) then {
@@ -190,7 +190,7 @@ private _fncTestUnit = {
         };
         
         if (count _sidearmWeapon > 0) then {
-            private _weaponMags = getArray (_cfgWeapons >> (_sidearmWeapon select 0) >> "magazines");
+            private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount == 0) then {
