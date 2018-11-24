@@ -84,17 +84,6 @@ private _cfgWeapons = configFile >> "CfgWeapons";
             };
             _weaponText = _weaponText + format["<br/>%1",getText( _cfg >> "displayname")];
 
-            // Check for grenadier rifles
-            /*private _muzzles = getArray(_cfg >> "muzzles");
-            _muzzles = _muzzles apply {toLower _x};
-            private _subClasses = [_cfg,0,true] call BIS_fnc_returnChildren;
-            _subClasses = _subClasses select {"GrenadeLauncher" in ([_x,true] call BIS_fnc_returnParents)};
-            _subClasses = _subClasses apply {configName _x};
-            _subClasses = _subClasses select {(toLower _x) in _muzzles};
-            {
-                _weaponText = _weaponText + "<br/> <img image='\A3\ui_f\data\igui\cfg\weaponicons\GL_ca.paa' height='16'/> UGL";
-            } forEach _subClasses;*/
-
             // Get weapon icon
             private _icon = getText(_cfg >> "picture");
             if (_icon find ".paa" == -1) then { _icon = _icon + ".paa"};
@@ -117,7 +106,6 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                 _weaponText = _weaponText + format ["<br/>          %1 [%2]", getText (configFile >> "CfgMagazines" >> (_x select 0) >> "displayName"), _x select 1];
             } forEach _weaponMags;
 
-
             // underbarrel gl
             private _muzzles = getArray(_cfg >> "muzzles");
             (
@@ -134,7 +122,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
             };
         } forEach _weapons;
         _weaponText = _weaponText + "<br/>";
-        _visText = _visText + "<br/>";
+        _visText = _visText;
     };
 
     // All magazines not tied to weapons (grenades etc.)
@@ -144,18 +132,29 @@ private _cfgWeapons = configFile >> "CfgWeapons";
             _otherText = _otherText + format["%1 [%2]<br/>",getText(_cfgMagazines >> (_x select 0) >> "displayName"),_x select 1];
         } forEach _mags;
     };
-    _visText = _visText + "<br/>" + _magVisText + "<br/>";
+    _visText = _visText + _magVisText;
 
     // Gear
     _gearText = _gearText + "<br/><font size='18'>GEAR</font><br/>";
     if !((uniform _unit) isEqualTo "") then {
-        _gearText = _gearText + format ["Uniform: %1 [%2", getText (configFile >> "CfgWeapons" >> (uniform _unit) >> "displayName"), round (100 * loadUniform _unit)] + "% full]<br/>";
+        _gearText = _gearText + format ["<font color='#cccccc'>Uniform:</font> %1 [%2", getText (configFile >> "CfgWeapons" >> (uniform _unit) >> "displayName"), round (100 * loadUniform _unit)] + "% full]<br/>";
     };
     if !((vest _unit) isEqualTo "") then {
-        _gearText = _gearText + format ["Gear: %1 [%2", getText (configFile >> "CfgWeapons" >> (vest _unit) >> "displayName"), round (100 * loadVest _unit)] + "% full]<br/>";
+        _gearText = _gearText + format ["<font color='#cccccc'>Gear:</font> %1 [%2", getText (configFile >> "CfgWeapons" >> (vest _unit) >> "displayName"), round (100 * loadVest _unit)] + "% full]<br/>";
     };
     if !((backpack _unit) isEqualTo "") then {
-        _gearText = _gearText + format ["Backpack: %1 [%2", getText (configFile >> "CfgVehicles" >> (backpack _unit) >> "displayName"), round (100 * loadBackpack _unit)] + "% full]<br/>";
+        _gearText = _gearText + format ["<font color='#cccccc'>Backpack:</font> %1 [%2", getText (configFile >> "CfgVehicles" >> (backpack _unit) >> "displayName"), round (100 * loadBackpack _unit)] + "% full]<br/>";
+    };
+    if !((headgear _unit) isEqualTo "") then {
+        _gearText = _gearText + format ["<font color='#cccccc'>Head:</font> %1<br/>", getText (configFile >> "CfgWeapons" >> (headgear _unit) >> "displayName")];
+    };
+    if !((hmd _unit) isEqualTo "") then {
+        _gearText = _gearText + format ["<font color='#cccccc'>NVG:</font> %1<br/>", getText (configFile >> "CfgWeapons" >> (hmd _unit) >> "displayName")];
+        _visText = _visText + "<img image='" + getText (configFile >> "CfgWeapons" >> (hmd _unit)  >> "picture") + "' height=48 />";
+    };
+    if !((binocular _unit) isEqualTo "") then {
+        _gearText = _gearText + format ["<font color='#cccccc'>Binocular:</font> %1<br/>", getText (configFile >> "CfgWeapons" >> (binocular _unit) >> "displayName")];
+        _visText = _visText + "<img image='" + getText (configFile >> "CfgWeapons" >> (binocular _unit)  >> "picture") + "' height=48 />";
     };
 
     // Misc. Items
