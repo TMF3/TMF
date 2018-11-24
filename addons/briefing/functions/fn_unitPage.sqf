@@ -159,7 +159,8 @@ private _cfgWeapons = configFile >> "CfgWeapons";
     };
 
     // Misc. Items
-    if (count _items > 0) then {
+    private _assignedItems = assignedItems _unit - [binocular _unit, hmd _unit];
+    if (count _items > 0 || count _assignedItems > 0) then {
         _itemText = _itemText + "<br/><font size='18'>ITEMS</font><br/>";
         {
             _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_unChecked_ca.paa' height='16'/>%1 [%2]<br/>",getText (_cfgWeapons >> _x select 0 >> "displayName"),_x select 1];
@@ -169,10 +170,13 @@ private _cfgWeapons = configFile >> "CfgWeapons";
             };
         } forEach _items;
 
+        private _filter = ["ItemWatch", "ItemMap", "ItemCompass"];
         {
             _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_checked_ca.paa' height='16'/>%1<br/>",getText (_cfgWeapons >> _x >> "displayName")];
-            _visText = _visText + format["<img image='%1' height=48 />",getText(_cfgWeapons >> _x >> "picture")];
-        } forEach assignedItems _x;
+            if !(_x in _filter) then {
+                _visText = _visText + format["<img image='%1' height=48 />",getText(_cfgWeapons >> _x >> "picture")];
+            };
+        } forEach _assignedItems;
 
         _itemText = _itemText + "<br/><img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_checked_ca.paa' height='16'/>Indicates an equipped item.";
     };
