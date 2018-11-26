@@ -13,7 +13,7 @@
  * Will set a units insignia to a randomly chosen one from the supplied list.
  * 
  * Note:
- * This is a modified version of TMF_assignGear_fnc_setFace (Made by Nick)
+ * Thanks @Bear and @Nick for helping
  */
  #include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_insignias"];
