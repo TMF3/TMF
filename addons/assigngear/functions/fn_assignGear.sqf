@@ -136,6 +136,7 @@ private _backpackItems = GETGEAR("backpackItems");
 private _code = GETGEAR("code");
 private _faces = GETGEAR("faces");
 private _traits = GETGEAR("traits");
+private _insignias = GETGEAR("insignias");
 
 
 // Strip unit
@@ -184,6 +185,9 @@ else {
 
 // Set Face
 [_unit,_faces] call FUNC(setFace);
+
+// Set insignia
+[_unit,_insignias] call FUNC(setInsignia);
 
 // Execute code statement
 if ((count _code) > 0) then {_unit call compile _code};
