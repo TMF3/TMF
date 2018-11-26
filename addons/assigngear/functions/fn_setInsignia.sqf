@@ -22,7 +22,7 @@ private _insignia = "";
 if (isNil "_unit" || isNil "_insignias") exitWith {};
 
 if (count _insignias > 0) then {
-    private _unitInsignia = toLower (face _unit);
+    private _unitInsignia = toLower ([_unit] call BIS_fnc_GetUnitInsignia);
     private _found = false;
 
     if (!_found) then {
