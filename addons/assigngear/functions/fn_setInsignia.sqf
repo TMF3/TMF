@@ -17,11 +17,9 @@
  */
  #include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_insignias"];
-private _insignia = "";
 
 if (isNil "_unit" || isNil "_insignias") exitWith {};
 
 if (count _insignias > 0) then {
     [_unit, selectRandom _insignias] call BIS_fnc_setUnitInsignia;
 };
-//_insignia
