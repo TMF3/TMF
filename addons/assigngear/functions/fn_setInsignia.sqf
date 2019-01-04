@@ -18,8 +18,20 @@
  #include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_insignias"];
 
-if (isNil "_unit" || isNil "_insignias") exitWith {};
+if (isNil "_insignias" || {(count _insignias) isEqualTo 0} || {isNil "_unit"}) exitWith {};
 
-if (count _insignias > 0) then {
+if (time > 5 || {is3DEN}) then
+{
     [_unit, selectRandom _insignias] call BIS_fnc_setUnitInsignia;
+}
+else
+{
+    // Wait until game has started to overwrite player insignias
+    [_unit, _insignias] spawn
+    {
+        params ["_unit", "_insignias"];
+        // Needs a delay for units to load in before applying insignia
+        waitUntil {time > 5};
+        [_unit, selectRandom _insignias] call BIS_fnc_setUnitInsignia;
+    };
 };
