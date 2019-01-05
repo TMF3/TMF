@@ -31,7 +31,7 @@ private _fnc_checkExists_insignia = {
     {
         if ((_x != "") and (_x != "default")) then {
             if !(isClass (configFile >> "CfgUnitInsignia" >> _x) || {isClass (missionConfigFile >> "CfgUnitInsignia" >> _x)}) then {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];  
+                _output pushBack [0,format["Missing insignia classname: %1 (for: %2 - %3)", _x,_faction,_role]];  
             };
         };
     } forEach _insignias;
