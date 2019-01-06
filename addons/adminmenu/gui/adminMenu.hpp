@@ -14,6 +14,9 @@ class RscEditMulti: RscEdit {};
 class RscPicture;
 class RscToolbox;
 class RscStructuredText;
+class RscControlsTable;
+class RscMapControl;
+
 
 class GVAR(RscButtonMenu): RscButtonMenu {
     style = "0x02 + 0x0C";
@@ -25,6 +28,14 @@ class GVAR(RscButtonMenu): RscButtonMenu {
 
 class GVAR(RscText): RscText {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+};
+
+class GVAR(RscSpectatorControlTableText): RscText {
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    w = (6/10) * TMF_ADMINMENU_RESP_W_COL1;
+    x = 0;
+    y = 0;
 };
 
 class GVAR(RscTextLarge): RscText {
@@ -234,3 +245,29 @@ class ADDON
 };
 
 #include "modal.hpp"
+
+
+
+class GVAR(respawnMapDialog) {
+    idd = IDC_TMF_ADMINMENU_RESP_MAP_DISPLAY;
+    movingEnable = 0;
+    class controlsBackground { 
+    };
+    class objects { 
+    };
+    class controls { 
+        class FullRespawnMap : RscMapControl
+        {
+            idc = IDC_TMF_ADMINMENU_RESP_MAP_CONTROL;
+            type = 100;
+            x = 0 * safezoneW + safezoneX;
+            y = 0 * safezoneH + safezoneY;
+            w = 1 * safezoneW;
+            h = 1 * safezoneH;
+            onDraw = QUOTE(_this call FUNC(respawn_mapDrawIcons));
+            onSetFocus = QUOTE(_this spawn FUNC(respawn_mapLoaded)); //"['respawnMapLoaded'] spawn tmf_respawn_fnc_handleRespawnUI";
+            onMouseButtonDown = QUOTE(_this spawn FUNC(respawn_mapClick)); //"['respawnMap_onMouseButtonDown',_this] spawn tmf_respawn_fnc_handleRespawnUI";
+            onKeyUp = QUOTE(_this spawn FUNC(respawn_mapKeyUp)); //"['respawnMap_keyUp',_this] spawn tmf_respawn_fnc_handleRespawnUI";
+        };
+    };
+};
