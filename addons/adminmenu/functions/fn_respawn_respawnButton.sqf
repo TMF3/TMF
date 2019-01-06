@@ -18,9 +18,9 @@ private _markerColor =lbCurSel (_display displayCtrl IDC_TMF_ADMINMENU_RESP_MARK
 
 private _useMarker = cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_RESP_GROUPMARKERCHECKBOX);
 if (!_useMarker) then { //GVAR(respawnGroupMarkerCheckBoxVal)
-	_markerType = -1;  
+    _markerType = -1;  
 }; 
-		
+        
 // Hand over control to the map dialog.
 closeDialog IDD_TMF_ADMINMENU;
 createDialog QGVAR(respawnMapDialog);
