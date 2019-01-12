@@ -278,7 +278,7 @@ if (!isNil QGVAR(respawnGroupMarkerCheckBoxVal)) then {
     //Recompute who is alive and Dead.
     
     private _deadList = [];
-    if ((!isMultiplayer) or (isMultiplayer and isServer)) then {
+    if (!isMultiplayer) then {
         _deadList append allUnits;
     } else {
         {
