@@ -26,7 +26,7 @@ params ["_groupName", "_position", "_faction", "_selectedRespawnGroup", "_marker
       _typeOfUnit,
       _rank,
       GVAR(serverRespawnPlayerCounter),
-      _leader,_halo,_side],
+      _leader,_halo,_side,_groupName],
       "tmf_respawn_fnc_respawnLocalClient", _client] call BIS_fnc_MP;
     
     //Setup respawned player to die if he disconnects?
@@ -58,12 +58,6 @@ GVAR(serverRespawnGroupCounter) = GVAR(serverRespawnGroupCounter) + 1;
     sleep 2; // Give some time to allow clients time to make their players transfer across the network.
 
     //Check if a marker was requested before sending to all clients to be created.
-
-    if (_groupName != "INSERT_GROUP_NAME") then {
-        private _group = missionNamespace getVariable [_groupVarName,grpNull];
-        _group setGroupIdGlobal [_groupName];
-    };
-
     if (_markerType != -1) then {
 
         //
