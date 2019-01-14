@@ -9,6 +9,9 @@ class CfgFunctions {
     class ADDON {
         class COMPONENT {
             file = QPATHTO_FOLDER(functions);
+            class adminEye_draw;
+            class adminEye_onLoad;
+            class adminEye_open;
             class claimZeus;
             class dashboard;
             class debounceButton;

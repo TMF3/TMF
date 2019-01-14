@@ -138,6 +138,15 @@ class ADDON
             x = "26.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
             w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         };
+        class TabAdminEye: TabDashboard
+        {
+            idc = IDC_TMF_ADMINMENU_ADME;
+            text = "Map";
+            tooltip = "View Map";
+            onButtonClick = QUOTE([] call FUNC(adminEye_open));
+            x = "29.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+            w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
+        };
 
 
         // Groups for Tabs
@@ -268,6 +277,29 @@ class GVAR(respawnMapDialog) {
             onSetFocus = QUOTE(_this spawn FUNC(respawn_mapLoaded)); //"['respawnMapLoaded'] spawn tmf_respawn_fnc_handleRespawnUI";
             onMouseButtonDown = QUOTE(_this spawn FUNC(respawn_mapClick)); //"['respawnMap_onMouseButtonDown',_this] spawn tmf_respawn_fnc_handleRespawnUI";
             onKeyUp = QUOTE(_this spawn FUNC(respawn_mapKeyUp)); //"['respawnMap_keyUp',_this] spawn tmf_respawn_fnc_handleRespawnUI";
+        };
+    };
+};
+
+
+class GVAR(adminEyeDialog) {
+    idd = IDC_TMF_ADMINMENU_ADME_MAP_DISPLAY;
+    movingEnable = 0;
+    class controlsBackground { 
+    };
+    class objects { 
+    };
+    class controls { 
+        class FullRespawnMap : RscMapControl
+        {
+            idc = IDC_TMF_ADMINMENU_ADME_MAP_CONTROL;
+            type = 100;
+            x = 0 * safezoneW + safezoneX;
+            y = 0 * safezoneH + safezoneY;
+            w = 1 * safezoneW;
+            h = 1 * safezoneH;
+            onDraw = QUOTE(_this call FUNC(adminEye_draw));
+            onSetFocus = QUOTE(_this spawn FUNC(adminEye_onLoad));
         };
     };
 };
