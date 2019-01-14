@@ -138,16 +138,6 @@ class ADDON
             x = "26.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
             w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         };
-        class TabAdminEye: TabDashboard
-        {
-            idc = IDC_TMF_ADMINMENU_ADME;
-            text = "Map";
-            tooltip = "View Map";
-            onButtonClick = QUOTE([] call FUNC(adminEye_open));
-            x = "29.9 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-            w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
-        };
-
 
         // Groups for Tabs
         class GroupBase: RscControlsGroup
