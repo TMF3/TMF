@@ -25,10 +25,10 @@ params ["_target","_vehicles"];
     // Callsign (displayName)
     private _vehName = _veh getVariable [
         QEGVAR(orbat,vehicleCallsign),
-        [getText (_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString
+        [getText (_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString
     ];
     if !((_veh getVariable [QEGVAR(orbat,vehicleCallsign),-1]) isEqualTo -1) then {
-        _vehName = _vehName + " (" + ([getText(_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString) + ")";
+        _vehName = _vehName + " (" + ([getText(_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString) + ")";
     };
     _text = _text + format["<font size='18'>%1</font>",_vehName];
 
@@ -109,68 +109,67 @@ params ["_target","_vehicles"];
 
     // Vehicle weapons
     _text = _text + "<br/><font size='18'>Vehicle weapons:</font><br/>";
+    
     // Driver weapons
-    if (((getNumber(_cfg >> "hasDriver")) > 0) && {!lockedDriver _veh}) then {
+    if ((getNumber (_cfg >> "hasDriver")) > 0) then {
         private _weapons = _veh weaponsTurret [-1];
-        {
-            private _weapon = _x;
-            private _weaponMagazines = getArray(configFile >> "cfgWeapons" >> _weapon >> "magazines");
-            private _turretMagazines = _veh magazinesTurret [-1];
-            _weaponMagazines = _weaponMagazines select {_x in _turretMagazines};
-            private _array = [];
-            {
-                private _magazine = _x;
-                private _magazineText = getText(configFile >> "cfgMagazines" >> _magazine >> "displayName");
-                private _count = getNumber(configFile >> "cfgMagazines" >> _magazine >> "count");
-                _count = ({_x isEqualTo _magazine} count _turretMagazines)*_count;
-                _array pushBack [_magazineText,_count];
-            } forEach _weaponMagazines;
-            if ((count _array) > 0) then {
-                _text = _text + format["%1 weapons:<br/>",["Driver","Pilot"] select _isAir];
-                _text = _text + format["    %1:",getText(configFile >> "cfgWeapons" >> _weapon >> "displayName")];
-                {
-                    _x params ["_name","_count"];
-                    _text = _text + format[" %1 [x%2] ",_name,_count];
-                } forEach _array;
-                _text = _text + "<br/>";
-            } else {_text = _text + "    None<br/>"};
-        } forEach _weapons;
-    };
-    // Turret weapons do I even wanna do this update i did it
-    {
-        private _turretPath = _x;
-        private _cfgTurret = configFile >> "cfgVehicles" >> typeOf _veh;
-        {_cfgTurret = (_cfgTurret >> "Turrets") select _x} forEach _turretPath;
-        private _turretName = [getText(_cfgTurret >> "gunnerName")] call CBA_fnc_capitalize;
-        private _locked = _veh lockedTurret _x;
-        if !(_locked) then {
-            _text = _text + format["%1 weapons:<br/>",_turretName];
-            private _weapons = _veh weaponsTurret _turretPath;
+        if ((count _weapons) > 0) then {
+            _text = format ["%1%2:<br/>", _text, ["Driver","Pilot"] select _isAir];
+            
             {
                 private _weapon = _x;
-                private _weaponMagazines = getArray(configFile >> "cfgWeapons" >> _weapon >> "magazines");
-                private _turretMagazines = _veh magazinesTurret _turretPath;
-                _weaponMagazines = _weaponMagazines select {_x in _turretMagazines};
-                private _array = [];
-                {
-                    private _magazine = _x;
-                    private _magazineText = getText(configFile >> "cfgMagazines" >> _magazine >> "displayName");
-                    private _count = getNumber(configFile >> "cfgMagazines" >> _magazine >> "count");
-                    _count = ({_x isEqualTo _magazine} count _turretMagazines)*_count;
-                    _array pushBack [_magazineText,_count];
-                } forEach _weaponMagazines;
-                if ((count _array) > 0) then {
-                    _text = _text + format["    %1:",getText(configFile >> "cfgWeapons" >> _weapon >> "displayName")];
+                private _turretMagazines = _veh magazinesTurret [-1];
+                private _compatibleMagazines = [_x] call CBA_fnc_compatibleMagazines;
+                private _weaponMagazines = (_turretMagazines select {_x in _compatibleMagazines}) call BIS_fnc_consolidateArray;
+                
+                if ((count _weaponMagazines) > 0) then {
+                    private _weaponName = getText (configFile >> "CfgWeapons" >> _weapon >> "displayName");
+                    if !(_weaponName isEqualTo "") then {
+                        _text = format ["%1  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%2<br/>", _text, _weaponName];
+                    };
+                    
                     {
-                        _x params ["_name","_count"];
-                        _text = _text + format[" %1 [x%2] ",_name,_count];
-                    } forEach _array;
-                    _text = _text + "<br/>";
+                        _x params ["_magazineClass", "_magazineCount"];
+                        _text = format ["%1          %2 [%3 rounds]<br/>", _text, getText (configFile >> "CfgMagazines" >> _magazineClass >> "displayName"), getNumber (configFile >> "CfgMagazines" >> _magazineClass >> "count") * _magazineCount];
+                    } forEach _weaponMagazines;
                 };
             } forEach _weapons;
-            if (count _weapons isEqualTo 0) then {_text = _text + "    None<br/>"};
         };
-    } forEach allTurrets [_veh,false];
+    };
+    
+    // Turret weapons
+    {
+        private _turretPath = _x;
+
+        if !(_veh lockedTurret _turretPath) then { // RHS uses locked turrets for turning in/out (?)
+            private _turretWeapons = _veh weaponsTurret _turretPath;
+
+            if (count _turretWeapons > 0) then {
+                private _turretMagazines = _veh magazinesTurret _turretPath;
+
+                private _turretCfg = _cfg;
+                { _turretCfg = (_turretCfg >> "Turrets") select _x; } forEach _turretPath;
+                private _turretName = [getText (_turretCfg >> "gunnerName")] call CBA_fnc_capitalize;
+                _text = format ["%1%2:<br/>", _text, _turretName];
+
+                {
+                    _text = format ["%1  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%2<br/>", _text, getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
+
+                    private _compatibleMagazines = [_x] call CBA_fnc_compatibleMagazines;
+                    private _weaponMagazines = (_turretMagazines select {_x in _compatibleMagazines}) call BIS_fnc_consolidateArray;
+                    
+                    if (count _weaponMagazines > 0) then {
+                        {
+                            _x params ["_magazineClass", "_magazineCount"];
+                            _text = format ["%1          %2 [%3 rounds]<br/>", _text, getText (configFile >> "CfgMagazines" >> _magazineClass >> "displayName"), getNumber (configFile >> "CfgMagazines" >> _magazineClass >> "count") * _magazineCount];
+                        } forEach _weaponMagazines;
+                    } else {
+                        _text = format ["%1          no magazines<br/>", _text];
+                    };
+                } forEach _turretWeapons;
+            };
+        };
+    } forEach allTurrets _veh;
 
     // Vehicle Cargo >> Backpack, Weapon, Magazine, Item
     _text = _text + "<br/><font size='18'>Vehicle cargo:</font><br/>";
@@ -179,7 +178,7 @@ params ["_target","_vehicles"];
         _text = _text + "Backpacks:<br/>";
         _backPackCargo params ["_a","_b"];
         {
-            _backPackText = [getText(configFile >> "cfgVehicles" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
+            _backPackText = [getText(configFile >> "cfgVehicles" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
             _text = _text + format["    %1 [%2]<br/>",_backPackText,(_b select _forEachIndex)];
         } forEach _a;
     };
@@ -188,7 +187,7 @@ params ["_target","_vehicles"];
         _text = _text + "Weapons:<br/>";
         _weaponCargo params ["_a","_b"];
         {
-            _weaponText = [getText(configFile >> "cfgWeapons" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
+            _weaponText = [getText(configFile >> "cfgWeapons" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
             _text = _text + format["    %1 [%2]<br/>",_weaponText,(_b select _forEachIndex)];
         } forEach _a;
     };
@@ -197,7 +196,7 @@ params ["_target","_vehicles"];
         _text = _text + "Magazines:<br/>";
         _magazineCargo params ["_a","_b"];
         {
-            _magazineText = [getText(configFile >> "cfgMagazines" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
+            _magazineText = [getText(configFile >> "cfgMagazines" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
             _text = _text + format["    %1 [%2]<br/>",_magazineText,(_b select _forEachIndex)];
         } forEach _a;
     };
@@ -206,7 +205,7 @@ params ["_target","_vehicles"];
         _text = _text + "Items:<br/>";
         _itemCargo params ["_a","_b"];
         {
-            _itemText = [getText(configFile >> "cfgWeapons" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
+            _itemText = [getText(configFile >> "cfgWeapons" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
             _text = _text + format["    %1 [%2]<br/>",_itemText,(_b select _forEachIndex)];
         } forEach _a;
     };
