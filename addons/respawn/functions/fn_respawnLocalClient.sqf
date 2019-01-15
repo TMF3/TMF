@@ -1,4 +1,4 @@
-params["_groupNum","_position","_faction","_typeOfUnit","_rank","_number","_leader","_halo","_side"];
+params["_groupNum","_position","_faction","_typeOfUnit","_rank","_number","_leader","_halo","_side",["_groupName",""]];
 
 #include "\x\tmf\addons\respawn\script_component.hpp"
 
@@ -29,6 +29,9 @@ if (_halo) then {
 
 //Dummy group is required to
 private _dummyGroup = createGroup (_side call EFUNC(common,numToSide));
+if (_leader && _groupName != "INSERT_GROUP_NAME") then {
+    _dummyGroup setGroupIdGlobal [_groupName];
+};
 
 tmf_localRespawnedUnit = objNull;
 /// Create the unit

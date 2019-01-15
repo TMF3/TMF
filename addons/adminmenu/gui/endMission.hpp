@@ -3,7 +3,7 @@ class Controls
     class CheckboxUseMissionEnding: RscCheckBox
     {
         idc = IDC_TMF_ADMINMENU_ENDM_FROMMISSION;
-        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
+        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMission_occluder););
         x = "0";
         y = "0";
         w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -17,7 +17,7 @@ class Controls
         x = "1.0 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "0";
         w = "23.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-        h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        h = "1.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
     class ListEndings: RscListBox
     {
@@ -27,14 +27,30 @@ class Controls
         x = "0";
         y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
-        h = "14 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        h = "12.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
+    class CheckboxMissionEndingDefeat: CheckboxUseMissionEnding
+    {
+        idc = IDC_TMF_ADMINMENU_ENDM_FROMMISSION_ISDEFEAT;
+        onCheckedChanged = "";
+        x = "0";
+        y = "14 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    };
+    class LabelMissionEndingDefeat: LabelEndings
+    {
+        text = "Mission is a Defeat (determines music played)";
+        colorText[] = {0.8, 0.8, 0.8, 1};
+        x = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
+        y = "14 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        w = "23.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
+    };
+
     class ButtonEndMission: GVAR(RscButtonMenu)
     {
         idc = IDC_TMF_ADMINMENU_ENDM_ENDMISSION;
         text = "End Mission";
         colorBackground[] = {0.8,0.27,0.133,1};
-        onButtonClick = QUOTE((ctrlParent (param [0])) call FUNC(endMissionCommit));
+        onButtonClick = QUOTE((ctrlParent (param [0])) call FUNC(endMission_commit));
         x = "32.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "5.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -42,6 +58,7 @@ class Controls
     class CheckboxExportAAR: CheckboxUseMissionEnding
     {
         idc = IDC_TMF_ADMINMENU_ENDM_EXPORTAAR;
+        onCheckedChanged = "";
         x = "32.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "18.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
@@ -59,7 +76,7 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_ENDM_ACTIVATEHUNT;
         text = "Activate AI Hunt";
-        onButtonClick = "";
+        onButtonClick = "systemChat 'Activate Hunt not implemented!';";
         colorBackground[] = {0, 0, 0, 1};
         x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -69,7 +86,7 @@ class Controls
     class CheckboxUseSideSpecificEnding: CheckboxUseMissionEnding
     {
         idc = IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC;
-        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
+        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMission_occluder););
         x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
     };
     class LabelEndingsGenericSide: LabelEndings
@@ -103,6 +120,7 @@ class Controls
     class EndingSide_Blufor: RscToolbox
     {
         idc = IDC_TMF_ADMINMENU_ENDM_BLUFOR;
+        onToolBoxSelChanged = QUOTE(GVAR(DOUBLES(ending,blufor)) = param [1];);
 
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         rows = 1;
@@ -138,6 +156,7 @@ class Controls
     class EndingSide_Opfor: EndingSide_Blufor
     {
         idc = IDC_TMF_ADMINMENU_ENDM_OPFOR;
+        onToolBoxSelChanged = QUOTE(GVAR(DOUBLES(ending,opfor)) = param [1];);
         y = "4.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
 
@@ -154,6 +173,7 @@ class Controls
     class EndingSide_Indep: EndingSide_Blufor
     {
         idc = IDC_TMF_ADMINMENU_ENDM_INDEP;
+        onToolBoxSelChanged = QUOTE(GVAR(DOUBLES(ending,resistance)) = param [1];);
         y = "7.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
 
@@ -170,12 +190,14 @@ class Controls
     class EndingSide_Civilian: EndingSide_Blufor
     {
         idc = IDC_TMF_ADMINMENU_ENDM_CIVILIAN;
+        onToolBoxSelChanged = QUOTE(GVAR(DOUBLES(ending,civilian)) = param [1];);
         y = "9.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
 
     class CheckboxEndingSideDraw: CheckboxUseMissionEnding
     {
         idc = IDC_TMF_ADMINMENU_ENDM_SIDEDRAW;
+        onCheckedChanged = "";
         x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "11.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
@@ -190,7 +212,7 @@ class Controls
     class CheckboxUseCustomEnding: CheckboxUseMissionEnding
     {
         idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM;
-        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMissionOccluder););
+        onCheckedChanged = QUOTE([ARR_2(ctrlParent (param [0]), ctrlIDC (param [0]))] call FUNC(endMission_occluder););
         y = "16.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
     class LabelCustomEnding: LabelEndings
@@ -227,15 +249,16 @@ class Controls
         idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_SUBTEXT;
         y = "18.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
-    class CheckboxCustomEndingVictory: CheckboxUseMissionEnding
+    class CheckboxCustomEndingDefeat: CheckboxUseMissionEnding
     {
-        idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_ISVICTORY;
+        idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_ISDEFEAT;
+        onCheckedChanged = "";
         x = "0";
         y = "19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
-    class LabelCustomEndingVictory: LabelExportAAR
+    class LabelCustomEndingDefeat: LabelExportAAR
     {
-        text = "Mission is a Victory (determines music played)";
+        text = "Mission is a Defeat (determines music played)";
         x = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "23.2 * (((safezoneW / safezoneH) min 1.2) / 40)";

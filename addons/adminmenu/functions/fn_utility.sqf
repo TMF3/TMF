@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
 disableSerialization;
-params ["_display", "_utilityFunction", "_utilityName", ["_requireAlive", false]];
+params ["_utilityFunction", "_utilityName", ["_requireAlive", false]];
 
 GVAR(utilityData) = [];
 if (!isNil QGVAR(selectedTab)) then {
@@ -25,5 +25,5 @@ if (!isNil QGVAR(selectedTab)) then {
 if (isNil _utilityFunction) then {
     systemChat format ["[TMF Admin Menu] Utility with name '%1' requires undefined function '%2'", _utilityName, _utilityFunction];
 } else {
-    [_display] call (missionNamespace getVariable _utilityFunction);
+    call (missionNamespace getVariable _utilityFunction);
 };

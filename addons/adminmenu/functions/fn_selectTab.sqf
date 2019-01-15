@@ -12,7 +12,7 @@ while {count GVAR(tabPFHHandles) > 0} do {
 };
 
 {
-    if (_tab == _x) then {
+    if (_tab isEqualTo _x) then {
         (_display displayCtrl _x) ctrlShow true;
         (_display displayCtrl _x) ctrlEnable true;
     } else {

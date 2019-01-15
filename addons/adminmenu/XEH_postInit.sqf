@@ -15,7 +15,7 @@ if (isMultiplayer) then {
             private _clientOwnerId = _this select 4;
             GVAR(activeClients) = GVAR(activeClients) - [_clientOwnerId];
 
-            if (count GVAR(activeClients) == 0 && {!isNil QGVAR(fps_pfh)}) then {
+            if (((count GVAR(activeClients)) isEqualTo 0) && {!isNil QGVAR(fps_pfh)}) then {
                 [GVAR(fps_pfh)] call CBA_fnc_removePerFrameHandler;
                 GVAR(fps_pfh) = nil;
             };
@@ -40,5 +40,9 @@ if (isMultiplayer) then {
 
             _ctrl ctrlSetText (_this select 1);
         };
+
+        [QGVAR(quickRespawn), {
+            call FUNC(utility_quickRespawn_local);
+        }] call CBA_fnc_addEventHandler;
     };
 };

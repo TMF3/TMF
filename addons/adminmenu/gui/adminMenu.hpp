@@ -13,6 +13,10 @@ class RscEdit;
 class RscEditMulti: RscEdit {};
 class RscPicture;
 class RscToolbox;
+class RscStructuredText;
+class RscControlsTable;
+class RscMapControl;
+
 
 class GVAR(RscButtonMenu): RscButtonMenu {
     style = "0x02 + 0x0C";
@@ -24,6 +28,14 @@ class GVAR(RscButtonMenu): RscButtonMenu {
 
 class GVAR(RscText): RscText {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+};
+
+class GVAR(RscSpectatorControlTableText): RscText {
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+    w = (6/10) * TMF_ADMINMENU_RESP_W_COL1;
+    x = 0;
+    y = 0;
 };
 
 class GVAR(RscTextLarge): RscText {
@@ -53,7 +65,7 @@ class ADDON
 
     onLoad = QUOTE(_this call FUNC(onLoad););
     onUnload = QUOTE(_this call FUNC(onUnload););
-    class controls
+    class Controls
     {
         class Title: RscTitle
         {
@@ -127,7 +139,6 @@ class ADDON
             w = "3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         };
 
-
         // Groups for Tabs
         class GroupBase: RscControlsGroup
         {
@@ -143,7 +154,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_DASH;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "dashboard.hpp"
         };
 
@@ -152,7 +162,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_PMAN;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "playerManagement.hpp"
         };
 
@@ -161,7 +170,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_RESP;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "respawn.hpp"
         };
 
@@ -170,7 +178,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_ENDM;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "endMission.hpp"
         };
 
@@ -179,7 +186,6 @@ class ADDON
             idc = IDC_TMF_ADMINMENU_G_MSGS;
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-
             #include "messageLog.hpp"
         };
 
@@ -211,80 +217,6 @@ class ADDON
             w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
             h = "19.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         };
-
-        // Modal
-        /*delete ModalBackground;
-        delete ModalTitleBackground;
-        delete ModalTitle;
-        delete ModalGroupBackground;
-        delete ModalGroup;
-        delete ModalClose;
-
-        class ModalBackground: RscText
-        {
-            idc = IDC_TMF_ADMINMENU_MODAL_BACK;
-            colorBackground[] = {0, 0, 0, 0.7};
-            x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-            y = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-            w = "38 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "23 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-        };
-        class ModalTitleBackground: RscText
-        {
-            idc = IDC_TMF_ADMINMENU_MODAL_TBACK;
-            colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
-            x = "1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-            y = "2.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-            w = "37 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-        };
-        class ModalTitle: RscTitle
-        {
-            idc = IDC_TMF_ADMINMENU_MODAL_TITLE;
-            text = "TMF Admin Menu";
-            style = 0;
-            colorBackground[] = {0, 0, 0, 0};
-            x = "1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-            y = "2.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-            w = "37 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-        };
-        class ModalGroupBackground: RscText
-        {
-            idc = IDC_TMF_ADMINMENU_MODAL_GBACK;
-            colorBackground[] = {0, 0, 0, 0.8};
-            shadow = 2;
-            colorShadow[] = {1, 1, 1, 1};
-            colorText[] = {1, 1, 1, 1};
-            x = "1.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-            y = "3.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-            w = "37 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "20.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-        };
-        class ModalGroup: RscControlsGroup
-        {
-            idc = IDC_TMF_ADMINMENU_G_MODAL;
-            x = "1.6 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-            y = "3.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-            w = "36.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "20.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-            class Controls {};
-        };
-        class ModalClose: RscText
-        {
-            idc = IDC_TMF_ADMINMENU_MODAL_CLOSE;
-            type = 0;
-            style = 48 + 2048;
-            text = "\a3\ui_f\data\GUI\Rsc\RscDisplayArcadeMap\top_close_gs.paa";
-            tooltip = "Close Modal Window";
-            onMouseButtonClick = QUOTE(call FUNC(modalClose));
-            colorBackground[] = {0, 0, 0, 0};
-            colorText[] = {1, 1, 1, 1};
-            x = "37.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
-            y = "2.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-            w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
-        };*/
     };
 
     class ControlsBackground
@@ -307,6 +239,57 @@ class ADDON
             colorBackground[] = {0, 0, 0, 0.7};
             y = "3.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
             h = "20.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        };
+    };
+};
+
+#include "modal.hpp"
+
+
+
+class GVAR(respawnMapDialog) {
+    idd = IDC_TMF_ADMINMENU_RESP_MAP_DISPLAY;
+    movingEnable = 0;
+    class controlsBackground { 
+    };
+    class objects { 
+    };
+    class controls { 
+        class FullRespawnMap : RscMapControl
+        {
+            idc = IDC_TMF_ADMINMENU_RESP_MAP_CONTROL;
+            type = 100;
+            x = 0 * safezoneW + safezoneX;
+            y = 0 * safezoneH + safezoneY;
+            w = 1 * safezoneW;
+            h = 1 * safezoneH;
+            onDraw = QUOTE(_this call FUNC(respawn_mapDrawIcons));
+            onSetFocus = QUOTE(_this spawn FUNC(respawn_mapLoaded)); //"['respawnMapLoaded'] spawn tmf_respawn_fnc_handleRespawnUI";
+            onMouseButtonDown = QUOTE(_this spawn FUNC(respawn_mapClick)); //"['respawnMap_onMouseButtonDown',_this] spawn tmf_respawn_fnc_handleRespawnUI";
+            onKeyUp = QUOTE(_this spawn FUNC(respawn_mapKeyUp)); //"['respawnMap_keyUp',_this] spawn tmf_respawn_fnc_handleRespawnUI";
+        };
+    };
+};
+
+
+class GVAR(adminEyeDialog) {
+    idd = IDC_TMF_ADMINMENU_ADME_MAP_DISPLAY;
+    movingEnable = 0;
+    class controlsBackground { 
+    };
+    class objects { 
+    };
+    class controls { 
+        class FullRespawnMap : RscMapControl
+        {
+            idc = IDC_TMF_ADMINMENU_ADME_MAP_CONTROL;
+            type = 100;
+            x = 0 * safezoneW + safezoneX;
+            y = 0 * safezoneH + safezoneY;
+            w = 1 * safezoneW;
+            h = 1 * safezoneH;
+            onDraw = QUOTE(_this call FUNC(adminEye_draw));
+            onSetFocus = QUOTE(_this spawn FUNC(adminEye_onLoad));
         };
     };
 };

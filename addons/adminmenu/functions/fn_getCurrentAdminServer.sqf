@@ -9,7 +9,7 @@ private _adminId = -1;
     };
 } forEach allPlayers;
 
-if (_adminId == -1) exitWith {
+if (_adminId isEqualTo -1) exitWith {
     GVAR(currentAdmin) = "nobody";
     remoteExecutedOwner publicVariableClient QGVAR(currentAdmin);
 };

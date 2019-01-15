@@ -46,14 +46,12 @@ if (isServer) then {
 if (hasInterface) then {
     
     // Add a eventhandler to await for respawned group marker data.
-    if (!isNil "tmf_script_setGroupMarkers") then {
-        QGVAR(respawnedGroupsMarkerData) addPublicVariableEventHandler {
-            [] call FUNC(respawnGroupMarkerUpdate);
-        };
-        
-        // Create markers for any respawned markers that have occured before the client has joined.
+    QGVAR(respawnedGroupsMarkerData) addPublicVariableEventHandler {
         [] call FUNC(respawnGroupMarkerUpdate);
     };
+    
+    // Create markers for any respawned markers that have occured before the client has joined.
+    //[] call FUNC(respawnGroupMarkerUpdate);
 };
 
 
