@@ -42,18 +42,26 @@ class Controls
         onMouseButtonClick = "if (player isKindOf 'CAManBase' && alive player) then {(ctrlParent param [0]) closeDisplay 1; if (!param [4]) then {[player, player, true] call ACE_arsenal_fnc_openBox;} else {['Open', true] spawn BIS_fnc_arsenal;};} else {systemChat '[TMF Admin Menu] Player object not compatible with Arsenal';};";
         y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
+    class TabAdminEye: ButtonDebugConsole
+    {
+        idc = IDC_TMF_ADMINMENU_ADME;
+        text = "Map";
+        tooltip = "View Admin Map";
+        onButtonClick = QUOTE([] call FUNC(adminEye_open));
+        y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+    };
 
     // Safestart
     class LabelSafestart: LabelShortcuts
     {
         text = "Safestart";
-        y = "5.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "6.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class CheckboxSafestartEnabled: RscCheckBox
     {
         idc = IDC_TMF_ADMINMENU_DASH_SAFESTART;
         x = "0.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
-        y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
         h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
@@ -64,7 +72,7 @@ class Controls
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         colorText[] = {0.8, 0.8, 0.8, 1};
         x = "0.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-        y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "5.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     };
 
@@ -72,13 +80,13 @@ class Controls
     class LabelSpectatorTalk: LabelShortcuts
     {
         text = "Talk with Spectators";
-        y = "7.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "9.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class CheckboxSpectatorTalkEnabled: RscCheckBox
     {
         idc = IDC_TMF_ADMINMENU_DASH_SPECTATORTALK;
         x = "0.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
-        y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        y = "9.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
         h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
@@ -89,7 +97,7 @@ class Controls
         sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
         colorText[] = {0.8, 0.8, 0.8, 1};
         x = "0.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
-        y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        y = "9.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "5.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     };
 
