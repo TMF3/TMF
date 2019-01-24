@@ -31,6 +31,34 @@ if (isServer) then {
         private _hunters = allUnits select {(!isPlayer _x) && {(side _x) in _aiSides}};
 
 
+        // Setup units.
+        private _oldGroups = [];
+        {
+            private _unit = _x;
+            _oldGroups pushBackUnique (group _unit);
+            
+            [_unit] joinSilent grpNull;
+            _unit setUnitPos "UP";
+            _unit disableAI "SUPPRESSION";
+            _unit disableAI "AUTOCOMBAT"; // Already applied at init but reapply.
+            _unit setBehaviour "AWARE";
+            _unit setSpeedMode "FULL";
+            
+            // Just in case MM went crazy.
+            _unit enableAI "PATH";
+            _unit enableAI "MOVE";
+
+            _unit allowFleeing 0;
+            doStop _unit;
+            
+            
+        } forEach _hunters;
+
+        // Cleanup groups no longer used.
+        {
+            if (count (units _x) == 0) then {deleteGroup _x;};
+        } forEach (_oldGroups - [grpNull]);
+
         //params ["_hunters", "_targetSide", "_position", "_range",["_targets",[]]]
         private _targets = allUnits select {side _x == _playerSide && isPlayer _x};
         [_hunters,_playerSide,[0,0,0],6000,_targets] spawn EFUNC(ai,huntLoop);
