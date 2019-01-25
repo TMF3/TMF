@@ -18,6 +18,7 @@ class CfgFunctions {
             class endMission;
             class endMission_commit;
             class endMission_occluder;
+            class endMission_hunt;
             class endMission_sideSpecificLocal;
             class fpsHandlerServer;
             class getCurrentAdminClient;

@@ -76,7 +76,7 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_ENDM_ACTIVATEHUNT;
         text = "Activate AI Hunt";
-        onButtonClick = "systemChat 'Activate Hunt not implemented!';";
+        onButtonClick = QUOTE([] call FUNC(endMission_hunt));
         colorBackground[] = {0, 0, 0, 1};
         x = "25.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "19.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
