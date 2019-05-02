@@ -25,6 +25,18 @@ private _fnc_checkExists = {
     } forEach _subarray;
 };
 
+private _fnc_checkExists_insignia = {
+    params ["_insignias"];
+    
+    {
+        if ((_x != "") and (_x != "default")) then {
+            if !(isClass (configFile >> "CfgUnitInsignia" >> _x) || {isClass (missionConfigFile >> "CfgUnitInsignia" >> _x)}) then {
+                _output pushBack [0,format["Missing insignia classname: %1 (for: %2 - %3)", _x,_faction,_role]];  
+            };
+        };
+    } forEach _insignias;
+};
+
 private _fncTestUnit = {
     params ["_faction",["_role","r"]];
 
@@ -46,6 +58,9 @@ private _fncTestUnit = {
         [_goggles, _cfgGlasses] call _fnc_checkExists;
         private _hmd = GETGEAR("hmd"); // "CfgGlasses"
         [_hmd, _cfgWeapons] call _fnc_checkExists;
+
+        private _insignias = GETGEAR("insignias"); // "CfgUnitInsignia"
+        [_insignias] call _fnc_checkExists_insignia;
 
         // Test faces;
         private _faces = GETGEAR("faces");

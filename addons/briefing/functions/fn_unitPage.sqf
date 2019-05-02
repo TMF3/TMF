@@ -82,18 +82,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
             if (_forEachIndex > 0) then {
                 _weaponText = _weaponText + "<br/>";
             };
-            _weaponText = _weaponText + format["<br/>%1",getText( _cfg >> "displayname")];
-
-            // Check for grenadier rifles
-            private _muzzles = getArray(_cfg >> "muzzles");
-            _muzzles = _muzzles apply {toLower _x};
-            private _subClasses = [_cfg,0,true] call BIS_fnc_returnChildren;
-            _subClasses = _subClasses select {"GrenadeLauncher" in ([_x,true] call BIS_fnc_returnParents)};
-            _subClasses = _subClasses apply {configName _x};
-            _subClasses = _subClasses select {(toLower _x) in _muzzles};
-            {
-                _weaponText = _weaponText + "<br/> <img image='\A3\ui_f\data\igui\cfg\weaponicons\GL_ca.paa' height='16'/> UGL";
-            } forEach _subClasses;
+            _weaponText = format ["%1<br/><font color='#f7da00'>%2</font>", _weaponText, getText ( _cfg >> "displayname")];
 
             // Get weapon icon
             private _icon = getText(_cfg >> "picture");
@@ -107,58 +96,97 @@ private _cfgWeapons = configFile >> "CfgWeapons";
                 if (!(_x isEqualType []) && {_x != ""}) then {
                     _icon = getText(_cfgWeapons >> _x >> "picture");
                     if (_icon find ".paa" == -1) then { _icon = _icon + ".paa"};
-                    _weaponText = _weaponText + format["<br/>  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%1",getText(_cfgWeapons >> _x >> "displayName")];
-                    _visText = _visText + format["<img image='%1' height=48 />",_icon];
+                    _weaponText = format ["%1<br/>  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%2", _weaponText, getText (_cfgWeapons >> _x >> "displayName")];
+                    _visText = format ["%1<img image='%2' height=48 />", _visText, _icon];
                 };
             } forEach _attachments;
             
             private _weaponMags = _weapon call _fnc_weaponMags;
             {
-                _weaponText = _weaponText + format ["<br/>          %1 [%2]", getText (configFile >> "CfgMagazines" >> (_x select 0) >> "displayName"), _x select 1];
+                _weaponText = format ["%1<br/>          %2 [%3]", _weaponText, getText (configFile >> "CfgMagazines" >> (_x select 0) >> "displayName"), _x select 1];
             } forEach _weaponMags;
+
+            // underbarrel gl
+            private _muzzles = getArray (_cfg >> "muzzles");
+            (
+                ((configProperties [_cfg, "isClass _x", true]) select {(configName _x) in _muzzles}) select {"GrenadeLauncher" in ([_x, true] call BIS_fnc_returnParents)} // yikes
+            ) params [["_underbarrel", configNull]];
+
+            if (!isNull _underbarrel) then {
+                _weaponText = format ["%1<br/> <img image='\A3\ui_f\data\igui\cfg\weaponicons\GL_ca.paa' height='16'/> <font color='#f7da00'>%2</font>", _weaponText, getText (_underbarrel >> "displayName")];
+                
+                private _weaponMags = _underbarrel call _fnc_weaponMags;
+                {
+                    _weaponText = format ["%1<br/>          %2 [%3]", _weaponText, getText (configFile >> "CfgMagazines" >> (_x select 0) >> "displayName"), _x select 1];
+                } forEach _weaponMags;
+            };
         } forEach _weapons;
         _weaponText = _weaponText + "<br/>";
-        _visText = _visText + "<br/>";
+        _visText = _visText;
     };
 
     // All magazines not tied to weapons (grenades etc.)
     if (count _mags > 0) then {
         _otherText = _otherText + "<br/><font size='18'>OTHER</font><br/>";
         {
-            _otherText = _otherText + format["%1 [%2]<br/>",getText(_cfgMagazines >> (_x select 0) >> "displayName"),_x select 1];
+            _otherText = format ["%1%2", _otherText, getText (_cfgMagazines >> (_x select 0) >> "displayName")];
+            if ((_x select 1) > 1) then {
+                _otherText = format ["%1 [%2]", _otherText, _x select 1];
+            };
+            _otherText = format ["%1<br/>", _otherText];
         } forEach _mags;
     };
-    _visText = _visText + "<br/>" + _magVisText + "<br/>";
+    _visText = _visText + _magVisText;
 
     // Gear
     _gearText = _gearText + "<br/><font size='18'>GEAR</font><br/>";
     if !((uniform _unit) isEqualTo "") then {
-        _gearText = _gearText + format ["Uniform: %1 [%2", getText (configFile >> "CfgWeapons" >> (uniform _unit) >> "displayName"), round (100 * loadUniform _unit)] + "% full]<br/>";
+        _gearText = _gearText + format ["<font color='#bbbbbb'>Uniform:</font> %1 [%2", getText (configFile >> "CfgWeapons" >> (uniform _unit) >> "displayName"), round (100 * loadUniform _unit)] + "% full]<br/>";
     };
     if !((vest _unit) isEqualTo "") then {
-        _gearText = _gearText + format ["Gear: %1 [%2", getText (configFile >> "CfgWeapons" >> (vest _unit) >> "displayName"), round (100 * loadVest _unit)] + "% full]<br/>";
+        _gearText = _gearText + format ["<font color='#bbbbbb'>Gear:</font> %1 [%2", getText (configFile >> "CfgWeapons" >> (vest _unit) >> "displayName"), round (100 * loadVest _unit)] + "% full]<br/>";
     };
     if !((backpack _unit) isEqualTo "") then {
-        _gearText = _gearText + format ["Backpack: %1 [%2", getText (configFile >> "CfgVehicles" >> (backpack _unit) >> "displayName"), round (100 * loadBackpack _unit)] + "% full]<br/>";
+        _gearText = _gearText + format ["<font color='#bbbbbb'>Backpack:</font> %1 [%2", getText (configFile >> "CfgVehicles" >> (backpack _unit) >> "displayName"), round (100 * loadBackpack _unit)] + "% full]<br/>";
+    };
+    if !((headgear _unit) isEqualTo "") then {
+        _gearText = _gearText + format ["<font color='#bbbbbb'>Head:</font> %1<br/>", getText (configFile >> "CfgWeapons" >> (headgear _unit) >> "displayName")];
+    };
+    if !((hmd _unit) isEqualTo "") then {
+        _gearText = _gearText + format ["<font color='#bbbbbb'>NVG:</font> %1<br/>", getText (configFile >> "CfgWeapons" >> (hmd _unit) >> "displayName")];
+        _visText = _visText + "<img image='" + getText (configFile >> "CfgWeapons" >> (hmd _unit)  >> "picture") + "' height=48 />";
+    };
+    if !((binocular _unit) isEqualTo "") then {
+        _gearText = _gearText + format ["<font color='#bbbbbb'>Binocular:</font> %1<br/>", getText (configFile >> "CfgWeapons" >> (binocular _unit) >> "displayName")];
+        _visText = _visText + "<img image='" + getText (configFile >> "CfgWeapons" >> (binocular _unit)  >> "picture") + "' height=48 />";
     };
 
     // Misc. Items
-    if (count _items > 0) then {
-        _itemText = _itemText + "<br/><font size='18'>ITEMS:</font><br/>";
+    private _assignedItems = assignedItems _unit - [binocular _unit, hmd _unit];
+    if (count _items > 0 || count _assignedItems > 0) then {
+        _itemText = _itemText + "<br/><font size='18'>ITEMS</font><br/>";
+
+        private _filter = ["ItemWatch", "ItemMap", "ItemCompass"];
         {
-            _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_unChecked_ca.paa' height='16'/>%1 [%2]<br/>",getText (_cfgWeapons >> _x select 0 >> "displayName"),_x select 1];
-            _visText = _visText + "<img image='" + getText(_cfgWeapons >> _x select 0  >> "picture") + "' height=48 />";
+            _visText = format["%1<img image='%2' height=48 />", _visText, getText (_cfgWeapons >> _x >> "picture")];
+        } forEach _assignedItems select {!(_x in _filter)};
+
+        private _assignedItemsStr = (_assignedItems apply {getText (_cfgWeapons >> _x >> "displayName")}) joinString ", ";
+        if !(_assignedItemsStr isEqualTo "") then {
+            _itemText = format["%1%2<br/>", _itemText, _assignedItemsStr];
+        };
+
+        {
+            _itemText = format ["%1%2", _itemText, getText (_cfgWeapons >> _x select 0 >> "displayName"), _x select 1];
+            _visText = format ["%1<img image='%2' height=48 />", _visText, getText (_cfgWeapons >> _x select 0  >> "picture")];
+
             if ((_x select 1) > 1) then {
-                _visText = _visText + format[" x%1",(_x select 1)];
+                _itemText = format ["%1 [%2]", _itemText, _x select 1];
+                _visText = format["%1 x%2", _visText, _x select 1];
             };
+
+            _itemText = format ["%1<br/>", _itemText];
         } forEach _items;
-
-        {
-            _itemText = _itemText + format["<img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_checked_ca.paa' height='16'/>%1<br/>",getText (_cfgWeapons >> _x >> "displayName")];
-            _visText = _visText + format["<img image='%1' height=48 />",getText(_cfgWeapons >> _x >> "picture")];
-        } forEach assignedItems _x;
-
-        _itemText = _itemText + "<br/><img image='\A3\ui_f\data\gui\rscCommon\rscCheckBox\checkBox_checked_ca.paa' height='16'/>Indicates an equipped item.";
     };
     
     _text = _text + _weaponText + _otherText + _gearText + _itemText;
@@ -179,7 +207,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
     };
     
     if (!isNil "ace_common_fnc_getWeight") then {
-        _text = _text + format ["<br/><br/>Total Weight: %1 (%2)", [_unit] call ace_common_fnc_getWeight, [_unit, true] call ace_common_fnc_getWeight];
+        _text = _text + format ["<br/>Total Weight: %1 (%2)", [_unit] call ace_common_fnc_getWeight, [_unit, true] call ace_common_fnc_getWeight];
     };
 
     // Add the created text

@@ -9,6 +9,7 @@ class cfgFunctions {
             class garrisonQuantity;
             class hunt;
             class huntInit;
+            class huntLoop;
             class rearmInit;
             class rearm;
             class addWaveHandler;

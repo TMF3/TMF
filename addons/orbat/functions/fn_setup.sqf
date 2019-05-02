@@ -91,6 +91,7 @@ if (_ourIdx == -1) then {
     private _newEntry = [_condition,[[0,"","","","Platoon",0],[]]];
     _ourIdx = GVAR(orbatRawData) pushBack _newEntry;
 };
+
 private _ourData = (GVAR(orbatRawData) select _ourIdx) select 1; //list of children
 private _toPlace = [];
 private _reserveId = (_ourData select 0) select 0;
@@ -108,8 +109,7 @@ private _fnc_findValidParents = {
     {
         _x call _fnc_findValidParents;
     } forEach _children;
-    
-    _data pushBack _added;
+
 };
 
 _ourData call _fnc_findValidParents;
@@ -242,3 +242,6 @@ _fnc_processOrbatTrackerRawData = {
 
 GVAR(orbatMarkerArray) = _ourData call _fnc_processOrbatTrackerRawData;
 _fnc_processOrbatTrackerRawData = nil;
+
+// Add the respawned group markers(!)
+[] call EFUNC(respawn,respawnGroupMarkerUpdate);
