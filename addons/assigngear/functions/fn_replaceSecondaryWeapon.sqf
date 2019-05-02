@@ -14,7 +14,7 @@
  * Replaces a units' secondary weapon
  */
  #include "\x\tmf\addons\assignGear\script_component.hpp"
- params ["_unit","_weaponArray","_items"];
+ params ["_unit","_weaponArray","_items","_magazine"];
 
 // Remove weapon and exit if weaponArray is empty
 if (count _weaponArray < 1) exitWith {_unit removeWeapon (secondaryWeapon _unit)};
@@ -23,6 +23,10 @@ private _weapon = toLower selectRandom _weaponArray;
 
 // Exit if weapon was set to "default"
 if (_weapon isEqualTo "default") exitWith {};
+
+if (!isNil "_magazine" && _magazine != "") then {
+    _items pushBack _magazine;
+};
 
 _unit removeWeapon (secondaryWeapon _unit);
 if !(isNil "_weapon") then {

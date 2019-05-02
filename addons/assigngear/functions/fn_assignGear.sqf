@@ -119,12 +119,15 @@ private _bipod = GETGEAR("bipod");
 private _attachment = GETGEAR("attachment");
 private _silencer = GETGEAR("silencer"); // rename muzzle?!?
 private _primaryAttachments = GETGEAR("primaryAttachments");
+private _primaryMagazine = GETGEAR("primaryMagazine");
 
 // Get other weapon and items
 private _secondaryWeapon = GETGEAR("secondaryWeapon");
 private _secondaryAttachments = GETGEAR("secondaryAttachments");
+private _secondaryMagazine = GETGEAR("secondaryMagazine");
 private _sidearmWeapon = GETGEAR("sidearmWeapon");
 private _sidearmAttachments = GETGEAR("sidearmAttachments");
+private _sidearmMagazine = GETGEAR("sidearmMagazine");
 
 // Get items in inventory
 private _magazines = GETGEAR("magazines");
@@ -173,14 +176,14 @@ _backpackItems append ([_unit,_items]     call FUNC(addItems));
 
 // Replace primary weapon
 if(isnil "_primaryAttachments") then {
-    [_unit,_primaryWeapon,_scope,_bipod,_attachment,_silencer] call FUNC(replacePrimaryWeapon);
+    [_unit,_primaryWeapon,_scope,_bipod,_attachment,_silencer,_primaryMagazine] call FUNC(replacePrimaryWeapon);
 }
 else {
     [_unit,_primaryWeapon,_primaryAttachments] call FUNC(replacePrimaryWeapon);
 };
 // Replace secondary weapon and sidearm
-[_unit,_secondaryWeapon,_secondaryAttachments] call FUNC(replaceSecondaryWeapon);
-[_unit,_sidearmWeapon,_sidearmAttachments]     call FUNC(replaceSidearmWeapon);
+[_unit,_secondaryWeapon,_secondaryAttachments, _secondaryMagazine] call FUNC(replaceSecondaryWeapon);
+[_unit,_sidearmWeapon,_sidearmAttachments, _sidearmMagazine]     call FUNC(replaceSidearmWeapon);
 
 // Set Face
 [_unit,_faces] call FUNC(setFace);
