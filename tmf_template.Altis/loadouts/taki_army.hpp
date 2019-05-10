@@ -16,13 +16,16 @@ class baseMan {// Weaponless baseclass
     bipod[] = {};
     attachment[] = {};
     silencer[] = {};
+    primaryMagazine[] = {}; // Magazine to be placed in weapon. Optional. Place only one, unless weapon has grenade launcher.
     // Leave empty to remove all. "Default" for primaryWeapon > leave original weapon.
 
     // Only *Weapons[] arrays are randomized
     secondaryWeapon[] = {};
     secondaryAttachments[] = {};
+    secondaryMagazine[] = {}; // Magazine to be placed in weapon. Optional. Place only one, unless weapon has grenade launcher.
     sidearmWeapon[] = {};
     sidearmAttachments[] = {};
+    sidearmMagazine[] = {}; // Magazine to be placed in weapon. Optional. Place only one, unless weapon has grenade launcher.
     // Leave empty to remove all. "Default" for secondaryWeapon or sidearmWeapon > leave original weapon.
 
     // These are added to the uniform or vest
@@ -40,6 +43,10 @@ class baseMan {// Weaponless baseclass
 
     // This is executed after unit init is complete. argument: _this = _unit.
     code = "";
+
+    traits[] = {};  // https://community.bistudio.com/wiki/setUnitTrait
+    insignias[] = {};
+    // faces[] = {}; // examples: faces[] = {"faceset:african"}; faces[] = {"AfricanHead_01"};
 
     // These are acre item radios that will be added during the ACRE init. ACRE radios added via any other system will be erased.
     radios[] = {};
