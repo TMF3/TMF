@@ -17,7 +17,7 @@
  * Replaces a units' primary weapon
  */
  #include "\x\tmf\addons\assignGear\script_component.hpp"
- params ["_unit","_weaponArray","_scopeArray","_bipodArray","_attachmentArray","_silencerArray", "_magazine"];
+ params ["_unit","_weaponArray","_scopeArray","_bipodArray","_attachmentArray","_silencerArray", "_magazineArray"];
 
 // Remove weapon and exit if weaponArray is empty
 if (count _weaponArray < 1) exitWith {_unit removeWeapon (primaryWeapon _unit)};
@@ -42,12 +42,18 @@ if(count _this > 3) then {
     if(isNil "_bipod") then {_bipod = ""};
     if(isNil "_attachment") then {_attachment = ""};
     if(isNil "_silencer") then {_silencer = ""};
-    if(isNil "_magazine") then {_magazine = ""};
     {
         if (!isNil "_x" && _x != "" ) then {
             _unit addPrimaryWeaponItem _x;
         };
     } forEach [_scope,_bipod,_attachment,_silencer,_magazine];
+
+    if(isNil "_magazineArray") then {_magazineArray = []};
+    {
+        if (!isNil "_x" && _x != "" ) then {
+            _unit addPrimaryWeaponItem _x;
+        };
+    } forEach _magazineArray;
 }
 else
 {

@@ -14,7 +14,7 @@
  * Replaces a units' sidearm weapon
  */
  #include "\x\tmf\addons\assignGear\script_component.hpp"
- params ["_unit","_weaponArray","_items","_magazine"];
+ params ["_unit","_weaponArray","_items","_magazineArray"];
 
 // Exit and remove weapon if weaponArray is empty
 if (count _weaponArray < 1) exitWith {_unit removeWeapon (handgunWeapon _unit)};
@@ -24,9 +24,12 @@ private _weapon = selectRandom _weaponArray;
 // Exit if weapon was set to "default"
 if (_weapon isEqualTo "default") exitWith {};
 
-if (!isNil "_magazine" && _magazine != "") then {
-    _items pushBack _magazine;
-};
+if(isNil "_magazineArray") then {_magazineArray = []};
+{
+    if (!isNil "_x" && _x != "" ) then {
+        _items pushBack _x;
+    };
+} forEach _magazineArray;
 
 _currentWeapon = handgunWeapon _unit;
 _unit removeWeapon _currentWeapon;
