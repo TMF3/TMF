@@ -170,18 +170,18 @@ class Controls
         onButtonClick = "systemChat 'Button: Assign Radio';";
         y = "11.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
+    class ButtonAssignTraits: ButtonSelectAll
+    {
+        idc = IDC_TMF_ADMINMENU_PMAN_ASSIGNTRAITS;
+        text = "Assign Traits";
+        onButtonClick = QUOTE([ARR_2(QUOTE(QFUNC(modal_assignTraits)),ctrlText (_this select 0))] call FUNC(modal););
+        y = "12.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+    };
     class ButtonHeal: ButtonSelectAll
     {
         idc = IDC_TMF_ADMINMENU_PMAN_HEAL;
         text = "Heal";
         onButtonClick = QUOTE([ARR_3(QUOTE(QFUNC(utility_heal)),ctrlText (_this select 0),true)] call FUNC(utility););
-        y = "12.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-    };
-    class ButtonKick: ButtonSelectAll
-    {
-        idc = IDC_TMF_ADMINMENU_PMAN_KICK;
-        text = "Kick";
-        onButtonClick = "";
         y = "13.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
     class ButtonRunCode: ButtonSelectAll

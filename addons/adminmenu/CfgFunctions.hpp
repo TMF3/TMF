@@ -58,6 +58,7 @@ class CfgFunctions {
             class modal_assignGear;
             class modal_assignGear_listboxFactions;
             class modal_assignGear_listboxRoles;
+            class modal_assignTraits;
             class modal_message;
             class modal_runCode;
             class modal_steamProfile;
