@@ -26,7 +26,7 @@ private _traitComboCtrls = [];
     _ctrlComboTraitLabel ctrlCommit 0;
     _ctrlComboTraitLabel ctrlSetText _x;
 
-    private _ctrlComboTrait = _display ctrlCreate ["RscCombo", -1, _ctrlGroup];
+    private _ctrlComboTrait = _display ctrlCreate [QGVAR(RscCombo), -1, _ctrlGroup];
     GVAR(utilityTabControls) pushBack _ctrlComboTrait;
     _traitComboCtrls pushBack _ctrlComboTrait;
     _ctrlComboTrait ctrlSetPosition [_ctrlComboTraitX, _ctrlLineY, _ctrlComboTraitW, TMF_ADMINMENU_STD_HEIGHT];
