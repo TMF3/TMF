@@ -28,8 +28,6 @@ class CfgFunctions {
             class onLoad;
             class onUnload;
             class playerManagement;
-            class playerManagement_button;
-            class playerManagement_filter;
             class playerManagement_listSelChange;
             class playerManagement_updateList;
             class remoteControl;
@@ -57,6 +55,7 @@ class CfgFunctions {
             class modalState;
             class modal_ACRE2Languages;
             class modal_ACRE2Languages_assign;
+            class modal_ACRE2Radios;
             class modal_assignGear;
             class modal_assignGear_listboxFactions;
             class modal_assignGear_listboxRoles;
