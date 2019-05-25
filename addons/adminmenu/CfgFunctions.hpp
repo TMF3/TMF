@@ -55,6 +55,8 @@ class CfgFunctions {
             class modalOnLoad;
             class modalOnUnload;
             class modalState;
+            class modal_ACRE2Languages;
+            class modal_ACRE2Languages_assign;
             class modal_assignGear;
             class modal_assignGear_listboxFactions;
             class modal_assignGear_listboxRoles;
