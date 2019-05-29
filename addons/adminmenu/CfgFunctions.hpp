@@ -56,6 +56,7 @@ class CfgFunctions {
             class modal_ACRE2Languages;
             class modal_ACRE2Languages_assign;
             class modal_ACRE2Radios;
+            class modal_ACRE2Radios_assign;
             class modal_assignGear;
             class modal_assignGear_listboxFactions;
             class modal_assignGear_listboxRoles;

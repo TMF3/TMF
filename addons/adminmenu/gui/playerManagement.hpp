@@ -116,6 +116,7 @@ class Controls
         w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
         h = "1 *((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     };
+    
     class ButtonACRE2Languages: ButtonSelectAll
     {
         idc = IDC_TMF_ADMINMENU_PMAN_ACRELANGUAGES;

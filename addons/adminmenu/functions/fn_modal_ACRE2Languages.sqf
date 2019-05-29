@@ -5,9 +5,9 @@ params ["_ctrlGroup"];
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
-private _ctrlLabelLangs = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
+private _ctrlLabelLangs = _display ctrlCreate [QGVAR(RscTextLarge), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlLabelLangs;
-_ctrlLabelLangs ctrlSetPosition [0, 0, (0.25 * _ctrlGrpWidth), TMF_ADMINMENU_STD_HEIGHT];
+_ctrlLabelLangs ctrlSetPosition [0, 0, (0.5 * _ctrlGrpWidth), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlLabelLangs ctrlCommit 0;
 _ctrlLabelLangs ctrlSetText "Assign players' ACRE2 Babel languages";
 
@@ -23,7 +23,7 @@ private _langY = 2.1 * TMF_ADMINMENU_STD_HEIGHT;
 private _langComboCtrls = [];
 
 {
-	params ["_key", "_name"];
+	_x params ["_key", "_name"];
 
 	private _ctrlLabelName = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
 	GVAR(utilityTabControls) pushBack _ctrlLabelName;
@@ -76,7 +76,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
 		systemChat "[TMF Admin Menu] Any change that would leave players with no language to speak will fail";
 	};
 
-    [_langsToAdd, _langsToRemove] remoteExecCall [QGVAR(modal_ACRE2Languages_assign), GVAR(utilityData)];
+    [_langsToAdd, _langsToRemove] remoteExecCall [QFUNC(modal_ACRE2Languages_assign), GVAR(utilityData)];
 
     systemChat format ["[TMF Admin Menu] Assigned ACRE2 languages to %1 player(s)", count GVAR(utilityData)];
 }];
