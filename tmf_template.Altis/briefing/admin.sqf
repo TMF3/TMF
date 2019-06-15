@@ -1,5 +1,5 @@
 
-private _briefing = "ADMIN BRIEFING<br/><br/>";
+tmf_briefing_admin = "ADMIN BRIEFING<br/><br/>";
 
 
 /* In this briefing page you should provide the admin with any information that will aid them doing their job.
@@ -9,6 +9,6 @@ private _briefing = "ADMIN BRIEFING<br/><br/>";
 */
 
 // Insert custom text
-_briefing = _briefing + "";
+tmf_briefing_admin = tmf_briefing_admin + "your text here";
 
-player createDiaryRecord ["diary", ["Admin",_briefing]];
+player createDiaryRecord ["diary", ["Admin", tmf_briefing_admin]];

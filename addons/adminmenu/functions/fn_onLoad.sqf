@@ -15,7 +15,11 @@ if (!isMultiplayer) then {
 
 // Mission Maker's Notes
 private _ctrlMissionNotes = (_display displayCtrl IDC_TMF_ADMINMENU_G_DASH_MISSIONNOTES) controlsGroupCtrl IDC_TMF_ADMINMENU_DASH_MISSIONNOTES;
-_ctrlMissionNotes ctrlSetStructuredText parseText "<t size='1.2' color='#FFC04D'>Title</t><br/><t size='1'>Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented! Not implemented!</t>";
+if (!isNil QEGVAR(briefing,admin) && {EGVAR(briefing,admin) isEqualType ""}) then {
+    _ctrlMissionNotes ctrlSetStructuredText parseText EGVAR(briefing,admin);
+} else {
+    _ctrlMissionNotes ctrlSetStructuredText parseText "No admin notes provided!";
+};
 private _notesPos = ctrlPosition _ctrlMissionNotes;
 _notesPos set [3, ctrlTextHeight _ctrlMissionNotes];
 _ctrlMissionNotes ctrlSetPosition _notesPos;
