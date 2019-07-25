@@ -22,10 +22,11 @@ if (isClass(configFile >> "CfgPatches" >> "tao_foldmap_a3")) then {
     [] spawn {
         disableSerialization;
         while {true} do {
-            waitUntil {sleep 1;!isNull (uiNamespace getVariable "tao_foldmap")};
-            private _control1 = ((uiNamespace getVariable "tao_foldmap") displayctrl 40);
-            ((uiNamespace getVariable "tao_foldmap") displayctrl 40) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
-            ((uiNamespace getVariable "tao_foldmap") displayctrl 41) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
+            private _display = displayNull;
+            waitUntil {sleep 1;_display = (uiNamespace getVariable ["tao_foldmap",displayNull]); !isNull _display};
+            private _control1 = _display displayctrl 40;
+            (_display displayctrl 40) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
+            (_display displayctrl 41) ctrlAddEventHandler ["draw",{_this call FUNC(draw)}];
             waitUntil{sleep 1;isNull _control1};
         };
     };
