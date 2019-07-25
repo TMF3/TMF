@@ -1,45 +1,48 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
+// Thanks to Snippers
+
 params [["_radios", []], ["_network", -1]];
 
-systemChat format ["_radios:%1, _network:%2", str _radios, _network];
+private _presetName = format ["tmf_preset%1", _network];
+private _oldPresetName = ["ACRE_PRC343"] call acre_api_fnc_getPreset;
 
-private _newPreset = if (_network > -1) then {
-	format ["tmf_preset%1", _network]
-} else {
-	""
+if (_network > -1 && !(_presetName isEqualTo _oldPresetName)) then {
+    {
+        _x params ["_radioList"];
+        {
+            [_x, _presetName] call acre_api_fnc_setPreset;
+        } forEach _radioList;
+    } forEach EGVAR(acre,radioCoreSettings);
 };
 
-[{
-	params ["_args", "_pfh"];
-	_args params ["_radios", "_newPreset"];
+{
+    if (player canAdd _radio) then {
+        player addItem _radio;
+        systemChat format ["[TMF] Added radio: %1", _radio];
+    } else {
+        if (getContainerMaxLoad uniform player > 0) then {
+            (uniformContainer player) addItemCargoGlobal [_radio, 1];
+            systemChat format ["[TMF] Added radio (exceeds inventory capacity): %1", _radio];
+        } else {
+            systemChat format ["[TMF] Couldn't add radio: %1", _radio];
+        };
 
-	if (_radios isEqualTo []) exitWith {
-		[_pfh] call CBA_fnc_removePerFrameHandler;
-	};
+        // TODO: give addaction?
+    };
+} forEach _radios;
 
-	private _radio = _radios deleteAt 0;
+if (_network > -1 && !(_presetName isEqualTo _oldPresetName)) then {
+    [{[] call acre_api_fnc_isInitialized}, {
+        params ["_unit", "_oldPresetName"];
 
-	if (player canAdd _radio) then {
-		private _oldPreset = [_radio] call acre_api_fnc_getPreset;
-		private _switchPreset = !(_newPreset isEqualTo "" || _newPreset isEqualTo _oldPreset);
+        if (_unit != player) exitWith {};
 
-		if (_switchPreset) then {
-			systemChat format ["%1 used new preset %2", _radio, _newPreset];
-
-			[_radio, _newPreset] call acre_api_fnc_setPreset;
-			player addItem _radio;
-
-			[{ // not sure i need to do this
-				params ["_radio", "_oldPreset"];
-				[_radio, _oldPreset] call acre_api_fnc_setPreset;
-			}, 0.1, [_radio, _oldPreset]] call CBA_fnc_waitAndExecute;
-		} else {
-			systemChat format ["%1 used old preset %2", _radio, _oldPreset];
-
-			player addItem _radio;
-		};
-	} else {
-		systemChat format ["cant add %1", _radio];
-	};
-}, 0, [+_radios, _newPreset]] call CBA_fnc_addPerFrameHandler;
+        {
+            _x params ["_radioList"];
+            {
+                [_x, _oldPresetName] call acre_api_fnc_setPreset;
+            } forEach _radioList;
+        } forEach EGVAR(acre,radioCoreSettings);
+    }, [player, _oldPresetName]] call CBA_fnc_waitUntilAndExecute;
+};
