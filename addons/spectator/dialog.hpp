@@ -76,7 +76,7 @@ class tmf_spectator_dialog
   onUnload = "TMF_spectator_camera cameraEffect ['TERMINATE','BACK']";
   class TMF_SPECTATOR_UNITLABEL: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL;
-    text = "Arnold McFuckFace"; //--- ToDo: Localize;
+    text = ""; //--- ToDo: Localize;
     x = (0.50-0.15/2) * safezoneW + safezoneX;
     y = 0.025 * safezoneH + safezoneY;
     w = 0.15 * safezoneW;
