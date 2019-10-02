@@ -36,8 +36,12 @@ _activeFaction = toLower _activeFaction;
 
 private _factions = [];
 
-
-
+// Check if it is loading factions for the AI loadout macro system, if so require the 'AI' class
+private _condition = if ((_selected select 0) isKindOf QGVAR(moduleLoadoutMacro)) then
+[
+    {"isClass _x && {isClass (_x >> 'AI')}"},
+    {"isClass _x"}
+];
 
 private _found = false;
 
@@ -46,7 +50,7 @@ if (_activeFactionCategory == "mission") then {
     {
         private _factionName = (toLower(configName _x));
         _factions pushBackUnique [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
-    } forEach (configProperties [missionConfigFile >> "CfgLoadouts","isClass _x"]);
+    } forEach (configProperties [missionConfigFile >> "CfgLoadouts",_condition]);
 
 } else {
     // Then configFile
@@ -57,7 +61,7 @@ if (_activeFactionCategory == "mission") then {
             private _factionName = (toLower(configName _x));
             _factions pushBackUnique [getText(_x >> "displayName"),_factionName,getText(_x >> "tooltip")];
         };
-    } forEach (configProperties [configFile >> "CfgLoadouts","isClass _x"]);
+    } forEach (configProperties [configFile >> "CfgLoadouts",_condition]);
 };
 
 //Alphabetical sort.

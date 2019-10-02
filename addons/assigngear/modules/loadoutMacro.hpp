@@ -9,7 +9,7 @@ class GVAR(moduleLoadoutMacro) : Module_F
     // Name of function triggered once conditions are met
     function = FUNC(moduleAIMacro);
     // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
-    functionPriority = 1;
+    functionPriority = 0;
     // 0 for server only execution, 1 for global execution, 2 for persistent global execution
     isGlobal = 0;
     // 1 to run init function in Eden Editor as well
@@ -82,7 +82,67 @@ class GVAR(moduleLoadoutMacro) : Module_F
             defaultValue = "toLower(faction _this)";
             wikiType = "[[String]]";
         };
-        class TMF_assignGear_role //Dummy
+        class TMF_aiGear_useTracer : Checkbox
+        {
+            displayName = "Use Tracer Ammo";
+            property = "TMF_aiGear_useTracer";
+            condition = "logicModule";
+            tooltip = "When assigning ammo, tracer magazines will be prioritized.";
+            defaultValue = "false";
+            wikiType = "[[Bool]]";
+        };
+        class TMF_aiGear_addMedical : Checkbox
+        {
+            displayName = "Add Medical Supplies";
+            property = "TMF_aiGear_addMedical";
+            condition = "logicModule";
+            tooltip = "Whether or not to add medical supplies to units.";
+            defaultValue = "true";
+            wikiType = "[[Bool]]";
+        };
+        class TMF_aiGear_addHMD : Checkbox
+        {
+            displayName = "Add HMD";
+            property = "TMF_aiGear_addHMD";
+            condition = "logicModule";
+            tooltip = "Whether or not to add HMDs specified in the macro.";
+            defaultValue = "true";
+            wikiType = "[[Bool]]";
+        };
+        class TMF_aiGear_addFlashlight : Checkbox
+        {
+            displayName = "Add Flashlights";
+            property = "TMF_aiGear_addFlashlight";
+            condition = "logicModule";
+            tooltip = "Whether or not to add flashlights to units if available.";
+            defaultValue = "false";
+            wikiType = "[[Bool]]";
+        };
+        class TMF_aiGear_forceFlashlight : Checkbox
+        {
+            displayName = "Force enable flashlights";
+            property = "TMF_aiGear_forceFlashlight";
+            condition = "logicModule";
+            tooltip = "Whether or not to force flashlights to be enabled.";
+            defaultValue = "false";
+            wikiType = "[[Bool]]";
+        };
+        class TMF_aiGear_code
+        {
+            displayName = "Code On Unit Created";
+            property = "TMF_aiGear_code";
+            condition = "logicModule";
+            control = "EditCodeMulti5";
+            expression = "_this setVariable ['TMF_aiGear_code',compile _value]";
+            tooltip = "Code executed on each affected unit. Unit is referenced in this code as _this.";
+            defaultValue = "''";
+            validate = "string";
+            wikiType = "[[Code]]";
+        };
+        class ModuleDescription: ModuleDescription {};
+
+
+        class TMF_assignGear_role // Dummy
         {
             property = "TMF_assignGear_role";
             displayName = "Role";
@@ -90,19 +150,19 @@ class GVAR(moduleLoadoutMacro) : Module_F
             condition = "logicModule";
             control = "None";
             //expression = "_this setVariable ['TMF_assignGear_role',_value,true];";
-            defaultValue = "'r'";
+            defaultValue = "'AI'";
             value = "''";
             wikiType = "[[String]]";
         };
-        class TMF_assignGear_full
+        class TMF_assignGear_full // Dummy
         {
             property = "TMF_assignGear_full";
             condition = "logicModule";
             control = "None";
-            expression = "_this setVariable ['TMF_assignGear_role',_value,true];"; //tmf_assignGear_fnc_helper
-            defaultValue = "['r','',false]";
+            expression = "_this setVariable ['TMF_aiGear_full',_value,true];"; //tmf_assignGear_fnc_helper
+            defaultValue = "['AI','blu_f',false]";
         };
-        class TMF_assignGear_enabled
+        class TMF_assignGear_enabled // Dummy
         {
             property = "TMF_assignGear_enabled";
             condition = "logicModule";

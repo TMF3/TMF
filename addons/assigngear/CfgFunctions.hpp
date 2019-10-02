@@ -5,10 +5,12 @@ class cfgFunctions {
             class addBackpackItems;
             class addItems;
             class assignGear;
+            class assignAIGear;
             class linkItems;
             class loadFactions;
             class loadFactionCategories;
             class loadRoles;
+            class replaceAIWeapon;
             class replaceEquipment;
             class replacePrimaryWeapon;
             class replaceSecondaryWeapon;
