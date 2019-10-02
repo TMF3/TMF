@@ -13,7 +13,7 @@
  */
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 
-private _selected = get3DENSelected "object";
+private _selected = (get3DENSelected 'object' + get3DENSelected 'logic');
 _selected params [["_unit",objNull]];
 
 

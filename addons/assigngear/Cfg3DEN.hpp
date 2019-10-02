@@ -128,7 +128,7 @@ class Cfg3DEN
             attributeSave = "\
                 _ctrlFaction = _this controlsGroupCtrl 100;\
                 private _output = _ctrlFaction lbData lbCurSel _ctrlFaction;\
-                private _objects = get3DENSelected 'object'; \
+                private _objects = (get3DENSelected 'object' + get3DENSelected 'logic'); \
                 { \
                     private _array = [(_x get3DENAttribute 'TMF_assignGear_role') select 0, \
                     _output, \
@@ -168,7 +168,7 @@ class Cfg3DEN
             attributeSave = "\
                 _ctrlRole = _this controlsGroupCtrl 100;\
                 private _output = _ctrlRole lbData lbCurSel _ctrlRole;\
-                private _objects = get3DENSelected 'object'; \
+                private _objects = (get3DENSelected 'object' + get3DENSelected 'logic'); \
                 { \
                     _array = [_output, \
                     (_x get3DENAttribute 'TMF_assignGear_faction') select 0, \

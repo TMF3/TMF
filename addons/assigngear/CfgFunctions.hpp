@@ -14,6 +14,7 @@ class cfgFunctions {
             class replaceSecondaryWeapon;
             class replaceSidearmWeapon;
             class helper;
+            class moduleAIMacro;
             class saveRole;
             class setFace;
             class setInsignia;

@@ -26,7 +26,7 @@ if (_activeFactionCategory == "") then {
 
 
 // Get the selected unit
-private _selected = get3DENSelected "object";
+private _selected = (get3DENSelected 'object' + get3DENSelected 'logic');
 private _activeFaction = "";
 if (count _selected > 0) then {
     _activeFaction = (((_selected select 0) get3DENAttribute "TMF_assignGear_faction") select 0);

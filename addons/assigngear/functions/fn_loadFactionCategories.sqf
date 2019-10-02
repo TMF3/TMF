@@ -21,7 +21,7 @@ params ["_control"];
 // Clear control
 lbClear _control;
 
-private _selected = get3DENSelected "object";
+private _selected = (get3DENSelected 'object' + get3DENSelected 'logic');
 private _activeFaction = "";
 if (count _selected > 0) then {
     _activeFaction = (((_selected select 0) get3DENAttribute "TMF_assignGear_faction") select 0);
@@ -37,7 +37,7 @@ private _index = -1;
 if (count _missionConfig > 0) then {
     _index = _control lbAdd "From Mission File";
     _control lbSetData [_index, "mission"];
-    
+
     {
         private _factionName = (toLower(configName _x));
         if (_factionName isEqualTo _activeFaction) exitWith {
@@ -53,11 +53,11 @@ private _activeFactionCategory = "";
 {
     private _category = getText (_x >> "category");
     if (_category isEqualTo "") then {_category = "Other";};
-    
+
     if (toLower (configName _x) == _activeFaction) then {
         _activeFactionCategory = _category;
     };
-    
+
     _factionCategories pushBackUnique _category;
 } forEach (configProperties [configFile >> "CfgLoadouts", "isClass _x"]);
 
@@ -68,7 +68,7 @@ _factionCategories sort true;
     private _index = _control lbAdd _x;
     _control lbSetData [_index,_x];
     if((!_found) and _x == _activeFactionCategory) then {
-        _found = true; 
+        _found = true;
         _control lbSetCurSel _index;
         GVAR(currentFactionCategory) = _x;
     };
