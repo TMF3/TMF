@@ -17,13 +17,13 @@ switch (getNumber (configFile >> "CfgWeapons" >> _weapon >> "type") ) do
         } else
         {
             private _tracerMags = getArray (configFile >> "CfgWeapons" >> _weapon >> "magazines") select {getNumber (configFile >> "CfgMagazines" >> _x >> "tracersEvery") == 1};
-            if (_tracerMags != []) then
+            if !(_tracerMags isEqualTo []) then
             {
                 for "_i" from 1 to 3 do
                 {
                     _unit addMagazine (_tracerMags # 0);
-                    _unit addWeapon _weapon;
                 };
+                _unit addWeapon _weapon;
             } else
             {
                 [_unit, _weapon, 3] call BIS_fnc_addWeapon;
@@ -50,7 +50,7 @@ switch (getNumber (configFile >> "CfgWeapons" >> _weapon >> "type") ) do
                     // Select only optics with MRCO zoom or more
                     private _srifleScopes = _scope select
                     {
-                        1 >= count ("getNumber (_x >> 'opticsZoomMin') <= 0.125" configClasses (configFile >> "CfgWeapons" >> _x >> "ItemInfo" >> "OpticsModes"));
+                        1 <= count ("getNumber (_x >> 'opticsZoomMin') <= 0.125" configClasses (configFile >> "CfgWeapons" >> _x >> "ItemInfo" >> "OpticsModes"));
                     };
                     if (_srifleScopes isEqualTo []) then {_srifleScopes = _scope}; //No optic found, give them anything
                     _unit addPrimaryWeaponItem selectRandom _srifleScopes;
