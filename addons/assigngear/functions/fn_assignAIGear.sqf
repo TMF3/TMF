@@ -30,7 +30,7 @@ _unit setVariable ["BIS_enableRandomization", false];
 [_unit, "backpack", GETGEAR("backpack")] call FUNC(replaceEquipment);
 [_unit, "headgear", GETGEAR("headgear")] call FUNC(replaceEquipment);
 [_unit, "goggles",  GETGEAR("goggles")] call FUNC(replaceEquipment);
-[_unit, "hmd",      GETGEAR("hmd")] call FUNC(replaceEquipment);
+if (_addHMD) then {[_unit, "hmd", GETGEAR("hmd")] call FUNC(replaceEquipment)};
 
 if (_addMedical) then
 {
