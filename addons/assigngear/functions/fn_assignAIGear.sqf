@@ -40,6 +40,9 @@ if (_addMedical) then
         _unit addItem "Medikit";
     }
     else
+//Identity
+[_unit,GETGEAR("faces")] call FUNC(setFace);
+[_unit,GETGEAR("voices")] call FUNC(setVoice);
     {
         _unit addItem "FirstAidKit";
     };

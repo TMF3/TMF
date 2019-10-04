@@ -8,7 +8,7 @@ private _faceClasses = [];
     _faceClasses append (("true" configClasses _x) apply {toLower (configName _x)});
 } forEach ("true" configClasses(configfile >> "CfgFaces"));
 
-uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
+uiNamespace setVariable [QGVAR(validFaces),_faceClasses];
 
 {
     private _class = _x;
@@ -27,7 +27,30 @@ uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
         };
     } forEach ("true" configClasses _class);
     if (count _weightedArray > 0) then {
-        uiNamespace setVariable ["tmf_assignGear_faceset_"+_name,_weightedArray];
+        uiNamespace setVariable [QGVAR(faceset_)+_name,_weightedArray];
     };
-} forEach ("true" configClasses (configFile >> "tmf_assignGear_facesets"));
+} forEach ("true" configClasses (configFile >> QGVAR(facesets)));
 
+// Cache the voicesets to uiNamespace.
+
+// Collect valid voice classes.
+
+private _voiceClasses = "true" configClasses (configfile >> "CfgVoice");
+MAP(_voiceClasses, {toLower _x});
+
+uiNamespace setVariable [QGVAR(validVoices),_voiceClasses];
+
+{
+    private _name = configName _x;
+
+    private _voiceSet = getArray _x;
+
+    MAP(_voiceSet, {toLower _x});
+    INTERSECTION(_voiceSet, _voiceClasses);
+
+    if (count _voiceSet > 0) then
+    {
+        uiNamespace setVariable [QGVAR(voiceset_)+_name,_arr]
+    };
+
+} forEach configProperties [configFile >> QGVAR(voicesets)];

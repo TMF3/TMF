@@ -496,14 +496,14 @@ class AI
     vest[] = {"V_PlateCarrier1_rgr", "V_PlateCarrier2_rgr"};
     headgear[] = {LIST_5("H_HelmetB"), "H_HelmetB_camo", "H_HelmetB_desert", "H_HelmetB_grass", "H_HelmetB_sand", "H_HelmetB_snakeskin"};
     goggles[] = {"default"};
-    hmd[] = {};
-    backpack[] = {"none", "B_AssaultPack_rgr"};
+    hmd[] = {"NVGoggles"};
+    backpack[] = {"", "B_AssaultPack_rgr"};
     faces[] = {"faceset:african", "faceset:caucasian"};
-    voices[] = {"soundset:american"}; // TODO
+    voices[] = {"soundset:americanEnglish"};
     primaryWeapon[] = {LIST_20("arifle_MX_F"), LIST_5("arifle_MX_SW_F"), LIST_2("MMG_02_sand_F"), "srifle_DMR_03_tan_F"};
     secondaryWeapon[] = {LIST_8(""), "launch_NLAW_F"};
     sidearmWeapon[] = {LIST_5(""), "hgun_P07_F"};
-    scope[] = {"optic_holosight", LIST_5("optic_aco"), "optic_hamr"};
+    scope[] = {"optic_holosight", LIST_5("optic_aco"), "optic_hamr", "optic_ams_snd"};
     grenades[] = {"HandGrenade", "SmokeShell"};
     code = "";
 };
