@@ -499,7 +499,7 @@ class AI
     hmd[] = {"NVGoggles"};
     backpack[] = {"", "B_AssaultPack_rgr"};
     faces[] = {"faceset:african", "faceset:caucasian"};
-    voices[] = {"soundset:americanEnglish"};
+    voices[] = {"voiceset:americanEnglish"};
     primaryWeapon[] = {LIST_20("arifle_MX_F"), LIST_5("arifle_MX_SW_F"), LIST_2("MMG_02_sand_F"), "srifle_DMR_03_tan_F"};
     secondaryWeapon[] = {LIST_8(""), "launch_NLAW_F"};
     sidearmWeapon[] = {LIST_5(""), "hgun_P07_F"};

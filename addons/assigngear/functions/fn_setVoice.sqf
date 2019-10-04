@@ -26,7 +26,7 @@ private _voiceArr = [];
         private _voicesetName = _x select [9];
 
         {
-            PUSH(_voiceArr, toLower _x);
+            PUSH(_voiceArr, _x);
         } forEach (uiNamespace getVariable [QGVAR(voiceset_) + _voicesetName,[]]);
     }
     else

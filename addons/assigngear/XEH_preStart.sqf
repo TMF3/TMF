@@ -36,7 +36,7 @@ uiNamespace setVariable [QGVAR(validFaces),_faceClasses];
 // Collect valid voice classes.
 
 private _voiceClasses = "true" configClasses (configfile >> "CfgVoice");
-MAP(_voiceClasses, {toLower _x});
+MAP(_voiceClasses, toLower configName _x);
 
 uiNamespace setVariable [QGVAR(validVoices),_voiceClasses];
 
@@ -45,12 +45,12 @@ uiNamespace setVariable [QGVAR(validVoices),_voiceClasses];
 
     private _voiceSet = getArray _x;
 
-    MAP(_voiceSet, {toLower _x});
+    MAP(_voiceSet, toLower _x);
     INTERSECTION(_voiceSet, _voiceClasses);
 
     if (count _voiceSet > 0) then
     {
-        uiNamespace setVariable [QGVAR(voiceset_)+_name,_arr]
+        uiNamespace setVariable [QGVAR(voiceset_)+_name,_voiceSet]
     };
 
 } forEach configProperties [configFile >> QGVAR(voicesets)];
