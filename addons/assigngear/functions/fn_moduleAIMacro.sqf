@@ -2,7 +2,7 @@
 
 /*
  * Name = TMF_assignGear_fnc_moduleAIMacro
- * Author = Head, Nick
+ * Author = Freddo
  *
  * Arguments:
  * Module function, do not use
@@ -11,7 +11,7 @@
  * Nothing
  *
  * Description:
- * Initializes AI gear assignment variables and assigns gear at mission start.
+ * Initialises AI gear assignment variables and assigns gear at mission start.
  */
 
 
@@ -49,5 +49,7 @@ missionNamespace setVariable [QGVAR(aiGear_) + str _side,
     _logic getVariable ["TMF_aiGear_forceFlashlight", false],
     _logic getVariable ["TMF_aiGear_code", "''"]
 ], true];
+
+LOG_1("Initialised AI Macro module ", str _module);
 
 true

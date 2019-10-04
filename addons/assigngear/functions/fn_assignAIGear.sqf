@@ -1,15 +1,20 @@
 /*
- * Name = TMF_assignGear_fnc_assignGear
- * Author = Nick
+ * Name = TMF_assignGear_fnc_assignAIGear
+ * Author = Freddo
  *
  * Arguments:
  * 0: Object. Unit to assign gear to
- * 1: Number (optional). Numeric value of side of unit. Defaults to 3DEN attributes
- * 2: String (optional). Which faction to use. Defaults to 3DEN attributes
- * 3: String (optional). Which role to use. Defaults to 3DEN attributes
+ * 1: Array. Array of parameters in following order
+ *   0: Config. Config path to AI loadout
+ *   1: Boolean. (optional) Prioritize giving AI units tracers
+ *   2: Boolean. (optional) Whether to add medical supplies
+ *   3: Boolean. (optional) Whether to add HMDs
+ *   4: Boolean. (optional) Whether to add flashlights
+ *   5: Boolean. (optional) Whether to force flashlights on
+ *   6: Code.    (optional) Code executed on unit. unit = _this
  *
  * Return:
- * None
+ * Nothing
  *
  * Description:
  * Creates a randomized loadout from the AI class defined in CfgLoadouts >> faction
@@ -17,12 +22,15 @@
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 
 params ["_unit", "_params"];
-_params params ["_cfg", "_useTracer", "_addMedical", "_addHMD", "_addFlashlight", "_forceFlashlight", "_code"];
+_params params ["_cfg", ["_useTracer", false], ["_addMedical", true], ["_addHMD", true], ["_addFlashlight", false], ["_forceFlashlight", false], ["_code", {}]];
 
+LOG_2("Applied AI Loadout", str _unit, str _params);
+
+// Remove weapons and items
 removeAllWeapons _unit;
 removeAllAssignedItems _unit;
 removeAllItemsWithMagazines _unit;
-_unit linkItem "itemRadio";
+_unit linkItem "itemRadio"; // Some mods may depend on this item
 _unit setVariable ["BIS_enableRandomization", false];
 
 //Equipment
@@ -57,12 +65,15 @@ if (_addFlashlight) then
 {
     private _compatibleItems = (currentWeapon _unit) call BIS_fnc_compatibleItems;
 
+    // Check if vanilla flashlight is compatible, to avoid searching through configs
     if ("acc_flashlight" in _compatibleItems) then
     {
         _unit addWeaponItem [currentWeapon _unit, "acc_flashlight"];
     }
     else
-    {   _unit addWeaponItem
+    {
+        // Search through compatible items for flashlights
+        _unit addWeaponItem
         [
             currentWeapon _unit,
             selectRandom (_compatibleItems select {1 <= getNumber (configfile >> "CfgWeapons" >> _x >> "ItemInfo" >> "FlashLight" >> "useFlare")})
@@ -84,13 +95,16 @@ _unit addEventHandler ["Reloaded", {
     _unit addMagazine (_oldMagazine # 0);
 }];
 
+// Grenades
 {_unit addMagazine _x} forEach (GETGEAR("grenades"));
 
+// Code defined in unit loadout
 if !(GETGEAR("code") isEqualTo "") then
 {
     _unit call compile (GETGEAR("code"));
 };
 
+// Code defined in module
 if (_code isEqualType {}) then
 {
     _unit call _code;

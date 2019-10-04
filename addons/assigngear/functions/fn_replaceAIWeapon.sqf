@@ -1,3 +1,19 @@
+/*
+ * Name = TMF_assignGear_fnc_replaceAIWeapon
+ * Author = Nick
+ *
+ * Arguments:
+ * 0: Object. Unit to weapon to
+ * 1: String. Weapon classname
+ * 2: Array. Additional parameters, depends on weapon type
+ *
+ * Return:
+ * None
+ *
+ * Description:
+ * Dresses up a unit with the assignGear system
+ */
+
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 
 params ["_unit", "_weapon", "_params"];
@@ -12,7 +28,7 @@ switch (getNumber (configFile >> "CfgWeapons" >> _weapon >> "type") ) do
 {
     case 1: //Primary
     {
-        _params params ["_scope", "_useTracer"];
+        _params params [["_scope", []], ["_useTracer", false]];
         _unit removeWeapon (primaryWeapon _unit);
         if !(_useTracer) then
         {
