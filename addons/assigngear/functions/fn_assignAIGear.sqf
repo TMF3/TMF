@@ -12,7 +12,7 @@
  * None
  *
  * Description:
- * Dresses up a unit with the assignGear system
+ * Creates a randomized loadout from the AI class defined in CfgLoadouts >> faction
  */
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 
@@ -22,9 +22,10 @@ _params params ["_cfg", "_useTracer", "_addMedical", "_addHMD", "_addFlashlight"
 removeAllWeapons _unit;
 removeAllAssignedItems _unit;
 removeAllItemsWithMagazines _unit;
-_unit assignItem "itemRadio";
+_unit linkItem "itemRadio";
 _unit setVariable ["BIS_enableRandomization", false];
 
+//Equipment
 [_unit, "uniform",  GETGEAR("uniform")] call FUNC(replaceEquipment);
 [_unit, "vest",     GETGEAR("vest")] call FUNC(replaceEquipment);
 [_unit, "backpack", GETGEAR("backpack")] call FUNC(replaceEquipment);
@@ -40,17 +41,38 @@ if (_addMedical) then
         _unit addItem "Medikit";
     }
     else
+    {_unit addItem "FirstAidKit";};
+};
+
 //Identity
 [_unit,GETGEAR("faces")] call FUNC(setFace);
 [_unit,GETGEAR("voices")] call FUNC(setVoice);
+
+//Weapons
+[_unit, GETGEAR("primaryWeapon"), [GETGEAR("scope"), _useTracer]] call FUNC(replaceAIWeapon);
+[_unit, GETGEAR("secondaryWeapon"), [GETGEAR("backpack")]] call FUNC(replaceAIWeapon);
+[_unit, GETGEAR("sidearmWeapon")] call FUNC(replaceAIWeapon);
+
+if (_addFlashlight) then
+{
+    private _compatibleItems = (currentWeapon _unit) call BIS_fnc_compatibleItems;
+
+    if ("acc_flashlight" in _compatibleItems) then
     {
-        _unit addItem "FirstAidKit";
+        _unit addWeaponItem [currentWeapon _unit, "acc_flashlight"];
+    }
+    else
+    {   _unit addWeaponItem
+        [
+            currentWeapon _unit,
+            selectRandom (_compatibleItems select {1 <= getNumber (configfile >> "CfgWeapons" >> _x >> "ItemInfo" >> "FlashLight" >> "useFlare")})
+        ];
     };
 };
-
-[_unit, GETGEAR("primaryWeapon"), GETGEAR("scope"), _useTracer] call FUNC(replaceAIWeapon);
-[_unit, GETGEAR("secondaryWeapon")] call FUNC(replaceAIWeapon);
-[_unit, GETGEAR("sidearmWeapon")] call FUNC(replaceAIWeapon);
+if (_forceFlashlight) then
+{
+    _unit enableGunLights "ForceOn";
+};
 
 // Add infinite magazines for unit, as the AI can't pick up magazines by themselves
 _unit addEventHandler ["Reloaded", {
@@ -64,7 +86,18 @@ _unit addEventHandler ["Reloaded", {
 
 {_unit addMagazine _x} forEach (GETGEAR("grenades"));
 
-if ((count GETGEAR("code")) > 0) then
+if !(GETGEAR("code") isEqualTo "") then
 {
-    _unit call compile GETGEAR("code");
+    _unit call compile (GETGEAR("code"));
+};
+
+if (_code isEqualType {}) then
+{
+    _unit call _code;
+} else
+{
+    if (_code isEqualType "" && {!(_code isEqualTo "")}) then
+    {
+        _unit call compile _code;
+    };
 };

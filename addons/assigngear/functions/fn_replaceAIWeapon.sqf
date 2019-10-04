@@ -1,15 +1,18 @@
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 
-params ["_unit", "_weapon", "_scope", "_useTracer"];
+params ["_unit", "_weapon", "_params"];
+
+if (isNil "_unit" || {isNil "_weapon"}) exitWith {};
+
+if (_weapon isEqualType []) then {_weapon = selectRandom _weapon};
 
 if (isNil "_weapon" || {_weapon isEqualTo ""}) exitWith {};
-
-_weapon = selectRandom _weapon;
 
 switch (getNumber (configFile >> "CfgWeapons" >> _weapon >> "type") ) do
 {
     case 1: //Primary
     {
+        _params params ["_scope", "_useTracer"];
         _unit removeWeapon (primaryWeapon _unit);
         if !(_useTracer) then
         {
@@ -85,6 +88,20 @@ switch (getNumber (configFile >> "CfgWeapons" >> _weapon >> "type") ) do
     };
     case 4: //Secondary
     {
+        _params params ["_backpack"];
+
+        // Ensure unit has backpack
+        // TODO: add exception for disposable launchers
+        if (backpack _unit isEqualTo "" && count _backpack > 0) then
+        {
+            _backpackFiltered = _backpack select {["RPG", _x] call BIS_fnc_inString};
+            if (_backpackFiltered isEqualTo []) then
+            {
+                _backpackFiltered = _backpack select {!(_x isEqualTo "")};
+            };
+            _unit addBackpack selectRandom _backpackFiltered;
+        };
+
         _unit removeWeapon (secondaryWeapon _unit);
         [_unit, _weapon, 2] call BIS_fnc_addWeapon;
     };
