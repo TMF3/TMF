@@ -25,19 +25,6 @@ class Extended_Init_EventHandlers {
     };
 };
 
-class Extended_InitPost_EventHandlers {
-    class Car {
-        class ADDON {
-            init = "(_this select 0) allowCrewInImmobile true;";
-        };
-    };
-    class Tank {
-        class ADDON {
-            init = "(_this select 0) allowCrewInImmobile true;";
-        };
-    };
-};
-
 class Extended_DisplayLoad_EventHandlers {
     class RscDisplayMultiplayerSetup {
         tmf_slotting = QUOTE(_this call (uiNamespace getVariable 'FUNC(initDisplayMultiplayerSetup)'));
