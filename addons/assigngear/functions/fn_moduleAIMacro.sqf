@@ -47,7 +47,8 @@ missionNamespace setVariable [QGVAR(aiGear_) + str _side,
     _logic getVariable ["TMF_aiGear_addHMD", true],
     _logic getVariable ["TMF_aiGear_addFlashlight", false],
     _logic getVariable ["TMF_aiGear_forceFlashlight", false],
-    _logic getVariable ["TMF_aiGear_code", "''"]
+    _logic getVariable ["TMF_aiGear_code", "''"],
+    _logic getVariable ["TMF_aiGear_skill", 0.5]
 ], true];
 
 LOG_1("Initialised AI Macro module ", str _module);

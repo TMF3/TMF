@@ -139,6 +139,17 @@ class GVAR(moduleLoadoutMacro) : Module_F
             validate = "string";
             wikiType = "[[Code]]";
         };
+        class TMF_aiGear_skill
+        {
+            displayName = "Skill Level";
+            property = "TMF_aiGear_skill";
+            condition = "logicModule";
+            control = "Skill";
+            expression = "_this setVariable ['TMF_aiGear_skill', _value]";
+            tooltip = "Overall AI Skill level.";
+            defaultValue = "0.5";
+            wikiType = "[[Number]]";
+        };
         class ModuleDescription: ModuleDescription {};
 
 

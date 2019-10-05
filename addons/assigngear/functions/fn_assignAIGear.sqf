@@ -12,6 +12,7 @@
  *   4: Boolean. (optional) Whether to add flashlights
  *   5: Boolean. (optional) Whether to force flashlights on
  *   6: Code.    (optional) Code executed on unit. unit = _this
+ *   7: Number.  (optional) AI skill, number between 1 and 0
  *
  * Return:
  * Nothing
@@ -22,7 +23,7 @@
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 
 params ["_unit", "_params"];
-_params params ["_cfg", ["_useTracer", false], ["_addMedical", true], ["_addHMD", true], ["_addFlashlight", false], ["_forceFlashlight", false], ["_code", {}]];
+_params params ["_cfg", ["_useTracer", false], ["_addMedical", true], ["_addHMD", true], ["_addFlashlight", false], ["_forceFlashlight", false], ["_code", {}], ["_skill", 0.5]];
 
 LOG_2("Applied AI Loadout", str _unit, str _params);
 
@@ -97,6 +98,9 @@ _unit addEventHandler ["Reloaded", {
 
 // Grenades
 {_unit addMagazine _x} forEach (GETGEAR("grenades"));
+
+// Skill
+if !(_skill isEqualTo 0.5) then {_unit setSkill (_skill + (random 0.05) - (random 0.05))};
 
 // Code defined in unit loadout
 if !(GETGEAR("code") isEqualTo "") then
