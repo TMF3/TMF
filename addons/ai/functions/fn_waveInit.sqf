@@ -10,14 +10,59 @@ if(count _headless > 0 && isServer) exitWith {
 // check if we have done the setup.
 if(!(_logic getVariable [QGVAR(init),false])) then {
     private _allgroups = [];
-    
+
     {if(side group _x in [blufor,opfor,independent,civilian]) then {_allgroups pushBackUnique group _x};} foreach (synchronizedObjects _logic);
 
     _data = _allgroups apply {
-        _vehicles = [];
+        private _vehicles = [];
         { if(vehicle _x != _x) then {_vehicles pushBackUnique (vehicle _x)}; } foreach units _x;
-        private _units = (units _x select {vehicle _x == _x}) apply {[typeof _x,getposATL _x,getDir _x,getUnitLoadout _x]};
-        private _vehicles  = _vehicles apply {[typeof _x,getposATL _x,getDir _x,[_x] call BIS_fnc_getVehicleCustomization,crew _x apply {[typeof _x,getpos _x,getUnitLoadout _x]}]};
+        private _units = (units _x select {vehicle _x == _x}) apply
+        {
+            if ((_x getVariable [QEGVAR(assigngear,done), ""]) isEqualTo "") then
+            {
+                [typeof _x,getposATL _x,getDir _x,getUnitLoadout _x]
+            }
+            else
+            {
+                private _arr = [
+                    _x getVariable QEGVAR(assigngear,faction),
+                    _x getVariable QEGVAR(assigngear,role)
+                ];
+                if !(_arr isEqualTypeArray ["",""]) then
+                {
+                    _arr = getUnitLoadout _x;
+                };
+                [typeof _x,getposATL _x,getDir _x,_arr]
+            };
+        };
+        _vehicles  = _vehicles apply
+        {
+            [
+                typeof _x,
+                getposATL _x,
+                getDir _x,
+                [_x] call BIS_fnc_getVehicleCustomization,
+                crew _x apply
+                {
+                    if ((_x getVariable [QEGVAR(assigngear,done), ""]) isEqualTo "") then
+                    {
+                        [typeof _x,getposATL _x,getDir _x,getUnitLoadout _x]
+                    }
+                    else
+                    {
+                        private _arr = [
+                            _x getVariable QEGVAR(assigngear,faction),
+                            _x getVariable QEGVAR(assigngear,role)
+                        ];
+                        if !(_arr isEqualTypeArray ["",""]) then
+                        {
+                            _arr = getUnitLoadout _x;
+                        };
+                        [typeof _x,getposATL _x,getDir _x,_arr]
+                    };
+                }
+            ]
+        };
         [side _x,_units ,_vehicles,[_x] call CFUNC(serializeWaypoints)];
     };
 

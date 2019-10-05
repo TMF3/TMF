@@ -11,7 +11,16 @@ _data = _logic getVariable [QGVAR(waveData), []];
         _x params ["_type","_pos","_dir","_gear"];
         _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
         _unit setPosATL _pos;
-        _unit setUnitLoadout [_gear, false];
+
+        if (_gear isEqualTypeArray ["",""]) then
+        {
+            ([_unit] + _gear) call EFUNC(assigngear,assignGear);
+        }
+        else
+        {
+            _unit setUnitLoadout _gear;
+        };
+
         _unit setDir _dir;
     } forEach _units;
 
@@ -28,7 +37,16 @@ _data = _logic getVariable [QGVAR(waveData), []];
             _x params ["_type","_pos","_gear"];
             _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
             _unit moveInAny _vehicle;
-            _unit setUnitLoadout [_gear, false];
+
+            if (_gear isEqualTypeArray ["",""]) then
+            {
+                ([_unit] + _gear) call EFUNC(assigngear,assignGear);
+            }
+            else
+            {
+                _unit setUnitLoadout _gear;
+            };
+
         } forEach _units;
     } forEach _vehicles;
 
