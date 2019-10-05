@@ -38,9 +38,11 @@ call {
 };
 
 {
-    private _index = _control lbAdd getText(_x >> "displayName");
-    _control lbSetData [_index,configName _x];
-    _control lbSetTooltip [_index,getText(_x >> "tooltip")];
-    if(configName _x == _role) then {_control lbSetCurSel _index};
+    if (configName _x != "AI") then // Skip AI macro
+    {
+        private _index = _control lbAdd getText(_x >> "displayName");
+        _control lbSetData [_index,configName _x];
+        _control lbSetTooltip [_index,getText(_x >> "tooltip")];
+        if(configName _x == _role) then {_control lbSetCurSel _index};
+    }
 } forEach _classes;
-
