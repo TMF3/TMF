@@ -12,6 +12,7 @@ if
     {isPlayer _unit} ||
     {_unit in playableUnits} ||
     {_unit getVariable [QGVAR(done), false]} ||
+    {_unit getVariable ["TMF_aiGear_disabled", false]} ||
     {!is3den || {(_unit get3DENAttribute 'ControlSP') # 0 || (_unit get3DENAttribute 'ControlMP') # 0}}
 ) exitWith {};
 

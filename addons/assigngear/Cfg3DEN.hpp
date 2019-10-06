@@ -66,6 +66,17 @@ class Cfg3DEN
                         value = "''";
                         wikiType = "[[String]]";
                     };
+                    class TMF_aiGear_disabled
+                    {
+                        property = "TMF_aiGear_disabled";
+                        displayName = "Disable AI Macro for unit";
+                        tooltip = "Allows for arsenal loadouts to be used. Players/units with TMF loadouts are skipped. Requires module 'AI Loadout Macro'";
+                        condition = "objectBrain";
+                        control = "Checkbox";
+                        expression = "_this setVariable ['TMF_aiGear_disabled',_value,true];";
+                        defaultValue = "false";
+                        wikiType = "[[Bool]]";
+                    };
                     class TMF_assignGear_full
                     {
                         property = "TMF_assignGear_full";
