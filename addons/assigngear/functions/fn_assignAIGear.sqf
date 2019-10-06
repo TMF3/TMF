@@ -62,25 +62,37 @@ if (_addMedical) then
 [_unit, GETGEAR("secondaryWeapon"), [GETGEAR("backpack")]] call FUNC(replaceAIWeapon);
 [_unit, GETGEAR("sidearmWeapon")] call FUNC(replaceAIWeapon);
 
+
 if (_addFlashlight) then
 {
-    private _compatibleItems = (currentWeapon _unit) call BIS_fnc_compatibleItems;
+    private _weapon = currentWeapon _unit;
+    if (_weapon isEqualTo "") then
+    {
+        _weapon = primaryWeapon _unit;
 
-    // Check if vanilla flashlight is compatible, to avoid searching through configs
-    if ("acc_flashlight" in _compatibleItems) then
+    };
+    if !(_weapon isEqualTo "") then
     {
-        _unit addWeaponItem [currentWeapon _unit, "acc_flashlight"];
-    }
-    else
-    {
-        // Search through compatible items for flashlights
-        _unit addWeaponItem
-        [
-            currentWeapon _unit,
-            selectRandom (_compatibleItems select {1 <= getNumber (configfile >> "CfgWeapons" >> _x >> "ItemInfo" >> "FlashLight" >> "useFlare")})
-        ];
+        private _compatibleItems = _weapon call BIS_fnc_compatibleItems;
+
+        // Check if vanilla flashlight is compatible, to avoid searching through configs
+        // Known issue, won't display in 3DEN
+        if ("acc_flashlight" in _compatibleItems) then
+        {
+            _unit addWeaponItem [_weapon, "acc_flashlight"];
+        }
+        else
+        {
+            // Search through compatible items for flashlights
+            _unit addWeaponItem
+            [
+                _weapon,
+                selectRandom (_compatibleItems select {1 <= getNumber (configfile >> "CfgWeapons" >> _x >> "ItemInfo" >> "FlashLight" >> "useFlare")})
+            ];
+        };
     };
 };
+
 if (_forceFlashlight) then
 {
     _unit enableGunLights "ForceOn";

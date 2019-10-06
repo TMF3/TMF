@@ -17,6 +17,8 @@
 
 params ["_mode", "_input"];
 
+if (_mode in ["connectionChanged3DEN", "dragged3DEN"]) exitWith {};
+
 _input params ["_logic", "_isActivated", "_isCuratorPlaced"];
 
 private _TMF_aiGear_full = if ((_logic getVariable "TMF_aiGear_full") isEqualType "") then
@@ -51,6 +53,24 @@ missionNamespace setVariable [QGVAR(aiGear_) + str _side,
     _logic getVariable ["TMF_aiGear_skill", 0.5]
 ], true];
 
-LOG_1("Initialised AI Macro module ", str _module);
+if (_mode isEqualTo "registeredToWorld3DEN") exitWith {LOG_1("Initialised AI Macro module ", str _module);};
+
+// Apply gear in editor
+if (_mode isEqualTo "attributesChanged3DEN") then
+{
+    // attributesChanged3DEN is triggered upon module placement
+    // Skip that one time
+    if !(_logic getVariable ["TMF_aiGear_initialised", false]) exitWith
+    {
+        GVAR(XEH_unitInit) = compileFinal preprocessFileLineNumbers QPATHTOF(XEH_unitInit.sqf);
+        _logic setVariable ["TMF_aiGear_initialised", true];
+    };
+
+    {
+        [_x] call GVAR(XEH_unitInit);
+    } forEach allUnits;
+    ["AI Macro - Attributes changed, reapplying AI gear"] call BIS_fnc_3DENNotification;
+    LOG_1("Changed AI Macro attributes ", str _module);
+};
 
 true

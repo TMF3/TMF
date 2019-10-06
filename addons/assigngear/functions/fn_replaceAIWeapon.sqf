@@ -1,9 +1,9 @@
 /*
  * Name = TMF_assignGear_fnc_replaceAIWeapon
- * Author = Nick
+ * Author = Freddo
  *
  * Arguments:
- * 0: Object. Unit to weapon to
+ * 0: Object. Unit to assign weapon to
  * 1: String. Weapon classname
  * 2: Array. Additional parameters, depends on weapon type
  *
@@ -11,7 +11,7 @@
  * None
  *
  * Description:
- * Dresses up a unit with the assignGear system
+ * Assigns weapon for use with the AI macro system
  */
 
 #include "\x\tmf\addons\assignGear\script_component.hpp"
