@@ -11,8 +11,6 @@ private _cfgMagazines = configFile >> "CfgMagazines";
 
 private _output = [];
 
-#define GETGEAR(var) [_config >> var] call CFUNC(getCfgEntryFromPath)
-
 private _fnc_checkExists = {
     params ["_subarray","_config"];
     
