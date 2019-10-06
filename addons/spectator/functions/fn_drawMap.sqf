@@ -41,7 +41,7 @@ _map drawIcon ["\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCamera_ca.paa"
         private _name = name _x;
         _render = true;
         // if vehicles, set the appropriate variables
-        if(_veh != _x && effectiveCommander _veh == _x) then {
+        if(!(isNull (objectParent _x)) && {effectiveCommander (objectParent _x) == _x}) then {
             _x = vehicle _x;
             _render = ((_renderedVehicles pushBackUnique _x) != -1);
             _isVeh = true;
