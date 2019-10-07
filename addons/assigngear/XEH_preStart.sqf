@@ -31,8 +31,6 @@ uiNamespace setVariable [QGVAR(validFaces),_faceClasses];
     };
 } forEach ("true" configClasses (configFile >> QGVAR(facesets)));
 
-// Cache the voicesets to uiNamespace.
-
 // Collect valid voice classes.
 
 private _voiceClasses = "true" configClasses (configfile >> "CfgVoice");
@@ -40,6 +38,7 @@ MAP(_voiceClasses, toLower configName _x);
 
 uiNamespace setVariable [QGVAR(validVoices),_voiceClasses];
 
+// Cache the voicesets to uiNamespace.
 {
     private _name = configName _x;
 

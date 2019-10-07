@@ -10,10 +10,9 @@ if
     {isNil (QGVAR(aiGear_) + str side _unit)} ||
     {!local _unit} ||
     {isPlayer _unit} ||
-    {_unit in playableUnits} ||
+    {_unit in (playableUnits + [player])} ||
     {_unit getVariable [QGVAR(done), false]} ||
-    {_unit getVariable ["TMF_aiGear_disabled", false]} ||
-    {!is3den || {(_unit get3DENAttribute 'ControlSP') # 0 || (_unit get3DENAttribute 'ControlMP') # 0}}
+    {_unit getVariable ["TMF_aiGear_disabled", false]}
 ) exitWith {};
 
 private _config = missionNamespace getVariable (QGVAR(aiGear_) + str side _unit);

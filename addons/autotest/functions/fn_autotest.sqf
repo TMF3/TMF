@@ -10,6 +10,7 @@ _ctrlListbox lnbSetColumnsPos [0,0.05];
 // Do the tests.
 private _output = [];
 _output append ([] call FUNC(testGear));
+_output append ([] call FUNC(testAIGear));
 _output append ([] call FUNC(testInit));
 _output append ([] call FUNC(testEndings));
 
@@ -53,7 +54,6 @@ if (!((getMissionConfigValue ["respawn",0] == 1) and ("TMF_Spectator" in (getMis
         _output append _outputTest;
     }
 } forEach (configProperties [configFile >> "TMF_autoTest","isClass _x"]);
-
 
 // Display them on the auto-test UI page in Eden.
 {
