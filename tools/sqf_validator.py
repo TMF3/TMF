@@ -83,8 +83,8 @@ def check_sqf_syntax(filepath):
                         if (c == '"' or c == "'"):
                             isInString = True
                             inStringType = c
-                        elif (c == '#'):
-                            ignoreTillEndOfLine = True
+                        elif (c == '#'): # Since 1.82 can be used as an alternative to select
+                            ignoreTillEndOfLine = False
                         elif (c == '/'):
                             checkIfInComment = True
                         elif (c == '('):
