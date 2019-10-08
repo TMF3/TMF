@@ -131,3 +131,5 @@ if (_code isEqualType {}) then
         _unit call compile _code;
     };
 };
+
+_unit setVariable [QGVAR(DOUBLES(aigear,done)), true, true];

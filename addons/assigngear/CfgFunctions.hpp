@@ -23,6 +23,7 @@ class cfgFunctions {
             class setVoice;
             class onEdenMessageRecieved;
             class onEdenMissionChange;
+            class unitInit;
         };
     };
 };
