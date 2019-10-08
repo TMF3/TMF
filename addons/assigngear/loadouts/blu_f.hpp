@@ -497,11 +497,11 @@ class AI
     headgear[] = {LIST_5("H_HelmetB"), "H_HelmetB_camo", "H_HelmetB_desert", "H_HelmetB_grass", "H_HelmetB_sand", "H_HelmetB_snakeskin"};
     goggles[] = {"default"};
     hmd[] = {"NVGoggles"};
-    backpack[] = {"", "B_AssaultPack_rgr"};
+    backpack[] = {LIST_5(""), LIST_5("B_AssaultPack_rgr"), "B_RadioBag_01_mtp_F"};
     faces[] = {"faceset:african", "faceset:caucasian"};
     voices[] = {"voiceset:americanEnglish"};
     primaryWeapon[] = {LIST_20("arifle_MX_F"), LIST_5("arifle_MX_SW_F"), LIST_2("MMG_02_sand_F"), "srifle_DMR_03_tan_F"};
-    secondaryWeapon[] = {LIST_8(""), "launch_NLAW_F"};
+    secondaryWeapon[] = {LIST_8(""), "launch_NLAW_F", "launch_MRAWS_sand_F"};
     sidearmWeapon[] = {LIST_5(""), "hgun_P07_F"};
     scope[] = {"optic_holosight", LIST_5("optic_aco"), "optic_hamr", "optic_ams_snd"};
     grenades[] = {"HandGrenade", "SmokeShell"};

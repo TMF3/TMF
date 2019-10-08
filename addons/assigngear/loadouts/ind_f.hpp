@@ -488,3 +488,23 @@ class UAV : car
     backpack[] = {"I_UAV_01_backpack_F"};
     linkedItems[] += {"I_UavTerminal"};
 };
+
+// Special loadout used for the TMF AI Macro module
+// AI will be given one of each item randomly, ammunition will be added automatically.
+class AI
+{
+    uniform[] = {LIST_3("U_I_CombatUniform"), "U_I_CombatUniform_shortsleeve"};
+    vest[] = {LIST_2("V_PlateCarrierIA1_dgtl"), LIST_2("V_PlateCarrierIA2_dgtl"), "V_PlateCarrierIAGL_dgtl"};
+    headgear[] = {LIST_8("H_HelmetIA"), "H_MilCap_dgtl"};
+    goggles[] = {"default"};
+    hmd[] = {"NVGoggles_INDEP"};
+    backpack[] = {LIST_5(""), LIST_5("B_AssaultPack_rgr"), "B_RadioBag_01_digi_F"};
+    faces[] = {"faceset:greek"};
+    voices[] = {"voiceset:altianEnglish"};
+    primaryWeapon[] = {LIST_20("arifle_Mk20_F"), LIST_5("LMG_Mk200_F"), LIST_2("arifle_Mk20C_F"), "srifle_EBR_F"};
+    secondaryWeapon[] = {LIST_8(""), "launch_NLAW_F", "launch_MRAWS_green_rail_F"};
+    sidearmWeapon[] = {LIST_5(""), "hgun_ACPC2_F"};
+    scope[] = {"optic_holosight_blk_f", LIST_5("optic_aco_grn"), "optic_mrco", "optic_sos"};
+    grenades[] = {"HandGrenade", "SmokeShell"};
+    code = "";
+};
