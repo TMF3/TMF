@@ -11,6 +11,26 @@ params["_fullmapWindow"];
     private _color = [0,0,1,0.6];
     (triggerActivation _x) params ["_by", "_type", "_repeating"];
     private _activated = triggerActivated _x;
+    
+    if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
+        _color = [1,0,0,1]; // Selected Go Red.
+        (triggerTimeout _x) params ["_min","_mid","_max","_interuptable"];
+
+        private _text = format["%1 - %2 - (Repeat: %3) (On Act %4)", _by, _type, _repeating,triggerType _x];
+
+        if (_max == 0) then {
+            private _timeout = triggerTimeoutCurrent _x;
+            if (_timeout != -1) then {
+                _text = _text + format[" (%5/[%1 - %2 - %3] Interupable: %4)",_min,_mid,_max,_interuptable,_timeout];
+            } else {
+                _text = _text + format[" ([%1 - %2 - %3] Interupable: %4)",_min,_mid,_max,_interuptable];
+            };
+        };
+        if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
+            _text = _text + " (T to Trigger)";
+        };
+        _fullmapWindow drawIcon ["#(argb,8,8,3)color(0,0,0,0)",[1,1,1,1],_pos, 26, 26,0,_text,2,0.035,'PuristaSemibold','right'];
+    };
 
     //If Activated.
     if (!_repeating && _activated) then {
@@ -33,14 +53,20 @@ params["_fullmapWindow"];
     private _pos = getPos _x;
 
     //background
-    _fullmapWindow drawIcon ["\a3\3den\data\cfg3den\logic\texturebackgroundmodule_ca.paa",[1,1,1,0.5],_pos,26,26,0];
+    private _color = [1,1,1,0.5];
+    if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
+        _color = [1,0,0,0.75];
+    };
+    _fullmapWindow drawIcon ["\a3\3den\data\cfg3den\logic\texturebackgroundmodule_ca.paa",_color,_pos,26,26,0];
     _fullmapWindow drawIcon ["\x\tmf\addons\common\UI\logo_tmf_small_ca.paa",[0,0,0,0.5],_pos,20,20,0];
 
     private _text = "";
     private _wavesRemaining = _x getVariable ["Waves",1];
-    if (_wavesRemaining > 0) then {
+    if (_wavesRemaining > 0 || (GVAR(adminEyeSelectedObj) isEqualTo _x)) then {
         _text = format["%1 waves remaining",_wavesRemaining];
-
+        if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
+            _text = _text + " (T to Trigger)";
+        };
         //Render linked Units.
         private _data = _x getVariable [QEGVAR(ai,waveData), []];
         {
@@ -71,7 +97,11 @@ params["_fullmapWindow"];
 
 
     {
-         _fullmapWindow drawLine [_pos, getPos _x, [0,0,1,0.3]];
+        private _color = [0,0,1,0.3];
+        if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
+            _color = [1,0,0,0.3];
+        };
+        _fullmapWindow drawLine [_pos, getPos _x, _color];
     } forEach (synchronizedObjects _x);
 } forEach GVAR(WaveSpawners);
 
@@ -99,7 +129,11 @@ params["_fullmapWindow"];
     
     //Render syncrhoncised
     {
-         _fullmapWindow drawLine [_pos, getPos _x, [0,0,1,0.3]];
+        private _color = [0,0,1,0.3];
+        if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
+            _color = [1,0,0,0.3];
+        };
+        _fullmapWindow drawLine [_pos, getPos _x, _color];
     } forEach (synchronizedObjects _x);
 } forEach GVAR(Garrison);
 

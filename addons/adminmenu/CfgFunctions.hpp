@@ -11,7 +11,10 @@ class CfgFunctions {
             file = QPATHTO_FOLDER(functions);
             class adminEye_draw;
             class adminEye_onLoad;
+            class adminEye_onClick;
+            class adminEye_onKeyPress;
             class adminEye_open;
+            class adminEye_restoreTrigger;
             class claimZeus;
             class dashboard;
             class debounceButton;
