@@ -11,7 +11,7 @@ class baseMan {// Weaponless baseclass
     // Identity
     faces[] = {"faceset:greek"};
     voices[] = {"voiceset:altianEnglish"};
-    insignias[] = {};
+    insignias[] = {"AAF_1stRegiment"};
     // Leave empty to keep default
 
     // All randomized

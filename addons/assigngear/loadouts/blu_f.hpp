@@ -12,7 +12,7 @@ class baseMan {// Weaponless baseclass
     // Identity
     faces[] = {"faceset:african", "faceset:caucasian"};
     voices[] = {"voiceset:americanEnglish"};
-    insignias[] = {};
+    insignias[] = {"111thID"};
     // Leave empty to keep default
 
     // All randomized
