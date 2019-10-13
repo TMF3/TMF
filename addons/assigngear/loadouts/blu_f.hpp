@@ -8,10 +8,12 @@ class baseMan {// Weaponless baseclass
     goggles[] = {"default"};
     hmd[] = {};
     // Leave empty to remove all. "Default" > leave original item.
+
+    // Identity
     faces[] = {"faceset:african", "faceset:caucasian"};
-    // Leave empty to not change faces.
+    voices[] = {"voiceset:americanEnglish"};
     insignias[] = {};
-    // Leave empty to not change insignias
+    // Leave empty to keep default
 
     // All randomized
     primaryWeapon[] = {};

@@ -137,7 +137,7 @@ private _code = GETGEAR("code");
 private _faces = GETGEAR("faces");
 private _traits = GETGEAR("traits");
 private _insignias = GETGEAR("insignias");
-
+private _voices = GETGEAR("voices");
 
 // Strip unit
 removeAllWeapons _unit;
@@ -183,10 +183,9 @@ else {
 [_unit,_secondaryWeapon,_secondaryAttachments] call FUNC(replaceSecondaryWeapon);
 [_unit,_sidearmWeapon,_sidearmAttachments]     call FUNC(replaceSidearmWeapon);
 
-// Set Face
+// Set Identity
 [_unit,_faces] call FUNC(setFace);
-
-// Set insignia
+[_unit, _voices] call FUNC(setVoice);
 [_unit,_insignias] call FUNC(setInsignia);
 
 // Execute code statement
