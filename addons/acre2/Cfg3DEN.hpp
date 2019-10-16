@@ -23,7 +23,8 @@ class Cfg3DEN
 {
     class Mission
     {
-        class TMF_MissionAcre2Attributes // Custom section class, everything inside will be opened in one window (MySection)
+         // Custom section class, everything inside will be opened in one window (MySection)
+        class TMF_MissionAcre2Attributes
         {
             displayName = "ACRE2 attributes"; // Text visible in the window title as "Edit <displayName>"
             //display = "Display3DENEditAttributesPreview"; // Optional - display for attributes window. Must have the same structure and IDCs as the default Display3DENEditAttributes
