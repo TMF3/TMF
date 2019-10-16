@@ -13,7 +13,7 @@ jobs:
       run: |
         sudo add-apt-repository ppa:koffeinflummi/armake
         sudo apt-get update
-        sudo apt-get install armake
+        sudo apt-get install armake zip
         mkdir bin
         git clone --depth=1 https://github.com/CBATeam/CBA_A3.git TMF/include/x/cba
     - name: build pbo
@@ -21,6 +21,14 @@ jobs:
         for d in addons/*/ ; do
           name=`basename "$d"`
           name="@tmf_${name}.pbo"
-          armake -i include -w unquoted-string -w redefinition-wo-undef  -f build $d TMF/bin/$name
+          armake -i include -w unquoted-string -w redefinition-wo-undef  -f build $d bin/$name
         done
+        zip tmf.zip bin/*.pbo
+    - name: Release
+      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/')
+      with: |
+        tmf.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
