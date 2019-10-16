@@ -96,6 +96,7 @@ if (isMultiplayer) then {
             if (isNull _ctrl) exitWith {};
 
             _ctrl ctrlSetText (_this select 1);
+            _ctrl ctrlSetTooltip (_this select 1);
         };
 
         QGVAR(currentAdmin) addPublicVariableEventHandler {

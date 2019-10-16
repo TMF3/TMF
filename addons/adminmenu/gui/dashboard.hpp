@@ -146,7 +146,7 @@ class Controls
     };
     class StatsLabel_HeadlessClients: StatsLabel_Vehicles
     {
-        text = "Headless Load";
+        text = "AI Load Balance";
         tooltip = "The number of groups being run on the server and each HC."
         y = "12 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     };
