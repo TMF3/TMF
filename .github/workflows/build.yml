@@ -1,0 +1,23 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        mkdir bin
+        git clone --depth=1 https://github.com/CBATeam/CBA_A3.git TMF/include/x/cba
+        for d in addons/*/ ; do
+          name=`basename "$d"`
+          name="@tmf_${name}.pbo"
+          armake -i include -w unquoted-string -w redefinition-wo-undef  -f build $d TMF/bin/$name
+        done
+
