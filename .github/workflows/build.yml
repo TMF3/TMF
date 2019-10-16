@@ -20,6 +20,7 @@ jobs:
         for d in addons/*/ ; do
           name=`basename "$d"`
           name="@tmf_${name}.pbo"
+          echo $name
           armake -i include -w unquoted-string -w redefinition-wo-undef  -f build $d bin/$name
         done
         zip tmf.zip bin/*.pbo
