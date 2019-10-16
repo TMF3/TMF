@@ -16,7 +16,7 @@ class RscText;
 
 class cfgScriptPaths 
 {
-    TMF_acre2 = "x\tmf\addons\acre2\ui_scripts\"; //"
+    TMF_acre2 = "x\\tmf\\addons\\acre2\\ui_scripts\\";
 };
 
 class Cfg3DEN
