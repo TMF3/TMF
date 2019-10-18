@@ -56,6 +56,11 @@ class GVAR(RscCombo): RscCombo {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 };
 
+class GVAR(RscListBox): RscListBox {
+    font = "RobotoCondensed";
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+};
+
 class ADDON
 {
     idd = IDD_TMF_ADMINMENU;
@@ -291,5 +296,33 @@ class GVAR(adminEyeDialog) {
             onDraw = QUOTE(_this call FUNC(adminEye_draw));
             onSetFocus = QUOTE(_this spawn FUNC(adminEye_onLoad));
         };
+    };
+};
+
+
+class GVAR(spectatorControlUnitDialog) {
+    idd = -1;
+    movingEnable = 0;
+    class Controls {};
+    class ControlsBackground {
+		class Title: RscTitle {
+            idc = -1;
+			text = "Select Unit in Vehicle";
+            x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+            y = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+            w = "19 * (((safezoneW / safezoneH) min 1.2) / 40)";
+            h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			colorBackground[] = {"(profilenamespace getvariable ['GUI_BCG_RGB_R',0.13])", "(profilenamespace getvariable ['GUI_BCG_RGB_G',0.54])", "(profilenamespace getvariable ['GUI_BCG_RGB_B',0.21])", "(profilenamespace getvariable ['GUI_BCG_RGB_A',0.8])"};
+			shadow = 1;
+            style = 0;
+		};
+        class Background: RscText {
+            onLoad = QUOTE(_this call FUNC(remoteControl_dialog));
+            x = "1 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
+            y = "2.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+            w = "19 * (((safezoneW / safezoneH) min 1.2) / 40)";
+            h = "16 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+			colorBackground[] = {0,0,0,0.7};
+		};
     };
 };

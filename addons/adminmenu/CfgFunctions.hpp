@@ -33,6 +33,7 @@ class CfgFunctions {
             class playerManagement_listSelChange;
             class playerManagement_updateList;
             class remoteControl;
+            class remoteControl_dialog;
             class respawn;
             class respawn_addAction;
             class respawn_factionCategoryChanged;
