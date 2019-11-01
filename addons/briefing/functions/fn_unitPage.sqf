@@ -215,5 +215,5 @@ private _cfgWeapons = configFile >> "CfgWeapons";
     if !(_roleName isEqualTo "") then {
         _entryString = _entryString + format [" [%1]", _roleName];
     };
-    _target createDiaryRecord ["loadout", [_entryString, "<font size='12'>NOTE: The loadout shown below is only accurate at mission start.</font><br/>" + _visText + _text]];
+    _target createDiaryRecord ["loadout", [_entryString, "<font size='12'>NOTE: The loadout shown below is only accurate at mission start.</font><br/>" + ((_visText + _text) splitString "&" joinString "&amp;")]];
 } forEach _units;
