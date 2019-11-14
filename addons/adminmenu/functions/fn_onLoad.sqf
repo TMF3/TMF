@@ -80,10 +80,10 @@ private _ctrlFilterSide = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SID
 ];
 _ctrlFilterSide lbSetCurSel 0;
 _ctrlFilterSide ctrlAddEventHandler ["LBSelChanged", {
-	params ["_ctrlCombo"];
+    params ["_ctrlCombo"];
 
-	private _display = ctrlParent _ctrlCombo;
-	_display call FUNC(playerManagement_updateList);
+    private _display = ctrlParent _ctrlCombo;
+    _display call FUNC(playerManagement_updateList);
 }];
 
 private _ctrlFilterState = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE;
@@ -92,10 +92,10 @@ private _ctrlFilterState = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_ST
 } forEach ["Alive and Dead", "Alive", "Dead"];
 _ctrlFilterState lbSetCurSel 0;
 _ctrlFilterState ctrlAddEventHandler ["LBSelChanged", {
-	params ["_ctrlCombo"];
+    params ["_ctrlCombo"];
 
-	private _display = ctrlParent _ctrlCombo;
-	_display call FUNC(playerManagement_updateList);
+    private _display = ctrlParent _ctrlCombo;
+    _display call FUNC(playerManagement_updateList);
 }];
 
 private _ctrlReset = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_RESET;
@@ -103,10 +103,10 @@ _ctrlReset ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     _ctrlButton call FUNC(debounceButton);
 
-	private _display = ctrlParent _ctrlButton;
-	(_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE) lbSetCurSel 0;
+    private _display = ctrlParent _ctrlButton;
+    (_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE) lbSetCurSel 0;
     (_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FILTER_STATE) lbSetCurSel 0;
-	_display call FUNC(playerManagement_updateList);
+    _display call FUNC(playerManagement_updateList);
 }];
 
 private _ctrlRefresh = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_REFRESH;
@@ -114,8 +114,8 @@ _ctrlRefresh ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     _ctrlButton call FUNC(debounceButton);
 
-	private _display = ctrlParent _ctrlButton;
-	_display call FUNC(playerManagement_updateList);
+    private _display = ctrlParent _ctrlButton;
+    _display call FUNC(playerManagement_updateList);
 }];
 
 private _ctrlSelectAll = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_SEL_ALL;
@@ -123,13 +123,13 @@ _ctrlSelectAll ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     _ctrlButton call FUNC(debounceButton);
 
-	private _display = ctrlParent _ctrlButton;
-	private _ctrlList = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
+    private _display = ctrlParent _ctrlButton;
+    private _ctrlList = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
     for "_i" from 0 to ((lbSize _ctrlList) - 1) do {
         _ctrlList lbSetSelected [_i, true];
     };
 
-	GVAR(playerManagement_selected) = +GVAR(playerManagement_players);
+    GVAR(playerManagement_selected) = +GVAR(playerManagement_players);
 }];
 
 private _ctrlSelectNone = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_SEL_NONE;
@@ -137,13 +137,13 @@ _ctrlSelectNone ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     _ctrlButton call FUNC(debounceButton);
 
-	private _display = ctrlParent _ctrlButton;
-	private _ctrlList = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
+    private _display = ctrlParent _ctrlButton;
+    private _ctrlList = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
     for "_i" from 0 to ((lbSize _ctrlList) - 1) do {
         _ctrlList lbSetSelected [_i, false];
     };
 
-	GVAR(playerManagement_selected) = [];
+    GVAR(playerManagement_selected) = [];
 }];
 
 private _ctrlSelectInvert = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_SEL_INVERT;
@@ -151,13 +151,13 @@ _ctrlSelectInvert ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     _ctrlButton call FUNC(debounceButton);
 
-	private _display = ctrlParent _ctrlButton;
-	private _ctrlList = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
+    private _display = ctrlParent _ctrlButton;
+    private _ctrlList = _display displayCtrl IDC_TMF_ADMINMENU_PMAN_LIST;
     for "_i" from 0 to ((lbSize _ctrlList) - 1) do {
         _ctrlList lbSetSelected [_i, !(_ctrlList lbIsSelected _i)];
     };
 
-	GVAR(playerManagement_selected) = GVAR(playerManagement_players) - GVAR(playerManagement_selected);
+    GVAR(playerManagement_selected) = GVAR(playerManagement_players) - GVAR(playerManagement_selected);
 }];
 
 

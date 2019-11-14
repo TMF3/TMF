@@ -6,7 +6,7 @@ private _spokenLangs = (call acre_sys_core_fnc_getSpokenLanguages) - _langsToRem
 _spokenLangs append _langsToAdd;
 
 if (count _spokenLangs == 0) exitWith {
-	systemChat "[TMF Admin Menu] Failed to assign ACRE2 languages";
+    systemChat "[TMF Admin Menu] Failed to assign ACRE2 languages";
 };
 
 private _spokenLangsIds = _spokenLangs apply {[_x] call acre_sys_core_fnc_getLanguageId};
