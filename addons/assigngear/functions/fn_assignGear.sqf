@@ -184,10 +184,14 @@ else {
 [_unit,_sidearmWeapon,_sidearmAttachments]     call FUNC(replaceSidearmWeapon);
 
 // Set Face
-[_unit,_faces] call FUNC(setFace);
+if (!isNil "_faces") then {
+    [_unit,_faces] call FUNC(setFace);
+};
 
 // Set insignia
-[_unit,_insignias] call FUNC(setInsignia);
+if (!isNil "_insignias") then {
+    [_unit,_insignias] call FUNC(setInsignia);
+};
 
 // Execute code statement
 if ((count _code) > 0) then {_unit call compile _code};
