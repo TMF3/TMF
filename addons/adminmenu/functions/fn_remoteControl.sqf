@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-params [["_unit", objNull, [objNull]], ["_toggle", true, [true]]];
+params [["_unit", objNull, [objNull]], ["_toggle", true, [true]], ["_skipModal", false, [false]]];
 
 if (!_toggle) exitWith { // Bad, can still command group via map click when back in spectator
     private _rcUnit = missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull];
@@ -8,7 +8,18 @@ if (!_toggle) exitWith { // Bad, can still command group via map click when back
         _rcUnit setVariable ["bis_fnc_moduleRemoteControl_owner", nil, true];
         objNull remoteControl _rcUnit;
         bis_fnc_moduleRemoteControl_unit = nil;
+        selectPlayer EGVAR(spectator,unit);
     };
+};
+
+private _crew = [];
+if (!isNull objectParent _unit && !_skipModal) then {
+    _crew = (fullCrew vehicle _unit) select {alive (_x # 0) && !isPlayer (_x # 0)};
+};
+
+if ((count _crew > 1) && !_skipModal) exitWith {
+    GVAR(remoteControlUnits) = [_crew, objectParent _unit];
+    createDialog QGVAR(spectatorControlUnitDialog);
 };
 
 private _error = "";
