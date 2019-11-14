@@ -30,16 +30,16 @@ class GVAR(RscText): RscText {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 };
 
+class GVAR(RscTextLarge): RscText {
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
+};
+
 class GVAR(RscSpectatorControlTableText): RscText {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
     h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     w = (6/10) * TMF_ADMINMENU_RESP_W_COL1;
     x = 0;
     y = 0;
-};
-
-class GVAR(RscTextLarge): RscText {
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
 };
 
 class GVAR(RscTextMultiline): GVAR(RscText) {
@@ -56,7 +56,17 @@ class GVAR(RscCombo): RscCombo {
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 };
 
+class GVAR(RscTextIcon): RscText {
+    style = 48 + 2048;
+    type = 0;
+};
+
 class GVAR(RscListBox): RscListBox {
+    font = "RobotoCondensed";
+    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+};
+
+class GVAR(RscListNBox): RscListNBox {
     font = "RobotoCondensed";
     sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
 };

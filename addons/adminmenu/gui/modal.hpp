@@ -59,16 +59,33 @@ class GVAR(modal)
             h = "20.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
             class Controls {};
         };
-        class Close: RscText
+        class Close
         {
             idc = IDC_TMF_ADMINMENU_MODAL_CLOSE;
-            type = 0;
+            type = 1;
             style = 48 + 2048;
             text = "\a3\ui_f\data\GUI\Rsc\RscDisplayArcadeMap\top_close_gs.paa";
-            tooltip = "Close Modal Window";
+            tooltip = "Close Utility";
             onMouseButtonClick = "closeDialog 1;";
+            sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+            font = "RobotoCondensed";
             colorBackground[] = {0, 0, 0, 0};
+            colorBackgroundActive[] = {0, 0, 0, 0};
+            colorBackgroundDisabled[] = {0, 0, 0, 0};
+            colorBorder[] = {0, 0, 0, 0};
+            colorDisabled[] = {0, 0, 0, 0};
+            colorFocused[] = {0, 0, 0, 0};
+            colorShadow[] = {0, 0, 0, 0};
             colorText[] = {1, 1, 1, 1};
+            offsetX = 0;
+            offsetY = 0;
+            offsetPressedX = 0;
+            offsetPressedY = 0;
+            borderSize = 0;
+            soundEnter[] = {"", 0.1, 1};
+            soundPush[] = {"", 0.1, 1};
+            soundClick[] = {"", 0.1, 1};
+            soundEscape[] = {"", 0.1, 1};
             x = "37.5 * (((safezoneW / safezoneH) min 1.2) / 40) + (safezoneX + (safezoneW - ((safezoneW / safezoneH) min 1.2))/2)";
             y = "2.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
             w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";

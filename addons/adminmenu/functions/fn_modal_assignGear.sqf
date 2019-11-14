@@ -28,7 +28,7 @@ _ctrlLabelFromMission ctrlSetPosition [(3 * TMF_ADMINMENU_STD_WIDTH) + (0.25 * _
 _ctrlLabelFromMission ctrlCommit 0;
 _ctrlLabelFromMission ctrlSetText "List factions present in scenario only";
 
-private _ctrlComboFaction = _display ctrlCreate ["RscCombo", -1, _ctrlGroup];
+private _ctrlComboFaction = _display ctrlCreate [QGVAR(RscCombo), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlComboFaction;
 _ctrlComboFaction ctrlSetPosition [(0.1 * TMF_ADMINMENU_STD_WIDTH), (1.1 * TMF_ADMINMENU_STD_HEIGHT), _ctrlGrpWidth - (0.2 * TMF_ADMINMENU_STD_WIDTH), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlComboFaction ctrlCommit 0;
@@ -68,7 +68,7 @@ private _ctrlCheckChangeX = _ctrlGrpRolesWidth - TMF_ADMINMENU_STD_WIDTH;
     _ctrlLabelPlayer ctrlCommit 0;
     _ctrlLabelPlayer ctrlSetText format ["%1 [%2]", name _x, _x getVariable [QEGVAR(assigngear,role), "no role"]];
 
-    private _ctrlComboRole = _display ctrlCreate ["RscCombo", -1, _ctrlGrpRoles];
+    private _ctrlComboRole = _display ctrlCreate [QGVAR(RscCombo), -1, _ctrlGrpRoles];
     GVAR(utilityTabControls) pushBack _ctrlComboRole;
     _ctrlComboRole ctrlSetPosition [_ctrlComboRoleX, _ctrlLineY, _ctrlComboRoleW, TMF_ADMINMENU_STD_HEIGHT];
     _ctrlComboRole ctrlCommit 0;

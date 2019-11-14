@@ -21,7 +21,7 @@ _ctrlCombo lbAdd "Show in Subtitle from 'PAPA BEAR'";
 _ctrlCombo lbSetCurSel 0;
 
 private _ctrlButtonPreview = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
-_ctrlButtonPreview ctrlSetPosition [(_ctrlGrpWidth * 0.7) - (0.1 * TMF_ADMINMENU_STD_WIDTH), _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.15), TMF_ADMINMENU_STD_HEIGHT];
+_ctrlButtonPreview ctrlSetPosition [(_ctrlGrpWidth * 0.7) - (0.2 * TMF_ADMINMENU_STD_WIDTH), _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.15), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButtonPreview ctrlCommit 0;
 _ctrlButtonPreview ctrlSetText "Preview";
 _ctrlButtonPreview setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];
@@ -52,7 +52,7 @@ _ctrlButtonPreview ctrlAddEventHandler ["buttonClick", {
 }];
 
 private _ctrlButtonCommit = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
-_ctrlButtonCommit ctrlSetPosition [(_ctrlGrpWidth * 0.85), _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.15), TMF_ADMINMENU_STD_HEIGHT];
+_ctrlButtonCommit ctrlSetPosition [(_ctrlGrpWidth * 0.85), _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, (_ctrlGrpWidth * 0.15) - (0.1 * TMF_ADMINMENU_STD_WIDTH), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButtonCommit ctrlCommit 0;
 _ctrlButtonCommit ctrlSetText "Send Message";
 _ctrlButtonCommit setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];
