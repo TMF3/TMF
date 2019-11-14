@@ -294,7 +294,9 @@ class GVAR(adminEyeDialog) {
             w = 1 * safezoneW;
             h = 1 * safezoneH;
             onDraw = QUOTE(_this call FUNC(adminEye_draw));
+            onMouseButtonDown = QUOTE(_this spawn FUNC(adminEye_onClick)); 
             onSetFocus = QUOTE(_this spawn FUNC(adminEye_onLoad));
+            onKeyUp = QUOTE(_this spawn FUNC(adminEye_onKeyPress));
         };
     };
 };
