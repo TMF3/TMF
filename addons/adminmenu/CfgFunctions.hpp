@@ -11,7 +11,10 @@ class CfgFunctions {
             file = QPATHTO_FOLDER(functions);
             class adminEye_draw;
             class adminEye_onLoad;
+            class adminEye_onClick;
+            class adminEye_onKeyPress;
             class adminEye_open;
+            class adminEye_restoreTrigger;
             class claimZeus;
             class dashboard;
             class debounceButton;
@@ -28,11 +31,10 @@ class CfgFunctions {
             class onLoad;
             class onUnload;
             class playerManagement;
-            class playerManagement_button;
-            class playerManagement_filter;
             class playerManagement_listSelChange;
             class playerManagement_updateList;
             class remoteControl;
+            class remoteControl_dialog;
             class respawn;
             class respawn_addAction;
             class respawn_factionCategoryChanged;
@@ -55,9 +57,14 @@ class CfgFunctions {
             class modalOnLoad;
             class modalOnUnload;
             class modalState;
+            class modal_ACRE2Languages;
+            class modal_ACRE2Languages_assign;
+            class modal_ACRE2Radios;
+            class modal_ACRE2Radios_assign;
             class modal_assignGear;
             class modal_assignGear_listboxFactions;
             class modal_assignGear_listboxRoles;
+            class modal_assignTraits;
             class modal_message;
             class modal_runCode;
             class modal_steamProfile;

@@ -9,8 +9,25 @@ if (isMultiplayer) then {
             GVAR(fps_pfh) = [{
                 GVAR(fps) = round diag_fps;
 
+                private _allGroups = allGroups;
+                private _headlessString = format["Server: %1",{groupOwner _x == 2} count _allGroups];
+                {
+                    private _headless = _x;
+                    private _headlessClientId = owner _headless;
+                    if (_headlessClientId != 2) then { // not server.
+                        private _varName = vehicleVarName _headless;
+                        if (count _varName == 0) then {
+                            _varName = roleDescription _headless;
+                        };
+                        _headlessString = _headlessString + format[", %1: %2",_varName,{groupOwner _x == _headlessClientId} count _allGroups];
+                    };
+                } forEach (entities "HeadlessClient_F");
+                GVAR(headlessInfo) = _headlessString;
+
+
                 {
                     _x publicVariableClient QGVAR(fps);
+                    _x publicVariableClient QGVAR(headlessInfo);
                 } forEach GVAR(activeClients);
             }, 1] call CBA_fnc_addPerFrameHandler;
         };
