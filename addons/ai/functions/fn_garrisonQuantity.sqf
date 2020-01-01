@@ -33,6 +33,7 @@ private _areas = (synchronizedObjects _logic) select {side _x == sideLogic && _x
 _areas pushBack _logic; // Add the garrison module as viable area.
 private _unitData = _logic getVariable [QGVAR(unitData),[]];
 private _mainGroup = createGroup ((_unitData select 0) select 0);
+[_mainGroup,QGVAR(garrisonGroup),true] call tmf_common_fnc_initGroupVar;
 private _holdPos = _logic getVariable ["hold", false];
 
 private _buildings = [];
