@@ -53,7 +53,7 @@ class CfgLoadoutsParser {
     class linkedItems {
         priority = 10;
         type = "Array";
-        code = "{_this linkItem _x} forEach %1;";
+        code = "{_this addWeapon _x} forEach %1;";
     };
     class backpackItems {
         priority = 8;
