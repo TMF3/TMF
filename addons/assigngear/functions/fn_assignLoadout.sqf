@@ -21,15 +21,18 @@ params [["_unit", player]];
 if !(local _unit) exitWith {};
 
 (_this - [_unit]) params [
-    ["_faction", _unit getVariable [QGVAR(role), "r"]],
-    ["_role", _unit getVariable [QGVAR(faction), toLower faction _unit]]
+    ["_faction", _unit getVariable [QGVAR(faction), toLower faction _unit]],
+    ["_role", _unit getVariable [QGVAR(role), "r"]]
 ];
 
 private _namespace = GVARMAIN(namespace);
 private _loadout = ("loadout_" + _faction + "_" + _role);
 
+// Check if loadout if cached, if not then cache it
 if !(_namespace getVariable [_loadout, {}] isEqualTo {}) then {
     _unit call (_namespace getVariable _loadout);
 } else {
     _unit call ([_faction, _role] call FUNC(cacheLoadout));
 };
+_unit setVariable [QGVAR(faction), _faction];
+_unit setVariable [QGVAR(role), _role];
