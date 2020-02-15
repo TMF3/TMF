@@ -19,6 +19,9 @@ class cfgFunctions {
             class setInsignia;
             class onEdenMessageRecieved;
             class onEdenMissionChange;
+
+            class assignLoadout;
+            class cacheLoadout;
         };
     };
 };
