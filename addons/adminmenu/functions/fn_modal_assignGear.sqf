@@ -111,7 +111,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
             _playerFaction = _selectedFaction;
         };
 
-        [_player, _playerFaction, _playerRole] remoteExecCall [QEFUNC(assigngear,assigngear), _player];
+        [_player, _playerFaction, _playerRole] remoteExecCall [QEFUNC(assigngear,assignLoadout), _player];
     } forEach GVAR(utility_assigngear_rolectrls);
 
     systemChat format ["[TMF Admin Menu] Assigned gear to %1 players", count GVAR(utility_assigngear_rolectrls)];

@@ -47,7 +47,7 @@ if (count _input == 3) then {
                 [FUNC(assignGear),_this] call CBA_fnc_directCall;
             };
         } else {
-            _unit call FUNC(assignGear);
+            [_unit] call FUNC(assignLoadout);
         };
     };
 } else {
@@ -71,7 +71,7 @@ if (count _input == 3) then {
                 [FUNC(assignGear),_this] call CBA_fnc_directCall;
             };
         } else {
-            _unit call FUNC(assignGear);
+            _unit call FUNC(assignLoadout);
         };
     };
 };

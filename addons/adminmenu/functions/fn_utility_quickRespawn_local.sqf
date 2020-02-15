@@ -20,7 +20,7 @@ if (_oldUnitdata isEqualType []) then {
     };
 
     if !(_faction isEqualTo "" || _role isEqualTo "") then {
-        [_newUnit, _faction, _role] call EFUNC(assigngear,assigngear);
+        [_newUnit, _faction, _role] call EFUNC(assigngear,assignLoadout);
     };
 
     setPlayable _newUnit;
@@ -49,7 +49,7 @@ if (_oldUnitdata isEqualType []) then {
         [{
             if (isNull player) exitWith {};
             if (isNil "tmf_acre2_networksCreated") exitWith {}; //Ensure presets are created
-            
+
             [] call EFUNC(acre2,clientInit);
             [_this select 1] call CBA_fnc_removePerFrameHandler;
         }, 0.1] call CBA_fnc_addPerFrameHandler;
