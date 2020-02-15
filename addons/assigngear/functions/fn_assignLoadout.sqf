@@ -36,3 +36,5 @@ if !(_namespace getVariable [_loadout, {}] isEqualTo {}) then {
 };
 _unit setVariable [QGVAR(faction), _faction];
 _unit setVariable [QGVAR(role), _role];
+
+[QGVAR(assignedLoadout), [_unit, _faction, _role]] call CBA_fnc_globalEvent;
