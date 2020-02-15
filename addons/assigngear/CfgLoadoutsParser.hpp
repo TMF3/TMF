@@ -28,17 +28,17 @@ class CfgLoadoutsParser {
     class hmd {
         priority = 5;
         type = "Array";
-		#include "loadoutsParser\hmd.hpp"
+        #include "loadoutsParser\hmd.hpp"
     };
     class faces {
         priority = 5;
         type = "Array";
-		#include "loadoutsParser\faces.hpp"
+        #include "loadoutsParser\faces.hpp"
     };
     class insignias {
         priority = 10;
         type = "Array";
-		#include "loadoutsParser\insignias.hpp"
+        #include "loadoutsParser\insignias.hpp"
     };
 
     // Items/magazines
@@ -65,12 +65,12 @@ class CfgLoadoutsParser {
     class primaryWeapon {
         priority = 15;
         type = "Array";
-		#include "loadoutsParser\addWeapon.hpp"
+        #include "loadoutsParser\addWeapon.hpp"
     };
     class attachment {
         priority = 20;
         type = "Array";
-	    code = "_this addPrimaryWeaponItem selectRandom %1;";
+        code = "_this addPrimaryWeaponItem selectRandom %1;";
     };
     class scope : attachment {};
     class bipod : attachment {};
