@@ -21,6 +21,6 @@ if (_goggles != 'default') then { \
     }; \
 } else \
 { \
-    _this addGoggles _defGoggles; \
+    if !(_defGoggles isEqualTo '') then {_this addGoggles _defGoggles}; \
 }; \
 ";
