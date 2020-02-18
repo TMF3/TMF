@@ -35,19 +35,11 @@ if (count _input == 3) then {
 
     if (_enabled) then {
 
-        if (_faction != "") then {
-            _unit setVariable [QGVAR(faction),_faction];
-        };
-        if (_role != "r") then {
-            _unit setVariable [QGVAR(role),_role];
-        };
         // Workaround for EDEN.
         if (is3DEN) then {
-            _unit spawn {
-                [FUNC(assignGear),_this] call CBA_fnc_directCall;
-            };
+            [_unit, _faction, _role] spawn FUNC(assignGear);
         } else {
-            [_unit] call FUNC(assignLoadout);
+            [_unit, _faction, _role] call FUNC(assignGear);
         };
     };
 } else {
@@ -56,22 +48,11 @@ if (count _input == 3) then {
 
     if (_enabled) then {
 
-        if (_faction != "") then {
-            _unit setVariable [QGVAR(faction),_faction];
-        };
-        if (_side != -1) then {
-            _unit setVariable [QGVAR(side),_side];
-        };
-        if (_role != "r") then {
-            _unit setVariable [QGVAR(role),_role];
-        };
         // Workaround for EDEN.
         if (is3DEN) then {
-            _unit spawn {
-                [FUNC(assignGear),_this] call CBA_fnc_directCall;
-            };
+            [_unit, _faction, _role] spawn FUNC(assignGear);
         } else {
-            _unit call FUNC(assignLoadout);
+            [_unit, _faction, _role] call FUNC(assignGear);
         };
     };
 };

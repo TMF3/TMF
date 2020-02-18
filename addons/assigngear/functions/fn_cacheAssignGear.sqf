@@ -1,5 +1,5 @@
 /*
- * Name = TMF_assignGear_fnc_cacheLoadout
+ * Name = TMF_assignGear_fnc_cacheAssignGear
  * Author = Freddo
  *
  * Arguments:
@@ -11,7 +11,7 @@
  *
  * Description:
  * Caches a loadout to the TMF namespace,
- * for use with TMF_assignGear_fnc_assignLoadout
+ * for use with TMF_assignGear_fnc_assignGear
  */
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 

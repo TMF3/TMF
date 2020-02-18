@@ -20,7 +20,7 @@ if (_oldUnitdata isEqualType []) then {
     };
 
     if !(_faction isEqualTo "" || _role isEqualTo "") then {
-        [_newUnit, _faction, _role] call EFUNC(assigngear,assignLoadout);
+        [_newUnit, _faction, _role] call EFUNC(assignGear,assignGear);
     };
 
     setPlayable _newUnit;

@@ -5,6 +5,7 @@ class cfgFunctions {
             class addBackpackItems;
             class addItems;
             class assignGear;
+            class cacheAssignGear;
             class linkItems;
             class loadFactions;
             class loadFactionCategories;
@@ -19,9 +20,6 @@ class cfgFunctions {
             class setInsignia;
             class onEdenMessageRecieved;
             class onEdenMissionChange;
-
-            class assignLoadout;
-            class cacheLoadout;
         };
     };
 };
