@@ -6,6 +6,7 @@ class cfgFunctions {
             class addItems;
             class assignGear;
             class cacheAssignGear;
+            class loadAssignGear;
             class initNamespace;
             class linkItems;
             class loadFactions;

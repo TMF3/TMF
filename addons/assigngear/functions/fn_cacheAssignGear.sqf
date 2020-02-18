@@ -3,8 +3,9 @@
  * Author = Freddo
  *
  * Arguments:
- * 0: String (optional). CfgLoadouts faction
- * 1: String (optional). CfgLoadouts role
+ * 0: String. CfgLoadouts faction
+ * 1: String. CfgLoadouts role
+ * 2: Configfile (optional). configfile to check, can be either missionConfigFile or configFile
  *
  * Return:
  * Code. Compiled loadout function
@@ -18,9 +19,11 @@
 #define CFGROLE (_cfg >> "CfgLoadouts" >> _faction >> _role)
 #define CFGPARSE (configFile >> "CfgLoadoutsParser")
 
-params ["_faction", "_role"];
-
-private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _role)) then [{missionConfigFile}, {configFile}];
+params [
+    "_faction",
+    "_role",
+    ["_cfg", if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _role)) then [{missionConfigFile}, {configFile}]]
+];
 
 ASSERT_TRUE(isClass CFGROLE, format [ARR_3("Loadout not present: %1 %2", _faction, _role)]);
 
@@ -49,13 +52,6 @@ _codeArr pushBack "private _defGoggles = goggles _this; _this setUnitLoadout (co
 
 private _code = compile (_codeArr joinString " ");
 
-GVAR(namespace) setVariable [_loadout, _code, true];
-
-if (_cfg isEqualTo missionConfigFile) then {
-    // Add mission specific loadout to purge list
-    [{GVAR(loadoutsToPurge) pushBack _this}, _loadout] remoteExecCall ["CBA_fnc_directCall", 2];
-};
-
-TRACE_3("Cached loadout",_cfg,_faction,_loadout);
+TRACE_3("Compiled loadout",_cfg,_faction,_loadout);
 
 _code

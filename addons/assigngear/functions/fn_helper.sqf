@@ -4,11 +4,10 @@
  *
  * Arguments:
  * 0: OBJECT. Unit
- * 1: ARRAY in the format of role, faction, side, enabled.
+ * 1: ARRAY in the format of role, faction, enabled.
  *    0: STRING. Role
  *    1: STRING: Faction
- *    2: NUMBER: Side
- *    3: BOOLEAN: Enabled. must be true to assign
+ *    2: BOOLEAN: Enabled. must be true to assign
  *
  * Return:
  * None.
@@ -34,13 +33,21 @@ if (count _input == 3) then {
     _input params ["_role","_faction","_enabled"];
 
     if (_enabled) then {
-        [_unit, _faction, _role] call FUNC(assignGear);
+        if !(is3DEN && time < 1) then {
+            [_unit, _faction, _role] call FUNC(assignGear);
+        } else {
+            [_unit, _faction, _role] spawn {
+                waitUntil {time > 0;};
+                [FUNC(assignGear), _this] call CBA_fnc_directCall;
+            };
+        };
     };
 } else {
     //Backwards compatible
     _input params ["_role","_faction","_side","_enabled"];
 
     if (_enabled) then {
+        WARNING_2("(%1) This syntax has been deprecated for this function: %2 (use: ['_unit',['_role','_faction','_enabled']])",QFUNC(helper),_this);
         [_unit, _faction, _role] call FUNC(assignGear);
     };
 };

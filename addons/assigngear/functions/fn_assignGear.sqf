@@ -1,6 +1,6 @@
 /*
  * Name = TMF_assignGear_fnc_assignGear
- * Author = Freddo
+ * Author = Nick, Freddo
  *
  * Arguments:
  * 0: Object. Unit to assign loadout to
@@ -33,10 +33,10 @@ private _loadout = format ["loadout_%1_%2", _faction, _role];
 if !(_namespace getVariable [_loadout, {}] isEqualTo {}) then {
     _unit call (_namespace getVariable _loadout);
 } else {
-    _unit call ([_faction, _role] call FUNC(cacheAssignGear));
+    _unit call ([_faction, _role] call FUNC(loadAssignGear));
 };
-_unit setVariable [QGVAR(faction), _faction];
-_unit setVariable [QGVAR(role), _role];
+_unit setVariable [QGVAR(faction), _faction,true];
+_unit setVariable [QGVAR(role), _role,true];
 _unit setVariable [QGVAR(done),true,true];
 
 LOG_3("Assigned loadout to unit",_unit,_faction,_loadout);
