@@ -24,7 +24,7 @@ private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _r
 
 ASSERT_TRUE(isClass CFGROLE, format [ARR_3("Loadout not present: %1 %2", _faction, _role)]);
 
-private _loadout = ("loadout_" + _faction + "_" + _role);
+private _loadout = format ["loadout_%1_%2", _faction, _role];
 
 /*
     Find properties present in both CfgLoadouts role and CfgLoadoutsParser
@@ -47,9 +47,14 @@ _codeArr pushBack "private _defGoggles = goggles _this; _this setUnitLoadout (co
     };
 } forEach _cfgProperties;
 
-_code = compile (_codeArr joinString " ");
+private _code = compile (_codeArr joinString " ");
 
 GVAR(namespace) setVariable [_loadout, _code, true];
+
+if (_cfg isEqualTo missionConfigFile) then {
+    // Add mission specific loadout to purge list
+    [{GVAR(loadoutsToPurge) pushBack _this}, _loadout] remoteExecCall ["CBA_fnc_directCall", 2];
+};
 
 TRACE_3("Cached loadout",_cfg,_faction,_loadout);
 

@@ -23,8 +23,29 @@ if !(isNil "_cachedLoadoutsHashmap") then {
     GVAR(namespace) = true call CBA_fnc_createNamespace;
 };
 
-// Save namespace to uiNamespace once mission ends
+if (isClass (missionConfigFile >> "CfgLoadouts")) then {
+    // Remove duplicate loadouts
+    private _cfg = (missionConfigFile >> "CfgLoadouts");
+    private _missionLoadouts = [];
+
+    {
+        private _faction = configName _x;
+        {
+            _missionLoadouts pushBack format ["loadout_%1_%2", _faction, configName _x];
+        } forEach ("true" configClasses _x);
+    } forEach ("true" configClasses _cfg);
+
+    private _conflictingLoadouts = allVariables GVAR(namespace) arrayIntersect _missionLoadouts;
+    {
+        GVAR(namespace) setVariable [_x, nil, true];
+    } forEach _conflictingLoadouts;
+};
+
+GVAR(loadoutsToPurge) = [];
 addMissionEventHandler ["Ended", {
+    // Purge mission loadouts from namespace
+    {GVAR(namespace) setVariable [_x, nil, true]} forEach (missionNamespace getVariable [QGVAR(loadoutsToPurge), []]);
+    // Save namespace to uiNamespace once mission ends
     uiNamespace setVariable [QGVAR(cachedNamespace), GVAR(namespace) call CBA_fnc_serializeNamespace];
 }];
 

@@ -27,7 +27,7 @@ _this params [
 
 // Sometimes in editor this function is run before preInit, this should make sure that the namespace exists
 private _namespace = missionNamespace getVariable [QGVAR(namespace), [FUNC(initNamespace)] call CBA_fnc_directCall];
-private _loadout = ("loadout_" + _faction + "_" + _role);
+private _loadout = format ["loadout_%1_%2", _faction, _role];
 
 // Check if loadout if cached, if not then cache it
 if !(_namespace getVariable [_loadout, {}] isEqualTo {}) then {
