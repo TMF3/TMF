@@ -34,25 +34,13 @@ if (count _input == 3) then {
     _input params ["_role","_faction","_enabled"];
 
     if (_enabled) then {
-
-        // Workaround for EDEN.
-        if (is3DEN) then {
-            [_unit, _faction, _role] spawn FUNC(assignGear);
-        } else {
-            [_unit, _faction, _role] call FUNC(assignGear);
-        };
+        [_unit, _faction, _role] call FUNC(assignGear);
     };
 } else {
     //Backwards compatible
     _input params ["_role","_faction","_side","_enabled"];
 
     if (_enabled) then {
-
-        // Workaround for EDEN.
-        if (is3DEN) then {
-            [_unit, _faction, _role] spawn FUNC(assignGear);
-        } else {
-            [_unit, _faction, _role] call FUNC(assignGear);
-        };
+        [_unit, _faction, _role] call FUNC(assignGear);
     };
 };
