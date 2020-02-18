@@ -51,4 +51,6 @@ _code = compile (_codeArr joinString " ");
 
 GVAR(namespace) setVariable [_loadout, _code, true];
 
+TRACE_3("Cached loadout",_cfg,_faction,_loadout);
+
 _code

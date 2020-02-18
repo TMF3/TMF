@@ -29,4 +29,7 @@ addMissionEventHandler ["Ended", {
 }];
 
 publicVariable QGVAR(namespace);
+
+LOG_1("Initialized namespace", GVAR(namespace));
+
 GVAR(namespace)
