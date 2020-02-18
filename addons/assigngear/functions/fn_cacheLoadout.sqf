@@ -49,6 +49,6 @@ _codeArr pushBack "private _defGoggles = goggles _this; _this setUnitLoadout (co
 
 _code = compile (_codeArr joinString " ");
 
-GVARMAIN(namespace) setVariable [_loadout, _code, true];
+GVAR(namespace) setVariable [_loadout, _code, true];
 
 _code

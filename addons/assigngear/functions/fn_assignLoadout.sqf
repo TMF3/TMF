@@ -25,7 +25,7 @@ if !(local _unit) exitWith {};
     ["_role", _unit getVariable [QGVAR(role), "r"]]
 ];
 
-private _namespace = GVARMAIN(namespace);
+private _namespace = GVAR(namespace);
 private _loadout = ("loadout_" + _faction + "_" + _role);
 
 // Check if loadout if cached, if not then cache it
