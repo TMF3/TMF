@@ -19,7 +19,8 @@ params [["_unit", player]];
 
 if !(local _unit) exitWith {};
 
-(_this - [_unit]) params [
+_this params [
+    "",
     ["_faction", _unit getVariable [QGVAR(faction), toLower faction _unit]],
     ["_role", _unit getVariable [QGVAR(role), "r"]]
 ];
