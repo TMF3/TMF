@@ -30,11 +30,124 @@ private _namespace = missionNamespace getVariable [QGVAR(namespace), [FUNC(initN
 private _loadout = format ["loadout_%1_%2", _faction, _role];
 
 // Check if loadout if cached, if not then cache it
-if !(_namespace getVariable [_loadout, {}] isEqualTo {}) then {
-    _unit call (_namespace getVariable _loadout);
-} else {
-    _unit call ([_faction, _role] call FUNC(loadAssignGear));
-};
+private _loadoutArray = _namespace getVariable [_loadout, [_faction, _role] call FUNC(loadAssignGear)];
+
+private _defGoggles = goggles _unit;
+_unit setUnitLoadout (configFile >> 'EmptyLoadout');
+{
+    if !(isNil "_x") then {
+        switch _forEachIndex do {
+            case 0: {}; // displayName
+            case 1: { // uniform
+                private _uniform = selectRandom _x;
+                if !(_uniform isEqualTo '') then {
+                    _unit forceAddUniform _uniform;
+                };
+            };
+            case 2: { // vest
+                private _vest = selectRandom _x;
+                if !(_vest isEqualTo '') then {
+                    _unit addVest _vest;
+                };
+            };
+            case 3: { // backpack
+                private _backpack = selectRandom _x;
+                if !(_backpack isEqualTo '') then {
+                    _unit addBackpack _backpack;
+                };
+            };
+            case 4: { // headgear
+                private _headgear = selectRandom _x;
+                if !(_headgear isEqualTo '') then {
+                    _unit addHeadgear _headgear;
+                };
+            };
+            case 5: { // goggles
+                // Goggles are overwritten by player identity
+                private _goggles = selectRandom _x;
+                if (_goggles != 'default') then {
+                    _unit addGoggles _goggles;
+                } else
+                {
+                    if !(_defGoggles isEqualTo '') then {_unit addGoggles _defGoggles};
+                };
+            };
+            case 6: { // hmd
+                private _hmd = selectRandom _x;
+                if !(_hmd isEqualTo '') then {_unit linkItem _hmd};
+            };
+            case 7: { // faces
+                // Faces are overwritten by player identity
+                [_unit, _x] call FUNC(setFace);
+            };
+            case 8: { // insignias
+                [_unit, selectRandom _x] call FUNC(setInsignia);
+            };
+            case 9: { // backpackItems
+                {_unit addItemToBackpack _x} forEach _x;
+            };
+            case 10: { // items
+                { // Items try to fill uniform first
+                    switch true do {
+                        case (_unit canAddItemToUniform _x): {_unit addItemToUniform _x;};
+                        case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
+                        default {_unit addItemToBackpack _x;};
+                    };
+                } forEach _x;
+            };
+            case 11: { // magazines
+                { // Magazines try to fill vest first
+                    switch true do {
+                        case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
+                        case (_unit canAddItemToUniform _x): {_unit addItemToUniform _x;};
+                        default {_unit addItemToBackpack _x;};
+                    };
+                } forEach _x;
+            };
+            case 12: { // linkedItems
+                {_unit addWeapon _x} forEach _x;
+            };
+            case 13: { // primaryWeapon
+                private _weapon = selectRandom _x;
+                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+            };
+            case 14: { // scope
+                private _scope = selectRandom _x;
+                if !(_scope isEqualTo '') then {_unit addPrimaryWeaponItem _scope};
+            };
+            case 15: { // bipod
+                private _bipod = selectRandom _x;
+                if !(_bipod isEqualTo '') then {_unit addPrimaryWeaponItem _bipod};
+            };
+            case 16: { // attachment
+                private _attachment = selectRandom _x;
+                if !(_attachment isEqualTo '') then {_unit addPrimaryWeaponItem _attachment};
+            };
+            case 17: { // silencer
+                private _silencer = selectRandom _x;
+                if !(_silencer isEqualTo '') then {_unit addPrimaryWeaponItem _silencer};
+            };
+            case 18: { // secondaryWeapon
+                private _weapon = selectRandom _x;
+                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+            };
+            case 19: { // secondaryAttachments
+                {_this addSecondaryWeaponItem _x} forEach _x;
+            };
+            case 20: { // sidearmweapon
+                private _weapon = selectRandom _x;
+                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+            };
+            case 21: { // sidearmattachments
+                {_this addHandgunItem _x} forEach _x;
+            };
+            case 22: { // code
+                _unit call compile _x;
+            };
+        };
+    };
+} forEach _loadoutArray;
+
 _unit setVariable [QGVAR(faction), _faction,true];
 _unit setVariable [QGVAR(role), _role,true];
 _unit setVariable [QGVAR(done),true,true];
