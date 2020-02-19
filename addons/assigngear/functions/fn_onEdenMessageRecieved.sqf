@@ -33,10 +33,9 @@ if (_messageId isEqualTo 0) then { //Mission saved.
         private _newdescription = preprocessFile "description.ext";
         if (!(_newdescription isEqualTo GVAR(descriptionExt))) then {
 
-            // Clear all cached loadouts
-            {
-                GVAR(namespace) setVariable [_x, nil]
-            } forEach ((allVariables GVAR(namespace)) select {_x find "loadout" == 0});
+            // Clear namespace, and in turn all cached loadouts
+            GVAR(namespace) call CBA_fnc_deleteNamespace;
+            call FUNC(initNamespace);
 
             //Re-apply gear attributes to take care of potential gear changes.
             {
