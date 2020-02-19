@@ -35,7 +35,7 @@ private _loadoutArray = _namespace getVariable [_loadout, [_faction, _role] call
 private _defGoggles = goggles _unit;
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 {
-    if !(isNil "_x") then {
+    if (!isNil "_x" && {!(_x isEqualTo [])}) then {
         switch _forEachIndex do {
             case 0: {}; // displayName
             case 1: { // uniform
