@@ -30,7 +30,7 @@ private _namespace = missionNamespace getVariable [QGVAR(namespace), [FUNC(initN
 private _loadout = format ["loadout_%1_%2", _faction, _role];
 
 // Check if loadout if cached, if not then cache it
-private _loadoutArray = _namespace getVariable [_loadout, [_faction, _role] call FUNC(loadAssignGear)];
+private _loadoutArray = _namespace getVariable [_loadout, [_faction, _role] call FUNC(cacheAssignGear)];
 
 private _defGoggles = goggles _unit;
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
