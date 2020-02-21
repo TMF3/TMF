@@ -1,4 +1,6 @@
 #include "script_component.hpp"
+#include "\a3\3den\UI\macros.inc"
+#include "\a3\3DEN\UI\macroexecs.inc"
 
 class cfgPatches
 {
@@ -14,7 +16,16 @@ class cfgPatches
         VERSION_CONFIG;
     };
 };
+class RscStandardDisplay;
+class RscText;
+class RscTitle;
+class RscCombo;
 class RscButtonMenu;
+class RscButtonMenuCancel: RscButtonMenu {};
+class RscButtonMenuOK: RscButtonMenu {};
+class RscBackgroundGUI;
+class RscBackgroundGUITop;
+class RscPicture;
 class RscDisplayArsenal
 {
    class controls
@@ -35,4 +46,4 @@ class RscDisplayArsenal
 #include "Cfg3DEN.hpp"
 #include "CfgFaceSets.hpp"
 #include "display3DEN.hpp"
-
+#include "gui\gearSelector.hpp"
