@@ -13,6 +13,7 @@ class cfgFunctions {
             class replacePrimaryWeapon;
             class replaceSecondaryWeapon;
             class replaceSidearmWeapon;
+            class chat_loadout;
             class gearSelector;
             class helper;
             class saveRole;
