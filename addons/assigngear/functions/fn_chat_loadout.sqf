@@ -21,6 +21,38 @@
 
 params ["_input"];
 
+LOG_1("Executed command #loadout with input: %1", str _input);
+
+private _enabled = true;
+
+switch (GVAR(loadoutUsage)) do {
+    case 0: { // Never available
+        if true exitWith {
+            systemChat "TMF: #loadout is disabled.";
+            _enabled = false;
+        };
+    };
+    case 1: { // Available during safestart
+        (entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
+        if (isNull _safestartModule || {!(_safestartModule getVariable [QEGVAR(safestart,enabled), false])}) exitWith {
+            systemChat "TMF: #loadout is only available during Safe Start.";
+            _enabled = false;
+        };
+    };
+    case 2: { // Available during safestart and after respawning
+        (entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
+        if (
+            player getVariable [QGVARMAIN(lastRespawn), 0] < time - 300 &&
+            {isNull _safestartModule || {!(_safestartModule getVariable [QEGVAR(safestart,enabled), false])}}
+        ) exitWith {
+            systemChat "TMF: #loadout is only available during Safe Start and within 5 minutes of respawn.";
+            _enabled = false;
+        };
+    };
+};
+
+if !(_enabled) exitWith {};
+
 private _inputArr = _input splitString " ";
 
 private _fnc_findMatch = {
@@ -54,10 +86,10 @@ switch (count _inputArr) do {
             if (isNull _match) then {
                 // No loadout or player found, or more than one player
                 if (_faction isEqualTo "") then {
-                    systemChat FORMAT_1("TMF Error: Cannot select loadout as you do not have an assigned faction. Use #loadout <faction> <role>");
+                    systemChat "TMF Error: Cannot select loadout as you do not have an assigned faction. Use #loadout <faction> <role>";
                     systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.", str _in1);
                 } else {
-                    systemChat FORMAT_1("TMF Error: No loadout with name %1 in %2", str _in1, _faction);
+                    systemChat FORMAT_2("TMF Error: No loadout with name %1 in %2", str _in1, _faction);
                     systemChat FORMAT_1("TMF Error: Could not find player containing %1, or more than one player found.", str _in1);
                 };
             } else {
