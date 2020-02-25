@@ -1,21 +1,20 @@
 /*
  * Name = TMF_chat_fnc_cmndWhisper
- * Author = Kingsley
+ * Author = Freddo
  *
- * Syntax:
- * #whisper <player> <message>
- *
- * Arguments:
- * String.
+ * Syntaxes:
+ * #whisper <player> <message> - Sends message in hint to target player
  *
  * Return Value:
  * Void
  *
  * Description:
- * Sends a hint to target player.
+ * See Syntaxes
  */
 
 #include "\x\tmf\addons\chat\script_component.hpp"
+
+IS_CMND_AVAILABLE(GVAR(whisperUsage),"#whisper");
 
 params [["_arg", ""]];
 

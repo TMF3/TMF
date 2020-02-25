@@ -24,6 +24,7 @@ class CfgFunctions {
             class endMission_hunt;
             class endMission_sideSpecificLocal;
             class fpsHandlerServer;
+            class isAuthorized;
             class getCurrentAdminClient;
             class getCurrentAdminServer;
             class keyPressed;

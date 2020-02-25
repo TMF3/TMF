@@ -1,18 +1,21 @@
 /*
  * Name = TMF_chat_fnc_cmndTp
- * Author = Kingsley
+ * Author = Freddo
  *
- * Arguments:
- * None
+ * Syntaxes:
+ * #tp <player> - Teleports to target player
+ * #tp <group>  - Teleports to group leader (must be same side)
  *
  * Return Value:
  * Void
  *
  * Description:
- * Resets the player position.
+ * See Syntaxes
  */
 
 #include "\x\tmf\addons\chat\script_component.hpp"
+
+IS_CMND_AVAILABLE(GVAR(tpUsage),"#tp");
 
 params [["_name",""]];
 

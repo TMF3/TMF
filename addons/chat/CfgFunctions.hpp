@@ -5,9 +5,10 @@ class cfgFunctions {
             class cmndWhisper;
             class cmndHeal;
             class cmndRP;
+            class cmndStage;
             class cmndTp;
             class findMatch;
+            class commandAvailable;
         };
     };
 };
-

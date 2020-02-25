@@ -1,9 +1,22 @@
 /*
- * Author: Kingsley
- * Heals the player.
+ * Name = TMF_chat_fnc_cmndHeal
+ * Author = Freddo
+ *
+ * Syntaxes:
+ * #heal          - Heals self
+ * #heal <player> - Heals target player
+ * #heal all      - Heals everyone
+ *
+ * Return Value:
+ * Void
+ *
+ * Description:
+ * See Syntaxes
  */
 
 #include "\x\tmf\addons\chat\script_component.hpp"
+
+IS_CMND_AVAILABLE(GVAR(healUsage),"#heal");
 
 params [["_name", ""]];
 
