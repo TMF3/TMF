@@ -1,5 +1,5 @@
 /*
- * Name = TMF_assignGear_fnc_chat_loadout
+ * Name = TMF_chat_fnc_commandAvailable
  * Author = Freddo
  *
  * Parameters:

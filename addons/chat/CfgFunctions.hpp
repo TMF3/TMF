@@ -8,6 +8,7 @@ class cfgFunctions {
             class cmndStage;
             class cmndTp;
             class findMatch;
+            class isInAdversarialSafeArea;
             class commandAvailable;
         };
     };

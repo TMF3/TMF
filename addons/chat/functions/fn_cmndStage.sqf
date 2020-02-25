@@ -20,45 +20,28 @@ if !(leader player isEqualTo player) exitWith {
     systemChat "TMF Error: You need to be the group leader to stage";
 };
 
-/*GVAR(safeZoneMarkers) = [];
-
-{
-    _x params ["_logic", "_width", "_height"];
-
-    private _marker = createMarkerLocal [format ["%1_%2", QGVAR(safeZone), (_logic call BIS_fnc_netId)], _logic];
-    _marker setMarkerShapeLocal "ELLIPSE";
-    _marker setMarkerBrushLocal "Border";
-    _marker setMarkerColorLocal "ColorBlue";
-    _marker setMarkerSizeLocal [_width, _height];
-
-    GVAR(safeZoneMarkers) pushBack _marker;
-} forEach GVAR(adversarialSafeZones);*/
-
 openMap true;
 forceMap true;
+
+systemChat "TMF: Select position to stage group to";
 
 GVAR(stageMapClickHandler) = addMissionEventHandler ["MapSingleClick", {
 	params ["_units", "_pos", "_alt", "_shift"];
 
-    private _outside = true;
-
-    /*{
-        if (_pos inArea _x) then {
-            _outside = false;
-        };
-    } forEach GVAR(adversarialSafeZones);
-
-    if (!_outside) exitWith {
-        systemChat "You cannot stage inside the safe zone";
-    };*/
+    if !([_pos, side player] call FUNC(isInAdversarialSafeArea)) exitWith {
+        systemChat "TMF Error: Marked position is in a defender controlled area. Select another position";
+    };
+    private _vehicles = (units group player) apply {vehicle _x};
+    UNIQUE(ARR);
 
     {
-        vehicle _x setPos _pos;
-    } forEach units group ace_player;
+        _x setPos _pos
+    } forEach _vehicles;
+    {
+        (FORMAT_1("TMF: %1 teleported group to staging area", name player)) remoteExecCall ["systemChat", _x];
+    } forEach (units group player) - [player];
 
-    /*{
-        deleteMarker _x;
-    } forEach GVAR(safeZoneMarkers);*/
+    systemChat "TMF: Teleported group to staging area";
 
     forceMap false;
     openMap false;
