@@ -26,7 +26,7 @@ forceMap true;
 systemChat "TMF: Select position to stage group to";
 
 GVAR(stageMapClickHandler) = addMissionEventHandler ["MapSingleClick", {
-	params ["_units", "_pos", "_alt", "_shift"];
+    params ["_units", "_pos", "_alt", "_shift"];
 
     if !([_pos, side player] call FUNC(isInAdversarialSafeArea)) exitWith {
         systemChat "TMF Error: Marked position is in a defender controlled area. Select another position";
