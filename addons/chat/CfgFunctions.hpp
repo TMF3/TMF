@@ -5,6 +5,7 @@ class cfgFunctions {
             class cmndWhisper;
             class cmndHeal;
             class cmndRP;
+            class cmndSpec;
             class cmndStage;
             class cmndTp;
             class findMatch;

@@ -10,7 +10,13 @@
     "all"
 ] call CBA_fnc_registerChatCommand;
 
-[ // Heal
+[ // Spectate
+    "spec",
+    FUNC(cmndSpec),
+    "all"
+] call CBA_fnc_registerChatCommand;
+
+[ // Stage
     "stage",
     FUNC(cmndStage),
     "all"
