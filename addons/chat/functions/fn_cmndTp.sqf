@@ -20,7 +20,7 @@ IS_CMND_AVAILABLE(GVAR(tpUsage),"#tp");
 params [["_name",""]];
 
 if (_name isEqualTo "") exitWith {
-    systemChat "TMF Error: No argument passed. Use #tp [<player>|<group>]";
+    systemChat "TMF Error: No argument passed. Use #tp <player> or <group>";
 };
 
 private _unit = [_name] call FUNC(findMatch);
