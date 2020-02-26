@@ -33,3 +33,12 @@
     FUNC(cmndHeal),
     "all"
 ] call CBA_fnc_registerChatCommand;
+
+if (isClass (configFile >> "CfgPatches" >> QUOTE(DOUBLES(PREFIX,acre2)))) then {
+    [ // Assign radio
+        "radio",
+        FUNC(cmndRadio),
+        "all"
+    ] call CBA_fnc_registerChatCommand;
+};
+
