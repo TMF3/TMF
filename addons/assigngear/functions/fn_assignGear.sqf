@@ -34,6 +34,8 @@ private _loadoutArray = _namespace getVariable [_loadout, [_faction, _role] call
 
 private _defGoggles = goggles _unit;
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
+
+// Each index is tied to a specific type of item
 {
     if (!isNil "_x" && {!(_x isEqualTo [])}) then {
         switch _forEachIndex do {
@@ -150,8 +152,11 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
 _unit setVariable [QGVAR(faction), _faction,true];
 _unit setVariable [QGVAR(role), _role,true];
-_unit setVariable [QGVAR(done),true,true];
 
 LOG_3("Assigned loadout to unit",_unit,_faction,_loadout);
 
-[QGVAR(assignedLoadout), [_unit, _faction, _role]] call CBA_fnc_localEvent;
+[QGVAR(done),[_unit,_faction,_role]] call EFUNC(event,emit);
+_unit setVariable [QGVAR(done),true,true];
+
+//TODO: Move to CBA
+//[QGVAR(assignedLoadout), [_unit, _faction, _role]] call CBA_fnc_localEvent;

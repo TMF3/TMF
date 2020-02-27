@@ -25,6 +25,7 @@ params [
 ];
 
 if (isNil "_cfg") then {
+    // Check if loadout is in configFile or missionConfigFile
     _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _role)) then
     [
         {missionConfigFile},
@@ -36,37 +37,40 @@ ASSERT_TRUE(isClass CFGROLE, format [ARR_3("Loadout not present: %1 %2", _factio
 
 private _loadout = format ["loadout_%1_%2", _faction, _role];
 private _loadoutArray = [];
+
+// Create an array where each index is tied to a specific type of item
+#define CASE(_type,_index) case _type: {_loadoutArray set [_index, _x call BIS_fnc_getCfgData]}
 {
     switch (toLower configName _x) do {
         // Equipment/appearance
-        case "displayname":             {_loadoutArray set [0, _x call BIS_fnc_getCfgData]};
-        case "uniform":                 {_loadoutArray set [1, _x call BIS_fnc_getCfgData]};
-        case "vest":                    {_loadoutArray set [2, _x call BIS_fnc_getCfgData]};
-        case "backpack":                {_loadoutArray set [3, _x call BIS_fnc_getCfgData]};
-        case "headgear":                {_loadoutArray set [4, _x call BIS_fnc_getCfgData]};
-        case "goggles":                 {_loadoutArray set [5, _x call BIS_fnc_getCfgData]};
-        case "hmd":                     {_loadoutArray set [6, _x call BIS_fnc_getCfgData]};
-        case "faces":                   {_loadoutArray set [7, _x call BIS_fnc_getCfgData]};
-        case "insignias":               {_loadoutArray set [8, _x call BIS_fnc_getCfgData]};
+        CASE("displayname",0);
+        CASE("uniform",1);
+        CASE("vest",2);
+        CASE("backpack",3);
+        CASE("headgear",4);
+        CASE("goggles",5);
+        CASE("hmd",6);
+        CASE("faces",7);
+        CASE("insignias",8);
 
         // Items/magazines
-        case "backpackitems":           {_loadoutArray set [9, _x call BIS_fnc_getCfgData]};
-        case "items":                   {_loadoutArray set [10, _x call BIS_fnc_getCfgData]};
-        case "magazines":               {_loadoutArray set [11, _x call BIS_fnc_getCfgData]};
-        case "linkeditems":             {_loadoutArray set [12, _x call BIS_fnc_getCfgData]};
+        CASE("backpackitems",9);
+        CASE("items",10);
+        CASE("magazines",11);
+        CASE("linkeditems",12);
 
         // Weapons
-        case "primaryweapon":           {_loadoutArray set [13, _x call BIS_fnc_getCfgData]};
-        case "scope":                   {_loadoutArray set [14, _x call BIS_fnc_getCfgData]};
-        case "bipod":                   {_loadoutArray set [15, _x call BIS_fnc_getCfgData]};
-        case "attachment":              {_loadoutArray set [16, _x call BIS_fnc_getCfgData]};
-        case "silencer":                {_loadoutArray set [17, _x call BIS_fnc_getCfgData]};
-        case "secondaryweapon":         {_loadoutArray set [18, _x call BIS_fnc_getCfgData]};
-        case "secondaryattachments":    {_loadoutArray set [19, _x call BIS_fnc_getCfgData]};
-        case "sidearmweapon":           {_loadoutArray set [20, _x call BIS_fnc_getCfgData]};
-        case "sidearmattachments":      {_loadoutArray set [21, _x call BIS_fnc_getCfgData]};
+        CASE("primaryweapon",13);
+        CASE("scope",14);
+        CASE("bipod",15);
+        CASE("attachment",16);
+        CASE("silencer",17);
+        CASE("secondaryweapon",18);
+        CASE("secondaryattachments",19);
+        CASE("sidearmweapon",20);
+        CASE("sidearmattachments",21);
 
-        case "code":                    {_loadoutArray set [22, _x call BIS_fnc_getCfgData]};
+        CASE("code",22);
     };
 } forEach configProperties [CFGROLE];
 

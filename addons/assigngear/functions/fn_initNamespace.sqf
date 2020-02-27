@@ -15,7 +15,6 @@
 
 if (!isNil QGVAR(namespace) && {!isNull GVAR(namespace)}) exitWith {GVAR(namespace)};
 
-// Check if there is a saved namespace in uiNamespace
 GVAR(namespace) = false call CBA_fnc_createNamespace;
 
 LOG_1("Initialized namespace", GVAR(namespace));
