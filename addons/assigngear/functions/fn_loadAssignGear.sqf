@@ -40,6 +40,7 @@ private _loadoutArray = [];
 
 // Create an array where each index is tied to a specific type of item
 #define CASE(_type,_index) case _type: {_loadoutArray set [_index, _x call BIS_fnc_getCfgData]}
+; // Travis doesn't like defines without ;
 {
     switch (toLower configName _x) do {
         // Equipment/appearance
