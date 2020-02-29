@@ -15,7 +15,7 @@
 
 params ["_path"];
 
-private _text = loadFile "_path";
+private _text = loadFile _path;
 private _textArr = [];
 
 while {true} do {
@@ -39,7 +39,7 @@ private _rtrn = [];
     private _header = _x select [_ind1 + 9, _ind2 - (_ind1 + 9)];
     private _text = _x select [_ind3 + 4, count _x];
 
-    player pushBack [_header, _text];
+    _rtrn pushBack [_header, _text];
 } forEach _textArr;
 
 _rtrn
