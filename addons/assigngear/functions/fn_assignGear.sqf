@@ -37,7 +37,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
 // Each index is tied to a specific type of item
 {
-    if (!isNil "_x" && {!(_x isEqualTo [])}) then {
+    if (!isNil "_x" && {!(_x isEqualTo [])} && {!(_x isEqualTo "")}) then {
         switch _forEachIndex do {
             case 0: {}; // displayName
             case 1: { // uniform
@@ -134,16 +134,21 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
             case 19: { // secondaryAttachments
-                {_this addSecondaryWeaponItem _x} forEach _x;
+                {_unit addSecondaryWeaponItem _x} forEach _x;
             };
             case 20: { // sidearmweapon
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
             case 21: { // sidearmattachments
-                {_this addHandgunItem _x} forEach _x;
+                {_unit addHandgunItem _x} forEach _x;
             };
-            case 22: { // code
+            case 22: { // Unit traits
+                {
+                    [_unit, _x] call FUNC(setUnitTrait);
+                } forEach _x;
+            };
+            case 23: { // code
                 _unit call compile _x;
             };
         };

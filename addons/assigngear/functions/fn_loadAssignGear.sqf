@@ -71,7 +71,8 @@ private _loadoutArray = [];
         CASE("sidearmweapon",20);
         CASE("sidearmattachments",21);
 
-        CASE("code",22);
+        CASE("traits",22);
+        CASE("code",23);
     };
 } forEach configProperties [CFGROLE];
 

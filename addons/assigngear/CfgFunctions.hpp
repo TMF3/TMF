@@ -20,6 +20,7 @@ class cfgFunctions {
             class saveRole;
             class setFace;
             class setInsignia;
+            class setUnitTrait;
             class onEdenMessageRecieved;
             class onEdenMissionChange;
         };
