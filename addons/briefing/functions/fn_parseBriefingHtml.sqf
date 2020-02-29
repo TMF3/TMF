@@ -54,7 +54,10 @@ private _rtrn = [];
     private _header = _x select [_ind1 + 9, _ind2 - (_ind1 + 9)];
     private _text = _x select [_ind3 + 4, count _x];
 
-    _rtrn pushBack [_header, _text];
+    // Skip commented example section
+    if !(_header isEqualTo "sectionName") then {
+        _rtrn pushBack [_header, _text];
+    };
 } forEach _textArr;
 
 _rtrn
