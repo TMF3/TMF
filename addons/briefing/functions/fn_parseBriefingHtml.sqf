@@ -16,6 +16,21 @@
 params ["_path"];
 
 private _text = loadFile _path;
+
+// Replace HTML header tags
+private _text = [_text, "<h1>", "<font size='18' face='PuristaMedium'>"] call CBA_fnc_replace;
+private _text = [_text, "</h1>", "</font><br/>"] call CBA_fnc_replace;
+private _text = [_text, "<h2>", "<font size='17' face='PuristaMedium'>"] call CBA_fnc_replace;
+private _text = [_text, "</h2>", "</font><br/>"] call CBA_fnc_replace;
+private _text = [_text, "<h3>", "<font size='16'>"] call CBA_fnc_replace;
+private _text = [_text, "</h3>", "</font><br/>"] call CBA_fnc_replace;
+private _text = [_text, "<h4>", "<font size='15'>"] call CBA_fnc_replace;
+private _text = [_text, "</h4>", "</font><br/>"] call CBA_fnc_replace;
+private _text = [_text, "<h5>", "<font size='14'>"] call CBA_fnc_replace;
+private _text = [_text, "</h5>", "</font><br/>"] call CBA_fnc_replace;
+private _text = [_text, "<h6>", "<font size='13'>"] call CBA_fnc_replace;
+private _text = [_text, "</h6>", "</font><br/>"] call CBA_fnc_replace;
+
 private _textArr = [];
 
 while {true} do {
