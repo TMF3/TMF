@@ -6,6 +6,7 @@ class cfgFunctions {
             class createCreditsPage;
             class generateBriefing;
             class generateLoadoutPage;
+            class parseBriefingHtml;
             class unitPage;
             class vehiclePage;
         };
