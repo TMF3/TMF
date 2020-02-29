@@ -55,7 +55,18 @@ private _fnc_fileExists = {
 {
     private _scriptName = (_briefingArray select _x) select 2;
     if ((_scriptName) call _fnc_fileExists) then {
-        call compile preprocessfilelinenumbers _scriptName;
+        if ([".html", _scriptName] call BIS_fnc_inString) then {
+            // html file
+            private _briefingSections = [_scriptName] call FUNC(parseBriefingHtml);
+
+            {
+                _x params ["_header", "_text"];
+                player createDiaryRecord ["Diary",[_header, _text]];
+            } forEach _briefingSections;
+        } else {
+            // Regular SQF
+            call compile preprocessfilelinenumbers _scriptName;
+        };
     } else {
         [_scriptName] spawn {
             params ["_scriptName"];
