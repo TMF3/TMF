@@ -1,41 +1,64 @@
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic"];
-_spawnedGroups = [];
-_data = _logic getVariable [QGVAR(waveData), []];
+private _spawnedVehicles = [];
+private _spawnedGroups = [];
+private _data = _logic getVariable [QGVAR(waveData), []];
+_data params ['_groups', '_vehicles'];
 {
-    _x params ["_side","_units","_vehicles","_waypoints"];
+    _x params ['_type','_pos','_dir','_custom'];
+    private _formationType = "NONE";
+    if((_pos select 2) > 3) then {_formationType = "FLY"};
+    private _vehicle = createVehicle [_type, [0,0,0], [], 0, _formationType];
+    _vehicle setPosATL _pos;
+    _vehicle setDir _dir;
+    [_vehicle,_custom select 0,_custom select 1] spawn BIS_fnc_initVehicle;
+    _spawnedVehicles pushBack _vehicle;
 
+} forEach _vehicles;
+
+{
+    _x params ['_side', '_units', '_waypoints'];
+    
     private _grp = createGroup [_side, true]; // Delete group when empty
-
     {
-        _x params ["_type","_pos","_dir","_gear"];
-        _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
+        _x params ["_type","_pos","_dir","_gear", "_vehicleIndex", "_vehicleRole"];
+        private _unit = _grp createUnit [_type, [0,0,0],[] , 0, "NONE"];
         _unit setPosATL _pos;
         _unit setUnitLoadout [_gear, false];
         _unit setDir _dir;
+        if (_vehicleIndex >= 0) then {
+            private _vehicle = _spawnedVehicles # _vehicleIndex;
+            _vehicleRole params ["_role", "_path"];
+            _role = toLower _role;
+            switch(_role) do {
+                case 'driver': {
+                    _unit assignAsDriver _vehicle;
+                    _unit moveInDriver _vehicle;
+                };
+                case 'cargo': {
+                    if(isNil '_path') then {
+                        _unit assignAsCargo _vehicle;
+                        _unit moveInCargo _vehicle;
+                    } else {
+                        if(_path isEqualType []) then {
+                            _unit assignAsTurret [_vehicle, _path];
+                            _unit moveInTurret [_vehicle, _path];
+                        } else {
+                            _unit assignAsCargoIndex [_vehicle, _path];
+                            _unit moveInCargo [_vehicle, _path];
+                        }
+                    }
+                };
+                case 'turret': {
+                    _unit assignAsTurret [_vehicle, _path];
+                    _unit moveInTurret [_vehicle, _path];
+                };
+            };
+        };
+
     } forEach _units;
-
-
-    {
-        _x params ["_type","_pos","_dir","_custom","_units"];
-        private _formationType = "NONE";
-        if((_pos select 2) > 3) then {_formationType = "FLY"};
-        _vehicle = createVehicle [_type, _pos, [], 0, _formationType];
-        _vehicle setPosATL _pos;
-        _vehicle setDir _dir;
-        [_vehicle,_custom select 0,_custom select 1] call BIS_fnc_initVehicle;
-        {
-            _x params ["_type","_pos","_gear"];
-            _unit = _grp createUnit [_type, _pos,[] , 0, "NONE"];
-            _unit moveInAny _vehicle;
-            _unit setUnitLoadout [_gear, false];
-        } forEach _units;
-    } forEach _vehicles;
-
-    // Ensure side is corrected -- https://feedback.bistudio.com/T70739.
     (units _grp) join _grp;
-
-    _lastIndex = (count waypoints _grp)-1;
+     _lastIndex = (count waypoints _grp)-1;
     for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
         _way = _waypoints select _i;
 
@@ -58,7 +81,7 @@ _data = _logic getVariable [QGVAR(waveData), []];
         _grp setCurrentWaypoint [_grp,1]; // skip the next one okeyyo..
     };
     _spawnedGroups pushBack _grp;
-} forEach _data;
+} forEach _groups;
 
 _wave = _logic getVariable ["Waves",1];
 _logic setVariable ["Waves", (_wave-1)];
