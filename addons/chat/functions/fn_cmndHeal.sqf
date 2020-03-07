@@ -23,9 +23,9 @@ params [["_name", ""]];
 switch (toLower _name) do {
     case "": { // Heal self
         if !(isNil "ace_medical_treatment_fnc_fullHeal") then {
-            [player, player] call ace_medical_treatment_fnc_fullHeal;
+            [CURUNIT, CURUNIT] call ace_medical_treatment_fnc_fullHeal;
         };
-        player setDamage 0;
+        CURUNIT setDamage 0;
         systemChat "TMF: Healed";
     };
     case "all": { // Heal everyone

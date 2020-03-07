@@ -16,11 +16,11 @@
 
 IS_CMND_AVAILABLE(GVAR(rpUsage),"#rp");
 
-private _safePos = (getPosATL player) findEmptyPosition [0, 25, (typeOf player)];
+private _safePos = (getPosATL CURUNIT) findEmptyPosition [0, 25, (typeOf CURUNIT)];
 
 if (count _safePos == 3) exitWith {
     _safePos set [2, 0];
-    player setPosATL _safePos;
+    CURUNIT setPosATL _safePos;
     systemChat "TMF: Reset player position";
 };
 systemChat "TMF Error: Unable to reset player position";

@@ -37,8 +37,8 @@ if (count _radios > 1) exitWith {
 private _radioType = configName (_radios # 0);
 private _radioName = getText ((_radios # 0) >> "name");
 
-if (player canAdd _radioType) then {
-    player addItem _radioType;
+if (CURUNIT canAdd _radioType) then {
+    CURUNIT addItem _radioType;
     systemChat FORMAT_1("TMF: Added %1 to inventory", _radioName);
 } else {
     systemChat FORMAT_1("TMF Error: Not enough room for %1 in inventory", _radioName);
