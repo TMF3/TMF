@@ -6,11 +6,9 @@ class cfgFunctions {
             class cmndHeal;
             class cmndRP;
             class cmndSpec;
-            class cmndStage;
             class cmndTp;
             class cmndRadio;
             class findMatch;
-            class isInAdversarialSafeArea;
             class commandAvailable;
         };
     };

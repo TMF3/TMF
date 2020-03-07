@@ -63,19 +63,6 @@
     1 // isGlobal
 ] call CBA_fnc_addSetting;
 
-[
-    QGVAR(stageUsage),
-    "LIST",
-    "#stage available",
-    ["TMF", "Chat Commands"],
-    [
-        [0,         1,                  2,                                  3       ],
-        ["Never",   "During safestart", "During safestart & after respawn", "Always"],
-        0
-    ], // default value
-    1 // isGlobal
-] call CBA_fnc_addSetting;
-
 if (isClass (configFile >> "CfgPatches" >> QUOTE(DOUBLES(PREFIX,acre2)))) then {
     QGVAR(radioUsage),
     "LIST",

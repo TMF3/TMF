@@ -16,12 +16,6 @@
     "all"
 ] call CBA_fnc_registerChatCommand;
 
-[ // Stage
-    "stage",
-    FUNC(cmndStage),
-    "all"
-] call CBA_fnc_registerChatCommand;
-
 [ // Whisper
     "whisper",
     FUNC(cmndWhisper),

@@ -19,4 +19,3 @@ class cfgPatches
 
 #include "CfgFunctions.hpp"
 #include "CfgEventhandlers.hpp"
-#include "CfgModules.hpp"
