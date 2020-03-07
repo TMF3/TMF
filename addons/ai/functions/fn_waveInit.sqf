@@ -1,3 +1,18 @@
+/*
+ * Name: TMF_ai_fnc_waveInit
+ * Author: Head, Snippers
+ *
+ * Arguments:
+ * 0: TMF WaveSpawner logic
+ * 1: _units
+ * 2: _activated
+ *
+ * Return:
+ * N/A
+ *
+ * Description:
+ * Handles creation of wavespawner structure
+ */
 if(is3DEN) exitWith {};
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
