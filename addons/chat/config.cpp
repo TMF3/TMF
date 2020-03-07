@@ -7,12 +7,10 @@ class cfgPatches
         name = "TMF: Chat commands";
         author = "Freddo";
         url = "http://www.teamonetactical.com";
-        units[] = {
-            QGVAR(adversarialSafeZone)
-        };
+        units[] = {};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
-        requiredAddons[] = {"tmf_common", "tmf_ai"};
+        requiredAddons[] = {"tmf_common"};
         VERSION_CONFIG;
     };
 };
