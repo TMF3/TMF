@@ -230,6 +230,7 @@ switch true do {
         GVAR(tracers) = !GVAR(tracers);
         _message = "Tracers have been toggled off";
         if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
+        systemChat _message;
     };
     case (_key == DIK_K && _type == KEYDOWN): {
         GVAR(bulletTrails) = !GVAR(bulletTrails);
