@@ -32,15 +32,12 @@ private _loadout = format ["loadout_%1_%2", _faction, _role];
 if (_cfg isEqualTo missionConfigFile) then {
     // Do not check uiNamespace for missionConfig loadouts as they have often been edited
     _loadoutArray = [_faction, _role, _cfg] call FUNC(loadAssignGear);
-    GVAR(namespace) setVariable [_loadout, _loadoutArray];
-
-    TRACE_2("Cached loadout to TMF namespace",_faction,_loadout);
-    // Do not cache them to uiNamespace for the same reason
 
 } else {
     // Check if there is a hash storing already cached loadouts in the uiNamespace
     // If there isn't, create one.
-    private _loadoutsHash = uiNamespace getVariable [QGVAR(loadoutsHash), [[], []] call CBA_fnc_hashCreate];
+    private _loadoutsHash = uiNamespace getVariable QGVAR(loadoutsHash);
+    ISNILS(_loadoutsHash, [ARR_2([],[])] call CBA_fnc_hashCreate);
 
     // Try to get the loadout from the hash
     private _hash = [_loadoutsHash, _loadout] call CBA_fnc_hashGet;
@@ -60,5 +57,8 @@ if (_cfg isEqualTo missionConfigFile) then {
         TRACE_2("Loaded loadout from uiNamespace",_faction,_loadout);
     };
 };
+
+GVAR(namespace) setVariable [_loadout, _loadoutArray];
+TRACE_2("Cached loadout to TMF namespace",_faction,_loadout);
 
 _loadoutArray
