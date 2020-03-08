@@ -8,10 +8,10 @@ for "_i" from 1 to 6 do {
         private _deltaTime = time - _time;
         if(_deltaTime <= 12 && _i < 6) then {
             if(_killer == _unit || isNull _killer) then {
-                _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sidetohexcolor)];
+                _control ctrlSetStructuredText parseText format ["<img image='\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa'/><t color='%2'>%1</t>",_dName,_deadSide call CFUNC(sideTohexColor)];
             }
             else {
-                _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,_weapon,_killerSide call CFUNC(sidetohexcolor),_deadSide call CFUNC(sidetohexcolor)];
+                _control ctrlSetStructuredText parseText format ["<t color='%4'>%1</t>  [%3]  <t color='%5'>%2</t>",_kName,_dName,_weapon,_killerSide call CFUNC(sideTohexColor),_deadSide call CFUNC(sideTohexColor)];
             };
         };
         if(_deltaTime > 12) then {

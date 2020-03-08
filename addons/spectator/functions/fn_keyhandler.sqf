@@ -256,7 +256,7 @@ switch true do {
         _done = false;
     };
     case (_key == DIK_P && _type == KEYDOWN) : {
-      _time = ([missionStart,true] call CFUNC(secondsToTime));
+      _time = ([time,true] call CFUNC(secondsToTime));
       systemChat format["Mission time: %1:%2:%3",_time select 0,_time select 1,_time select 2];
   };
   case (_key in (actionKeys "curatorInterface") && _type == KEYDOWN): {
