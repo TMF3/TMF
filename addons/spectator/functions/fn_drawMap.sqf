@@ -1,3 +1,14 @@
+
+/*
+ * Name: TMF_spectator_fnc_drawMap
+ * Author: Head
+ *
+ * Arguments:
+ * mapControl
+ *
+ * Return:
+ * N/A
+ */
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_map"];
 
@@ -9,39 +20,38 @@ ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(camera),"",0];
 
 {
-	private _grp = _x;
-	private _grpCache = _grp getVariable [QGVAR(grpCache),[-9999,[],[1,1,1,1],false]];
+    private _grp = _x;
+    private _grpCache = _grp getVariable [QGVAR(grpCache),[-9999,[],[1,1,1,1],false]];
 
 
-	
-	// check if its time to update
-	if(time > (_grpCache # 0)) then { 
-		_grpCache = ([_grp] call FUNC(updateGroupCache)); 
-	};
+    
+    // check if its time to update
+    if(time > (_grpCache # 0)) then { 
+        _grpCache = ([_grp] call FUNC(updateGroupCache)); 
+    };
 
-	_grpCache params ["_grpTime","_grpPos","_color","_isAI"];
-	_isAI = !_isAI; // FOR DEBUGGING ONLY REMOVE
+    _grpCache params ["_grpTime","_grpPos","_color","_isAI"];
 
     // Draw the group marker if we arent an AI group.
-	if(!_isAI) then {
-		[_map, _grp, _color, _grpPos] call FUNC(drawGroupMarker);
-	};
-	private _units = [];
-	private _vehicles = [];
+    if(!_isAI) then {
+        [_map, _grp, _color, _grpPos] call FUNC(drawGroupMarker);
+    };
+    private _units = [];
+    private _vehicles = [];
     
 
-	{
-		private _unit = _x;
-		if(!isNull objectParent _unit) then {
-			_vehicles pushBackUnique objectParent _unit;
-		} else {
-			[_map, _unit, _color, _grpPos] call FUNC(drawUnitMarker);
-		}
-	} forEach units _grp;
+    {
+        private _unit = _x;
+        if(!isNull objectParent _unit) then {
+            _vehicles pushBackUnique objectParent _unit;
+        } else {
+            [_map, _unit, _color, _grpPos] call FUNC(drawUnitMarker);
+        }
+    } forEach units _grp;
 
-	{
-		[_map, _x, _color, _grpPos] call FUNC(drawVehicleMarker);
-	} forEach _vehicles;
+    {
+        [_map, _x, _color, _grpPos] call FUNC(drawVehicleMarker);
+    } forEach _vehicles;
 
 } forEach allGroups;
 
@@ -69,28 +79,28 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
 
 
 if(GVAR(tracers)) then {
-	{
-		_x params ["_object","_posArray","_last","_time","_type"];
-		_pos = _posArray select (count _posArray-1);
-		if(!isNull _object) then {
-			private _pos = (getPosATLVisual _object);
-			if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
-		};
-		if(_type > 0) then {
-			private _icon = switch (_type) do {
-				case 1 : { GVAR(grenadeIcon) };
-				case 2 : { GVAR(smokeIcon) };
-				case 3 : { GVAR(missileIcon) };
-			};
-			_map drawIcon [_icon, [1,0,0,1], _pos, 10, 10,0,"",0];
-			_map drawLine [_posArray # 0, _pos, [1,0,0,1]];
-		};
-		if(_type == 0 && !isNull _object) then {
-			_pos = getpos _object;
-			_futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
-			_map drawLine [_pos, _futurePos, [1,0,0,1]];
-		};
-	} forEach GVAR(rounds);
+    {
+        _x params ["_object","_posArray","_last","_time","_type"];
+        _pos = _posArray select (count _posArray-1);
+        if(!isNull _object) then {
+            private _pos = (getPosATLVisual _object);
+            if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
+        };
+        if(_type > 0) then {
+            private _icon = switch (_type) do {
+                case 1 : { GVAR(grenadeIcon) };
+                case 2 : { GVAR(smokeIcon) };
+                case 3 : { GVAR(missileIcon) };
+            };
+            _map drawIcon [_icon, [1,0,0,1], _pos, 10, 10,0,"",0];
+            _map drawLine [_posArray # 0, _pos, [1,0,0,1]];
+        };
+        if(_type == 0 && !isNull _object) then {
+            _pos = getpos _object;
+            _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
+            _map drawLine [_pos, _futurePos, [1,0,0,1]];
+        };
+    } forEach GVAR(rounds);
 };
 
 [QGVAR(draw2D), [_campos]] call EFUNC(event,emit);
