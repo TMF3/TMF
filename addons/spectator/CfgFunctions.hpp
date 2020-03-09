@@ -7,6 +7,9 @@ class CfgFunctions {
             class createGroupNode;
             class createUnitNode;
             class drawMap;
+            class drawUnitMarker;
+            class drawVehicleMarker;
+            class drawGroupMarker;
             class handleUnitList;
             class getCameraPos;
             class getCardinal;
