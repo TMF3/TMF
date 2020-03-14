@@ -14,6 +14,9 @@
 #define PATHTO_FOLDER(var1) PATHTO_FOLDER_SYS(PREFIX,COMPONENT,var1)
 #define QPATHTO_FOLDER(var1) QUOTE(PATHTO_FOLDER_SYS(PREFIX,COMPONENT,var1))
 
+// Chat macros
+#define IS_CMND_AVAILABLE(var,cmnd) if !([var,cmnd] call EFUNC(chat,commandAvailable)) exitWith {}
+
 // Debug macros
 #define DEBUG_LOG(text) [__FILE__,__LINE__,text] call CFUNC(debugLog)
 #define DEBUG_LOG_1(text,A) DEBUG_LOG(FORMAT_1(text,A))
