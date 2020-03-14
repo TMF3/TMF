@@ -50,12 +50,7 @@ if (_tmfNetworkEnabled) then {
                 {
                     _x params ["_shortName", "", "_radio", "", "_shared"];
                     if (_shared) then { // is special channel
-                        private _coreRadioIdx = -1;
-                        {
-                            if (_radio in (_x select 0)) exitWith {
-                                _coreRadioIdx = _forEachIndex;
-                            };
-                        } forEach GVAR(radioCoreSettings);
+                        private _coreRadioIdx = GVAR(radioCoreSettings) findIf {_radio in (_x select 0)};
                     
                         private _sharedEntry = [_coreRadioIdx, _shortName]; //Radio core ID + Short Channel Name.
                         //TODO ensure this works.
@@ -74,13 +69,9 @@ if (_tmfNetworkEnabled) then {
 
     GVAR(giveMissingRadios) = true;
 
-    [{
-        if (isNil QGVAR(channelFrequencyOffsets)) exitWith {};
-        
+    [{!isNil QGVAR(channelFrequencyOffsets)},{        
         [] call FUNC(createPresets);
-        [_this select 1] call CBA_fnc_removePerFrameHandler;
-        
-    }, 0] call CBA_fnc_addPerFrameHandler;
+    }] call CBA_fnc_waitUntilAndExecute;
 
 };
 
