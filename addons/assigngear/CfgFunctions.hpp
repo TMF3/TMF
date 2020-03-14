@@ -5,6 +5,9 @@ class cfgFunctions {
             class addBackpackItems;
             class addItems;
             class assignGear;
+            class cacheAssignGear;
+            class loadAssignGear;
+            class initNamespace;
             class linkItems;
             class loadFactions;
             class loadFactionCategories;
@@ -17,6 +20,7 @@ class cfgFunctions {
             class saveRole;
             class setFace;
             class setInsignia;
+            class setUnitTrait;
             class onEdenMessageRecieved;
             class onEdenMissionChange;
         };
