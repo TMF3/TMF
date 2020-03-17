@@ -7,7 +7,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
         class Title : RscTitle {
             text = "TMF Loadout Jukebox";
 
-            x = CENTER_X - 24 * GRID_W;
+            x = CENTER_X - 25 * GRID_W;
             y = CENTER_Y - GRID_H * 15;
             w = 50 * GRID_W;
             h = SIZE_M * GRID_H;
@@ -18,7 +18,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
 
             x = CENTER_X - 30 * GRID_W;
             y = CENTER_Y - GRID_H * 15;
-            w = SIZE_M * GRID_H;
+            w = SIZE_M * GRID_W;
             h = SIZE_M * GRID_H;
 
         };
