@@ -32,11 +32,11 @@ switch (count _inputArr) do {
     case 1: {
         _inputArr params ["_in1"];
 
-        private _faction = player getVariable [QEGVAR(assigngear,faction), ""];
+        private _faction = CURUNIT getVariable [QEGVAR(assigngear,faction), ""];
         private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _in1)) then [{missionConfigFile}, {configFile}];
         if (isClass (_cfg >> "CfgLoadouts" >> _faction >> _in1)) then {
             // Input corresponds with a loadout
-            [player, _faction, _in1] call EFUNC(assigngear,assignGear);
+            [CURUNIT, _faction, _in1] call EFUNC(assigngear,assignGear);
             systemChat format ["TMF: Assigned loadout %1", str getText (_cfg >> "CfgLoadouts" >> _faction >> _in1 >> "displayName")];
         } else {
             private _match = [_in1] call FUNC(findMatch);
@@ -51,7 +51,7 @@ switch (count _inputArr) do {
                 };
             } else {
                 // Copy other players loadout
-                player setUnitLoadout getUnitLoadout _match;
+                CURUNIT setUnitLoadout getUnitLoadout _match;
                 systemChat FORMAT_1("TMF: Copied loadout from %1", name _match);
             };
         };
@@ -62,7 +62,7 @@ switch (count _inputArr) do {
         private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _in1 >> _in1)) then [{missionConfigFile}, {configFile}];
         if (isClass (_cfg >> "CfgLoadouts" >> _in1 >> _in2)) then {
             // Input corresponds with a loadout
-            [player, _in1, _in2] call EFUNC(assigngear,assignGear);
+            [CURUNIT, _in1, _in2] call EFUNC(assigngear,assignGear);
             systemChat FORMAT_2("TMF: Assigned loadout %1 from %2", \
                 str getText (_cfg >> "CfgLoadouts" >> _in1 >> _in2 >> "displayName"), \
                 str getText (_cfg >> "CfgLoadouts" >> _in1 >> "displayName")

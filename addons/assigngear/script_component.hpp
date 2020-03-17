@@ -3,6 +3,8 @@
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
 
+#define CURUNIT (call CBA_fnc_currentUnit)
+
 /* RscGearSelector*/
 #define IDD_RSCGEARSELECTOR             832400
 #define IDC_RSCGEARSELECTOR_CATEGORY    832401
