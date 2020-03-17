@@ -19,7 +19,7 @@
 
 #include "\x\tmf\addons\chat\script_component.hpp"
 
-IS_CMND_AVAILABLE(GVAR(healUsage),"#loadout");
+IS_CMND_AVAILABLE(GVAR(loadoutUsage),"#loadout");
 
 params ["_input"];
 
