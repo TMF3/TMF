@@ -17,72 +17,29 @@
  * None
  */
 
-#include "\x\tmf\addons\assignGear\script_component.hpp"
+#include "\x\tmf\addons\chat\script_component.hpp"
+
+IS_CMND_AVAILABLE(GVAR(healUsage),"#loadout");
 
 params ["_input"];
 
 LOG_1("Executed command #loadout with input: %1", str _input);
 
-private _enabled = true;
-
-switch (GVAR(loadoutUsage)) do {
-    case 0: { // Never available
-        if true exitWith {
-            systemChat "TMF: #loadout is disabled.";
-            _enabled = false;
-        };
-    };
-    case 1: { // Available during safestart
-        (entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
-        if (isNull _safestartModule || {!(_safestartModule getVariable [QEGVAR(safestart,enabled), false])}) exitWith {
-            systemChat "TMF: #loadout is only available during Safe Start.";
-            _enabled = false;
-        };
-    };
-    case 2: { // Available during safestart and after respawning
-        (entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
-        if (
-            player getVariable [QGVARMAIN(lastRespawn), 0] < time - 300 &&
-            {isNull _safestartModule || {!(_safestartModule getVariable [QEGVAR(safestart,enabled), false])}}
-        ) exitWith {
-            systemChat "TMF: #loadout is only available during Safe Start and within 5 minutes of respawn.";
-            _enabled = false;
-        };
-    };
-};
-
-if !(_enabled) exitWith {};
-
 private _inputArr = _input splitString " ";
 
-private _fnc_findMatch = {
-    params ["_name"];
-
-    private _matches = [];
-
-    {
-        if ([_name, name _x] call BIS_fnc_inString) then {
-            _matches pushBack _x;
-        };
-    } forEach ([] call CBA_fnc_players);
-
-    if (count _matches == 1) exitWith {_matches select 0};
-    objNull
-};
-
 switch (count _inputArr) do {
-    case 0: FUNC(gearSelector);
+    case 0: EFUNC(assigngear,gearSelector);
     case 1: {
         _inputArr params ["_in1"];
 
-        private _faction = player getVariable [QGVAR(faction), ""];
+        private _faction = player getVariable [QEGVAR(assigngear,faction), ""];
         private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction >> _in1)) then [{missionConfigFile}, {configFile}];
         if (isClass (_cfg >> "CfgLoadouts" >> _faction >> _in1)) then {
             // Input corresponds with a loadout
-            [player, _faction, _in1] call FUNC(assignGear);
+            [player, _faction, _in1] call EFUNC(assigngear,assignGear);
             systemChat format ["TMF: Assigned loadout %1", str getText (_cfg >> "CfgLoadouts" >> _faction >> _in1 >> "displayName")];
         } else {
-            private _match = [_in1] call _fnc_findMatch;
+            private _match = [_in1] call FUNC(findMatch);
             if (isNull _match) then {
                 // No loadout or player found, or more than one player
                 if (_faction isEqualTo "") then {
@@ -105,7 +62,7 @@ switch (count _inputArr) do {
         private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _in1 >> _in1)) then [{missionConfigFile}, {configFile}];
         if (isClass (_cfg >> "CfgLoadouts" >> _in1 >> _in2)) then {
             // Input corresponds with a loadout
-            [player, _in1, _in2] call FUNC(assignGear);
+            [player, _in1, _in2] call EFUNC(assigngear,assignGear);
             systemChat FORMAT_2("TMF: Assigned loadout %1 from %2", \
                 str getText (_cfg >> "CfgLoadouts" >> _in1 >> _in2 >> "displayName"), \
                 str getText (_cfg >> "CfgLoadouts" >> _in1 >> "displayName")

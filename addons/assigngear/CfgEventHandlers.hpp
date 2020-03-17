@@ -3,10 +3,3 @@ class Extended_PreStart_EventHandlers {
         init = QUOTE(call COMPILE_FILE(XEH_preStart));
     };
 };
-
-class Extended_PreInit_EventHandlers {
-    class ADDON {
-        serverInit = QUOTE(call COMPILE_FILE(XEH_serverPreInit));
-        init = QUOTE(call COMPILE_FILE(XEH_preInit));
-    };
-};
