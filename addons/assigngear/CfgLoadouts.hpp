@@ -1,4 +1,4 @@
-class cfgLoadouts
+class CfgLoadouts
 {
     class BLU_F
     {

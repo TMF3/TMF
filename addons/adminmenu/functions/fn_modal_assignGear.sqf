@@ -98,7 +98,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
     {
         (_x getVariable [QGVAR(association), [objNull, controlNull]]) params ["_player", "_ctrlComboRole"];
 
-        private _playerRole = _player getVariable [QEGVAR(assigngear,role), ""];
+        private _playerRole = _player getVariable [QEGVAR(assignGear,role), ""];
         if (cbChecked _x || _playerRole isEqualTo "") then {
             _playerRole = _ctrlComboRole lbData (lbCurSel _ctrlComboRole);
             if (_playerRole isEqualTo "") then {
@@ -106,12 +106,12 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
             };
         };
 
-        private _playerFaction = _player getVariable [QEGVAR(assigngear,faction), ""];
+        private _playerFaction = _player getVariable [QEGVAR(assignGear,faction), ""];
         if (_setFaction || _playerFaction isEqualTo "") then {
             _playerFaction = _selectedFaction;
         };
 
-        [_player, _playerFaction, _playerRole] remoteExecCall [QEFUNC(assigngear,assigngear), _player];
+        [_player, _playerFaction, _playerRole] remoteExecCall [QEFUNC(assignGear,assignGear), _player];
     } forEach GVAR(utility_assigngear_rolectrls);
 
     systemChat format ["[TMF Admin Menu] Assigned gear to %1 players", count GVAR(utility_assigngear_rolectrls)];

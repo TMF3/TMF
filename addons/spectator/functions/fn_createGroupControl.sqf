@@ -22,7 +22,7 @@ else {
     [_control,"\A3\ui_f\data\map\markers\nato\b_unknown.paa",_color] call FUNC(controlSetPicture);
     [_control,groupId _grp] call FUNC(controlSetText);
 };
-[_control,"asd",[],true] call FUNC(controlSetText);
+[_control,"",[],true] call FUNC(controlSetText);
 _grp setVariable [QGVAR(tagControl), [_control]];
 _control setVariable [QGVAR(attached),_grp];
 GVAR(controls) pushBack _control;

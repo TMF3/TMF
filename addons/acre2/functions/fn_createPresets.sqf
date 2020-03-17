@@ -27,12 +27,7 @@ private _calcChanFreq = {
 tmf_acre2_radioBasenameToSettingsIdx = {
     params ["_radio"];
 
-    private _fndIdx = -1;
-    {
-        if (_radio in (_x select 0)) exitWith {
-          _fndIdx = _forEachIndex;
-        };
-    } forEach GVAR(radioCoreSettings);
+    private _fndIdx = GVAR(radioCoreSettings) findIf {_radio in (_x select 0)};
 
     if (_fndIdx isEqualTo -1) then { 
         systemChat format["Warning - TMF ACRE2 Assign - GVAR(radioCoreSettings) missing radio: %1",_radio];
@@ -51,8 +46,7 @@ private _sharedRadioChannelListing = [];
     private _radioPresetSettingIndex = _forEachIndex;
 
     ////// Bin Channels by Radio type. Create array fr the bins
-    private _channelsProcessed = []; // This will store channels, binned by radio type.
-    { _channelsProcessed pushBack []; } forEach GVAR(radioCoreSettings);
+    private _channelsProcessed = GVAR(radioCoreSettings) apply {[]}; // This will store channels, binned by radio type.
 
     //Add this entry to the channel list.
     //for "_i" from 1 to (count _radioPresetSetting)-1 do {

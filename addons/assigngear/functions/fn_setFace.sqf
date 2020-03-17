@@ -16,8 +16,6 @@
 params ["_unit","_faces"];
 private _face = "";
 
-if (isNil "_unit" || isNil "_faces") exitWith {};
-
 if (count _faces > 0) then {
     private _unitFace = toLower (face _unit);
     private _found = false;

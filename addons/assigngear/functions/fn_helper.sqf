@@ -4,11 +4,10 @@
  *
  * Arguments:
  * 0: OBJECT. Unit
- * 1: ARRAY in the format of role, faction, side, enabled.
+ * 1: ARRAY in the format of role, faction, enabled.
  *    0: STRING. Role
  *    1: STRING: Faction
- *    2: NUMBER: Side
- *    3: BOOLEAN: Enabled. must be true to assign
+ *    2: BOOLEAN: Enabled. must be true to assign
  *
  * Return:
  * None.
@@ -34,20 +33,13 @@ if (count _input == 3) then {
     _input params ["_role","_faction","_enabled"];
 
     if (_enabled) then {
-
-        if (_faction != "") then {
-            _unit setVariable [QGVAR(faction),_faction];
-        };
-        if (_role != "r") then {
-            _unit setVariable [QGVAR(role),_role];
-        };
-        // Workaround for EDEN.
-        if (is3DEN) then {
-            _unit spawn {
-                [FUNC(assignGear),_this] call CBA_fnc_directCall;
-            };
+        if !(is3DEN && time < 1) then {
+            [_unit, _faction, _role] call FUNC(assignGear);
         } else {
-            _unit call FUNC(assignGear);
+            [_unit, _faction, _role] spawn {
+                waitUntil {time > 0;};
+                [FUNC(assignGear), _this] call CBA_fnc_directCall;
+            };
         };
     };
 } else {
@@ -55,23 +47,7 @@ if (count _input == 3) then {
     _input params ["_role","_faction","_side","_enabled"];
 
     if (_enabled) then {
-
-        if (_faction != "") then {
-            _unit setVariable [QGVAR(faction),_faction];
-        };
-        if (_side != -1) then {
-            _unit setVariable [QGVAR(side),_side];
-        };
-        if (_role != "r") then {
-            _unit setVariable [QGVAR(role),_role];
-        };
-        // Workaround for EDEN.
-        if (is3DEN) then {
-            _unit spawn {
-                [FUNC(assignGear),_this] call CBA_fnc_directCall;
-            };
-        } else {
-            _unit call FUNC(assignGear);
-        };
+        WARNING_2("(%1) This syntax has been deprecated for this function: %2 (use: ['_unit',['_role','_faction','_enabled']])",QFUNC(helper),_this);
+        [_unit, _faction, _role] call FUNC(assignGear);
     };
 };

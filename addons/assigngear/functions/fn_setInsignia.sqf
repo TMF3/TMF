@@ -4,32 +4,31 @@
  *
  * Arguments:
  * 0: Object. Unit
- * 1: ARRAY. Array of insignia to choose from
+ * 1: String. Insignia class name
  *
  * Return:
  * 0: Nothing
  *
  * Description:
- * Will set a units insignia to a randomly chosen one from the supplied list.
+ * Sets a units insignia
  *
  * Note:
  * Thanks @Bear and @Nick for helping
  */
 #include "\x\tmf\addons\assignGear\script_component.hpp"
-params ["_unit","_insignias"];
-
-if (isNil "_insignias" || {(count _insignias) isEqualTo 0} || {isNil "_unit"}) exitWith {};
+params ["_unit","_insignia"];
 
 if (time > 5 || {is3DEN}) then
 {
-    [_unit, selectRandom _insignias] call BIS_fnc_setUnitInsignia;
+    [_unit, _insignia] call BIS_fnc_setUnitInsignia;
 }
 else
 {
     // Wait until game has started to overwrite player insignias
     [
+        BIS_fnc_isLoading,
         BIS_fnc_setUnitInsignia,
-        [_unit, selectRandom _insignias],
+        [_unit, _insignia],
         5
-    ] call CBA_fnc_waitAndExecute;
+    ] call CBA_fnc_waitUntilAndExecute;
 };
