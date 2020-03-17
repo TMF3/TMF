@@ -37,6 +37,7 @@ class cfgFunctions {
             class edenMouseKeyDown;
             class edenMouseKeyUp;
             class edenInit;
+            class intro;
             class edenDraw;
             class edenHideMapObjects;
             class hideMapObjectsInit;

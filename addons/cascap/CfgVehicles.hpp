@@ -45,7 +45,7 @@ class CfgVehicles
                     class ObjectsAndGroups {
                         name = "Groups of synchronized units";
                         value = 1;
-                    }
+                    };
                     class Side {
                         name = "Every unit on the units side";
                         value = 2;
