@@ -153,6 +153,22 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
             case 23: { // code
                 _unit call compile _x;
             };
+            case 24: { // primaryMagazine
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {_unit addPrimaryWeaponItem _magazine};
+            };
+            case 25: { // primaryGrenade
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {_unit addPrimaryWeaponItem _magazine};
+            };
+            case 26: { // secondaryMagazine
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {_unit addSecondaryWeaponItem _magazine};
+            };
+            case 27: { // sidearmMagazine
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {_unit addHandgunItem _magazine};
+            };
         };
     };
 } forEach _loadoutArray;

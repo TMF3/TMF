@@ -73,6 +73,12 @@ private _loadoutArray = [];
 
         CASE("traits",22);
         CASE("code",23);
+
+        // Magazine in weapon
+        CASE("primarymagazine", 24);
+        CASE("primarygrenade", 25);
+        CASE("secondarymagazine", 26);
+        CASE("sidearmmagazine", 27);
     };
 } forEach configProperties [CFGROLE];
 
