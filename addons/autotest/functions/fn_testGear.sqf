@@ -211,10 +211,30 @@ private _fncTestUnit = {
             };
         } forEach _magsAndItems;
 
+        
         //Mag check
         if (count _primaryWeapon > 0) then {
             private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
+
+            // check if all options in "primaryMagazine" fit and if they do, add one to _mags array
+            if (count _primaryMagazine > 0) then {
+                if ({_x in _primaryMagazine} count _weaponMags == count _primaryMagazine) then {
+                    _mags append (_primaryMagazine select 0);
+                } else {
+                    _output pushBack [1,format["Role: %2 - %3 has incompatible magazine in primaryMagazine array.", _x,_faction,_role]];
+                };
+            };
+
+            // check if all options in "primaryGrenade" fit
+            if (count _primaryGrenade > 0) then {
+                private _weaponMagsAndGrenades = [_primaryWeapon select 0, true] call CBA_fnc_compatibleMagazines;
+                _weaponMagsAndGrenades = _weaponMagsAndGrenades apply {toLower _x};
+                if ({_x in _primaryGrenade} count _weaponMagsAndGrenades != count _primaryGrenade) then {
+                    _output pushBack [1,format["Role: %2 - %3 has incompatible magazine in primaryGrenade array.", _x,_faction,_role]];
+                };
+            };
+
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount < 3) then {
                 _output pushBack [1,format["Role: %2 - %3 has less than 3 compatible mags for primary weapon.", _x,_faction,_role]];
@@ -224,9 +244,31 @@ private _fncTestUnit = {
         if (count _sidearmWeapon > 0) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
+
+            // check if all options in "sidearmMagazine" fit and if they do, add one to _mags array
+            if (count _sidearmMagazine > 0) then {
+                if ({_x in _sidearmMagazine} count _weaponMags == count _sidearmMagazine) then {
+                    _mags append (_sidearmMagazine select 0);
+                } else {
+                    _output pushBack [1,format["Role: %2 - %3 has incompatible magazine in sidearmMagazine array.", _x,_faction,_role]];
+                };
+            };
+
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount == 0) then {
                 _output pushBack [1,format["Role: %2 - %3 has no compatible mag for sidearm.", _x,_faction,_role]];
+            };
+        };
+
+        if (count _secondaryWeapon > 0) then {
+            private _weaponMags = [_secondaryWeapon select 0] call CBA_fnc_compatibleMagazines;
+            _weaponMags = _weaponMags apply {toLower _x};
+
+            // check if all options in "secondaryMagazine" fit
+            if (count _secondaryMagazine > 0) then {
+                if ({_x in _secondaryMagazine} count _weaponMags != count _secondaryMagazine) then {
+                    _output pushBack [1,format["Role: %2 - %3 has incompatible magazine in secondaryMagazine array.", _x,_faction,_role]];
+                };
             };
         };
 
