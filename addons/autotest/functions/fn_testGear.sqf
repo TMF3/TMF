@@ -92,16 +92,24 @@ private _fncTestUnit = {
         [_attachment, _cfgWeapons] call _fnc_checkExists;
         private _silencer = GETGEAR("attachment"); //"CfgWeapons"
         [_silencer, _cfgWeapons] call _fnc_checkExists;
+        private _primaryMagazine = GETGEAR("primaryMagazine"); // "CfgMagazines"
+        [_primaryMagazine, _cfgMagazines] call _fnc_checkExists;
+        private _primaryGrenade = GETGEAR("primaryGrenade"); // "CfgMagazines"
+        [_primaryGrenade, _cfgMagazines] call _fnc_checkExists;
 
         // Get other weapon and items
         private _secondaryWeapon = GETGEAR("secondaryWeapon"); //CfgWeapons"
         [_secondaryWeapon, _cfgWeapons] call _fnc_checkExists;
         private _secondaryAttachments = GETGEAR("secondaryAttachments");//"CfgWeapons"
         [_secondaryAttachments, _cfgWeapons] call _fnc_checkExists;
+        private _secondaryMagazine = GETGEAR("secondaryMagazine");//"CfgMagazines"
+        [_secondaryMagazine, _cfgMagazines] call _fnc_checkExists;
         private _sidearmWeapon = GETGEAR("sidearmWeapon"); //CfgWeapons"
         [_sidearmWeapon, _cfgWeapons] call _fnc_checkExists;
         private _sidearmAttachments = GETGEAR("sidearmAttachments");//"CfgWeapons"
         [_sidearmAttachments, _cfgWeapons] call _fnc_checkExists;
+        private _secondaryMagazine = GETGEAR("secondaryMagazine");//"CfgMagazines"
+        [_secondaryMagazine, _cfgMagazines] call _fnc_checkExists;
 
         private _linkedItems = GETGEAR("linkedItems");// "Cfgmagazines"
         [_linkedItems, _cfgWeapons] call _fnc_checkExists;
