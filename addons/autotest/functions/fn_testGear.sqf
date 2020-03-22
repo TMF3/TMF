@@ -108,8 +108,8 @@ private _fncTestUnit = {
         [_sidearmWeapon, _cfgWeapons] call _fnc_checkExists;
         private _sidearmAttachments = GETGEAR("sidearmAttachments");//"CfgWeapons"
         [_sidearmAttachments, _cfgWeapons] call _fnc_checkExists;
-        private _secondaryMagazine = GETGEAR("secondaryMagazine");//"CfgMagazines"
-        [_secondaryMagazine, _cfgMagazines] call _fnc_checkExists;
+        private _sidearmMagazine = GETGEAR("sidearmMagazine");//"CfgMagazines"
+        [_sidearmMagazine, _cfgMagazines] call _fnc_checkExists;
 
         private _linkedItems = GETGEAR("linkedItems");// "Cfgmagazines"
         [_linkedItems, _cfgWeapons] call _fnc_checkExists;
