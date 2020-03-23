@@ -228,9 +228,9 @@ private _fncTestUnit = {
 
             // check if all options in "primaryGrenade" fit
             if (count _primaryGrenade > 0) then {
-                private _weaponMagsAndGrenades = [_primaryWeapon select 0, true] call CBA_fnc_compatibleMagazines;
-                _weaponMagsAndGrenades = _weaponMagsAndGrenades apply {toLower _x};
-                if (({_x in (_primaryGrenade apply {toLower _x})} count _weaponMagsAndGrenades) != count _primaryGrenade) then {
+                private _weaponGrenades = ([_primaryWeapon select 0, true] call CBA_fnc_compatibleMagazines) - _weaponMags;
+                _weaponGrenades = _weaponGrenades apply {toLower _x};
+                if (({_x in (_primaryGrenade apply {toLower _x})} count _weaponGrenades) != count _primaryGrenade) then {
                     _output pushBack [1,format["Role: %2 - %3 has incompatible magazine in primaryGrenade array.", _x,_faction,_role]];
                 };
             };
