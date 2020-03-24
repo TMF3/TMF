@@ -161,7 +161,7 @@ private _fnc_addMagazines = {
                     [_unit, _x] call FUNC(setUnitTrait);
                 } forEach _x;
             };
-            case IDX_PRIMARY_MAGAZINE: 
+            case IDX_PRIMARY_MAGAZINE: {
                 private _magazine = selectRandom _x;
                 if !(_magazine isEqualTo '') then {
                     // Sadly I don't think this can't be done faster, primaryMagazine should then only be used when really needed.
