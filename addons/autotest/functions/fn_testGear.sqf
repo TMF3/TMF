@@ -214,8 +214,7 @@ private _fncTestUnit = {
         
         //Mag check
         if (count _primaryWeapon > 0) then {
-            private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
-            _weaponMags = _weaponMags apply {toLower _x};
+            private _weaponMags = (([_primaryWeapon select 0] call CBA_fnc_compatibleMagazines) + ['default']) apply {toLower _x};
 
             // check if all options in "primaryMagazine" fit and if they do, add one to _mags array
             if (count _primaryMagazine > 0) then {
@@ -242,8 +241,7 @@ private _fncTestUnit = {
         };
 
         if (count _sidearmWeapon > 0) then {
-            private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
-            _weaponMags = _weaponMags apply {toLower _x};
+            private _weaponMags = (([_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines) + ['default']) apply {toLower _x};
 
             // check if all options in "sidearmMagazine" fit and if they do, add one to _mags array
             if (count _sidearmMagazine > 0) then {
@@ -261,8 +259,7 @@ private _fncTestUnit = {
         };
 
         if (count _secondaryWeapon > 0) then {
-            private _weaponMags = [_secondaryWeapon select 0] call CBA_fnc_compatibleMagazines;
-            _weaponMags = _weaponMags apply {toLower _x};
+            private _weaponMags = (([_secondaryWeapon select 0] call CBA_fnc_compatibleMagazines) + ['default']) apply {toLower _x};
 
             // check if all options in "secondaryMagazine" fit
             if (count _secondaryMagazine > 0) then {
