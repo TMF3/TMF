@@ -170,8 +170,7 @@ private _fnc_addMagazines = {
                     _unit addPrimaryWeaponItem _magazine;
                     private _weapon = primaryWeapon _unit;
                     private _weaponMags = ([_weapon, false] call CBA_fnc_compatibleMagazines) apply {toLower _x};
-                    _weaponMags = _weaponMags apply {toLower _x};
-                    [_weaponMags select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;  // weapon classnames are case insensitive, right?
+                    [_weaponMags select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;  // Only put primary magazine back in inventory (weapon classnames are case insensitive, right?)
                 };
             };
             case IDX_PRIMARY_GRENADE: {
@@ -184,31 +183,25 @@ private _fnc_addMagazines = {
                     private _weapon = primaryWeapon _unit;
                     private _weaponMags = [_weapon, false] call CBA_fnc_compatibleMagazines;
                     private _weaponGrenades = (([_weapon, true] call CBA_fnc_compatibleMagazines) - _weaponMags) apply {toLower _x};
-                    [_weaponGrenades select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;
+                    [_weaponGrenades select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;  // Only put grenade back in inventory
                 };
             };
             case IDX_SECONDARY_MAGAZINE: {
                 private _magazine = selectRandom _x;
                 if !(_magazine isEqualTo '') then {
-                    // Sadly I don't think this can't be done faster, secondaryMagazine should then only be used when really needed.
                     // Save what game already placed inside the weapon, then pub old magazine back in inventory.
                     private _backup = secondaryWeaponMagazine _unit;
                     _unit addSecondaryWeaponItem _magazine;
-                    private _weapon = secondaryWeapon _unit;
-                    private _weaponMags = ([_weapon, false] call CBA_fnc_compatibleMagazines) apply {toLower _x};
-                    [_weaponMags select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;
+                    [_backup] call _fnc_addMagazines;  // Secondary weapons can only have one magazine inserted
                 };
             };
             case IDX_SIDEARM_MAGAZINE: {
                 private _magazine = selectRandom _x;
                 if !(_magazine isEqualTo '') then {
-                    // Sadly I don't think this can't be done faster, sidearmMagazine should then only be used when really needed.
                     // Save what game already placed inside the weapon, then pub old magazine back in inventory.
                     private _backup = handgunMagazine _unit;
                     _unit addHandgunItem _magazine;
-                    private _weapon = handgunWeapon _unit;
-                    private _weaponMags = ([_weapon, false] call CBA_fnc_compatibleMagazines) apply {toLower _x};
-                    [_weaponMags select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;
+                    [_backup] call _fnc_addMagazines;  // Handguns can only have one magazine inserted
                 };
             };
             case IDX_CODE: {
