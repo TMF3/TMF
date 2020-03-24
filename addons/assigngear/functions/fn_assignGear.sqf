@@ -37,36 +37,59 @@ ISNILS(_loadoutArray, [ARR_2(_faction, _role)] call FUNC(cacheAssignGear));
 private _defGoggles = goggles _unit;
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
+// locally used to add item to next free container. Prioritize uniform.
+private _fnc_addItems = {
+    params [["_items", []]];
+    {
+        switch true do {
+            case (_unit canAddItemToUniform _x): {_unit addItemToUniform _x;};
+            case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
+            default {_unit addItemToBackpack _x;};
+        };
+    } forEach _items;
+};
+// locally used to add magazine to next free container. Prioritize vest.
+private _fnc_addMagazines = {
+    params [["_magazines", []]];
+    {
+        switch true do {
+            case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
+            case (_unit canAddItemToUniform _x): {_unit addItemToUniform _x;};
+            default {_unit addItemToBackpack _x;};
+        };
+    } forEach _magazines;
+};
+
 // Each index is tied to a specific type of item
 {
     if (!isNil "_x" && {!(_x isEqualTo [])} && {!(_x isEqualTo "")}) then {
         switch _forEachIndex do {
-            case 0: {}; // displayName
-            case 1: { // uniform
+            case IDX_DISPLAY_NAME: {};
+            case IDX_UNIFORM: {
                 private _uniform = selectRandom _x;
                 if !(_uniform isEqualTo '') then {
                     _unit forceAddUniform _uniform;
                 };
             };
-            case 2: { // vest
+            case IDX_VEST: {
                 private _vest = selectRandom _x;
                 if !(_vest isEqualTo '') then {
                     _unit addVest _vest;
                 };
             };
-            case 3: { // backpack
+            case IDX_BACKPACK: {
                 private _backpack = selectRandom _x;
                 if !(_backpack isEqualTo '') then {
                     _unit addBackpack _backpack;
                 };
             };
-            case 4: { // headgear
+            case IDX_HEADGEAR: {
                 private _headgear = selectRandom _x;
                 if !(_headgear isEqualTo '') then {
                     _unit addHeadgear _headgear;
                 };
             };
-            case 5: { // goggles
+            case IDX_GOGGLES: {
                 // Goggles are overwritten by player identity
                 private _goggles = selectRandom _x;
                 if (_goggles != 'default') then {
@@ -76,98 +99,120 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                     if !(_defGoggles isEqualTo '') then {_unit addGoggles _defGoggles};
                 };
             };
-            case 6: { // hmd
+            case IDX_HMD: {
                 private _hmd = selectRandom _x;
                 if !(_hmd isEqualTo '') then {_unit linkItem _hmd};
             };
-            case 7: { // faces
+            case IDX_FACES: {
                 // Faces are overwritten by player identity
                 [_unit, _x] call FUNC(setFace);
             };
-            case 8: { // insignias
+            case IDX_INSIGNIAS: {
                 [_unit, selectRandom _x] call FUNC(setInsignia);
             };
-            case 9: { // backpackItems
+            case IDX_BACKPACK_ITEMS: {
                 {_unit addItemToBackpack _x} forEach _x;
             };
-            case 10: { // items
-                { // Items try to fill uniform first
-                    switch true do {
-                        case (_unit canAddItemToUniform _x): {_unit addItemToUniform _x;};
-                        case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
-                        default {_unit addItemToBackpack _x;};
-                    };
-                } forEach _x;
+            case IDX_ITEMS: {
+                [_x] call _fnc_addItems;
             };
-            case 11: { // magazines
-                { // Magazines try to fill vest first
-                    switch true do {
-                        case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
-                        case (_unit canAddItemToUniform _x): {_unit addItemToUniform _x;};
-                        default {_unit addItemToBackpack _x;};
-                    };
-                } forEach _x;
+            case IDX_MAGAZINES: {
+                [_x] call _fnc_addMagazines;
             };
-            case 12: { // linkedItems
+            case IDX_LINKED_ITEMS: {
                 {_unit addWeapon _x} forEach _x;
             };
-            case 13: { // primaryWeapon
+            case IDX_PRIMARY_WEAPON: {
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 14: { // scope
+            case IDX_SCOPE: {
                 private _scope = selectRandom _x;
                 if !(_scope isEqualTo '') then {_unit addPrimaryWeaponItem _scope};
             };
-            case 15: { // bipod
+            case IDX_BIPOD: {
                 private _bipod = selectRandom _x;
                 if !(_bipod isEqualTo '') then {_unit addPrimaryWeaponItem _bipod};
             };
-            case 16: { // attachment
+            case IDX_ATTACHMENT: {
                 private _attachment = selectRandom _x;
                 if !(_attachment isEqualTo '') then {_unit addPrimaryWeaponItem _attachment};
             };
-            case 17: { // silencer
+            case IDX_SILENCER: {
                 private _silencer = selectRandom _x;
                 if !(_silencer isEqualTo '') then {_unit addPrimaryWeaponItem _silencer};
             };
-            case 18: { // secondaryWeapon
+            case IDX_SECONDARY_WEAPON: {
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 19: { // secondaryAttachments
+            case IDX_SECONDARY_ATTACHMENTS: {
                 {_unit addSecondaryWeaponItem _x} forEach _x;
             };
-            case 20: { // sidearmweapon
+            case IDX_SIDEARM_WEAPON: {
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 21: { // sidearmattachments
+            case IDX_SIDEARM_ATTACHMENTS: {
                 {_unit addHandgunItem _x} forEach _x;
             };
-            case 22: { // Unit traits
+            case IDX_TRAITS: {
                 {
                     [_unit, _x] call FUNC(setUnitTrait);
                 } forEach _x;
             };
-            case 23: { // code
+            case IDX_PRIMARY_MAGAZINE: 
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {
+                    // Sadly I don't think this can't be done faster, primaryMagazine should then only be used when really needed.
+                    // Save what game already placed inside the weapon, then pub old magazine back in inventory.
+                    private _backup = primaryWeaponMagazine _unit;
+                    _unit addPrimaryWeaponItem _magazine;
+                    private _weapon = primaryWeapon _unit;
+                    private _weaponMags = ([_weapon, false] call CBA_fnc_compatibleMagazines) apply {toLower _x};
+                    _weaponMags = _weaponMags apply {toLower _x};
+                    [_weaponMags select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;  // weapon classnames are case insensitive, right?
+                };
+            };
+            case IDX_PRIMARY_GRENADE: {
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {
+                    // Sadly I don't think this can't be done faster, primaryGrenade should then only be used when really needed.
+                    // Save what game already placed inside the weapon, then pub old magazine back in inventory:
+                    private _backup = primaryWeaponMagazine _unit;
+                    _unit addPrimaryWeaponItem _magazine;
+                    private _weapon = primaryWeapon _unit;
+                    private _weaponMags = [_weapon, false] call CBA_fnc_compatibleMagazines;
+                    private _weaponGrenades = (([_weapon, true] call CBA_fnc_compatibleMagazines) - _weaponMags) apply {toLower _x};
+                    [_weaponGrenades select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;
+                };
+            };
+            case IDX_SECONDARY_MAGAZINE: {
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {
+                    // Sadly I don't think this can't be done faster, secondaryMagazine should then only be used when really needed.
+                    // Save what game already placed inside the weapon, then pub old magazine back in inventory.
+                    private _backup = secondaryWeaponMagazine _unit;
+                    _unit addSecondaryWeaponItem _magazine;
+                    private _weapon = secondaryWeapon _unit;
+                    private _weaponMags = ([_weapon, false] call CBA_fnc_compatibleMagazines) apply {toLower _x};
+                    [_weaponMags select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;
+                };
+            };
+            case IDX_SIDEARM_MAGAZINE: {
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {
+                    // Sadly I don't think this can't be done faster, sidearmMagazine should then only be used when really needed.
+                    // Save what game already placed inside the weapon, then pub old magazine back in inventory.
+                    private _backup = handgunMagazine _unit;
+                    _unit addHandgunItem _magazine;
+                    private _weapon = handgunWeapon _unit;
+                    private _weaponMags = ([_weapon, false] call CBA_fnc_compatibleMagazines) apply {toLower _x};
+                    [_weaponMags select {_x in (_backup apply {toLower _x})}] call _fnc_addMagazines;
+                };
+            };
+            case IDX_CODE: {
                 _unit call compile _x;
-            };
-            case 24: { // primaryMagazine
-                private _magazine = selectRandom _x;
-                if !(_magazine isEqualTo '') then {_unit addPrimaryWeaponItem _magazine};
-            };
-            case 25: { // primaryGrenade
-                private _magazine = selectRandom _x;
-                if !(_magazine isEqualTo '') then {_unit addPrimaryWeaponItem _magazine};
-            };
-            case 26: { // secondaryMagazine
-                private _magazine = selectRandom _x;
-                if !(_magazine isEqualTo '') then {_unit addSecondaryWeaponItem _magazine};
-            };
-            case 27: { // sidearmMagazine
-                private _magazine = selectRandom _x;
-                if !(_magazine isEqualTo '') then {_unit addHandgunItem _magazine};
             };
         };
     };
