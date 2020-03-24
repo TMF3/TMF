@@ -163,7 +163,7 @@ private _fnc_addMagazines = {
             };
             case IDX_PRIMARY_MAGAZINE: {
                 private _magazine = selectRandom _x;
-                if (toLower _magazine != 'default') then {
+                if (_magazine != 'default') then {
                     // Sadly I don't think this can't be done faster, primaryMagazine should then only be used when really needed.
                     private _weapon = primaryWeapon _unit;
                     private _weaponMags = [_weapon, false] call CBA_fnc_compatibleMagazines;
@@ -174,7 +174,7 @@ private _fnc_addMagazines = {
             };
             case IDX_PRIMARY_GRENADE: {
                 private _magazine = selectRandom _x;
-                if (toLower _magazine != 'default') then {
+                if (_magazine != 'default') then {
                     // Sadly I don't think this can't be done faster, primaryGrenade should then only be used when really needed.
                     private _weapon = primaryWeapon _unit;
                     private _weaponMags = [_weapon, false] call CBA_fnc_compatibleMagazines;
@@ -186,7 +186,7 @@ private _fnc_addMagazines = {
             };
             case IDX_SECONDARY_MAGAZINE: {
                 private _magazine = selectRandom _x;
-                if (toLower _magazine != 'default') then {
+                if (_magazine != 'default') then {
                     private _backup = secondaryWeaponMagazine _unit;
                     _unit addSecondaryWeaponItem _magazine;
                     [_backup] call _fnc_addMagazines;
@@ -194,7 +194,7 @@ private _fnc_addMagazines = {
             };
             case IDX_SIDEARM_MAGAZINE: {
                 private _magazine = selectRandom _x;
-                if (toLower _magazine != 'default') then {
+                if (_magazine != 'default') then {
                     private _backup = handgunMagazine _unit;
                     _unit addHandgunItem _magazine;
                     [_backup] call _fnc_addMagazines;
