@@ -34,7 +34,13 @@ private _loadout = format ["loadout_%1_%2", _faction, _role];
 private _loadoutArray = _namespace getVariable _loadout;
 ISNILS(_loadoutArray, [ARR_2(_faction, _role)] call FUNC(cacheAssignGear));
 
+private _defUniform = uniform _unit;
+private _defVest = vest _unit;
+private _defBackpack = backpack _unit;
+private _defHeadgear = headgear _unit;
 private _defGoggles = goggles _unit;
+private _defHmd = hmd _unit;
+
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
 // locally used to add item to next free container. Prioritize uniform.
@@ -67,24 +73,28 @@ private _fnc_addMagazines = {
             case IDX_DISPLAY_NAME: {};
             case IDX_UNIFORM: {
                 private _uniform = selectRandom _x;
+                if (_uniform == 'default') then { _uniform = _defUniform; };
                 if !(_uniform isEqualTo '') then {
                     _unit forceAddUniform _uniform;
                 };
             };
             case IDX_VEST: {
                 private _vest = selectRandom _x;
+                if (_vest == 'default') then { _vest = _defVest; };
                 if !(_vest isEqualTo '') then {
                     _unit addVest _vest;
                 };
             };
             case IDX_BACKPACK: {
                 private _backpack = selectRandom _x;
+                if (_backpack == 'default') then { _backpack = _defBackpack; };
                 if !(_backpack isEqualTo '') then {
                     _unit addBackpack _backpack;
                 };
             };
             case IDX_HEADGEAR: {
                 private _headgear = selectRandom _x;
+                if (_headgear == 'default') then { _headgear = _defHeadgear; };
                 if !(_headgear isEqualTo '') then {
                     _unit addHeadgear _headgear;
                 };
@@ -92,17 +102,14 @@ private _fnc_addMagazines = {
             case IDX_GOGGLES: {
                 // Goggles are overwritten by player identity
                 private _goggles = selectRandom _x;
-                if (_goggles != 'default') then {
-                    if !(_goggles isEqualTo '') then {
-                        _unit addGoggles _goggles;
-                    };
-                } else
-                {
-                    if !(_defGoggles isEqualTo '') then {_unit addGoggles _defGoggles};
+                if (_goggles == 'default') then { _goggles = _defGoggles; };
+                if !(_goggles isEqualTo '') then {
+                    _unit addGoggles _goggles;
                 };
             };
             case IDX_HMD: {
                 private _hmd = selectRandom _x;
+                if (_hmd == 'default') then { _hmd = _defHmd; };
                 if !(_hmd isEqualTo '') then {_unit linkItem _hmd};
             };
             case IDX_FACES: {
