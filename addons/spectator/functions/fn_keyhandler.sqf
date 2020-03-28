@@ -234,6 +234,9 @@ switch true do {
     };
     case (_key == DIK_K && _type == KEYDOWN): {
         GVAR(bulletTrails) = !GVAR(bulletTrails);
+        _message = "Bullet trails have been toggled off";
+        if(GVAR(bulletTrails)) then {_message = "Bullet trails have been toggled on"};
+        systemChat _message;
     };
     case (_key == DIK_SPACE && _type == KEYDOWN) : {
         if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {}; // camrea mode disabled
