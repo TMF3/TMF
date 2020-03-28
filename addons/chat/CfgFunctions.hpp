@@ -4,6 +4,7 @@ class cfgFunctions {
             file = QPATHTO_FOLDER(functions);
             class cmndWhisper;
             class cmndHeal;
+            class cmndLoadout;
             class cmndRP;
             class cmndSpec;
             class cmndTp;

@@ -16,6 +16,7 @@ class cfgFunctions {
             class replacePrimaryWeapon;
             class replaceSecondaryWeapon;
             class replaceSidearmWeapon;
+            class gearSelector;
             class helper;
             class saveRole;
             class setFace;
@@ -24,5 +25,14 @@ class cfgFunctions {
             class onEdenMessageRecieved;
             class onEdenMissionChange;
         };
+        class DOUBLES(COMPONENT,gui) {
+            file = QPATHTO_FOLDER(gui);
+            class gui_gearSelector_init;
+            class gui_gearSelector_loadFactions;
+            class gui_gearSelector_loadCategories;
+            class gui_gearSelector_loadRoles;
+            class gui_gearSelector_random;
+            class gui_gearSelector_submit;
+        }
     };
 };

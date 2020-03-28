@@ -25,6 +25,14 @@ class Extended_Init_EventHandlers {
     };
 };
 
+class Extended_Respawn_EventHandlers {
+    class CAManBase {
+        class ADDON {
+            respawn = QUOTE((_this select 0) setVariable [ARR_3(QQGVARMAIN(lastRespawn),time,true)]);
+        };
+    };
+};
+
 class Extended_DisplayLoad_EventHandlers {
     class RscDisplayMultiplayerSetup {
         tmf_slotting = QUOTE(_this call (uiNamespace getVariable 'FUNC(initDisplayMultiplayerSetup)'));
