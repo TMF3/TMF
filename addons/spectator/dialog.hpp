@@ -222,7 +222,7 @@ class tmf_spectator_dialog
 
         color[] = {1,1,1,0}; // Scrollbar color
       };
-      maxHistoryDelay = 99999999999999999999999999999999999999999999999; // Time since last keyboard type search to reset it
+      maxHistoryDelay = 9999999; // Time since last keyboard type search to reset it
     };
     class TMF_SPECTATOR_KILLLIST : RscControlsGroupNoScrollbars {
         idc = 2300;
@@ -241,7 +241,7 @@ class tmf_spectator_dialog
                 idc = -1;
                 x = 0.0 * safezoneW;
                 y = -5.0 * safezoneH;
-            }
+            };
             class Label1: RscStructuredText {
                 idc = 6;
                 action = "";

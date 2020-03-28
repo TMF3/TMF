@@ -18,7 +18,7 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             w = 0.05 * safezoneW;
             h = 0.06 * safezoneH;
             colorBackground[] = {0,0,0,0.0};
-        }
+        };
         class GVAR(Icon): RscPicture
         {
             idc = 1;
@@ -66,7 +66,7 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 w = 0.05 * safezoneW;
                 h = 0.06 * safezoneH;
                 colorBackground[] = {0,0,0,0.0};
-            }
+            };
             class GVAR(Icon): RscPicture
             {
                 idc = 1;

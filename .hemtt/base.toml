@@ -1,0 +1,8 @@
+name = "TMF"
+prefix = "tmf"
+author = "TMF Team"
+template = "cba"
+mainprefix = "x"
+files = ["mod.cpp"]
+folder_optionals = true
+sig_version = 3

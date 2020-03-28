@@ -18,7 +18,6 @@ class cfgPatches
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"
-
 #include "display3DEN.hpp"
 
 class TMF_autotest {
