@@ -1,4 +1,3 @@
-
 class GVAR(artillery) : Module_F
 {
     scope = 2;

@@ -29,7 +29,7 @@ class GVAR(wavespawn) : Module_F {
             description = "The time in seconds to wait before spawning the first wave";
             typeName = "NUMBER";
             defaultValue = "0";
-        }
+        };
         class Waves {
             displayName = "Number of waves"; // Argument label
             description = ""; // Tooltip description

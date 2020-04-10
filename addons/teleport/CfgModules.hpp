@@ -1,4 +1,3 @@
-#include "script_component.hpp"
 
 class CfgVehicles
 {
@@ -47,7 +46,7 @@ class CfgVehicles
                     class ObjectsAndGroups {
                         name = "Groups of synchronized units";
                         value = 1;
-                    }
+                    };
                     class Side {
                         name = "Every unit on the units side";
                         value = 2;
@@ -117,7 +116,7 @@ class CfgVehicles
                     class ObjectsAndGroups {
                         name = "Groups of synchronized units";
                         value = 1;
-                    }
+                    };
                     class Side {
                         name = "Every unit on the units side";
                         value = 2;

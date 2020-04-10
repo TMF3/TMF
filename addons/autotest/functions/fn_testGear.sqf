@@ -326,7 +326,7 @@ private _loadoutFreespace = [];
                         if (_mass <= _freeBackpackSpace) then {
                             _freeBackpackSpace = _freeBackpackSpace - _mass;
                         } else {
-                            _output pushBack [0,format["'%1' radio won't fit for: %2 (%3)", _x,_unit,group _unit]];
+                            _output pushBack [0,format["'%1'(%4) radio won't fit for: %2 (%3)", _x,_unit,group _unit, _role]];
                         };
                     };
                 };

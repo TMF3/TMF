@@ -3,6 +3,16 @@
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
 
+#define CURUNIT (call CBA_fnc_currentUnit)
+
+/* RscGearSelector*/
+#define IDD_RSCGEARSELECTOR             832400
+#define IDC_RSCGEARSELECTOR_CATEGORY    832401
+#define IDC_RSCGEARSELECTOR_FACTION     832402
+#define IDC_RSCGEARSELECTOR_ROLE        832403
+#define IDC_RSCGEARSELECTOR_SUBMIT      832404
+#define IDC_RSCGEARSELECTOR_RANDOM      832405
+
 /* assignGear specific macros */
 #define GETGEAR(var) [_cfg >> var] call CFUNC(getCfgEntryFromPath)
 #define LIST_2(var1) var1,var1
@@ -25,6 +35,7 @@
 #define LIST_19(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 #define LIST_20(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 
+/* assignGear cache indexes */
 #define IDX_DISPLAY_NAME 0
 #define IDX_UNIFORM 1
 #define IDX_VEST 2
