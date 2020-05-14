@@ -17,6 +17,6 @@
 
 params [["_unit", player]];
 
-private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> uid) isEqualTo getPlayerUID _unit};
+private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
 
 !(_index isEqualTo -1)
