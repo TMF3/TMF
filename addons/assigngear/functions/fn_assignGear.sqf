@@ -34,7 +34,6 @@ private _loadout = format ["loadout_%1_%2", _faction, _role];
 private _loadoutArray = _namespace getVariable _loadout;
 ISNILS(_loadoutArray, [ARR_2(_faction, _role)] call FUNC(cacheAssignGear));
 
-private _defGoggles = goggles _unit;
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
 // Each index is tied to a specific type of item
@@ -66,25 +65,42 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                     _unit addHeadgear _headgear;
                 };
             };
-            case 5: { // goggles
-                // Goggles are overwritten by player identity
-                private _goggles = selectRandom _x;
-                if (_goggles != 'default') then {
-                    if !(_goggles isEqualTo '') then {
-                        _unit addGoggles _goggles;
+            case 5: { // goggles -- overwritten by player identity so apply after a delay
+                [{
+                    params ["_unit", "_goggles"];
+
+                    private _curGoggles = goggles _unit;
+                    if (_curGoggles isEqualTo "") then { // Don't respect no-goggles profile in skip check
+                        _curGoggles = "givemegoggles";
                     };
-                } else
-                {
-                    if !(_defGoggles isEqualTo '') then {_unit addGoggles _defGoggles};
-                };
+
+                    // Skip if loadout allows profile glasses OR profile glasses part of loadout
+                    if ("default" in _goggles || _curGoggles in _goggles) exitWith {};
+
+                    private _newGoggles = ""; 
+                    if !(_goggles isEqualTo []) then {
+                        _newGoggles = selectRandom _goggles;
+                    };
+
+                    if (_newGoggles isEqualTo "") then {
+                        removeGoggles _unit;
+                    } else {
+                        _unit addGoggles _newGoggles;
+                    };
+                }, [_unit, _x], 1] call CBA_fnc_waitAndExecute;
             };
             case 6: { // hmd
                 private _hmd = selectRandom _x;
                 if !(_hmd isEqualTo '') then {_unit linkItem _hmd};
             };
-            case 7: { // faces
-                // Faces are overwritten by player identity
-                [_unit, _x] call FUNC(setFace);
+            case 7: { // faces -- overwritten by player identity so apply after a delay
+                if !(_x isEqualTo []) then {
+                    [{
+                        params ["_unit", "_faces"];
+
+                        [_unit, _faces] call FUNC(setFace);
+                    }, [_unit, _x], 1] call CBA_fnc_waitAndExecute;
+                };
             };
             case 8: { // insignias
                 [_unit, selectRandom _x] call FUNC(setInsignia);
