@@ -18,8 +18,10 @@ class cfgFunctions {
             class replaceSidearmWeapon;
             class gearSelector;
             class helper;
+            class overrideProfileItems;
             class saveRole;
             class setFace;
+            class setGoggles;
             class setInsignia;
             class setUnitTrait;
             class onEdenMessageRecieved;
