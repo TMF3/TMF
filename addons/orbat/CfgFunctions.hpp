@@ -6,6 +6,7 @@ class cfgFunctions {
             class draw;
             class drawArrayRec;
             class setup;
+            class setMarkerUpdateInterval;
             class updateArray;
             class createBriefingPage;
             class getGroupMarkerData;

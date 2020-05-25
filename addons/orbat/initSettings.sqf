@@ -7,13 +7,8 @@
         0,  // Min
         150,// Max
         3,  // Default
-        0   // Trailing decimals
+        1   // Trailing decimals
     ],
     1, // isGlobal
-    {  // Script to execute when setting is changed
-        if (isNil QGVAR(PFHandler)) exitWith {};
-
-        [GVAR(PFHandler)] call CBA_fnc_removePerFrameHandler;
-        GVAR(PFHandler) = [FUNC(PFHUpdate), GVAR(markerUpdateInterval), []] call CBA_fnc_addPerFrameHandler;
-    }
+    {[_this] call FUNC(setmarkerUpdateInterval)}
 ] call CBA_fnc_addSetting;

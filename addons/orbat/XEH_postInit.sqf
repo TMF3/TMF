@@ -97,13 +97,13 @@ FUNC(PFHUpdate) = {
 
 
 // Force a 1 second wait.
-[{time > 0 && {!([] call BIS_fnc_isLoading)} && {!isNull player} && {!isNil QEGVAR(common,VarSync)}},{
+[{!([] call BIS_fnc_isLoading) && {!isNull player} && {!isNil QEGVAR(common,VarSync)}},{
     [player, true] call FUNC(setup);
     [player] call FUNC(createBriefingPage);
-}, [], 0.5] call CBA_fnc_waitUntilAndExecute;
 
-//Spawn thread to update fireteam positions overtime.
+    //Spawn thread to update fireteam positions overtime.
 
-// Do an update to set initial positions, then add PFH.
-[] call FUNC(PFHUpdate);
-GVAR(PFHandler) = [FUNC(PFHUpdate), GVAR(markerUpdateInterval), []] call CBA_fnc_addPerFrameHandler;
+    // Do an update to set initial positions, then add PFH.
+    [] call FUNC(PFHUpdate);
+    GVAR(PFHandler) = [FUNC(PFHUpdate), GVAR(markerUpdateInterval), []] call CBA_fnc_addPerFrameHandler;
+}, []] call CBA_fnc_waitUntilAndExecute;
