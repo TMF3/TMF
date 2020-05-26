@@ -21,7 +21,7 @@ params [["_interval",3,[-1]],["_global",false,[false]]];
 if (_global) then {
     // Places this on the JIP queue with a predefined ID.
     // Any other entries with the same ID will be overwritten.
-    [_interval,false] remoteExecCall [QFUNC(setMarkerUpdateInterval),0,QGVAR(markerUpdateInterval)];
+    [FUNC(setMarkerUpdateInterval),[_interval,false],1] remoteExecCall ["CBA_fnc_waitAndExecute",0,QGVAR(markerUpdateInterval)];
 };
 
 LOG_1("Setting new marker update interval",_interval);
