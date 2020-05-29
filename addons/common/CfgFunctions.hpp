@@ -21,8 +21,6 @@ class cfgFunctions {
             class isAdmin;
             class capitalize;
             class initGroupVar;
-            class checkJIP;
-            class handleLocalJip;
             class getNearestRoad;
             class serializeWaypoint;
             class serializeWaypoints;
