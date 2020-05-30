@@ -70,7 +70,9 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 // Goggles are overwritten by player identity
                 private _goggles = selectRandom _x;
                 if (_goggles != 'default') then {
-                    _unit addGoggles _goggles;
+                    if !(_goggles isEqualTo '') then {
+                        _unit addGoggles _goggles;
+                    };
                 } else
                 {
                     if !(_defGoggles isEqualTo '') then {_unit addGoggles _defGoggles};
