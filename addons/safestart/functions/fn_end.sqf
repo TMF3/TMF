@@ -1,7 +1,5 @@
-#include "\x\tmf\addons\safestart\script_component.hpp"
-params ["_module"];
-if(isNull _module || !(_module isKindOf QGVAR(module))) exitWith {
-    false
+#include "\x\tmf\addons\safeStart\script_component.hpp"
+
+if !(isNil 'ADDON') then {
+    ADDON call CBA_fnc_deletePerFrameHandlerObject;
 };
-_module setVariable [QGVAR(enabled),false,true];
-true
