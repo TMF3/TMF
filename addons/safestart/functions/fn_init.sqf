@@ -9,7 +9,7 @@ private _logic = [
     {
         if (TIMER > 0) then {
             // Update timer
-            private _text = format ["SAFESTART %1", TIMER - CBA_missionTime];
+            private _text = "SAFESTART " + ([TIMER - CBA_missionTime, "MM:SS"] call BIS_fnc_secondsToString);
             _textCtrl ctrlSetText _text;
             TRACE_1("Safestart Active, time remaining", TIMER - CBA_missionTime);
         } else {
@@ -32,9 +32,9 @@ private _logic = [
         player allowDamage false;
         ace_advanced_throwing_enabled = false;
         DIALOG_IDD cutRsc [QGVAR(dialog),"PLAIN"];
-        private _textCtrl = (uiNamespace getVariable [QGVAR(display),displayNull]) displayCtrl 101;
+        _textCtrl = (uiNamespace getVariable [QGVAR(display),displayNull]) displayCtrl 101;
         // Disable left click
-        private _playerAction = [
+        _playerAction = [
             [
                 "",
                 {5412 cutRsc [QGVAR(refusefire),"PLAIN"]; },
@@ -47,7 +47,7 @@ private _logic = [
             ]
         ] call CBA_fnc_addPlayerAction;
         // Delete fired projectiles
-        private _firedEH = player addEventHandler ["fired",{
+        _firedEH = player addEventHandler ["fired",{
             deleteVehicle (_this select 6);
             if((_this select 1) == "Throw") then {
                 player addMagazine (_this select 5);
@@ -92,7 +92,7 @@ private _logic = [
         DIALOG_IDD cutFadeOut 0;
         DIALOG_IDD cutFadeOut 1;
 
-        ADDON = nil:
+        ADDON = nil;
 
         // End safestart locally
         [QGVAR(ended)] call CBA_fnc_localEvent;

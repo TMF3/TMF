@@ -6,6 +6,7 @@ class cfgFunctions {
             class isActive;
             //class briefingTextLoad;
             class end;
+            class set;
             class timeRemaining;
         };
     };
