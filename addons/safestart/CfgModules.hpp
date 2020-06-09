@@ -43,7 +43,7 @@ class CfgVehicles {
 
         // Module description. Must inherit from base class, otherwise pre-defined entities won't be available
         class ModuleDescription: ModuleDescription {
-            description = "Enables safestart globally.<br/>May be synchronized to a serverside trigger.<br/>Set to -1 for infinte, 0 to end safestart.";
+            description = "Enables safestart globally.<br/>May be synchronized to a serverside trigger.<br/>Set to -1 for infinite, 0 to end safestart.";
             sync[] = {"EmptyDetector"};
         };
     };
