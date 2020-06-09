@@ -1,5 +1,24 @@
 #include "\x\tmf\addons\safeStart\script_component.hpp"
+/* ----------------------------------------------------------------------------
+Internal Function: TMF_safestart_fnc_init
 
+Description:
+    Initializes Safestart CBA perFrameHandler object.
+
+Parameters:
+    _duration - Target time before ending safestart. <= 0 for infinite [Number, default -1]
+
+Returns:
+    Created CBA perFrameHandler object [Namespace]
+
+Examples:
+    (begin example)
+        TMF_safestart = [CBA_missionTime + 50] call TMF_safestart_fnc_init;
+    (end)
+
+Author:
+    Freddo
+---------------------------------------------------------------------------- */
 params [["_duration", -1]];
 
 // https://cbateam.github.io/CBA_A3/docs/files/common/fnc_createPerFrameHandlerObject-sqf.html
@@ -15,7 +34,7 @@ private _logic = [
                 playSound "FD_Timer_F";
             };
         } else {
-            // Indefinite timer
+            // Infinite timer
             if !(ctrlText _textCtrl isEqualTo "SAFESTART ACTIVE") then {
                 _textCtrl ctrlSetText "SAFESTART ACTIVE";
             };

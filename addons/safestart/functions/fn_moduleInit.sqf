@@ -1,5 +1,25 @@
 #include "\x\tmf\addons\safeStart\script_component.hpp"
+/* ----------------------------------------------------------------------------
+Internal Function: TMF_safestart_fnc_moduleInit
 
+Description:
+    Handles TMF_safestart_module initialization.
+
+Parameters:
+    _logic - Module object [Object]
+    _units - Not used [Array, default []]
+    _activated - Whether it was triggered [Boolean, default false]
+Returns:
+    nil
+
+Examples:
+    (begin example)
+        function = "TMF_safestart_moduleInit";
+    (end)
+
+Author:
+    Freddo
+---------------------------------------------------------------------------- */
 params ["_logic", ["_units", []], ["_activated", false]];
 
 TRACE_1("Module init",_this);

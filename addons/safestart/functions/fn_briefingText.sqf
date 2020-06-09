@@ -1,5 +1,24 @@
 #include "\x\tmf\addons\safeStart\script_component.hpp"
+/* ----------------------------------------------------------------------------
+Internal Function: TMF_safestart_fnc_briefingText
 
+Description:
+    Used for Safestart getReady control onLoad.
+
+Parameters:
+    _ctrl - Text control [Text control, default controlNull]
+
+Returns:
+    nil
+
+Examples:
+    (begin example)
+        onLoad = "_this call TMF_safestart_fnc_briefingText";
+    (end)
+
+Author:
+    Freddo
+---------------------------------------------------------------------------- */
 disableSerialization;
 
 TRACE_1("Briefing Text onLoad", _this);
