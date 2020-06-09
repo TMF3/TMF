@@ -11,7 +11,6 @@ private _logic = [
             // Update timer
             private _text = "SAFESTART " + ([TIMER - CBA_missionTime, "MM:SS"] call BIS_fnc_secondsToString);
             _textCtrl ctrlSetText _text;
-            TRACE_1("Safestart Active, time remaining", TIMER - CBA_missionTime);
         } else {
             // Indefinite timer
             if !(ctrlText _textCtrl isEqualTo "SAFESTART ACTIVE") then {
