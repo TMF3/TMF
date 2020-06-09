@@ -5,7 +5,7 @@ class cfgFunctions {
             class init;
             class isActive;
             class moduleInit;
-            //class briefingTextLoad;
+            class briefingText;
             class end;
             class set;
             class timeRemaining;

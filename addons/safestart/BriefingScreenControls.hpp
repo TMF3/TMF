@@ -1,7 +1,7 @@
 class GVAR(safeStartText) : RscText
 {
     idc = -1;
-    text = "00:00"; //--- ToDo: Localize;
+    text = ""; //--- ToDo: Localize;
     x = (0.50-0.5/2) * safezoneW + safezoneX;
     y = safezoneY;
     w = 0.5 * safezoneW;
@@ -11,5 +11,6 @@ class GVAR(safeStartText) : RscText
     colorText[] = {1,1,1,1};
     shadow = 2;
     font = "PuristaBold";
-    onLoad = "uiNamespace setVariable ['TMF_safestart_text',_this select 0]; [] call TMF_safestart_fnc_briefingTextLoad;";
+
+    onLoad = QUOTE(_this call FUNC(briefingText));
 };
