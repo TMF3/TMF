@@ -11,6 +11,9 @@ private _logic = [
             // Update timer
             private _text = "SAFESTART " + ([TIMER - CBA_missionTime, "MM:SS"] call BIS_fnc_secondsToString);
             _textCtrl ctrlSetText _text;
+            if (GVAR(soundEnabled) && TIMER - CBA_missionTime <= 4) then {
+                playSound "FD_Timer_F";
+            };
         } else {
             // Indefinite timer
             if !(ctrlText _textCtrl isEqualTo "SAFESTART ACTIVE") then {
@@ -34,20 +37,27 @@ private _logic = [
         _textCtrl = (uiNamespace getVariable [QGVAR(display),displayNull]) displayCtrl 101;
 
         // Disable left click
+        private _fn_leftClick = {
+            LOG("Attempted for fire during safestart");
+            5412 cutRsc [QGVAR(refusefire),"PLAIN"];
+            if (GVAR(triggerSound)) then {
+                playSound3D ['a3\sounds_f\weapons\Other\dry9.wss', _this select 0];
+            };
+        };
         if !(isNil "ace_interaction_fnc_showMouseHint") then {
             // Use ACE function
             _playerAction = [
                 player,
                 "DefaultAction",
                 {isNull (uiNamespace getVariable ["ace_interaction_mouseHint", displayNull])},
-                {5412 cutRsc [QGVAR(refusefire),"PLAIN"]}
+                _fn_leftClick
             ] call ace_common_fnc_addActionEventHandler;
         } else {
             // Use CBA function
             _playerAction = [
                 [
                     "",
-                    {5412 cutRsc [QGVAR(refusefire),"PLAIN"]; },
+                    _fn_leftClick,
                     "",
                     0,
                     false,
@@ -62,20 +72,27 @@ private _logic = [
         _firedEH = player addEventHandler ["fired",{
             deleteVehicle (_this select 6);
             if((_this select 1) == "Throw") then {
+                LOG("Attempted to throw grenade during safestart");
                 player addMagazine (_this select 5);
 
                 5412 cutRsc [QGVAR(refusefire),"PLAIN"];
+
+                if (GVAR(triggerSound)) then {
+                    playSound3D ['a3\sounds_f\weapons\Other\dry9.wss', _this select 0];
+                };
             };
         }];
 
         // Handle AI
-        {
-            private _eh = _x addEventHandler ["fired",{deleteVehicle (_this select 6)}];
-            _x setVariable [QGVAR(aiEH), _eh, true];
-            _x disableAI "TARGET";
-            _x disableAI "AUTOTARGET";
-            _x allowDamage false;
-        } forEach (allUnits select {local _x && !isPlayer _x});
+        if (GVAR(handleAI)) then {
+            {
+                private _eh = _x addEventHandler ["fired",{deleteVehicle (_this select 6)}];
+                _x setVariable [QGVAR(aiEH), _eh, true];
+                _x disableAI "TARGET";
+                _x disableAI "AUTOTARGET";
+                _x allowDamage false;
+            } forEach (allUnits select {local _x && !isPlayer _x});
+        };
 
         [QGVAR(started)] call CBA_fnc_localEvent;
     },
@@ -84,14 +101,16 @@ private _logic = [
         INFO_1("Safestart Ended, Mission time: %1", CBA_missionTime);
 
         // Handle AI
-        {
-            TRACE_1("Reenabled AI", _x);
-            private _EH = _x getVariable [QGVAR(aiEH),-1];
-            _x removeEventHandler ["fired",_EH];
-            _x enableAI "TARGET";
-            _x enableAI "AUTOTARGET";
-            _x allowDamage true;
-        } forEach (allUnits select {local _x && !isPlayer _x});
+        if (GVAR(handleAI)) then {
+            {
+                TRACE_1("Reenabled AI", _x);
+                private _EH = _x getVariable [QGVAR(aiEH),-1];
+                _x removeEventHandler ["fired",_EH];
+                _x enableAI "TARGET";
+                _x enableAI "AUTOTARGET";
+                _x allowDamage true;
+            } forEach (allUnits select {local _x && !isPlayer _x});
+        };
 
         // Handle player
         player removeEventHandler ["fired",_firedEH];
@@ -109,6 +128,8 @@ private _logic = [
         DIALOG_IDD cutFadeOut 1;
 
         ADDON = nil;
+
+        if (GVAR(soundEnabled)) then {playSound "FD_Finish_F"};
 
         // End safestart locally
         [QGVAR(ended)] call CBA_fnc_localEvent;

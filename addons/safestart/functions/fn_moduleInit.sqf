@@ -6,6 +6,9 @@ TRACE_1("Module init",_this);
 
 if (_activated) then {
     private _duration = _logic getVariable ["Duration", -1];
+    if (_duration isEqualTo 0) exitWith {
+        [] call FUNC(end);
+    };
     if (_duration > 0) then {
         ADD(_duration,CBA_missionTime);
     };
