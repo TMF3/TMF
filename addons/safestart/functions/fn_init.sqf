@@ -33,19 +33,32 @@ private _logic = [
         ace_advanced_throwing_enabled = false;
         DIALOG_IDD cutRsc [QGVAR(dialog),"PLAIN"];
         _textCtrl = (uiNamespace getVariable [QGVAR(display),displayNull]) displayCtrl 101;
+
         // Disable left click
-        _playerAction = [
-            [
-                "",
-                {5412 cutRsc [QGVAR(refusefire),"PLAIN"]; },
-                "",
-                0,
-                false,
-                true,
+        if !(isNil "ace_interaction_fnc_showMouseHint") then {
+            // Use ACE function
+            _playerAction = [
+                player,
                 "DefaultAction",
-                "true"
-            ]
-        ] call CBA_fnc_addPlayerAction;
+                {isNull (uiNamespace getVariable ["ace_interaction_mouseHint", displayNull])},
+                {5412 cutRsc [QGVAR(refusefire),"PLAIN"]}
+            ] call ace_common_fnc_addActionEventHandler;
+        } else {
+            // Use CBA function
+            _playerAction = [
+                [
+                    "",
+                    {5412 cutRsc [QGVAR(refusefire),"PLAIN"]; },
+                    "",
+                    0,
+                    false,
+                    true,
+                    "DefaultAction",
+                    "true"
+                ]
+            ] call CBA_fnc_addPlayerAction;
+        };
+
         // Delete fired projectiles
         _firedEH = player addEventHandler ["fired",{
             deleteVehicle (_this select 6);
@@ -83,7 +96,11 @@ private _logic = [
 
         // Handle player
         player removeEventHandler ["fired",_firedEH];
-        [_playerAction] call CBA_fnc_removePlayerAction;
+        if !(isNil "ace_interaction_fnc_showMouseHint") then {
+            [player,"DefaultAction",_playerAction] call ace_common_fnc_removeActionEventHandler;
+        } else {
+            [_playerAction] call CBA_fnc_removePlayerAction;
+        };
         player allowDamage true;
         ace_advanced_throwing_enabled = true;
         LOG("Reenabled Player");
