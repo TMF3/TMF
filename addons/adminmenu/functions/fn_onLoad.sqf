@@ -25,31 +25,18 @@ _notesPos set [3, ctrlTextHeight _ctrlMissionNotes];
 _ctrlMissionNotes ctrlSetPosition _notesPos;
 _ctrlMissionNotes ctrlCommit 0;
 
+// Safestart
 private _ctrlCheckSafestart = _display displayCtrl IDC_TMF_ADMINMENU_DASH_SAFESTART;
-(entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
-if (isNull _safestartModule) then {
-    _ctrlCheckSafestart cbSetChecked false;
-} else {
-    _ctrlCheckSafestart cbSetChecked (_safestartModule getVariable [QEGVAR(safestart,enabled), false]);
-};
-
+_ctrlCheckSafestart cbSetChecked ([] call EFUNC(safestart,isActive));
 _ctrlCheckSafestart ctrlAddEventHandler ["CheckedChanged", {
-    (entities QEGVAR(safestart,module)) params [["_safestartModule", objNull, [objNull]]];
-
     if ((param [1]) isEqualTo 0) then {
-        if (!isNull _safestartModule) then {
-            [_safestartModule] call EFUNC(safestart,end);
-        };
+        [true] call EFUNC(safestart,end);
     } else {
-        if (isNull _safestartModule) then {
-            _safestartModule = call EFUNC(safestart,create);
-        };
-
-        _safestartModule setVariable ["Duration", -1, true];
-        [_safestartModule, allUnits, true] remoteExecCall [QEFUNC(safestart,serverInit), 2];
+        [-1,true] call EFUNC(safestart,set);
     };
 }];
 
+// Talk to spectators
 private _ctrlCheckSpectatorTalk = _display displayCtrl IDC_TMF_ADMINMENU_DASH_SPECTATORTALK;
 _ctrlCheckSpectatorTalk cbSetChecked ([player] call acre_api_fnc_isSpectator);
 if (alive player) then {
