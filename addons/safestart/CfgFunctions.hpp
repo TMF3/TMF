@@ -4,6 +4,7 @@ class cfgFunctions {
             file = QPATHTO_FOLDER(functions);
             class init;
             class isActive;
+            class moduleInit;
             //class briefingTextLoad;
             class end;
             class set;
