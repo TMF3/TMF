@@ -19,6 +19,7 @@ class cfgPatches
 #include "CfgModules.hpp"
 #include "CfgRemoteExec.hpp"
 #include "CfgEventhandlers.hpp"
+#include "CfgNonAIVehicles.hpp"
 
 class RscText;
 class RscDisplayMainMap;
