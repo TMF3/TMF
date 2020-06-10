@@ -1,0 +1,21 @@
+name: Arma Tools Build
+# Controls when the action will run. Triggers the workflow on pull request
+# events but only for the master branch
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the source code
+      uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@v2
+    - name: Validate SQF
+      run: python3 tools/sqf_validator.py
+    - name: Check config style
+      run: python3 tools/config_style_checker.py

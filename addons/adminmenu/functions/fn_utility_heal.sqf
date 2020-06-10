@@ -1,14 +1,9 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-if (isClass (configFile >> "CfgPatches" >> "ace_medical")) then {
+if (!isNil "ace_medical_treatment_fnc_fullHeal") then {
     {
-        if (local _x) then {
-            ["ace_medical_treatmentAdvanced_fullHealLocal", [player, _x]] call CBA_fnc_localEvent;
-            systemChat "[TMF Admin Menu] Your health was restored";
-        } else {
-            ["ace_medical_treatmentAdvanced_fullHealLocal", [player, _x], _x] call CBA_fnc_targetEvent;
-            (format ["[TMF Admin Menu] Your health was restored by '%1'", profileName]) remoteExec ["systemChat", _x];
-        };
+        [player, _x] call ace_medical_treatment_fnc_fullHeal;
+        (format ["[TMF Admin Menu] Your health was restored by '%1'", profileName]) remoteExec ["systemChat", _x];
     } forEach GVAR(utilityData);
 } else {
     {
