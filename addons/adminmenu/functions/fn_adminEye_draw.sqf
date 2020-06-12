@@ -69,6 +69,7 @@ params["_fullmapWindow"];
         };
         //Render linked Units.
         private _data = _x getVariable [QEGVAR(ai,waveData), []];
+        _data params ["_groups", "_vehicles"];
         {
             _x params ["_side","_units","_vehicles"];
             {
@@ -78,14 +79,15 @@ params["_fullmapWindow"];
                 _fullmapWindow drawIcon ["\a3\ui_f\data\map\vehicleicons\iconman_ca.paa",[1,1,0,0.3],_unitPos,19,19,_unitDir,"",0];
             } forEach _units;
 
-            {
-                _x params ["_type","_vehPos","_vehDir"];
-                private _icon = getText (configfile >> "CfgVehicles" >> _type >> "icon");
+        } forEach _groups;
+        
+        {
+            _x params ["_type","_vehPos","_vehDir"];
+            private _icon = getText (configfile >> "CfgVehicles" >> _type >> "icon");
 
-                _fullmapWindow drawLine [_pos, _vehPos, [1,1,0,0.4]];
-                _fullmapWindow drawIcon [_icon,[1,1,0,0.3],_vehPos,19,19,_vehDir,"",0];
-            } forEach _vehicles;
-        } forEach _data;
+            _fullmapWindow drawLine [_pos, _vehPos, [1,1,0,0.4]];
+            _fullmapWindow drawIcon [_icon,[1,1,0,0.3],_vehPos,19,19,_vehDir,"",0];
+        } forEach _vehicles;
     } else {
         _text = "All spawned";
     };
