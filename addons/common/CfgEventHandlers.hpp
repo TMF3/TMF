@@ -12,12 +12,6 @@ class Extended_PostInit_EventHandlers {
 };
 
 class Extended_Init_EventHandlers {
-    class CAManBase {
-        class ADDON {
-            serverInit = "_this call tmf_common_fnc_checkJIP; ";
-            init = "if (isTMF && local (_this select 0)) then {(_this select 0) addRating 100000;};"; // prevent AI friendly fire.
-        };
-    };
     class GVAR(hideMapObjects) {
         class ADDON {
             init = QUOTE(_this call FUNC(hideMapObjectsInit));
