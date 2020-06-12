@@ -6,11 +6,11 @@ if (isTMF) then {
     enableSaving [false, false]; // Disable mission saving
     enableSentences false; // Mute AI reports?
 
-    if (hasInterface) then {
+    if (hasInterface && GVAR(weaponSafety)) then {
         [{time > 0},
          {
             // Turn on Weapon Safety.
-            if (currentWeapon player != "" && {!isNil "ACE_safemode_fnc_lockSafety"} && {missionNamespace getVariable [QGVAR(weaponSafety),true]}) then {
+            if (currentWeapon player != "") then {
                 [player, currentWeapon player, currentMuzzle player] call ACE_safemode_fnc_lockSafety;
             };
         }, 0] call CBA_fnc_waitUntilAndExecute;
