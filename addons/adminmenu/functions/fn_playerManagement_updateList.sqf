@@ -9,7 +9,7 @@ private _filterState = (lbCurSel (_display displayCtrl IDC_TMF_ADMINMENU_PMAN_FI
 
 private _allPlayers = allPlayers - entities "HeadlessClient_F";
 if (!isMultiplayer) then {
-    _allPlayers = switchableUnits;
+    _allPlayers = switchableUnits - entities "HeadlessClient_F";
 };
 
 private _newPlayers = [];
