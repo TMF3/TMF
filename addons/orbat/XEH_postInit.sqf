@@ -10,7 +10,7 @@ params["_unit"];
 // Init the variables.
 
 GVAR(orbatMarkerArray) = [];
-GVAR(markerUpdateInterval) = 3;
+//GVAR(markerUpdateInterval) = 3; // Moved to CBA settings
 GVAR(fireteamMarkerArray) = [];
 GVAR(directionalFTMarkers) = getMissionConfigValue ["TMF_ORBATMarkersFT_Directional",false];
 
@@ -84,7 +84,7 @@ FUNC(PFHUpdate) = {
     if (GVAR(orbatTrackerCodeCached)) then {
         GVAR(orbatMarkerArray) call FUNC(updateArray);
     };
-    
+
     if (!GVAR(ftMarkersEnabled)) exitWith {};
     private _fireTeamMarkers = (units player) select {!isNull _x} apply {
         [getPos _x, getDir _x,
@@ -97,32 +97,13 @@ FUNC(PFHUpdate) = {
 
 
 // Force a 1 second wait.
-[{
-    if ([] call BIS_fnc_isLoading) exitWith {};
-    [_this select 1] call CBA_fnc_removePerFrameHandler;
-    [{
-        //Ensure a 0.5 second delay.
-        params ["_params"];
-        _params params ["_tickTime"];
-        if (diag_tickTime < _tickTime + 1.5) exitWith {};
-        
-        [_this select 1] call CBA_fnc_removePerFrameHandler; 
-        
-        [{
-            if (isNull player) exitWith {};
-            if (isNil QEGVAR(common,VarSync)) exitWith {};
-            [_this select 1] call CBA_fnc_removePerFrameHandler;
+[{!([] call BIS_fnc_isLoading) && {!isNull player} && {!isNil QEGVAR(common,VarSync)}},{
+    [player, true] call FUNC(setup);
+    [player] call FUNC(createBriefingPage);
 
-            [player, true] call FUNC(setup);
-            [player] call FUNC(createBriefingPage);
-        }, 0.5] call CBA_fnc_addPerFrameHandler;  
-    },0.5,[diag_tickTime]] call CBA_fnc_addPerFrameHandler;
-}, 0.5] call CBA_fnc_addPerFrameHandler;  
+    //Spawn thread to update fireteam positions overtime.
 
-
-
-//Spawn thread to update fireteam positions overtime.
-
-// Do an update to set initial positions, then add PFH.
-[] call FUNC(PFHUpdate);
-[FUNC(PFHUpdate), GVAR(markerUpdateInterval), []] call CBA_fnc_addPerFrameHandler;
+    // Do an update to set initial positions, then add PFH.
+    [] call FUNC(PFHUpdate);
+    GVAR(PFHandler) = [FUNC(PFHUpdate), GVAR(markerUpdateInterval), []] call CBA_fnc_addPerFrameHandler;
+}, []] call CBA_fnc_waitUntilAndExecute;
