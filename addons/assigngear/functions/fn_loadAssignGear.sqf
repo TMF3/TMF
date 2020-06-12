@@ -49,7 +49,13 @@ private _loadoutArray = [];
         CASE("vest",2);
         CASE("backpack",3);
         CASE("headgear",4);
-        CASE("goggles",5);
+        case "goggles": {
+            private _goggles = _x call BIS_fnc_getCfgData;
+            if (_goggles isEqualTo []) then {
+                _goggles pushBack ""; // an empty array would mean goggles being skipped in main assignGear function
+            };
+            _loadoutArray set [5, _goggles];
+        };
         CASE("hmd",6);
         CASE("faces",7);
         CASE("insignias",8);

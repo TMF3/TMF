@@ -34,7 +34,6 @@ private _loadout = format ["loadout_%1_%2", _faction, _role];
 private _loadoutArray = _namespace getVariable _loadout;
 ISNILS(_loadoutArray, [ARR_2(_faction, _role)] call FUNC(cacheAssignGear));
 
-private _defGoggles = goggles _unit;
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
 // Each index is tied to a specific type of item
@@ -67,23 +66,13 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 };
             };
             case 5: { // goggles
-                // Goggles are overwritten by player identity
-                private _goggles = selectRandom _x;
-                if (_goggles != 'default') then {
-                    if !(_goggles isEqualTo '') then {
-                        _unit addGoggles _goggles;
-                    };
-                } else
-                {
-                    if !(_defGoggles isEqualTo '') then {_unit addGoggles _defGoggles};
-                };
+                [_unit, _x] call FUNC(setGoggles);
             };
             case 6: { // hmd
                 private _hmd = selectRandom _x;
                 if !(_hmd isEqualTo '') then {_unit linkItem _hmd};
             };
             case 7: { // faces
-                // Faces are overwritten by player identity
                 [_unit, _x] call FUNC(setFace);
             };
             case 8: { // insignias
