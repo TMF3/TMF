@@ -72,6 +72,7 @@ _data params ['_groups', '_vehicles'];
     } forEach _units;
     (units _grp) join _grp;
      _lastIndex = (count waypoints _grp)-1;
+    [_grp] call CBA_fnc_clearWaypoints;
     for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
         _way = _waypoints select _i;
 
