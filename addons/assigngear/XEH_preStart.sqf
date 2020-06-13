@@ -25,7 +25,8 @@ uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
         if (_faceName in _faceClasses) then {
             _weightedArray append [_faceName,_probability];
         };
-    } forEach ("true" configClasses _class);
+    } forEach configProperties [_class, "isClass _x", true];
+    
     if (count _weightedArray > 0) then {
         uiNamespace setVariable ["tmf_assignGear_faceset_"+_name,_weightedArray];
     };
