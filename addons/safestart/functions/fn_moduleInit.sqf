@@ -30,7 +30,7 @@ if (_activated) then {
         [] call FUNC(end);
     };
     if (_duration > 0) then {
-        ADD(_duration,CBA_missionTime);
+        _duration = _duration + CBA_missionTime;
     };
 
     LOG_1("Enabling safestart until %1",_duration);
