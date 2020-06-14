@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-LOG("Client PreInit started");
+LOG("Client PostInit started");
 
 [{
     // Check if JIP is allowed, if not then kill the JIP player.
