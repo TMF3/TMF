@@ -172,7 +172,7 @@ private _logic = [
         DIALOG_IDD cutFadeOut 0;
         DIALOG_IDD cutFadeOut 1;
 
-        ADDON = nil; // Undefine safestart PFH object
+        GVAR(instance) = nil; // Undefine safestart PFH object
 
         if (GVAR(soundEnabled)) then {playSound "FD_Finish_F"}; // Play start sound
 
