@@ -1,93 +1,51 @@
 #include "script_component.hpp"
 
-class CfgVehicles
-{
+class CfgVehicles {
     class Logic;
-    class Module_F: Logic
-    {
-        class ArgumentsBaseUnits
+    class Module_F: Logic {
+        class AttributesBase
         {
-            class Units;
+            class Default;
+            class Edit;                 // Default edit box (i.e., text input field)
+            class Combo;                // Default combo box (i.e., drop-down menu)
+            class Checkbox;             // Default checkbox (returned value is Bool)
+            class CheckboxNumber;       // Default checkbox (returned value is Number)
+            class ModuleDescription;    // Module description
+            class Units;                // Selection of units on which the module is applied
         };
-        class ModuleDescription
-        {
+        class ModuleDescription {
             class AnyBrain;
         };
     };
-    class GVAR(module) : Module_F
-    {
-        // Standard object definitions
-        scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
-        displayName = "Safe Start"; // Name displayed in the menu
-        icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa"; // Map icon. Delete this entry to use the default icon
+    class GVAR(module) : Module_F {
+        scope = 2;
+        displayName = "Safe Start";
+        icon = "\x\tmf\addons\common\UI\logo_tmf_small_ca.paa";
         category = "Teamwork";
-        // Name of function triggered once conditions are met
-        function = "TMF_safestart_fnc_init";
-        // Execution priority, modules with lower number are executed first. 0 is used when the attribute is undefined
+        function = QFUNC(moduleInit);
         functionPriority = 1;
-        // 0 for server only execution, 1 for global execution, 2 for persistent global execution
-        isGlobal = 0;
-        // 1 for module waiting until all synced triggers are activated
-        isTriggerActivated = 1;
-        // 1 if modules is to be disabled once it's activated (i.e., repeated trigger activation won't work)
-        isDisposable = 0;
+        isGlobal = false;
+        isTriggerActivated = true;
+        isDisposable = true;
+        is3DEN = false;
 
-
-        // Menu displayed when the module is placed or double-clicked on by Zeus
-
-
-        // Module arguments
-        class Arguments: ArgumentsBaseUnits
-        {
-            // Arguments shared by specific module type (have to be mentioned in order to be placed on top)
-            class TMFUnits
-            {
-                description = "";
-                displayName = "Apply to";
+        // Module attributes
+        class Attributes: AttributesBase {
+            class Duration: Default {
+                property = QGVAR(module_duration);
+                control = "SliderTime";
+                displayName = "Duration";
+                tooltip = "How long will safestart last?";
                 typeName = "NUMBER";
-                class values
-                {
-                    class Everyone {
-                        name = "All units";
-                        value = -1;
-                        default = 1;
-                    };
-                    class Objects {
-                        name = "Synchronized units only";
-                        value = 0;
-                    };
-                    class ObjectsAndGroups {
-                        name = "Groups of synchronized units";
-                        value = 1;
-                    };
-                    class Side {
-                        name = "Every unit on the units side";
-                        value = 2;
-                    };
-                };
-            };
-            // Module specific arguments
-            class Duration
-              {
-                displayName = "Duration (seconds)"; // Argument label
-                description = "How long will safestart last?"; // Tooltip description
-                typeName = "NUMBER"; // Value type, can be "NUMBER", "STRING" or "BOOL"
                 defaultValue = "120";
             };
+            class ModuleDescription: ModuleDescription {};
         };
 
         // Module description. Must inherit from base class, otherwise pre-defined entities won't be available
-        class ModuleDescription: ModuleDescription
-        {
-            description = "Short module description"; // Short description, will be formatted as structured text
-            sync[] = {"Men"}; // Array of synced entities (can contain base classes)
-            class unit
-            {
-                description = "Any unit";
-                displayName = "Any unit"; // Custom name
-                icon = "iconMan"; // Custom icon (can be file path or CfgVehicleIcons entry)
-                side = 1; // Custom side (will determine icon color)
-            };
+        class ModuleDescription: ModuleDescription {
+            description = "Enables safestart globally.<br/>May be synchronized to a serverside trigger.<br/>Set to -1 for infinite, 0 to end safestart.";
+            sync[] = {"EmptyDetector"};
         };
     };
 };

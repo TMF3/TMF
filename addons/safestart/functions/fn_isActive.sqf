@@ -1,19 +1,20 @@
-/*
- * Name = TMF_safestart_fnc_isActive
- * Author = Freddo
- *
- * Parameters:
- * None
- *
- * Description:
- * Checks if safestart is active
- *
- * Return:
- * Boolean. - Whether safestart is active
- */
+#include "\x\tmf\addons\safeStart\script_component.hpp"
+/* ----------------------------------------------------------------------------
+Function: TMF_safestart_fnc_isActive
 
-#include "\x\tmf\addons\safestart\script_component.hpp"
+Description:
+    Checks whether safestart is active
 
-(entities QGVAR(module)) params [["_safestartModule", objNull, [objNull]]];
+Returns:
+    Whether safestart is active [Boolean]
 
-(!isNull _safestartModule && {_safestartModule getVariable [QGVAR(enabled), false]})
+Examples:
+    (begin example)
+        _isActive = [] call TMF_safestart_fnc_isActive
+    (end)
+
+Author:
+    Freddo
+---------------------------------------------------------------------------- */
+
+!isNil QGVAR(instance)

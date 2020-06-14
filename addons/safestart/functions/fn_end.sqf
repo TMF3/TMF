@@ -1,7 +1,30 @@
-#include "\x\tmf\addons\safestart\script_component.hpp"
-params ["_module"];
-if(isNull _module || !(_module isKindOf QGVAR(module))) exitWith {
-    false
+#include "\x\tmf\addons\safeStart\script_component.hpp"
+/* ----------------------------------------------------------------------------
+Function: TMF_safestart_fnc_end
+
+Description:
+    Ends safestart
+
+Parameters:
+    _isGlobal - Whether to execute globally [Boolean, default false]
+
+Returns:
+    nil
+Examples:
+    (begin example)
+        [true] call TMF_safestart_fnc_end
+    (end)
+
+Author:
+    Freddo
+---------------------------------------------------------------------------- */
+params [["_isGlobal",false]];
+
+if (_isGlobal) exitWith {[false] remoteExecCall [QFUNC(end),0,'ADDON']};
+
+if !(isNil QGVAR(instance)) then {
+    LOG("Ending safestart");
+    GVAR(instance) call CBA_fnc_deletePerFrameHandlerObject;
 };
-_module setVariable [QGVAR(enabled),false,true];
-true
+
+nil

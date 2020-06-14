@@ -4,13 +4,11 @@ class cfgFunctions {
             file = QPATHTO_FOLDER(functions);
             class init;
             class isActive;
-            class playerStart;
-            class playerEnd;
-            class serverInit;
-            class briefingTextLoad;
-            class serverEnd;
+            class moduleInit;
+            class briefingText;
             class end;
-            class create;
+            class set;
+            class timeRemaining;
         };
     };
 };
