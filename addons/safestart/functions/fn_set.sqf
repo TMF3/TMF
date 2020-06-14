@@ -28,7 +28,7 @@ if (_isGlobal) exitWith {
     [_duration, false] remoteExecCall [QFUNC(set),0,'ADDON'];
 };
 
-if (isNil 'ADDON') then {
+if (isNil QGVAR(instance)) then {
     ADDON = [_duration] call FUNC(init);
 } else {
     ADDON setVariable ["timer", _duration];
