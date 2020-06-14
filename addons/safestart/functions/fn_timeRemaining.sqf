@@ -21,4 +21,4 @@ Author:
     Freddo
 ---------------------------------------------------------------------------- */
 
-if (isNil QGVAR(instance)) then [{-1}, {(ADDON getVariable ["timer", -1]) - CBA_missionTime}];
+if (isNil QGVAR(instance)) then [{-1}, {(GVAR(instance) getVariable ["timer", -1]) - CBA_missionTime}];
