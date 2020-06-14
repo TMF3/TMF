@@ -31,9 +31,10 @@ class CfgVehicles {
 
         // Module attributes
         class Attributes: AttributesBase {
-            class Duration: Edit {
-                property = QGVAR(duration);
-                displayName = "Duration (seconds)";
+            class Duration: Default {
+                property = QGVAR(module_duration);
+                control = "SliderTime";
+                displayName = "Duration";
                 tooltip = "How long will safestart last?";
                 typeName = "NUMBER";
                 defaultValue = "120";
