@@ -24,7 +24,7 @@
     "CHECKBOX",
     ["Dry fire sound", "Whether to make a sound when attempting to fire while safestart is active"],
     ["TMF", "Safestart"],
-    true,
+    false,
     1
 ] call CBA_fnc_addSetting;
 
