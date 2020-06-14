@@ -29,9 +29,9 @@ if (_isGlobal) exitWith {
 };
 
 if (isNil QGVAR(instance)) then {
-    ADDON = [_duration] call FUNC(init);
+    GVAR(instance) = [_duration] call FUNC(init);
 } else {
-    ADDON setVariable ["timer", _duration];
+    GVAR(instance) setVariable ["timer", _duration];
 };
 
 LOG_1("SafeStart set to %1", _duration);
