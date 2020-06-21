@@ -23,22 +23,27 @@ while {count GVAR(tabPFHHandles) > 0} do {
 
 switch (_tab) do {
     case IDC_TMF_ADMINMENU_G_DASH: {
+        LOG("Selected Dashboard");
         ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_DASH);
         _display call FUNC(dashboard);
     };
     case IDC_TMF_ADMINMENU_G_PMAN: {
+        LOG("Selected Player Management");
         ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_PMAN);
         _display call FUNC(playerManagement);
     };
     case IDC_TMF_ADMINMENU_G_RESP: {
+        LOG("Selected Respawn");
         ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_RESP);
         _display call FUNC(respawn);
     };
     case IDC_TMF_ADMINMENU_G_ENDM: {
+        LOG("Selected End Mission");
         ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_ENDM);
         _display call FUNC(endMission);
     };
     case IDC_TMF_ADMINMENU_G_MSGS: {
+        LOG("Selected Logs");
         ctrlSetFocus (_display displayCtrl IDC_TMF_ADMINMENU_MSGS);
         _display call FUNC(messageLog);
     };

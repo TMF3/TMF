@@ -18,6 +18,7 @@ class CfgFunctions {
             class claimZeus;
             class dashboard;
             class debounceButton;
+            class messageLog;
             class endMission;
             class endMission_commit;
             class endMission_occluder;

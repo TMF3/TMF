@@ -16,6 +16,7 @@ class RscToolbox;
 class RscStructuredText;
 class RscControlsTable;
 class RscMapControl;
+class ScrollBar;
 
 
 class GVAR(RscButtonMenu): RscButtonMenu {

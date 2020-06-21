@@ -1,6 +1,6 @@
 class Controls
 {
-    class LabelFilter: RscText
+    class Label: RscText
     {
         text = "Logs";
         sizeEx = TMF_ADMINMENU_STD_SIZEX;
@@ -10,7 +10,7 @@ class Controls
         h = TMF_ADMINMENU_H_LABEL;
     };
 
-    class BackgroundGroupList: RscText
+    class BackgroundMessagesList: RscText
     {
         x = "0";
         y = TMF_ADMINMENU_MSGS_Y_LIST;
@@ -20,16 +20,16 @@ class Controls
         style = "0x02";
     };
 
-    class ListPlayers: RscListBox
+    class ListMessages: RscListBox
     {
         idc = IDC_TMF_ADMINMENU_MSGS_LIST;
-        style = 32 + 16; // LB_MULTI + ST_MULTI
+        //style = 32 + 16; // LB_MULTI + ST_MULTI
         sizeEx = TMF_ADMINMENU_STD_SIZEX;
         sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
         pictureColor[] = {1,1,1,1}; // Picture color
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
-        pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
-        rowHeight = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        pictureColorDisabled[] = {1,1,1,1}; // Disabled picture color
+        rowHeight = TMF_ADMINMENU_STD_HEIGHT;
         colorText[] = {1,1,1,1};
         colorBackground[] = {1,0,0,0};
         itemBackground[] = {1,1,1,0.2};
