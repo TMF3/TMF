@@ -19,6 +19,8 @@ class CfgFunctions {
             class dashboard;
             class debounceButton;
             class messageLog;
+            class messageLog_copy;
+            class messageLog_copyAll;
             class endMission;
             class endMission_commit;
             class endMission_occluder;

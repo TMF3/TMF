@@ -16,7 +16,7 @@ class Controls
         y = TMF_ADMINMENU_MSGS_Y_LIST;
         w = TMF_ADMINMENU_MSGS_W_LIST;
         h = TMF_ADMINMENU_MSGS_H_LIST;
-        colorBackground[] = {1, 0, 0, 0.3};
+        colorBackground[] = {0, 0, 0, 0.3};
         style = "0x02";
     };
 
@@ -38,5 +38,29 @@ class Controls
         y = TMF_ADMINMENU_MSGS_Y_LIST;
         w = TMF_ADMINMENU_MSGS_W_LIST;
         h = TMF_ADMINMENU_MSGS_H_LIST;
+    };
+
+    class ButtonCopySelected: GVAR(RscButtonMenu)
+    {
+        idc = IDC_TMF_ADMINMENU_MSGS_COPY;
+        text = "EXPORT SELECTED";
+        onButtonClick = QUOTE(_this call FUNC(messageLog_copy));
+        tooltip = "Copies selected message to clipboard";
+        colorBackground[] = {0, 0, 0, 1};
+        x = 0 * TMF_ADMINMENU_STD_WIDTH;
+        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
+        w = 7 * TMF_ADMINMENU_STD_WIDTH;
+    };
+
+    class ButtonCopyAll: GVAR(RscButtonMenu)
+    {
+        idc = IDC_TMF_ADMINMENU_MSGS_COPYALL;
+        text = "EXPORT ALL";
+        tooltip = "Copies all logged messages to clipboard";
+        onButtonClick = QUOTE(_this call FUNC(messageLog_copyAll));
+        colorBackground[] = {0, 0, 0, 1};
+        x = 7.1 * TMF_ADMINMENU_STD_WIDTH;
+        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
+        w = 7 * TMF_ADMINMENU_STD_WIDTH;
     };
 };
