@@ -18,6 +18,7 @@ class CfgFunctions {
             class claimZeus;
             class dashboard;
             class debounceButton;
+            class log;
             class messageLog;
             class messageLog_copy;
             class messageLog_copyAll;
