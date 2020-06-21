@@ -94,7 +94,7 @@ if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
 else {
     selectPlayer GVAR(unit);
     waitUntil{player isEqualTo GVAR(unit)};
-    if(typeOf _unit == "seagull") then { deleteVehicle _unit; }; 
+    if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
 };
 
 
@@ -294,7 +294,7 @@ GVAR(lastControlIndex) = 0;
     [] call FUNC(perFrameHandler);
 }] call BIS_fnc_addStackedEventHandler;
 
-[QGVAR(init), _this] call EFUNC(event,emit);
+[QGVAR(init), _this] call CBA_fnc_localEvent;
 if(isNil QGVAR(drawEvent)) then {
     GVAR(drawEvent) = addMissionEventHandler ["Draw3D",{ [] call FUNC(drawTags); }];
 };

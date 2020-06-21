@@ -153,8 +153,5 @@ _unit setVariable [QGVAR(role), _role,true];
 
 LOG_3("Assigned loadout to unit",_unit,_faction,_loadout);
 
-[QGVAR(done),[_unit,_faction,_role]] call EFUNC(event,emit);
+[QGVAR(done),[_unit,_faction,_role]] call CBA_fnc_localEvent;
 _unit setVariable [QGVAR(done),true,true];
-
-//TODO: Move to CBA
-//[QGVAR(assignedLoadout), [_unit, _faction, _role]] call CBA_fnc_localEvent;

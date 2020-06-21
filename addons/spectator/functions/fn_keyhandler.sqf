@@ -286,9 +286,9 @@ switch true do {
   case default {
       _done =false;
       if(_type == KEYDOWN) then {
-        [QGVAR(keyDown),_this] call EFUNC(event,emit);
+        [QGVAR(keyDown),_this] call CBA_fnc_localEvent;
       } else {
-        [QGVAR(keyUp),_this] call EFUNC(event,emit);
+        [QGVAR(keyUp),_this] call CBA_fnc_localEvent;
       };
   };
 };
