@@ -5,7 +5,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_SPECTATORTEXT;
         text = "Players in Spectator: 0";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = 0;
         y = 0;
@@ -16,8 +16,8 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_RESP_SPECTATORLIST;
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-        sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
         //rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
         //rowHeight = TMF_ADMINMENU_STD_HEIGHT;
         //colorBackground[] = {0, 0, 0, 1};
@@ -67,7 +67,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_ROLECOMBO;
         text = "Role";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL2;
@@ -80,7 +80,7 @@ class Controls
         idc = -1;
         text = "Unit rank:";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL2;
         y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -93,7 +93,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_RANK;
         
         style="0x02 + 0x30 + 0x800";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         rows = 2;
         columns = 4;
         strings[]=
@@ -148,8 +148,8 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_RESP_GROUPLIST;
 
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-        sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
         //rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
         //rowHeight = TMF_ADMINMENU_STD_HEIGHT;
         //colorBackground[] = {0, 0, 0, 1};
@@ -179,7 +179,7 @@ class Controls
         idc = -1;
         text = "Group Details:";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
         y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -193,7 +193,7 @@ class Controls
         
         colorBackground[] = {0.5, 0.5, 0.5, 0.1};
         colorBorder[] = {1, 1, 1, 0.33};
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
         y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -205,7 +205,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_FACTIONCATEGORY;
         text = "FactionCategory"; /*Formerly side */
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;
@@ -218,7 +218,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_FACTION;
         text = "Faction";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;
@@ -231,7 +231,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_SIDE;
         text = "Side";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;
@@ -245,7 +245,7 @@ class Controls
         idc = -1;
         text = "Spawn with ORBAT marker?";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
         y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -269,7 +269,7 @@ class Controls
         
         // colorBackground[] = {0.5, 0.5, 0.5, 0.1};
         // colorBorder[] = {1, 1, 1, 0.33};
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
         y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
@@ -284,7 +284,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_MARKERTYPE;
         text = "Side";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         font = "RobotoCondensed";
         
         
@@ -298,7 +298,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_MARKERCOLOUR;
         text = "Side";
         
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;

@@ -3,7 +3,7 @@ class Controls
     class LabelFilter: RscText
     {
         text = "Filter:";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "0";
         y = "0";
         w = "2.1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -12,7 +12,7 @@ class Controls
     class ComboFilterSide: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         font = "RobotoCondensed";
         x = "2.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "0";
@@ -57,8 +57,8 @@ class Controls
         idc = IDC_TMF_ADMINMENU_PMAN_LIST;
         style = 32 + 16; // LB_MULTI + ST_MULTI
         onLBSelChanged = QUOTE(_this call FUNC(playerManagement_listSelChange););
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-        sizeEx2 = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
         pictureColor[] = {1,1,1,1}; // Picture color
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
@@ -79,7 +79,7 @@ class Controls
     class LabelSelect: RscText
     {
         text = "Select...";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "0";
         w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -110,7 +110,7 @@ class Controls
     {
         idc = -1;
         text = "With Selected...";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "30.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
         w = "6.9 * (((safezoneW / safezoneH) min 1.2) / 40)";

@@ -13,7 +13,7 @@ class Controls
     {
         idc = -1;
         text = "Use Ending from Mission";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "1.0 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "0";
         w = "23.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -23,7 +23,7 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_ENDM_LIST;
         tooltip = "These endings are present in the mission";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "0";
         y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -66,7 +66,7 @@ class Controls
     {
         idc = -1;
         text = "Export AAR";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         colorText[] = {0.8, 0.8, 0.8, 1};
         x = "33.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "18.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -101,7 +101,7 @@ class Controls
         style = 48 + 2048; // picture + keep aspect ratio
         text = "\a3\ui_f\data\GUI\Rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
         colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "24.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "1.0 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "1.3 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -111,7 +111,7 @@ class Controls
     {
         idc = -1;
         text = "BLUFOR";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "25.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "11.6 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -122,7 +122,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_ENDM_BLUFOR;
         onToolBoxSelChanged = QUOTE(GVAR(DOUBLES(ending,blufor)) = param [1];);
 
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         rows = 1;
         columns = 2;
         strings[] = {"Defeat", "Victory"};
@@ -233,7 +233,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_ENDM_CUSTOM_TITLE;
         colorBackground[] = {0.5, 0.5, 0.5, 0.1};
         colorBorder[] = {1, 1, 1, 0.33};
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "2.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "17.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "10.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -269,7 +269,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_ENDM_OCCLUDER_LU;
         colorBackground[] = {0, 0, 0, 0.75};
         style = "0x02";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "0";
         y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
         w = "24.2 * (((safezoneW / safezoneH) min 1.2) / 40)";
