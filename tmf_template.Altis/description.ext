@@ -57,3 +57,12 @@ class CfgLoadouts
         #include "loadouts\taki_army.hpp"
     };
 };
+
+class CfgDebriefingSections
+{
+    class tmf_adminlog
+    {
+        title = "[TMF] Admin Log";
+        variable = "TMF_adminmenu_debrief";
+    };
+};

@@ -1,5 +1,4 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
-
 /*
  * Name: TMF_adminmenu_fnc_log
  * Author: Freddo
