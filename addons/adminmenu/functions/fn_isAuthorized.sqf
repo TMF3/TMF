@@ -23,4 +23,4 @@ params [["_unit", player]];
 
 private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
 
-(_index != -1 || {local _unit && [] call BIS_fnc_admin > 0} || {isServer && {admin owner _unit > 0}} || {!isMultiplayer})
+(_index != -1 || {local _unit && [] call BIS_fnc_admin > 0} || {isServer && {admin owner _unit > 0}} || {!isMultiplayer || is3DEN || is3DENMultiplayer})
