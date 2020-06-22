@@ -19,7 +19,7 @@ class cfgPatches
 #include "Cfg3DEN.hpp"
 #include "display3DEN.hpp"
 
-class TMF_autotest {
+class ADDON {
   /* class exampleTest {
       code = "";
   };
