@@ -65,4 +65,9 @@ class CfgDebriefingSections
         title = "[TMF] Admin Log";
         variable = "TMF_adminmenu_debrief";
     };
+    class acex_killTracker
+    {
+        title = "Acex Killed Events";
+        variable = "acex_killTracker_outputText";
+    };
 };
