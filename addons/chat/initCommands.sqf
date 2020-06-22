@@ -1,5 +1,8 @@
 #define CMND(x) cmnd##COMMAND
-#define CHAT_FUNC(COMMAND) {_this call FUNC(CMND(COMMAND)); [format ["%1 executed command ""%2"" with args: %3",profileName,QUOTE(COMMAND),_this]] call EFUNC(adminmenu,log)}
+#define CHAT_FUNC(COMMAND) {                                                                                                             \
+    _this call FUNC(CMND(COMMAND));                                                                                                      \
+    [format ["%1 executed command ""%2"" with args: %3",profileName,QUOTE(COMMAND),_this],false,"[TMF Chat] "] call EFUNC(adminmenu,log) \
+}
 
 [ // Reset Position
     "rp",

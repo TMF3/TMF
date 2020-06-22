@@ -85,4 +85,5 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
     } forEach GVAR(utilityData);
 
     systemChat format ["[TMF Admin Menu] Assigned traits to %1 player(s)", count GVAR(utilityData)];
+    [["%1 Assigned traits to %2",profileName,GVAR(utilityData) apply {name _x}],false,"[TMF Admin Menu] "] call FUNC(log);
 }];

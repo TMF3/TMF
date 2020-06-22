@@ -8,3 +8,5 @@ private _str = "";
     [QGVAR(quickRespawn), 0, _x] call CBA_fnc_targetEvent;
 } forEach GVAR(utilityData);
 systemChat _str;
+
+[["%1 Quick Respawned %2",profileName,_str],false,"[TMF Admin Menu] "];

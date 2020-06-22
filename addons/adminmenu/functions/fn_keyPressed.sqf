@@ -43,6 +43,7 @@ if (_handleKeypress) then {
                     systemChat "[TMF Admin Menu] No unit selected for Remote Control.";
                 } else {
                     [EGVAR(spectator,target), true] call FUNC(remoteControl);
+                    [["%1 remote controlled unit: %2", profileName,EGVAR(spectator,target)],false,"[TMF Admin Menu] "] call FUNC(log);
                 };
             };
         };

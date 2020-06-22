@@ -79,4 +79,5 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
     [_langsToAdd, _langsToRemove] remoteExecCall [QFUNC(modal_ACRE2Languages_assign), GVAR(utilityData)];
 
     systemChat format ["[TMF Admin Menu] Assigned ACRE2 languages to %1 player(s)", count GVAR(utilityData)];
+    [["%1 Assigned ACRE2 Languages to %2",profileName,GVAR(utilityData) apply {name _x}],false,"[TMF Admin Menu] "] call FUNC(log);
 }];
