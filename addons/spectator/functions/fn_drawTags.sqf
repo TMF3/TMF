@@ -67,7 +67,7 @@ private _screenSizeY = (0.01 * safezoneW);
                 private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,3.1];
                 private _screenPos = worldToScreen _pos;
                 private _distToCam = _pos distance _campos;
-                
+
                 // circumevent the restriction on storing controls in namespace
 
                 if (count _screenPos > 0 && _distToCam <= 500) then {
@@ -95,7 +95,7 @@ private _screenSizeY = (0.01 * safezoneW);
                     _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
 
                     _control ctrlCommit 0;
-                } 
+                }
                 else {
                     _control ctrlShow false;
                 };
@@ -107,7 +107,7 @@ private _screenSizeY = (0.01 * safezoneW);
 
         };
 
-        
+
     } forEach units _x;
 } forEach allGroups;
 
@@ -173,7 +173,7 @@ private _screenSizeY = (0.01 * safezoneW);
 } forEach GVAR(objectives);
 
 // emit event
-[QGVAR(draw3D), [_campos]] call EFUNC(event,emit);
+[QGVAR(draw3D), [_campos]] call CBA_fnc_localEvent;
 
 
 ////////////////////////////////////////////////////////
