@@ -14,11 +14,11 @@ private _pfhRefresh = [{
     private _listCtrl = _display displayCtrl IDC_TMF_ADMINMENU_MSGS_LIST;
 
     private _entriesNum = lbSize _listCtrl;
-    private _newEntriesNum = count GVAR(listEntries);
+    private _newEntriesNum = count GVAR(logEntries);
 
     for "_i" from (_entriesNum + 1) to _newEntriesNum do {
 
-        (GVAR(listEntries) # (_i - 1)) params [
+        (GVAR(logEntries) # (_i - 1)) params [
             ["_time",CBA_missionTime,[-1]],
             ["_text","",[""]],
             ["_isWarning",false,[false]]

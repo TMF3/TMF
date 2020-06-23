@@ -8,7 +8,7 @@ GVAR(playerManagement_players) = [];
 GVAR(playerManagement_selected) = [];
 
 if (isTMF) then {
-    [ // Resync server log for admins
+    [
         {time > 5 && [] call FUNC(isAuthorized)},
         {
             _this call FUNC(resyncLog);

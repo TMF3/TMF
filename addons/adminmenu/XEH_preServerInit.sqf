@@ -5,8 +5,8 @@
     {
         private _targets = (allPlayers select {[_x] call FUNC(isAuthorized)});
         if (isServer && !hasInterface) then {
-            GVAR(listEntries) pushBack _this;
-            GVAR(listEntries) sort true;
+            GVAR(logEntries) pushBack _this;
+            GVAR(logEntries) sort true;
             TRACE_1("Received log message", _this);
         };
 
@@ -19,7 +19,7 @@
 [ // Resync log
     QGVAR(resyncLog),
     {
-        _this publicVariableClient QGVAR(listEntries);
+        _this publicVariableClient QGVAR(logEntries);
 
         LOG_1("Resynchronized server log to client %1",_this);
     }

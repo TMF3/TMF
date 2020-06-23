@@ -2,14 +2,14 @@
 
 #include "initSettings.sqf"
 
-GVAR(listEntries) = [];
+GVAR(logEntries) = [];
 
 [ // Handle new log messages
     QGVAR(log),
     {
         // params ["_time","_text","_isWarning"]
-        GVAR(listEntries) pushBack _this;
-        GVAR(listEntries) sort true;
+        GVAR(logEntries) pushBack _this;
+        GVAR(logEntries) sort true;
         TRACE_1("Received log message", _this);
 
         // See settings

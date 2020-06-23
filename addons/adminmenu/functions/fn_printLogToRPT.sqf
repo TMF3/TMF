@@ -26,6 +26,6 @@ diag_log "[TMF Adminmenu] Printing complete log to RPT";
     private _text = format ["[%1]: %2", [_time,"MM:SS"] call BIS_fnc_secondsToString, _text];
     private _warning = if (_isWarning) then [{"[WARNING] "},{""}];
     diag_log (_warning + _text);
-} forEach GVAR(listEntries);
+} forEach GVAR(logEntries);
 
 diag_log "[TMF Adminmenu] Log end";
