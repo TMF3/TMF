@@ -5,11 +5,11 @@ params ["_display"];
 
 TRACE_1("Initializing message log",_display);
 
+[] call FUNC(resyncLog);
+
 private _pfhRefresh = [{
     disableSerialization;
     params ["_display","_handle"];
-
-    [] call FUNC(resyncLog);
 
     private _listCtrl = _display displayCtrl IDC_TMF_ADMINMENU_MSGS_LIST;
 
