@@ -4,43 +4,6 @@
 
 if (isTMF) then {
     ["Mission Started"] call FUNC(log);
-    GVAR(endedEH) = addMissionEventHandler ["Ended", {
-        params ["_endType"];
-        [format ["Mission Ended, endtype: %1",_endType]] call FUNC(log);
-
-        if GVAR(endLogToRPT) then {
-            diag_log "[TMF Adminmenu] Printing complete log to RPT";
-            {
-                _x params [
-                    ["_time",CBA_missionTime,[-1]],
-                    ["_text","",[""]],
-                    ["_isWarning",false,[false]]
-                ];
-
-                private _text = format ["[%1]: %2", [_time,"MM:SS"] call BIS_fnc_secondsToString, _text];
-                private _warning = if (_isWarning) then [{"[WARNING] "},{""}];
-                diag_log (_warning + _text);
-            } forEach GVAR(listEntries);
-            diag_log "[TMF Adminmenu] Log end";
-        };
-
-        // Print to debriefing
-        private _strArr = GVAR(listEntries) apply {
-            _x params [
-                ["_time",CBA_missionTime,[-1]],
-                ["_text","",[""]],
-                ["_isWarning",false,[false]]
-            ];
-
-            private _text = format ["[%1]: %2", [_time,"MM:SS"] call BIS_fnc_secondsToString, _text];
-            private _warning = if (_isWarning) then [{"[WARNING] "},{""}];
-            (_warning + _text)
-        };
-        GVAR(debrief) = _strArr joinString "<br/>";
-        {
-            _x publicVariableClient QGVAR(debrief);
-        } forEach ((allPlayers select {[_x] call FUNC(isAuthorized)}) apply {owner _x});
-    }];
 
     GVAR(disconnectEH) = addMissionEventHandler ["HandleDisconnect",{
         params ["_unit", "_id", "_uid", "_name"];

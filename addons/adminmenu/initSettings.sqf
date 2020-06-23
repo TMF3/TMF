@@ -4,7 +4,7 @@ private _fnc_settings = {
         "LIST",
         ["Print log messages to chat", "Whether to print logged messages to chat. Only visible for admins."],
         ["TMF", "Adminmenu"],
-        [[2,1,0],["All Messages", "Only Warnings", "None"],0]
+        [[2,1,0],["All Messages", "Only Warnings", "None"],1]
     ] call CBA_fnc_addSetting;
 
     [
@@ -12,8 +12,7 @@ private _fnc_settings = {
         "CHECKBOX",
         ["Print log to server RPT on mission end", "Toggles whether to print the admin log to server RPT once mission ends."],
         ["TMF", "Adminmenu"],
-        false,
-        1
+        false
     ] call CBA_fnc_addSetting;
 };
 

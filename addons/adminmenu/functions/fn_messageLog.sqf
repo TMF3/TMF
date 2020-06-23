@@ -9,6 +9,8 @@ private _pfhRefresh = [{
     disableSerialization;
     params ["_display","_handle"];
 
+    [] call FUNC(resyncLog);
+
     private _listCtrl = _display displayCtrl IDC_TMF_ADMINMENU_MSGS_LIST;
 
     private _entriesNum = lbSize _listCtrl;
