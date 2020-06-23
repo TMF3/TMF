@@ -45,7 +45,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_MSGS_COPY;
         text = "EXPORT SELECTED";
         onButtonClick = QUOTE(_this call FUNC(messageLog_copy));
-        tooltip = "Copies selected message to clipboard";
+        tooltip = "Copies selected message to clipboard. Only available as server.";
         colorBackground[] = {0, 0, 0, 1};
         x = 0 * TMF_ADMINMENU_STD_WIDTH;
         y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
@@ -56,10 +56,22 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_MSGS_COPYALL;
         text = "EXPORT ALL";
-        tooltip = "Copies all logged messages to clipboard";
+        tooltip = "Copies all logged messages to clipboard. Only available as server.";
         onButtonClick = QUOTE(_this call FUNC(messageLog_copyAll));
         colorBackground[] = {0, 0, 0, 1};
         x = 7.1 * TMF_ADMINMENU_STD_WIDTH;
+        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
+        w = 7 * TMF_ADMINMENU_STD_WIDTH;
+    };
+
+    class ButtonPrintToRPT: GVAR(RscButtonMenu)
+    {
+        idc = IDC_TMF_ADMINMENU_MSGS_COPYALL;
+        text = "PRINT TO RPT";
+        tooltip = "Prints current log to RPT";
+        onButtonClick = QUOTE(_this call FUNC(printLogToRPT));
+        colorBackground[] = {0, 0, 0, 1};
+        x = 14.2 * TMF_ADMINMENU_STD_WIDTH;
         y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
         w = 7 * TMF_ADMINMENU_STD_WIDTH;
     };
