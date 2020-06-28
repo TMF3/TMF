@@ -1,7 +1,7 @@
 #define CMND(x) cmnd##COMMAND
-#define CHAT_FUNC(COMMAND) {                                                                                                             \
-    _this call FUNC(CMND(COMMAND));                                                                                                      \
-    [format ["%1 executed #%2 %3",profileName,QUOTE(COMMAND),_this # 0],false,"Chat"] call EFUNC(adminmenu,log) \
+#define CHAT_FUNC(COMMAND) {                                                                                         \
+    _this call FUNC(CMND(COMMAND));                                                                                  \
+    [format ["%1 executed #%2 %3",profileName,QUOTE(COMMAND),_this select 0],false,"Chat"] call EFUNC(adminmenu,log) \
 }
 ;
 
