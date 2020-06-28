@@ -62,7 +62,7 @@ class CfgDebriefingSections
 {
     class tmf_adminlog
     {
-        title = "[TMF] Admin Log";
+        title = "TMF Log";
         variable = "TMF_adminmenu_debrief";
     };
     class acex_killTracker
