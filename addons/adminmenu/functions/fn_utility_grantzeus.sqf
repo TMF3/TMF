@@ -16,7 +16,7 @@ if (count _given > 0) then {
     _given = str (_given apply {name _x});
     _given = _given select [1, (count _given) - 2];
     systemChat format ["[TMF Admin Menu] Zeus access was given to %1", _given];
-    [["%1 granted zeus to %2",profileName, _given],true,"[TMF Admin Menu] "] call FUNC(log);
+    [format ["%1 granted zeus to %2",profileName, _given],true,"Admin Menu"] call FUNC(log);
 };
 
 if (count _had > 0) then {

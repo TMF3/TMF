@@ -43,7 +43,7 @@ if (_type == 28) then {
             format ["Position: %1,", _position],
             format ["Group array: %1,",GVAR(selectedRespawnGroup) apply {[name (_x # 1),_x # 2]}]
         ];
-        [["%1 Triggered a respawn wave: %2",profileName,_argsStr joinString " "], false, "[TMF Admin Menu] "] call FUNC(log);
+        [format ["%1 Triggered a respawn wave: %2",profileName,_argsStr joinString " "], false, "Admin Menu"] call FUNC(log);
 
         GVAR(selectedRespawnGroup) = [];
 

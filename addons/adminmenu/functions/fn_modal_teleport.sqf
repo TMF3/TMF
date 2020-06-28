@@ -96,14 +96,14 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
 
         systemChat format ["[TMF Admin Menu] Teleported %1 players", _numPlayers];
 
-        [[
+        [format [
             "%1 %2 %3 %4 %5",
             profileName,
             if _isParadropped then [{"Paradropped"},{"Teleported"}],
             GVAR(utilityData) apply {name _x},
             if _isParadropped then [{"at"},{"to"}],
             _pos
-        ],false,"[TMF Admin Menu] "] call FUNC(log);
+        ],false,"Admin Menu"] call FUNC(log);
     };
 }];
 _ctrlMap ctrlAddEventHandler ["draw", {

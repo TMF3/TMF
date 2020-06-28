@@ -23,7 +23,7 @@ LOG("Client PostInit started");
                 private _oldObject = _this # 0;
                 _this call FUNC(init);
                 systemChat "You joined the mission in progress. Entering spectator.";
-                [["Player JIP to spectator: %1", profileName],true,"[TMF Spectator] "] call EFUNC(adminmenu,log);
+                [format ["Player JIP to spectator: %1", profileName],true,"Spectator"] call EFUNC(adminmenu,log);
                 deleteVehicle _oldObject;
             };
         }] call CBA_fnc_waitUntilAndExecute;

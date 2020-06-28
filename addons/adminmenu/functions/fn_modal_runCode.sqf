@@ -76,7 +76,7 @@ _ctrlButton ctrlAddEventHandler ["buttonClick", {
         };
 
         systemChat format ["[TMF Admin Menu] Code was executed on %1", _ctrlCombo lbText (lbCurSel _ctrlCombo)];
-        [["%1 Executed code:%2, on %3",profileName,_code,_target],false,"[TMF Admin Menu] "] call FUNC(log);
+        [format ["%1 Executed code:%2, on %3",profileName,_code,_target],false,"Admin Menu"] call FUNC(log);
         GVAR(utility_runcode_last) = _editText;
     };
 }];

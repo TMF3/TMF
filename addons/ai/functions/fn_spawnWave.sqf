@@ -120,4 +120,4 @@ if(_logic getVariable ["Waves",1] > 0) then {
 
 };
 
-[["Spawned wave, unit count: %1, vehicle count: %2, group count %3",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups],count _spawnedUnits > 40, "[TMF AI] "] call EFUNC(adminmenu,log);
+[format ["Spawned wave, unit count: %1, vehicle count: %2, group count %3",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups],count _spawnedUnits > 40, "AI"] call EFUNC(adminmenu,log);

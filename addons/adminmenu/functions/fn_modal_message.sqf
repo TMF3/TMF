@@ -79,6 +79,6 @@ _ctrlButtonCommit ctrlAddEventHandler ["buttonClick", {
         };
 
         systemChat "[TMF Admin Menu] Message sent to player(s)";
-        [["%1 Sent message: ""%2"", via venue: ""%3"", to: %4",profileName,_editText,_venue,GVAR(utilityData) apply {name _x}],false,"[TMF Admin Menu] "] call FUNC(log);
+        [format ["%1 Sent message: ""%2"", via venue: ""%3"", to: %4",profileName,_editText,_venue,GVAR(utilityData) apply {name _x}],false,"Admin Menu"] call FUNC(log);
     };
 }];

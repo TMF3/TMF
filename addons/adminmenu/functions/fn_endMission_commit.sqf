@@ -24,7 +24,7 @@ if (cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_SIDESPECIFIC)) exitWi
         };
 
         [_winners] remoteExec [QFUNC(endMission_sideSpecificLocal)];
-        [["%1 Ended Mission, Winners: %2",profileName, _winners],false,"[TMF Admin Menu] "] call FUNC(log);
+        [format ["%1 Ended Mission, Winners: %2",profileName, _winners],false,"Admin Menu"] call FUNC(log);
     };
 };
 
@@ -36,7 +36,7 @@ if (cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM)) exitWith {
 
     private _isDefeat = cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_CUSTOM_ISDEFEAT);
     [[QGVAR(victory), QGVAR(defeat)] select _isDefeat, !_isDefeat] remoteExec [QEFUNC(common,endMission)];
-    [["%1 Ended Mission, Title: %2, subText: %3, isDefeat: %4",profileName, _title, _subtext, _isDefeat],false,"[TMF Admin Menu] "] call FUNC(log);
+    [format ["%1 Ended Mission, Title: %2, subText: %3, isDefeat: %4",profileName, _title, _subtext, _isDefeat],false,"Admin Menu"] call FUNC(log);
 };
 
 // Endings from description.ext CfgDebriefing
@@ -44,4 +44,4 @@ private _list = _display displayCtrl IDC_TMF_ADMINMENU_ENDM_LIST;
 private _ending = _list lbData (lbCurSel _list);
 private _isDefeat = cbChecked (_display displayCtrl IDC_TMF_ADMINMENU_ENDM_FROMMISSION_ISDEFEAT);
 [_ending, !_isDefeat] remoteExec [QEFUNC(common,endMission)];
-[["%1 Ended Mission, Endtype: %2, isDefeat: %3",profileName, _ending, _isDefeat],false,"[TMF Admin Menu] "] call FUNC(log);
+[format ["%1 Ended Mission, Endtype: %2, isDefeat: %3",profileName, _ending, _isDefeat],false,"Admin Menu"] call FUNC(log);

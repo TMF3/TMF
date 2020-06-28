@@ -6,7 +6,7 @@ Description:
     Logs a message to registered admins, visible in the admin menu.
 
 Parameters:
-    _message - Message to be displayed [String or format array]
+    _message - Message to be displayed [String]
     _isWarning - Whether to display as warning [Bool]
     _tag - Tag that message will be prefixed with [String, defaults to "[TMF Log]"]
 
@@ -27,12 +27,14 @@ Author:
 // TODO: Move to PREPMAIN(log)
 
 params [
-    ["_message","",["",[]]],
+    ["_message","",[""]],
     ["_isWarning",false,[false]],
-    ["_tag","[TMF Log] ",[""]]
+    ["_tag",nil,[""]]
 ];
 
-if IS_ARRAY(_message) then {_message = format _message};
+if !(isNil _tag) then {
+    _tag = format ["[%1] ",_tag]
+};
 
 [QGVAR(serverLog),[CBA_missionTime,_tag + _message,_isWarning]] call CBA_fnc_serverEvent;
 LOG_2("Sent log message to admins: ""%1"" isWarning: %2",_message,_isWarning)

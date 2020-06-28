@@ -31,10 +31,10 @@ _ctrlCheckSafestart cbSetChecked ([] call EFUNC(safestart,isActive));
 _ctrlCheckSafestart ctrlAddEventHandler ["CheckedChanged", {
     if ((param [1]) isEqualTo 0) then {
         [true] call EFUNC(safestart,end);
-        [["%1 Ended safestart",profileName],false,"[TMF Admin Menu] "] call FUNC(log);
+        [format ["%1 Ended safestart",profileName],false,"Admin Menu"] call FUNC(log);
     } else {
         [-1,true] call EFUNC(safestart,set);
-        [["%1 Enabled safestart",profileName],false,"[TMF Admin Menu] "] call FUNC(log);
+        [format ["%1 Enabled safestart",profileName],false,"Admin Menu"] call FUNC(log);
     };
 }];
 
@@ -47,9 +47,9 @@ if (alive player) then {
         [_state isEqualTo 1] call acre_api_fnc_setSpectator;
         systemChat format ["[TMF Admin Menu] Spectator talk toggled %1", ["off", "on"] select _state];
         if (_state isEqualTo 1) then {
-            [["%1 Started talking to spectators",profileName],false,"[TMF Admin Menu] "] call FUNC(log);
+            [format ["%1 Started talking to spectators",profileName],false,"Admin Menu"] call FUNC(log);
         } else {
-            [["%1 Stopped talking to spectators",profileName],false,"[TMF Admin Menu] "] call FUNC(log);
+            [format ["%1 Stopped talking to spectators",profileName],false,"Admin Menu"] call FUNC(log);
         };
     }];
 } else {

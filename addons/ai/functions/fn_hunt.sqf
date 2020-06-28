@@ -65,7 +65,7 @@ private _oldGroups = [];
     if (count (units _x) == 0) then {deleteGroup _x;};
 } forEach (_oldGroups - [grpNull]);
 
-[["Triggered hunt on %1 units",count _hunters],false,"[TMF AI] "] call EFUNC(adminmenu,log);
+[format ["Triggered hunt on %1 units",count _hunters],false,"AI"] call EFUNC(adminmenu,log);
 
 // Spawn for performance reasons.
 
