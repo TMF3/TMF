@@ -29,11 +29,11 @@ Author:
 params [
     ["_message","",[""]],
     ["_isWarning",false,[false]],
-    ["_tag",nil,[""]]
+    ["_tag","",[""]]
 ];
 
-if !(isNil "_tag") then {
-    _tag = format ["[%1] ",_tag]
+if !(_tag isEqualTo "") then {
+    _tag = format ["[%1] ",_tag];
 };
 
 [QGVAR(serverLog),[CBA_missionTime,_tag + _message,_isWarning]] call CBA_fnc_serverEvent;
