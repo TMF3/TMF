@@ -1,19 +1,9 @@
 class Controls
 {
-    class Label: RscText
-    {
-        text = "Logs";
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        x = "0";
-        y = "0";
-        w = TMF_ADMINMENU_W_LABEL;
-        h = TMF_ADMINMENU_H_LABEL;
-    };
-
     class BackgroundMessagesList: RscText
     {
-        x = "0";
-        y = TMF_ADMINMENU_MSGS_Y_LIST;
+        x = 0;
+        y = 0;
         w = TMF_ADMINMENU_MSGS_W_LIST;
         h = TMF_ADMINMENU_MSGS_H_LIST;
         colorBackground[] = {0, 0, 0, 0.3};
@@ -35,7 +25,7 @@ class Controls
         itemBackground[] = {1,1,1,0.2};
         itemSpacing = 0;
         x = 0;
-        y = TMF_ADMINMENU_MSGS_Y_LIST;
+        y = 0;
         w = TMF_ADMINMENU_MSGS_W_LIST;
         h = TMF_ADMINMENU_MSGS_H_LIST;
     };
