@@ -3,8 +3,6 @@
 #include "initKeybinds.sqf"
 
 if (isTMF) then {
-    ["Mission Started"] call FUNC(log);
-
     GVAR(disconnectEH) = addMissionEventHandler ["HandleDisconnect",{
         params ["_unit", "_id", "_uid", "_name"];
         if !(typeOf _unit isEqualTo QEGVAR(spectator,unit)) then {
