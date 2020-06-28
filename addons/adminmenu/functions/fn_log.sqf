@@ -32,7 +32,7 @@ params [
     ["_tag",nil,[""]]
 ];
 
-if !(isNil _tag) then {
+if !(isNil "_tag") then {
     _tag = format ["[%1] ",_tag]
 };
 
