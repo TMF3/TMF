@@ -43,7 +43,7 @@ class Controls
     class ButtonCopySelected: GVAR(RscButtonMenu)
     {
         idc = IDC_TMF_ADMINMENU_MSGS_COPY;
-        text = "EXPORT SELECTED";
+        text = "COPY SELECTED";
         onButtonClick = QUOTE(_this call FUNC(messageLog_copy));
         tooltip = "Copies selected message to clipboard. Only available as server.";
         colorBackground[] = {0, 0, 0, 1};
@@ -55,7 +55,7 @@ class Controls
     class ButtonCopyAll: GVAR(RscButtonMenu)
     {
         idc = IDC_TMF_ADMINMENU_MSGS_COPYALL;
-        text = "EXPORT ALL";
+        text = "COPY ALL";
         tooltip = "Copies all logged messages to clipboard. Only available as server.";
         onButtonClick = QUOTE(_this call FUNC(messageLog_copyAll));
         colorBackground[] = {0, 0, 0, 1};
