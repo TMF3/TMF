@@ -36,7 +36,8 @@ private _pfhRefresh = [{
 
     // Autoscroll
     private _curSel = lbCurSel _listCtrl;
-    if (_curSel isEqualTo -1 || _curSel isEqualTo _entriesNum -1) then {
+    if (_curSel == -1 || (_curSel == _entriesNum -1 && _entriesNum != _newEntriesNum)) then {
+        LOG("Autoscroll log");
         _listCtrl lbSetCurSel (lbSize _listCtrl - 1);
     };
 },1,_display] call CBA_fnc_addPerFrameHandler;
