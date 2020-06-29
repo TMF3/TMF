@@ -9,7 +9,7 @@
  * N/A
  *
  * Description:
- * Handlls spawning units
+ * Handles spawning units
  */
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic"];
