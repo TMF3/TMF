@@ -48,13 +48,15 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
     {
         private _grp = _x;
         private _units = (units _grp) apply {
+            private _unit = _x;
             private _data = [
-                typeOf _x,
-                getPosATL _x,
-                getDir _x,
-                getUnitLoadout _x,
+                typeOf _unit,
+                getPosATL _unit,
+                getDir _unit,
+                getUnitLoadout _unit,
                 -1,
-                []
+                [],
+                ALL_AI_FEATURES select {!(_unit checkAIFeature _x)}
             ];
             if(!isNull objectParent _x) then {
                 _data set [4, _vehicles find (objectParent _x)];

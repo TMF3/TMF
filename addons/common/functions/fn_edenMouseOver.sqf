@@ -24,7 +24,7 @@ if !(current3DENOperation == "") then {
 
 if !(GVAR(edenMouseObjects) isEqualTo _intersects) then {
     GVAR(edenMouseObjects) = _intersects;
-    [QGVAR(edenMouseOverChanged),GVAR(edenMouseObjects)] call EFUNC(event,emit);
+    [QGVAR(edenMouseOverChanged),GVAR(edenMouseObjects)] call CBA_fnc_localEvent;
 } else {
     GVAR(edenMouseObjects) = _intersects;
 };

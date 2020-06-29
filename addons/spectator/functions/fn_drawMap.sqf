@@ -24,10 +24,10 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
     private _grpCache = _grp getVariable [QGVAR(grpCache),[-9999,[],[1,1,1,1],false]];
 
 
-    
+
     // check if its time to update
-    if(time > (_grpCache # 0)) then { 
-        _grpCache = ([_grp] call FUNC(updateGroupCache)); 
+    if(time > (_grpCache # 0)) then {
+        _grpCache = ([_grp] call FUNC(updateGroupCache));
     };
 
     _grpCache params ["_grpTime","_grpPos","_color","_isAI"];
@@ -38,7 +38,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
     };
     private _units = [];
     private _vehicles = [];
-    
+
 
     {
         private _unit = _x;
@@ -103,4 +103,4 @@ if(GVAR(tracers)) then {
     } forEach GVAR(rounds);
 };
 
-[QGVAR(draw2D), [_campos]] call EFUNC(event,emit);
+[QGVAR(draw2D), [_campos]] call CBA_fnc_localEvent;
