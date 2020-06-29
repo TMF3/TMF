@@ -34,7 +34,7 @@ _data params ['_groups', '_vehicles'];
 
     private _grp = createGroup [_side, true]; // Delete group when empty
     {
-        _x params ["_type","_pos","_dir","_gear", "_vehicleIndex", "_vehicleRole","_disabledAI"];
+        _x params ["_type","_pos","_dir","_gear", "_vehicleIndex", "_vehicleRole","_disabledAIFeatures"];
         private _unit = _grp createUnit [_type, [0,0,0],[] , 0, "NONE"];
         _unit setPosATL _pos;
         _unit setUnitLoadout [_gear, false];
@@ -70,8 +70,8 @@ _data params ['_groups', '_vehicles'];
         };
 
         {
-            _unit disableAI (_x # 0);
-        } forEach (_disabledAI select {!(_x # 1)});
+            _unit disableAI _x;
+        } forEach _disabledAIFeatures;
     } forEach _units;
     (units _grp) join _grp;
      _lastIndex = (count waypoints _grp)-1;
