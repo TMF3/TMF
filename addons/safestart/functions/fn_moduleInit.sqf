@@ -26,11 +26,10 @@ TRACE_1("Module init",_this);
 
 if (_activated) then {
     private _duration = _logic getVariable ["Duration", -1];
-    if (_duration isEqualTo 0) exitWith {
-        [] call FUNC(end);
-    };
     if (_duration > 0) then {
         _duration = _duration + CBA_missionTime;
+    } else {
+        _duration = -1;
     };
 
     LOG_1("Enabling safestart until %1",_duration);
