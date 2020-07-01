@@ -30,38 +30,26 @@ class Controls
         h = TMF_ADMINMENU_MSGS_H_LIST;
     };
 
-    class ButtonCopySelected: GVAR(RscButtonMenu)
+    class ButtonPrintSelected: GVAR(RscButtonMenu)
     {
         idc = IDC_TMF_ADMINMENU_MSGS_COPY;
-        text = "COPY SELECTED";
-        onButtonClick = QUOTE(_this call FUNC(messageLog_copy));
-        tooltip = "Copies selected message to clipboard. Only available as server.";
+        text = "PRINT SELECTED TO RPT";
+        onButtonClick = QUOTE(_this call FUNC(messageLog_print));
+        tooltip = "Prints currently selected log entry to RPT.";
         colorBackground[] = {0, 0, 0, 1};
         x = 0 * TMF_ADMINMENU_STD_WIDTH;
         y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
-        w = 7 * TMF_ADMINMENU_STD_WIDTH;
+        w = 9 * TMF_ADMINMENU_STD_WIDTH;
     };
 
-    class ButtonCopyAll: GVAR(RscButtonMenu)
+    class ButtonPrintAll: GVAR(RscButtonMenu)
     {
         idc = IDC_TMF_ADMINMENU_MSGS_COPYALL;
-        text = "COPY ALL";
-        tooltip = "Copies all logged messages to clipboard. Only available as server.";
-        onButtonClick = QUOTE(_this call FUNC(messageLog_copyAll));
+        text = "PRINT ALL TO RPT";
+        tooltip = "Prints all logged entries to RPT.";
+        onButtonClick = QUOTE(_this call FUNC(messageLog_printAll));
         colorBackground[] = {0, 0, 0, 1};
-        x = 7.1 * TMF_ADMINMENU_STD_WIDTH;
-        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
-        w = 7 * TMF_ADMINMENU_STD_WIDTH;
-    };
-
-    class ButtonPrintToRPT: GVAR(RscButtonMenu)
-    {
-        idc = IDC_TMF_ADMINMENU_MSGS_COPYALL;
-        text = "PRINT TO RPT";
-        tooltip = "Prints current log to RPT";
-        onButtonClick = QUOTE(_this call FUNC(printLogToRPT));
-        colorBackground[] = {0, 0, 0, 1};
-        x = 14.2 * TMF_ADMINMENU_STD_WIDTH;
+        x = 9.1 * TMF_ADMINMENU_STD_WIDTH;
         y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
         w = 7 * TMF_ADMINMENU_STD_WIDTH;
     };

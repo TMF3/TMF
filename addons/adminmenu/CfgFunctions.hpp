@@ -22,10 +22,10 @@ class CfgFunctions {
 
             class log;
             class resyncLog;
-            class printLogToRPT;
+
             class messageLog;
-            class messageLog_copy;
-            class messageLog_copyAll;
+            class messageLog_print;
+            class messageLog_printAll;
 
             class endMission;
             class endMission_commit;

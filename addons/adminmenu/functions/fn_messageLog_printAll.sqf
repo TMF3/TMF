@@ -1,13 +1,13 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 /* ----------------------------------------------------------------------------
-Internal Function: TMF_adminmenu_fnc_printLogToRPT
+Internal Function: TMF_adminmenu_fnc_messageLog_printAll
 
 Description:
     Prints current admin log to RPT
 
 Examples:
     (begin example)
-        [] call TMF_adminmenu_fnc_printLogToRPT;
+        [] call TMF_adminmenu_fnc_messageLog_printAll;
     (end)
 
 Author:
