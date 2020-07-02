@@ -1,7 +1,7 @@
 class LabelUnitStats: RscText
 {
     text = "Statistics";
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
     x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "0";
     w = "13.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -13,7 +13,7 @@ class UnitStats_SideBackground: RscText
 {
     text = "";
     colorBackground[] = {1, 1, 1, 0.2};
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
     x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -55,7 +55,7 @@ class UnitStats_SideIcon_Blufor: RscPicture
     style = 48 + 2048; // picture + keep aspect ratio
     text = "\a3\ui_f\data\GUI\Rsc\RscDisplayMultiplayerSetup\flag_indep_ca.paa";
     colorText[] = {"(profilenamespace getvariable ['Map_BLUFOR_R',0])", "(profilenamespace getvariable ['Map_BLUFOR_G',0])", "(profilenamespace getvariable ['Map_BLUFOR_B',1])", 0.8};
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
     x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "2.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -201,7 +201,7 @@ class UnitStats_SideIcon_Total: RscText
 {
     style = 2; // Center
     text = "*";
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
     x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
     y = "6.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
     w = "1 * (((safezoneW / safezoneH) min 1.2) / 40)";

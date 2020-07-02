@@ -15,6 +15,7 @@
 params ["_logic"];
 private _spawnedVehicles = [];
 private _spawnedGroups = [];
+private _spawnedUnits = [];
 private _data = _logic getVariable [QGVAR(waveData), []];
 _data params ['_groups', '_vehicles'];
 {
@@ -36,6 +37,7 @@ _data params ['_groups', '_vehicles'];
     {
         _x params ["_type","_pos","_dir","_gear", "_vehicleIndex", "_vehicleRole","_disabledAIFeatures"];
         private _unit = _grp createUnit [_type, [0,0,0],[] , 0, "NONE"];
+        _spawnedUnits pushBack _unit;
         _unit setPosATL _pos;
         _unit setUnitLoadout [_gear, false];
         _unit setDir _dir;
@@ -120,3 +122,5 @@ if(_logic getVariable ["Waves",1] > 0) then {
     };
 
 };
+
+[format ["Spawned wave, unit count: %1, vehicle count: %2, group count %3",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups],count _spawnedUnits > 40, "AI"] call EFUNC(adminmenu,log);

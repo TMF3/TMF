@@ -1,37 +1,44 @@
+#define CMND(x) cmnd##COMMAND
+#define CHAT_FUNC(COMMAND) {                                                                                         \
+    _this call FUNC(CMND(COMMAND));                                                                                  \
+    [format ["%1 executed #%2 %3",profileName,QUOTE(COMMAND),_this select 0],false,"Chat"] call EFUNC(adminmenu,log) \
+}
+;
+
 [ // Reset Position
     "rp",
-    FUNC(cmndRP),
+    CHAT_FUNC(RP),
     "all"
 ] call CBA_fnc_registerChatCommand;
 
 [ // Teleport
     "tp",
-    FUNC(cmndTp),
+    CHAT_FUNC(Tp),
     "all"
 ] call CBA_fnc_registerChatCommand;
 
 [ // Spectate
     "spec",
-    FUNC(cmndSpec),
+    CHAT_FUNC(Spec),
     "all"
 ] call CBA_fnc_registerChatCommand;
 
 [ // Whisper
     "whisper",
-    FUNC(cmndWhisper),
+    CHAT_FUNC(Whisper),
     "all"
 ] call CBA_fnc_registerChatCommand;
 
 [ // Heal
     "heal",
-    FUNC(cmndHeal),
+    CHAT_FUNC(Heal),
     "all"
 ] call CBA_fnc_registerChatCommand;
 
 if (isClass (configFile >> "CfgPatches" >> QUOTE(DOUBLES(PREFIX,assignGear)))) then {
     [ // Assign loadout
         "loadout",
-        FUNC(cmndLoadout),
+        CHAT_FUNC(Loadout),
         "all"
     ] call CBA_fnc_registerChatCommand;
 };
@@ -39,7 +46,7 @@ if (isClass (configFile >> "CfgPatches" >> QUOTE(DOUBLES(PREFIX,assignGear)))) t
 if (isClass (configFile >> "CfgPatches" >> QUOTE(DOUBLES(PREFIX,acre2)))) then {
     [ // Assign radio
         "radio",
-        FUNC(cmndRadio),
+        CHAT_FUNC(Radio),
         "all"
     ] call CBA_fnc_registerChatCommand;
 };

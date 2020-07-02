@@ -45,17 +45,18 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
             if (count _units == 0) exitWith {
                 [_pfh] call CBA_fnc_removePerFrameHandler;
             };
+            private _isParadropped = (missionNamespace getVariable [QGVAR(utility_teleport_paradrop), 0]) == 1;
 
             private _unit = _units deleteAt 0;
 
             if (_unit isKindOf "CAManBase") then { // humans
-                if ((missionNamespace getVariable [QGVAR(utility_teleport_paradrop), 0]) == 1) then {
+                if (_isParadropped) then {
                     private _parachute = createVehicle ["Steerable_Parachute_F", _pos, [], 50, "FLY"];
                     _parachute allowDamage false;
                     private _newPos = getPos _parachute;
                     _newPos set [2, 500];
                     _parachute setPos _newPos;
-                    
+
                     _unit moveInAny _parachute;
 
                     "[TMF Admin Menu] You were paradropped" remoteExec ["systemChat", _unit];
@@ -94,6 +95,15 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
         }, 0.1, [_pos, +GVAR(utilityData)]] call CBA_fnc_addPerFrameHandler;
 
         systemChat format ["[TMF Admin Menu] Teleported %1 players", _numPlayers];
+
+        [format [
+            "%1 %2 %3 %4 %5",
+            profileName,
+            if _isParadropped then [{"Paradropped"},{"Teleported"}],
+            GVAR(utilityData) apply {name _x},
+            if _isParadropped then [{"at"},{"to"}],
+            _pos
+        ],false,"Admin Menu"] call FUNC(log);
     };
 }];
 _ctrlMap ctrlAddEventHandler ["draw", {

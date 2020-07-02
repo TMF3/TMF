@@ -131,4 +131,5 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
     };
 
     [_radios, _network] remoteExecCall [QFUNC(modal_ACRE2Languages_assign), GVAR(utilityData)];
+    [format ["%1 Assigned radios %2 on network %3 to ",profileName,_radio,_network,GVAR(utilityData) apply {name _x}],false,"Admin Menu"] call FUNC(log);
 }];

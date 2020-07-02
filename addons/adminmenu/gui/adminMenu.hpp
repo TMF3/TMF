@@ -16,26 +16,27 @@ class RscToolbox;
 class RscStructuredText;
 class RscControlsTable;
 class RscMapControl;
+class ScrollBar;
 
 
 class GVAR(RscButtonMenu): RscButtonMenu {
     style = "0x02 + 0x0C";
     font = "RobotoCondensed";
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX_L;
     size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
     h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
 };
 
 class GVAR(RscText): RscText {
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
 };
 
 class GVAR(RscTextLarge): RscText {
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.9)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX_L;
 };
 
 class GVAR(RscSpectatorControlTableText): RscText {
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
     h = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
     w = (6/10) * TMF_ADMINMENU_RESP_W_COL1;
     x = 0;
@@ -53,7 +54,7 @@ class GVAR(RscEditMultiCode): RscEditMulti {
 
 class GVAR(RscCombo): RscCombo {
     font = "RobotoCondensed";
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
 };
 
 class GVAR(RscTextIcon): RscText {
@@ -63,12 +64,12 @@ class GVAR(RscTextIcon): RscText {
 
 class GVAR(RscListBox): RscListBox {
     font = "RobotoCondensed";
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
 };
 
 class GVAR(RscListNBox): RscListNBox {
     font = "RobotoCondensed";
-    sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+    sizeEx = TMF_ADMINMENU_STD_SIZEX;
 };
 
 class ADDON
@@ -167,40 +168,40 @@ class ADDON
         class GroupDashboard: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_DASH;
-            w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = TMF_GROUPBASE_W;
+            h = TMF_GROUPBASE_H;
             #include "dashboard.hpp"
         };
 
         class GroupPlayerManagement: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_PMAN;
-            w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = TMF_GROUPBASE_W;
+            h = TMF_GROUPBASE_H;
             #include "playerManagement.hpp"
         };
 
         class GroupRespawn: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_RESP;
-            w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = TMF_GROUPBASE_W;
+            h = TMF_GROUPBASE_H;
             #include "respawn.hpp"
         };
 
         class GroupEndMission: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_ENDM;
-            w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = TMF_GROUPBASE_W;
+            h = TMF_GROUPBASE_H;
             #include "endMission.hpp"
         };
 
         class GroupMessageLog: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_MSGS;
-            w = "37.8 * (((safezoneW / safezoneH) min 1.2) / 40)";
-            h = "20.6 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+            w = TMF_GROUPBASE_W;
+            h = TMF_GROUPBASE_H;
             #include "messageLog.hpp"
         };
 
@@ -265,11 +266,11 @@ class ADDON
 class GVAR(respawnMapDialog) {
     idd = IDC_TMF_ADMINMENU_RESP_MAP_DISPLAY;
     movingEnable = 0;
-    class controlsBackground { 
+    class controlsBackground {
     };
-    class objects { 
+    class objects {
     };
-    class controls { 
+    class controls {
         class FullRespawnMap : RscMapControl
         {
             idc = IDC_TMF_ADMINMENU_RESP_MAP_CONTROL;
@@ -290,11 +291,11 @@ class GVAR(respawnMapDialog) {
 class GVAR(adminEyeDialog) {
     idd = IDC_TMF_ADMINMENU_ADME_MAP_DISPLAY;
     movingEnable = 0;
-    class controlsBackground { 
+    class controlsBackground {
     };
-    class objects { 
+    class objects {
     };
-    class controls { 
+    class controls {
         class FullRespawnMap : RscMapControl
         {
             idc = IDC_TMF_ADMINMENU_ADME_MAP_CONTROL;
@@ -304,7 +305,7 @@ class GVAR(adminEyeDialog) {
             w = 1 * safezoneW;
             h = 1 * safezoneH;
             onDraw = QUOTE(_this call FUNC(adminEye_draw));
-            onMouseButtonDown = QUOTE(_this spawn FUNC(adminEye_onClick)); 
+            onMouseButtonDown = QUOTE(_this spawn FUNC(adminEye_onClick));
             onSetFocus = QUOTE(_this spawn FUNC(adminEye_onLoad));
             onKeyUp = QUOTE(_this spawn FUNC(adminEye_onKeyPress));
         };

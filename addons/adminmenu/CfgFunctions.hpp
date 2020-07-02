@@ -15,14 +15,24 @@ class CfgFunctions {
             class adminEye_onKeyPress;
             class adminEye_open;
             class adminEye_restoreTrigger;
+
             class claimZeus;
             class dashboard;
             class debounceButton;
+
+            class log;
+            class resyncLog;
+
+            class messageLog;
+            class messageLog_print;
+            class messageLog_printAll;
+
             class endMission;
             class endMission_commit;
             class endMission_occluder;
             class endMission_hunt;
             class endMission_sideSpecificLocal;
+
             class fpsHandlerServer;
             class isAuthorized;
             class getCurrentAdminClient;
@@ -31,11 +41,14 @@ class CfgFunctions {
             class makeZeusServer;
             class onLoad;
             class onUnload;
+
             class playerManagement;
             class playerManagement_listSelChange;
             class playerManagement_updateList;
+
             class remoteControl;
             class remoteControl_dialog;
+
             class respawn;
             class respawn_addAction;
             class respawn_factionCategoryChanged;

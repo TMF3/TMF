@@ -4,7 +4,7 @@ class Controls
     class LabelShortcuts: RscText
     {
         text = "Shortcuts";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "0";
         y = "0";
         w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -69,7 +69,7 @@ class Controls
     {
         idc = -1;
         text = "Enabled";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         colorText[] = {0.8, 0.8, 0.8, 1};
         x = "0.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -94,7 +94,7 @@ class Controls
     {
         idc = -1;
         text = "Enabled";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         colorText[] = {0.8, 0.8, 0.8, 1};
         x = "0.9 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "9.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
@@ -109,7 +109,7 @@ class Controls
     class LabelInformation: RscText
     {
         text = "General Information";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "8.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
         w = "7 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -119,7 +119,7 @@ class Controls
     {
         text = "Vehicles";
         colorBackground[] = {1, 1, 1, 0.2};
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "8 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "9.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
         w = "4.5 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -194,7 +194,7 @@ class Controls
     class LabelMissionNotes: RscText
     {
         text = "Mission Maker's Notes";
-        sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+        sizeEx = TMF_ADMINMENU_STD_SIZEX;
         x = "22.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
         y = "0";
         w = "15.4 * (((safezoneW / safezoneH) min 1.2) / 40)";
@@ -213,7 +213,7 @@ class Controls
             {
                 idc = IDC_TMF_ADMINMENU_DASH_MISSIONNOTES;
                 size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
-                sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+                sizeEx = TMF_ADMINMENU_STD_SIZEX;
                 x = "0";
                 y = "0";
                 w = "14.9 * (((safezoneW / safezoneH) min 1.2) / 40)"; // Margin for vertical scrollbar

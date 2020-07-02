@@ -15,7 +15,7 @@
 
 #include "\x\tmf\addons\chat\script_component.hpp"
 
-if (0 != call BIS_fnc_admin || player call EFUNC(adminmenu,isAuthorized)) exitWith {true};
+if (player call EFUNC(adminmenu,isAuthorized)) exitWith {true};
 
 params ["_var", "_command"];
 

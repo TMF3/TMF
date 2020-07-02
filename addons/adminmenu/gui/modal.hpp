@@ -67,7 +67,7 @@ class GVAR(modal)
             text = "\a3\ui_f\data\GUI\Rsc\RscDisplayArcadeMap\top_close_gs.paa";
             tooltip = "Close Utility";
             onMouseButtonClick = "closeDialog 1;";
-            sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 0.8)";
+            sizeEx = TMF_ADMINMENU_STD_SIZEX;
             font = "RobotoCondensed";
             colorBackground[] = {0, 0, 0, 0};
             colorBackgroundActive[] = {0, 0, 0, 0};

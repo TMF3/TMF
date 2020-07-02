@@ -12,3 +12,5 @@ if (!isNil "ace_medical_treatment_fnc_fullHeal") then {
 };
 
 systemChat format ["[TMF Admin Menu] %1 players had their health restored", count GVAR(utilityData)];
+
+[["%1 Restored health on %2",profileName,GVAR(utilityData) apply {name _x}],false,"Admin Menu"] call FUNC(log);

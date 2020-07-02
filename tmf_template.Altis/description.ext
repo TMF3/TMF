@@ -57,3 +57,17 @@ class CfgLoadouts
         #include "loadouts\taki_army.hpp"
     };
 };
+
+class CfgDebriefingSections
+{
+    class tmf_adminlog
+    {
+        title = "TMF Log";
+        variable = "TMF_adminmenu_debrief";
+    };
+    class acex_killTracker
+    {
+        title = "ACEX Killed Events";
+        variable = "acex_killTracker_outputText";
+    };
+};
