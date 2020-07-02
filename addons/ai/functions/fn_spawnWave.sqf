@@ -78,23 +78,9 @@ _data params ['_groups', '_vehicles'];
     (units _grp) join _grp;
      _lastIndex = (count waypoints _grp)-1;
     [_grp] call CBA_fnc_clearWaypoints;
+
     for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
-        _way = _waypoints select _i;
-
-        // TODO fix this shit
-
-        _w = _grp addWaypoint [_way select 1, 0,(_i+1),_way select 0];
-        _w setWaypointType (_way select 2);
-        _w setWaypointBehaviour (_way select 3);
-        _w setWaypointCombatMode (_way select 4);
-        _w setWaypointDescription (_way select 5);
-        _w setWaypointFormation (_way select 6);
-        _w setWaypointHousePosition (_way select 7);
-        _w setWaypointScript (_way select 8);
-        _w showWaypoint (_way select 9);
-        _w setWaypointSpeed (_way select 10);
-        _w setWaypointTimeout (_way select 11);
-        _w setWaypointVisible (_way select 12);
+        [_grp, _i + 1, _waypoints select _i] call CFUNC(deserializeWaypoint);
     };
     if((count waypoints _grp) > 1) then {
         _grp setCurrentWaypoint [_grp,1]; // skip the next one okeyyo..
@@ -115,7 +101,7 @@ if(_logic getVariable ["Waves",1] > 0) then {
 
     // Check if we need to wait for them to die
     if(_logic getVariable ["WhenDead",false]) then {
-        [{ {{alive _x} count (units _x) > 0 } count (_this select 1) <= 0 },FUNC(spawnWave), [_logic,_spawnedGroups]] call CBA_fnc_waitUntilAndExecute;
+        [{ {{alive _x} count (units _x) > 0 } count (_this select 1) <= 0 }, FUNC(spawnWave), [_logic,_spawnedGroups]] call CBA_fnc_waitUntilAndExecute;
     }
     else {  // Otherwise spawn the wave after sleeping for some time
         [FUNC(spawnWave), [_logic], _logic getvariable ["Time",10]] call CBA_fnc_waitAndExecute;

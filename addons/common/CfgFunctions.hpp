@@ -23,6 +23,7 @@ class cfgFunctions {
             class initGroupVar;
             class getNearestRoad;
             class serializeWaypoint;
+            class deserializeWaypoint;
             class serializeWaypoints;
             class moduleUnits;
             class checkVersionArray;
