@@ -6,7 +6,7 @@
  * _group: Group
  *
  * Return:
- * array: of waypoint data
+ * array: of waypoint datagit 
  *
  */
 params ["_group"];

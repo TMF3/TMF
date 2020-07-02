@@ -14,22 +14,22 @@
 params ['_group','_wpIndex', '_wpData'];
 
 _wpData params [
-	'_name',
-	'_pos',
-	'_type',
-	'_behaviour',
-	'_combatMode',
-	'_description',
-	'_formation',
-	'_housePosition',
-	'_script',
-	'_speed',
-	'_timeout',
-	'_visible',
-	'_radius',
-	'_statements',
-	'_attachedObject',
-	'_attachedVehicle'
+    '_name',
+    '_pos',
+    '_type',
+    '_behaviour',
+    '_combatMode',
+    '_description',
+    '_formation',
+    '_housePosition',
+    '_script',
+    '_speed',
+    '_timeout',
+    '_visible',
+    '_radius',
+    '_statements',
+    '_attachedObject',
+    '_attachedVehicle'
 ];
 _wp = _group addWaypoint [_pos, -1, _wpIndex, _name];
 _wp setWaypointType _type;
