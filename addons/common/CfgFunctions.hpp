@@ -1,10 +1,7 @@
 class cfgFunctions {
     class ADDON {
         class COMPONENT {
-            file = QPATHTO_FOLDER(functions);
-            class debugError;
-            class debugLog;
-            class debugMsg;
+            file = QPATHTOF(functions);
             class dummy;
             class numToColor;
             class getCfgEntry;

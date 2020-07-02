@@ -5,51 +5,6 @@ class Cfg3DEN
 {
     class Mission
     {
-        class TMF_Settings
-        {
-            displayName = "TMF Settings";
-            class AttributeCategories
-            {
-                class Debug
-                {
-                    displayName = "Debug Settings";
-                    collapsed = 0;
-                    class Attributes
-                    {
-                        class TMF_Debug_Enabled
-                        {
-                            property = "TMF_Debug_Enabled";
-                            displayName = "Debug Enabled";
-                            tooltip = "Toggle debug mode.";
-                            control = "Checkbox";
-                            expression = "true";
-                            defaultValue = "true";
-                            condition = "1";
-                        };
-                        class TMF_Debug_Diag_log
-                        {
-                            property = "TMF_Debug_Diag_log";
-                            displayName = "Log to RPT";
-                            tooltip = "Log errors in the ARMA .rpt file.";
-                            control = "Checkbox";
-                            expression = "true";
-                            defaultValue = "true";
-                            condition = "1";
-                        };
-                        class TMF_Debug_SystemChat
-                        {
-                            property = "TMF_Debug_SystemChat";
-                            displayName = "Log to chat";
-                            tooltip = "Toggle debug mode.";
-                            control = "Checkbox";
-                            expression = "true";
-                            defaultValue = "false";
-                            condition = "1";
-                        };
-                    };
-                };
-            };
-        };
         class Scenario
         {
             class AttributeCategories

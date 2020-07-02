@@ -70,5 +70,5 @@ switch (_piece) do {
         if (_className isEqualTo "") exitWith {};
         _unit linkItem _className;
     };
-    default {DEBUG_ERR("Incorrect piece parameter!")};
+    default {ERROR("Incorrect piece parameter!")};
 };

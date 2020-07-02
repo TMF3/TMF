@@ -13,10 +13,7 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 
-params [["_path",configNull]];
-if !(_path isEqualType configNull) exitWith {
-    DEBUG_ERR_1("Argument must be type CONFIG, not %1",(typeName _this));
-};
+params [["_path",configNull,[configNull]]];
 
 // Get value from path
 private _return = switch (true) do {

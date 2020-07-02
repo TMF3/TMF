@@ -3,7 +3,7 @@ class CfgFunctions {
     {
         class functions
         {
-            file = QPATHTO_FOLDER(functions);
+            file = QPATHTOF(functions);
             class createGroupNode;
             class createUnitNode;
             class drawMap;

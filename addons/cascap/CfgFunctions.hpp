@@ -1,7 +1,7 @@
 class cfgFunctions {
     class ADDON {
         class COMPONENT {
-            file = QPATHTO_FOLDER(functions);
+            file = QPATHTOF(functions);
             class init;
             class serverInit;
         };

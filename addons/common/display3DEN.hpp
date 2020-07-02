@@ -16,12 +16,6 @@ class display3DEN
                     text = "TMF";
                     items[] = {"TMF_Documentation", "TMF_Settings"};
                 };
-                class TMF_Settings
-                {
-                    text = "TMF Settings";
-                    action = "edit3DENMissionAttributes 'TMF_Settings';";
-                    picture = "\x\tmf\addons\common\UI\icon_gear_ca";
-                };
                 class TMF_Documentation
                 {
                     text = "TMF Wiki"; // engine adds ... to links

@@ -40,9 +40,9 @@ if(count _areas > 0) then {
         (_areaLogic getVariable ["objectArea",[0,0,0,false,0]]) params ["_a","_b","_dir","_isrect"];
         private _buildings = ((getPos _x) nearObjects ["Static", _a * _b]) select {count (_x buildingPos -1) > 0 && {(getPos _x) inArea [getPos _areaLogic,_a , _b, _dir, _isrect]}};
 
-        
+
         private _freeBuildings = []; // List of buildings that list have free positions.
-        { 
+        {
             private _building = _x;
             private _freePoses = _building getVariable [QGVAR(freeSpawnPoses),-1];
 
@@ -61,16 +61,16 @@ if(count _areas > 0) then {
             };
 
         } forEach _buildings;
-        
+
         [_freeBuildings,true] call CBA_fnc_shuffle;
         private _numberOfHouses = round (count _freeBuildings * _houseRatio);
         for "-" from 1 to _numberOfHouses do {
             private _building = _freeBuildings deleteAt 0;
             private _freeBuildingPositions = _building getVariable [QGVAR(freeSpawnPoses),[]];
             // Select position
-            
+
             _building setVariable [QGVAR(freeSpawnPoses),_freeBuildingPositions];
-            
+
             private _numberOfUnits = round (count _freeBuildingPositions * _unitRatio);
             for "-" from 1 to _numberOfUnits do {
                 private _posToUse = _freeBuildingPositions deleteAt 0;
@@ -95,14 +95,13 @@ if(count _areas > 0) then {
                     _mkr setMarkerText (_unitClassname);
                 };
             };
-            
+
             // Set free positions left in building.
             _building setVariable [QGVAR(freeSpawnPoses),_freeBuildingPositions];
         };
     } forEach _areas;
 } else {
-    DEBUG_ERR("TMF Garrison module has no TMF Area connected to it.");
-    systemChat "TMF Garrison module has no TMF Area connected to it.";
+    ERROR_MSG("TMF Garrison module has no TMF Area connected to it.");
 };
 
 _logic setVariable ["spawned_units",units _mainGroup,true]; // global set variable

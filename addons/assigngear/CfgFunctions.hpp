@@ -1,7 +1,7 @@
 class cfgFunctions {
     class ADDON {
         class COMPONENT {
-            file = QPATHTO_FOLDER(functions);
+            file = QPATHTOF(functions);
             class addBackpackItems;
             class addItems;
             class assignGear;
@@ -28,7 +28,7 @@ class cfgFunctions {
             class onEdenMissionChange;
         };
         class DOUBLES(COMPONENT,gui) {
-            file = QPATHTO_FOLDER(gui);
+            file = QPATHTOF(gui);
             class gui_gearSelector_init;
             class gui_gearSelector_loadFactions;
             class gui_gearSelector_loadCategories;

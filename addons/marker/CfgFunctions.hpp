@@ -4,7 +4,7 @@ class cfgFunctions
     {
         class COMPONENT
         {
-            file = QPATHTO_FOLDER(functions);
+            file = QPATHTOF(functions);
             class hide;
         };
     };

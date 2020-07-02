@@ -8,7 +8,7 @@ class CfgFunctions {
     };
     class ADDON {
         class COMPONENT {
-            file = QPATHTO_FOLDER(functions);
+            file = QPATHTOF(functions);
             class adminEye_draw;
             class adminEye_onLoad;
             class adminEye_onClick;

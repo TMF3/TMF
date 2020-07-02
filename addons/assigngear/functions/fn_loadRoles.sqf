@@ -22,9 +22,7 @@ params ["_control","_value",["_faction",((_unit get3DENAttribute "TMF_assignGear
 lbClear _control;
 // Clear control
 
-
-
-if (count _selected < 1) exitWith {DEBUG_ERR("No unit selected!")};
+if (count _selected < 1) exitWith {ERROR_MSG("No unit selected!")};
 
 private _role = (_unit get3DENAttribute "TMF_assignGear_role") select 0;
 

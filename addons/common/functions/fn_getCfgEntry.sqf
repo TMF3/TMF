@@ -13,9 +13,7 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 
-if !(_this isEqualType []) exitWith {
-    DEBUG_ERR_1("Argument must be type ARRAY, not %1",(typeName _this));
-};
+params [["_arr",[],[[]]]];
 
 // Look up in missionConfigFile first
 private _path = missionConfigFile;

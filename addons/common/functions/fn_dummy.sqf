@@ -13,6 +13,4 @@
  */
 #include "\x\tmf\addons\common\script_component.hpp"
 
-DEBUG_LOG("dummy");
-DEBUG_ERR("dummy");
-DEBUG_MSG("dummy");
+LOG("dummy");
