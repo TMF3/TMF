@@ -78,10 +78,9 @@ _data params ['_groups', '_vehicles'];
     (units _grp) join _grp;
      _lastIndex = (count waypoints _grp)-1;
     [_grp] call CBA_fnc_clearWaypoints;
-
-    for "_i" from 0 to ((count _waypoints) - 1) step 1 do {
-        [_grp, _i + 1, _waypoints select _i] call CFUNC(deserializeWaypoint);
-    };
+    {
+        [_grp, _forEachIndex + 1, _x] call CFUNC(deserializeWaypoint);
+    } forEach _waypoints;
     if((count waypoints _grp) > 1) then {
         _grp setCurrentWaypoint [_grp,1]; // skip the next one okeyyo..
     };
