@@ -15,11 +15,5 @@ class cfgPatches
     };
 };
 
-
-#include "CfgFunctions.hpp"
 #include "CfgEventHandlers.hpp"
 #include "RscDisplayCurator.hpp"
-
-
-
-

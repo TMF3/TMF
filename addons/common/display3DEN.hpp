@@ -14,7 +14,7 @@ class display3DEN
                 items[] += {"TMF_Folder"};
                 class TMF_Folder {
                     text = "TMF";
-                    items[] = {"TMF_Documentation", "TMF_Settings"};
+                    items[] = {"TMF_Documentation"};
                 };
                 class TMF_Documentation
                 {

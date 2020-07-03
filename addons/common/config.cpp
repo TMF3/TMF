@@ -14,7 +14,6 @@ class cfgPatches
         VERSION_CONFIG;
     };
 };
-#include "CfgFunctions.hpp"
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"

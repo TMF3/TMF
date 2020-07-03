@@ -24,12 +24,7 @@ class CfgRespawnTemplates
         onPlayerKilled = "";
     };
 };
-
-
-
-
 #include "CfgEventHandlers.hpp"
-#include "CfgFunctions.hpp"
 #include "Cfg3DEN.hpp"
 #include "display3DEN.hpp"
 #include "dialog.hpp"

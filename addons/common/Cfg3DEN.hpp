@@ -40,7 +40,6 @@ class Cfg3DEN
             show = 0;
             tooltip = "";
             fade = 0;
-            access = 0;
             default = 0;
             blinkingPeriod = 0;
             deletable = 0;

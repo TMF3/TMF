@@ -1,5 +1,7 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
+#include "XEH_PREP.sqf"
+
 #include "initSettings.sqf"
 
 GVAR(logEntries) = [];
@@ -23,3 +25,5 @@ GVAR(logEntries) = [];
         };
     }
 ] call CBA_fnc_addEventHandler;
+
+if isServer then {call COMPILE_FILE(XEH_preServerInit)};
