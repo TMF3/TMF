@@ -15,6 +15,7 @@ PREP(isAdmin);
 PREP(capitalize);
 PREP(initGroupVar);
 PREP(getNearestRoad);
+PREP(deserializeWaypoint);
 PREP(serializeWaypoint);
 PREP(serializeWaypoints);
 PREP(moduleUnits);
