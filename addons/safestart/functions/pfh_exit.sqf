@@ -23,7 +23,7 @@ if !(isNil "ace_interaction_fnc_showMouseHint") then {
 };
 // Reenable player damage, ACE throwing.
 player allowDamage true;
-ace_advanced_throwing_enabled = true;
+ace_advanced_throwing_enabled = GVAR(ace_throwing);
 LOG("Reenabled Player");
 
 // Hide safestart text

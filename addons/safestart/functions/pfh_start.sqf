@@ -6,6 +6,19 @@ _this setVariable ["timer", _this getVariable ["params", -1]];
 player allowDamage false;
 ace_advanced_throwing_enabled = false;
 
+// Edge case
+if (isNil QGVAR(ace_throwing_setting_eh)) then {
+    GVAR(ace_throwing_setting_eh) = ["CBA_SettingChanged", {
+        params ["_setting", "_value"];
+        if (_setting == "ace_advanced_throwing_enabled") then {
+            GVAR(ace_throwing) = _value;
+            if ([] call FUNC(isActive)) then {
+                ace_advanced_throwing_enabled = false;
+            };
+        };
+    }] call CBA_fnc_addEventHandler;
+};
+
 // Show Safestart text
 DIALOG_IDD cutRsc [QGVAR(dialog),"PLAIN"];
 _textCtrl = (uiNamespace getVariable [QGVAR(display),displayNull]) displayCtrl 101; // This variable is serialized
