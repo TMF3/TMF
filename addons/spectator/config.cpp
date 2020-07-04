@@ -20,7 +20,7 @@ class CfgRespawnTemplates
     class TMF_Spectator
     {
         displayName = "TMF Spectator";
-        onPlayerRespawn  = "tmf_spectator_fnc_init";
+        onPlayerRespawn  = QFUNC(init);
         onPlayerKilled = "";
     };
 };
