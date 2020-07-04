@@ -90,7 +90,7 @@ private _fncTestUnit = {
         [_bipod, _cfgWeapons] call _fnc_checkExists;
         private _attachment = GETGEAR("attachment"); // "CfgWeapons"
         [_attachment, _cfgWeapons] call _fnc_checkExists;
-        private _silencer = GETGEAR("attachment"); //"CfgWeapons"
+        private _silencer = GETGEAR("silencer"); //"CfgWeapons"
         [_silencer, _cfgWeapons] call _fnc_checkExists;
 
         // Get other weapon and items

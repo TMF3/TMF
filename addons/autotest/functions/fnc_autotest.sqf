@@ -61,13 +61,13 @@ if (!((getMissionConfigValue ["respawn",0] == 1) and ("TMF_Spectator" in (getMis
     _lnbAdd = _ctrlListbox lnbAddRow ["",_message];
 
     if (_type == 0) then { // Cross
-        _ctrlListbox lnbSetPicture [[_lnbAdd,0],"\x\tmf\addons\briefing\UI\plus_small_ca.paa"];
+        _ctrlListbox lnbSetPicture [[_lnbAdd,0],QPATHTOEF(briefing,UI\plus_small_ca.paa)];
     };
     if (_type == -1) then { // Tick
-        _ctrlListbox lnbSetPicture [[_lnbAdd,0],"\x\tmf\addons\briefing\UI\check_small_ca.paa"];
+        _ctrlListbox lnbSetPicture [[_lnbAdd,0],QPATHTOEF(briefing,UI\check_small_ca.paa)];
     };
     if (_type == 1) then { //Warning
-        _ctrlListbox lnbSetPicture [[_lnbAdd,0],"\x\tmf\addons\autotest\UI\warning.paa"];
+        _ctrlListbox lnbSetPicture [[_lnbAdd,0],QPATHTOEF(briefing,UI\warning.paa)];
     };
 
 } forEach _output;
