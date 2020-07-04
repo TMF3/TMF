@@ -82,7 +82,8 @@ class CfgVehicles
     class VirtualMan_F;
     class GVAR(unit) : VirtualMan_F {
         author = ADDON;
-        scope = 1;
+        displayName = "TMF Spectator";
+        scope = 2;
         scopeCurator = 1;
         scopeArsenal = 1;
         delete ACE_SelfActions;
