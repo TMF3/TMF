@@ -14,13 +14,7 @@ class display3DEN
                 items[] += {"TMF_Folder"};
                 class TMF_Folder {
                     text = "TMF";
-                    items[] = {"TMF_Documentation", "TMF_Settings"};
-                };
-                class TMF_Settings
-                {
-                    text = "TMF Settings";
-                    action = "edit3DENMissionAttributes 'TMF_Settings';";
-                    picture = "\x\tmf\addons\common\UI\icon_gear_ca";
+                    items[] = {"TMF_Documentation"};
                 };
                 class TMF_Documentation
                 {

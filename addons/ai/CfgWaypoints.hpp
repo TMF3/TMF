@@ -5,7 +5,7 @@ class CfgWaypoints
         class Fortify
         {
             displayName = "Fortify";
-            file = "\x\tmf\addons\AI\functions\fn_fortify.sqf";
+            file = "\x\tmf\addons\AI\functions\fnc_fortify.sqf";
             /*
                 0: GROUP
                 1: ARRAY - Waypoint position

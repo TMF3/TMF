@@ -16,6 +16,6 @@ class cfgPatches
 };
 
 
-#include "CfgFunctions.hpp"
+#include "CfgEventHandlers.hpp"
 #include "display3DEN.hpp"
 #include "display3DENEditbox.hpp"

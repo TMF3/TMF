@@ -70,7 +70,7 @@
 
 #define SL_TEXTURES       0x10
 
-// progress bar 
+// progress bar
 #define ST_VERTICAL       0x01
 #define ST_HORIZONTAL     0
 
@@ -94,7 +94,6 @@
 
 class respawnMenu_RscText
 {
-    access = 0;
     idc = -1;
     type = 0; //%CT_STATIC
     style = 0;//ST_MULTI;
@@ -112,9 +111,8 @@ class respawnMenu_RscText
     w = 0;
 };
 
-class respawnMenu_RscCheckBox 
+class respawnMenu_RscCheckBox
 {
-    access = 0;
     idc = -1;
     type = 77;
     style = 0;//ST_MULTI;
@@ -160,7 +158,6 @@ class respawnMenu_RscCheckBox
 
 class respawnMenu_RscCombo
 {
-    access = 0;
     idc = -1;
     type = 4; //%CT_STATIC
     style = 0;//ST_MULTI;
@@ -186,11 +183,11 @@ class respawnMenu_RscCombo
     colorSelect[] = {0,0,0,1};
     colorSelectBackground[] = {1,1,1,0.7};
     colorText[] = {1,1,1,1};
-    
+
     soundCollapse[] = {"\A3\ui_f\data\sound\RscCombo\soundCollapse",0.1,1};
     soundExpand[] = {"\A3\ui_f\data\sound\RscCombo\soundExpand",0.1,1};
     soundSelect[] = {"\A3\ui_f\data\sound\RscCombo\soundSelect",0.1,1};
-    
+
     tooltipColorBox[] = {1,1,1,1};
     tooltipColorShade[] = {0,0,0,0.65};
     tooltipColorText[] = {1,1,1,1};
@@ -212,7 +209,6 @@ class respawnMenu_RscCombo
 
 class respawnMenu_RscPicture
 {
-    access = 0;
     idc = -1;
     type = CT_STATIC;
     style = ST_PICTURE;
@@ -232,8 +228,6 @@ class respawnMenu_RscPicture
 
 class respawnMenu_RscButton
 {
-    
-   access = 0;
     type = CT_BUTTON;
     text = "";
     colorText[] = {1,1,1,.9};
@@ -290,7 +284,6 @@ class respawnMenu_Box
 };
 
 class respawnMenu_RscListBox {
-    access = 0;
     type = 5;
     w = 0.4;
     h = 0.4;
@@ -333,7 +326,6 @@ class respawnMenu_RscListBox {
 
 class respawnMenu_RscEdit
 {
-     access = 0;
      type = CT_EDIT;
      style = ST_LEFT+ST_FRAME;
      x = 0;

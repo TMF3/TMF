@@ -1,15 +1,7 @@
 
-class Extended_PostInit_EventHandlers {
-    class ADDON {
-        init = QUOTE( call COMPILE_FILE(XEH_postInit) );
-    };
-};
-
-class Extended_PreInit_EventHandlers {
-    class ADDON {
-        init = QUOTE( call COMPILE_FILE(XEH_preInit) );
-    };
-};
+XEH_PRESTART;
+XEH_PREINIT;
+XEH_POSTINIT;
 
 class Extended_DisplayLoad_EventHandlers {
     class RscCustomInfoMiniMap {

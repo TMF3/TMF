@@ -1,5 +1,7 @@
 #include "script_component.hpp"
 
+#include "XEH_PREP.sqf"
+
 // Cache the facesets to uiNamespace.
 
 // Collect valid face classes.
@@ -26,7 +28,7 @@ uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
             _weightedArray append [_faceName,_probability];
         };
     } forEach configProperties [_class, "isClass _x", true];
-    
+
     if (count _weightedArray > 0) then {
         uiNamespace setVariable ["tmf_assignGear_faceset_"+_name,_weightedArray];
     };

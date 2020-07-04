@@ -21,7 +21,6 @@ class GVAR(authorized_players) {
 };
 
 #include "CfgDebriefing.hpp"
-#include "CfgFunctions.hpp"
 #include "CfgEventHandlers.hpp"
 #include "autotest.hpp"
 
