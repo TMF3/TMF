@@ -6,6 +6,7 @@ _this setVariable ["timer", _this getVariable ["params", -1]];
 player allowDamage false;
 
 if (isClass (configFile >> "CfgPatches" >> "ace_advanced_throwing")) then {
+    GVAR(ace_throwing) = ace_advanced_throwing_enabled;
     ace_advanced_throwing_enabled = false;
 
     // Edge case
