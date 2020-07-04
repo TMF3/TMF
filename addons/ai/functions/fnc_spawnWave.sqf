@@ -19,13 +19,23 @@ private _spawnedUnits = [];
 private _data = _logic getVariable [QGVAR(waveData), []];
 _data params ['_groups', '_vehicles'];
 {
-    _x params ['_type','_pos','_dir','_custom'];
+    _x params ['_type','_pos','_dir','_custom', '_pylons'];
     private _formationType = "NONE";
     if((_pos select 2) > 3) then {_formationType = "FLY"};
     private _vehicle = createVehicle [_type, [0,0,0], [], 0, _formationType];
     _vehicle setPosATL _pos;
     _vehicle setDir _dir;
     [_vehicle,_custom select 0,_custom select 1] spawn BIS_fnc_initVehicle;
+
+    if(count _pylons > 0) then {
+        private _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+        { 
+            _vehicle removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") 
+        } forEach getPylonMagazines _vehicle;
+        { 
+            _vehicle setPylonLoadout [_forEachIndex + 1, _x, true, _pylonPaths select _forEachIndex] 
+        } forEach _pylons;
+    };
     _spawnedVehicles pushBack _vehicle;
 
 } forEach _vehicles;
