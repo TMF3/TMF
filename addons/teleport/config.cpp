@@ -15,7 +15,7 @@ class cfgPatches
     };
 };
 
-#include "CfgFunctions.hpp"
+#include "CfgEventHandlers.hpp"
 #include "CfgModules.hpp"
 
 
@@ -27,7 +27,7 @@ class CfgWaypoints
         class Paradrop
         {
             displayName = "Paradrop";
-            file = "\x\tmf\addons\teleport\functions\fn_paradropWaypoint.sqf";
+            file = "\x\tmf\addons\teleport\functions\fnc_paradropWaypoint.sqf";
             icon = "\a3\air_f_beta\Parachute_01\Data\UI\map_parachute_01_ca.paa";
             class Attributes
             {

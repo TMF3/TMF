@@ -1,11 +1,4 @@
-class Extended_PostInit_EventHandlers {
-    class ADDON {
-        init = QUOTE(call COMPILE_FILE(XEH_postInit));
-    };
-};
 
-class Extended_PreStart_EventHandlers {
-    class ADDON {
-        init = QUOTE(call COMPILE_FILE(XEH_preStart));
-    };
-};
+XEH_PRESTART;
+XEH_POSTINIT;
+XEH_PREINIT;

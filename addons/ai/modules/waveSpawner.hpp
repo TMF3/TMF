@@ -47,7 +47,7 @@ class GVAR(wavespawn) : Module_F {
             description = "Well should they?"; // Tooltip description
             typeName = "bool"; // Value type, can be "NUMBER", "STRING" or "BOOL"
             defaultValue = "false";
-        }
+        };
     };
     class ModuleDescription: ModuleDescription {};
 };

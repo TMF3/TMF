@@ -15,7 +15,6 @@ class cfgPatches
     };
 };
 
-#include "CfgFunctions.hpp"
 #include "Cfg3DEN.hpp"
 #include "CfgDiary.hpp"
 #include "CfgEventHandlers.hpp"
