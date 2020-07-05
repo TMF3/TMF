@@ -12,6 +12,9 @@
  */
 #include "\x\tmf\addons\autotest\script_component.hpp"
 
+// Disabled by CBA setting
+if !(profileNamespace getVariable [QGVAR(slottingNames), false]) exitWith {};
+
 private _output = [];
 
 // Find groups with playableUnits
@@ -56,7 +59,7 @@ if (count _outputGroups > 0) then {
     {
         _string = _string + ((side _x) call BIS_fnc_sideName) + " - " + groupID _x + ", ";
     } forEach _outputGroups;
-    _output pushBack [1,format ["groups (%1): %2",count _outputGroups,_string]]; 
+    _output pushBack [1,format ["groups (%1): %2",count _outputGroups,_string]];
 };
 
 _output;
