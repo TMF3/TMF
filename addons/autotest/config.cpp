@@ -18,24 +18,4 @@ class cfgPatches
 #include "CfgEventHandlers.hpp"
 #include "Cfg3DEN.hpp"
 #include "display3DEN.hpp"
-
-class ADDON {
-    /* class exampleTest {
-      code = "";
-    };
-
-    Code should return an array of warnings (array consisting of a number and a string)
-    [
-    [-1,"test here"]
-    ]
-
-    1 = Error
-    -1 = Success
-    0 = Warning
-
-    */
-
-    class GVAR(checkDLC) {
-        code = QUOTE([] call FUNC(testDLC));
-    };
-};
+#include "autotest.hpp"

@@ -14,6 +14,7 @@ Author:
 
 LOG("Running DLC tests");
 private _warnings = [];
+private _ignoredDLC = getArray (_test >> "ignoredDLC");
 
 private _allUnits = (playableUnits + [player]);
 private _unitsDLCInfo = _allUnits apply {[_x,getPersonUsedDLCs _x]};
@@ -26,12 +27,13 @@ private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewTe
     TRACE_2("Checking unit for DLC",_unit,_dlcArr);
 
     // Get DLC short names from preStart hash
+    _dlcArr = _dlcArr - _ignoredDLC;
     _dlcArr = _dlcArr apply { [_dlcHash, _x] call CBA_fnc_hashGet };
 
     private _roleDescription = (_unit get3DENAttribute "description") select 0;
     _dlcArr = _dlcArr select {
         !([_x, _roleDescription] call BIS_fnc_inString) && // DLC usage mentioned in role description
-        !([_x, _missionSummary] call BIS_fnc_inString)  && // DLC usage mentioned in mission summary
+        !([_x, _missionSummary] call BIS_fnc_inString)     // DLC usage mentioned in mission summary
     };
 
     if !(_dlcArr isEqualTo []) then {
@@ -55,14 +57,16 @@ private _problemVehsDLC = [];
     TRACE_2("Checking vehicle for DLC",_veh,_dlc);
 
     // Get DLC short names from preStart hash
-    _dlc = [_dlcHash, _dlc] call CBA_fnc_hashGet;
+    if !(_dlc in _ignoredDLC) then {
+        _dlc = [_dlcHash, _dlc] call CBA_fnc_hashGet;
 
-    private _index = _searchTexts findIf {[_dlc,_x] call BIS_fnc_inString};
+        private _index = _searchTexts findIf {[_dlc,_x] call BIS_fnc_inString};
 
-    if (_index == -1) then {
-        TRACE_2("Vehicle found using unlisted DLC",_veh,_dlc);
-        _problemVehs = _problemVehs + 1;
-        _problemVehsDLC pushBackUnique _dlc;
+        if (_index == -1) then {
+            TRACE_2("Vehicle found using unlisted DLC",_veh,_dlc);
+            _problemVehs = _problemVehs + 1;
+            _problemVehsDLC pushBackUnique _dlc;
+        };
     };
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
