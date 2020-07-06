@@ -28,8 +28,12 @@ class ADDON {
         warningAmount = 160;
         errorAmount = 200;
     };
-    class GVAR(checkDLC) {
+    class GVAR(testDLC) {
         code = QUOTE([] call FUNC(testDLC));
         ignoredDLC[] = {/*798390*/};
+    };
+    class GVAR(testHCs) {
+        code = QUOTE([] call FUNC(testHCs));
+        expectedHCs = 0;
     };
 };
