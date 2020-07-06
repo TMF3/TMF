@@ -80,8 +80,18 @@ class Cfg3DEN
     };
     class Attributes
     {
-        class Title;
-        class Combo;
+        class Default;
+        class Title: Default {
+            class Controls {
+                class Title;
+            };
+        };
+        class Combo: Title {
+           class Controls: Controls {
+               class Title: Title {};
+               class Value;
+           };
+        };
         class Value;
         class Controls;
         // The commented below worked well for single units, but for multi-units does not work.
@@ -102,6 +112,39 @@ class Cfg3DEN
                 (str _array)";
             /
         };*/
+
+        // AI Gear module controls
+        class GVAR(DOUBLES(aigear,faction)) : Combo {
+            onLoad = QUOTE(                                                                                                                                              \
+                params ['_ctrl'];                                                                                                                                        \
+                private _ctrlCombo = _ctrl controlsGroupCtrl 100;                                                                                                        \
+                private _factionClasses = ""isNumber (_x >> 'side') && getNumber (_x >> 'side') in [ARR_4(0,1,2,3)]"" configClasses (configFile >> 'CfgFactionClasses'); \
+                _factionClasses = _factionClasses apply {[ARR_3(configName _x, getText (_x >> 'displayName'), getText (_x >> 'icon'))]};                                 \
+                {                                                                                                                                                        \
+                    _x params [ARR_3('_data','_displayName','_icon')];                                                                                                   \
+                    private _id = _ctrlCombo lbAdd _displayName;                                                                                                         \
+                    _ctrlCombo lbSetData [ARR_2(_id,_data)];                                                                                                             \
+                    _ctrlCombo lbSetPictureRight [ARR_2(_id,_icon)];                                                                                                     \
+                } forEach _factionClasses;                                                                                                                               \
+                lbSort _ctrlCombo;                                                                                                                                       \
+            );
+        };
+
+        class GVAR(loadout) : Combo {
+            class Controls: Controls {
+                class Title: Title {};
+                class Value: Value {
+                    delete Items;
+                    class ItemsConfig {
+                        path[] = {"CfgLoadouts"};
+                        localConfig = true;
+                        propertyText = "displayName";
+                        sort = true;
+                    };
+                };
+            };
+        };
+
         class TMF_Side : Combo
         {
             /* TMF_Side is a faction category chooser - name renames for backwards compatabiliy */
