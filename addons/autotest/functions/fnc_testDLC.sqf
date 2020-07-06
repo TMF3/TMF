@@ -17,7 +17,10 @@ private _warnings = [];
 private _ignoredDLC = getArray (_test >> "ignoredDLC");
 
 private _allUnits = (playableUnits + [player]);
-private _unitsDLCInfo = _allUnits apply {[_x,getPersonUsedDLCs _x]};
+private _unitsDLCInfo = _allUnits apply {
+    _x setUnitLoadout getUnitLoadout _x; // Needed to properly register DLC usage
+    [_x,getPersonUsedDLCs _x]
+};
 private _dlcHash = uiNamespace getVariable QGVAR(dlcHash);
 private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewText";
 
