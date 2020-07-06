@@ -10,7 +10,10 @@ LOG("Client PostInit started");
         case 1: {true};
         case 2: {[] call EFUNC(safestart,isActive)};
     };
-    private _templateActive = "TMF_Spectator" in getMissionConfigValue ["respawnTemplates",[]];
+    private _templateActive = (
+        "TMF_Spectator" in getMissionConfigValue ["respawnTemplates",[]] &&
+        1 isEqualTo getMissionConfigValue ["Respawn",-1]
+    );
 
     TRACE_4("Check JIP conditions",_templateActive, _isJIPAllowed, CBA_missionTime, didJIP);
     TRACE_1("Check JIP conditions 2",(_templateActive && !_isJIPAllowed && CBA_missionTime > 5 && didJIP));
