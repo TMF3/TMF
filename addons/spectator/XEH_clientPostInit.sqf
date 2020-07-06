@@ -2,12 +2,6 @@
 
 LOG("Client PostInit started");
 
-if (CBA_missionTime < 5 || ([] call EFUNC(safestart,isActive))) then {
-    // Mark player as JIPable on mission start
-    // This is kept if the player is DC'd and controlled by AI
-    player setVariable [QGVAR(isJIPable),true,true];
-};
-
 [{
     // Check if JIP is allowed, if not then kill the JIP player.
     private _isAIunit = player getVariable [QGVAR(isJIPable),false];
@@ -39,3 +33,14 @@ if (CBA_missionTime < 5 || ([] call EFUNC(safestart,isActive))) then {
 
 // Add a small delay for things to synchronize
 },[], 0.1] call CBA_fnc_waitAndExecute;
+
+// Hide ST HUD if spectator is OPEN
+if (isClass (configfile >> "CfgPatches" >> "STUI_GroupHUD")) then {
+    [{!isNil "STUI_Canvas_ShownHUD"}, {
+        STUI_Canvas_ShownHUD_old = STUI_Canvas_ShownHUD;
+        STUI_Canvas_ShownHUD = {
+            if !(call STUI_Canvas_ShownHUD_old) exitWith {false};
+            !(call FUNC(isOpen));
+        };
+    }, []] call CBA_fnc_waitUntilAndExecute;
+};
