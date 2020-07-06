@@ -22,6 +22,8 @@ PREP(setInsignia);
 PREP(setUnitTrait);
 PREP(onEdenMessageRecieved);
 PREP(onEdenMissionChange);
+PREP(moduleAIGear);
+PREP(AIGearEH);
 
 PREP(gui_gearSelector_init);
 PREP(gui_gearSelector_loadFactions);

@@ -1,4 +1,5 @@
 #define COMPONENT assignGear
+#define DEBUG_MODE_FULL
 
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
@@ -34,3 +35,4 @@
 #define LIST_18(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 #define LIST_19(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 #define LIST_20(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
+#define DEF_LOADOUTS ["baseMan","r","g","car","m","smg","ftl","sl","co","fac","ar","aar","rat","dm","mmgg","mmgac","mmgag","hmgg","hmgac","matg","matac","matag","hatg","hatac","hatag","mtrg","mtrac","mtrag","samg","samag","sn","sp","vc","vd","vg","pp","pcc","pc","eng","engm","UAV","jp"]

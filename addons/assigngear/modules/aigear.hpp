@@ -8,7 +8,8 @@ class GVAR(aiGear) : Module_F {
     functionPriority = 1;
     isGlobal = 2; // Persistent global execution
     isTriggerActivated = false;
-    isDisposable = false;
+    isDisposable = true;
+    is3DEN = false;
 
     class Attributes: AttributesBase {
         class Faction: Default {
@@ -28,11 +29,12 @@ class GVAR(aiGear) : Module_F {
         class Retroactive: Checkbox {
             property = QGVAR(DOUBLES(module,retroactive));
             displayName = "Apply retroactively";
+            typeName = "BOOL";
             defaultValue = "false";
         };
         class ModuleDescription: ModuleDescription{};
     };
     class ModuleDescription: ModuleDescription {
-        description = "Bulk assigns gear to AI units.<br/>Gear given depends on unit loadout.<br/>Depends on standard loadout class structure.";
+        description = "Bulk assigns gear to AI units.<br/>Loadouts must follow standard config structure.";
     };
 };
