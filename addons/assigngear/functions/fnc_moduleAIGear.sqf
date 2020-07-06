@@ -30,4 +30,6 @@ TRACE_3("Executed AIGear module",_faction,_loadout,_retroactive);
     _retroactive
 ] call CBA_fnc_addClassEventHandler;
 
+deleteVehicle _logic;
+
 nil
