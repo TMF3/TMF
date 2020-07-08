@@ -1,6 +1,7 @@
 #include "script_component.hpp"
 #include "\a3\3den\UI\macros.inc"
 #include "\a3\3DEN\UI\macroexecs.inc"
+#include "\a3\ui_f\hpp\defineCommon.inc"
 
 class cfgPatches
 {
@@ -40,6 +41,7 @@ class RscDisplayArsenal
        };
    };
 };
+#include "CfgScriptPaths.hpp"
 #include "CfgEventHandlers.hpp"
 #include "CfgLoadouts.hpp"
 #include "CfgModules.hpp"

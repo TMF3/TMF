@@ -115,19 +115,7 @@ class Cfg3DEN
 
         // AI Gear module controls
         class GVAR(DOUBLES(aigear,faction)) : Combo {
-            onLoad = QUOTE(                                                                                                                                              \
-                params ['_ctrl'];                                                                                                                                        \
-                private _ctrlCombo = _ctrl controlsGroupCtrl 100;                                                                                                        \
-                private _factionClasses = ""isNumber (_x >> 'side') && getNumber (_x >> 'side') in [ARR_4(0,1,2,3)]"" configClasses (configFile >> 'CfgFactionClasses'); \
-                _factionClasses = _factionClasses apply {[ARR_3(configName _x, getText (_x >> 'displayName'), getText (_x >> 'icon'))]};                                 \
-                {                                                                                                                                                        \
-                    _x params [ARR_3('_data','_displayName','_icon')];                                                                                                   \
-                    private _id = _ctrlCombo lbAdd _displayName;                                                                                                         \
-                    _ctrlCombo lbSetData [ARR_2(_id,_data)];                                                                                                             \
-                    _ctrlCombo lbSetPictureRight [ARR_2(_id,_icon)];                                                                                                     \
-                } forEach _factionClasses;                                                                                                                               \
-                lbSort _ctrlCombo;                                                                                                                                       \
-            );
+            INIT_CONTROL(GVAR(AttributesFaction),ADDON)
         };
 
         class GVAR(loadout) : Combo {
