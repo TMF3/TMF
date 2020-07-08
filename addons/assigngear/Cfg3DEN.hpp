@@ -94,24 +94,6 @@ class Cfg3DEN
         };
         class Value;
         class Controls;
-        // The commented below worked well for single units, but for multi-units does not work.
-        /*class None;
-        class TMF_assignGear_None : None
-        {
-            attributeLoad = "Sniper_test = [_value,_this]";
-
-            attributeSave = "private _objects = get3DENSelected 'object'; \
-                private _array = []; \
-                if (count _objects > 0) then { \
-                    private _x = _objects select 0; \
-                    _array = [(_x get3DENAttribute 'TMF_assignGear_role') select 0, \
-                    (_x get3DENAttribute 'TMF_assignGear_faction') select 0, \
-                    (_x get3DENAttribute 'TMF_assignGear_side') select 0, \
-                    (_x get3DENAttribute 'TMF_assignGear_enabled') select 0]; \
-                }; \
-                (str _array)";
-            /
-        };*/
 
         // AI Gear module controls
         class GVAR(DOUBLES(aigear,faction)) : Combo {
