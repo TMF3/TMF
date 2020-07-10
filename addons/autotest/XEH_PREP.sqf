@@ -1,4 +1,7 @@
 PREP(autotest);
+PREP(testDLC);
 PREP(testEndings);
-PREP(testGear);
 PREP(testInit);
+PREP(testGroups);
+PREP(testAI);
+PREP(testHCs);

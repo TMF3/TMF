@@ -1,12 +1,13 @@
 //fn_testGear
 //
-#include "\x\tmf\addons\autotest\script_component.hpp"
+#include "\x\tmf\addons\assigngear\script_component.hpp"
 
 
 private _cfgWeapons = configFile >> "CfgWeapons";
 private _cfgVehicles = configFile >> "CfgVehicles";
 private _cfgGlasses = configFile >> "CfgGlasses";
 private _cfgMagazines = configFile >> "CfgMagazines";
+private _warnWeight = getNumber (_test >> "warnWeight");
 
 
 private _output = [];
@@ -246,10 +247,10 @@ private _loadoutFreespace = [];
         if (_index != -1) then {
             _freespace = [_faction,_role] call _fncTestUnit;
             _loadoutFreespace pushBack _freespace;
-            _unit call EFUNC(assigngear,assignGear);
+            _unit call FUNC(assignGear);
             private _weight = (loadAbs _unit) * 0.1;
             _weight = (round (_weight * (1/2.2046) * 100)) / 100; // ACE calculation
-            if (_weight >= 35) then {
+            if (_weight >= _warnWeight) then {
                 _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",_weight,_faction,_role]];
             };
         } else {
@@ -289,10 +290,6 @@ private _loadoutFreespace = [];
         } forEach _radios;
     };
 } forEach allUnits;
-
-
-
-
 
 _output pushBack [-1,"AssignGear checks complete."];
 
