@@ -5,8 +5,10 @@ class TMF_ORBAT_team: Combo
         _ctrlTeams = _this controlsGroupCtrl 100 ;\
         [_ctrlTeams,_value] call TMF_orbat_fnc_loadTeams;\
     ";
-    attributeSave = " _ctrlTeams = _this controlsGroupCtrl 100;\
-        private _output = _ctrlTeams lbData lbCurSel _ctrlTeams; _output";
+    attributeSave = "\
+        _ctrlTeams = _this controlsGroupCtrl 100; \
+        private _output = _ctrlTeams lbData lbCurSel _ctrlTeams; _output \
+    ";
     class Controls
     {
         class Title: ctrlStatic {

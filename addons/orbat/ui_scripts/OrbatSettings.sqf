@@ -14,29 +14,29 @@ TODO
 
 fn_findNextFreeId = {
     private _usedIDs = [];
-    
+
     //private _duplicateIDs = [];
     fn_nextHelper = {
         params["_data","_children"];
-        
+
         _data params ["_id"];
         if (_usedIDs pushBackUnique _id == -1) then {
             //TODO (FUTURE) - cleanup broke IDs.
             //_data set [0,-1];
             //_duplicateIDs pushBack _id;
         };
-        
+
         {
             _x call fn_nextHelper;
         } forEach _children;
-    
+
     };
 
     {
         _x params ["","_root"];
         _root call fn_nextHelper;
     } forEach OrbatSettings_Array;
-    
+
     if (count _usedIDs == 0) exitWith {0};
     _usedIDs sort false;
     //Return last ID + 1. Alternatively go conservatively and re-use?
@@ -46,10 +46,11 @@ fn_findNextFreeId = {
 
 switch _mode do {
     case "onLoad": {
+        TRACE_1("OrbatSettings onLoad",_params);
         //Add EH On touch
         private _ctrlGroup = _params select 0;
         OrbatSettings_ctrlGroup = _ctrlGroup;
-        
+
         private _playableUnits = playableUnits;
         _playableUnits pushBackUnique player;
         cacheAllPlayerGroups = allGroups select {{_x in _playableUnits} count (units _x) > 0};
@@ -60,12 +61,12 @@ switch _mode do {
         {(_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (EDIT_IDCS);
         {(_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MOVE_IDCS);
 
-            
+
         OrbatSettings_Array = ("TMF_ORBAT_Settings" get3DENMissionAttribute "TMF_ORBATSettings");
         if (OrbatSettings_Array isEqualType "") then {
             OrbatSettings_Array = call compile OrbatSettings_Array;
         };
-        
+
         if (count OrbatSettings_array > 0) then {
             if ((((OrbatSettings_array) select 0) select 0) isEqualType 0) then {
                 {
@@ -73,7 +74,7 @@ switch _mode do {
                 } forEach OrbatSettings_Array;
             };
         };
-        
+
         // DIK_RETURN = 0x1C
         // Use enter key on controls seems to not work.
         /*
@@ -85,24 +86,24 @@ switch _mode do {
                     true;
                 };
                 false;
-            }];    
+            }];
         } forEach [115,123];
         */
-                
+
         // Test for now....
         // parameters, children
         //orbat [[],[]],
-        
+
         //Setup array in recursive manner....
-                
+
         // UNIQUE_ID will be used for verifying that an entity should be in the current thing.
         // start at 0, then use next free available UNIQUE_ID?
         // data = UNIQUE_ID , display name, texture1, texture2
         //texture 2 is designed for size
-        
+
         // child = [[data],children]
         //children [child,child,child]
-        
+
         /*OrbatSettings_Array = [
             [west,[
                     [0,"1PLT","x\tmf\addons\orbat\textures\yellow.paa","x\tmf\addons\orbat\textures\modif_3dot.paa"],
@@ -117,22 +118,21 @@ switch _mode do {
                     ]
                    ]]
         ];*/
-        
-        
+
+
         private _ctrlBin = _ctrlGroup controlsGroupCtrl 100;
         private _ctrlToggle = _ctrlGroup controlsGroupCtrl 101;
         private _ctrlTree = _ctrlGroup controlsGroupCtrl 102;
-        
-        //OrbatSplitBy = "side";
+
         OrbatFactionsPresent = [];
         OrbatSidesPresent = [];
-        
+
         {
             OrbatFactionsPresent pushBackUnique (faction (leader _x));
             OrbatSidesPresent pushBackUnique (side _x);
         } forEach cacheAllPlayerGroups;
-        
-        
+
+
         private _string = "";
         private _found = false;
         //Open on last open thing if valid.
@@ -141,7 +141,7 @@ switch _mode do {
                 if ((_x select 0) isEqualTo OrbatSelection) exitWith {_found = true;};
             } forEach OrbatSettings_Array;
         };
-        
+
         if (!_found) then {
             //Default
             if (count OrbatSidesPresent > 0) then {
@@ -165,7 +165,7 @@ switch _mode do {
         if (OrbatSelection isEqualType "") then {
             _string = getText (configfile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
         };
-        
+
         _ctrlToggle ctrlSetText format["< %1 >", _string];
 
 
@@ -173,6 +173,7 @@ switch _mode do {
         ["refreshTree"] call OrbatSettings_script;
     };
     case "refreshTree": {
+        TRACE_1("OrbatSettings refreshTree",_params);
         with uiNamespace do {
             private _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 102;
             tvClear _ctrlTree;
@@ -185,7 +186,7 @@ switch _mode do {
             if (_idx == -1) then {
                 _idx = OrbatSettings_Array pushBack [OrbatSelection,[]];
             };
-            
+
             private _relevantGroups = [];
             private _relevantVehicles = [];
             if (OrbatSelection isEqualType east) then {
@@ -197,15 +198,15 @@ switch _mode do {
                 _relevantGroups = (cacheAllPlayerGroups select {faction (leader _x) == OrbatSelection});
                 _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) isEqualTo (toLower OrbatSelection)};
             };
-            
+
             private _rootEntry = (OrbatSettings_Array select _idx) select 1;
-            
+
             if (count _rootEntry == 0) then {
                 _rootEntry pushBack (+[call fn_findNextFreeId, "", "", "", "Platoon",0]);
                 _rootEntry pushBack [];
             };
             OrbatTree_Data = [];
-            
+
             //Find existing IDs in the tree.
             private _orbatTreeUsedIDs = [];
             tmf_fnc_findUsedIDs = {
@@ -220,7 +221,7 @@ switch _mode do {
             };
             _rootEntry call tmf_fnc_findUsedIDs;
             tmf_fnc_findUsedIDs = nil;
-            
+
             private _toPlace = [];
             private _reserveId = (_rootEntry select 0) select 0;
             private _playableUnits = (playableUnits+switchableUnits+[player]);
@@ -238,7 +239,7 @@ switch _mode do {
                     } else {
                         _toPlace pushBack [_reserveId, _x];
                     };
-                    
+
                     {
                         private _markerEntry = _x getVariable ["TMF_SpecialistMarker",[]];
                         if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
@@ -269,28 +270,28 @@ switch _mode do {
                     _toPlace pushBack [_reserveId, _x];
                 };
             } forEach _relevantVehicles;
-            
+
             fn_processTreeEntry = {
                 params ["_entry", "_location"];
-                
+
                 if (count _entry == 0) exitWith {}; // nothing to process
-                
+
                 _entry params ["_data", "_children"];
                 _data params ["_uniqueID","_name","_tex1","_tex2",["_fName",""]];
-                
+
                 private _string = _fName;
                 if (_name != "") then {
                     _string = format["%1 (Marker: %2)", _fName, _name];
                 };
-                
+
                 private _myLocation = _location + [_ctrlTree tvAdd [_location, _string]];
                 _ctrlTree tvExpand _myLocation;
                 _ctrlTree tvSetPicture [_myLocation, _tex1];
                 _ctrlTree tvSetValue [_myLocation, OrbatTree_Data pushBack _uniqueID];
-                
+
                 //ENTITY,SORT_ID
                 orbat_queue = [];
-                
+
                 private _fnc_addinQueue = {
                     params["_proposedID", "_entity"];
                     private _returnID = -1;
@@ -299,7 +300,7 @@ switch _mode do {
                         {
                             if (_testingId isEqualTo (_x select 0)) exitWith {_collision = true;}
                         } forEach orbat_queue;
-                        
+
                         if (!_collision) exitWith {
                             _returnID = _testingId;
                         };
@@ -307,7 +308,7 @@ switch _mode do {
                     orbat_queue pushBack [_returnId, _entity];
                     _returnID
                 };
-                
+
                 // Children Logic
                 {
                     if (count _x > 0) then {
@@ -321,7 +322,7 @@ switch _mode do {
                         };
                     };
                 } forEach _children;
-                
+
 
                 {
                     _x params ["_id", "_entity"];
@@ -329,7 +330,7 @@ switch _mode do {
                         if (_entity isEqualType grpNull || {_entity in vehicles}) then {
                             private _markerEntry = _entity getVariable ["TMF_groupMarker",[]];
                             if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
-                            
+
                             private _sortId = 0;
                             if (count _markerEntry > 0) then {
                                 if (count _markerEntry > 2) then {
@@ -339,12 +340,12 @@ switch _mode do {
                                 _markerEntry = ["","","",0];
                             };
                             private _returnedId = [_sortId, _entity] call _fnc_addinQueue;
-                                                    
+
                             if (_returnedId != _sortId) then {
                                 _markerEntry set [3,_returnedId];
                                 _entity set3DENAttribute ["TMF_groupMarker",str _markerEntry]
                             };
-                            
+
                             _toPlace set [_forEachIndex,-1];
                         } else {
                             if (_entity isEqualType objNull) then {
@@ -362,18 +363,18 @@ switch _mode do {
                                     };
                                 };/* else {
                                     _markerEntry = ["","",0];
-                                };*/                            
-                                
+                                };*/
+
                                 _toPlace set [_forEachIndex,-1];
                             };
                         };
                     };
                 } forEach _toPlace;
                 _toPlace = _toPlace - [-1];
-                
+
                 //Sort queue
                 orbat_queue sort true;
-                
+
                 {
                     _x params ["","_entry"];
                     //Virtual Array
@@ -385,7 +386,7 @@ switch _mode do {
                     if (_entry isEqualType grpNull || _isVeh) then {
                         private _groupMarkerData =  (_entry get3DENAttribute "TMF_groupMarker") select 0;
                         if (_groupMarkerData isEqualType "") then { _groupMarkerData = call compile _groupMarkerData; };
-                        
+
                         private _string = "";
                         if (_isVeh) then {
                             // Get callsign.
@@ -404,7 +405,7 @@ switch _mode do {
                         };
                         private _location = _myLocation + [_ctrlTree tvAdd [_myLocation, _string]];
 
-                        _ctrlTree tvSetValue [_location, OrbatTree_Data pushBack _entry];    
+                        _ctrlTree tvSetValue [_location, OrbatTree_Data pushBack _entry];
                         if (count _groupMarkerData > 0) then {
                             _groupMarkerData params ["_icon"];//,"_mName","_size"];
                             _ctrlTree tvSetPicture [_location, _icon];
@@ -423,7 +424,7 @@ switch _mode do {
                                 if (_mName != "") then {
                                     _string = format["%1 (Marker: %2)", _string, _mName];
                                 };
-                                
+
                                 _location = _myLocation + [_ctrlTree tvAdd [_myLocation, _string]];
 
                                 _ctrlTree tvSetPicture [_location, _unitIcon];
@@ -440,6 +441,7 @@ switch _mode do {
         };
     };
     case "orbatToggleButton": {
+        TRACE_1("OrbatSettings orbatToggleButton",_params);
         with uiNamespace do {
             private _ctrlToggle = OrbatSettings_ctrlGroup controlsGroupCtrl 101;
             if (OrbatSelection isEqualType east) then {
@@ -460,19 +462,20 @@ switch _mode do {
                 private _string = getText (configfile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
                 _ctrlToggle ctrlSetText format["< %1 >", _string];
             };
-            
-            
+
+
             ["refreshTree"] call OrbatSettings_script;
         };
     };
     case "treeDelClick": {
+        TRACE_1("OrbatSettings treeDelClick",_params);
         with uiNamespace do {
             private _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 102;
             private _treeSel = tvCurSel _ctrlTree;
-            
+
             if (count _treeSel == 0) exitWith {};
             private _value =  OrbatTree_Data select (_ctrlTree tvValue _treeSel);
-            
+
             if (_value isEqualType 0) then {
                 //find it.
                 private _idx = -1;
@@ -480,7 +483,7 @@ switch _mode do {
                     if ((_x select 0) isEqualTo OrbatSelection) exitWith { _idx = _forEachIndex;};
                 } forEach OrbatSettings_Array;
                 private _entry = (OrbatSettings_Array select _idx) select 1;
-                
+
                 fn_delEntryHelper = {
                     params["_entry", "_value"];
                     private _children = _entry select 1;
@@ -506,11 +509,12 @@ switch _mode do {
                     } forEach (units _x);
                 } forEach (cacheAllPlayerGroups);
             };
-            
+
             ["refreshTree"] call OrbatSettings_script;
         };
-    };    
+    };
     case "treeAddClick": {
+        TRACE_1("OrbatSettings treeAddClick",_params);
         with uiNamespace do {
             private _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 102;
             if ( count (tvCurSel _ctrlTree) == 0 ) exitWith {};
@@ -521,52 +525,53 @@ switch _mode do {
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MAIN_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (EDIT_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MOVE_IDCS);
-            
+
             private _ctrlIconToolbox = OrbatSettings_ctrlGroup controlsGroupCtrl 111;
             private _ctrlColourToolBox = OrbatSettings_ctrlGroup controlsGroupCtrl 113;
             private _ctrlNameEdit = OrbatSettings_ctrlGroup controlsGroupCtrl 115;
             private _ctrlSize = OrbatSettings_ctrlGroup controlsGroupCtrl 117;
             private _ctrlFullNameEdit = OrbatSettings_ctrlGroup controlsGroupCtrl 123;
-            
+
             _ctrlColourToolBox lbsetcursel 0;
             _ctrlIconToolbox lbsetcursel 0;
             _ctrlSize lbsetcursel 0;
             _ctrlNameEdit ctrlSetText "";
             _ctrlFullNameEdit ctrlSetText "";
-            
+
             OrbatEditMode = 0; // 0 for add
-            
+
             private _idx = -1;
             {
                 if ((_x select 0) isEqualTo OrbatSelection) exitWith { _idx = _forEachIndex;};
             } forEach OrbatSettings_Array;
             private _entry = (OrbatSettings_Array select _idx) select 1;
-            
+
             fn_editSearchHelper = {
                 params["_entry", "_value"];
                 _entry params ["_data","_children"];
                 if ((_data select 0) == _value) exitWith {
                     OrbatSettingsCurrentEntity = _entry;
                     true
-                }; 
+                };
                 {
                     if ([_x, _value] call fn_editSearchHelper) exitWith {};
                 } forEach _children;
                 false
             };
-            [_entry, _value] call fn_editSearchHelper;            
-            
+            [_entry, _value] call fn_editSearchHelper;
+
         };
     };
     case "treeEditClick": {
+        TRACE_1("OrbatSettings treeEditClick",_params);
         with uiNamespace do {
-            
+
             private _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 102;
             if ( count (tvCurSel _ctrlTree) == 0 ) exitWith {};
-            
+
             private _treeSel = tvCurSel _ctrlTree;
             private _value = OrbatTree_Data select (_ctrlTree tvValue _treeSel);
-            
+
             private _ctrlIconToolbox = OrbatSettings_ctrlGroup controlsGroupCtrl 111;
             private _ctrlColourToolBox = OrbatSettings_ctrlGroup controlsGroupCtrl 113;
             private _ctrlNameEdit = OrbatSettings_ctrlGroup controlsGroupCtrl 115;
@@ -576,11 +581,11 @@ switch _mode do {
             _ctrlColourToolBox lbsetcursel 0;
             _ctrlIconToolbox lbsetcursel 0;
             _ctrlSize lbsetcursel 0;
-            
+
             //TODO : edit Object/specialist marker
             if (_value isEqualType objNull) exitWith {};
             OrbatEditMode = 1; // 1 for edit
-            
+
             OrbatSettingsCurrentEntity = [];
             if (_value isEqualType 0) then {
                 //find  our side/facion entry.
@@ -589,7 +594,7 @@ switch _mode do {
                     if ((_x select 0) isEqualTo OrbatSelection) exitWith { _idx = _forEachIndex;};
                 } forEach OrbatSettings_Array;
                 private _entry = (OrbatSettings_Array select _idx) select 1;
-                    
+
 
                 fn_editSearchHelper = {
                     params["_entry", "_value"];
@@ -597,7 +602,7 @@ switch _mode do {
                     if ((_data select 0) == _value) exitWith {
                         OrbatSettingsCurrentEntity = _entry;
                         true
-                    }; 
+                    };
                     {
                         if ([_x, _value] call fn_editSearchHelper) exitWith {};
                     } forEach _children;
@@ -606,11 +611,11 @@ switch _mode do {
                 [_entry, _value] call fn_editSearchHelper;
                 //};
             };
-        
+
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MAIN_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (EDIT_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MOVE_IDCS);
-            
+
             //Find element in the tree
             if (_value isEqualType grpNull) then {
                 GroupMarker_numID = 0;
@@ -620,7 +625,7 @@ switch _mode do {
                 };
                 //Hide the full name editor.
                 {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach [122,123];
-                
+
                 if (count _groupMarkerArray > 0) then {
                     _groupMarkerArray params ["_icon", "_mName", "_size", "_numId"];
                     GroupMarker_numID = _numId;
@@ -629,13 +634,13 @@ switch _mode do {
                         private _lastPart = _parts select (count _parts -1);
                         private _parts = _lastPart splitString '_';
                         private _colour = _parts select 0;
-                        
+
                         _parts deleteAt 0;
                         _parts = "_" + (_parts joinString '_');
-                        
+
                         private _toolBoxIcon = ["", "_inf.paa", "_inf_airmobile.paa", "_inf_mech.paa", "_inf_mech_wheeled.paa", "_inf_motor.paa", "_inf_para.paa", "_amphi.paa", "_amphi_mech_inf.paa", "_airdef.paa", "_airdef_not_a_nipple.paa", "_antitank.paa", "_antitank_rocket.paa", "_armor.paa", "_armor_wheeled.paa", "_arm_airdef.paa", "_arm_spaag.paa", "_artillery.paa", "_rotarywing.paa", "_helo_attack.paa", "_helo_cargo.paa", "_fixedwing.paa", "_hq.paa", "_logistics.paa", "_mg.paa", "_mg_m.paa", "_mg_h.paa", "_mortar.paa", "_motor.paa", "_para.paa", "_para_mech.paa", "_recon.paa", "_recon_mech.paa", "_recon_mech_wheeled.paa", "_recon_motor.paa", "_engineer.paa", "_service.paa", "_sf.paa", "_signal.paa", "_spaag.paa", "_transport.paa", "_uav.paa", ".paa"];
                         private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
-                        
+
                         _ctrlColourToolBox lbsetcursel (_colours find _colour);
                         _ctrlIconToolbox lbsetcursel (_toolBoxIcon find _parts);
                     };
@@ -650,7 +655,7 @@ switch _mode do {
                     _ctrlFullNameEdit ctrlSetText "";
                 };
             };
-            
+
             if (count OrbatSettingsCurrentEntity > 0) then {
                 OrbatSettingsCurrentEntity params ["_data"];
                 _data params ["","_mName","_icon","_size", ["_fName",""]];
@@ -659,13 +664,13 @@ switch _mode do {
                     private _lastPart = _parts select (count _parts -1);
                     private _parts = _lastPart splitString '_';
                     private _colour = _parts select 0;
-                    
+
                     _parts deleteAt 0;
                     _parts = "_" + (_parts joinString '_');
-                    
+
                     private _toolBoxIcon = ["", "_inf.paa", "_inf_airmobile.paa", "_inf_mech.paa", "_inf_mech_wheeled.paa", "_inf_motor.paa", "_inf_para.paa", "_amphi.paa", "_amphi_mech_inf.paa", "_airdef.paa", "_airdef_not_a_nipple.paa", "_antitank.paa", "_antitank_rocket.paa", "_armor.paa", "_armor_wheeled.paa", "_arm_airdef.paa", "_arm_spaag.paa", "_artillery.paa", "_rotarywing.paa", "_helo_attack.paa", "_helo_cargo.paa", "_fixedwing.paa", "_hq.paa", "_logistics.paa", "_mg.paa", "_mg_m.paa", "_mg_h.paa", "_mortar.paa", "_motor.paa", "_para.paa", "_para_mech.paa", "_recon.paa", "_recon_mech.paa", "_recon_mech_wheeled.paa", "_recon_motor.paa", "_engineer.paa", "_service.paa", "_sf.paa", "_signal.paa", "_spaag.paa", "_transport.paa", "_uav.paa", ".paa"];
                     private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
-                    
+
                     _ctrlColourToolBox lbsetcursel (_colours find _colour);
                     _ctrlIconToolbox lbsetcursel (_toolBoxIcon find _parts);
                 };
@@ -676,10 +681,11 @@ switch _mode do {
                 _ctrlNameEdit ctrlSetText _mName;
                 _ctrlFullNameEdit ctrlSetText _fName;
             };
-            
-        };    
+
+        };
     };
     case "editOrbatEntryClickCancel": {
+        TRACE_1("OrbatSettings editOrbatEntryClickCancel",_params);
         with uiNamespace do {
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (MAIN_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (EDIT_IDCS);
@@ -688,6 +694,7 @@ switch _mode do {
         };
     };
     case "editOrbatEntryClickOkay":{
+        TRACE_1("OrbatSettings editOrbatEntryClickOkay",_params);
         with uiNamespace do {
             private _ctrlIconToolbox = OrbatSettings_ctrlGroup controlsGroupCtrl 111;
             private _ctrlColourToolBox = OrbatSettings_ctrlGroup controlsGroupCtrl 113;
@@ -699,23 +706,23 @@ switch _mode do {
             private _toolBoxIcon = ["", "_inf.paa", "_inf_airmobile.paa", "_inf_mech.paa", "_inf_mech_wheeled.paa", "_inf_motor.paa", "_inf_para.paa", "_amphi.paa", "_amphi_mech_inf.paa", "_airdef.paa", "_airdef_not_a_nipple.paa", "_antitank.paa", "_antitank_rocket.paa", "_armor.paa", "_armor_wheeled.paa", "_arm_airdef.paa", "_arm_spaag.paa", "_artillery.paa", "_rotarywing.paa", "_helo_attack.paa", "_helo_cargo.paa", "_fixedwing.paa", "_hq.paa", "_logistics.paa", "_mg.paa", "_mg_m.paa", "_mg_h.paa", "_mortar.paa", "_motor.paa", "_para.paa", "_para_mech.paa", "_recon.paa", "_recon_mech.paa", "_recon_mech_wheeled.paa", "_recon_motor.paa", "_engineer.paa", "_service.paa", "_sf.paa", "_signal.paa", "_spaag.paa", "_transport.paa", "_uav.paa", ".paa"];
             private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
             private _sizeMod = ["x\tmf\addons\orbat\textures\empty.paa", "x\tmf\addons\orbat\textures\modif_o.paa","x\tmf\addons\orbat\textures\modif_dot.paa","x\tmf\addons\orbat\textures\modif_2dot.paa","x\tmf\addons\orbat\textures\modif_3dot.paa", "x\tmf\addons\orbat\textures\modif_company.paa"];
-            
+
             private _icon = _toolBoxIcon select (lbCurSel _ctrlIconToolbox);
             private _path = "";
-            
+
             if (_icon != "") then {
                 _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbcursel _ctrlColourToolBox)) + _icon;
             };
-            
+
             private _idx = (lbCurSel _ctrlSize);
             private _mod = "";
             if (_idx > 0) then {
                 _mod = _sizeMod select _idx;
             };
-        
+
             private _value = OrbatTree_Data select (_ctrlTree tvValue (tvCurSel _ctrlTree));
             if (OrbatEditMode == 0) then { // Add Entry.
-                
+
                 private _data = [[call fn_findNextFreeId, (ctrlText _ctrlNameEdit), _path, _mod, (ctrlText _ctrlFullNameEdit), 0],[]];
                 //append to children
                 (OrbatSettingsCurrentEntity select 1) pushBack _data;
@@ -740,20 +747,21 @@ switch _mode do {
             ["refreshTree"] call OrbatSettings_script;
         };
     };
-        
+
     case "treeMoveClick": {
+        TRACE_1("OrbatSettings treeMoveClick",_params);
         with uiNamespace do {
             private _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 102;
             if ( count (tvCurSel _ctrlTree) == 0 ) exitWith {};
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MAIN_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (EDIT_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (MOVE_IDCS);
-            
+
             private _value = OrbatTree_Data select (_ctrlTree tvValue (tvCurSel _ctrlTree));
             if (!(_value isEqualType 0)) then { _value = -1};
             _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 108;
             tvClear _ctrlTree;
-            
+
             private _idx = -1;
             {
                 if ((_x select 0) isEqualTo OrbatSelection) exitWith { _idx = _forEachIndex;};
@@ -761,22 +769,22 @@ switch _mode do {
             if (_idx == -1) then {
                 _idx = OrbatSettings_Array pushBack [OrbatSelection,[]];
             };
-                        
+
             private _rootEntry = (OrbatSettings_Array select _idx) select 1;
-            
+
             if (count _rootEntry == 0) then {
                 _rootEntry pushBack [call fn_findNextFreeId, "", "", ""];
                 _rootEntry pushBack [];
             };
-            
+
             fn_processTreeEntry2 = {
                 params ["_entry", "_location", "_value"];
-                
+
                 if (count _entry == 0) exitWith {}; // nothing to process
-                
+
                 _entry params ["_data", "_children"];
                 _data params ["_id","_name","_tex1","_tex2",["_fName",""]];
-            
+
                 if (_id != _value) then {
                     private _string = _fName;
                     if (_name != "") then {
@@ -786,25 +794,26 @@ switch _mode do {
                     _ctrlTree tvSetPicture [_myLocation, _tex1];
                     _ctrlTree tvSetValue [_myLocation, _id];
                     _ctrlTree tvExpand _myLocation;
-                    
+
                     {
                         [_x, _myLocation, _value] call fn_processTreeEntry2;
                     } forEach _children;
                 };
             };
-            
+
             [_rootEntry, [], _value] call fn_processTreeEntry2;
 
         };
     };
     case "moveTreeDoubleClick": {
+        TRACE_1("OrbatSettings moveTreeDoubleClick",_params);
         with uiNamespace do {
 
             //Find entry to move and remove it
             private _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 102;
             private _value = (_ctrlTree tvValue (tvCurSel _ctrlTree));
             _value = (OrbatTree_Data select _value);
-            
+
             if (_value isEqualType 0) then {
                 private _idx = -1;
                 {
@@ -813,9 +822,9 @@ switch _mode do {
                 if (_idx == -1) then {
                     _idx = OrbatSettings_Array pushBack [OrbatSelection,[]];
                 };
-                            
+
                 private _rootEntry = (OrbatSettings_Array select _idx) select 1;
-                
+
                 OrbatSettingsDesiredEntry = [];
                 fn_findEntryHelper = {
                     params["_entry", "_value"];
@@ -830,7 +839,7 @@ switch _mode do {
                     } forEach _children;
                 };
                 [_rootEntry, _value] call fn_findEntryHelper;
-                            
+
                 //Push Entry...
                 if (count OrbatSettingsDesiredEntry > 0) then {
                     _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 108;
@@ -841,7 +850,7 @@ switch _mode do {
                         if ((_data select 0) == _value) exitWith {
                             _children pushBack OrbatSettingsDesiredEntry;
                             true
-                        }; 
+                        };
                         {
                             if ([_x, _value] call fn_orbatSearchHelper) exitWith {true};
                         } forEach _children;
@@ -855,7 +864,7 @@ switch _mode do {
                 _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 108;
                 _value set3DENAttribute ["TMF_OrbatParent", (_ctrlTree tvValue (tvCurSel _ctrlTree))];
             };
-            
+
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (MAIN_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (EDIT_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MOVE_IDCS);
@@ -871,12 +880,15 @@ switch _mode do {
                 } forEach _array;
             };
         };
+        TRACE_2("OrbatSettings attrSave",_params,_array);
         str _array
     };
     case "attributeLoad": {
+        TRACE_1("OrbatSettings attrLoad",_params);
     // Do nothing.
     };
     case "orbatBinChanged": {
+        TRACE_1("OrbatSettings orbatBinChanged",_params);
         if ((_params select 1)==0)then { //side
             with uiNamespace do {
                 OrbatSelection = OrbatSidesPresent select 0;
@@ -889,7 +901,7 @@ switch _mode do {
         with uiNamespace do {
 
             OrbatSettings_Array = [    [OrbatSelection,[]]    ];
-            
+
             //ERASE ATTRIBUTES
             {
                 private _attrValue = (_x get3DENAttribute "TMF_OrbatParent") select 0;
@@ -899,9 +911,9 @@ switch _mode do {
                     if (_attrValue == _val) then { _x set3DENAttribute ["TMF_OrbatParent", -1]; }
                 } forEach (units _x);
             } forEach (cacheAllPlayerGroups);
-            
+
             private _ctrlToggle = OrbatSettings_ctrlGroup controlsGroupCtrl 101;
-            
+
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (MAIN_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (EDIT_IDCS);
             {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MOVE_IDCS);
@@ -912,7 +924,7 @@ switch _mode do {
             if (OrbatSelection isEqualType "") then {
                 _string = getText (configfile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
             };
-            
+
             _ctrlToggle ctrlSetText format["< %1 >", _string];
             ["refreshTree"] call OrbatSettings_script;
         };
@@ -921,10 +933,11 @@ switch _mode do {
     case "moveDown";
     case "moveBottom";
     case "moveTop": {
+        TRACE_1("OrbatSettings moveAny",_params);
         with uiNamespace do {
             private _ctrlTree = OrbatSettings_ctrlGroup controlsGroupCtrl 102;
             private _value = OrbatTree_Data select (_ctrlTree tvValue (tvCurSel _ctrlTree));
-            
+
             // MOVE CODE
             private _idx = -1;
             {
@@ -934,7 +947,7 @@ switch _mode do {
             if (_idx == -1) then {
                 //_idx = OrbatSettings_Array pushBack [OrbatSelection,[]];
             };
-            
+
             private _relevantGroups = [];
             private _relevantVehicles = [];
             if (OrbatSelection isEqualType east) then {
@@ -946,7 +959,7 @@ switch _mode do {
                 _relevantGroups = (cacheAllPlayerGroups select {faction (leader _x) == OrbatSelection});
                 _relevantVehicles = vehicles select {((_x get3DENAttribute "tmf_orbat_team") param [0,""]) isEqualTo (toLower OrbatSelection)};
             };
-            
+
             private _rootEntry = (OrbatSettings_Array select _idx) select 1;
             private _toPlace = [];
             private _reserveId = (_rootEntry select 0) select 0;
@@ -1003,18 +1016,18 @@ switch _mode do {
                     _toPlace pushBack [_reserveId, _x];
                 };
             } forEach _relevantVehicles;
-            
+
             fn_processTreeEntry = {
                 params ["_entry", "_location"];
-                
+
                 if (count _entry == 0) exitWith {}; // nothing to process
-                
+
                 _entry params ["_data", "_children"];
                 _data params ["_uniqueID"];
 
                 //ENTITY,SORT_ID
                 orbat_queue = [];
-    
+
                 // Children Logic
                 {
                     if (count _x > 0) then {
@@ -1026,7 +1039,7 @@ switch _mode do {
                         };
                     };
                 } forEach _children;
-                
+
 
                 {
                     _x params ["_id", "_entity"];
@@ -1039,7 +1052,7 @@ switch _mode do {
                                 _sortId = _markerEntry select 3;
                             };
                             orbat_queue pushBack [_sortId, _entity];
-                            
+
                             _toPlace set [_forEachIndex, -1];
                         } else {
                             if (_entity isEqualType objNull) then {
@@ -1047,21 +1060,21 @@ switch _mode do {
                                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                                 private _sortId = 0;
                                 if (count _markerEntry > 2) then {
-                                    _sortId = _markerEntry select 2;                
+                                    _sortId = _markerEntry select 2;
                                 };
                                 orbat_queue pushBack [_sortId, _entity];
-                                                            
+
                                 _toPlace set [_forEachIndex, -1];
                             };
                         };
                     };
                 } forEach _toPlace;
                 _toPlace = _toPlace - [-1];
-                
+
                 //Sort queue
                 orbat_queue sort true;
 
-                
+
                 private _found = false;
                 {
                     _x params ["_sortId","_entry"];
@@ -1070,7 +1083,7 @@ switch _mode do {
                         private _newsSortId = _sortId; // keep old ID
 
                         private _swapEntry = -1;
-                        
+
                         if (_mode == "moveTop") then {
                             _newsSortId = ((orbat_queue select (0)) select 0)-1;
                             _swapEntry = -1;
@@ -1099,15 +1112,15 @@ switch _mode do {
                         if (_entry isEqualType grpNull || {_entry in vehicles}) then {
                             private _markerEntry = _entry getVariable ["TMF_groupMarker",[]];
                             if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
-                            
+
                             if (count _markerEntry == 0) then {
                                 _markerEntry = (+["","","",0]);
-                            };            
+                            };
 
                             _markerEntry set [3,_newsSortId];
                             _entry set3DENAttribute ["TMF_groupMarker",str _markerEntry];
                         } else {
-                            if (_entry isEqualType objNull) then {                    
+                            if (_entry isEqualType objNull) then {
                                 private _markerEntry = _entry getVariable ["TMF_SpecialistMarker",[]];
                                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                                 if (count _markerEntry == 0) then {
@@ -1126,15 +1139,15 @@ switch _mode do {
                         if (_swapEntry isEqualType grpNull || {_swapEntry in vehicles}) then {
                             private _markerEntry = _swapEntry getVariable ["TMF_groupMarker",[]];
                             if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
-                            
+
                             if (count _markerEntry == 0) then {
                                 _markerEntry = (+["","","",0]);
-                            };            
+                            };
 
                             _markerEntry set [3,_sortId];
                             _swapEntry set3DENAttribute ["TMF_groupMarker",str _markerEntry];
                         } else {
-                            if (_swapEntry isEqualType objNull) then {                    
+                            if (_swapEntry isEqualType objNull) then {
                                 private _markerEntry = _swapEntry getVariable ["TMF_SpecialistMarker",[]];
                                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                                 if (count _markerEntry == 0) then {
@@ -1147,7 +1160,7 @@ switch _mode do {
                         };
                     };
                 } forEach orbat_queue;
-                
+
                 //do sub children
                 if (!_found) then {
                     {
@@ -1160,15 +1173,15 @@ switch _mode do {
                 //orbat_queue = nil;
             };
             [_rootEntry, []] call fn_processTreeEntry;
-            
-            
-            
+
+
+
             //END MOVE
-            
+
 
             ["refreshTree"] call OrbatSettings_script;
         };
     };
-    
-    
+
+
 };
