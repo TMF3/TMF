@@ -31,7 +31,7 @@ if (isServer) then {
         {
             // Mark player as JIPable on mission start
             // This is kept if the player is DC'd and controlled by AI
-            player setVariable [QGVAR(isJIPable),true,true];
+            _x setVariable [QGVAR(isJIPable),true,true];
         } forEach playableUnits;
     },[],5] call CBA_fnc_waitAndExecute;
 
