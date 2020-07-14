@@ -17,6 +17,7 @@ class cfgPatches
 
 #include "Cfg3DEN.hpp"
 #include "CfgEventHandlers.hpp"
+#include "autotest.hpp"
 
 /*#include "CfgLoadouts.hpp"*/
 

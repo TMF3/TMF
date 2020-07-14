@@ -33,3 +33,4 @@ PREP(createUnitControl);
 PREP(createVehicleControl);
 PREP(updateKillList);
 PREP(initSpectatorUnit);
+PREP(testSpectator);
