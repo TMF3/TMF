@@ -2,6 +2,8 @@
 
 LOG("Client PostInit started");
 
+if (player isKindOf QGVAR(unit)) exitWith {};
+
 [{
     // Check if JIP is allowed, if not then kill the JIP player.
     private _isAIunit = player getVariable [QGVAR(isJIPable),false];
