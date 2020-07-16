@@ -139,8 +139,8 @@ if((_logic getVariable ["unfreeze", false])) then {
         _trigger setTriggerArea [_buildingSize * 3, _buildingSize * 3, 0, false, 10];
         _trigger setTriggerActivation ["ANYPLAYER","PRESENT",false];
         _trigger setTriggerStatements [
-            QUOTE(private _side = (thisTrigger getVariable [ARR_2(QGVAR(side), opfor)]); this && ({ side _x != _side} count thisList) > 0),
-            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2(QGVAR(units), [])]);),
+            QUOTE(private _side = (thisTrigger getVariable [ARR_2(QQGVAR(side), opfor)]); this && ({ side _x != _side} count thisList) > 0),
+            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2(QQGVAR(units), [])]);),
             ""
         ];
     } forEach _garrisonedBuildings;
