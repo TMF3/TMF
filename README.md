@@ -27,7 +27,7 @@ Join us on discord by clicking on the shield above.
 
 ## Credits
 The TMF Team:
-Head, Nick and Snippers
+Head, Bear and Snippers
 
 Special Thanks:
 - Team One Tactical (1Tac) - http://www.teamonetactical.com
@@ -37,6 +37,8 @@ Special Thanks:
 - Bear
 - Feanix
 - Morbo
+- Nick
+- Freddo
 
 We would also like to thank all developers who have publically released any content for Arma. Without you all the Arma community wouldn't be what it is!
 
