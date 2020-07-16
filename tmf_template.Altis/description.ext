@@ -1,4 +1,4 @@
-tmf_version[] = {1,0,1}; // DO NOT CHANGE THIS. This is the core version of the template that your mission was started with.
+tmf_version[] = {1,1,0}; // DO NOT CHANGE THIS. This is the core version of the template that your mission was started with.
 enableDebugConsole = 1; // Allows the logged in admin to use the debug console from the escape page.
 
 // Use a randomized loading image from TMF. Set your own loading image with e.g. overviewPicture = "image.jpg";
@@ -41,20 +41,10 @@ class CfgDebriefing
 
 class CfgLoadouts
 {
-    class US_ARMY_OCP
+    class EXAMPLE_LOADOUT
     {
-        displayName = "US Army (OCP)";
-        #include "loadouts\us_army_ocp.hpp"
-    };
-    class RUS_MSV_FLORA
-    {
-        displayName = "RU Ground Forces (Flora)";
-        #include "loadouts\ru_msv_flora.hpp"
-    };
-    class TAK_ARMY
-    {
-        displayName = "Takistani Army";
-        #include "loadouts\taki_army.hpp"
+        displayName = "Example Loadout";
+        #include "loadouts\example_loadout.hpp"
     };
 };
 
