@@ -34,11 +34,10 @@ Special Thanks:
 - CBA Team - http://www.github.com/CBATeam/CBA_A3/
 - F3 Framework - http://ferstaberinde.com/f3/en/
 - ACE Team - https://github.com/acemod/ACE3
-- Bear
 - Feanix
-- Morbo
 - Nick
 - Freddo
+- Morbo
 
 We would also like to thank all developers who have publically released any content for Arma. Without you all the Arma community wouldn't be what it is!
 
