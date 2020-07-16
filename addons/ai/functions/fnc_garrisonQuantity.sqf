@@ -126,7 +126,7 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         _mkr setMarkerText (_unitClassname);
     };
 };
-if((_logic getVariable ["unfreeze", true])) then {
+if((_logic getVariable ["unfreeze", false])) then {
     {
         private _building = _x;
         private _buildingCenter = _building modelToWorld (boundingCenter _building);
