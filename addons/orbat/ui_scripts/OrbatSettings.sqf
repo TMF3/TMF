@@ -228,7 +228,7 @@ switch _mode do {
             _playableUnits = _playableUnits arrayIntersect _playableUnits;
             {
                 if (_x in cacheAllPlayerGroups) then {
-                    private _var = _x getVariable ["TMF_OrbatParent",-1];
+                    private _var = (_x get3DENAttribute "TMF_OrbatParent") # 0;
                     if (_var != -1) then {
                         if (_var in _orbatTreeUsedIDs) then {
                             _toPlace pushBack [_var, _x];
@@ -241,7 +241,7 @@ switch _mode do {
                     };
 
                     {
-                        private _markerEntry = _x getVariable ["TMF_SpecialistMarker",[]];
+                        private _markerEntry = (_x get3DENAttribute "TMF_SpecialistMarker") # 0;
                         if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                         if (count _markerEntry > 0) then {
                             _markerEntry params ["_mTexture"];
@@ -258,7 +258,7 @@ switch _mode do {
             } forEach _relevantGroups;
 
             {
-                private _var = _x getVariable ["TMF_OrbatParent",-1];
+                private _var = (_x get3DENAttribute "TMF_OrbatParent") # 0;
                 if (_var != -1) then {
                     if (_var in _orbatTreeUsedIDs) then {
                         _toPlace pushBack [_var, _x];
@@ -328,7 +328,7 @@ switch _mode do {
                     _x params ["_id", "_entity"];
                     if (_id == _uniqueID) then {
                         if (_entity isEqualType grpNull || {_entity in vehicles}) then {
-                            private _markerEntry = _entity getVariable ["TMF_groupMarker",[]];
+                            private _markerEntry = (_entity get3DENAttribute "TMF_groupMarker") # 0;
                             if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
 
                             private _sortId = 0;
@@ -349,7 +349,7 @@ switch _mode do {
                             _toPlace set [_forEachIndex,-1];
                         } else {
                             if (_entity isEqualType objNull) then {
-                                private _markerEntry = _entity getVariable ["TMF_SpecialistMarker",[]];
+                                private _markerEntry = (_entity get3DENAttribute "TMF_SpecialistMarker") # 0;
                                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                                 private _sortId = 0;
                                 if (count _markerEntry > 0) then {
@@ -967,14 +967,14 @@ switch _mode do {
             _playableUnits = _playableUnits arrayIntersect _playableUnits;
             {
                 if (_x in cacheAllPlayerGroups) then {
-                    private _var = _x getVariable ["TMF_OrbatParent",-1];
+                    private _var = (_x get3DENAttribute "TMF_OrbatParent") # 0;
                     if (_var != -1) then {
                         _toPlace pushBack [_var, _x];
                     } else {
                         _toPlace pushBack [_reserveId, _x];
                     };
                     {
-                        private _markerEntry = _x getVariable ["TMF_SpecialistMarker",[]];
+                        private _markerEntry = (_x get3DENAttribute "TMF_SpecialistMarker") # 0;
                         if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                         if (count _markerEntry > 0) then {
                             _markerEntry params ["_mTexture"];
@@ -1004,7 +1004,7 @@ switch _mode do {
             _rootEntry call tmf_fnc_findUsedIDs;
             tmf_fnc_findUsedIDs = nil;
             {
-                private _var = _x getVariable ["TMF_OrbatParent",-1];
+                private _var = (_x get3DENAttribute "TMF_OrbatParent") # 0;
                 if (_var != -1) then {
                     if (_var in _orbatTreeUsedIDs) then {
                         _toPlace pushBack [_var, _x];
@@ -1045,7 +1045,7 @@ switch _mode do {
                     _x params ["_id", "_entity"];
                     if (_id == _uniqueID) then {
                         if (_entity isEqualType grpNull || {_entity in vehicles}) then {
-                            private _markerEntry = _entity getVariable ["TMF_groupMarker",[]];
+                            private _markerEntry = (_entity get3DENAttribute "TMF_groupMarker") # 0;
                             if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                             private _sortId = 0;
                             if (count _markerEntry > 3) then {
@@ -1056,7 +1056,7 @@ switch _mode do {
                             _toPlace set [_forEachIndex, -1];
                         } else {
                             if (_entity isEqualType objNull) then {
-                                private _markerEntry = _entity getVariable ["TMF_SpecialistMarker",[]];
+                                private _markerEntry = (_entity get3DENAttribute "TMF_SpecialistMarker") # 0;
                                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                                 private _sortId = 0;
                                 if (count _markerEntry > 2) then {
@@ -1110,7 +1110,8 @@ switch _mode do {
                             _data set [5,_newsSortId];
                         };
                         if (_entry isEqualType grpNull || {_entry in vehicles}) then {
-                            private _markerEntry = _entry getVariable ["TMF_groupMarker",[]];
+
+                            private _markerEntry = (_entry get3DENAttribute "TMF_groupMarker") # 0;
                             if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
 
                             if (count _markerEntry == 0) then {
@@ -1137,7 +1138,7 @@ switch _mode do {
                             _data set [5,_sortId];
                         };
                         if (_swapEntry isEqualType grpNull || {_swapEntry in vehicles}) then {
-                            private _markerEntry = _swapEntry getVariable ["TMF_groupMarker",[]];
+                            private _markerEntry = (_swapEntry get3DENAttribute "TMF_groupMarker") # 0;
                             if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
 
                             if (count _markerEntry == 0) then {
@@ -1148,7 +1149,7 @@ switch _mode do {
                             _swapEntry set3DENAttribute ["TMF_groupMarker",str _markerEntry];
                         } else {
                             if (_swapEntry isEqualType objNull) then {
-                                private _markerEntry = _swapEntry getVariable ["TMF_SpecialistMarker",[]];
+                                private _markerEntry = (_swapEntry get3DENAttribute "TMF_SpecialistMarker") # 0;
                                 if (_markerEntry isEqualType "") then { _markerEntry = call compile _markerEntry; };
                                 if (count _markerEntry == 0) then {
                                     _markerEntry = ["","",0];
