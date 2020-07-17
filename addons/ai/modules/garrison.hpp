@@ -104,10 +104,10 @@ class GVAR(garrisonQuantity) : Module_F
         {
             displayName = "Enable wakeup";
             tooltip = "Enable AI to move if any enemies are close";
-            property = "unfreeze";
+            property = "WakeUp";
             control = "Checkbox";
             defaultValue = false;
-            expression = "_this setVariable ['%s', _value];";
+            expression = "_this setVariable ['%s',_value];";
         };
     };
 };

@@ -126,21 +126,21 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         _mkr setMarkerText (_unitClassname);
     };
 };
-if((_logic getVariable ["unfreeze", false])) then {
+if((_logic getVariable ["WakeUp", false])) then {
     {
         private _building = _x;
         private _buildingCenter = _building modelToWorld (boundingCenter _building);
         _buildingCenter set [2,0]; // set to ground
         private _buildingSize = (boundingBox _building) # 2;
         private _trigger = createTrigger ["EmptyDetector", _buildingCenter, false];
-        _trigger setVariable [QGVAR(side), _side];
-        _trigger setVariable [QGVAR(units), _building getVariable [QGVAR(garrisonedUnits), []]];
+        _trigger setVariable ["side", _side];
+        _trigger setVariable ["units", _building getVariable [QGVAR(garrisonedUnits), []]];
         _trigger setTriggerInterval 2; // set interval to 2 seconds
         _trigger setTriggerArea [_buildingSize * 3, _buildingSize * 3, 0, false, 10];
         _trigger setTriggerActivation ["ANYPLAYER","PRESENT",false];
         _trigger setTriggerStatements [
-            QUOTE(private _side = (thisTrigger getVariable [ARR_2(QQGVAR(side), opfor)]); this && ({ side _x != _side} count thisList) > 0),
-            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2(QQGVAR(units), [])]);),
+            QUOTE(private _side = (thisTrigger getVariable [ARR_2('side', opfor)]); this && ({ side _x != _side} count thisList) > 0),
+            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2('units', [])]); deleteVehicle thisTrigger;),
             ""
         ];
     } forEach _garrisonedBuildings;
