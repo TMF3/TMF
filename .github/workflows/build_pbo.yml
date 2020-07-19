@@ -24,4 +24,4 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Build pbos
-      run: Build.exe
+      run: ./Build.exe
