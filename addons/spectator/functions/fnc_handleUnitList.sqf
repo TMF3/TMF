@@ -1,66 +1,60 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
-
+if(!([] call FUNC(isOpen))) exitWith {};
 disableSerialization;
+private _treeView = (uiNamespace getVariable [QGVAR(unitlist),controlNull]);
 
-if(GVAR(unitUpdate) > time) exitWith {};
-GVAR(unitUpdate) = time+(random 3 max 1);
-
-private _unitListControl = (uiNamespace getVariable [QGVAR(unitlist),controlNull]);
-
-if(GVAR(clearGroups)) then { /* Used by UI which groups to display */
+if(GVAR(clearGroups)) then {
     GVAR(clearGroups) = false;
-
-    // clear everything
-    tvClear _unitListControl;
+    tvClear _treeView;
     GVAR(groups) = [];
 };
-private _newGroups = [];
-if(!GVAR(playersOnly)) then {
-    _newGroups = (allGroups select {side _x in tmf_spectator_sides && {alive _x} count units _x > 0}) - GVAR(groups);
-} else { 
-    _newGroups = (allGroups select {side _x in tmf_spectator_sides && {alive _x && {{isPlayer _x || _x in playableUnits} count (units _x) > 0}} count units _x > 0 }) - GVAR(groups);
+private _grps = allGroups select {side _x in GVAR(sides) && (units _x) findIf {alive _x} >= 0};
+if (GVAR(playersOnly)) then {
+   // _grps = _grps arrayIntersect (([] call CBA_fnc_players) apply {group _x});
+};
+private _lookupGroups = _grps apply {[_x call BIS_fnc_netId, _x]};
+
+private _toDelete = [];
+private _foundGroups = [];
+private _items = [];
+for "_index" from 0 to (_treeView tvCount []) do {
+    private _netId = _treeView tvData [_index];
+
+    _grpIndex = _lookupGroups findIf {(_x # 0) == _netId };
+    if(_grpIndex >= 0) then {
+        private _grp = ((_lookupGroups # _grpIndex) # 1);
+        _foundGroups pushBack _grp;
+        if(((units _grp) findIf {alive _x}) >= 0) then {
+            private _deleteRows = [];
+            for "_childIndex" from 0 to (_treeView tvCount [_index]) do {
+                private _unitId = _treeView tvData [_index, _childIndex];
+                private _unit = _unitId call BIS_fnc_objectFromNetId;
+                if(!alive _unit || (group _unit) != _grp) then {
+                    _deleteRows pushBack _childIndex;
+                } else {
+                    private _icon = getText (configFile >> "CfgVehicles" >> typeof (vehicle _unit) >> "icon");
+                    if (isText (configfile >> "CfgVehicleIcons" >> _icon )) then {
+                        _icon = getText (configfile >> "CfgVehicleIcons" >> _icon );
+                    };
+                    _treeView tvSetPicture [[_index, _childIndex], _icon];
+                }
+            };
+            {
+                _treeView tvDelete [_index, _x];
+            } forEach _deleteRows;
+        } else {
+            _toDelete pushBack _index;
+        };
+    } else {
+        _toDelete pushBack _index;
+    };
 };
 
-private _grps = (GVAR(groups)+_newGroups);
-//Reset/redraw all.
-tvClear _unitListControl;
-GVAR(groups) = [];
-//Remove AI
-if (GVAR(playersOnly)) then { _grps = _grps select {{isPlayer _x || _x in playableUnits} count (units _x) > 0}; };
-// create tee nodes
+{
+    _treeView tvDelete [_x];
+} forEach _toDelete;
+
 {
     [_x] call FUNC(createGroupNode);
-} forEach _grps;
-
-private _deadGroups = [];
-{
-    private _path = [_forEachIndex];
-    private _count = _unitListControl tvCount _path;
-    private _units = (units _x select {alive _x});
-    if(_count != count _units) then {
-        // Erase all unit entries in the tree.
-        for "_i" from 0 to _count do {
-            _unitListControl tvDelete [_forEachIndex,0];
-        };
-
-        if(count _units > 0) then {
-            //Re-create units
-            {
-                [_x,_path select 0] call FUNC(createUnitNode);
-            } forEach _units;
-        } else {
-            //Mark group for deletion.
-            _deadGroups pushBack [_forEachIndex,_x];
-        };
-    };
-} forEach GVAR(groups);
-
-
-{
-    _x params ["_index","_grp"];
-    _unitListControl tvDelete [_index - _forEachIndex]; // Use _forEachIndex to offset the index change after each deletion
-    GVAR(groups) = GVAR(groups) - [_grp];
-} forEach _deadGroups;
-
-// TODO - Consider making curSel set to GVAR(target)
-// _unitListControl tvSetCurSel _index;
+} forEach (_grps - _foundGroups);
+GVAR(groups) = _grps;

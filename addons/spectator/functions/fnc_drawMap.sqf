@@ -21,19 +21,12 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
 
 {
     private _grp = _x;
-    private _grpCache = _grp getVariable [QGVAR(grpCache),[-9999,[],[1,1,1,1],false]];
+    private _grpCache = _grp getVariable [QGVAR(grpCache),[[],[1,1,1,1],false]];
+    _grpCache params ["_grpPos","_color","_isAI"];
 
-
-
-    // check if its time to update
-    if(time > (_grpCache # 0)) then {
-        _grpCache = ([_grp] call FUNC(updateGroupCache));
-    };
-
-    _grpCache params ["_grpTime","_grpPos","_color","_isAI"];
 
     // Draw the group marker if we arent an AI group.
-    if(!_isAI) then {
+    if(GVAR(showGroupMarkers) == 1 || {!_isAI}) then {   
         [_map, _grp, _color, _grpPos] call FUNC(drawGroupMarker);
     };
     private _units = [];
@@ -47,11 +40,11 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
         } else {
             [_map, _unit, _color, _grpPos] call FUNC(drawUnitMarker);
         }
-    } forEach units _grp;
+    } forEach (units _grp select {alive _x});
 
     {
         [_map, _x, _color, _grpPos] call FUNC(drawVehicleMarker);
-    } forEach _vehicles;
+    } forEach (_vehicles select {alive _x});
 
 } forEach allGroups;
 
@@ -88,9 +81,9 @@ if(GVAR(tracers)) then {
         };
         if(_type > 0) then {
             private _icon = switch (_type) do {
-                case 1 : { GVAR(grenadeIcon) };
-                case 2 : { GVAR(smokeIcon) };
-                case 3 : { GVAR(missileIcon) };
+                case 1 : { GRENADE_ICON };
+                case 2 : { SMOKE_ICON };
+                case 3 : { MISSILE_ICON };
             };
             _map drawIcon [_icon, [1,0,0,1], _pos, 10, 10,0,"",0];
             _map drawLine [_posArray # 0, _pos, [1,0,0,1]];

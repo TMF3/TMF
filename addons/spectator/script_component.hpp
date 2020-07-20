@@ -7,5 +7,8 @@
 #define MAP_FONT "RobotoCondensedLight"
 #define KIA_ICON "\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa"
 #define CAMERA_ICON "\A3\ui_f\data\GUI\Rsc\RscDisplayMissionEditor\iconCamera_ca.paa"
+#define MISSILE_ICON "\x\tmf\addons\spectator\images\missile.paa"
+#define GRENADE_ICON "\x\tmf\addons\spectator\images\grenade.paa"
+#define SMOKE_ICON "\x\tmf\addons\spectator\images\smokegrenade.paa"
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
