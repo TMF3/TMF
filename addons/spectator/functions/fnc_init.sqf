@@ -173,8 +173,8 @@ GVAR(sides_button_strings) = ["SHOWING ALL SIDES", "SHOWING BLUFOR", "SHOWING OP
 
 if (!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
   GVAR(sides) = [tmf_spectator_entryside];
-  GVAR(sides_button_mode) = [[tmf_spectator_entryside], []];
-  GVAR(sides_button_strings) = ["SHOWING YOUR SIDE", "NONE"];
+  GVAR(sides_button_mode) = [[tmf_spectator_entryside]];
+  GVAR(sides_button_strings) = ["SHOWING YOUR SIDE"];
 };
 
 GVAR(visionMode) = 0;

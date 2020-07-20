@@ -35,6 +35,8 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
         _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
     };
 
+    // Render group marker
+
     if (_render) then {
         _control ctrlShow true;
         (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 600); // Nametag
@@ -46,9 +48,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
         _control ctrlShow false;
     };
     
-    ////////////////////////////////////////////////////////
     // Unit / vehicle tags
-    ////////////////////////////////////////////////////////
     {
         private _isVeh = !isNull (objectParent _x);
         private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
@@ -167,10 +167,6 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
     };
 } forEach GVAR(objectives);
 
-// emit event
-[QGVAR(draw3D), [_campos]] call CBA_fnc_localEvent;
-
-
 ////////////////////////////////////////////////////////
 // Dead units (skull icon upon death)
 ////////////////////////////////////////////////////////
@@ -215,3 +211,6 @@ if(!GVAR(tracers)) exitWith {};
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
 } forEach GVAR(rounds);
+
+// emit event
+[QGVAR(draw3D), [_campos]] call CBA_fnc_localEvent;

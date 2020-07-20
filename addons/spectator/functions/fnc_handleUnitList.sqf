@@ -10,7 +10,7 @@ if(GVAR(clearGroups)) then {
 };
 private _grps = allGroups select {side _x in GVAR(sides) && (units _x) findIf {alive _x} >= 0};
 if (GVAR(playersOnly)) then {
-   // _grps = _grps arrayIntersect (([] call CBA_fnc_players) apply {group _x});
+   _grps = _grps arrayIntersect (playableUnits apply {group _x});
 };
 private _lookupGroups = _grps apply {[_x call BIS_fnc_netId, _x]};
 
