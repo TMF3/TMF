@@ -1,4 +1,3 @@
-#define DEBUG_MODE_FULL
 #include "\x\tmf\addons\autotest\script_component.hpp"
 
 private _ctrlListbox = (_this controlsGroupCtrl 101);

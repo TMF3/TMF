@@ -61,6 +61,19 @@ if ([1,0,1] isEqualTo getArray (missionConfigFile >> "tmf_version")) then {
         } forEach _outputGroups;
         _output pushBack [1,format ["groups (%1): %2",count _outputGroups,_string]];
     };
+} else {
+    private _units = (playableUnits + [player]);
+    {
+        private _desc = (_x get3DENAttribute "description") # 0;
+
+        if (_desc isEqualTo "") then {
+            _output pushBack [1,format ["Unit lacks role description: %1",_x]];
+        } else {
+            if !("@" in _desc) then {
+                _output pushBack [1,format ["Unit lacks slotting group name: %1 (should be: %1@Group Name)", _desc]];
+            };
+        };
+    } forEach (playableUnits + [player]);
 };
 
-_output;
+_output
