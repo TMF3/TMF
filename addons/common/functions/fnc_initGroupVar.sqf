@@ -25,4 +25,4 @@ _entity setVariable [_str, _val]; // for Eden
 [{
     params["_entity", "_str", "_val"];
     _entity setVariable [_str, _val, true];
-}, [_entity,_str,_val], 0] call CBA_fnc_waitAndExecute;
+}, [_entity,_str,_val]] call CBA_fnc_execNextFrame;

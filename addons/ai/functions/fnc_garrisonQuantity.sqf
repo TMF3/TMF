@@ -32,7 +32,8 @@ private _debug = _logic getVariable ["Debug",false];
 private _areas = (synchronizedObjects _logic) select {side _x == sideLogic && _x isKindOf QGVAR(area)};
 _areas pushBack _logic; // Add the garrison module as viable area.
 private _unitData = _logic getVariable [QGVAR(unitData),[]];
-private _mainGroup = createGroup ((_unitData select 0) select 0);
+private _side = ((_unitData select 0) select 0);
+private _mainGroup = createGroup _side;
 [_mainGroup,QGVAR(garrisonGroup),true] call tmf_common_fnc_initGroupVar;
 private _holdPos = _logic getVariable ["hold", false];
 
@@ -85,7 +86,7 @@ if (_aiNumberToSpawn > _freeBuildingSpaces) then {
     _mkr setMarkerColor "ColorRed";
     _mkr setMarkerText format ["Error - TMF Garrison Module - Unable to find sufficent building places (%1 available / %2 needed)", _freeBuildingSpaces, _aiNumberToSpawn];
 };
-
+private _garrisonedBuildings = [];
 for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
     private _building = selectRandom _freeBuildings;
     private _freeBuildingPositions = _building getVariable [QGVAR(freeSpawnPoses),[]];
@@ -108,6 +109,13 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         _unit disableAI "PATH";
         _unit setUnitPos "UP";
     };
+    _building setVariable
+    [
+        QGVAR(garrisonedUnits),
+        (_building getVariable [QGVAR(garrisonedUnits),[]]) + [_unit]
+    ];
+
+    _garrisonedBuildings pushBackUnique _building;
 
     if(_debug) then {
         private _mkr = createMarker [str (random 999),_posToUse];
@@ -117,6 +125,25 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
         _mkr setMarkerColor "ColorRed";
         _mkr setMarkerText (_unitClassname);
     };
+};
+if((_logic getVariable ["WakeUp", false])) then {
+    {
+        private _building = _x;
+        private _buildingCenter = _building modelToWorld (boundingCenter _building);
+        _buildingCenter set [2,0]; // set to ground
+        private _buildingSize = (boundingBox _building) # 2;
+        private _trigger = createTrigger ["EmptyDetector", _buildingCenter, false];
+        _trigger setVariable ["side", _side];
+        _trigger setVariable ["units", _building getVariable [QGVAR(garrisonedUnits), []]];
+        _trigger setTriggerInterval 2; // set interval to 2 seconds
+        _trigger setTriggerArea [_buildingSize * 3, _buildingSize * 3, 0, false, 10];
+        _trigger setTriggerActivation ["ANYPLAYER","PRESENT",false];
+        _trigger setTriggerStatements [
+            QUOTE(private _side = (thisTrigger getVariable [ARR_2('side', opfor)]); this && ({ side _x != _side} count thisList) > 0),
+            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2('units', [])]); deleteVehicle thisTrigger;),
+            ""
+        ];
+    } forEach _garrisonedBuildings;
 };
 
 // Ensure side is corrected -- https://feedback.bistudio.com/T70739.

@@ -27,15 +27,16 @@ Join us on discord by clicking on the shield above.
 
 ## Credits
 The TMF Team:
-Head, Nick and Snippers
+Head, Bear and Snippers
 
 Special Thanks:
 - Team One Tactical (1Tac) - http://www.teamonetactical.com
 - CBA Team - http://www.github.com/CBATeam/CBA_A3/
 - F3 Framework - http://ferstaberinde.com/f3/en/
 - ACE Team - https://github.com/acemod/ACE3
-- Bear
 - Feanix
+- Nick
+- Freddo
 - Morbo
 
 We would also like to thank all developers who have publically released any content for Arma. Without you all the Arma community wouldn't be what it is!
