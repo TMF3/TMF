@@ -16,7 +16,7 @@ private _output = [];
 
 // Deprecated in newer versions, replaced by CBA system
 // https://github.com/CBATeam/CBA_A3/wiki/Name-Groups-in-Lobby
-if ([1,0,1] isEqualTo getArray (missionConfigFile >> "tmf_version")) then {
+if ([[1,1,0]] call FUNC(checkTMFVersion)) then {
     // Find groups with playableUnits
     private _groups = [];
     {_groups pushBackUnique (group _x);} forEach playableUnits;

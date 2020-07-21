@@ -8,7 +8,7 @@ class EditorData
 	toggles=1;
 	class ItemIDProvider
 	{
-		nextID=797;
+		nextID=799;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={370.65524,573.57343,-88.708572};
-		dir[]={-0.18066283,-0.87684894,0.44559649};
-		up[]={-0.3294768,0.48068744,0.81263852};
-		aside[]={0.92675328,-1.1222437e-007,0.37574646};
+		pos[]={213.33923,52.646957,82.39019};
+		dir[]={0.034436684,-0.82459927,0.56475425};
+		up[]={0.050191652,0.56561619,0.82313734};
+		aside[]={0.99819148,6.7924339e-007,-0.0608656};
 	};
 };
 binarizationWanted=1;
@@ -660,25 +660,6 @@ class CustomAttributes
 		name="Scenario";
 		class Attribute0
 		{
-			property="EnableDebugConsole";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=0;
-				};
-			};
-		};
-		class Attribute1
-		{
 			property="TMF_common_introText";
 			expression="[_value] call tmf_common_fnc_intro";
 			class Value
@@ -696,11 +677,31 @@ class CustomAttributes
 				};
 			};
 		};
+		class Attribute1
+		{
+			property="EnableDebugConsole";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0;
+				};
+			};
+		};
 		nAttributes=2;
 	};
 };
 class Mission
 {
+	assetType="Free";
 	class Intel
 	{
 		overviewText="*** Insert mission description here. ***";
@@ -708,7 +709,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=239;
+		items=241;
 		class Item0
 		{
 			dataType="Object";
@@ -5635,7 +5636,7 @@ class Mission
 						skill=0.60000002;
 						rank="LIEUTENANT";
 						name="UnitNATO_CO";
-						description="Commander@NATO";
+						description="Commander@NATO HQ";
 						isPlayer=1;
 						isPlayable=1;
 					};
@@ -5822,7 +5823,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={21,5.0014391,107.09961};
+						position[]={21,5.0014391,107.10001};
 					};
 					side="West";
 					flags=4;
@@ -5831,7 +5832,7 @@ class Mission
 						skill=0.60000002;
 						rank="CORPORAL";
 						name="UnitNATO_CO_M";
-						description="Medic@NATO";
+						description="Medic@NATO HQ";
 						isPlayable=1;
 					};
 					id=92;
@@ -5839,6 +5840,120 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM""]";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="example_loadout";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male12ENG";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -5857,45 +5972,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM"",-11]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -5914,10 +5991,34 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={11,5.0014391,107.10001};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						name="UnitNATO_CO_UAV";
+						description="UAV Operator@NATO HQ";
+						isPlayable=1;
+					};
+					id=93;
+					type="B_soldier_UAV_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -5926,14 +6027,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="["""",""""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -5952,31 +6053,83 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item2
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={11,5.0014391,107.09961};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="CORPORAL";
-						name="UnitNATO_CO_UAV";
-						description="UAV Operator@NATO";
-						isPlayable=1;
-					};
-					id=93;
-					type="B_soldier_UAV_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male05ENG";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -5995,45 +6148,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="["""",""""]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -6052,45 +6167,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="example_loadout";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 				class Item3
@@ -6098,7 +6175,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={26,5.0014391,102.09961};
+						position[]={26,5.0014391,102.10001};
 					};
 					side="West";
 					flags=4;
@@ -6106,7 +6183,7 @@ class Mission
 					{
 						skill=0.60000002;
 						name="UnitNATO_CO_D";
-						description="Driver@NATO";
+						description="Driver@NATO HQ";
 						isPlayable=1;
 					};
 					id=94;
@@ -6114,25 +6191,6 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""r"",""example_loadout"",true]";
-								};
-							};
-						};
-						class Attribute1
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -6151,7 +6209,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="example_loadout";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -6170,10 +6266,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -6182,17 +6278,17 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"SCALAR"
 										};
 									};
-									value=1;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
-							property="TMF_assignGear_faction";
-							expression="false";
+							property="speaker";
+							expression="_this setspeaker _value;";
 							class Value
 							{
 								class data
@@ -6204,35 +6300,11 @@ class Mission
 											"STRING"
 										};
 									};
-									value="example_loadout";
+									value="Male10ENG";
 								};
 							};
 						};
-						nAttributes=5;
-					};
-				};
-				class Item4
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={6,5.0014391,102.09961};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="CORPORAL";
-						name="UnitNATO_CO_FAC";
-						description="FAC@NATO";
-						isPlayable=1;
-					};
-					id=95;
-					type="B_Soldier_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -6247,11 +6319,35 @@ class Mission
 											"STRING"
 										};
 									};
-									value="[""fac"",""example_loadout"",true]";
+									value="[""r"",""example_loadout"",true]";
 								};
 							};
 						};
-						class Attribute1
+						nAttributes=7;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={6,5.0014391,102.10001};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						name="UnitNATO_CO_FAC";
+						description="FAC@NATO HQ";
+						isPlayable=1;
+					};
+					id=95;
+					type="B_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -6270,7 +6366,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="example_loadout";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -6289,7 +6423,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.03;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04ENG";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""fac"",""example_loadout"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -6308,10 +6499,34 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={31,5.0014391,97.100006};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="SERGEANT";
+						name="UnitNATO_SGT";
+						description="Platoon SGT@NATO HQ";
+						isPlayable=1;
+					};
+					id=97;
+					type="B_officer_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -6320,14 +6535,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="[""x\tmf\addons\orbat\textures\yellow_chevrons.paa"",""SGT""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -6346,69 +6561,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item5
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={31,5.0014391,97.099609};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="SERGEANT";
-						name="UnitNATO_SGT";
-						description="Platoon SGT@NATO";
-						isPlayable=1;
-					};
-					id=97;
-					type="B_officer_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""sl"",""example_loadout"",true]";
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_chevrons.paa"",""SGT"",1]";
-								};
-							};
-						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -6427,7 +6599,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male07ENG";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""sl"",""example_loadout"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -6446,45 +6675,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="example_loadout";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 			};
@@ -6528,7 +6719,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="["""",""NATO CO"","""",0]";
+							value="[""x\tmf\addons\orbat\textures\yellow_hq.paa"",""NATO CO"","""",0]";
 						};
 					};
 				};
@@ -14441,7 +14632,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={16,5.0014391,240.0498};
+						position[]={16,5.0014391,240.05};
 					};
 					side="East";
 					flags=6;
@@ -14451,7 +14642,7 @@ class Mission
 						rank="LIEUTENANT";
 						lock="UNLOCKED";
 						name="UnitCSAT_CO";
-						description="Commander@CSAT";
+						description="Commander@CSAT HQ";
 						isPlayable=1;
 					};
 					id=158;
@@ -14459,6 +14650,120 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="["""",""""]";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="opf_f";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.03;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03PER";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -14477,45 +14782,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="["""",""""]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -14534,10 +14801,34 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={21,5.0014391,235.10001};
+					};
+					side="East";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						name="UnitCSAT_CO_M";
+						description="Medic@CSAT HQ";
+						isPlayable=1;
+					};
+					id=159;
+					type="O_medic_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -14546,14 +14837,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -14572,31 +14863,83 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={21,5.0014391,235.09961};
-					};
-					side="East";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="CORPORAL";
-						name="UnitCSAT_CO_M";
-						description="Medic@CSAT";
-						isPlayable=1;
-					};
-					id=159;
-					type="O_medic_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02PER";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -14615,45 +14958,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM"",-3]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -14672,10 +14977,34 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={11,5.0014391,235.10001};
+					};
+					side="East";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						name="UnitCSAT_CO_UAV";
+						description="UAV Operator@CSAT HQ";
+						isPlayable=1;
+					};
+					id=160;
+					type="O_soldier_UAV_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -14684,14 +15013,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="["""",""""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -14710,31 +15039,83 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item2
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={11,5.0014391,235.09961};
-					};
-					side="East";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="CORPORAL";
-						name="UnitCSAT_CO_UAV";
-						description="UAV Operator@CSAT";
-						isPlayable=1;
-					};
-					id=160;
-					type="O_soldier_UAV_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03PER";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -14753,45 +15134,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="["""",""""]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -14810,45 +15153,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="opf_f";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 				class Item3
@@ -14856,7 +15161,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={26,5.0014391,230.09961};
+						position[]={26,5.0014391,230.10001};
 					};
 					side="East";
 					flags=4;
@@ -14864,7 +15169,7 @@ class Mission
 					{
 						skill=0.60000002;
 						name="UnitCSAT_CO_D";
-						description="Driver@CSAT";
+						description="Driver@CSAT HQ";
 						isPlayable=1;
 					};
 					id=161;
@@ -14872,25 +15177,6 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""r"",""opf_f"",true]";
-								};
-							};
-						};
-						class Attribute1
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -14909,7 +15195,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="opf_f";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -14928,10 +15252,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -14940,17 +15264,17 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"SCALAR"
 										};
 									};
-									value=1;
+									value=1.04;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
-							property="TMF_assignGear_faction";
-							expression="false";
+							property="speaker";
+							expression="_this setspeaker _value;";
 							class Value
 							{
 								class data
@@ -14962,34 +15286,11 @@ class Mission
 											"STRING"
 										};
 									};
-									value="opf_f";
+									value="Male01PER";
 								};
 							};
 						};
-						nAttributes=5;
-					};
-				};
-				class Item4
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={6,5.0014391,230.09961};
-					};
-					side="East";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						name="UnitCSAT_CO_FAC";
-						description="FAC@CSAT";
-						isPlayable=1;
-					};
-					id=162;
-					type="O_Soldier_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -15004,11 +15305,34 @@ class Mission
 											"STRING"
 										};
 									};
-									value="[""fac"",""opf_f"",true]";
+									value="[""r"",""opf_f"",true]";
 								};
 							};
 						};
-						class Attribute1
+						nAttributes=7;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={6,5.0014391,230.10001};
+					};
+					side="East";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						name="UnitCSAT_CO_FAC";
+						description="FAC@CSAT HQ";
+						isPlayable=1;
+					};
+					id=162;
+					type="O_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -15027,7 +15351,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="opf_f";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -15046,7 +15408,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01PER";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""fac"",""opf_f"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -15065,10 +15484,35 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={31,5.0014391,225.10001};
+					};
+					side="East";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="SERGEANT";
+						lock="UNLOCKED";
+						name="UnitCSAT_SGT";
+						description="Platoon SGT@CSAT HQ";
+						isPlayable=1;
+					};
+					id=164;
+					type="O_officer_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -15077,14 +15521,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="[""x\tmf\addons\orbat\textures\yellow_chevrons.paa"",""SGT""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -15103,70 +15547,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item5
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={31,5.0014391,225.09961};
-					};
-					side="East";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="SERGEANT";
-						lock="UNLOCKED";
-						name="UnitCSAT_SGT";
-						description="Platoon SGT@CSAT";
-						isPlayable=1;
-					};
-					id=164;
-					type="O_officer_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""sl"",""opf_f"",true]";
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_chevrons.paa"",""SGT"",-4]";
-								};
-							};
-						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -15185,7 +15585,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.03;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02PER";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""sl"",""opf_f"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -15204,45 +15661,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="opf_f";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 			};
@@ -15286,7 +15705,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="["""",""CSAT CO"","""",0]";
+							value="[""x\tmf\addons\orbat\textures\yellow_hq.paa"",""CSAT CO"","""",0]";
 						};
 					};
 				};
@@ -22533,7 +22952,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={208,5.0014391,208.04999};
+						position[]={208,5.0014391,208.05};
 					};
 					side="Independent";
 					flags=6;
@@ -22542,7 +22961,7 @@ class Mission
 						skill=0.60000002;
 						rank="LIEUTENANT";
 						name="UnitAAF_CO";
-						description="Commander@AAF";
+						description="Commander@AAF HQ";
 						isPlayable=1;
 					};
 					id=224;
@@ -22550,6 +22969,120 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="["""",""""]";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ind_f";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male05GRE";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -22568,45 +23101,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="["""",""""]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -22625,10 +23120,33 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={213,5.0014391,203.10001};
+					};
+					side="Independent";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						name="UnitAAF_CO_M";
+						description="Medic@AAF HQ";
+						isPlayable=1;
+					};
+					id=225;
+					type="I_medic_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -22637,14 +23155,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -22663,30 +23181,83 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={213,5.0014391,203.09979};
-					};
-					side="Independent";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						name="UnitAAF_CO_M";
-						description="Medic@AAF";
-						isPlayable=1;
-					};
-					id=225;
-					type="I_medic_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1.01;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01GRE";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -22705,45 +23276,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM"",-14]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -22762,10 +23295,33 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={203,5.0014391,203.10001};
+					};
+					side="Independent";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						name="UnitAAF_CO_UAV";
+						description="UAV Operator@AAF HQ";
+						isPlayable=1;
+					};
+					id=226;
+					type="I_soldier_UAV_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -22774,14 +23330,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="["""",""""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -22800,30 +23356,83 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item2
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={203,5.0014391,203.09979};
-					};
-					side="Independent";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						name="UnitAAF_CO_UAV";
-						description="UAV Operator@AAF";
-						isPlayable=1;
-					};
-					id=226;
-					type="I_soldier_UAV_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03GRE";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -22842,45 +23451,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="["""",""""]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -22899,45 +23470,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ind_f";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 				class Item3
@@ -22945,7 +23478,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={218,5.0014391,198.09979};
+						position[]={218,5.0014391,198.10001};
 					};
 					side="Independent";
 					flags=4;
@@ -22953,7 +23486,7 @@ class Mission
 					{
 						skill=0.60000002;
 						name="UnitAAF_CO_D";
-						description="Driver@AAF";
+						description="Driver@AAF HQ";
 						isPlayable=1;
 					};
 					id=227;
@@ -22961,25 +23494,6 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""r"",""ind_f"",true]";
-								};
-							};
-						};
-						class Attribute1
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -22998,7 +23512,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ind_f";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -23017,10 +23569,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -23029,17 +23581,17 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"SCALAR"
 										};
 									};
-									value=1;
+									value=0.95999998;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
-							property="TMF_assignGear_faction";
-							expression="false";
+							property="speaker";
+							expression="_this setspeaker _value;";
 							class Value
 							{
 								class data
@@ -23051,34 +23603,11 @@ class Mission
 											"STRING"
 										};
 									};
-									value="ind_f";
+									value="Male04GRE";
 								};
 							};
 						};
-						nAttributes=5;
-					};
-				};
-				class Item4
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={198,5.0014391,198.09979};
-					};
-					side="Independent";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						name="UnitAAF_CO_FAC";
-						description="FAC@AAF";
-						isPlayable=1;
-					};
-					id=228;
-					type="I_soldier_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -23093,11 +23622,34 @@ class Mission
 											"STRING"
 										};
 									};
-									value="[""fac"",""ind_f"",true]";
+									value="[""r"",""ind_f"",true]";
 								};
 							};
 						};
-						class Attribute1
+						nAttributes=7;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={198,5.0014391,198.10001};
+					};
+					side="Independent";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						name="UnitAAF_CO_FAC";
+						description="FAC@AAF HQ";
+						isPlayable=1;
+					};
+					id=228;
+					type="I_soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -23116,7 +23668,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ind_f";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -23135,7 +23725,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.97000003;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03GRE";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""fac"",""ind_f"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -23154,10 +23801,34 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={223,5.0014391,193.10001};
+					};
+					side="Independent";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="SERGEANT";
+						name="UnitAAF_SGT";
+						description="Platoon SGT@AAF HQ";
+						isPlayable=1;
+					};
+					id=230;
+					type="I_officer_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -23166,14 +23837,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="[""x\tmf\addons\orbat\textures\yellow_chevrons.paa"",""SGT""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -23192,69 +23863,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item5
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={223,5.0014391,193.09979};
-					};
-					side="Independent";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="SERGEANT";
-						name="UnitAAF_SGT";
-						description="Platoon SGT@AAF";
-						isPlayable=1;
-					};
-					id=230;
-					type="I_officer_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""sl"",""ind_f"",true]";
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_chevrons.paa"",""SGT"",-15]";
-								};
-							};
-						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -23273,7 +23901,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.98000002;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02GRE";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""sl"",""ind_f"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -23292,45 +23977,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ind_f";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 			};
@@ -23374,7 +24021,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="["""",""AAF CO"","""",0]";
+							value="[""x\tmf\addons\orbat\textures\yellow_hq.paa"",""AAF CO"","""",0]";
 						};
 					};
 				};
@@ -56751,7 +57398,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={352,5.0014391,204.04999};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=6;
@@ -56890,7 +57537,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={356.84299,5.0014391,198.94757};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=4;
@@ -57028,7 +57675,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={346.84778,5.0014391,199.25681};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=5;
@@ -57239,7 +57886,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={368,5.0014391,204.04999};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=6;
@@ -57378,7 +58025,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={372.84299,5.0014391,198.94757};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=4;
@@ -57497,7 +58144,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={362.84778,5.0014391,199.25681};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=5;
@@ -57708,7 +58355,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={352,5.0014391,196.04999};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=6;
@@ -57847,7 +58494,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={356.84299,5.0014391,190.94757};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=4;
@@ -57985,7 +58632,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={346.84778,5.0014391,191.25681};
-						angles[]={-0,0.030927233,0};
+						angles[]={0,0.030927233,0};
 					};
 					side="Independent";
 					flags=5;
@@ -66812,7 +67459,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={208,5.0014391,112.0498};
+						position[]={208,5.0014391,112.05};
 					};
 					side="West";
 					flags=6;
@@ -66821,7 +67468,7 @@ class Mission
 						skill=0.60000002;
 						rank="LIEUTENANT";
 						name="UnitFIA_CO";
-						description="Commander@FIA";
+						description="Commander@FIA HQ";
 						isPlayable=1;
 					};
 					id=618;
@@ -66829,6 +67476,120 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="["""",""""]";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="blu_g_f";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male06GRE";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -66847,45 +67608,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="["""",""""]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -66904,10 +67627,34 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={213,5.0014391,107.10001};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="CORPORAL";
+						name="UnitFIA_CO_M";
+						description="Medic@FIA HQ";
+						isPlayable=1;
+					};
+					id=619;
+					type="B_G_medic_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -66916,14 +67663,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -66942,31 +67689,83 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={213,5.0014391,107.09961};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="CORPORAL";
-						name="UnitFIA_CO_M";
-						description="Medic@FIA";
-						isPlayable=1;
-					};
-					id=619;
-					type="B_G_medic_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="TMF_Channellist";
+							expression="_this setVariable ['TMF_Channellist',_value,true];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[3]";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.99000001;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02GRE";
+								};
+							};
+						};
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -66985,45 +67784,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""COM"",-12]";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="TMF_Channellist";
-							expression="_this setVariable ['TMF_Channellist',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[3]";
-								};
-							};
-						};
-						class Attribute3
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -67042,45 +67803,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="blu_g_f";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 				class Item2
@@ -67088,7 +67811,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={203,5.0014391,107.09961};
+						position[]={203,5.0014391,107.10001};
 					};
 					side="West";
 					flags=4;
@@ -67096,7 +67819,7 @@ class Mission
 					{
 						skill=0.60000002;
 						name="UnitFIA_CO_D";
-						description="Driver@FIA";
+						description="Driver@FIA HQ";
 						isPlayable=1;
 					};
 					id=621;
@@ -67104,25 +67827,6 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""r"",""blu_g_f"",true]";
-								};
-							};
-						};
-						class Attribute1
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -67141,7 +67845,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="blu_g_f";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -67160,10 +67902,10 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="pitch";
+							expression="_this setpitch _value;";
 							class Value
 							{
 								class data
@@ -67172,17 +67914,17 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"SCALAR"
 										};
 									};
-									value=1;
+									value=1.01;
 								};
 							};
 						};
-						class Attribute4
+						class Attribute5
 						{
-							property="TMF_assignGear_faction";
-							expression="false";
+							property="speaker";
+							expression="_this setspeaker _value;";
 							class Value
 							{
 								class data
@@ -67194,34 +67936,11 @@ class Mission
 											"STRING"
 										};
 									};
-									value="blu_g_f";
+									value="Male02GRE";
 								};
 							};
 						};
-						nAttributes=5;
-					};
-				};
-				class Item3
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={218,5.0014391,102.09961};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						name="UnitFIA_CO_FAC";
-						description="FAC@FIA";
-						isPlayable=1;
-					};
-					id=622;
-					type="B_G_Soldier_F";
-					class CustomAttributes
-					{
-						class Attribute0
+						class Attribute6
 						{
 							property="TMF_assignGear_full";
 							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
@@ -67236,11 +67955,34 @@ class Mission
 											"STRING"
 										};
 									};
-									value="[""fac"",""blu_g_f"",true]";
+									value="[""r"",""blu_g_f"",true]";
 								};
 							};
 						};
-						class Attribute1
+						nAttributes=7;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={218,5.0014391,102.10001};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						name="UnitFIA_CO_FAC";
+						description="FAC@FIA HQ";
+						isPlayable=1;
+					};
+					id=622;
+					type="B_G_Soldier_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
 							property="TMF_SpecialistMarker";
 							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
@@ -67259,7 +68001,45 @@ class Mission
 								};
 							};
 						};
+						class Attribute1
+						{
+							property="TMF_assignGear_faction";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="blu_g_f";
+								};
+							};
+						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -67278,7 +68058,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01GRE";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""fac"",""blu_g_f"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -67297,10 +68134,34 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
+						nAttributes=8;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={198,5.0014391,102.10001};
+					};
+					side="West";
+					flags=4;
+					class Attributes
+					{
+						skill=0.60000002;
+						rank="SERGEANT";
+						name="UnitFIA_SGT";
+						description="Platoon SGT@FIA HQ";
+						isPlayable=1;
+					};
+					id=624;
+					type="B_G_officer_F";
+					class CustomAttributes
+					{
+						class Attribute0
 						{
-							property="TMF_assignGear_enabled";
-							expression="false";
+							property="TMF_SpecialistMarker";
+							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
 							class Value
 							{
 								class data
@@ -67309,14 +68170,14 @@ class Mission
 									{
 										type[]=
 										{
-											"BOOL"
+											"STRING"
 										};
 									};
-									value=1;
+									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""SGT""]";
 								};
 							};
 						};
-						class Attribute5
+						class Attribute1
 						{
 							property="TMF_assignGear_faction";
 							expression="false";
@@ -67335,69 +68196,26 @@ class Mission
 								};
 							};
 						};
-						nAttributes=6;
-					};
-				};
-				class Item4
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={198,5.0014391,102.09961};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						skill=0.60000002;
-						rank="SERGEANT";
-						name="UnitFIA_SGT";
-						description="Platoon SGT@FIA";
-						isPlayable=1;
-					};
-					id=624;
-					type="B_G_officer_F";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="TMF_assignGear_full";
-							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""sl"",""blu_g_f"",true]";
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="TMF_SpecialistMarker";
-							expression="_this setVariable ['TMF_SpecialistMarker',_value,true];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="[""x\tmf\addons\orbat\textures\yellow_cross.paa"",""SGT"",-13]";
-								};
-							};
-						};
 						class Attribute2
+						{
+							property="TMF_assignGear_enabled";
+							expression="false";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=1;
+								};
+							};
+						};
+						class Attribute3
 						{
 							property="TMF_Channellist";
 							expression="_this setVariable ['TMF_Channellist',_value,true];";
@@ -67416,7 +68234,64 @@ class Mission
 								};
 							};
 						};
-						class Attribute3
+						class Attribute4
+						{
+							property="pitch";
+							expression="_this setpitch _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"SCALAR"
+										};
+									};
+									value=0.94999999;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04GRE";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="TMF_assignGear_full";
+							expression="[_this,_value] call tmf_assignGear_fnc_helper;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="[""sl"",""blu_g_f"",true]";
+								};
+							};
+						};
+						class Attribute7
 						{
 							property="TMF_assignGear_role";
 							expression="false";
@@ -67435,45 +68310,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute4
-						{
-							property="TMF_assignGear_enabled";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=1;
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="TMF_assignGear_faction";
-							expression="false";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="blu_g_f";
-								};
-							};
-						};
-						nAttributes=6;
+						nAttributes=8;
 					};
 				};
 			};
@@ -67517,7 +68354,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="["""",""FIA CO"","""",0]";
+							value="[""x\tmf\addons\orbat\textures\yellow_hq.paa"",""FIA CO"","""",0]";
 						};
 					};
 				};
@@ -79879,6 +80716,32 @@ class Mission
 			isPlayable=1;
 			id=796;
 			type="HeadlessClient_F";
+		};
+		class Item239
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8,5,4};
+			};
+			name="tmf_spectator9";
+			isPlayable=1;
+			description="Spectator";
+			id=797;
+			type="TMF_spectator_unit";
+		};
+		class Item240
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8,5,0};
+			};
+			name="tmf_spectator10";
+			isPlayable=1;
+			description="Spectator";
+			id=798;
+			type="TMF_spectator_unit";
 		};
 	};
 };
