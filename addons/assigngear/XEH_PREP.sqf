@@ -22,6 +22,7 @@ PREP(setInsignia);
 PREP(setUnitTrait);
 PREP(onEdenMessageRecieved);
 PREP(onEdenMissionChange);
+PREP(testGear);
 PREP(moduleAIGear);
 PREP(AIGearEH);
 

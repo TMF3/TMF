@@ -16,7 +16,7 @@ if (isTMF) then {
             GVAR(endedEH) = addMissionEventHandler ["Ended", {
                 params ["_endType"];
 
-                GVAR(logEntries) pushBack [CBA_missionTime, format ["Mission Ended, endtype: %1",_endType], false] call FUNC(log);
+                GVAR(logEntries) pushBack [CBA_missionTime, format ["Mission Ended, endtype: %1",_endType], false];
 
                 if GVAR(endLogToRPT) then {
                     [] call FUNC(printLogToRPT);
