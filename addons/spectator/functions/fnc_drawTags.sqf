@@ -7,9 +7,7 @@ if (GVAR(showMap) || !GVAR(tags)) exitWith {
 
 // enable hud and grab the user settings variables
 cameraEffectEnableHUD true;
-private _campos = getPosVisual GVAR(camera);
-private _grpTagSize = 1;
-private _unitTagSize = 1;
+private _camPos = getPosVisual GVAR(camera);
 private _viewDistance = ((getObjectViewDistance) select 0);
 private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
 
@@ -25,7 +23,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
 
     // check if the average pos is on the screen
     private _screenPos = worldToScreen _grpPos;
-    private _distToCam = _grpPos distance _campos;
+    private _distToCam = _grpPos distance _camPos;
     private _render = (GVAR(showGroupMarkers) == 1 || !_isAI) && {count _screenPos > 0 && _distToCam <= _viewDistance};
 
     // circumevent the restriction on storing controls in namespace
@@ -60,7 +58,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
             if (alive _x) then {
                 private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,3.1];
                 private _screenPos = worldToScreen _pos;
-                private _distToCam = _pos distance _campos;
+                private _distToCam = _pos distance _camPos;
 
                 // circumevent the restriction on storing controls in namespace
 
@@ -117,7 +115,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
     };
 
     private _screenPos = worldToScreen _pos;
-    private _distToCam = _pos distance _campos;
+    private _distToCam = _pos distance _camPos;
 
     if (alive _x && count _screenPos > 0 && {({alive _x} count crew _x) > 0} && {_distToCam <= 500} ) then {
         private _color = (side _x) call CFUNC(sideToColor);
@@ -158,7 +156,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
         private _fontSize = 0.04;
 
         private _pos = ([_x] call CFUNC(getPosVisual));
-        if (_campos distance2d _pos > 400) then {_fontSize = 0};
+        if (_camPos distance2d _pos > 400) then {_fontSize = 0};
 
         // draw icon
         drawIcon3D [_icon, _color,_pos, 1, 1, 0,"", 2,_fontSize,"PuristaSemibold" ];
@@ -179,8 +177,8 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
     _pos set [2,(_pos select 2)+1];
     private _name = "";
     if (_isplayer) then {_name = _dName;};
-    if (_time <= 10 && {_campos distance2d _pos <= 500}) then {
-        drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, _unitTagSize/2, _unitTagSize/2, 0,_name, 2,0.04,"PuristaSemibold" ];
+    if (_time <= 10 && {_camPos distance2d _pos <= 500}) then {
+        drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, 0.5, 0.5, 0,_name, 2,0.04,"PuristaSemibold" ];
     };
 } forEach GVAR(killedUnits);
 
@@ -197,7 +195,7 @@ if(!GVAR(tracers)) exitWith {};
     if (!isNull _object) then {
         private _pos = [_object] call CFUNC(getPosVisual);
     };
-    private _render = (_campos distance2d _pos <= 400);
+    private _render = (_camPos distance2d _pos <= 400);
     if (_type > 0 && _render) then {
         private _icon = switch (_type) do {
             case 1 : { GRENADE_ICON };
@@ -213,4 +211,4 @@ if(!GVAR(tracers)) exitWith {};
 } forEach GVAR(rounds);
 
 // emit event
-[QGVAR(draw3D), [_campos]] call CBA_fnc_localEvent;
+[QGVAR(draw3D), [_camPos]] call CBA_fnc_localEvent;
