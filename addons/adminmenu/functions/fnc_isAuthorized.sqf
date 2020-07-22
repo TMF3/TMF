@@ -19,7 +19,7 @@
 
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
 
-params [["_unit", player]];
+params [["_unit", player,[objNull]]];
 
 private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
 
