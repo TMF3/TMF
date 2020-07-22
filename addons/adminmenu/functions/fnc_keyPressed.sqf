@@ -3,7 +3,7 @@
 params ["", "_keyPressed"];
 private _modifiersPressed = _this select [2, 3];
 
-private _authorized = call FUNC(isAuthorized);
+private _authorized = [player] call FUNC(isAuthorized);
 
 private _binding = ["TMF", QGVAR(openKey)] call CBA_fnc_getKeybind;
 if (isNil "_binding") exitWith {};
