@@ -96,11 +96,11 @@ class Cfg3DEN
         class Controls;
 
         // AI Gear module controls
-        class GVAR(DOUBLES(aigear,faction)) : Combo {
-            INIT_CONTROL(GVAR(AttributesFaction),ADDON)
+        class GVARMAIN(DOUBLES(aigear,faction)) : Combo {
+            INIT_CONTROL(GVARMAIN(AttributesFaction),ADDON)
         };
 
-        class GVAR(loadout) : Combo {
+        class GVARMAIN(loadout) : Combo {
             class Controls: Controls {
                 class Title: Title {};
                 class Value: Value {

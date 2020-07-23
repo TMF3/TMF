@@ -1,28 +1,30 @@
-class GVAR(aiGear) : Module_F {
+class GVAR(aiGearModule) : Module_F {
     scope = 2;
-    displayName = "AI Gear";
+    scopeCurator = 2;
+    displayName = "AI Gear Macro";
 
     category = "Teamwork";
     icon = QPATHTOEF(common,ui\logo_tmf_small_ca.paa);
     function = QFUNC(moduleAIGear);
     functionPriority = 1;
-    isGlobal = 2; // Persistent global execution
+    isGlobal = true;
     isTriggerActivated = false;
-    isDisposable = true;
+    isDisposable = false;
     is3DEN = false;
+    curatorInfoType = QGVARMAIN(RscDisplayAttributesModuleAIGear);
 
     class Attributes: AttributesBase {
         class Faction: Default {
             property = QGVAR(DOUBLES(module,faction));
             displayName = "Affected faction";
-            control = QGVAR(DOUBLES(aigear,faction));
+            control = QGVARMAIN(DOUBLES(aigear,faction));
             typeName = "STRING";
             defaultValue = """OPF_F""";
         };
         class Loadout: Default {
             property = QGVAR(loadout);
             displayName = "Loadout";
-            control = QGVAR(loadout);
+            control = QGVARMAIN(loadout);
             typeName = "STRING";
             defaultValue = "0";
         };

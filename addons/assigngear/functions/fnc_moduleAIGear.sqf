@@ -14,7 +14,7 @@ Author:
     Freddo
 ---------------------------------------------------------------------------- */
 params ["_logic","_units","_activated"];
-
+/*
 private _faction = _logic getVariable "faction";
 private _loadout = _logic getVariable "loadout";
 private _retroactive = _logic getVariable "Retroactive";
@@ -31,5 +31,5 @@ TRACE_3("Executed AIGear module",_faction,_loadout,_retroactive);
 ] call CBA_fnc_addClassEventHandler;
 
 deleteVehicle _logic;
-
+*/
 nil
