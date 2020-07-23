@@ -1,16 +1,19 @@
-#define DEBUG_MODE_FULL
 #include "..\script_component.hpp"
 
 disableSerialization;
 
-params ["_mode","_params","_class"];
+params ["_mode","_params","_unit"];
 _params params ["_ctrl","_config"];
-TRACE_3("Loading AIGear Faction Attribute",_mode,_params,_class);
+TRACE_3("Loading AIGear Faction Attribute",_mode,_params,_unit);
+
+#ifdef CURATOR_ATTRIBUTE
+    private _ctrlCombo = _ctrl displayctrl IDC_RSCATTRIBUTEFACTION_COMBO;
+#else
+    private _ctrlCombo = _ctrl controlsGroupCtrl 100;
+#endif
 
 switch (_mode) do {
     case "onLoad": {
-        private _ctrlCombo = _ctrl controlsGroupCtrl 100;
-
         private _factionClasses = uiNamespace getVariable [QGVAR(factions),[]];
         if (_factionClasses isEqualTo []) then {
             LOG("AIGear factionClasses not cached");
@@ -42,10 +45,13 @@ switch (_mode) do {
             _ctrlCombo lbSetPictureRight [_id,_icon];
         } forEach _factionClasses;
         lbSort _ctrlCombo;
+        _ctrlCombo lbSetCurSel 0;
     };
-    case "onUnload": {
-
+    #ifdef CURATOR_ATTRIBUTE
+    case "onUnload": {};
+    case "confirmed": {
+        _unit setVariable ["Faction",_ctrlCombo lbData lbCurSel _ctrlCombo];
+        _unit setVariable ["updated",true];
     };
+    #endif
 };
-
-

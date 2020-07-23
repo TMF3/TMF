@@ -6,8 +6,15 @@ class GVARMAIN(RscDisplayAttributesModuleAIGear): RscDisplayAttributes {
 		class Title: Title{};
 		class Content: Content {
 			class Controls: controls {
+                class Text: RscAttributeText {
+					class Controls: controls {
+						class Title: Title {
+							text = "Bulk applies loadouts to AI units. Cannot be undone/disabled!";
+						};
+					};
+				};
+                class Faction: GVARMAIN(RscAttributeFaction) {};
 				class Loadout: GVARMAIN(RscAttributeLoadout) {};
-				class Faction: GVARMAIN(RscAttributeFaction) {};
                 class Retroactive: GVARMAIN(RscAttributeRetroactive) {};
 			};
 		};

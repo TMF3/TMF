@@ -20,6 +20,13 @@ class RscDisplayAttributes {
     };
 };
 class RscControlsGroupNoScrollbars;
+class RscAttributeText: RscControlsGroupNoScrollbars
+{
+	class controls
+	{
+		class Title;
+	};
+};
 #include "TMF_RscAttributeLoadout.hpp"
 #include "TMF_RscAttributeFaction.hpp"
 #include "TMF_RscAttributeRetroactive.hpp"

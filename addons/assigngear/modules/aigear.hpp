@@ -19,14 +19,12 @@ class GVAR(aiGearModule) : Module_F {
             displayName = "Affected faction";
             control = QGVARMAIN(DOUBLES(aigear,faction));
             typeName = "STRING";
-            defaultValue = """OPF_F""";
         };
         class Loadout: Default {
             property = QGVAR(loadout);
             displayName = "Loadout";
             control = QGVARMAIN(loadout);
             typeName = "STRING";
-            defaultValue = "0";
         };
         class Retroactive: Checkbox {
             property = QGVAR(DOUBLES(module,retroactive));
