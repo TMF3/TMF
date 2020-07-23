@@ -29,8 +29,6 @@ if (count _twGrpMkr >= 3) then {
     _color = [1,1,1,1];
 };
 
-GVAR(groups) pushBackUnique _grp;
-
 private _unitListControl = (uiNamespace getVariable [QGVAR(unitlist),controlNull]);
 
 private _index = _unitListControl tvAdd [[],_grpName];

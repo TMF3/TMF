@@ -117,7 +117,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
     private _screenPos = worldToScreen _pos;
     private _distToCam = _pos distance _camPos;
 
-    if (alive _x && count _screenPos > 0 && {({alive _x} count crew _x) > 0} && {_distToCam <= 500} ) then {
+    if (alive _x && { count _screenPos > 0 } && {({alive _x} count crew _x) > 0} && {_distToCam <= 500} ) then {
         private _color = (side _x) call CFUNC(sideToColor);
         private _hasFired = _x getVariable [QGVAR(fired), 0];
         if (_hasFired > 0) then {

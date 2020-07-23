@@ -1,4 +1,3 @@
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
 if(!([] call FUNC(isOpen))) exitWith {};

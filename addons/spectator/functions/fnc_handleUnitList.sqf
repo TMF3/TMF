@@ -6,7 +6,6 @@ private _treeView = (uiNamespace getVariable [QGVAR(unitlist),controlNull]);
 if(GVAR(clearGroups)) then {
     GVAR(clearGroups) = false;
     tvClear _treeView;
-    GVAR(groups) = [];
 };
 private _grps = allGroups select {side _x in GVAR(sides) && (units _x) findIf {alive _x} >= 0};
 if (GVAR(playersOnly)) then {
@@ -57,4 +56,3 @@ for "_index" from 0 to (_treeView tvCount []) do {
 {
     [_x] call FUNC(createGroupNode);
 } forEach (_grps - _foundGroups);
-GVAR(groups) = _grps;

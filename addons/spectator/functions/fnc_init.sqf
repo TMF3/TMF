@@ -1,4 +1,3 @@
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
 if((_this select 2) isEqualType 0) then {_this set [2,false]};
@@ -31,9 +30,9 @@ if(!isnil "BIS_fnc_feedback_allowPP") then { BIS_fnc_feedback_allowPP = false; }
 
 if(_isJip) then {
     [] spawn {
-        ["tmf_spectator",false] call BIS_fnc_blackOut;
+        [QGVAR(blackout),false] call BIS_fnc_blackOut;
         uiSleep 3;
-        ["tmf_spectator"] call BIS_fnc_blackIn;
+        [QGVAR(blackout)] call BIS_fnc_blackIn;
     };
 };
 
@@ -125,6 +124,7 @@ GVAR(interfaceControls) = [
         IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight, IDC_SPECTATOR_TMF_SPECTATOR_MUTE,
         IDC_SPECTATOR_TMF_SPECTATOR_MENUBACK
 ];
+GVAR(vehicles) = [];
 GVAR(tracers) = true;
 GVAR(bulletTrails) = false;
 GVAR(showMap) = false;
@@ -212,8 +212,6 @@ GVAR(modifiers_keys) = [false,false,false];
 GVAR(tags) = true;
 GVAR(showlines) = false;
 
-GVAR(groups) = [];
-GVAR(vehicles) = [];
 GVAR(clearGroups) = false;
 GVAR(unitUpdate) = 0;
 GVAR(killedUnits) = [];

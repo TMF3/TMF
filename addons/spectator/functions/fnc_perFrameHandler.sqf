@@ -1,4 +1,3 @@
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
 disableSerialization;
@@ -27,8 +26,6 @@ if (GVAR(lastControlIndex) >= (count GVAR(controls) - 1)) then {
     GVAR(lastControlIndex) = _newIdx;
 };
 
-
-GVAR(vehicles) = GVAR(vehicles) select {!isNull _x};
 // update compass
 private _dirArray = GVAR(compassValues);
 private _leftDir = ([(getDir GVAR(camera))-45] call FUNC(getCardinal));
