@@ -33,6 +33,6 @@ if (isServer) then {
             // This is kept if the player is DC'd and controlled by AI
             _x setVariable [QGVAR(isJIPable),true,true];
         } forEach playableUnits;
-    },[],0.01] call CBA_fnc_execNext;
+    },[],0.01] call CBA_fnc_waitAndExecute;
 
 };
