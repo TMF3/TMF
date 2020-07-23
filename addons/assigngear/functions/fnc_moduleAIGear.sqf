@@ -38,7 +38,7 @@ TRACE_3("Executed AIGear module",_faction,_loadout,_retroactive);
     true,
     [],
     _retroactive
-] call CBA_fnc_addClassEventHandler;
+] remoteExecCall ["CBA_fnc_addClassEventHandler",0,true];
 
 deleteVehicle _logic;
 

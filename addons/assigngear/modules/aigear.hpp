@@ -7,9 +7,9 @@ class GVAR(aiGearModule) : Module_F {
     icon = QPATHTOEF(common,ui\logo_tmf_small_ca.paa);
     function = QFUNC(moduleAIGear);
     functionPriority = 1;
-    isGlobal = true;
+    isGlobal = false;
     isTriggerActivated = false;
-    isDisposable = false;
+    isDisposable = true;
     is3DEN = false;
     curatorInfoType = QGVARMAIN(RscDisplayAttributesModuleAIGear);
 
