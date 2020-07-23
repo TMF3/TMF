@@ -4,7 +4,7 @@ name: Arma Tools Build
 on:
   push:
     branches:
-    - master
+    - dev
   pull_request:
 
 jobs:
