@@ -25,18 +25,16 @@ if (!local _unit || {isPlayer _unit} || {_faction != faction _unit} || {_unit ge
 
 TRACE_3("Executed AIGear EH",_unit,_faction,_loadout);
 
-private _type = [_unit] call BIS_fnc_objectType;
+private _hash = GVAR(namespace) getVariable "AIGear_hash";
 
-private _role = switch (_type # 1) do {
-    case "MG":      {["ar","mmgg"] selectRandomWeighted [3,1]};
-    case "AT":      {["rat","matg"] selectRandomWeighted [3,1]};
-    case "Officer": {"pl"};
-    case "Pilot":   {["pc","jp"] selectRandomWeighted [3,1]};
-    case "Medic":   {"m"};
-    case "Sniper":  {["sn","dm"] selectRandomWeighted [3,1]};
-    default         {["r","ftl","g","aar","eng","sl"] selectRandomWeighted [10,2,3,2,1]};
-};
-LOG_2("%1 is type: %2",_unit,_type # 1);
+private _typeCode = [_hash,"code"] call CBA_fnc_hashGet;
+private _type = toLower (_unit call _typeCode);
+
+// Get a weighted array of roles for the listed type
+private _weightedArray = [_hash,_type] call CBA_fnc_hashGet;
+
+private _role = selectRandomWeighted _weightedArray;
+LOG_2("%1 is type: %2",_unit,_type);
 
 if !(
     isClass (missionConfigFile >> "CfgLoadouts" >> _loadout >> _role) ||
@@ -47,5 +45,7 @@ if !(
 };
 
 [_unit,_loadout,_role] call FUNC(assignGear);
+
+[QGVAR(AIGearAssigned),[_unit,_loadout,_role]] call CBA_fnc_localEvent;
 
 nil

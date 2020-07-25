@@ -17,6 +17,7 @@ class CfgPatches
         VERSION_CONFIG;
     };
 };
+#include "AIGear.hpp"
 #include "UI\gui.hpp"
 #include "CfgScriptPaths.hpp"
 #include "CfgEventHandlers.hpp"

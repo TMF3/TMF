@@ -32,13 +32,10 @@ private _retroactive = _logic getVariable "Retroactive";
 TRACE_3("Executed AIGear module",_faction,_loadout,_retroactive);
 
 [
-    "CAManBase",
-    "init",
-    compile format ['[FUNC(AIGearEH),[_this # 0,%1,%2]] call CBA_fnc_execNextFrame', str _faction, str _loadout],
-    true,
-    [],
+    _faction,
+    _loadout,
     _retroactive
-] remoteExecCall ["CBA_fnc_addClassEventHandler",0,true];
+] remoteExecCall [QFUNC(initAIGear),0,true];
 
 deleteVehicle _logic;
 
