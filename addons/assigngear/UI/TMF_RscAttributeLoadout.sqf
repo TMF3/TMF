@@ -6,7 +6,7 @@ _params params ["_display"];
 private _loadoutCombo = _display displayCtrl IDC_RSCATTRIBUTELOADOUT_COMBO;
 
 switch _mode do {
-	case "onLoad": {
+    case "onLoad": {
         {
             {
                 TRACE_1("Adding loadout",_x);

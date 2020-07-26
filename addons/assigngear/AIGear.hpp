@@ -2,7 +2,8 @@ class GVARMAIN(AIGear) {
     // Code used to determine unit type
     code = "([_this] call BIS_fnc_objectType) select 1";
 
-    // Type arrays
+    // Code used to determine unit type,
+    // must return string equal to one of the arrays below.
     MG[] = {
         "ar",3,
         "mmgg",1

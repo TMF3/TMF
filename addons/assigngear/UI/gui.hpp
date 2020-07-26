@@ -12,7 +12,7 @@ class RscPicture;
 class RscSlider;
 class RscDisplayAttributes {
     class Controls {
-		class Background;
+        class Background;
         class Title;
         class Content;
         class ButtonOK;
@@ -22,10 +22,10 @@ class RscDisplayAttributes {
 class RscControlsGroupNoScrollbars;
 class RscAttributeText: RscControlsGroupNoScrollbars
 {
-	class controls
-	{
-		class Title;
-	};
+    class controls
+    {
+        class Title;
+    };
 };
 #include "TMF_RscAttributeLoadout.hpp"
 #include "TMF_RscAttributeFaction.hpp"
