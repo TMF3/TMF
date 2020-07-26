@@ -65,7 +65,7 @@ if (_hash isEqualTo []) then {
 // Create class eventhandler
 [
     "CAManBase",
-    "init",
+    "initPost",
     compile format [
         '[FUNC(AIGearEH),[_this # 0,%1,%2]] call CBA_fnc_execNextFrame',
         str _faction,

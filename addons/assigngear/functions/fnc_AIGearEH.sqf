@@ -40,7 +40,7 @@ if !(
     isClass (missionConfigFile >> "CfgLoadouts" >> _loadout >> _role) ||
     isClass (configFile >> "CfgLoadouts" >> _loadout >> _role)
 ) then {
-    LOG_2("""%1"" not present in ""%2"", reverting to default ""r""",_role,_loadout);
+    ERROR_2("AIGear: ""%1"" not present in ""%2"", reverting to default ""r""",_role,_loadout);
     _role = "r";
 };
 

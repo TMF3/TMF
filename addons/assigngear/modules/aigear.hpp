@@ -25,6 +25,7 @@ class GVAR(aiGearModule) : Module_F {
             displayName = "Loadout";
             control = QGVARMAIN(loadout);
             typeName = "STRING";
+            defaultValue = 0;
         };
         class Retroactive: Checkbox {
             property = QGVAR(DOUBLES(module,retroactive));
@@ -35,6 +36,6 @@ class GVAR(aiGearModule) : Module_F {
         class ModuleDescription: ModuleDescription{};
     };
     class ModuleDescription: ModuleDescription {
-        description = "Bulk assigns gear to AI units.<br/>Loadouts must follow standard config structure.";
+        description = "Bulk assigns gear to AI units.<br/>Used roles are defined in (configFile >> ""TMF_AIGear""), which can be overwritten via missionConfigFile.<br/>See wiki for example.";
     };
 };

@@ -1,6 +1,4 @@
 #include "\x\tmf\addons\assigngear\script_component.hpp"
-#include "\A3\ui_f_curator\ui\defineResinclDesign.inc"
-#include "\A3\ui_f\hpp\defineCommonGrids.inc"
 
 params ["_mode","_params","_unit"];
 TRACE_3("RscAttributeLoadout",_mode,_params,_unit);
