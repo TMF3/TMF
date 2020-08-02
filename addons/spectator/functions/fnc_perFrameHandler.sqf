@@ -1,12 +1,8 @@
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
 disableSerialization;
 private _isOpen = [] call FUNC(isOpen);
 if(!_isOpen) exitWith {{ctrlDelete _x} forEach GVAR(controls); GVAR(controls) = [];};
-if(_isOpen) then {[] call TMF_spectator_fnc_handleUnitList};
-
-
 ctrlSetFocus (uiNamespace getVariable QGVAR(unitlist));
 
 // Cleanup - unused controls.
@@ -30,14 +26,13 @@ if (GVAR(lastControlIndex) >= (count GVAR(controls) - 1)) then {
     GVAR(lastControlIndex) = _newIdx;
 };
 
-
-GVAR(vehicles) = GVAR(vehicles) select {!isNull _x};
 // update compass
-private _dirArray = ["N","NE","E","SE","S","SW","W","NW","N","NE"];
+private _dirArray = GVAR(compassValues);
 private _leftDir = ([(getDir GVAR(camera))-45] call FUNC(getCardinal));
 private _idx = _dirArray find _leftDir;
-_dirArray = [_leftDir, _dirArray select (_idx +1), _dirArray select (_idx +2)];
-(uiNamespace getVariable "tmf_spectator_compass") params ["_compassL","_compass","_compassR"];
+_dirArray = [_leftDir, _dirArray select (_idx + 1), _dirArray select (_idx + 2)];
+(uiNamespace getVariable QGVAR(compass)) params ["_compassL","_compass","_compassR"];
+
 if (!(_dirArray isEqualTo GVAR(lastCompassValue))) then {
     _compassL ctrlSetText (_dirArray select 0);
     _compass ctrlSetText (_dirArray select 1);
@@ -75,7 +70,3 @@ if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
 } foreach GVAR(rounds);
 
 GVAR(rounds) = GVAR(rounds) - [0];
-
-
-[] call FUNC(handleCamera);
-GVAR(freecam_timestamp) = time;

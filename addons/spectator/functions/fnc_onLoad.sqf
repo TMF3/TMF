@@ -1,11 +1,8 @@
 params ["_display"];
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
-GVAR(groups) = [];
-GVAR(vehicles) = [];
 GVAR(unitUpdate) = -1; // Force unit list to update.
-
+GVAR(vehicles) = [];
 with uiNamespace do {
     GVAR(display) = _display;
     GVAR(unitlabel) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL;
@@ -45,11 +42,10 @@ if(!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
     GVAR(sides_button_strings) = ["SHOWING YOUR SIDE","NONE"];
 };
 
-if (!isNil QGVAR(zeusPos) && {getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]}) then {
+if (!isNil QGVAR(zeusPos) && { getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true] }) then {
 
     GVAR(mode) = FREECAM;
     [] call FUNC(setTarget);
-    //GVAR(zeusPos) = getPos curatorCamera; GVAR(zeusDir) = getDir curatorCamera; GVAR(zeusPitchBank) = curatorCamera call BIS_fnc_getPitchBank;
 
     private _pitch = GVAR(zeusPitchBank) select 0;
     GVAR(followcam_angle) = [GVAR(zeusDir),_pitch];

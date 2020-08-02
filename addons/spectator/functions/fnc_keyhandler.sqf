@@ -107,14 +107,14 @@ _done = true;
 switch true do {
   case (_key == DIK_ESCAPE && _type == KEYDOWN) :
   {
-    [QGVAR(black),false] call BIS_fnc_blackOut;
+    [QGVAR(blackout),false] call BIS_fnc_blackOut;
     with uiNamespace do {
       closeDialog 0;
       _display = (findDisplay 46) createDisplay (["RscDisplayInterrupt","RscDisplayMPInterrupt"] select isMultiplayer);
       _display displayAddEventHandler  ["Unload", {
           with missionNamespace do {
             [player,player,true] call FUNC(init);
-            [QGVAR(black)] call BIS_fnc_blackIn;
+            [QGVAR(blackout)] call BIS_fnc_blackIn;
           };
       }];
     };

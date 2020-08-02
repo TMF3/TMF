@@ -7,54 +7,46 @@ if (GVAR(showMap) || !GVAR(tags)) exitWith {
 
 // enable hud and grab the user settings variables
 cameraEffectEnableHUD true;
-private _campos = getPosVisual GVAR(camera);
-private _grpTagSize = 1 * GVAR(grpTagScale);
-private _unitTagSize = 1 * GVAR(unitTagScale);
+private _camPos = getPosVisual GVAR(camera);
 private _viewDistance = ((getObjectViewDistance) select 0);
-private _screenSizeX = (0.04 * safezoneW);
-private _screenSizeY = (0.01 * safezoneW);
+private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
 
 {
     // grab the group infomation cache
-    private _grpCache = _x getVariable [QGVAR(grpCache),[0,[0,0,0],[1,1,1,1],true]];
-    _grpCache params ["_grpTime","_avgpos","_color","_isAI"];
-
-    // circumevent the restriction on storing controls in namespace
-    private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
-    if (isNull _control) then {
-        [_x] call FUNC(createGroupControl);
-        _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
-    };
+    private _grpCache = _x getVariable [QGVAR(grpCache),[[0,0,0],[1,1,1,1],true]];
+    _grpCache params ["_grpPos","_color","_isAI"];
     // If we don't have a average pos for the group, or the time since the last the update as expired, generate a new one
-    if (count _avgpos <= 0 || time > _grpTime) then {
+    if (count _grpPos <= 0) then {
         _grpCache = ([_x] call FUNC(updateGroupCache));
-        _avgpos = _grpCache select 1; // update pos ASAP
+        _grpPos = _grpCache select 1; // update pos ASAP
     };
 
     // check if the average pos is on the screen
+    private _screenPos = worldToScreen _grpPos;
+    private _distToCam = _grpPos distance _camPos;
+    private _render = (GVAR(showGroupMarkers) == 1 || !_isAI) && {count _screenPos > 0 && _distToCam <= _viewDistance};
 
-    private _screenPos = worldToScreen _avgpos;
-    private _distToCam = _avgpos distance _campos;
-    private _render = !_isAI && {count _screenPos > 0 && _distToCam <= _viewDistance};
+    // circumevent the restriction on storing controls in namespace
+    private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+    if (isNull _control && (GVAR(showGroupMarkers) == 1 || !_isAI)) then {
+        [_x] call FUNC(createGroupControl);
+        _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
+    };
 
-    ////////////////////////////////////////////////////////
-    // Group tags
-    ////////////////////////////////////////////////////////
-    // Only draw the icon if the grp tags are "enabled"
+    // Render group marker
+
     if (_render) then {
         _control ctrlShow true;
         (_control controlsGroupCtrl 2) ctrlShow (!_isAI && _distToCam <= 600); // Nametag
         (_control controlsGroupCtrl 3) ctrlShow (!_isAI && _distToCam <= 300); // Detail
 
-        _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
+        _control ctrlSetPosition [_screenPos # 0 - _screenSize # 0, _screenPos # 1 - _screenSize # 1];
         _control ctrlCommit 0;
     } else {
         _control ctrlShow false;
     };
-    ////////////////////////////////////////////////////////
+    
     // Unit / vehicle tags
-    ////////////////////////////////////////////////////////
-
     {
         private _isVeh = !isNull (objectParent _x);
         private _control = _x getVariable [QGVAR(tagControl), [controlNull]] select 0;
@@ -66,7 +58,7 @@ private _screenSizeY = (0.01 * safezoneW);
             if (alive _x) then {
                 private _pos = ([_x] call CFUNC(getPosVisual)) vectorAdd [0,0,3.1];
                 private _screenPos = worldToScreen _pos;
-                private _distToCam = _pos distance _campos;
+                private _distToCam = _pos distance _camPos;
 
                 // circumevent the restriction on storing controls in namespace
 
@@ -92,7 +84,8 @@ private _screenSizeY = (0.01 * safezoneW);
                     (_control controlsGroupCtrl 3) ctrlShow (_isPlayer && _distToCam <= 150); // Detail
 
                     // Screenpos already has 2 elements
-                    _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
+                    
+                    _control ctrlSetPosition [_screenPos # 0 - _screenSize # 0, _screenPos # 1 - _screenSize # 1];
 
                     _control ctrlCommit 0;
                 }
@@ -122,9 +115,9 @@ private _screenSizeY = (0.01 * safezoneW);
     };
 
     private _screenPos = worldToScreen _pos;
-    private _distToCam = _pos distance _campos;
+    private _distToCam = _pos distance _camPos;
 
-    if (alive _x && count _screenPos > 0 && {({alive _x} count crew _x) > 0} && {_distToCam <= 500} ) then {
+    if (alive _x && { count _screenPos > 0 } && {({alive _x} count crew _x) > 0} && {_distToCam <= 500} ) then {
         private _color = (side _x) call CFUNC(sideToColor);
         private _hasFired = _x getVariable [QGVAR(fired), 0];
         if (_hasFired > 0) then {
@@ -139,11 +132,11 @@ private _screenSizeY = (0.01 * safezoneW);
 
         _control ctrlShow true;
 
-        private _isAI = {isPlayer _x} count crew _x <= 0;
+        private _hasPlayers = (crew _x findIf {isPlayer _x}) >= 0;
         (_control controlsGroupCtrl 2) ctrlShow (_distToCam <= 300);
-        (_control controlsGroupCtrl 3) ctrlShow (!_isAI && {_distToCam <= 150});
+        (_control controlsGroupCtrl 3) ctrlShow (_hasPlayers && {_distToCam <= 150});
 
-        _control ctrlSetPosition [(_screenPos select 0) - _screenSizeX,(_screenPos select 1) - _screenSizeY];
+        _control ctrlSetPosition [_screenPos # 0 - _screenSize # 0, _screenPos # 1 - _screenSize # 1];
         _control ctrlCommit 0;
     }
     else {
@@ -163,7 +156,7 @@ private _screenSizeY = (0.01 * safezoneW);
         private _fontSize = 0.04;
 
         private _pos = ([_x] call CFUNC(getPosVisual));
-        if (_campos distance2d _pos > 400) then {_fontSize = 0};
+        if (_camPos distance2d _pos > 400) then {_fontSize = 0};
 
         // draw icon
         drawIcon3D [_icon, _color,_pos, 1, 1, 0,"", 2,_fontSize,"PuristaSemibold" ];
@@ -171,10 +164,6 @@ private _screenSizeY = (0.01 * safezoneW);
         if (_text != "") then { drawIcon3D ["#(argb,1,1,1)color(0,0,0,0)", [1,1,1,_color select 3],_pos, 1, 1, 0,_text, 2,_fontSize,"PuristaSemibold" ]; };
     };
 } forEach GVAR(objectives);
-
-// emit event
-[QGVAR(draw3D), [_campos]] call CBA_fnc_localEvent;
-
 
 ////////////////////////////////////////////////////////
 // Dead units (skull icon upon death)
@@ -188,8 +177,8 @@ private _screenSizeY = (0.01 * safezoneW);
     _pos set [2,(_pos select 2)+1];
     private _name = "";
     if (_isplayer) then {_name = _dName;};
-    if (_time <= 10 && {_campos distance2d _pos <= 500}) then {
-        drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, _unitTagSize/2, _unitTagSize/2, 0,_name, 2,0.04,"PuristaSemibold" ];
+    if (_time <= 10 && {_camPos distance2d _pos <= 500}) then {
+        drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, 0.5, 0.5, 0,_name, 2,0.04,"PuristaSemibold" ];
     };
 } forEach GVAR(killedUnits);
 
@@ -206,12 +195,12 @@ if(!GVAR(tracers)) exitWith {};
     if (!isNull _object) then {
         private _pos = [_object] call CFUNC(getPosVisual);
     };
-    private _render = (_campos distance2d _pos <= 400);
+    private _render = (_camPos distance2d _pos <= 400);
     if (_type > 0 && _render) then {
         private _icon = switch (_type) do {
-            case 1 : { GVAR(grenadeIcon) };
-            case 2 : { GVAR(smokeIcon) };
-            case 3 : { GVAR(missileIcon) };
+            case 1 : { GRENADE_ICON };
+            case 2 : { SMOKE_ICON };
+            case 3 : { MISSILE_ICON };
         };
         drawIcon3D[_icon,[1,0,0,0.7],_pos,0.5,0.5,0,"",1,0.02,"PuristaSemibold"];
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
@@ -220,3 +209,6 @@ if(!GVAR(tracers)) exitWith {};
         [_posArray,[1,0,0,0.7]] call CFUNC(drawLines);
     };
 } forEach GVAR(rounds);
+
+// emit event
+[QGVAR(draw3D), [_camPos]] call CBA_fnc_localEvent;

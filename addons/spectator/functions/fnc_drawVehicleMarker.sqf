@@ -11,7 +11,7 @@
  */
 params ["_map","_veh", "_color", "_grpPos"];
 private _pos = (getPosVisual _veh);
-private _size = 0.5/ctrlMapScale _map;
+private _size = 19;
 private _icon = _veh getVariable [QGVAR(mapIcon),""];
 if(_icon == "") then {
     _icon = getText (configfile >> "CfgVehicles" >> typeOf (vehicle _veh) >> "icon");
