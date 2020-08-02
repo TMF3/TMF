@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\autotest\script_component.hpp"
 /*
  * Name = TMF_autotest_fnc_testInit
  * Author = Nick
@@ -13,8 +14,6 @@
  * raises a warning if it contains a lot of code,
  * VA code or doesn't contain isServer.
  */
-#include "\x\tmf\addons\autotest\script_component.hpp"
-
 private _output = [];
 
 {

@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\spectator\script_component.hpp"
 /*
  * Author: Head, Snippers
  * Creates a unit node for units tree node
@@ -14,7 +15,6 @@
  *
  * Public: No
  */
-#include "\x\tmf\addons\spectator\script_component.hpp"
 params["_unit","_parentIndex"];
 
 disableSerialization;

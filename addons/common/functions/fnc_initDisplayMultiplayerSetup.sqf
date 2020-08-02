@@ -4,6 +4,10 @@
 
 params ["_display"];
 
+// Deprecated in newer versions, replaced by CBA system
+// https://github.com/CBATeam/CBA_A3/wiki/Name-Groups-in-Lobby
+if ([[1,1,0]] call FUNC(checkTMFVersion)) exitWith {};
+
 private _fn_update_group_names_in_lobby = {
     params ["_display"];
     private _slotListControl = _display displayCtrl 109;
@@ -18,7 +22,7 @@ private _fn_update_group_names_in_lobby = {
 
         if (_currentValue isEqualTo -1) then {
             // Value is -1 when it's a groupname.
-            
+
             // Collect descriptions of upcoming roles/terminate if another group appears.
             private _descriptions = [];
             for "_idx" from 0 to (lbSize _slotListControl -1) do {

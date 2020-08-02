@@ -7,7 +7,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
 private _cfgVehicles = configFile >> "CfgVehicles";
 private _cfgGlasses = configFile >> "CfgGlasses";
 private _cfgMagazines = configFile >> "CfgMagazines";
-private _warnWeight = getNumber (_test >> "warnWeight");
+private _warnWeight = getNumber (_test >> "maxWeight");
 
 
 private _output = [];

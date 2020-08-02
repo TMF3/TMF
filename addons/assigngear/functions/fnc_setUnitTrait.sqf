@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_setUnitTrait
  * Author = Freddo
@@ -14,8 +15,6 @@
  * Description:
  * Assigns a trait to a unit, and handles custom traits
  */
-
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit", "_trait"];
 
 #define DEFAULTTRAITS ["audibleCoef", "camouflageCoef", "loadCoef", "engineer", "explosiveSpecialist", "medic", "UAVHacker"]

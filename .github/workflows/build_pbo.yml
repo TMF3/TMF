@@ -1,0 +1,26 @@
+name: Build addon
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout repository
+    - name: Building pbos
+      run: ./Build.exe
+    - uses: actions/upload-artifact@v2
+      name: Upload artifacts
+      with:
+        name: build
+        path: |
+          addons/*.pbo
+          mod.cpp
+          README.md

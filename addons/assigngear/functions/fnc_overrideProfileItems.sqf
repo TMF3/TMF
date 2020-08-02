@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_overrideProfileItems
  * Author = Bear
@@ -5,8 +6,6 @@
  * Description:
  * Override face and goggles set by player profile with loadout definitions
  */
-
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 
 ["CBA_loadingScreenDone", { // should ensure profile is overridden https://github.com/CBATeam/CBA_A3/wiki/Loading-Screen-Event-Handler
     [{

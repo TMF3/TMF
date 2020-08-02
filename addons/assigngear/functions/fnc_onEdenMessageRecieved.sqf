@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_onEdenMessageRecieved
  * Author = Snippers
@@ -11,7 +12,6 @@
  * Description:
  * When a message is recieved
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 
 params ["_messageId"];
 private _return = false;

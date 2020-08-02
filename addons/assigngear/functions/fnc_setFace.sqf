@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_setFace
  * Author = Nick
@@ -9,7 +10,6 @@
  * Description:
  * Will set a units face to a randomly chosen one from the supplied list.
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_faces"];
 
 if (_faces isEqualTo []) exitWith {};

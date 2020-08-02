@@ -1,5 +1,4 @@
-
-
+#include "\x\tmf\addons\spectator\script_component.hpp"
 /*
  * Name: TMF_spectator_fnc_drawVehicleMarker
  * Author: Head
@@ -10,7 +9,6 @@
  * Return:
  * N/A
  */
-#include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_map","_veh", "_color", "_grpPos"];
 private _pos = (getPosVisual _veh);
 private _size = 19;

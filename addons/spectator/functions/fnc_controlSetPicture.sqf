@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\spectator\script_component.hpp"
 /*
  * Author: Head
  * Set control picture for a 3D tag
@@ -15,7 +16,6 @@
  *
  * Public: No
  */
-#include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_control","_picturePath","_color"];
 disableSerialization;
 private _image = (_control controlsGroupCtrl 1);

@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_checkVersionArray
  * Author: Snippers
@@ -12,7 +13,6 @@
  * Description:
  * Checks if the input version is greater or equal to the required version
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 
 params [
     ["_input",[0,0,0]],

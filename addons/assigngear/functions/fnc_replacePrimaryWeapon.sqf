@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_replacePrimaryWeapon
  * Author = Nick
@@ -16,7 +17,6 @@
  * Description:
  * Replaces a units' primary weapon
  */
- #include "\x\tmf\addons\assignGear\script_component.hpp"
  params ["_unit","_weaponArray","_scopeArray","_bipodArray","_attachmentArray","_silencerArray"];
 
 // Remove weapon and exit if weaponArray is empty

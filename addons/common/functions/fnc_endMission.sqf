@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_endMission
  * Author: Snippers
@@ -12,7 +13,6 @@
  * Function to gracefully end the mission and display the end mission splash screen.
  * 
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 
 if (!isServer) exitWith {}; // Only run on server.
 

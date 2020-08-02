@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_setGoggles
  * Author = Bear
@@ -9,8 +10,6 @@
  * Description:
  * Will set a units goggles to a randomly chosen one from the supplied list.
  */
-
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 
 params ["_unit", "_goggles"];
 
