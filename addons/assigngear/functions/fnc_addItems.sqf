@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_addItems
  * Author = Nick
@@ -12,7 +13,6 @@
  * Description:
  * Tries to add items to a units' inventory
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_items"];
 private _overflow = [];
 
