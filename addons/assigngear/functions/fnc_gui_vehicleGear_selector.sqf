@@ -1,5 +1,11 @@
-#define DEBUG_MODE_FULL
 #include "\x\tmf\addons\assignGear\script_component.hpp"
+/*
+ * Name = TMF_assignGear_fnc_vehicleGear_selector
+ * Author = Head
+ *
+ * Description:
+ * Internal Use Only
+ */
 #include "\a3\3den\UI\dikCodes.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 disableSerialization;
@@ -53,7 +59,7 @@ switch _mode do {
         private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
 
         private _addButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_ADD;
-		private _subButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_SUBTRACT;
+        private _subButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_SUBTRACT;
 
         GVAR(vehicleGear_shift) = false;
         GVAR(vehicleGear_alt) = false;
