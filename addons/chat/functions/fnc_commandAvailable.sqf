@@ -1,3 +1,5 @@
+
+#include "\x\tmf\addons\chat\script_component.hpp"
 /*
  * Name = TMF_chat_fnc_commandAvailable
  * Author = Freddo
@@ -12,8 +14,6 @@
  * Return:
  * Boolean. - Whether command is available
  */
-
-#include "\x\tmf\addons\chat\script_component.hpp"
 
 if (player call EFUNC(adminmenu,isAuthorized)) exitWith {true};
 

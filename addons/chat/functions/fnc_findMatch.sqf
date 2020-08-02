@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\chat\script_component.hpp"
 /*
  * Name = TMF_chat_fnc_findMatch
  * Author = Commy2
@@ -12,8 +13,6 @@
  * Pick unit that matches given name
  * Reports null when no or more than one unit was found
  */
-
-#include "\x\tmf\addons\chat\script_component.hpp"
 
 params ["_name"];
 

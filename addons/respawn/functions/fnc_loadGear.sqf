@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\respawn\script_component.hpp"
  /*
  * Name = TMF_respawn_fnc_loadGear
  * Author = Nick
@@ -11,7 +12,6 @@
  * Description:
  * UI function do not use
  */
-#include "\x\tmf\addons\respawn\script_component.hpp"
 params ["_side"];
 _side = toLower([_side] call CFUNC(sideType));
 private _return = [];

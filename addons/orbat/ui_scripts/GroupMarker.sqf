@@ -4,12 +4,12 @@ params ["_mode",["_params",[]],["_value","[]"]];
 
 switch _mode do {
     case "onLoad": {
-        #include "GroupMarker_onLoad.sqf"
+       #include "GroupMarker_onLoad.sqf"
     };
     case "attributeLoad": {
-        #include "GroupMarker_attributeLoad.sqf"
+       #include "GroupMarker_attributeLoad.sqf"
     };
     case "attributeSave": {
-        #include "GroupMarker_attributeSave.sqf"
+       #include "GroupMarker_attributeSave.sqf"
     };
 };

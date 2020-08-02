@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\briefing\script_component.hpp"
 /*
  *        Name: TMF_briefing_fnc_addLoadoutNotes
  *        Author: Nick, Snippers
@@ -11,7 +12,6 @@
  *        Description:
  *            Add the Loadout entry to the diary
  */
-#include "\x\tmf\addons\briefing\script_component.hpp"
 if(!hasInterface || (GVAR(addLoadoutNotes) isEqualTo 0)) exitWith {};
 params [["_unit",player]];
 

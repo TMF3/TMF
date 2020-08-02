@@ -1,4 +1,4 @@
-
+#include "\x\tmf\addons\spectator\script_component.hpp"
 /*
  * Name: TMF_spectator_fnc_drawGroupMarker
  * Author: Head
@@ -9,7 +9,6 @@
  * Return:
  * N/A
  */
-#include "\x\tmf\addons\spectator\script_component.hpp"
 params ['_map', '_grp','_color', '_pos'];
  private _tmfGrpMarkerData = [_x] call EFUNC(orbat,getGroupMarkerData);
 // if we have a framework orbat marker, use it.

@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_replaceSecondaryWeapon
  * Author = Nick
@@ -13,8 +14,7 @@
  * Description:
  * Replaces a units' secondary weapon
  */
- #include "\x\tmf\addons\assignGear\script_component.hpp"
- params ["_unit","_weaponArray","_items"];
+params ["_unit","_weaponArray","_items"];
 
 // Remove weapon and exit if weaponArray is empty
 if (count _weaponArray < 1) exitWith {_unit removeWeapon (secondaryWeapon _unit)};
