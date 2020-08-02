@@ -30,3 +30,7 @@ PREP(gui_gearSelector_loadCategories);
 PREP(gui_gearSelector_loadRoles);
 PREP(gui_gearSelector_random);
 PREP(gui_gearSelector_submit);
+PREP(gui_vehicleGear_selector);
+PREP(gui_vehicleGear_save);
+PREP(gui_vehicleGear_load);
+PREP(vehicleGear_init);
