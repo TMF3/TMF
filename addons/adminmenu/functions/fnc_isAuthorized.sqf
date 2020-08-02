@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
 /*
  * Name = TMF_adminmenu_fnc_isAuthorized
  * Author = Freddo
@@ -16,9 +17,6 @@
  * Return:
  * Boolean. - Whether player is an authorized admin
  */
-
-#include "\x\tmf\addons\adminmenu\script_component.hpp"
-
 params [["_unit", player,[objNull]]];
 
 private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};

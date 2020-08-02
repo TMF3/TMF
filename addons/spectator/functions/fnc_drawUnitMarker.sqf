@@ -1,4 +1,4 @@
-
+#include "\x\tmf\addons\spectator\script_component.hpp"
 /*
  * Name: TMF_spectator_fnc_drawUnitMarker
  * Author: Head
@@ -9,7 +9,6 @@
  * Return:
  * N/A
  */
-#include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_map","_unit", "_color", "_grpPos"];
 private _pos = (getPosVisual _unit);
 private _icon = _unit getVariable [QGVAR(mapIcon),""];

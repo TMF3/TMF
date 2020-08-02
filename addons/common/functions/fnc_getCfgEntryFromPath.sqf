@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_getCfgEntryFromPath
  * Author: Snippers
@@ -11,7 +12,6 @@
  * Description:
  * Attempts to read a config value.
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 
 params [["_path",configNull,[configNull]]];
 

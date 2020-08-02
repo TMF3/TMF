@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\acre2\script_component.hpp"
 /*
  * Name: TMF_acre2_fnc_edenUnitToRadios
  * Author: Snippers
@@ -11,8 +12,6 @@
  * Description:
  * Returns the list of radios that a unit should recieve with the current settings.
  */
-#include "\x\tmf\addons\acre2\script_component.hpp"
-
 params[["_unit",objNull]];
 
 // Gear assignment always runs at init, this runs after init.

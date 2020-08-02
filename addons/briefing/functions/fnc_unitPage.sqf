@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\briefing\script_component.hpp"
 /*
  *      Name: TMF_briefing_fnc_unitPage
  *      Author: Nick, Snippers
@@ -12,7 +13,6 @@
  *      Description:
  *          Generate briefing pages showing the loadout of the provided units.
  */
-#include "\x\tmf\addons\briefing\script_component.hpp"
 params ["_target","_units"];
 
 private _fnc_weaponMags = {

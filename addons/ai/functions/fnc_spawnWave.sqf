@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\AI\script_component.hpp"
 /*
  * Name: TMF_ai_fnc_spawnWave
  * Author: Head, Snippers
@@ -11,7 +12,6 @@
  * Description:
  * Handles spawning units
  */
-#include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic"];
 private _spawnedVehicles = [];
 private _spawnedGroups = [];

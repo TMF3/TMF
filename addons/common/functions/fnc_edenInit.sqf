@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_edenInit
  * Author: Nick
@@ -12,7 +13,6 @@
  * Set up the needed EH
  *
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 
 if !is3DEN exitWith {};
 

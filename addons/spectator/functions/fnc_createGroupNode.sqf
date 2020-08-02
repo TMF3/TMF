@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\spectator\script_component.hpp"
 /*
  * Author: Head, Snippers
  * Creates a group node for units tree node
@@ -13,7 +14,6 @@
  *
  * Public: Not really
  */
-#include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_grp"];
 
 disableSerialization;

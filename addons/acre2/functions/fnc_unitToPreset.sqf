@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\acre2\script_component.hpp"
 /*
  * Name: TMF_acre2_fnc_unitToPreset
  * Author: Snippers
@@ -11,8 +12,6 @@
  * Description:
  * Returns the preset number for the specified unit.
  */
-#include "\x\tmf\addons\acre2\script_component.hpp"
-
 params[["_unit",objNull]];
 
 

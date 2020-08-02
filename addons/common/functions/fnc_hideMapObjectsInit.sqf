@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_hideMapObjectsInit
  * Author: Nick
@@ -12,7 +13,6 @@
  * Init for map objects hider
  *
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 params ["_logic"];
 
 if is3DEN exitWith {};

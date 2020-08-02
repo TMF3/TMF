@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_cacheAssignGear
  * Author = Freddo
@@ -13,7 +14,6 @@
  * Caches a loadout from uiNamespace to TMF namespace
  * If it isn't present, then it loads it from config
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 #define CFGROLE (_cfg >> "CfgLoadouts" >> _faction >> _role)
 
 params ["_faction", "_role"];

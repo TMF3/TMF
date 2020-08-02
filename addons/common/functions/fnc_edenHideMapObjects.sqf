@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_edenHideMapObjects
  * Author: Nick
@@ -12,7 +13,6 @@
  * Visuals for the map objects remover logic
  *
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 
 #define RANGE 2
 #define COLX [1,0,0,1]
