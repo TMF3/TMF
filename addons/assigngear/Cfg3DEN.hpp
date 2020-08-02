@@ -229,7 +229,7 @@ class Cfg3DEN
                     idc = IDC_VEHICLEGEAR_FILTER;
                     style = "0x30 + 0x800";
                     x = ATTRIBUTE_CONTENT_H * GRID_W;
-					y = 3 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    y = 3 * ATTRIBUTE_CONTENT_H * GRID_H;
                     w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
                     h = 2 * ATTRIBUTE_CONTENT_H * GRID_H;
                     rows = 1;
