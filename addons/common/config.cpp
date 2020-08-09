@@ -22,7 +22,7 @@ class cfgPatches
 // Register loadscreens to parsingNamespace
 __EXEC(                                                                                      \
     _arr = [];                                                                               \
-    for "_i" from 1 to 10 do { _arr pushBack format [QPATHTOF(UI\loadscreens\%1.jpg),_i]; }; \
+    for "_i" from 1 to 20 do { _arr pushBack format [QPATHTOF(UI\loadscreens\%1.paa),_i]; }; \
     GVAR(loadscreens) = _arr;                                                                \
 )
 
