@@ -3,9 +3,9 @@ class RscControlsGroupNoScrollbars;
 
 // Display TMF logo on supported missions
 class RscDisplayLoadMission: RscStandardDisplay {
-	class Controls {
-		class Mission: RscControlsGroupNoScrollbars {
-			class controls {
+    class Controls {
+        class Mission: RscControlsGroupNoScrollbars {
+            class controls {
                 class MissionPicture;
                 class GVARMAIN(logo): MissionPicture {
                     text = QPATHTOF(UI\LoadingImageTemplate.paa);
@@ -19,14 +19,14 @@ class RscDisplayLoadMission: RscStandardDisplay {
                     });
                 };
             };
-		};
-	};
+        };
+    };
 };
 
 class RscDisplayNotFreeze: RscStandardDisplay {
-	class Controls {
-		class Mission: RscControlsGroupNoScrollbars {
-			class controls {
+    class Controls {
+        class Mission: RscControlsGroupNoScrollbars {
+            class controls {
                 class MissionPicture;
                 class GVARMAIN(logo): MissionPicture {
                     text = QPATHTOF(UI\LoadingImageTemplate.paa);
@@ -40,6 +40,6 @@ class RscDisplayNotFreeze: RscStandardDisplay {
                     });
                 };
             };
-		};
-	};
+        };
+    };
 };
