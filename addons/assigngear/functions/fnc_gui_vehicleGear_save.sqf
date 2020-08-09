@@ -12,7 +12,6 @@
  * Description:
  * Internal Use Only
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 private _data = (missionNamespace getVariable [QGVAR(vehicleGear_data), ['', '', []]]);
 TRACE_1('SAVE', _data);
 private _gear = (_data # 2);

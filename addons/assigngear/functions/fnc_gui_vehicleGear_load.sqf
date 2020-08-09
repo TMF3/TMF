@@ -31,4 +31,4 @@ for [{ _i = 0 }, { _i < (lbSize  _factionCtrl) }, { _i = _i + 1 }] do {
         _factionCtrl lbSetCurSel _i;
     };
 };
-['attributedLoaded', [ _ctrlGroup ]] call FUNC(gui_vehicleGear_selector);
+['attributeLoaded', [ _ctrlGroup ]] call FUNC(gui_vehicleGear_selector);

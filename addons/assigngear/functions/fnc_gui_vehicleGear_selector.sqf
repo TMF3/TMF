@@ -1,4 +1,3 @@
-#define DEBUG_MODE_FULL
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_vehicleGear_selector
@@ -121,7 +120,7 @@ switch _mode do {
             };
         };
     };
-    case 'attributedLoaded': {
+    case 'attributeLoaded': {
         private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
         private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
 
