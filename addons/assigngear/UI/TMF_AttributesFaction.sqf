@@ -2,9 +2,9 @@
 
 disableSerialization;
 
-params ["_mode","_params","_unit"];
+params ["_mode","_params","_module"];
 _params params ["_ctrl","_config"];
-TRACE_3("Loading AIGear Faction Attribute",_mode,_params,_unit);
+TRACE_3("Loading AIGear Faction Attribute",_mode,_params,_module);
 
 #ifdef CURATOR_ATTRIBUTE
     private _ctrlCombo = _ctrl displayctrl IDC_RSCATTRIBUTEFACTION_COMBO;
@@ -50,8 +50,8 @@ switch (_mode) do {
     #ifdef CURATOR_ATTRIBUTE
     case "onUnload": {};
     case "confirmed": {
-        _unit setVariable ["Faction",_ctrlCombo lbData lbCurSel _ctrlCombo];
-        _unit setVariable ["updated",true];
+        _module setVariable ["Faction",_ctrlCombo lbData lbCurSel _ctrlCombo];
+        _module setVariable ["updated",true];
     };
     #endif
 };
