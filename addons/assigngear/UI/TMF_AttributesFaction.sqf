@@ -50,8 +50,8 @@ switch (_mode) do {
     #ifdef CURATOR_ATTRIBUTE
     case "onUnload": {};
     case "confirmed": {
-        _module setVariable ["Faction",_ctrlCombo lbData lbCurSel _ctrlCombo];
-        _module setVariable ["updated",true];
+        _module setVariable [QGVARMAIN(Faction),_ctrlCombo lbData lbCurSel _ctrlCombo];
+        _module setVariable [QGVARMAIN(updated),true];
     };
     #endif
 };

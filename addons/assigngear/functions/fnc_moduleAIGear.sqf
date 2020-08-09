@@ -17,17 +17,17 @@ params ["_logic","_units","_activated"];
 
 if (_logic call BIS_fnc_isCuratorEditable) then {
     waitUntil {
-        (!isNil {_logic getVariable "updated"} || isNull _logic) &&
-        {!isNil {_logic getVariable "Faction"}} &&
-        {!isNil {_logic getVariable "Loadout"}} &&
-        {!isNil {_logic getVariable "Retroactive"}}
+        (!isNil {_logic getVariable QGVARMAIN(updated)} || isNull _logic) &&
+        {!isNil {_logic getVariable QGVARMAIN(Faction)}} &&
+        {!isNil {_logic getVariable QGVARMAIN(Loadout)}} &&
+        {!isNil {_logic getVariable QGVARMAIN(Retroactive)}}
     };
 };
 if (isNull _logic) exitWith {};
 
-private _faction = _logic getVariable "Faction";
-private _loadout = _logic getVariable "Loadout";
-private _retroactive = _logic getVariable "Retroactive";
+private _faction = _logic getVariable QGVARMAIN(Faction);
+private _loadout = _logic getVariable QGVARMAIN(Loadout);
+private _retroactive = _logic getVariable QGVARMAIN(Retroactive);
 
 TRACE_3("Executed AIGear module",_faction,_loadout,_retroactive);
 

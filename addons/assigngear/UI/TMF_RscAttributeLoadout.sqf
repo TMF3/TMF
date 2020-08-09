@@ -26,7 +26,7 @@ switch _mode do {
     };
     case "onUnload": {};
     case "confirmed": {
-        _unit setVariable ["Loadout",_loadoutCombo lbData lbCurSel _loadoutCombo];
-        _unit setVariable ["updated",true];
+        _unit setVariable [QGVARMAIN(Loadout),_loadoutCombo lbData lbCurSel _loadoutCombo];
+        _unit setVariable [QGVARMAIN(updated),true];
     };
 };

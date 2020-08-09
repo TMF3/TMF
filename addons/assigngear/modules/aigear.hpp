@@ -14,20 +14,20 @@ class GVAR(aiGearModule) : Module_F {
     curatorInfoType = QGVARMAIN(RscDisplayAttributesModuleAIGear);
 
     class Attributes: AttributesBase {
-        class Faction: Default {
+        class GVARMAIN(Faction): Default {
             property = QGVAR(DOUBLES(module,faction));
             displayName = "Affected faction";
             control = QGVARMAIN(DOUBLES(aigear,faction));
             typeName = "STRING";
         };
-        class Loadout: Default {
+        class GVARMAIN(Loadout): Default {
             property = QGVAR(loadout);
             displayName = "Loadout";
             control = QGVARMAIN(loadout);
             typeName = "STRING";
             defaultValue = 0;
         };
-        class Retroactive: Checkbox {
+        class GVARMAIN(Retroactive): Checkbox {
             property = QGVAR(DOUBLES(module,retroactive));
             displayName = "Apply retroactively";
             typeName = "BOOL";
