@@ -4,7 +4,7 @@ disableSerialization;
 
 params ["_trigger"];
 
-private _data = _trigger getVariable ["tmf_trigger_serialised",[]];
+private _data = _trigger getVariable [QGVAR(serialised_trigger),[]];
 
 if (count _data == 0) exitWith {};
 

@@ -25,8 +25,8 @@ if (_type == 20) then {
                     private _activation = triggerActivation _trigger;
                     private _interval = triggerInterval _trigger;
 
-                    _trigger setVariable ["tmf_trigger_serialised",[_statements,triggerTimeout _trigger, +_activation,_interval]];
-                    TRACE_4("Admin Eye serialized trigger",_statements,triggerTimeout _trigger,+_activation,_interval)
+                    _trigger setVariable [QGVAR(serialised_trigger),[_statements,triggerTimeout _trigger, +_activation,_interval]];
+                    TRACE_4("Admin Eye serialised trigger",_statements,triggerTimeout _trigger,+_activation,_interval)
 
                     _activation set[2,false];
                     _trigger setTriggerActivation _activation;
