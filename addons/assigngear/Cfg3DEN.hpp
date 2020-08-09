@@ -191,7 +191,7 @@ class Cfg3DEN
                     w = ATTRIBUTE_TITLE_W * GRID_W;
                     h = SIZE_XL * GRID_H;
                     text = "Category"
-                    style = 0x01;
+                    style = ST_RIGHT;
                     colorBackground[] = {0,0,0,0};
                 };
                 class CategoryValue: ctrlCombo
@@ -204,7 +204,7 @@ class Cfg3DEN
                 };
                 class FactionTitle : ctrlStatic {
                     text = "Faction"
-                    style = 0x01;
+                    style = ST_RIGHT;
                     x = 0;
                     y = 1 * SIZE_XL * GRID_H;
                     w = ATTRIBUTE_TITLE_W * GRID_W;
@@ -227,7 +227,7 @@ class Cfg3DEN
                 class Filter: ctrlToolbox
                 {
                     idc = IDC_VEHICLEGEAR_FILTER;
-                    style = "0x30 + 0x800";
+                    style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
                     x = ATTRIBUTE_CONTENT_H * GRID_W;
                     y = 3 * ATTRIBUTE_CONTENT_H * GRID_H;
                     w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;

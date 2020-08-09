@@ -130,7 +130,7 @@ switch _mode do {
             GVAR(vehicleGear_data) set [0, _control lbData _index];
             ['filterChanged', [ _control, (uiNamespace getVariable [QGVAR(filter), FILTER_WEAPON]) ]] call FUNC(gui_vehicleGear_selector);
         }];
-        _factionCtrl ctrlAddEventHandler ["LBSelChanged", {
+        _factionCtrl ctrlAddEventHandler ["LBSelChanged",   {
             params ['_control', '_index'];
             GVAR(vehicleGear_data) set [1, _control lbData _index];
             ['filterChanged', [ _control, (uiNamespace getVariable [QGVAR(filter), FILTER_WEAPON]) ]] call FUNC(gui_vehicleGear_selector);
