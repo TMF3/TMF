@@ -17,7 +17,7 @@ private _ctrlGroup = uiNamespace getVariable[QGVAR(vehicleGear_control), control
 private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
 private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
 _value params [['_category', '', ['']], ['_faction', '', ['']], ['_cache', [ [], [], [] ], [], 3] ];
-TRACE_1('Load', [_category, _faction, _cache]);
+TRACE_3('load',_category, _faction, _cache);
 GVAR(vehicleGear_data) = [_category, _faction, _cache];
 for [{ _i = 0 }, { _i < (lbSize  _categoryCtrl) }, { _i = _i + 1 }] do {
 private _cat = _categoryCtrl lbData _i;

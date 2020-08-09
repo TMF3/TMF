@@ -1,3 +1,4 @@
+#define DEBUG_MODE_FULL
 #include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_vehicleGear_selector
@@ -51,56 +52,29 @@ private _fnc_getFactionItems = {
 
 switch _mode do {
     case 'onLoad': {
-        LOG("ON LOAD")
+        LOG("ON LOAD");
         uiNamespace setVariable[QGVAR(vehicleGear_control), _args # 0];
         uiNamespace setVariable [QGVAR(filter), FILTER_WEAPON];
-
-        private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
-        private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
-
-        private _addButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_ADD;
-        private _subButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_SUBTRACT;
 
         GVAR(vehicleGear_shift) = false;
         GVAR(vehicleGear_alt) = false;
         GVAR(vehicleGear_ctrl) = false;
-        private _ctrlList = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
+
+        (_ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CLEAR) ctrlAddEventHandler ["buttonClick", {
+            ['clear', _this ] call FUNC(gui_vehicleGear_selector);
+        }];
+
+        // Add -/+ evenhandlers
+        private _addButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_ADD;
+        private _subButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_SUBTRACT;
         _addButton ctrlAddEventHandler ["buttonClick", {
-            params ['_control'];
-            private _value = switch true do {
-                case GVAR(vehicleGear_shift) : {
-                    5
-                };
-                case GVAR(vehicleGear_ctrl) : {
-                    10
-                };
-                case GVAR(vehicleGear_alt) : {
-                    20
-                };
-                default {
-                    1
-                };
-            };
-            ['modifyRow', [_control, _value] ] call FUNC(gui_vehicleGear_selector);
+            ['modifyRow', [(_this # 0), 1] ] call FUNC(gui_vehicleGear_selector);
         }];
         _subButton ctrlAddEventHandler ["buttonClick", {
-            params ['_control'];
-            private _value = switch true do {
-                case GVAR(vehicleGear_shift): {
-                    5
-                };
-                case GVAR(vehicleGear_ctrl): {
-                    10
-                };
-                case GVAR(vehicleGear_alt): {
-                    20
-                };
-                default {
-                    1
-                };
-            };
-            ['modifyRow', [_control, -_value] ] call FUNC(gui_vehicleGear_selector);
+            ['modifyRow', [(_this # 0), -1] ] call FUNC(gui_vehicleGear_selector);
         }];
+
+        // We can only use the buttonClick event on the buttons, so this is a workaround for not getting the state of the modifier keys
         GVAR(vehicleGear_keyDown) = _ctrlGroup ctrlAddEventHandler ["KeyDown", {
             params ["_display", "_key", "_shift", "_ctrl", "_alt"];
             switch _key do {
@@ -129,6 +103,9 @@ switch _mode do {
                 };
             };
         }];
+        // fill them up.
+        private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
+        private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
         [_categoryCtrl] call FUNC(loadFactionCategories);
         for [{ _i = 0 }, { _i < (lbSize  _categoryCtrl) }, { _i = _i + 1 }] do {
             private _cat = _categoryCtrl lbData _i;
@@ -147,6 +124,8 @@ switch _mode do {
     case 'attributedLoaded': {
         private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
         private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
+
+        // We add the selection eventhandler after we loaded the data from EDEN
         _categoryCtrl ctrlAddEventHandler ["LBSelChanged", {
             params ['_control', '_index'];
             GVAR(vehicleGear_data) set [0, _control lbData _index];
@@ -163,10 +142,9 @@ switch _mode do {
         ['filterChanged', [ _ctrlGroup,FILTER_WEAPON ]] call FUNC(gui_vehicleGear_selector);
     };
     case 'filterChanged': {
-        _args params ["_control", "_mode"];
+        _args params ["_control", "_newFilter"];
 
-        uiNamespace setVariable [QGVAR(filter), _mode];
-        _currentFilter = (uiNamespace getVariable [QGVAR(filter), FILTER_WEAPON]);
+        uiNamespace setVariable [QGVAR(filter), _newFilter];
         private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
         private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
         private _faction = _factionCtrl lbData (lbCurSel _factionCtrl);
@@ -177,8 +155,8 @@ switch _mode do {
 
         _cfg = (_cfg >> "CfgLoadouts" >> _faction);
         private _ctrlList = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
-        private _rows = [_cfg, _currentFilter] call _fnc_getFactionItems;
-        private _currentCachePage = (_cache # _currentFilter);
+        private _rows = [_cfg, _newFilter] call _fnc_getFactionItems;
+        private _currentCachePage = (_cache # _newFilter);
 
 
         lnbClear _ctrlList;
@@ -202,10 +180,24 @@ switch _mode do {
             _ctrlList lnbSetPicture [[_rowIndex, 0], (_itemCfg >> _className >> "picture") call BIS_fnc_getCfgData];
         } forEach _rows;
 
-        _cache set [_currentFilter, _rows];
+        _cache set [_newFilter, _rows];
     };
     case 'modifyRow': {
-        _args params ['_control', '_amount'];
+        _args params ['_control', '_baseAmount'];
+        private _amount = switch true do {
+            case GVAR(vehicleGear_shift) : {
+                5 * _baseAmount
+            };
+            case GVAR(vehicleGear_ctrl) : {
+                10 * _baseAmount
+            };
+            case GVAR(vehicleGear_alt) : {
+                20 * _baseAmount
+            };
+            default {
+                _baseAmount
+            };
+        };
         private _ctrlList = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
         private _rowIndex = lnbCurSelRow _ctrlList;
         private _value = ((_ctrlList lnbValue [_rowIndex, 0]) + _amount) max 0; 
@@ -219,5 +211,12 @@ switch _mode do {
         private _itemIndex = _currentCachePage findIf { (_x # 0) == _className };
         private _item = _currentCachePage # _itemIndex;
         _item set [1, _value];
+    };
+
+    case 'clear': {
+        _cache set [0, []];
+        _cache set [1, []];
+        _cache set [2, []];
+        ['filterChanged', [ _ctrlGroup, _currentFilter ]] call FUNC(gui_vehicleGear_selector);
     };
 };

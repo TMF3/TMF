@@ -28,7 +28,11 @@ TRACE_3("Vehicle Gear INIT", _category, _faction, _contents);
         params ['_object', '_contents'];
         {
             {
-                _object addItemCargoGlobal _x;
+                if((_x # 0) isKindOf "Bag_Base") then {
+                    _object addBackpackCargoGlobal _x;
+                } else {
+                    _object addItemCargoGlobal _x;
+                };
             } forEach _x;
         } forEach _contents;
      },
