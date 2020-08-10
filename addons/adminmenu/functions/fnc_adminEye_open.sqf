@@ -5,8 +5,8 @@ disableSerialization;
 createDialog QGVAR(adminEyeDialog);
 
 GVAR(Triggers) = allMissionObjects "EmptyDetector";
-GVAR(WaveSpawners) = allMissionObjects "tmf_ai_wavespawn";
-GVAR(Garrison) = (allMissionObjects "tmf_ai_garrison" + allMissionObjects "tmf_ai_garrisonQuantity");
+GVAR(WaveSpawners) = allMissionObjects QEGVAR(ai,wavespawn);
+GVAR(Garrison) = (allMissionObjects QEGVAR(ai,garrison) + allMissionObjects QEGVAR(ai,garrisonQuantity));
 
 
 GVAR(adminEyeSelectedObj) = objNull;
