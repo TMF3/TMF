@@ -13,10 +13,6 @@
  * Internal Use Only
  */
 private _data = (missionNamespace getVariable [QGVAR(vehicleGear_data), ['', '', []]]);
+_data params ["_category", "_faction", "_gear"];
 TRACE_1('SAVE', _data);
-private _gear = (_data # 2);
-{
-    private _arr = _x select { (_x # 1) > 0};
-    _gear set [_forEachIndex, _arr];
-} forEach _gear;
-_data
+[_category, _faction, _gear apply {_x select {(_x # 1) > 0}}]

@@ -19,13 +19,14 @@ private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
 _value params [['_category', '', ['']], ['_faction', '', ['']], ['_cache', [ [], [], [] ], [], 3] ];
 TRACE_3('load',_category, _faction, _cache);
 GVAR(vehicleGear_data) = [_category, _faction, _cache];
-for [{ _i = 0 }, { _i < (lbSize  _categoryCtrl) }, { _i = _i + 1 }] do {
+};
+for "_i" from 0 to ((lbSize  _categoryCtrl)-1) do {
 private _cat = _categoryCtrl lbData _i;
     if(_cat == _category) exitWith {
         _categoryCtrl lbSetCurSel _i;
     };
 };
-for [{ _i = 0 }, { _i < (lbSize  _factionCtrl) }, { _i = _i + 1 }] do {
+for "_i" from 0 to ((lbSize  _factionCtrl)-1) do {
     private _cat = _factionCtrl lbData _i;
     if(_cat == _faction) exitWith {
         _factionCtrl lbSetCurSel _i;
