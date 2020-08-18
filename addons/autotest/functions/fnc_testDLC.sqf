@@ -15,14 +15,23 @@ Author:
 LOG("Running DLC tests");
 private _warnings = [];
 private _ignoredDLC = getArray (_test >> "ignoredDLC");
-
+private _dlcHash = uiNamespace getVariable QGVAR(dlcHash);
 private _allUnits = (playableUnits + [player]);
 private _unitsDLCInfo = _allUnits apply {
     _x setUnitLoadout getUnitLoadout _x; // Needed to properly register DLC usage
     [_x,getPersonUsedDLCs _x]
 };
-private _dlcHash = uiNamespace getVariable QGVAR(dlcHash);
 private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewText";
+
+// World DLC flags all objects, so add it as a separate warning.
+private _worldDLC = getNumber (configFile >> "CfgWorlds" >> worldName >> "appID");
+if (_worldDLC != 0 && !(_worldDLC in _ignoredDLC)) then {
+    _ignoredDLC pushBack _worldDLC;
+    _warnings pushBack [
+        1,
+        format ["Mission uses DLC terrain: %1", [_dlcHash, _worldDLC] call CBA_fnc_hashGet]
+    ];
+};
 
 // Check units for DLC
 {
@@ -48,13 +57,19 @@ private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewTe
     };
 } forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
 
-private _vehicleDLCInfo = vehicles apply {[_x,getObjectDLC _x]};
+// Check placed vehicles for DLC
+// Filter only enterable and unlocked vehicles
+private _vehicles = vehicles select {
+    [typeOf _x, true] call BIS_fnc_crewCount > 0 &&
+    ((_x get3DENAttribute "enableSimulation") # 0) &&
+    ((_x get3DENAttribute "lock") # 0) <= 1 &&
+    !((_x get3DENAttribute "objectIsSimple") # 0)
+};
+private _vehicleDLCInfo = _vehicles apply {[_x,getObjectDLC _x]};
 private _roleDescriptions = _allUnits apply {(_x get3DENAttribute "description") select 0};
 private _searchTexts = [_missionSummary] + _roleDescriptions;
 private _problemVehs = 0;
 private _problemVehsDLC = [];
-
-// Check placed vehicles for DLC
 {
     _x params ["_veh", "_dlc"];
     TRACE_2("Checking vehicle for DLC",_veh,_dlc);
