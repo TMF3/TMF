@@ -66,7 +66,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
             private _data = [
                 typeOf _unit,
                 getPosATL _unit,
-                getDir _unit,
+                [vectorDir _x,vectorUp _x],
                 getUnitLoadout _unit,
                 -1,
                 [],
@@ -87,13 +87,13 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
         typeOf _x,
         if (isSimpleObject _x) then [{getPosWorld _x},{getPosATL _x}],
         getDir _x,
-        vectorUp _x,
+        [vectorDir _x,vectorUp _x],
         isSimpleObject _x,
         simulationEnabled _x
     ]};
 
     // store vehicle data
-    _vehicles = _vehicles apply {[typeof _x,getposATL _x,getDir _x,[_x] call BIS_fnc_getVehicleCustomization, getPylonMagazines _x]};
+    _vehicles = _vehicles apply {[typeof _x,getposATL _x,[vectorDir _x,vectorUp _x],[_x] call BIS_fnc_getVehicleCustomization, getPylonMagazines _x]};
 
     _logic setVariable [QGVAR(waveData), [_groups, _vehicles, _cachedObjects]];
 

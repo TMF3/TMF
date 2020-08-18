@@ -20,12 +20,29 @@ private _spawnedObjects = [];
 private _data = _logic getVariable [QGVAR(waveData), []];
 _data params ['_groups', '_vehicles', '_objects'];
 {
-    _x params ['_type','_pos','_dir','_custom', '_pylons'];
+    _x params ["_type", "_pos", "_dir", "_vectorDirAndUp", "_isSimple", "_simulationEnabled","_simpleObjData"];
+
+    if (_isSimple) then {
+        private _simpleObj = [_type,_pos, _dir] call BIS_fnc_createSimpleObject;
+        _simpleObj setPosWorld _pos;
+        _simpleObj setVectorDirAndUp _vectorDirAndUp;
+        _spawnedObjects pushBack _simpleObj;
+    } else {
+        private _object = createVehicle [_type, _pos, [], 0, "CAN_COLLIDE"];
+        _object setDir _dir;
+        _object setVectorDirAndUp _vectorDirAndUp;
+        _object enableSimulation _simulationEnabled;
+        _spawnedObjects pushBack _object;
+    };
+} forEach _objects;
+
+{
+    _x params ['_type','_pos','_vectorDirAndUp','_custom', '_pylons'];
     private _formationType = "NONE";
     if((_pos select 2) > 3) then {_formationType = "FLY"};
     private _vehicle = createVehicle [_type, [0,0,0], [], 0, _formationType];
     _vehicle setPosATL _pos;
-    _vehicle setDir _dir;
+    _vehicle setVectorDirAndUp _vectorDirAndUp;
     [_vehicle,_custom select 0,_custom select 1] spawn BIS_fnc_initVehicle;
 
     if(count _pylons > 0) then {
@@ -46,12 +63,12 @@ _data params ['_groups', '_vehicles', '_objects'];
 
     private _grp = createGroup [_side, true]; // Delete group when empty
     {
-        _x params ["_type","_pos","_dir","_gear", "_vehicleIndex", "_vehicleRole","_disabledAIFeatures"];
+        _x params ["_type","_pos","_vectorDirAndUp","_gear", "_vehicleIndex", "_vehicleRole","_disabledAIFeatures"];
         private _unit = _grp createUnit [_type, [0,0,0],[] , 0, "NONE"];
         _spawnedUnits pushBack _unit;
         _unit setPosATL _pos;
         _unit setUnitLoadout [_gear, false];
-        _unit setDir _dir;
+        _unit setVectorDirAndUp _vectorDirAndUp;
         if (_vehicleIndex >= 0) then {
             private _vehicle = _spawnedVehicles # _vehicleIndex;
             _vehicleRole params ["_role", "_path"];
@@ -98,42 +115,34 @@ _data params ['_groups', '_vehicles', '_objects'];
     _spawnedGroups pushBack _grp;
 } forEach _groups;
 
-{
-    _x params ["_type", "_pos", "_dir", "_vectorUp", "_isSimple", "_simulationEnabled","_simpleObjData"];
-
-    if (_isSimple) then {
-        private _simpleObj = [_type,_pos, _dir] call BIS_fnc_createSimpleObject;
-        _simpleObj setPosWorld _pos;
-        _simpleObj setVectorUp _vectorUp;
-        _spawnedObjects pushBack _simpleObj;
-    } else {
-        private _object = createVehicle [_type, _pos, [], 0, "CAN_COLLIDE"];
-        _object setDir _dir;
-        _object setVectorUp _vectorUp;
-        _object enableSimulation _simulationEnabled;
-        _spawnedObjects pushBack _object;
-    };
-} forEach _objects;
-
 _wave = _logic getVariable ["Waves",1];
 _logic setVariable ["Waves", (_wave-1)];
 _handlers = _logic getVariable ["Handlers",[]];
 {
     if(_x isEqualType {}) then {
-        [_wave,_spawnedGroups,_spawnedUnits,_spawnedVehicles,_spawnedObjects] call _x;
+        [_wave,_spawnedGroups,_spawnedUnits,_spawnedVehicles,_spawnedObjects,_logic] call _x;
     };
 } forEach _handlers;
 // Check if there is another wave
 if(_logic getVariable ["Waves",1] > 0) then {
-
-    // Check if we need to wait for them to die
-    if(_logic getVariable ["WhenDead",false]) then {
-        [{ {{alive _x} count (units _x) > 0 } count (_this select 1) <= 0 }, FUNC(spawnWave), [_logic,_spawnedGroups]] call CBA_fnc_waitUntilAndExecute;
-    }
-    else {  // Otherwise spawn the wave after sleeping for some time
-        [FUNC(spawnWave), [_logic], _logic getvariable ["Time",10]] call CBA_fnc_waitAndExecute;
+    private _time = _logic getvariable ["Time",10];
+    private _whenDead = _logic getVariable ["WhenDead",false];
+    // Legacy support
+    if (_whenDead isEqualType false) then {
+        _whenDead = parseNumber _whenDead;
     };
+
+    // Wait for conditions before spawning waves
+    [
+        {
+            //params ["","","_minimumDead","_spawnedUnits", "_targetTime"];
+            CBA_missionTime > (_this # 4) &&
+            {{!alive _x || lifeState _x isEqualTo "INCAPACITATED"} count (_this # 3) > (_this # 2)}
+        },
+        FUNC(spawnWave),
+        [_logic,_spawnedGroups,_whenDead * count _spawnedUnits,_spawnedUnits, CBA_missionTime + _time]
+    ] call CBA_fnc_waitUntilAndExecute;
 
 };
 
-[format ["Spawned wave, unit count: %1, vehicle count: %2, group count %3",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups],count _spawnedUnits > 40, "AI"] call EFUNC(adminmenu,log);
+[format ["Spawned wave, unit count: %1, vehicle count: %2, group count %3, object count %4",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups, count _spawnedObjects],count _spawnedUnits > 40, "AI"] call EFUNC(adminmenu,log);

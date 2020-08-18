@@ -44,12 +44,25 @@ class GVAR(wavespawn) : Module_F {
             typeName = "NUMBER";
             defaultValue = 300;
         };
-        class WhenDead: Checkbox {
+        class WhenDead: Default {
             property = QGVAR(wavespawn_WhenDead);
-            displayName = "Previous wave must be dead";
-            tooltip = "Well should they?";
-            typeName = "BOOL";
-            defaultValue = "false";
+            displayName = "% Losses needed";
+            tooltip = "Percentage of units needing to be killed or unconscious before spawning a new wave";
+            control = "Slider";
+            typeName = "NUMBER";
+            defaultValue = 0;
+        };
+        class WaveInit: Default {
+            property = QGVAR(wavespawn_WaveInit);
+            displayName = "Wave init code";
+            tooltip = "Code executed every time a new wave is spawned";
+            expression = "                                              \
+                private _handlers = _this getVariable ['Handlers',[]];  \
+                _handlers pushBack compile _value;                      \
+                _this setVariable ['Handlers',_handlers,true];          \
+            ";
+            defaultValue = "'params [""_wave"",""_spawnedGroups"",""_spawnedUnits"",""_spawnedVehicles"",""_spawnedObjects"",""_logic""];'";
+            control = "cba_common_EditCodeMulti10";
         };
         class ModuleDescription: ModuleDescription {};
     };
