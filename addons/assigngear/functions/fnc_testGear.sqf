@@ -209,12 +209,12 @@ private _fncTestUnit = {
             private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount < 3) then {
+            if (_weaponMagCount < 3 && !(_weaponMags isEqualTo [])) then {
                 _output pushBack [1,format["Role: %2 - %3 has less than 3 compatible mags for primary weapon.", _x,_faction,_role]];
             };
         };
 
-        if (count _sidearmWeapon > 0) then {
+        if (count _sidearmWeapon > 0 && !(_weaponMags isEqualTo [])) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
