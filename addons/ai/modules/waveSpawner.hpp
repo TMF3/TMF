@@ -34,9 +34,8 @@ class GVAR(wavespawn) : Module_F {
             displayName = "Number of waves";
             property = QGVAR(wavespawn_Waves);
             control = "EditShort";
-            expression = "_this setVariable ['Waves',parseNumber _value,true];";
             typeName = "NUMBER";
-            defaultValue = "1";
+            defaultValue = """1""";
         };
         class Time: Default {
             property = QGVAR(wavespawn_Time);

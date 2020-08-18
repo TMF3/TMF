@@ -16,8 +16,9 @@ params ["_logic"];
 private _spawnedVehicles = [];
 private _spawnedGroups = [];
 private _spawnedUnits = [];
+private _spawnedObjects = [];
 private _data = _logic getVariable [QGVAR(waveData), []];
-_data params ['_groups', '_vehicles'];
+_data params ['_groups', '_vehicles', '_objects'];
 {
     _x params ['_type','_pos','_dir','_custom', '_pylons'];
     private _formationType = "NONE";
@@ -29,11 +30,11 @@ _data params ['_groups', '_vehicles'];
 
     if(count _pylons > 0) then {
         private _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
-        { 
-            _vehicle removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") 
+        {
+            _vehicle removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon")
         } forEach getPylonMagazines _vehicle;
-        { 
-            _vehicle setPylonLoadout [_forEachIndex + 1, _x, true, _pylonPaths select _forEachIndex] 
+        {
+            _vehicle setPylonLoadout [_forEachIndex + 1, _x, true, _pylonPaths select _forEachIndex]
         } forEach _pylons;
     };
     _spawnedVehicles pushBack _vehicle;
@@ -97,12 +98,29 @@ _data params ['_groups', '_vehicles'];
     _spawnedGroups pushBack _grp;
 } forEach _groups;
 
+{
+    _x params ["_type", "_pos", "_dir", "_vectorUp", "_isSimple", "_simulationEnabled","_simpleObjData"];
+
+    if (_isSimple) then {
+        private _simpleObj = [_type,_pos, _dir] call BIS_fnc_createSimpleObject;
+        _simpleObj setPosWorld _pos;
+        _simpleObj setVectorUp _vectorUp;
+        _spawnedObjects pushBack _simpleObj;
+    } else {
+        private _object = createVehicle [_type, _pos, [], 0, "CAN_COLLIDE"];
+        _object setDir _dir;
+        _object setVectorUp _vectorUp;
+        _object enableSimulation _simulationEnabled;
+        _spawnedObjects pushBack _object;
+    };
+} forEach _objects;
+
 _wave = _logic getVariable ["Waves",1];
 _logic setVariable ["Waves", (_wave-1)];
 _handlers = _logic getVariable ["Handlers",[]];
 {
     if(_x isEqualType {}) then {
-        [_wave,_spawnedGroups] call _x;
+        [_wave,_spawnedGroups,_spawnedUnits,_spawnedVehicles,_spawnedObjects] call _x;
     };
 } forEach _handlers;
 // Check if there is another wave

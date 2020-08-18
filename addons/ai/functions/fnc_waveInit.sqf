@@ -24,6 +24,12 @@ if(count _headless > 0 && isServer) exitWith {
 
 // check if we have done the setup.
 if(!(_logic getVariable [QGVAR(init),false])) then {
+    private _waves = _logic getVariable ["Waves", 1];
+    if (_waves isEqualType "") then {
+        _waves = parseNumber _waves;
+        _logic setVariable ["Waves", _waves, true];
+    };
+
     private _synchronizedGroups = [];
     private _objects = synchronizedObjects _logic;
     {
@@ -74,10 +80,22 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
         };
         _groups pushBack [side _x, _units, [_x] call CFUNC(serializeWaypoints)];
     } forEach _synchronizedGroups;
+
+    _objects = (_objects - _vehicles) - _allUnits;
+    _objects = _objects select {!(_x isKindOf "Logic")};
+    private _cachedObjects = _objects apply {[
+        typeOf _x,
+        if (isSimpleObject _x) then [{getPosWorld _x},{getPosATL _x}],
+        getDir _x,
+        vectorUp _x,
+        isSimpleObject _x,
+        simulationEnabled _x
+    ]};
+
     // store vehicle data
     _vehicles = _vehicles apply {[typeof _x,getposATL _x,getDir _x,[_x] call BIS_fnc_getVehicleCustomization, getPylonMagazines _x]};
 
-    _logic setVariable [QGVAR(waveData), [_groups, _vehicles]];
+    _logic setVariable [QGVAR(waveData), [_groups, _vehicles, _cachedObjects]];
 
     // Clean up the template units.
     {
@@ -87,6 +105,9 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
             deleteVehicle _x;
         } foreach _units;
     } foreach _synchronizedGroups;
+    {
+        deleteVehicle _x;
+    } foreach _objects;
 
     _logic setVariable [QGVAR(init),true,true];
 };
