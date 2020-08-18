@@ -18,7 +18,7 @@ class GVAR(wavespawn) : Module_F {
         class Layers: Edit {
             property = QGVAR(wavespawn_Layers);
             displayName = "Mission layers";
-            tooltip = "3DEN layers linked to this wavespawner.<br/>Format: ""Layer 1"", ""Layer 2"", ""etc""";
+            tooltip = "3DEN layers linked to this wavespawner.\nFormat: ""Layer 1"", ""Layer 2"", ""etc""";
         };
         class Delay: Default {
             property = QGVAR(wavespawn_Delay);
