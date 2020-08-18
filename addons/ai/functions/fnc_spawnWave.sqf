@@ -143,6 +143,8 @@ if(_logic getVariable ["Waves",1] > 0) then {
         [_logic,_spawnedGroups,_whenDead * count _spawnedUnits,_spawnedUnits, CBA_missionTime + _time]
     ] call CBA_fnc_waitUntilAndExecute;
 
+} else {
+    deleteVehicle _logic;
 };
 
 [format ["Spawned wave, unit count: %1, vehicle count: %2, group count %3, object count %4",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups, count _spawnedObjects],count _spawnedUnits > 40, "AI"] call EFUNC(adminmenu,log);

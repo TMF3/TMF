@@ -4,15 +4,15 @@ class CfgVehicles
     class Module_F: Logic
     {
         class AttributesBase
-		{
-			class Default;
-			class Edit;
-			class Combo;
-			class Checkbox;
-			class CheckboxNumber;
-			class ModuleDescription;
-			class Units;
-		};
+        {
+            class Default;
+            class Edit;
+            class Combo;
+            class Checkbox;
+            class CheckboxNumber;
+            class ModuleDescription;
+            class Units;
+        };
         class ArgumentsBaseUnits
         {
             class Units;

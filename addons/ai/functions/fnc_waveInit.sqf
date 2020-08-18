@@ -82,7 +82,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
     } forEach _synchronizedGroups;
 
     _objects = (_objects - _vehicles) - _allUnits;
-    _objects = _objects select {!(_x isKindOf "Logic")};
+    _objects = _objects select {side _x in [blufor,opfor,independent,civilian,sideUnknown] && !(_x isKindOf "EmptyDetector")};
     private _cachedObjects = _objects apply {[
         typeOf _x,
         if (isSimpleObject _x) then [{getPosWorld _x},{getPosATL _x}],

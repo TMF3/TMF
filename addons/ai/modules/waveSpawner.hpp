@@ -1,16 +1,14 @@
 class GVAR(wavespawn) : Module_F {
-    // Standard object definitions
-    scope = 2; // Editor visibility; 2 will show it in the menu, 1 will hide it.
-    displayName = "Wave Spawner"; // Name displayed in the menu
+    scope = 2;
+    displayName = "Wave Spawner";
 
     category = "Teamwork";
     icon = QPATHTOEF(common,UI\logo_tmf_small_ca.paa);
-    // Name of function triggered once conditions are met
     function = QFUNC(waveInit);
     functionPriority = 10;
     isGlobal = false;
     isTriggerActivated = true;
-    isDisposable = true;
+    isDisposable = false;
 
     class EventHandlers: EventHandlers {
         init = "if(isServer && !is3DEN) then {[{_this call tmf_AI_fnc_waveInit;}, [_this select 0,[],false]] call CBA_fnc_execNextFrame;};_this call bis_fnc_moduleInit;";
@@ -20,7 +18,7 @@ class GVAR(wavespawn) : Module_F {
         class Layers: Edit {
             property = QGVAR(wavespawn_Layers);
             displayName = "Mission layers";
-            tooltip = "3DEN layers linked to this wavespawner. Format: ""Layer 1"", ""Layer 2"", ""etc""";
+            tooltip = "3DEN layers linked to this wavespawner.<br/>Format: ""Layer 1"", ""Layer 2"", ""etc""";
         };
         class Delay: Default {
             property = QGVAR(wavespawn_Delay);
