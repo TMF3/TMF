@@ -25,6 +25,13 @@ if(count _headless > 0 && isServer) exitWith {
 // check if we have done the setup.
 if(!(_logic getVariable [QGVAR(init),false])) then {
     private _synchronizedGroups = [];
+    private _objects = synchronizedObjects _logic;
+    {
+        _x = getMissionLayerEntities _x;
+        _x params [["_layerObjects",[]]];
+
+        _objects append _layerObjects;
+    } forEach parseSimpleArray ("[" + (_logic getVariable ["Layers",""]) + "]");
     {
         if(_x isEqualType grpNull && {side _x in [blufor,opfor,independent,civilian]}) then {
             _synchronizedGroups pushBackUnique _x;
@@ -38,7 +45,8 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
                } foreach crew _x;
            };
         };
-    } foreach synchronizedObjects _logic;
+    } foreach _objects;
+
     private _allUnits = [];
     { _allUnits append (units _x) } forEach _synchronizedGroups;
     private _vehicles = (_allUnits) apply {objectParent _x} select {!isNull _x};
