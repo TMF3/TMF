@@ -43,6 +43,32 @@
 #define LIST_19(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 #define LIST_20(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 
+/* assignGear cache indexes */
+#define IDX_DISPLAY_NAME 0
+#define IDX_OVERRIDE_PLAYER_IDENTITY 1
+#define IDX_UNIFORM 2
+#define IDX_VEST 3
+#define IDX_BACKPACK 4
+#define IDX_HEADGEAR 5
+#define IDX_GOGGLES 6
+#define IDX_HMD 7
+#define IDX_FACES 8
+#define IDX_INSIGNIAS 9
+#define IDX_BACKPACK_ITEMS 10
+#define IDX_ITEMS 11
+#define IDX_MAGAZINES 12
+#define IDX_LINKED_ITEMS 13
+#define IDX_PRIMARY_WEAPON 14
+#define IDX_SCOPE 15
+#define IDX_BIPOD 16
+#define IDX_ATTACHMENT 17
+#define IDX_SILENCER 18
+#define IDX_SECONDARY_WEAPON 19
+#define IDX_SECONDARY_ATTACHMENTS 20
+#define IDX_SIDEARM_WEAPON 21
+#define IDX_SIDEARM_ATTACHMENTS 22
+#define IDX_TRAITS 23
+#define IDX_CODE 24
 
 #define FILTER_WEAPON 0
 #define FILTER_GEAR 1

@@ -15,7 +15,6 @@
  * Loads assigngear from config
  */
 #define CFGROLE (_cfg >> "CfgLoadouts" >> _faction >> _role)
-#define CFGPARSE (configFile >> "CfgLoadoutsParser")
 
 params [
     "_faction",
@@ -43,41 +42,42 @@ private _loadoutArray = [];
 {
     switch (toLower configName _x) do {
         // Equipment/appearance
-        CASE("displayname",0);
-        CASE("uniform",1);
-        CASE("vest",2);
-        CASE("backpack",3);
-        CASE("headgear",4);
+        CASE("displayname",IDX_DISPLAY_NAME);
+        CASE("overrideplayeridentity",IDX_OVERRIDE_PLAYER_IDENTITY);
+        CASE("uniform",IDX_UNIFORM);
+        CASE("vest",IDX_VEST);
+        CASE("backpack",IDX_BACKPACK);
+        CASE("headgear",IDX_HEADGEAR);
         case "goggles": {
             private _goggles = _x call BIS_fnc_getCfgData;
             if (_goggles isEqualTo []) then {
                 _goggles pushBack ""; // an empty array would mean goggles being skipped in main assignGear function
             };
-            _loadoutArray set [5, _goggles];
+            _loadoutArray set [IDX_GOGGLES, _goggles];
         };
-        CASE("hmd",6);
-        CASE("faces",7);
-        CASE("insignias",8);
+        CASE("hmd",IDX_HMD);
+        CASE("faces",IDX_FACES);
+        CASE("insignias",IDX_INSIGNIAS);
 
         // Items/magazines
-        CASE("backpackitems",9);
-        CASE("items",10);
-        CASE("magazines",11);
-        CASE("linkeditems",12);
+        CASE("backpackitems",IDX_BACKPACK_ITEMS);
+        CASE("items",IDX_ITEMS);
+        CASE("magazines",IDX_MAGAZINES);
+        CASE("linkeditems",IDX_LINKED_ITEMS);
 
         // Weapons
-        CASE("primaryweapon",13);
-        CASE("scope",14);
-        CASE("bipod",15);
-        CASE("attachment",16);
-        CASE("silencer",17);
-        CASE("secondaryweapon",18);
-        CASE("secondaryattachments",19);
-        CASE("sidearmweapon",20);
-        CASE("sidearmattachments",21);
+        CASE("primaryweapon",IDX_PRIMARY_WEAPON);
+        CASE("scope",IDX_SCOPE);
+        CASE("bipod",IDX_BIPOD);
+        CASE("attachment",IDX_ATTACHMENT);
+        CASE("silencer",IDX_SILENCER);
+        CASE("secondaryweapon",IDX_SECONDARY_WEAPON);
+        CASE("secondaryattachments",IDX_SECONDARY_ATTACHMENTS);
+        CASE("sidearmweapon",IDX_SIDEARM_WEAPON);
+        CASE("sidearmattachments",IDX_SIDEARM_ATTACHMENTS);
 
-        CASE("traits",22);
-        CASE("code",23);
+        CASE("traits",IDX_TRAITS);
+        CASE("code",IDX_CODE);
     };
 } forEach configProperties [CFGROLE];
 

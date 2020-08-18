@@ -3,6 +3,7 @@
 LOG("Preinit");
 
 #include "XEH_PREP.sqf"
+#include "initSettings.sqf"
 
 if (is3DEN) then {
     [] call FUNC(onEdenMissionChange);

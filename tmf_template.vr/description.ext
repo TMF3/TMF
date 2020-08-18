@@ -44,6 +44,7 @@ class CfgLoadouts
     class EXAMPLE_LOADOUT
     {
         displayName = "Example Loadout";
+        tooltip = "My tooltip\nNew line";
         #include "loadouts\example_loadout.hpp"
     };
 };

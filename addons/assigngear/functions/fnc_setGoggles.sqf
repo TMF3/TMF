@@ -13,20 +13,14 @@
 
 params ["_unit", "_goggles"];
 
+_unit setVariable [QGVAR(goggles),_goggles];
 private _curGoggles = goggles _unit;
-if (_curGoggles isEqualTo "") then { // Don't respect no-goggles profile in skip check
-    _curGoggles = "givemegoggles";
-};
 
 // Skip if loadout allows profile glasses OR profile glasses part of loadout
 if ("default" in _goggles || _curGoggles in _goggles) exitWith {};
 
-private _newGoggles = ""; 
-if !(_goggles isEqualTo []) then {
-    _newGoggles = selectRandom _goggles;
-};
-
-if (_newGoggles isEqualTo "") then {
+private _newGoggles = selectRandom _goggles;
+if (isNil "_newGoggles" || {_newGoggles isEqualTo ""}) then {
     removeGoggles _unit;
 } else {
     _unit addGoggles _newGoggles;

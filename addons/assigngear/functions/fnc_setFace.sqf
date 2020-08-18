@@ -12,6 +12,7 @@
  */
 params ["_unit","_faces"];
 
+_unit setVariable [QGVAR(faces),_faces];
 if (_faces isEqualTo []) exitWith {};
 
 private _unitFace = toLower (face _unit);

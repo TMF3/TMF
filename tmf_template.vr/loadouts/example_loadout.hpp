@@ -8,6 +8,7 @@ class baseMan {// Weaponless baseclass
     goggles[] = {"default"};
     hmd[] = {};
     // Leave empty to remove all. "Default" > leave original item.
+    // overridePlayerIdentity = 1; // Uncomment to override CBA setting
     faces[] = {"faceset:african", "faceset:caucasian"};
     // Leave empty to not change faces.
     insignias[] = {"111thID"};

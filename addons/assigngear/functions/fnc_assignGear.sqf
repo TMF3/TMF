@@ -40,48 +40,51 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 {
     if (!isNil "_x" && {!(_x isEqualTo [])} && {!(_x isEqualTo "")}) then {
         switch _forEachIndex do {
-            case 0: {}; // displayName
-            case 1: { // uniform
+            case IDX_DISPLAY_NAME: {}; // displayName
+            case IDX_OVERRIDE_PLAYER_IDENTITY: {
+                _unit setVariable [QGVAR(overridePlayerIdentity),(_x > 0)];
+            };
+            case IDX_UNIFORM: { // uniform
                 private _uniform = selectRandom _x;
                 if !(_uniform isEqualTo '') then {
                     _unit forceAddUniform _uniform;
                 };
             };
-            case 2: { // vest
+            case IDX_VEST: { // vest
                 private _vest = selectRandom _x;
                 if !(_vest isEqualTo '') then {
                     _unit addVest _vest;
                 };
             };
-            case 3: { // backpack
+            case IDX_BACKPACK: { // backpack
                 private _backpack = selectRandom _x;
                 if !(_backpack isEqualTo '') then {
                     _unit addBackpack _backpack;
                 };
             };
-            case 4: { // headgear
+            case IDX_HEADGEAR: { // headgear
                 private _headgear = selectRandom _x;
                 if !(_headgear isEqualTo '') then {
                     _unit addHeadgear _headgear;
                 };
             };
-            case 5: { // goggles
+            case IDX_GOGGLES: { // goggles
                 [_unit, _x] call FUNC(setGoggles);
             };
-            case 6: { // hmd
+            case IDX_HMD: { // hmd
                 private _hmd = selectRandom _x;
                 if !(_hmd isEqualTo '') then {_unit linkItem _hmd};
             };
-            case 7: { // faces
+            case IDX_FACES: { // faces
                 [_unit, _x] call FUNC(setFace);
             };
-            case 8: { // insignias
+            case IDX_INSIGNIAS: { // insignias
                 [_unit, selectRandom _x] call FUNC(setInsignia);
             };
-            case 9: { // backpackItems
+            case IDX_BACKPACK_ITEMS: { // backpackItems
                 {_unit addItemToBackpack _x} forEach _x;
             };
-            case 10: { // items
+            case IDX_ITEMS: { // items
                 { // Items try to fill uniform first
                     switch true do {
                         case (_unit canAddItemToUniform _x): {_unit addItemToUniform _x;};
@@ -90,7 +93,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                     };
                 } forEach _x;
             };
-            case 11: { // magazines
+            case IDX_MAGAZINES: { // magazines
                 { // Magazines try to fill vest first
                     switch true do {
                         case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
@@ -99,49 +102,49 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                     };
                 } forEach _x;
             };
-            case 12: { // linkedItems
+            case IDX_LINKED_ITEMS: { // linkedItems
                 {_unit addWeapon _x} forEach _x;
             };
-            case 13: { // primaryWeapon
+            case IDX_PRIMARY_WEAPON: { // primaryWeapon
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 14: { // scope
+            case IDX_SCOPE: { // scope
                 private _scope = selectRandom _x;
                 if !(_scope isEqualTo '') then {_unit addPrimaryWeaponItem _scope};
             };
-            case 15: { // bipod
+            case IDX_BIPOD: { // bipod
                 private _bipod = selectRandom _x;
                 if !(_bipod isEqualTo '') then {_unit addPrimaryWeaponItem _bipod};
             };
-            case 16: { // attachment
+            case IDX_ATTACHMENT: { // attachment
                 private _attachment = selectRandom _x;
                 if !(_attachment isEqualTo '') then {_unit addPrimaryWeaponItem _attachment};
             };
-            case 17: { // silencer
+            case IDX_SILENCER: { // silencer
                 private _silencer = selectRandom _x;
                 if !(_silencer isEqualTo '') then {_unit addPrimaryWeaponItem _silencer};
             };
-            case 18: { // secondaryWeapon
+            case IDX_SECONDARY_WEAPON: { // secondaryWeapon
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 19: { // secondaryAttachments
+            case IDX_SECONDARY_ATTACHMENTS: { // secondaryAttachments
                 {_unit addSecondaryWeaponItem _x} forEach _x;
             };
-            case 20: { // sidearmweapon
+            case IDX_SIDEARM_WEAPON: { // sidearmweapon
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 21: { // sidearmattachments
+            case IDX_SIDEARM_ATTACHMENTS: { // sidearmattachments
                 {_unit addHandgunItem _x} forEach _x;
             };
-            case 22: { // Unit traits
+            case IDX_TRAITS: { // Unit traits
                 {
                     [_unit, _x] call FUNC(setUnitTrait);
                 } forEach _x;
             };
-            case 23: { // code
+            case IDX_CODE: { // code
                 _unit call compile _x;
             };
         };

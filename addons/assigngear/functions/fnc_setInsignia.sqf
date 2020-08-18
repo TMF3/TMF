@@ -16,19 +16,10 @@
  * Note:
  * Thanks @Bear and @Nick for helping
  */
-params ["_unit","_insignia"];
+params ["_unit",["_insignia","default"]];
 
-if (time > 5 || {is3DEN}) then
-{
-    [_unit, _insignia] call BIS_fnc_setUnitInsignia;
-}
-else
-{
-    // Wait until game has started to overwrite player insignias
-    [
-        BIS_fnc_isLoading,
-        BIS_fnc_setUnitInsignia,
-        [_unit, _insignia],
-        5
-    ] call CBA_fnc_waitUntilAndExecute;
-};
+if (_insignia == "default") exitWith {};
+
+[_unit, _insignia] call BIS_fnc_setUnitInsignia;
+
+_unit setVariable [QGVAR(insignia),_insignia];
