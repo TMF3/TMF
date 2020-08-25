@@ -8,6 +8,7 @@ PREP(linkItems);
 PREP(loadFactions);
 PREP(loadFactionCategories);
 PREP(loadRoles);
+PREP(loadFaces);
 PREP(replaceEquipment);
 PREP(replacePrimaryWeapon);
 PREP(replaceSecondaryWeapon);

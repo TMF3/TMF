@@ -5,10 +5,17 @@ class baseMan {// Weaponless baseclass
     vest[] = {"V_PlateCarrier1_rgr","V_PlateCarrier2_rgr"};
     backpack[] = {"B_AssaultPack_mcamo"};
     headgear[] = {};
-    goggles[] = {"default"};
+    goggles[] =
+    {
+        LIST_4("default"),
+        "G_Combat",
+        "G_Tactical_Clear",
+        "G_Tactical_Black",
+        LIST_4("")
+    };
     hmd[] = {};
     // Leave empty to remove all. "Default" > leave original item.
-    faces[] = {"faceset:african", "faceset:caucasian"};
+    faces[] = {"faceset:american"};
     // Leave empty to not change faces.
     insignias[] = {"111thID"};
     // Leave empty to not change insignias

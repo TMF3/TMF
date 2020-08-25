@@ -56,7 +56,12 @@ private _loadoutArray = [];
             _loadoutArray set [IDX_GOGGLES, _goggles];
         };
         CASE("hmd",IDX_HMD);
-        CASE("faces",IDX_FACES);
+        case "faces": {
+            _loadoutArray set [
+                IDX_FACES,
+                (_x call BIS_fnc_getCfgData) call FUNC(loadFaces)
+            ];
+        };
         CASE("insignias",IDX_INSIGNIAS);
 
         // Items/magazines

@@ -12,6 +12,7 @@ private _faceClasses = [];
 
 uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
 
+
 {
     private _class = _x;
     private _name = configName _x;
@@ -31,6 +32,7 @@ uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
 
     if (count _weightedArray > 0) then {
         uiNamespace setVariable ["tmf_assignGear_faceset_"+_name,_weightedArray];
+        TRACE_2("Cached faceset to uiNamespace",_name,_weightedArray);
     };
 } forEach ("true" configClasses (configFile >> "tmf_assignGear_facesets"));
 
