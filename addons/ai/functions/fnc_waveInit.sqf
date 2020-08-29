@@ -24,6 +24,13 @@ if(count _headless > 0 && isServer) exitWith {
 
 // check if we have done the setup.
 if(!(_logic getVariable [QGVAR(init),false])) then {
+
+    // Legacy support
+    private _whenDead = _logic getVariable ["WhenDead",0];
+    if (_whenDead isEqualType false) then {
+        _logic setVariable ["WhenDead", parseNumber _whenDead, true];
+    };
+
     private _waves = _logic getVariable ["Waves", 1];
     if (_waves isEqualType "") then {
         _waves = parseNumber _waves;

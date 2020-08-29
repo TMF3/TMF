@@ -126,18 +126,14 @@ _handlers = _logic getVariable ["Handlers",[]];
 // Check if there is another wave
 if(_logic getVariable ["Waves",1] > 0) then {
     private _time = _logic getvariable ["Time",10];
-    private _whenDead = _logic getVariable ["WhenDead",false];
-    // Legacy support
-    if (_whenDead isEqualType false) then {
-        _whenDead = parseNumber _whenDead;
-    };
+    private _whenDead = _logic getVariable ["WhenDead",0];
 
     // Wait for conditions before spawning waves
     [
         {
             //params ["","","_minimumDead","_spawnedUnits", "_targetTime"];
             CBA_missionTime > (_this # 4) &&
-            {{!alive _x || lifeState _x isEqualTo "INCAPACITATED"} count (_this # 3) > (_this # 2)}
+            {{!alive _x || lifeState _x isEqualTo "INCAPACITATED"} count (_this # 3) >= (_this # 2)}
         },
         FUNC(spawnWave),
         [_logic,_spawnedGroups,_whenDead * count _spawnedUnits,_spawnedUnits, CBA_missionTime + _time]
@@ -147,4 +143,14 @@ if(_logic getVariable ["Waves",1] > 0) then {
     deleteVehicle _logic;
 };
 
-[format ["Spawned wave, unit count: %1, vehicle count: %2, group count %3, object count %4",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups, count _spawnedObjects],count _spawnedUnits > 40, "AI"] call EFUNC(adminmenu,log);
+[
+    format [
+        "Spawned wave, unit count: %1, vehicle count: %2, group count %3, object count %4",
+        count _spawnedUnits,
+        count _spawnedVehicles,
+        count _spawnedGroups,
+        count _spawnedObjects
+    ],
+    count _spawnedUnits > 40,
+    "AI"
+] call EFUNC(adminmenu,log);
