@@ -27,10 +27,10 @@ private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewTe
 private _worldDLC = getNumber (configFile >> "CfgWorlds" >> worldName >> "appID");
 if (_worldDLC != 0 && !(_worldDLC in _ignoredDLC)) then {
     _ignoredDLC pushBack _worldDLC;
-    _warnings pushBack [
+    /*_warnings pushBack [
         1,
         format ["Mission uses DLC terrain: %1", [_dlcHash, _worldDLC] call CBA_fnc_hashGet]
-    ];
+    ];*/
 };
 
 // Check units for DLC
