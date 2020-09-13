@@ -22,7 +22,7 @@ if (_isGlobal && !isRemoteExecuted) exitWith {
 };
 
 private _handlers = _logic getVariable ["Handlers", []];
-private _index = _handlers pushBack _code;
+_handlers pushBack _code;
 _logic setVariable ["Handlers", _handlers, false];
 
-//_index
+nil
