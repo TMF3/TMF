@@ -20,11 +20,11 @@ params ["_logic","_index"];
 TRACE_2("Removing wavehandler",_logic,_index);
 private _handlers = _logic getVariable ["Handlers", []];
 
-if (count _handlers < _index) exitWith {
-    WARNING_2("Failed removing wavehandler from %1 with ID %2",_index,_logic);
+if (isNil {_handlers # _index}) exitWith {
+    WARNING_2("Failed removing wavehandler from %1 with ID %2",_logic,_index);
     false
 };
 
-_handlers set [_index,{}];
+_handlers set [_index,nil];
 
 true
