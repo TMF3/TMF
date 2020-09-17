@@ -55,7 +55,7 @@ class GVAR(wavespawn) : Module_F {
             displayName = "Wave init code";
             tooltip = "Code executed every time a new wave is spawned";
             expression = QUOTE([ARR_3(_this,compile _value,True)] call FUNC(addWaveHandler););
-            defaultValue = "'params [""_wave"",""_spawnedGroups"",""_spawnedUnits"",""_spawnedVehicles"",""_spawnedObjects"",""_logic""];'";
+            defaultValue = "'params [""_wave"",""_spawnedGroups"",""_spawnedUnits"",""_spawnedVehicles"",""_spawnedObjects"",""_logic"",""_wavehandlerID""];'";
             control = "cba_common_EditCodeMulti10";
         };
         class ModuleDescription: ModuleDescription {};

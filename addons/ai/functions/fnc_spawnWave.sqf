@@ -120,7 +120,7 @@ _logic setVariable ["Waves", (_wave-1)];
 _handlers = _logic getVariable ["Handlers",[]];
 {
     if(_x isEqualType {}) then {
-        [_wave,_spawnedGroups,_spawnedUnits,_spawnedVehicles,_spawnedObjects,_logic] call _x;
+        [_wave,_spawnedGroups,_spawnedUnits,_spawnedVehicles,_spawnedObjects,_logic,_forEachIndex] call _x;
     };
 } forEach _handlers;
 // Check if there is another wave
