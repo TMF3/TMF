@@ -34,6 +34,7 @@ if (_worldDLC != 0 && !(_worldDLC in _ignoredDLC)) then {
 };
 
 // Check units for DLC
+private _problemUnits = [];
 {
     _x params ["_unit","_dlcArr"];
     TRACE_2("Checking unit for DLC",_unit,_dlcArr);
@@ -50,12 +51,20 @@ if (_worldDLC != 0 && !(_worldDLC in _ignoredDLC)) then {
 
     if !(_dlcArr isEqualTo []) then {
         TRACE_2("Unit has unlisted DLC",_unit,_dlcArr);
-        _warnings pushBack [
-            0,
-            format ["%1 needs notice for following DLC: %2", _unit, _dlcArr]
-        ];
+        _problemUnits pushBack [_unit,_dlcArr];
     };
 } forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
+
+if !(_problemUnits isEqualTo []) then {
+    _warnings pushBack [1,"One or more playable units needs notices for DLC:"];
+    {
+        _x params ["_unit","_dlc"];
+        _warnings pushBack [
+            1,
+            format ["• %1 : %2", _unit, _dlc]
+        ];
+    } forEach _problemUnits;
+};
 
 // Check placed vehicles for DLC
 // Filter only enterable and unlocked vehicles
@@ -68,8 +77,7 @@ private _vehicles = vehicles select {
 private _vehicleDLCInfo = _vehicles apply {[_x,getObjectDLC _x]};
 private _roleDescriptions = _allUnits apply {(_x get3DENAttribute "description") select 0};
 private _searchTexts = [_missionSummary] + _roleDescriptions;
-private _problemVehs = 0;
-private _problemVehsDLC = [];
+private _problemVehs = [];
 {
     _x params ["_veh", "_dlc"];
     TRACE_2("Checking vehicle for DLC",_veh,_dlc);
@@ -82,24 +90,30 @@ private _problemVehsDLC = [];
 
         if (_index == -1) then {
             TRACE_2("Vehicle found using unlisted DLC",_veh,_dlc);
-            _problemVehs = _problemVehs + 1;
-            _problemVehsDLC pushBackUnique _dlc;
+            _problemVehs pushBack [_veh, _dlc];
         };
     };
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
-if (_problemVehs > 0) then {
-    if (_problemVehs > 1) then {
+if !(_problemVehs isEqualTo []) then {
+    _warnings pushBack [
+        1,
+        format ["One or more unlocked vehicles require DLC notices:", _problemVehs, _problemVehsDLC]
+    ];
+    {
+        _x params ["_veh","_dlc"];
         _warnings pushBack [
             1,
-            format ["There are %1 vehicles present from unmentioned DLC: %2", _problemVehs, _problemVehsDLC]
+            format ["• %1 : %2", _veh, _dlc]
         ];
-    } else {
-        _warnings pushBack [
-            1,
-            format ["There is %1 vehicle present from unmentioned DLC: %2", _problemVehs, _problemVehsDLC]
-        ];
-    };
+    } forEach _problemVehs;
+};
+
+if (_warnings isEqualTo []) then {
+    _warnings pushBack [
+        -1,
+        "DLC Checks finished"
+    ];
 };
 
 LOG_1("Finished DLC Tests: %1", _warnings);
