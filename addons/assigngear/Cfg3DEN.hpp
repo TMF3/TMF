@@ -66,6 +66,13 @@ class Cfg3DEN
                         expression = QUOTE([ARR_2(_this, _value)] call FUNC(helper));
                         defaultValue = "['r','',false]";
                     };
+                };
+            };
+            class GVAR(vehicleGear) {
+                displayName = "TMF: Vehicle Gear";
+                collapsed = 0;
+                class Attributes 
+                {
                     class GVAR(vehicle)
                     {
                         property = QGVAR(vehicleContents);
@@ -74,8 +81,8 @@ class Cfg3DEN
                         expression = QUOTE([ARR_2(_this, _value)] call FUNC(vehicleGear_init));
                         control = QGVAR(AmmoBox);
                     };
-                };
-            };
+                }
+            }
         };
     };
     class Attributes
