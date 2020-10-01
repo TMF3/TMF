@@ -2,8 +2,18 @@
 
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
-if((_this select 2) isEqualType 0) then {_this set [2,false]};
-params ["_unit","_oldUnit",["_forced",false,[false]]];
+if((_this select 2) isEqualType 0) then {_this set [2, false]};
+params ["_unit", "_oldUnit", ["_forced", false, [false]]];
+
+if(typeOf _unit == "seagull") then {
+    _unit setPos [0,0,5];
+     [{
+        params ["_seagull"];
+        if (player != _seagull) then {
+            deleteVehicle _seagull;
+        };
+    }, [_unit], 5] call CBA_fnc_waitAndExecute;
+};
 
 // On Re-Open purge any old controls (as they will exist on an old display)
 if (!isNil QGVAR(controls)) then {
@@ -60,7 +70,7 @@ if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
     private _newUnit = (GVAR(group)) createUnit [QGVAR(unit), [0,0,5], [], 0, "FORM"];
     if (isNull _newUnit) then {
         // Unable to create new unit - Usually if too many groups for sideLogic exist.
-        if(typeOf _unit == "seagull") then { _unit setPos [0,0,5]; };
+
         GVAR(unit) = _oldUnit;
     }
     else {
@@ -85,16 +95,11 @@ if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
         ];
 
         selectPlayer _newUnit;
-        waitUntil{player isEqualTo _newUnit};
-
-        if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
         GVAR(unit) = _newUnit;
     };
 }
 else {
     selectPlayer GVAR(unit);
-    waitUntil{player isEqualTo GVAR(unit)};
-    if(typeOf _unit == "seagull") then { deleteVehicle _unit; };
 };
 
 
