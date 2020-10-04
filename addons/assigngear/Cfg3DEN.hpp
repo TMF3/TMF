@@ -87,11 +87,42 @@ class Cfg3DEN
     };
     class Attributes
     {
-        class Title;
-        class Combo;
+        class Default;
+        class Title: Default {
+            class Controls {
+                class Title;
+            };
+        };
+        class Combo: Title {
+           class Controls: Controls {
+               class Title: Title {};
+               class Value;
+           };
+        };
         class Value;
         class TitleWide;
         class Controls;
+
+        // AI Gear module controls
+        class GVARMAIN(DOUBLES(aigear,faction)) : Combo {
+            INIT_CONTROL(GVARMAIN(AttributesFaction),ADDON)
+        };
+
+        class GVARMAIN(loadout) : Combo {
+            class Controls: Controls {
+                class Title: Title {};
+                class Value: Value {
+                    delete Items;
+                    class ItemsConfig {
+                        path[] = {"CfgLoadouts"};
+                        localConfig = true;
+                        propertyText = "displayName";
+                        sort = true;
+                    };
+                };
+            };
+        };
+
         class TMF_Side : Combo
         {
             /* TMF_Side is a faction category chooser - name renames for backwards compatabiliy */

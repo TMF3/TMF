@@ -23,6 +23,9 @@ PREP(setUnitTrait);
 PREP(onEdenMessageRecieved);
 PREP(onEdenMissionChange);
 PREP(testGear);
+PREP(moduleAIGear);
+PREP(AIGearEH);
+PREP(initAIGear);
 
 PREP(gui_gearSelector_init);
 PREP(gui_gearSelector_loadFactions);
