@@ -1,6 +1,4 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
-#include "\x\tmf\addons\spectator\functions\defines.hpp"
-
 
 if (!isNil "ace_common_fnc_addCanInteractWithCondition") then {
     [QGVAR(spectatingCondition), {isNull (findDisplay IDC_SPECTATOR_TMF_SPECTATOR_DIALOG)}] call ace_common_fnc_addCanInteractWithCondition;
@@ -33,6 +31,6 @@ if (isServer) then {
             // This is kept if the player is DC'd and controlled by AI
             _x setVariable [QGVAR(isJIPable),true,true];
         } forEach playableUnits;
-    },[],0.01] call CBA_fnc_execNext;
+    },[],0.01] call CBA_fnc_waitAndExecute;
 
 };

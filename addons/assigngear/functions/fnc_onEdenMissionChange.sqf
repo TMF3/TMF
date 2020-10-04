@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_onEdenMissionChange
  * Author = Snippers
@@ -11,7 +12,6 @@
  * Description:
  * When a mission is changed.
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 
 private _fnc_fileExists = {
         disableSerialization;

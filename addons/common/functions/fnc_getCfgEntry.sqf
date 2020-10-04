@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_getCfgEntry
  * Author: Nick
@@ -11,8 +12,6 @@
  * Description:
  * Reads config entries for the framework. First tries missionConfigFile, then configFile
  */
-#include "\x\tmf\addons\common\script_component.hpp"
-
 params [["_arr",[],[[]]]];
 
 // Look up in missionConfigFile first

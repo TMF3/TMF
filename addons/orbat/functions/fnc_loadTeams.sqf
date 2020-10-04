@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\orbat\script_component.hpp"
 /*
  * Name = TMF_orbat_fnc_loadTeams
  * Author = Snippers
@@ -11,8 +12,6 @@
  * Description:
  * UI function do not use
  */
-#include "\x\tmf\addons\orbat\script_component.hpp"
-
 disableSerialization;
 params ["_control",["_attributeValue",""]];
 

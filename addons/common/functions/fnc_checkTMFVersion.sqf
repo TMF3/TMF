@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_checkTMFVersion
  * Author: Snippers
@@ -11,7 +12,6 @@
  * Description:
  * Checks if TMF Mission version is larger than the input version;
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 
 params [
     ["_input",[0,0,0]]

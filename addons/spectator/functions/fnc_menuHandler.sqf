@@ -1,5 +1,3 @@
-
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_button","_args"];
 

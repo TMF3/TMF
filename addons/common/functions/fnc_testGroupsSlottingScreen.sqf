@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\autotest\script_component.hpp"
 /*
  * Name: TMF_common_fnc_testGroupsSlottingScreen
  * Author: Snippers
@@ -10,7 +11,6 @@
  * Description:
  * checks if groups will have a custom name in the slotting screen.
  */
-#include "\x\tmf\addons\autotest\script_component.hpp"
 
 private _output = [];
 

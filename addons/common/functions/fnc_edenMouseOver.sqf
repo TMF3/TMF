@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_mouseOver
  * Author: Nick
@@ -12,7 +13,6 @@
  * Set tmf_common_edenMouseObjects and fires mouseOver events?
  *
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 
 // Get intersected objects, sort them by distance, and select the one closest to the camera.
 private _intersects = lineIntersectsSurfaces [getPosASL get3DENCamera,ATLToASL screenToWorld getMousePosition,objNull,objNull,true,5,"FIRE","GEOM"];

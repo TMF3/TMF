@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_replaceEquipment
  * Author = Nick
@@ -13,7 +14,7 @@
  * Description:
  * Replaces a specific part of equipment. Can be used to hotswap: will try to restore previous cargo
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
+
 params ["_unit","_piece","_array"];
 
 // If array is empty, fill it with an empty string

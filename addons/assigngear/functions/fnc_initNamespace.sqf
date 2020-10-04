@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_initNamespace
  * Author = Fredoo
@@ -11,8 +12,6 @@
  * Description:
  * Initializes the TMF assigngear namespace
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
-
 if (!isNil QGVAR(namespace) && {!isNull GVAR(namespace)}) exitWith {GVAR(namespace)};
 
 GVAR(namespace) = false call CBA_fnc_createNamespace;

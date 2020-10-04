@@ -59,7 +59,7 @@ class RscSpectatorShortcutButton : RscPicture {
 #define BUTTON_HEIGHT 0.031 * safezoneH
 #define COLUMN(V) (0.002 * safezoneW + safezoneX)+((0.0215 * safezoneW)  * V)
 
-class tmf_spectator_dialog
+class GVAR(dialog)
 {
   idd = DISPLAY_ID;
   movingEnable = 1;

@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_setInsignia
  * Author = Freddo
@@ -15,7 +16,6 @@
  * Note:
  * Thanks @Bear and @Nick for helping
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_insignia"];
 
 if (time > 5 || {is3DEN}) then
