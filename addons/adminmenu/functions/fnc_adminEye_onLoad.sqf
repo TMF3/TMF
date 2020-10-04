@@ -7,7 +7,7 @@ private _mapCtrl = ((findDisplay IDC_TMF_ADMINMENU_ADME_MAP_DISPLAY) displayCtrl
 private _pos = [0,0,0];
 
 if (alive player && !(player isKindOf "tmf_spectator_unit")) then {
-    _pos = getPos player;  
+    _pos = getPos player;
 } else {
     if (count playableUnits > 0) then {
         _pos = getPos (playableUnits select 0);
@@ -15,8 +15,8 @@ if (alive player && !(player isKindOf "tmf_spectator_unit")) then {
         if (count allUnits > 0) then {
             _pos = getPos (allUnits select 0);
         };
-    };                          
+    };
 };
-_mapCtrl ctrlMapAnimAdd [0, 0.1, _pos]; 
+_mapCtrl ctrlMapAnimAdd [0, 0.1, _pos];
 ctrlMapAnimCommit _mapCtrl;
 

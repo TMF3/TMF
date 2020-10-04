@@ -112,7 +112,7 @@ _data params ['_groups', '_vehicles', '_objects'];
 } forEach _groups;
 
 _wave = _logic getVariable ["Waves",1];
-_logic setVariable ["Waves", (_wave-1)];
+_logic setVariable ["Waves", (_wave-1), true];
 _handlers = _logic getVariable ["Handlers",[]];
 {
     if(_x isEqualType {}) then {

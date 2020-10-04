@@ -11,7 +11,7 @@ params["_fullmapWindow"];
     private _color = [0,0,1,0.6];
     (triggerActivation _x) params ["_by", "_type", "_repeating"];
     private _activated = triggerActivated _x;
-    
+
     if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
         _color = [1,0,0,1]; // Selected Go Red.
         (triggerTimeout _x) params ["_min","_mid","_max","_interuptable"];
@@ -62,41 +62,27 @@ params["_fullmapWindow"];
 
     private _text = "";
     private _wavesRemaining = _x getVariable ["Waves",1];
-    if (_wavesRemaining > 0 || (GVAR(adminEyeSelectedObj) isEqualTo _x)) then {
+    if (_wavesRemaining > 0) then {
         _text = format["%1 waves remaining",_wavesRemaining];
         if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
             _text = _text + " (T to Trigger)";
         };
-        //Render linked Units.
-        private _data = _x getVariable [QEGVAR(ai,waveData), []];
-        _data params ["_groups", "_vehicles"];
-        {
-            _x params ["_side","_units","_vehicles"];
-            {
-                _x params ["_type", "_unitPos", "_unitDir", "_loadout"];
-
-                _fullmapWindow drawLine [_pos, _unitPos, [1,1,0,0.4]];
-                _fullmapWindow drawIcon ["\a3\ui_f\data\map\vehicleicons\iconman_ca.paa",[1,1,0,0.3],_unitPos,19,19,_unitDir,"",0];
-            } forEach _units;
-
-        } forEach _groups;
-        
-        {
-            _x params ["_type","_vehPos","_vehDir"];
-            private _icon = getText (configfile >> "CfgVehicles" >> _type >> "icon");
-
-            _fullmapWindow drawLine [_pos, _vehPos, [1,1,0,0.4]];
-            _fullmapWindow drawIcon [_icon,[1,1,0,0.3],_vehPos,19,19,_vehDir,"",0];
-        } forEach _vehicles;
     } else {
-        _text = "All spawned";
+        _text = "All waves spawned";
     };
 
+    //Render linked units of selected wave spawner.
+    if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
+        private _data = _x getVariable [QEGVAR(ai,waveAdminData), []];
+        {
+            _x params ["_type", "_entityPos", "_dir"];
+            private _icon = getText (configfile >> "CfgVehicles" >> _type >> "icon");
+            _fullmapWindow drawLine [_pos, _entityPos, [1, 1, 0, 0.4]];
+            _fullmapWindow drawIcon [_icon, [1, 1, 0, 0.3], _entityPos, 19, 19, _dir, "", 0];
+        } forEach _data;
+    };
 
     _fullmapWindow drawIcon ["#(argb,8,8,3)color(0,0,0,0)",[1,1,1,1],_pos, 26, 26,0,_text,2,0.035,'PuristaSemibold','right'];
-    
-    
-
 
     {
         private _color = [0,0,1,0.3];
@@ -128,8 +114,8 @@ params["_fullmapWindow"];
 
     //Text.
     _fullmapWindow drawIcon ["#(argb,8,8,3)color(0,0,0,0)",[1,1,1,1],_pos, 26, 26,0,_text,2,0.035,'PuristaSemibold','right'];
-    
-    //Render syncrhoncised
+
+    //Render synchoncized
     {
         private _color = [0,0,1,0.3];
         if (GVAR(adminEyeSelectedObj) isEqualTo _x) then {
@@ -142,7 +128,7 @@ params["_fullmapWindow"];
 // Units
 {
     if(alive _x) then {
-        
+
         if(vehicle _x != _x && crew (vehicle _x) select 0 == _x || vehicle _x == _x) then
         {
             private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
@@ -158,7 +144,7 @@ params["_fullmapWindow"];
             private _sizeY = 20;
 
             private _name = "";
-            
+
             if (leader _x == _x && {isPlayer _x} count units _x > 0) then {_name = format["%1 - %2",toString(toArray(groupID (group _x)) - [45]),_name]};
 
 
@@ -172,11 +158,11 @@ params["_fullmapWindow"];
                 //_fullmapWindow drawIcon ["#(argb,8,8,3)color(0,0,0,0)",[1,1,1,1],_pos, _sizeX, _sizeY,0,_name,2,0.035,'PuristaSemibold','right'];
                 // Spectator
                 _fullmapWindow drawIcon ["#(argb,8,8,3)color(0,0,0,0)",_color,_pos,19,19,0,_name,1,0.02,"EtelkaMonospacePro"];
-            }; 
+            };
 
             //_fullmapWindow drawIcon [_icon,_color,_pos,19,19,getDir (vehicle _x),"",0,0.02,"EtelkaMonospacePro"];
-            
-            
+
+
             //Draw Icon
             //_fullmapWindow drawIcon [_texture1, _color, _pos, _sizeX, _sizeY, 0];
             _fullmapWindow drawIcon [_icon,_color,_pos,19,19,getDir (vehicle _x),"",0];
@@ -192,14 +178,14 @@ params["_fullmapWindow"];
     private _markerSize = getMarkerSize _x;
     private _markerColor = (configfile >> "CfgMarkerColors" >> getMarkerColor _x >> "color") call BIS_fnc_colorConfigToRGBA;
     private _markerDir = markerDir _x;
-    
+
     switch (_markerShape) do {
         case "RECTANGLE": {
-            private _markerBrush = getText (configfile >> "cfgMarkerBrushes" >> markerBrush _x >> "texture"); 
+            private _markerBrush = getText (configfile >> "cfgMarkerBrushes" >> markerBrush _x >> "texture");
             _fullmapWindow drawRectangle [_markerPos, _markerSize select 0, _markerSize select 1, _markerDir, _markerColor, _markerBrush]
         };
         case "ELLIPSE": {
-            private _markerBrush = getText (configfile >> "cfgMarkerBrushes" >> markerBrush _x >> "texture"); 
+            private _markerBrush = getText (configfile >> "cfgMarkerBrushes" >> markerBrush _x >> "texture");
             _fullmapWindow drawEllipse  [_markerPos, _markerSize select 0, _markerSize select 1, _markerDir, _markerColor, _markerBrush]
         };
         case "ICON": {
@@ -211,7 +197,7 @@ params["_fullmapWindow"];
                 _fullmapWindow drawIcon [_markerIcon, _markerColor, _markerPos, (_markerSize select 0) * _multiplier, (_markerSize select 1) * _multiplier, _markerDir, _markerText, 1];
             };
         };
-    };    
+    };
 } forEach allMapMarkers;
 
 
@@ -221,12 +207,12 @@ while {true} do {
     private _var = missionNamespace getVariable[format["tmf_respawnPoint%1",_i],objNull];
     if (isNull _var) exitWith {};
     private _pos = (position _var);
-    
+
     if (_i isEqualTo _mousePos) then {
-        _fullmapWindow drawIcon ["\A3\ui_f\data\map\markers\military\start_CA.paa",[1,0,0,0.5],_pos,40,40,0];   
+        _fullmapWindow drawIcon ["\A3\ui_f\data\map\markers\military\start_CA.paa",[1,0,0,0.5],_pos,40,40,0];
     };
     _fullmapWindow drawIcon ["\A3\ui_f\data\map\markers\military\start_CA.paa",[1,1,0,1],_pos,32,32,0,format["Respawn point %1",_i],1];
-    
+
     _i = _i + 1;
 };
 

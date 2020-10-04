@@ -13,6 +13,7 @@ PREP(adminEye_onClick);
 PREP(adminEye_onKeyPress);
 PREP(adminEye_open);
 PREP(adminEye_restoreTrigger);
+PREP(adminEye_fireTrigger);
 
 PREP(claimZeus);
 PREP(dashboard);
