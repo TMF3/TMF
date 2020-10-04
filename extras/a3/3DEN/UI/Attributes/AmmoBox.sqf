@@ -8,15 +8,15 @@
 
 params ["_mode", "_params"];
 
-switch _mode do 
+switch _mode do
 {
-	case "onLoad": 
-	{	
+	case "onLoad":
+	{
 		//--- Selected ammobox
 		private _entity = get3DENSelected "object" select 0;
-		
+
 		//--- Get current cargo
-		private _cargo = 
+		private _cargo =
 		[
 			getweaponcargo _entity,
 			getmagazinecargo _entity,
@@ -26,9 +26,9 @@ switch _mode do
 
 		//--- Get virtual cargo (only when no default cargo is present)
 		AmmoBox_type = 0;
-		if ({count (_x select 0) > 0} count _cargo == 0) then 
+		if ({count (_x select 0) > 0} count _cargo == 0) then
 		{
-			private _virtualCargo = 
+			private _virtualCargo =
 			[
 				_entity call bis_fnc_getVirtualWeaponCargo,
 				_entity call bis_fnc_getVirtualMagazineCargo,
@@ -100,16 +100,16 @@ switch _mode do
 		_ctrlButtonCustom = _ctrlGroup controlsGroupCtrl 104;
 		_ctrlButtonCustom ctrlsettext localize "str_disp_arcmap_clear";
 		_ctrlButtonCustom ctrladdeventhandler ["buttonclick",{with uinamespace do {["clear",[ctrlparentcontrolsgroup (_this select 0)],objnull] call AmmoBox_script;};}];
-		
+
 		if (isNil "AmmoBox_list") then
 		{
-			[ctrlparentcontrolsgroup (_params select 0)] spawn 
-			{				
+			[ctrlparentcontrolsgroup (_params select 0)] spawn
+			{
 				disableserialization;
-				startLoadingScreen ["","RscDisplayLoadMission"]; 
-			
+				startLoadingScreen ["","RscDisplayLoadMission"];
+
 				//--- Get weapons and magazines from curator addons
-				private _types = 
+				private _types =
 				[
 					["AssaultRifle","Shotgun","Rifle","SubmachineGun"],
 					["MachineGun"],
@@ -124,72 +124,72 @@ switch _mode do
 					["Headgear","Glasses"],
 					["Binocular","Compass","FirstAidKit","GPS","LaserDesignator","Map","Medikit","MineDetector","NVGoggles","Radio","Toolkit","Watch","UAVTerminal"]
 				];
-				
+
 				private _CfgWeapons = configfile >> "CfgWeapons";
 				private _list = [[],[],[],[],[],[],[],[],[],[],[],[]];
 
 				//--- Weapons, magazines and items
 				private _magazines = []; //--- Store magazines in an array and mark duplicates, so nthey don't appear in the list of all items
-				
+
 				private _glassesArray = "true" configClasses (configFile >> "CfgGlasses");
 				private _weaponsArray = "true" configClasses _CfgWeapons;
 				private _vehiclesArray = "true" configClasses (configFile >> "CfgVehicles");
-			
+
 				private _k = 1 / (count _weaponsArray + count _vehiclesArray + count _glassesArray);
 				private _progress = 0;
-			
-				private _fnc_progressLoadingScreen = 
+
+				private _fnc_progressLoadingScreen =
 				{
 					_progress = _progress + _k;
 					progressLoadingScreen _progress;
 				};
-				
+
 				{
 					private _weaponCfg = _x;
 					private _weapon = toLower configName _weaponCfg;
-					
+
 					_weapon call bis_fnc_itemType params ["_weaponTypeCategory", "_weaponTypeSpecific"];
-					
-					{ 
-						if (_weaponTypeSpecific in _x) exitWith 
-						{ 
-							if !(_weaponTypeCategory isEqualTo "VehicleWeapon") then
+
+					{
+						if (_weaponTypeSpecific in _x) exitWith
+						{
+							if (_weaponTypeCategory isNotEqualTo "VehicleWeapon") then
 							{
 								private _weaponPublic = getNumber (_weaponCfg >> "scope") isEqualTo 2;
 								private _listType = _list select _forEachIndex;
-								
-								if (_weaponPublic) then 
+
+								if (_weaponPublic) then
 								{
-									_listType pushback 
+									_listType pushback
 									[
 										([gettext (_weaponCfg >> "displayName")] + (((_weaponCfg >> "linkeditems") call bis_fnc_returnchildren) apply { getText (_CfgWeapons >> getText (_x >> "item") >> "displayName") })) joinString " + ",
-										_weapon, 
-										getText (_weaponCfg >> "picture"), 
-										parseNumber (getnumber (_weaponCfg >> "type") in [4096,131072]), 
+										_weapon,
+										getText (_weaponCfg >> "picture"),
+										parseNumber (getnumber (_weaponCfg >> "type") in [4096,131072]),
 										false
 									];
 								};
-								
+
 								//--- Add magazines compatible with the weapon
-								if (_weaponPublic || _weapon in ["throw", "put"]) then 
+								if (_weaponPublic || _weapon in ["throw", "put"]) then
 								{
 									{
 										private _muzzle = if (_x == "this") then { _weaponCfg } else { _weaponCfg >> _x };
 										private _magazinesList = getArray (_muzzle >> "magazines");
-										
+
 										// Add magazines from magazine wells
 										{ { _magazinesList append (getArray _x) } forEach configproperties [configFile >> "CfgMagazineWells" >> _x, "isArray _x"] } forEach getArray (_muzzle >> "magazineWell");
-										
+
 										{
 											private _mag = toLower _x;
-											
-											if (_listType findIf { _x select 1 == _mag } < 0) then 
+
+											if (_listType findIf { _x select 1 == _mag } < 0) then
 											{
 												private _magCfg = configFile >> "CfgMagazines" >> _mag;
-												
-												if (getNumber (_magCfg >> "scope") isEqualTo 2) then 
+
+												if (getNumber (_magCfg >> "scope") isEqualTo 2) then
 												{
-													_listType pushback 
+													_listType pushback
 													[
 														getText (_magCfg >> "displayName"),
 														_mag,
@@ -197,37 +197,37 @@ switch _mode do
 														2,
 														_mag in _magazines
 													];
-													
+
 													_magazines pushback _mag;
 												};
 											};
-										} 
+										}
 										forEach _magazinesList;
 									}
 									forEach getArray (_weaponCfg >> "muzzles");
 								};
 							};
 						};
-					} 
+					}
 					forEach _types;
-					
+
 					call _fnc_progressLoadingScreen;
-				} 
+				}
 				forEach _weaponsArray;
 
 				//--- Backpacks
 				{
 					private _weaponCfg = _x;
 					private _weapon = toLower configName _weaponCfg;
-					
+
 					_weapon call bis_fnc_itemType params ["", "_weaponTypeSpecific"];
-					
+
 					{
-						if (_weaponTypeSpecific in _x) exitWith 
+						if (_weaponTypeSpecific in _x) exitWith
 						{
-							if (getnumber (_weaponCfg >> "scope") == 2) then 
+							if (getnumber (_weaponCfg >> "scope") == 2) then
 							{
-								_list select _forEachIndex pushback 
+								_list select _forEachIndex pushback
 								[
 									gettext (_weaponCfg >> "displayName"),
 									_weapon,
@@ -237,21 +237,21 @@ switch _mode do
 								];
 							};
 						};
-					} 
+					}
 					forEach _types;
-					
+
 					call _fnc_progressLoadingScreen;
-				} 
+				}
 				forEach _vehiclesArray;
 
 				//--- Glasses
 				{
 					private _weaponCfg = _x;
 					private _weapon = toLower configName _weaponCfg;
-					
-					if (getnumber (_weaponCfg >> "scope") == 2) then 
+
+					if (getnumber (_weaponCfg >> "scope") == 2) then
 					{
-						_list select 10 pushback 
+						_list select 10 pushback
 						[
 							gettext (_weaponCfg >> "displayName"),
 							_weapon,
@@ -260,21 +260,21 @@ switch _mode do
 							false
 						];
 					};
-					
+
 					call _fnc_progressLoadingScreen;
-				} 
+				}
 				forEach _glassesArray;
 
 				AmmoBox_list = _list;
-			
+
 				["filterChanged", [_this select 0, AmmoBox_filter], objnull] call AmmoBox_script;
-				
+
 				endLoadingScreen;
 			};
 		};
 	};
-	
-	case "typeChanged": 
+
+	case "typeChanged":
 	{
 		_ctrlType = _params select 0;
 		_ctrlGroup = ctrlparentcontrolsgroup _ctrlType;
@@ -291,8 +291,8 @@ switch _mode do
 
 		["filterChanged",[_ctrlGroup,AmmoBox_filter],objnull] call AmmoBox_script;
 	};
-	
-	case "filterChanged": 
+
+	case "filterChanged":
 	{
 		private _cursel = if (count _params > 1) then { _params select 1 } else { AmmoBox_filter };
 		AmmoBox_filter = _cursel;
@@ -304,29 +304,29 @@ switch _mode do
 		private _list = uinamespace getvariable ["AmmoBox_list",[[],[],[],[],[],[],[],[],[],[],[],[]]];
 		private _items = [];
 
-		if (_cursel > 0) then 
+		if (_cursel > 0) then
 		{
 			_items = _list select (_cursel - 1); //--- Process items in specific category
-		} 
-		else 
+		}
+		else
 		{
 			{ _items append _x } foreach _list; //--- Process all items, and later pick the ones which are in the box
 		};
 
 		lnbclear _ctrlList;
-		
+
 		{
 			private _types = _x;
-			
-			{	
+
+			{
 				_x params ["_displayName", "_class", "_picture", "_type", "_isDuplicate"];
 
-				if (_type in _types && (!_isDuplicate || _cursel > 0)) then 
+				if (_type in _types && (!_isDuplicate || _cursel > 0)) then
 				{
 					RscAttributeInventory_cargo params ["_classes", "_values"];
 
 					private _index = _classes find _class;
-					private _value = if (_index < 0) then 
+					private _value = if (_index < 0) then
 					{
 						_index = count _classes;
 						_classes set [_index, _class];
@@ -335,8 +335,8 @@ switch _mode do
 					} else {
 						_values select _index
 					};
-					
-					if ((_cursel == 0 && _value != 0) || (_cursel > 0)) then 
+
+					if ((_cursel == 0 && _value != 0) || (_cursel > 0)) then
 					{
 						private _valueText = if (AmmoBox_type > 0) then { [SYMBOL_VIRTUAL_0, SYMBOL_VIRTUAL_1] select (_value > 0) } else { str _value };
 						private _lnbAdd = _ctrlList lnbaddrow ["",_displayName,_valueText,""];
@@ -349,9 +349,9 @@ switch _mode do
 						_ctrlList lnbsetcolor [[_lnbAdd,2],[1,1,1,_alpha]];
 						_ctrlList lbsettooltip [_lnbAdd,_displayName];
 
-						//if (_cursel == 0 && _value != 0) then 
+						//if (_cursel == 0 && _value != 0) then
 						//{
-							//_coef = switch _type do 
+							//_coef = switch _type do
 							//{
 								//case 0: {RscAttributeInventory_loadWeapon};
 								//case 1: {0};
@@ -363,18 +363,18 @@ switch _mode do
 						//};
 					};
 				};
-			} 
+			}
 			foreach _items;
-		} 
+		}
 		foreach [[0],[1,3],[2]]; // 0 - Weapons, 1 - Items, 2 - Magazines, 3 - Backpacks
-		
+
 		_ctrlList lnbSort [1, false];
 		_ctrlList lnbsetcurselrow 0;
-		
+
 		["listSelect",[_ctrlGroup],objnull] call AmmoBox_script;
 	};
-	
-	case "listModify": 
+
+	case "listModify":
 	{
 		_ctrlGroup = _params select 0;
 		_add = _params select 1;
@@ -419,8 +419,8 @@ switch _mode do
 			["listSelect",[_ctrlGroup],objnull] call AmmoBox_script;
 		};
 	};
-	
-	case "listSelect": 
+
+	case "listSelect":
 	{
 		private ["_ctrlGroup","_ctrlList","_cursel","_value","_ctrlArrowLeft","_buttonText"];
 		_ctrlGroup = _params select 0;
@@ -428,8 +428,8 @@ switch _mode do
 		_cursel = lnbcurselrow _ctrlList;
 		_value = _ctrlList lbvalue (_cursel * COLUMNS); //--- ToDo: Use lnbValue once it's fixed
 	};
-	
-	case "clear": 
+
+	case "clear":
 	{
 		_classes = RscAttributeInventory_cargo select 0;
 		_values = RscAttributeInventory_cargo select 1;
@@ -453,8 +453,8 @@ switch _mode do
 		};
 		["filterChanged",_params,objnull] call AmmoBox_script;
 	};
-	
-	case "keydown": 
+
+	case "keydown":
 	{
 		_ctrlGroup = _params select 0;
 		if !(isnil "_ctrlGroup") then {
@@ -477,12 +477,12 @@ switch _mode do
 			false
 		};
 	};
-	
-	case "attributeLoad": 
+
+	case "attributeLoad":
 	{
 	};
-	
-	case "attributeSave": 
+
+	case "attributeSave":
 	{
 
 		//--- Sort items into categories and save. Will be loaded by BIS_fnc_initAmmoBox

@@ -19,7 +19,7 @@ params [["_unit",player]];
 _unit createDiarySubject ["loadout","Equipment"];
 private _units = (units (group _unit));
 reverse _units; // Briefings get added in reverse order
-private _vehicles = (_units select {!(vehicle _x isEqualTo _x)}) apply {vehicle _x}; // Proud
+private _vehicles = (_units select {vehicle _x isNotEqualTo _x}) apply {vehicle _x}; // Proud
 _vehicles = _vehicles arrayIntersect _vehicles;
 
 [_unit,_vehicles] call FUNC(vehiclePage);

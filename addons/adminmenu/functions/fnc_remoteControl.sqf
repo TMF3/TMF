@@ -58,8 +58,8 @@ if (_error isEqualTo "") then {
             (_this getVariable ["ACE_isUnconscious", false]) ||
             (cameraOn isEqualTo player) ||
             !(player isKindOf QEGVAR(spectator,unit)) ||
-            !((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this) ||
-            !((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)
+            ((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isNotEqualTo _this) ||
+            ((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isNotEqualTo player)
         }, {
             private _reasons = [];
             if (!alive _this) then {
@@ -74,10 +74,10 @@ if (_error isEqualTo "") then {
             if (!(player isKindOf QEGVAR(spectator,unit))) then {
                 _reasons pushBack "Player is not a spectator unit (respawned?)";
             };
-            if (!((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isEqualTo _this)) then {
+            if (((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isNotEqualTo _this) then {
                 _reasons pushBack "Mission RC var says current unit shouldn't be RC'd";
             };
-            if (!((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isEqualTo player)) then {
+            if ((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isNotEqualTo player) then {
                 _reasons pushBack "Unit RC var says player shouldn't be remote controlling it";
             };
             systemChat format [

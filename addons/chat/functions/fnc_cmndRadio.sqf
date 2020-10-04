@@ -22,7 +22,7 @@ if (_name isEqualTo "") exitWith {systemChat "TMF Error: No argument passed. Com
 private _configs = "true" configClasses (configfile >> "CfgAcreComponents");
 private _radios = _configs select {
     getNumber (_x >> "type") isEqualTo 5 &&
-    !(getText (_x >> "name") isEqualTo "ACRE Base Radio") &&
+    (getText (_x >> "name") isNotEqualTo "ACRE Base Radio") &&
     {[_name, configName _x] call BIS_fnc_inString || {[_name, getText (_x >> "name")] call BIS_fnc_inString}}
 };
 

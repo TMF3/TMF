@@ -19,7 +19,7 @@ if (_oldUnitdata isEqualType []) then {
         _newUnit moveInAny _objectParent;
     };
 
-    if !(_faction isEqualTo "" || _role isEqualTo "") then {
+    if (_faction isNotEqualTo "" || _role isNotEqualTo "") then {
         [_newUnit, _faction, _role] call EFUNC(assignGear,assignGear);
     };
 

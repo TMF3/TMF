@@ -22,7 +22,7 @@ if !(current3DENOperation == "") then {
     _intersects = _intersects select {!(_x in (get3DENSelected "object"))};     // Remove selected objects if they're being dragged.
 };
 
-if !(GVAR(edenMouseObjects) isEqualTo _intersects) then {
+if (GVAR(edenMouseObjects) isNotEqualTo _intersects) then {
     GVAR(edenMouseObjects) = _intersects;
     [QGVAR(edenMouseOverChanged),GVAR(edenMouseObjects)] call CBA_fnc_localEvent;
 } else {

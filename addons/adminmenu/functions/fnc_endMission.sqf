@@ -12,12 +12,12 @@ if ((lbSize _endingList) == 0) then {
         private _title = getText (_x >> "title");
 
         private _extra = getText (_x >> "description");
-        if !(_extra isEqualTo "") then {
+        if (_extra isNotEqualTo "") then {
             _title = _title + " | " + _extra;
         };
 
         _extra = getText (_x >> "subtitle");
-        if !(_extra isEqualTo "") then {
+        if (_extra isNotEqualTo "") then {
             _title = _title + " | " + _extra;
         };
 

@@ -16,7 +16,7 @@ _ctrlList ctrlCommit 0;
 {
     private _name = _x # 1;
     private _turretPath = _x # 3;
-    if !(_turretPath isEqualTo [] || _turretPath isEqualTo [-1]) then {
+    if (_turretPath isNotEqualTo [] || _turretPath isNotEqualTo [-1]) then {
         _name = getText (([GVAR(remoteControlUnits) # 1, _turretPath] call BIS_fnc_turretConfig) >> "gunnerName");
     };
     private _i = _ctrlList lbAdd _name;

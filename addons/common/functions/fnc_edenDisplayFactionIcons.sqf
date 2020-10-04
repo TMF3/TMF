@@ -14,10 +14,10 @@ private ["_i", "_faction", "_factionIcon"];
     for "_i" from 0 to ((_x tvCount []) - 1) do {
         _faction = _x tvData [_i];
 
-        if !(_faction isEqualTo "") then {
+        if!(_faction isNotEqualTo "") then {
             _factionIcon = getText (configFile >> "CfgFactionClasses" >> _faction >> "icon");
 
-            if !(_factionIcon isEqualTo "") then {
+            if (_factionIcon isNotEqualTo "") then {
                 _x tvSetPictureRight [[_i], _factionIcon];
             };
         };

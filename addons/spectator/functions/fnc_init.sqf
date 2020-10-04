@@ -50,7 +50,7 @@ if(isNil QGVAR(unit)) then {GVAR(unit) = objNull};
 
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
+if(isNull GVAR(unit) || (typeOf GVAR(unit) isNotEqualTo QGVAR(unit))) then {
 
     if (isNull GVAR(group)) then { /* Incase spectator group is null */
         createCenter sideLogic;
@@ -166,8 +166,8 @@ private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",t
 // Sides Button
 GVAR(sides) = [blufor,civilian,opfor,independent];
 GVAR(sides_button_state) = 0;
-GVAR(sides_button_mode) = [ 
-    [blufor,civilian,opfor,independent], 
+GVAR(sides_button_mode) = [
+    [blufor,civilian,opfor,independent],
     [blufor],
     [opfor],
     [independent],

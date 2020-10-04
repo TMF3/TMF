@@ -25,7 +25,7 @@ private _positions = _building buildingPos -1;
 if (count _positions < 1) exitWith {};
 
 // Draw boundingbox
-if (!(typeOf _building isEqualTo "") && {count (_building buildingPos -1) > 0}) then {
+if (typeOf _building isNotEqualTo "" && {count (_building buildingPos -1) > 0}) then {
     private _fn_bbox = {
         params ["_pos1","_pos2"];
         private _bbx = [_pos1 select 0,_pos2 select 0];

@@ -5,7 +5,7 @@
 if (isTMF) then {
     GVAR(disconnectEH) = addMissionEventHandler ["HandleDisconnect",{
         params ["_unit", "_id", "_uid", "_name"];
-        if !(typeOf _unit isEqualTo QEGVAR(spectator,unit)) then {
+        if (typeOf _unit isNotEqualTo QEGVAR(spectator,unit)) then {
             [format ["Player disconnected while not spectator: %1", _name], true] call FUNC(log);
         };
     }];
@@ -74,7 +74,7 @@ if (isMultiplayer) then {
         private _clientOwnerId = _this select 4;
         GVAR(activeClients) = GVAR(activeClients) - [_clientOwnerId];
 
-        if (((count GVAR(activeClients)) isEqualTo 0) && {!isNil QGVAR(fps_pfh)}) then {
+        if (((count GVAR(activeClients))  0) && {!isNil QGVAR(fps_pfh)}) then {
             [GVAR(fps_pfh)] call CBA_fnc_removePerFrameHandler;
             GVAR(fps_pfh) = nil;
         };

@@ -31,7 +31,7 @@ if (_messageId isEqualTo 0) then { //Mission saved.
     if ("description.ext" call _fnc_fileExists) then {
         // Check if description.ext has changed
         private _newdescription = preprocessFile "description.ext";
-        if (!(_newdescription isEqualTo GVAR(descriptionExt))) then {
+        if (_newdescription isNotEqualTo GVAR(descriptionExt)) then {
 
             // Clear namespace, and in turn all cached loadouts
             GVAR(namespace) call CBA_fnc_deleteNamespace;

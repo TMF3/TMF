@@ -21,8 +21,8 @@ if (_curGoggles isEqualTo "") then { // Don't respect no-goggles profile in skip
 // Skip if loadout allows profile glasses OR profile glasses part of loadout
 if ("default" in _goggles || _curGoggles in _goggles) exitWith {};
 
-private _newGoggles = ""; 
-if !(_goggles isEqualTo []) then {
+private _newGoggles = "";
+if (_goggles isNotEqualTo []) then {
     _newGoggles = selectRandom _goggles;
 };
 

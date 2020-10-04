@@ -38,30 +38,30 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
 // Each index is tied to a specific type of item
 {
-    if (!isNil "_x" && {!(_x isEqualTo [])} && {!(_x isEqualTo "")}) then {
+    if (!isNil "_x" && {_x isNotEqualTo []} && {_x isNotEqualTo ""}) then {
         switch _forEachIndex do {
             case 0: {}; // displayName
             case 1: { // uniform
                 private _uniform = selectRandom _x;
-                if !(_uniform isEqualTo '') then {
+                if (_uniform isNotEqualTo '') then {
                     _unit forceAddUniform _uniform;
                 };
             };
             case 2: { // vest
                 private _vest = selectRandom _x;
-                if !(_vest isEqualTo '') then {
+                if (_vest isNotEqualTo '') then {
                     _unit addVest _vest;
                 };
             };
             case 3: { // backpack
                 private _backpack = selectRandom _x;
-                if !(_backpack isEqualTo '') then {
+                if (_backpack isNotEqualTo '') then {
                     _unit addBackpack _backpack;
                 };
             };
             case 4: { // headgear
                 private _headgear = selectRandom _x;
-                if !(_headgear isEqualTo '') then {
+                if (_headgear isNotEqualTo '') then {
                     _unit addHeadgear _headgear;
                 };
             };
@@ -70,7 +70,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
             };
             case 6: { // hmd
                 private _hmd = selectRandom _x;
-                if !(_hmd isEqualTo '') then {_unit linkItem _hmd};
+                if (_hmd isNotEqualTo '') then {_unit linkItem _hmd};
             };
             case 7: { // faces
                 [_unit, _x] call FUNC(setFace);
@@ -104,34 +104,34 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
             };
             case 13: { // primaryWeapon
                 private _weapon = selectRandom _x;
-                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+                if (_weapon isNotEqualTo '') then {_unit addWeapon _weapon};
             };
             case 14: { // scope
                 private _scope = selectRandom _x;
-                if !(_scope isEqualTo '') then {_unit addPrimaryWeaponItem _scope};
+                if (_scope isNotEqualTo '') then {_unit addPrimaryWeaponItem _scope};
             };
             case 15: { // bipod
                 private _bipod = selectRandom _x;
-                if !(_bipod isEqualTo '') then {_unit addPrimaryWeaponItem _bipod};
+                if (_bipod isNotEqualTo '') then {_unit addPrimaryWeaponItem _bipod};
             };
             case 16: { // attachment
                 private _attachment = selectRandom _x;
-                if !(_attachment isEqualTo '') then {_unit addPrimaryWeaponItem _attachment};
+                if (_attachment isNotEqualTo '') then {_unit addPrimaryWeaponItem _attachment};
             };
             case 17: { // silencer
                 private _silencer = selectRandom _x;
-                if !(_silencer isEqualTo '') then {_unit addPrimaryWeaponItem _silencer};
+                if (_silencer isNotEqualTo '') then {_unit addPrimaryWeaponItem _silencer};
             };
             case 18: { // secondaryWeapon
                 private _weapon = selectRandom _x;
-                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+                if (_weapon isNotEqualTo '') then {_unit addWeapon _weapon};
             };
             case 19: { // secondaryAttachments
                 {_unit addSecondaryWeaponItem _x} forEach _x;
             };
             case 20: { // sidearmweapon
                 private _weapon = selectRandom _x;
-                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+                if (_weapon isNotEqualTo '') then {_unit addWeapon _weapon};
             };
             case 21: { // sidearmattachments
                 {_unit addHandgunItem _x} forEach _x;

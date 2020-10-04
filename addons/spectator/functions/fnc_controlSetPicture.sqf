@@ -23,7 +23,7 @@ if (_picturePath != "" && {_control getVariable [QGVAR(lastImage),""] != _pictur
     _image ctrlSetText _picturePath;
     _control setVariable [QGVAR(lastImage),_picturePath];
 };
-if (!(_control getVariable [QGVAR(lastColor),""] isEqualTo _color)) then {
+if (_control getVariable [QGVAR(lastColor),""] isNotEqualTo _color) then {
     _image ctrlSetTextColor _color;
     _control setVariable [QGVAR(lastColor),_color];
 };

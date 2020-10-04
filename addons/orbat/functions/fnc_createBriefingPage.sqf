@@ -47,7 +47,7 @@ private _vehicles = [];
     };
 } forEach (GVAR(orbatRawData));
 
-if (_ourIdx == -1) exitWith {}; 
+if (_ourIdx == -1) exitWith {};
 
 private _allVehs = [];
 {_allVehs pushBackUnique _x;} forEach _vehicles; // copy array.
@@ -70,15 +70,15 @@ private _reserveId = (_ourData select 0) select 0;
 private _validParents = [];
 private _fnc_findValidParents = {
     if (count _this == 0) exitWith {false};
-    
+
     _this params ["_data", ["_children",[]]];
     _data params ["_uniqueID"];
     _validParents pushBackUnique _uniqueID;
-  
+
     {
         _x call _fnc_findValidParents;
     } forEach _children;
-    
+
     _data pushBack _added;
 };
 
@@ -196,11 +196,11 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 private _veh = _entity;
                 private _vehDisplayName = [getText (configFile >> "CfgVehicles" >> (typeOf _veh) >> "displayname"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_- "] call BIS_fnc_filterString;
                 private _callsign = _veh getVariable [QGVAR(vehicleCallsign),""];
-                
+
                 if (_callsign isEqualTo "") then {
                     private _vehNum = _allVehs find _veh;
                     _callsign = format ["Vic #%1",(_vehNum + 1)];
-                    
+
                 };
                 _vehDisplayName = _vehDisplayName + " (" + _callsign + ")";
                 private _vehIcon = getText(configfile >> "CfgVehicles" >> typeof _veh >> "picture");
@@ -209,14 +209,14 @@ _fnc_processOrbatTrackerBriefingRawData = {
                 } else {
                     _thisBriefing = format ["%1<img image='%2' height='18'></img>",_indent,_groupTexture];
                 };
-                private _maxSlots = getNumber(configfile >> "CfgVehicles" >> typeof _veh >> "transportSoldier") 
+                private _maxSlots = getNumber(configfile >> "CfgVehicles" >> typeof _veh >> "transportSoldier")
                     + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {
-                        !((getNumber (_x >> "rhs_hatch_control") isEqualTo 1)
+                        ((getNumber (_x >> "rhs_hatch_control") isNotEqualTo 1)
                             && (getNumber (_x >> "isPersonTurret") isEqualTo 1))
                     })
                     + getNumber(configfile >> "CfgVehicles" >> typeof _veh >> "hasDriver");
                 private _occupiedSlots = count crew _veh;
-                
+
                 //private _color = [_allVehs find _veh] call EFUNC(common,numToColor);
                 _thisBriefing = format ["%5 <img image='%2' height='16'></img><font size='18'> %1 [%3/%4]</font><br/>",_vehDisplayName,_vehIcon,_occupiedSlots,_maxSlots, _thisBriefing];
             } else { // Is Group.
@@ -237,7 +237,7 @@ _fnc_processOrbatTrackerBriefingRawData = {
                     private _vehIcon = getText(configfile >> "CfgVehicles" >> typeof _veh >> "picture");
                     private _maxSlots = getNumber(configfile >> "CfgVehicles" >> typeof _veh >> "transportSoldier")
                         + count (((allTurrets [_veh, true]) apply {[_veh, _x] call CBA_fnc_getTurret}) select {
-                            !((getNumber (_x >> "rhs_hatch_control") isEqualTo 1)
+                            ((getNumber (_x >> "rhs_hatch_control") isNotEqualTo 1)
                                 && (getNumber (_x >> "isPersonTurret") isEqualTo 1))
                         })
                         + getNumber(configfile >> "CfgVehicles" >> typeof _veh >> "hasDriver");

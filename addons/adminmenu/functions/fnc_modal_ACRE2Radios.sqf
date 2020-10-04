@@ -116,7 +116,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
     systemChat (_radios joinString ", ");
     private _network = -1;
 
-    if !(_networkCtrls isEqualTo []) then {
+    if (_networkCtrls isNotEqualTo []) then {
         _networkCtrls params ["_ctrlNetworkCheck", "_ctrlNetworkList"];
 
         if (cbChecked _ctrlNetworkCheck) then {

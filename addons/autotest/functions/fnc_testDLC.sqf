@@ -39,14 +39,14 @@ private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewTe
         !([_x, _missionSummary] call BIS_fnc_inString)     // DLC usage mentioned in mission summary
     };
 
-    if !(_dlcArr isEqualTo []) then {
+    if (_dlcArr isNotEqualTo []) then {
         TRACE_2("Unit has unlisted DLC",_unit,_dlcArr);
         _warnings pushBack [
             0,
             format ["%1 needs notice for following DLC: %2", _unit, _dlcArr]
         ];
     };
-} forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
+} forEach (_unitsDLCInfo select {_x # 1 isNotEqualTo []});
 
 private _vehicleDLCInfo = vehicles apply {[_x,getObjectDLC _x]};
 private _roleDescriptions = _allUnits apply {(_x get3DENAttribute "description") select 0};

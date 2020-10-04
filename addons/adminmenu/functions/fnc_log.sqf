@@ -32,7 +32,7 @@ params [
     ["_tag","",[""]]
 ];
 
-if !(_tag isEqualTo "") then {
+if (_tag isNotEqualTo "") then {
     _tag = format ["[%1] ",_tag];
 };
 

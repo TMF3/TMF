@@ -10,7 +10,7 @@ if (_onlyPresent isEqualTo 1) then {
     private _missionFactionsFound = [];
     {
         private _faction = _x getVariable [QEGVAR(assigngear,faction), ""];
-        if !(_faction isEqualTo "") then {
+        if (_faction isNotEqualTo "") then {
             _missionFactionsFound pushBackUnique toLower _faction;
         };
     } forEach allPlayers;

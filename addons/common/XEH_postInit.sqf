@@ -24,7 +24,7 @@ if (isTMF) then {
     {
         params ["_unit", "_fullName"];
         private _value = _unit getVariable ["sth_name", []];
-        if ((count(_value) isEqualTo 0) || {!(isPlayer(_unit) isEqualTo (_value select 0))}) then
+        if ((count(_value) isEqualTo 0) || {isPlayer(_unit) isNotEqualTo (_value select 0)}) then
         {
             private _newName = name (_unit);
             if (_newName != "") then {
