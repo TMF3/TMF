@@ -55,8 +55,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
                 getDir _unit,
                 getUnitLoadout _unit,
                 -1,
-                [],
-                ALL_AI_FEATURES select {!(_unit checkAIFeature _x)}
+                []
             ];
             if(!isNull objectParent _x) then {
                 _data set [4, _vehicles find (objectParent _x)];
