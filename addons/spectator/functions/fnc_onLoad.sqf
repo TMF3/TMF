@@ -1,6 +1,7 @@
 params ["_display"];
 #include "\x\tmf\addons\spectator\script_component.hpp"
 
+uiNamespace setVariable [QGVAR(display), _display];
 GVAR(unitUpdate) = -1; // Force unit list to update.
 GVAR(vehicles) = [];
 with uiNamespace do {
@@ -15,6 +16,7 @@ with uiNamespace do {
     GVAR(tagsbutton) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_TAGS;
     GVAR(view) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_VIEW;
     GVAR(mute) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_MUTE;
+    GVAR(radio) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_RADIO;
     GVAR(map) = _display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_MAP;
     GVAR(compass) = [_display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT,_display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_COMPASS,_display displayCtrl IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight];
 
@@ -86,5 +88,8 @@ if (isClass(configFile >> "CfgPatches" >> "acre_main")) then {
 else { // else remove it
     with uiNamespace do {
         GVAR(mute) ctrlShow false; // hide mute button
+        GVAR(radio) ctrlShow false;
     };
 };
+
+[QGVAR(displayOnLoad), [_display]] call CBA_fnc_localEvent;
