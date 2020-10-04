@@ -7,7 +7,7 @@ params [["_radios", []], ["_network", -1]];
 private _presetName = format ["tmf_preset%1", _network];
 private _oldPresetName = ["ACRE_PRC343"] call acre_api_fnc_getPreset;
 
-if (_network > -1 && !(_presetName  _oldPresetName)) then {
+if (_network > -1 && (_presetName isNotEqualTo _oldPresetName)) then {
     {
         _x params ["_radioList"];
         {
