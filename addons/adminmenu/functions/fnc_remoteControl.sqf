@@ -74,7 +74,7 @@ if (_error isEqualTo "") then {
             if (!(player isKindOf QEGVAR(spectator,unit))) then {
                 _reasons pushBack "Player is not a spectator unit (respawned?)";
             };
-            if (((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isNotEqualTo _this) then {
+            if ((missionNamespace getVariable ["bis_fnc_moduleRemoteControl_unit", objNull]) isNotEqualTo _this) then {
                 _reasons pushBack "Mission RC var says current unit shouldn't be RC'd";
             };
             if ((_this getVariable ["bis_fnc_moduleRemoteControl_owner", objNull]) isNotEqualTo player) then {
