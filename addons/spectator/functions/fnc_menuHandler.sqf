@@ -74,6 +74,10 @@ switch (_button) do {
     case "mute" : {
       [] call acre_sys_core_fnc_toggleHeadset;
     };
+    case "radio": {
+        // Broadcast event.
+        [QGVAR(radioButtonPressed), []] call CBA_fnc_localEvent;
+    };
     case "vision" : {
         GVAR(visionMode) = GVAR(visionMode) +1;
         if(GVAR(visionMode) > 2) then {GVAR(visionMode) = 0};

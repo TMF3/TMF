@@ -12,6 +12,7 @@ class RscPicture;
 class RscXSliderH;
 class ctrlControlsGroupNoScrollbars;
 class RscControlsGroupNoScrollbars;
+
 class RscSpectatorText : RscText {
     type = 0;
     style = 0x02;
@@ -187,6 +188,16 @@ class GVAR(dialog)
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\voice_ca.paa";
       tooltip = "MUTE SPECTATORS";
     };
+    class TMF_SPECTATOR_RADIO: RscSpectatorShortcutButton {
+        idc = IDC_SPECTATOR_TMF_SPECTATOR_RADIO;
+        onButtonDown = QUOTE([ARR_2('radio',_this)] call FUNC(menuhandler));
+        x = COLUMN(6);
+        y = 0.002 * safezoneH + safezoneY;
+        w = BUTTON_WIDTH;
+        h = BUTTON_HEIGHT;
+        text = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
+        tooltip = "SHOW RADIO MENU";
+    };
     class TMF_SPECTATOR_MAP : RscMapControl {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_MAP;
       x = 0 * safezoneW + safezoneX;
@@ -211,14 +222,14 @@ class GVAR(dialog)
       //onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
       // Scrollbar configuration
       class ScrollBar {
-        width = 0; 
-        height = 0; 
-        scrollSpeed = 0.01; 
+        width = 0;
+        height = 0;
+        scrollSpeed = 0.01;
 
-        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa"; 
-        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa"; 
+        arrowEmpty = "\A3\ui_f\data\gui\cfg\scrollbar\arrowEmpty_ca.paa";
+        arrowFull = "\A3\ui_f\data\gui\cfg\scrollbar\arrowFull_ca.paa";
         border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
-        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa"; 
+        thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
 
         color[] = {1,1,1,0}; // Scrollbar color
       };
@@ -236,7 +247,7 @@ class GVAR(dialog)
         onMouseButtonDown = "true";
         onMouseButtonUp = "true";
         class controls {
-            class dummy : RscText { 
+            class dummy : RscText {
                 // REQUIRED
                 idc = -1;
                 x = 0.0 * safezoneW;
@@ -303,9 +314,9 @@ class GVAR(dialog)
                 action = "";
             };
         };
+    };
   };
-};
-class TMF_SPECTATOR_MOUSE: RscControlsGroup {
+  class TMF_SPECTATOR_MOUSE: RscControlsGroup {
     class ListScrollBar {
         color[] = {1,1,1,0.6};
         colorActive[] = {1,1,1,1};

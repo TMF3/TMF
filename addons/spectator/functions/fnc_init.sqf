@@ -127,8 +127,9 @@ GVAR(interfaceControls) = [
         IDC_SPECTATOR_TMF_SPECTATOR_TAGS, IDC_SPECTATOR_TMF_SPECTATOR_VIEW,
         IDC_SPECTATOR_TMF_SPECTATOR_COMPASS, IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT,
         IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight, IDC_SPECTATOR_TMF_SPECTATOR_MUTE,
-        IDC_SPECTATOR_TMF_SPECTATOR_MENUBACK
+        IDC_SPECTATOR_TMF_SPECTATOR_RADIO, IDC_SPECTATOR_TMF_SPECTATOR_MENUBACK
 ];
+
 GVAR(vehicles) = [];
 GVAR(tracers) = true;
 GVAR(bulletTrails) = false;
@@ -166,8 +167,8 @@ private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",t
 // Sides Button
 GVAR(sides) = [blufor,civilian,opfor,independent];
 GVAR(sides_button_state) = 0;
-GVAR(sides_button_mode) = [ 
-    [blufor,civilian,opfor,independent], 
+GVAR(sides_button_mode) = [
+    [blufor,civilian,opfor,independent],
     [blufor],
     [opfor],
     [independent],
