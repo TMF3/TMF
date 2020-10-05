@@ -190,7 +190,7 @@ class GVAR(dialog)
     };
     class TMF_SPECTATOR_RADIO: RscSpectatorShortcutButton {
         idc = IDC_SPECTATOR_TMF_SPECTATOR_RADIO;
-        onButtonDown = "['radio',_this] call tmf_spectator_fnc_menuhandler;";
+        onButtonDown = QUOTE([ARR_2('radio',_this)] call FUNC(menuhandler));
         x = COLUMN(6);
         y = 0.002 * safezoneH + safezoneY;
         w = BUTTON_WIDTH;
