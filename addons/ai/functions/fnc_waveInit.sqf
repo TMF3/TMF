@@ -76,7 +76,8 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
                 [vectorDir _x,vectorUp _x],
                 getUnitLoadout _unit,
                 -1,
-                []
+                [],
+                getDir _unit
             ];
             if(!isNull objectParent _x) then {
                 _data set [4, _vehicles find (objectParent _x)];
@@ -99,7 +100,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
     ]};
 
     // store vehicle data
-    _vehicles = _vehicles apply {[typeof _x,getposATL _x,[vectorDir _x,vectorUp _x],[_x] call BIS_fnc_getVehicleCustomization, getPylonMagazines _x]};
+    _vehicles = _vehicles apply {[typeof _x,getposATL _x,[vectorDir _x,vectorUp _x],[_x] call BIS_fnc_getVehicleCustomization, getPylonMagazines _x, getDir _x]};
 
     _logic setVariable [QGVAR(waveData), [_groups, _vehicles, _cachedObjects]];
 
@@ -115,7 +116,16 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
         deleteVehicle _x;
     } foreach _objects;
 
-    _logic setVariable [QGVAR(init),true,true];
+    // Generate Admin Map data (Lite version of data for broadcast)
+    // Array of [typeof, pos, direction]
+    private _adminData = _vehicles apply {[_x select 0, _x select 1, _x select 6]};
+    {
+        _x params ["", "_units"];
+        _adminData append (_units apply {[_x select 0, _x select 1, _x select 6]});
+    } forEach _groups;
+    _logic setVariable [QGVAR(waveAdminData), _adminData, true];
+
+    _logic setVariable [QGVAR(init), true, true];
 };
 
 
