@@ -8,3 +8,14 @@ if is3DEN call {
 };
 
 isTMF = ((getMissionConfigValue ["tmf_version",[0,0,0]] select 0) > 0);
+
+// Rig up server event handler for variable sync requests.
+if (isServer) then {
+    [QGVAR(requestServerSync), {
+        // Delay a frame.
+        [{
+            params ["_clientOwnerId"];
+            [QGVAR(serverVariableSyncResponse), [], _clientOwnerId] call CBA_fnc_ownerEvent;
+        }, _this] call CBA_fnc_execNextFrame;
+    }] call CBA_fnc_addEventHandler;
+};
