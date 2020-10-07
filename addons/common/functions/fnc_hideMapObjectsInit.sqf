@@ -30,6 +30,7 @@ _ints = _ints arrayIntersect (nearestTerrainObjects [_logic, [], 50, false]); //
 
 {
     if (isServer) then { _x hideObjectGlobal true } else { _x hideObject true };
+    _x allowDamage false;
     _x setPosATL ((getPosATL _x) vectorAdd [0,0,-1000]);
 } forEach _ints;
 
