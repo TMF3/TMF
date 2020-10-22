@@ -8,7 +8,8 @@ private _cfgVehicles = configFile >> "CfgVehicles";
 private _cfgGlasses = configFile >> "CfgGlasses";
 private _cfgMagazines = configFile >> "CfgMagazines";
 private _warnWeight = getNumber (_test >> "maxWeight");
-
+private _maxWeight = (getNumber (configFile >> "CfgInventoryGlobalVariable" >> "maxSoldierLoad")) * 0.95; // Add a bit of padding for radios
+private _maxWeightKG = ACE_MASSTOKG(_maxWeight);
 
 private _output = [];
 
@@ -248,14 +249,20 @@ private _loadoutFreespace = [];
             _freespace = [_faction,_role] call _fncTestUnit;
             _loadoutFreespace pushBack _freespace;
             _unit call FUNC(assignGear);
-            private _weight = (loadAbs _unit) * 0.1;
-            _weight = (round (_weight * (1/2.2046) * 100)) / 100; // ACE calculation
-            if (_weight >= _warnWeight) then {
-                _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",_weight,_faction,_role]];
+            private _weight = loadAbs _unit; // ACE calculation
+
+            if (_weight >= _maxWeight) then {
+                _output pushBack [0,format["Role weight above maximum, %1kg > %2 (for: %3 - %4)",ACE_MASSTOKG(_weight),_maxWeightKG,_faction,_role]];
+            } else {
+                if (ACE_MASSTOKG(_weight) >= _warnWeight) then {
+                    _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",ACE_MASSTOKG(_weight),_faction,_role]];
+                };
             };
+
         } else {
             _freespace = _loadoutFreespace select (_loadoutsTested find [_faction, _role]);
         };
+
         private _radios = [_unit] call EFUNC(acre2,edenUnitToRadios);
         _freespace params ["_freeUniformSpace","_freeVestSpace","_freeBackpackSpace"];
         {
