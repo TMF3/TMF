@@ -56,12 +56,26 @@ private _problemUnits = [];
 } forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
 
 if !(_problemUnits isEqualTo []) then {
-    _warnings pushBack [1,"One or more playable units needs notices for DLC:"];
+
+    // Avoid cluttering autotest too much
+    if (count _problemUnits > 5) then {
+        _problemUnits = _problemUnits select [0,5];
+        _warnings pushBack [0,"More than five playable units require notices for DLC:"];
+    } else {
+        _warnings pushBack [1,"One or more playable units require notices for DLC:"];
+    };
+
     {
         _x params ["_unit","_dlc"];
+
+        private _roleStr = "";
+        if (_unit getVariable [QEGVAR(assigngear,done),false]) then {
+            _roleStr = format [" (%1)", _unit getVariable QEGVAR(assigngear,role)];
+        };
+
         _warnings pushBack [
             1,
-            format ["• %1 : %2", _unit, _dlc]
+            format ["|   %1%2 : %3", _unit, _roleStr, _dlc]
         ];
     } forEach _problemUnits;
 };
@@ -96,25 +110,29 @@ private _problemVehs = [];
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
 if !(_problemVehs isEqualTo []) then {
-    _warnings pushBack [
-        1,
-        format ["One or more unlocked vehicles require DLC notices:", _problemVehs, _problemVehsDLC]
-    ];
+
+    // Avoid cluttering autotest too much
+    if (count _problemVehs > 5) then  {
+        _problemVehs = _problemVehs select [0,5];
+        _warnings pushBack [0,"More than five unlocked vehicles require DLC notices:"];
+    } else {
+        _warnings pushBack [1,"One or more unlocked vehicles require DLC notices:"];
+    };
+
     {
         _x params ["_veh","_dlc"];
         _warnings pushBack [
             1,
-            format ["• %1 : %2", _veh, _dlc]
+            format ["|   %1 (%2) : '%3'", _veh, (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName, _dlc]
         ];
     } forEach _problemVehs;
 };
 
-if (_warnings isEqualTo []) then {
-    _warnings pushBack [
-        -1,
-        "DLC Checks finished"
-    ];
-};
+_warnings pushBack [
+    if (_warnings isEqualTo []) then [{-1},{1}],
+    "DLC Checks finished"
+];
+
 
 LOG_1("Finished DLC Tests: %1", _warnings);
 
