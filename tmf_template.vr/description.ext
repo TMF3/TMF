@@ -50,11 +50,7 @@ class CfgLoadouts
 
 class CfgDebriefingSections
 {
-    class tmf_adminlog
-    {
-        title = "TMF Log";
-        variable = "TMF_adminmenu_debrief";
-    };
+    #include "\x\tmf\addons\adminmenu\debriefAdminLog.inc"
     class acex_killTracker
     {
         title = "ACEX Killed Events";
