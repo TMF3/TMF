@@ -37,7 +37,7 @@ class CfgDebriefing
 };
 
 // DO NOT REMOVE. Include the macros for custom loadouts.
-#include "loadouts\_macros.hpp"
+#include "\x\tmf\addons\assigngear\loadouts\macros.inc"
 
 class CfgLoadouts
 {
