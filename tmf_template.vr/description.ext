@@ -1,4 +1,4 @@
-tmf_version[] = {1,1,0}; // DO NOT CHANGE THIS. This is the core version of the template that your mission was started with.
+tmf_version[] = {1,1,1}; // DO NOT CHANGE THIS. This is the core version of the template that your mission was started with.
 enableDebugConsole = 1; // Allows the logged in admin to use the debug console from the escape page.
 
 // Use a randomized loading image from TMF. Set your own loading image with e.g. overviewPicture = "image.jpg";
