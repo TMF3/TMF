@@ -36,14 +36,13 @@ with uiNamespace do {
 
 
 
-if(!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
+if(!GVAR(canSpectateAllSides)) then {
     GVAR(sides) = [tmf_spectator_entryside];
-    GVAR(sides_button_mode) = [[tmf_spectator_entryside],[]];
-    GVAR(sides_button_strings) = ["SHOWING YOUR SIDE","NONE"];
+    GVAR(sides_button_mode) = [[tmf_spectator_entryside], []];
+    GVAR(sides_button_strings) = ["SHOWING YOUR SIDE", "NONE"];
 };
 
-if (!isNil QGVAR(zeusPos) && { getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true] }) then {
-
+if (!isNil QGVAR(zeusPos) && { GVAR(freeCameraEnabled) }) then {
     GVAR(mode) = FREECAM;
     [] call FUNC(setTarget);
 
@@ -56,8 +55,8 @@ if (!isNil QGVAR(zeusPos) && { getMissionConfigValue ["TMF_Spectator_AllowFreeCa
     GVAR(camera) camCommit 0;
     GVAR(zeusPos) = nil;
 } else {
-    if (missionNamespace getVariable [QGVAR(mode),-1] isEqualTo - 1) then {
-        private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
+    if (missionNamespace getVariable [QGVAR(mode),-1] isEqualTo -1) then {
+        private _allowedModes = [GVAR(followCameraEnabled),GVAR(freeCameraEnabled),GVAR(firstPersonCameraEnabled)];
         {
             if(_x) exitWith {
                 GVAR(mode) = _forEachIndex;
@@ -65,7 +64,6 @@ if (!isNil QGVAR(zeusPos) && { getMissionConfigValue ["TMF_Spectator_AllowFreeCa
             };
         } forEach _allowedModes;
     } else {
-        // use pre-existing GVAR(mode)
         [] call FUNC(setTarget);
     };
 };

@@ -150,12 +150,12 @@ GVAR(freeCam) camCommit 0;
 GVAR(camera) camCommit 0;
 // 0 follow cam, 1 freecam, 2 firstperson
 GVAR(mode) = FOLLOWCAM;
-private _allowedModes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
+GVAR(allowed_modes) = [GVAR(followCameraEnabled),GVAR(freeCameraEnabled),GVAR(firstPersonCameraEnabled)];
 {
     if(_x) exitWith {
         GVAR(mode) = _forEachIndex;
     };
-} forEach _allowedModes;
+} forEach GVAR(allowed_modes);
 
 
 // Sides Button
@@ -171,7 +171,7 @@ GVAR(sides_button_mode) = [
 GVAR(sides_button_strings) = ["SHOWING ALL SIDES", "SHOWING BLUFOR", "SHOWING OPFOR", "SHOWING INDEPENDENT", "SHOWING CIVILIAN"];
 
 
-if (!getMissionConfigValue ["TMF_Spectator_AllSides",true]) then {
+if (!GVAR(canSpectateAllSides)) then {
   GVAR(sides) = [tmf_spectator_entryside];
   GVAR(sides_button_mode) = [[tmf_spectator_entryside]];
   GVAR(sides_button_strings) = ["SHOWING YOUR SIDE"];

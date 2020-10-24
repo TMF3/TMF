@@ -36,3 +36,4 @@ PREP(initSpectatorUnit);
 PREP(testSpectator);
 PREP(onEntityKilled);
 PREP(processData);
+PREP(onModeSwitch);

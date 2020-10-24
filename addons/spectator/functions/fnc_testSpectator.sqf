@@ -6,4 +6,6 @@ if (!((getMissionConfigValue ["respawn",0] == 1) and ("TMF_Spectator" in (getMis
     _output pushBack [0,"TMF Spectator is not setup correctly. See wiki for instructions."];
 };
 
+
+
 _output
