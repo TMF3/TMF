@@ -42,7 +42,7 @@
 [
     QGVAR(canSpectateAllSides),
     "CHECKBOX",
-    ["Spectate all sides", "Disable to only allow the player to spectate thier own side"],
+    ["Spectate all sides", "Disable to only allow the player to spectate their own side"],
     ["TMF", "Spectator"],
     true,
     1
