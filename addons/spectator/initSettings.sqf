@@ -14,3 +14,36 @@
     [[0,1],["Groups with players only", "All"], 0],
     1
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(followCameraEnabled),
+    "CHECKBOX",
+    ["Follow camera mode enabled", "Allow the usage of the Orbiting camera mode"],
+    ["TMF", "Spectator"],
+    true,
+    1
+] call CBA_fnc_addSetting;
+[
+    QGVAR(freeCameraEnabled),
+    "CHECKBOX",
+    ["Free camera mode enabled", "Allow the usage of the free camera mode"],
+    ["TMF", "Spectator"],
+    true,
+    1
+] call CBA_fnc_addSetting;
+[
+    QGVAR(firstPersonCameraEnabled),
+    "CHECKBOX",
+    ["Firstperson camera mode enabled", "Allow the usage of the firstperson camera mode"],
+    ["TMF", "Spectator"],
+    true,
+    1
+] call CBA_fnc_addSetting;
+[
+    QGVAR(canSpectateAllSides),
+    "CHECKBOX",
+    ["Spectate all sides", "Disable to only allow the player to spectate their own side"],
+    ["TMF", "Spectator"],
+    true,
+    1
+] call CBA_fnc_addSetting;

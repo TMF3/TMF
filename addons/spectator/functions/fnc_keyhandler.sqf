@@ -217,7 +217,6 @@ switch true do {
               GVAR(map) ctrlShow _mapshow;
               GVAR(map) ctrlMapAnimAdd [0,0.05,missionNamespace getVariable [QGVAR(target),GVAR(camera)]];
               ctrlMapAnimCommit GVAR(map);
-            //  if(_mapshow) then {GVAR(unitlist) ctrlSetTextColor [0,0,0,1];} else {GVAR(unitlist) ctrlSetTextColor [1,1,1,1];}
           };
       };
   };
@@ -239,19 +238,8 @@ switch true do {
         systemChat _message;
     };
     case (_key == DIK_SPACE && _type == KEYDOWN) : {
-        if(!getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true] || !getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true]) exitWith {}; // camrea mode disabled
-        if(GVAR(mode) == FOLLOWCAM || GVAR(mode) == FIRSTPERSON) then {
-            if (GVAR(mode) == FOLLOWCAM) then {
-                private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
-                GVAR(followcam_angle) = [getDir GVAR(camera),_pitch];
-            };
-          GVAR(mode) = FREECAM;
-        }
-        else {
-            GVAR(mode) = FOLLOWCAM;
-            private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
-            GVAR(followcam_angle) = [(getDir GVAR(camera) + 180) mod 360,(_pitch+180) mod 360];
-        };
+        [] call FUNC(onModeSwitch);
+        [] call FUNC(setTarget);
     };
     case (_key == DIK_U && _type == KEYDOWN) : {
         [] call FUNC(toggleUI);
