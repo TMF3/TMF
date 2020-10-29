@@ -14,6 +14,8 @@
     #define PREPMAIN(var1) ['PATHTO_SYS(PREFIX,COMPONENT_F,DOUBLES(functions\fnc,var1))', 'TRIPLES(PREFIX,fnc,var1)'] call SLX_XEH_COMPILE_NEW
 #endif
 
+#define ACE_MASSTOKG(x) ((round ((x) * 0.1 * (1/2.2046) * 100)) / 100)
+
 // XEH templates
 #define XEH_POSTINIT                                    \
 class Extended_PostInit_EventHandlers {                 \

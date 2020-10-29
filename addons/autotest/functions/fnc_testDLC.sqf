@@ -15,16 +15,26 @@ Author:
 LOG("Running DLC tests");
 private _warnings = [];
 private _ignoredDLC = getArray (_test >> "ignoredDLC");
-
+private _dlcHash = uiNamespace getVariable QGVAR(dlcHash);
 private _allUnits = (playableUnits + [player]);
 private _unitsDLCInfo = _allUnits apply {
     _x setUnitLoadout getUnitLoadout _x; // Needed to properly register DLC usage
     [_x,getPersonUsedDLCs _x]
 };
-private _dlcHash = uiNamespace getVariable QGVAR(dlcHash);
 private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewText";
 
+// World DLC flags all objects, so add it as a separate warning.
+private _worldDLC = getNumber (configFile >> "CfgWorlds" >> worldName >> "appID");
+if (_worldDLC != 0 && !(_worldDLC in _ignoredDLC)) then {
+    _ignoredDLC pushBack _worldDLC;
+    /*_warnings pushBack [
+        1,
+        format ["Mission uses DLC terrain: %1", [_dlcHash, _worldDLC] call CBA_fnc_hashGet]
+    ];*/
+};
+
 // Check units for DLC
+private _problemUnits = [];
 {
     _x params ["_unit","_dlcArr"];
     TRACE_2("Checking unit for DLC",_unit,_dlcArr);
@@ -41,20 +51,47 @@ private _missionSummary = "Multiplayer" get3DENMissionAttribute "IntelOverviewTe
 
     if !(_dlcArr isEqualTo []) then {
         TRACE_2("Unit has unlisted DLC",_unit,_dlcArr);
-        _warnings pushBack [
-            0,
-            format ["%1 needs notice for following DLC: %2", _unit, _dlcArr]
-        ];
+        _problemUnits pushBack [_unit,_dlcArr];
     };
 } forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
 
-private _vehicleDLCInfo = vehicles apply {[_x,getObjectDLC _x]};
-private _roleDescriptions = _allUnits apply {(_x get3DENAttribute "description") select 0};
-private _searchTexts = [_missionSummary] + _roleDescriptions;
-private _problemVehs = 0;
-private _problemVehsDLC = [];
+if !(_problemUnits isEqualTo []) then {
+
+    // Avoid cluttering autotest too much
+    if (count _problemUnits > 5) then {
+        _problemUnits = _problemUnits select [0,5];
+        _warnings pushBack [0,"More than five playable units require notices for DLC:"];
+    } else {
+        _warnings pushBack [1,"One or more playable units require notices for DLC:"];
+    };
+
+    {
+        _x params ["_unit","_dlc"];
+
+        private _roleStr = "";
+        if (_unit getVariable [QEGVAR(assigngear,done),false]) then {
+            _roleStr = format [" (%1)", _unit getVariable QEGVAR(assigngear,role)];
+        };
+
+        _warnings pushBack [
+            1,
+            format ["|   %1%2 : %3", _unit, _roleStr, _dlc]
+        ];
+    } forEach _problemUnits;
+};
 
 // Check placed vehicles for DLC
+// Filter only enterable and unlocked vehicles
+private _vehicles = vehicles select {
+    [typeOf _x, true] call BIS_fnc_crewCount > 0 &&
+    ((_x get3DENAttribute "enableSimulation") # 0) &&
+    ((_x get3DENAttribute "lock") # 0) <= 1 &&
+    !((_x get3DENAttribute "objectIsSimple") # 0)
+};
+private _vehicleDLCInfo = _vehicles apply {[_x,getObjectDLC _x]};
+private _roleDescriptions = _allUnits apply {(_x get3DENAttribute "description") select 0};
+private _searchTexts = [_missionSummary] + _roleDescriptions;
+private _problemVehs = [];
 {
     _x params ["_veh", "_dlc"];
     TRACE_2("Checking vehicle for DLC",_veh,_dlc);
@@ -67,25 +104,35 @@ private _problemVehsDLC = [];
 
         if (_index == -1) then {
             TRACE_2("Vehicle found using unlisted DLC",_veh,_dlc);
-            _problemVehs = _problemVehs + 1;
-            _problemVehsDLC pushBackUnique _dlc;
+            _problemVehs pushBack [_veh, _dlc];
         };
     };
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
-if (_problemVehs > 0) then {
-    if (_problemVehs > 1) then {
-        _warnings pushBack [
-            1,
-            format ["There are %1 vehicles present from unmentioned DLC: %2", _problemVehs, _problemVehsDLC]
-        ];
+if !(_problemVehs isEqualTo []) then {
+
+    // Avoid cluttering autotest too much
+    if (count _problemVehs > 5) then  {
+        _problemVehs = _problemVehs select [0,5];
+        _warnings pushBack [0,"More than five unlocked vehicles require DLC notices:"];
     } else {
+        _warnings pushBack [1,"One or more unlocked vehicles require DLC notices:"];
+    };
+
+    {
+        _x params ["_veh","_dlc"];
         _warnings pushBack [
             1,
-            format ["There is %1 vehicle present from unmentioned DLC: %2", _problemVehs, _problemVehsDLC]
+            format ["|   %1 (%2) : '%3'", _veh, (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName, _dlc]
         ];
-    };
+    } forEach _problemVehs;
 };
+
+_warnings pushBack [
+    if (_warnings isEqualTo []) then [{-1},{1}],
+    "DLC Checks finished"
+];
+
 
 LOG_1("Finished DLC Tests: %1", _warnings);
 

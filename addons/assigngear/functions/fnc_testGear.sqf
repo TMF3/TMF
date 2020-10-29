@@ -8,7 +8,8 @@ private _cfgVehicles = configFile >> "CfgVehicles";
 private _cfgGlasses = configFile >> "CfgGlasses";
 private _cfgMagazines = configFile >> "CfgMagazines";
 private _warnWeight = getNumber (_test >> "maxWeight");
-
+private _maxWeight = (getNumber (configFile >> "CfgInventoryGlobalVariable" >> "maxSoldierLoad")) * 0.95; // Add a bit of padding for radios
+private _maxWeightKG = ACE_MASSTOKG(_maxWeight);
 
 private _output = [];
 
@@ -209,12 +210,12 @@ private _fncTestUnit = {
             private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount < 3) then {
+            if (_weaponMagCount < 3 && !(_weaponMags isEqualTo [])) then {
                 _output pushBack [1,format["Role: %2 - %3 has less than 3 compatible mags for primary weapon.", _x,_faction,_role]];
             };
         };
 
-        if (count _sidearmWeapon > 0) then {
+        if (count _sidearmWeapon > 0 && !(_weaponMags isEqualTo [])) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
@@ -248,14 +249,20 @@ private _loadoutFreespace = [];
             _freespace = [_faction,_role] call _fncTestUnit;
             _loadoutFreespace pushBack _freespace;
             _unit call FUNC(assignGear);
-            private _weight = (loadAbs _unit) * 0.1;
-            _weight = (round (_weight * (1/2.2046) * 100)) / 100; // ACE calculation
-            if (_weight >= _warnWeight) then {
-                _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",_weight,_faction,_role]];
+            private _weight = loadAbs _unit; // ACE calculation
+
+            if (_weight >= _maxWeight) then {
+                _output pushBack [0,format["Role weight above maximum, %1kg > %2 (for: %3 - %4)",ACE_MASSTOKG(_weight),_maxWeightKG,_faction,_role]];
+            } else {
+                if (ACE_MASSTOKG(_weight) >= _warnWeight) then {
+                    _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",ACE_MASSTOKG(_weight),_faction,_role]];
+                };
             };
+
         } else {
             _freespace = _loadoutFreespace select (_loadoutsTested find [_faction, _role]);
         };
+
         private _radios = [_unit] call EFUNC(acre2,edenUnitToRadios);
         _freespace params ["_freeUniformSpace","_freeVestSpace","_freeBackpackSpace"];
         {
