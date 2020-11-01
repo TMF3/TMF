@@ -20,7 +20,7 @@ class GVAR(ambientVehicles): Module_F
             property = QGVAR(DOUBLES(ambientVehicles,vehicleNumber));
             control = "EditShort";
             typeName = "NUMBER";
-            expression = "_this setVariable ['%s',parseNumber _value,true];";
+            expression = "_this setVariable ['%s', _value call BIS_fnc_parseNumberSafe, true];";
             defaultValue = """10""";
         };
         class GVAR(spacing): Default {
@@ -29,7 +29,7 @@ class GVAR(ambientVehicles): Module_F
             property = QGVAR(DOUBLES(ambientVehicles,spacing));
             control = "EditShort";
             typeName = "NUMBER";
-            expression = "_this setVariable ['%s',parseNumber _value,true];";
+            expression = "_this setVariable ['%s', _value call BIS_fnc_parseNumberSafe, true];";
             defaultValue = """3""";
         };
         class GVAR(lockedRate): Default {
@@ -38,6 +38,7 @@ class GVAR(ambientVehicles): Module_F
             tooltip = "Percentage of spawned vehicles that will be locked.";
             control = "Slider";
             typeName = "NUMBER";
+            expression = "_this setVariable ['%s', _value call BIS_fnc_parseNumberSafe, true];";
             defaultValue = 0;
         };
         class GVAR(code): Default {
@@ -54,7 +55,7 @@ class GVAR(ambientVehicles): Module_F
 
     class ModuleDescription: ModuleDescription
     {
-        description = "Spawns empty vehicles near roads in an area defined by TMF Area modules.<br/>Vehicles to spawn are synced to the module.";
+        description = "Populates roads with parked vehicles.<br/>To use sync vehicles and a TMF Area module.";
         sync[] = {"AnyVehicle", QEGVAR(ai,area)};
 
         class EGVAR(ai,area)
