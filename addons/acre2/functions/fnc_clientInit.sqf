@@ -4,9 +4,7 @@
 
 if (!hasInterface) exitWith {};
 
-
-if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
-
+if (!alive player) exitWith {};
 
 [{
     [_this select 1] call CBA_fnc_removePerFrameHandler;
@@ -69,7 +67,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
     //If Radio system disabled but babel is, create the briefing page anyway.
     if (!getMissionConfigValue ['TMF_AcreNetworkEnabled',false]) exitWith {
         if (getMissionConfigValue ['TMF_AcreBabelEnabled',false]) then {
-            player createDiaryRecord ["diary", ["ACRE2", _ltext]]; 
+            player createDiaryRecord ["diary", ["ACRE2", _ltext]];
         };
     };
 
@@ -124,7 +122,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
                     if (_forEachIndex in _unitVarChannelList) exitWith { _unitOnThisChannel = true; };
                     if (_isGroupLeader && {_forEachIndex in _groupVarLeaderChannelList}) exitWith { _unitOnThisChannel = true; };
                 };
-                (_channelsProcessed select ([_radio] call tmf_acre2_radioBasenameToSettingsIdx)) pushBack (_x + [_unitOnThisChannel]);    
+                (_channelsProcessed select ([_radio] call tmf_acre2_radioBasenameToSettingsIdx)) pushBack (_x + [_unitOnThisChannel]);
             } forEach ((_radioPresetSetting select 1)); // loop through channels for the preset
         };
     } forEach GVAR(networksWithRadioChannels);
@@ -134,9 +132,9 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
     // ====================================================================================
     // Start PFH to cause delay so vars are set.
 
-    
+
     // Gear assignment always runs at init, this runs after init.
- 
+
     private _side = _unit getVariable ["tmf_assignGear_side",-1];
     private _faction = _unit getVariable ["tmf_assignGear_faction","civ_f"];
     private _role =  _unit getVariable ["tmf_assignGear_role","baseMan"];
@@ -162,7 +160,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
     //CfgLoadouts >> WEST >> BLU_F >> KIT
    //  test = [_side, player getVariable ["tmf_assignGear_faction","civ_f"], player getVariable ["tmf_assignGear_role","baseMan"], "radios"]  call tmf_common_fnc_getCfgEntry;
     //test = [_side, player getVariable ["tmf_assignGear_faction","civ_f"], player getVariable ["tmf_assignGear_role","baseMan"], "radios"]  call tmf_common_fnc_getCfgEntry;
-    
+
     // CONSTRUCT BRIEFING AND MATCH THE RADIO CHANNELS TO RADIOS, SO LATER WE CAN SET THEM ON THE MATCHE CHANNELS.
 
     private _assignedRadioChannels = _radiosToGive apply {[_x,-1]}; // 'ClassName','Chan num'
@@ -182,18 +180,18 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
                 if (_forEachIndex != 0) then {_text = _text + ", "; };
                 _text = _text + getText (configfile >> "CfgWeapons" >> _x >> "displayName");
             } forEach _radioList;
-            _text = _text + ":<br/>";                
+            _text = _text + ":<br/>";
 
             {
                 private _chanNum = _forEachIndex +1;
                 private _frequency = [_radio, _presetName, _chanNum, "frequencyTX"] call acre_api_fnc_getPresetChannelField;
-                if (_frequency >= 1000) then { 
-                    _frequency = [_frequency, 4,3] call CBA_fnc_formatNumber;  
+                if (_frequency >= 1000) then {
+                    _frequency = [_frequency, 4,3] call CBA_fnc_formatNumber;
                 } else {
                     if (_frequency < 100) then {
-                        _frequency = format[" %1",[_frequency, 2,5] call CBA_fnc_formatNumber];  
+                        _frequency = format[" %1",[_frequency, 2,5] call CBA_fnc_formatNumber];
                     } else {
-                        _frequency = [_frequency, 3,5] call CBA_fnc_formatNumber; 
+                        _frequency = [_frequency, 3,5] call CBA_fnc_formatNumber;
                     };
                 };
                 private _channelLine = format["CHN %1 (%2 MHz) - %3 - %4",_chanNum,_frequency,(_x select 0),(_x select 1)];
@@ -220,7 +218,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
                         _usedRadioIndexs pushBack _radioFndIdx;
                     };
                     private _color = [_radioFndIdx] call EFUNC(common,numToColor);
-                    _channelLine = " <font color='#ff4747'>*</font> " + format["<font color='%1'>",_color] + _channelLine + "</font><br/>";  
+                    _channelLine = " <font color='#ff4747'>*</font> " + format["<font color='%1'>",_color] + _channelLine + "</font><br/>";
                 } else {
                     _channelLine = "   " +_channelLine + "<br/>";
                 };
@@ -238,7 +236,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
     _text = _ltext + _myRadiosText + _text;
 
     //Provide instructions on the page. such as * to denote a channel you are suppose to be on, explain what the colours mean.
-    player createDiaryRecord ["diary", ["ACRE2", _text]];    
+    player createDiaryRecord ["diary", ["ACRE2", _text]];
 
     // ====================================================================================
     // Give radios and set the channels accordingly
@@ -256,7 +254,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
 
             // Wait for existing radios to finish initalization.
             if ("ItemRadio" in (items _unit + assignedItems _unit)) exitWith {};
-            if (!([] call acre_api_fnc_isInitialized)) exitWith {};    
+            if (!([] call acre_api_fnc_isInitialized)) exitWith {};
 
             {_unit removeItem _x;} forEach ([] call acre_api_fnc_getCurrentRadioList);
 
@@ -275,7 +273,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
                             (unitBackpack _unit) addItemCargoGlobal [_x, 1];
                             _added = true;
                         };
-                    };*/            
+                    };*/
 
                     if (!_added) then {
                         [_x] spawn {
@@ -334,7 +332,7 @@ if(!alive player) exitWith {[true] call acre_api_fnc_setSpectator;};
                 // Give addActions to addRadios.
                 if (!isNil QGVAR(radioAddActions)) then {
                     {
-                        private _actionid_action = _unit addAction [format["<t color='#c3d633'>[Radios] Give myself a %1 radio (check your inventory for space)</t>",getText (configfile >> "CfgWeapons" >> _x >> "displayName")], 
+                        private _actionid_action = _unit addAction [format["<t color='#c3d633'>[Radios] Give myself a %1 radio (check your inventory for space)</t>",getText (configfile >> "CfgWeapons" >> _x >> "displayName")],
                                                             format["if ((_this select 0) canAdd '%1') then { (_this select 0) addItem '%1'; (_this select 0) removeAction (_this select 2); } else { systemChat '[TMF ACRE2] No space for radios'; };",_x],0,0,false,true,"","(_target == _this)"];
                         [_actionid_action,_unit] spawn {
                             sleep 300;
