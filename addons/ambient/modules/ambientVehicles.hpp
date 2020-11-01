@@ -32,6 +32,13 @@ class GVAR(ambientVehicles): Module_F
             expression = "_this setVariable ['%s', _value call BIS_fnc_parseNumberSafe, true];";
             defaultValue = """3""";
         };
+        class GVAR(emptyCargo): Checkbox {
+            property = QGVAR(DOUBLES(ambientVehicles,emptyCargo));
+            displayName = "Empty vehicle cargo";
+            tooltip = "Whether vehicles should spawn with empty cargo.";
+            typeName = "BOOL";
+            defaultValue = false;
+        };
         class GVAR(lockedRate): Default {
             property = QGVAR(DOUBLES(ambientVehicles,lockedRate));
             displayName = "Vehicles locked";

@@ -26,6 +26,7 @@ private _code =             _logic getVariable [QGVAR(code), ""];
 private _lockedRate =       _logic getVariable [QGVAR(lockedRate), 0];
 private _spacing =          _logic getVariable [QGVAR(spacing), 2];
 private _vehicleNumber =    _logic getVariable [QGVAR(vehicleNumber), 5];
+private _emptyCargo =       _logic getVariable [QGVAR(emptyCargo), false];
 
 private _syncedObjects = [];
 if is3DEN then {
@@ -77,12 +78,20 @@ switch _mode do {
         private _vehicles = [_area, _vehicleTypes, _vehicleNumber, _spacing] call FUNC(createAmbientVehicles);
 
         {
-            _x call _code;
+            if (_emptyCargo) then {
+                clearWeaponCargoGlobal _x;
+                clearMagazineCargoGlobal _x;
+                clearItemCargoGlobal _x;
+                clearBackpackCargoGlobal _x;
+            };
 
             if (random 1 < _lockedRate) then {
                 _x setVehicleLock "LOCKED";
                 ["init",_x] call bis_fnc_carAlarm;
             };
+
+            _x call _code;
+
         } forEach _vehicles;
 
         _logic setVariable ["spawnedVehicles", _vehicles, true];
@@ -97,6 +106,8 @@ switch _mode do {
         } forEach (_logic getVariable ["spawnedVehicles", []]);
 
         private _vehicles = [_area, _vehicleTypes, _vehicleNumber, _spacing] call FUNC(createAmbientVehicles);
+        {_x call _code;} forEach _vehicles;
+
         _logic setVariable ["spawnedVehicles", _vehicles, true];
     };
 
