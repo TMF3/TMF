@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-class cfgPatches
+class CfgPatches
 {
     class ADDON
     {
@@ -16,5 +16,3 @@ class cfgPatches
 };
 
 #include "CfgEventHandlers.hpp"
-#include "CfgWaypoints.hpp"
-#include "CfgModules.hpp"
