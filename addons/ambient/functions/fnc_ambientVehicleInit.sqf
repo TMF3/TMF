@@ -66,8 +66,8 @@ if (is3DEN) then {
 };
 
 switch _mode do {
-	// Default object init
-	case "init": {
+    // Default object init
+    case "init": {
         _input params ["", "_isActivated", "_isCuratorPlaced"];
 
         {deleteVehicle _x} forEach _syncedVehicles;
@@ -86,26 +86,26 @@ switch _mode do {
         } forEach _vehicles;
 
         _logic setVariable ["spawnedVehicles", _vehicles, true];
-	};
+    };
 
-	// When some attributes were changed (including position and rotation)
-	case "attributesChanged3DEN";
-	// When connection to object changes (i.e., new one is added or existing one removed)
-	case "connectionChanged3DEN": {
+    // When some attributes were changed (including position and rotation)
+    case "attributesChanged3DEN";
+    // When connection to object changes (i.e., new one is added or existing one removed)
+    case "connectionChanged3DEN": {
         {
             deleteVehicle _x;
         } forEach (_logic getVariable ["spawnedVehicles", []]);
 
         private _vehicles = [_area, _vehicleTypes, _vehicleNumber, _spacing] call FUNC(createAmbientVehicles);
         _logic setVariable ["spawnedVehicles", _vehicles, true];
-	};
+    };
 
-	// When removed from the world (i.e., by deletion or undoing creation)
-	case "unregisteredFromWorld3DEN": {
+    // When removed from the world (i.e., by deletion or undoing creation)
+    case "unregisteredFromWorld3DEN": {
         {
             deleteVehicle _x;
         } forEach (_logic getVariable ["spawnedVehicles", []]);
-	};
+    };
 };
 
 nil
