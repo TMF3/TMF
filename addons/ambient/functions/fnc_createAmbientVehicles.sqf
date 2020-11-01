@@ -1,14 +1,15 @@
 #include "../script_component.hpp"
 /* ----------------------------------------------------------------------------
-Function: TMF_ambient_fnc_createAmbientVehicles
+Internal Function: TMF_ambient_fnc_createAmbientVehicles
 
 Description:
+	Spawns empty vehicles close to roads in an area,
+	script taken from Quarry mission.
 
 Parameters:
     _area - Area to cover [Area array, trigger or marker]
     _vehicles - Vehicle types to spawn [Array of class names]
     _vehicleCount - Number of vehicles to spawn [Number, default 1]
-    _code - Code executed on each vehicle [Code, default {}]
     _spacing - Number of road segments between spawned vehicles [Number, Default 2]
 
 Returns:
@@ -21,24 +22,33 @@ params [
     "_area",
     "_vehicles",
     ["_vehicleCount", 1, [1]],
-    ["_code", {}, [{}]],
     ["_spacing", 2, [-1]]
 ];
-TRACE_4("Creating ambient vehicles",_area,_vehicles,_vehicleCount,_code);
 
 _area = _area call BIS_fnc_getArea;
 
+TRACE_4("Creating ambient vehicles",_area,_vehicles,_vehicleCount,_code);
+
+private _createdVehicles = [];
+
 #ifdef DEBUG_MODE_FULL
+// Initialize or cleanup debug marks
 if (isNil QGVAR(vehicleDebugMarkers)) then {
     GVAR(vehicleDebugMarkers) = 0;
+} else {
+    {
+        deleteMarker _x;
+    } forEach (allMapMarkers select {(_x find QGVAR(roadDebugMark_)) == 0});
 };
 
 private _fnc_createDebugMarker = {
-    params ["_road"];
+    params [["_road",objNull]];
+
+	if (isNull _road) exitWith {};
 
     private _childSegments = roadsConnectedTo _road;
     private _txt = format [QGVAR(roadDebugMark_%1),GVAR(vehicleDebugMarkers)];
-    private _debugMkr = createMarker [_txt,getPos _road];
+    private _debugMkr = createMarker [_txt, getPos _road];
     _debugMkr setMarkerShape "ICON";
     _debugMkr setMarkerType "hd_dot";
     _debugMkr setMarkerText format ["%1",count _childSegments];
@@ -61,13 +71,12 @@ private _fnc_createDebugMarker = {
 private _fnc_findRoadConnections = {
     params ["_road", ["_depth", 2, [-1]]];
 
+    #ifdef DEBUG_MODE_FULL
+    [_road] call _fnc_createDebugMarker;
+    #endif
+
     private _return = [_road];
     if (_depth > 0) then {
-
-        #ifdef DEBUG_MODE_FULL
-        [_x] call _fnc_createDebugMarker;
-        #endif
-
         {
             // Filter out isPedestrian roads
             if !((getRoadInfo _x) # 2) then {
@@ -108,8 +117,11 @@ _roadPosArray = _roadPosArray call BIS_fnc_arrayShuffle;
 
 for "_i" from 0 to _vehicleCount do {
     if (_i > (count _roadPosArray) - 2) exitWith {
-        ERROR_MSG("Not enough positions to spawn desired number of vehicles");
+        WARNING_2("Not enough positions to spawn desired number of vehicles. Spawned %1 out of %2",_i,_vehicleCount);
     };
+
+	private _road = _roadPosArray # 0;
+	private _roadConnectedTo = roadsConnectedTo _road;
 
     if ([_road] call _fnc_isNearIntersection) then {
         // Don't spawn vehicles near intersections, reset.
@@ -118,6 +130,7 @@ for "_i" from 0 to _vehicleCount do {
     } else {
         private _connectedRoad = _roadConnectedTo # 0;
         private _roadPos = getPos _road;
+		private _newPos = _roadPos;
         private _direction = _road getDir _connectedRoad;
         private _vehicle = selectRandom _vehicles;
 
@@ -129,8 +142,9 @@ for "_i" from 0 to _vehicleCount do {
         for "_k" from 1 to 15 do {
             _tempPos = _tempPos getPos [0.5, _direction2];
 
-            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {};
+            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {TRACE_1("Colliding at",_k,_tempPos)};
             _newPos = _tempPos;
+
 
             #ifdef DEBUG_MODE_FULL
                 private _txt = format [QGVAR(roadDebugMark_%1), GVAR(vehicleDebugMarkers)];
@@ -152,7 +166,7 @@ for "_i" from 0 to _vehicleCount do {
         for "_j" from 1 to 15 do {
             _tempPos = _tempPos getPos [0.5, _direction2];
 
-            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {};
+            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {TRACE_1("Colliding at",_j,_tempPos)};
             _newPos = _tempPos;
 
             #ifdef DEBUG_MODE_FULL
@@ -181,9 +195,33 @@ for "_i" from 0 to _vehicleCount do {
         };
 
         TRACE_3("Creating vehicle",_vehicle,_newPos,_direction);
+		#ifdef DEBUG_MODE_FULL
+			private _txt = format [QGVAR(roadDebugMark_%1), GVAR(vehicleDebugMarkers)];
+			private _debugMkr = createMarker [_txt, _newPos];
+			_debugMkr setMarkerShape "ICON";
+			_debugMkr setMarkerType "hd_arrow";
+			_debugMkr setMarkerColor "colorCivilian";
+			_debugMkr setMarkerDir _direction;
+			INC(GVAR(vehicleDebugMarkers));
+		#endif
+
         private _veh = createVehicle [_vehicle, _newPos, [], 0, "NONE"];
         _veh setDir _direction;
+		_createdVehicles pushBack _veh;
+		[QGVAR(ambientVehicleCreated), [_veh]] call CBA_fnc_localEvent;
 
-        _roadPosArray = _roadPosArray - [_road, _spacing] call _fnc_findRoadConnections;
+		// Handle vehicles getting launched
+		_veh allowDamage false;
+		[{
+			if (speed _this > 1) exitWith {
+				ERROR_1("%1 was launched, deleting",_this);
+				deleteVehicle _this;
+			};
+			_this allowDamage true;
+		}, _veh, 1] call CBA_fnc_waitAndExecute;
+
+        _roadPosArray = _roadPosArray - ([_road, _spacing] call _fnc_findRoadConnections);
     };
 };
+
+_createdVehicles
