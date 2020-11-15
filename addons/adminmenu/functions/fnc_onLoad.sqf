@@ -158,5 +158,44 @@ _ctrlSelectInvert ctrlAddEventHandler ["ButtonClick", {
 // Register client as server FPS receiver
 [true] remoteExec [QFUNC(fpsHandlerServer), 2];
 
-// Show dashboard when opening the admin menu, hide other tabs
-[_display] call FUNC(selectTab);
+
+//Handle perms
+
+// Select first allowed tab, hide other tabs
+private _tabSelected = false;
+{
+    _x params ["_tab", "_idcGroup", "_idcButton"];
+    if ([player, _tab] call FUNC(isAuthorized)) then {
+        if (!_tabSelected) then {
+            [_display, _idcGroup] call FUNC(selectTab);
+            _tabSelected = true;
+        };
+    } else {
+        // No permission, disable button
+        private _ctrl = _display displayCtrl _idcButton;
+        _ctrl ctrlEnable false;
+        _ctrl ctrlSetTooltip "You lack permission to use this";
+    };
+} forEach [
+    ["dashboard", IDC_TMF_ADMINMENU_G_DASH, IDC_TMF_ADMINMENU_DASH],
+    ["playermanagement", IDC_TMF_ADMINMENU_G_PMAN, IDC_TMF_ADMINMENU_PMAN],
+    ["respawn", IDC_TMF_ADMINMENU_G_RESP, IDC_TMF_ADMINMENU_RESP],
+    ["endmission", IDC_TMF_ADMINMENU_G_ENDM, IDC_TMF_ADMINMENU_ENDM],
+    ["logs", IDC_TMF_ADMINMENU_G_MSGS, IDC_TMF_ADMINMENU_MSGS]
+];
+
+#define CHECK_DISABLE_CTRL(var1,var2)                            \
+if !([player, (var1)] call FUNC(isAuthorized)) then {            \
+    private _ctrl = _display displayCtrl (var2);                 \
+    _ctrl ctrlEnable false;                                      \
+    _ctrl ctrlSetTooltip "You lack permission to use this"; \
+};
+
+{CHECK_DISABLE_CTRL(_x # 0,_x # 1)} forEach [
+    ["zeus",IDC_TMF_ADMINMENU_DASH_CLAIMZEUS],
+    ["zeus",IDC_TMF_ADMINMENU_PMAN_GRANTZEUS],
+    ["debugConsole",IDC_TMF_ADMINMENU_DASH_DEBUGCON],
+    ["debugConsole",IDC_TMF_ADMINMENU_PMAN_RUNCODE],
+    ["map",IDC_TMF_ADMINMENU_ADME],
+    ["safestart",IDC_TMF_ADMINMENU_DASH_SAFESTART]
+];

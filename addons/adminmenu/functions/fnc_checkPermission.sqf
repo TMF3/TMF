@@ -31,16 +31,21 @@ if (isNumber (_class >> var1)) then {                                       \
 };
 
 private _hasPerm = switch _perm do {
-    case "debugconsole":    {CHECK_BOOL("debugConsole")};
-    case "zeus":            {CHECK_BOOL("zeus")};
-    case "spectatorrc":     {CHECK_BOOL("spectatorRC")};
+    /* Go to default instead
+    case "debugconsole";
+    case "zeus";
+    case "spectatorrc";
+    case "map";
+    case "safestart";
+    case "adminmenu":       {CHECK_BOOL(_perm))};
+    */
     case "dashboard":       {CHECK_BITWISE("adminmenu",TMF_ALLOW_DASHBOARD)};
     case "playermanagement":{CHECK_BITWISE("adminmenu",TMF_ALLOW_PLAYERMANAGEMENT)};
     case "respawn":         {CHECK_BITWISE("adminmenu",TMF_ALLOW_RESPAWN)};
     case "endmission":      {CHECK_BITWISE("adminmenu",TMF_ALLOW_ENDMISSION)};
     case "logs":            {CHECK_BITWISE("adminmenu",TMF_ALLOW_LOGS)};
 
-    default {false};
+    default {CHECK_BOOL(_perm)};
 };
 
 // Store value

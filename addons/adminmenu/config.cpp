@@ -1,3 +1,5 @@
+#include "\a3\ui_f\hpp\defineCommon.inc"
+#include "\a3\ui_f\hpp\defineResincl.inc"
 #include "script_component.hpp"
 
 class CfgPatches {
@@ -27,16 +29,16 @@ class GVAR(authorized_players) {
     debugConsole = 1;   // Access to debug console, also controls execute code in Player Management
     zeus = 1;           // Allowed to grab or use Zeus
     spectatorRC = 1;    // Allow remote controlling units while in spectator
+    map = 1;            // Allow using the admin map
+    safestart = 1;      // Allow toggling safestart
 
     adminmenu = __EVAL(TMF_ALLOW_ALL);   // Which adminmenu tabs are allowed
     //adminmenu = __EVAL(TMF_ALLOW_DASHBOARD + TMF_ALLOW_PLAYERMANAGEMENT); // Macros
 
-    class freddo {
-        uid = "76561198095500326";
-        zeus = 0;
-    };
     /*class Bear {
         uid = "12345"; // SteamID64 of players authorized to access admin tools (matches against getPlayerUID)
+        adminmenu = __EVAL(TMF_ALLOW_DASHBOARD + TMF_ALLOW_PLAYERMANAGEMENT); // Only allow dashboard and playermanagement
+        zeus = 0; // Disallow zeus
     };*/
 };
 

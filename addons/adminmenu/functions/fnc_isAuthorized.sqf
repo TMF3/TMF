@@ -17,7 +17,7 @@
  * Return:
  * Boolean. - Whether player is an authorized admin
  */
-params [["_unit", player,[objNull]], "_perm"];
+params [["_unit", player,[objNull]], ["_perm","",[""]]];
 
 TRACE_2("Checking if unit is authorized",_unit,_perm);
 
@@ -30,11 +30,8 @@ private _authorized = switch true do {
 #else
 switch true do {
 #endif
-    // Return true for server/HCs
-    case ((isServer || !hasInterface) && {isNull _unit});
-    // Player UID listed in authorized_players config
-    case (_index != -1);
-    // Check if local client is admin
+    case (isServer);
+    case (!hasInterface);
     case ((local _unit || isNull _unit) && {[] call BIS_fnc_admin > 0});
     // Check if remote client is admin (only available for servers)
     case (isServer && {admin owner _unit > 0});
@@ -42,8 +39,9 @@ switch true do {
     case (is3DEN);
     case (is3DENPreview): {true};
 
+    // Player UID listed in authorized_players config
     case (_index != -1): {
-        if (!isNil "_perm" && _perm != "") then {
+        if (_perm != "") then {
             // Check specific permission
             private _class = _classes # _index;
 
