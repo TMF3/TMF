@@ -17,11 +17,19 @@
  * Return:
  * Boolean. - Whether player is an authorized admin
  */
-params [["_unit", player,[objNull]]];
+params [["_unit", player,[objNull]], "_perm"];
 
-private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
+TRACE_2("Checking if unit is authorized",_unit,_perm);
 
+private _uid = getPlayerUID _unit;
+private _classes = "true" configClasses (configFile >> QGVAR(authorized_players));
+private _index = _classes findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
+
+#ifdef DEBUG_MODE_FULL
+private _authorized = switch true do {
+#else
 switch true do {
+#endif
     // Return true for server/HCs
     case ((isServer || !hasInterface) && {isNull _unit});
     // Player UID listed in authorized_players config
@@ -34,5 +42,21 @@ switch true do {
     case (is3DEN);
     case (is3DENMultiplayer): {true};
 
+    case (_index != -1): {
+        if (!isNil "_perm" && _perm != "") then {
+            // Check specific permission
+            private _class = _classes # _index;
+
+            [_class,_perm] call FUNC(checkPermission)
+        } else {
+            // Overall true
+            true
+        };
+    };
+
     default {false};
 };
+
+#ifdef DEBUG_MODE_FULL
+TRACE_1("Authorization check complete",_authorized);
+#endif

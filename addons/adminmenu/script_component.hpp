@@ -3,6 +3,17 @@
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
 
+/* PERMS */
+#define TMF_ALLOW_NONE              0
+#define TMF_ALLOW_DASHBOARD         1
+#define TMF_ALLOW_PLAYERMANAGEMENT  2
+#define TMF_ALLOW_RESPAWN           4
+#define TMF_ALLOW_ENDMISSION        8
+#define TMF_ALLOW_LOGS              16
+#define TMF_ALLOW_ALL               31
+
+/* ADMINMENU */
+
 #define TMF_ADMINMENU_STD_WIDTH     (((safezoneW / safezoneH) min 1.2) / 40)
 #define TMF_ADMINMENU_STD_HEIGHT    ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)
 #define TMF_ADMINMENU_STD_SIZEX     (TMF_ADMINMENU_STD_HEIGHT * 0.8)
