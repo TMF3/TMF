@@ -40,7 +40,7 @@ switch true do {
     case (isServer && {admin owner _unit > 0});
     case (!isMultiplayer);
     case (is3DEN);
-    case (is3DENMultiplayer): {true};
+    case (is3DENPreview): {true};
 
     case (_index != -1): {
         if (!isNil "_perm" && _perm != "") then {

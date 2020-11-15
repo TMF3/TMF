@@ -20,7 +20,7 @@ class CfgPatches {
     #define TMF_ALLOW_RESPAWN           4
     #define TMF_ALLOW_ENDMISSION        8
     #define TMF_ALLOW_LOGS              16
-    #define TMF_ALLOW_ALL           31
+    #define TMF_ALLOW_ALL               31
 */
 class GVAR(authorized_players) {
     // Default values if none otherwise defined
@@ -31,6 +31,10 @@ class GVAR(authorized_players) {
     adminmenu = __EVAL(TMF_ALLOW_ALL);   // Which adminmenu tabs are allowed
     //adminmenu = __EVAL(TMF_ALLOW_DASHBOARD + TMF_ALLOW_PLAYERMANAGEMENT); // Macros
 
+    class freddo {
+        uid = "76561198095500326";
+        zeus = 0;
+    };
     /*class Bear {
         uid = "12345"; // SteamID64 of players authorized to access admin tools (matches against getPlayerUID)
     };*/
