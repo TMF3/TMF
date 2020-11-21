@@ -1,5 +1,28 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
+/* ----------------------------------------------------------------------------
+Internal Function: TMF_adminmenu_fnc_checkPermission
 
+Description:
+    Checks if a config class within tmf_adminmenu_authorized_players has the specified permission.
+    If no permission is set, it falls back to the default values set directly in
+    tmf_adminmenu_authorized_players.
+
+Parameters:
+    _class - Config class in (configFile >> "tmf_adminmenu_authorized_players") [Config]
+    _perm - Permission to check [String]
+
+Returns:
+    Whether config has the specified permission. [Boolean]
+
+Examples:
+    (begin example)
+        [(configFile >> "tmf_adminmenu_authorized_players" >> "bear"), "debugConsole"] call TMF_adminmenu_fnc_checkPermission;
+        // true
+    (end)
+
+Author:
+    Freddo
+---------------------------------------------------------------------------- */
 params [
     ["_class", configNull, [configNull]],
     ["_perm", "", [""]]
