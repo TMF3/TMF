@@ -53,7 +53,11 @@ switch true do {
     };
 
     default {false};
+#ifdef DEBUG_MODE_FULL
+}; // Because otherwise github validation fails
+#else
 };
+#endif
 
 #ifdef DEBUG_MODE_FULL
 TRACE_1("Authorization check complete",_authorized);
