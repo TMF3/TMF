@@ -18,7 +18,6 @@ private _output = [];
 
 {
     private _init = toLower ((_x get3DENAttribute 'Init') param [0,""]);
-    _init = toLower _init;
     private _count = count _init;
     private _VA = (_init find "exported from arsenal") >= 0;
     private _isServer = (_init find "isserver") >= 0;
