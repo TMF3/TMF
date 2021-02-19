@@ -254,7 +254,7 @@ class Cfg3DEN
                 _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                  \
                 _playerCount = count (_playerCount arrayIntersect _playerCount);                          \
                 (_this controlsGroupCtrl 100) ctrlSetText (str _value);                                   \
-                if (_value >= 0 && _value <= _playerCount) then {                                         \
+                if (_value > 0 && _value <= _playerCount) then {                                         \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
                 } else {                                                                                  \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
@@ -299,7 +299,7 @@ class Cfg3DEN
                 _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                            \
                 _playerCount = count (_playerCount arrayIntersect _playerCount);                                    \
                 (_this controlsGroupCtrl 100) ctrlSetText (str _value);                                             \
-                if (_value != _playerCount) then {                                                                  \
+                if (_value != _playerCount || _value == 0) then {                                                   \
                     (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';            \
                     (_this controlsGroupCtrl 100) ctrlSetText ((str _value) + ' should be: ' + (str _playerCount)); \
                 } else {                                                                                            \
