@@ -80,3 +80,13 @@ if (isMultiplayer) then {
         };
     }];
 };
+
+
+if (isNil QGVAR(sideCenter)) then {
+    GVAR(sideCenter) = createCenter sideLogic;
+};
+
+GVAR(zeusGroup) = createGroup GVAR(sideCenter);
+if (isNull GVAR(zeusGroup)) then {
+    GVAR(zeusGroup) = createGroup civilian;
+};
