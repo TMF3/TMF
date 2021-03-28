@@ -4,22 +4,22 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_RESP_SPECTATORTEXT;
         text = "Players in Spectator: 0";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+
         x = 0;
         y = 0;
         w = TMF_ADMINMENU_RESP_W_COL1;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class spectatorListBox: RscListBox
     {
         idc = IDC_TMF_ADMINMENU_RESP_SPECTATORLIST;
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
-        //rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
-        //rowHeight = TMF_ADMINMENU_STD_HEIGHT;
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        sizeEx2 = GUI_TEXT_SIZE_SMALL;
+        //rowHeight = 0.97 * GUI_GRID_H;
+        //rowHeight = GUI_GRID_H;
         //colorBackground[] = {0, 0, 0, 1};
         //shadow = 0;
         //itemSpacing = 0.05;
@@ -28,16 +28,16 @@ class Controls
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
 
-        rowHeight = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        rowHeight = 1 * GUI_GRID_H;
         colorText[] = {1,1,1,1};
         // colorBackground[] = {0,0,0,0};
         itemBackground[] = {1,1,1,0.2};
         itemSpacing = 0;
 
         tooltip = "tooltip test";
-        
-        x = "0";
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+
+        x = 0;
+        y = 1.1 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL1;
         h = 0.308 * safezoneH;
     };
@@ -47,9 +47,9 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_ADDBUTTON;
         text = "Add";
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 1.1 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL2;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
         onButtonClick=QUOTE((ctrlParent (param [0])) call FUNC(respawn_addAction));
     };
     class respawnMenuRemoveButton: GVAR(RscButtonMenu)
@@ -57,43 +57,43 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_REMOVEBUTTON;
         text = "Remove";
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 2.2 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL2;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
         onButtonClick=QUOTE((ctrlParent (param [0])) call FUNC(respawn_removeAction));
     };
     class respawnMenuRscComboRole: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_RESP_ROLECOMBO;
         text = "Role";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        font = "RobotoCondensed";
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        font = GUI_FONT_NORMAL;
+
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 3.3 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL2;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class RankText: RscText
     {
         idc = -1;
         text = "Unit rank:";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 4.4 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL2;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
-    
+
     class RankSelector: RscToolbox
     {
         idc = IDC_TMF_ADMINMENU_RESP_RANK;
-        
-        style="0x02 + 0x30 + 0x800";
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+
+        style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
+        sizeEx = GUI_TEXT_SIZE_SMALL;
         rows = 2;
         columns = 4;
         strings[]=
@@ -128,9 +128,9 @@ class Controls
         colorBackground[] = {0.5, 0.5, 0.5, 0.1};
 
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 5.5 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL2;
-        h = 2*TMF_ADMINMENU_STD_HEIGHT;
+        h = 2 * GUI_GRID_H;
     };
 
     class respawnMenuVOIP: GVAR(RscButtonMenu)
@@ -138,9 +138,9 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_SPECTATORVOIP;
         text = "Toggle Spectator VOIP";
         x = TMF_ADMINMENU_RESP_X_COL3;
-        y = "0";
+        y = 0;
         w = TMF_ADMINMENU_RESP_W_COL3;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
         tooltip = "Toggles the spectator channel for you (ACRE/TFAR), so that you can talk to dead players if alive.";
         onButtonClick = QUOTE((ctrlParent (param [0])) call FUNC(respawn_toggleSpectatorVOIP));
     };
@@ -148,10 +148,10 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_RESP_GROUPLIST;
 
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
-        //rowHeight = 0.97 * TMF_ADMINMENU_STD_HEIGHT;
-        //rowHeight = TMF_ADMINMENU_STD_HEIGHT;
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        sizeEx2 = GUI_TEXT_SIZE_SMALL;
+        //rowHeight = 0.97 * GUI_GRID_H;
+        //rowHeight = GUI_GRID_H;
         //colorBackground[] = {0, 0, 0, 1};
         //shadow = 0;
         //itemSpacing = 0.05;
@@ -160,7 +160,7 @@ class Controls
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
 
-        rowHeight = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        rowHeight = 1 * GUI_GRID_H;
         colorText[] = {1,1,1,1};
         // colorBackground[] = {0,0,0,0};
         itemBackground[] = {1,1,1,0.2};
@@ -169,7 +169,7 @@ class Controls
         tooltip = "tooltip test";
 
         x = TMF_ADMINMENU_RESP_X_COL3;
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 1.1 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL3;
         h = 0.308 * safezoneH;
     };
@@ -178,147 +178,147 @@ class Controls
     {
         idc = -1;
         text = "Group Details:";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 1.1 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL1;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class respawnMenuGroupNameText: RscEdit
     {
         idc = IDC_TMF_ADMINMENU_RESP_GROUPNAME;
         text = "INSERT_GROUP_NAME";
-        
+
         colorBackground[] = {0.5, 0.5, 0.5, 0.1};
         colorBorder[] = {1, 1, 1, 0.33};
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 2.2 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class respawnMenuFactionCategoryCombo: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_RESP_FACTIONCATEGORY;
         text = "FactionCategory"; /*Formerly side */
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        font = "RobotoCondensed";
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        font = GUI_FONT_NORMAL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 3.3 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class respawnMenuFactionCombo: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_RESP_FACTION;
         text = "Faction";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        font = "RobotoCondensed";
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        font = GUI_FONT_NORMAL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 4.4 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class respawnMenuSideCombo: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_RESP_SIDE;
         text = "Side";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        font = "RobotoCondensed";
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        font = GUI_FONT_NORMAL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 5.5 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
-    
+
     class respawnMenuSpawnMarkerText: RscText
     {
         idc = -1;
         text = "Spawn with ORBAT marker?";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 7.7 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class respawnMenuGroupMarkerCheckbox: RscCheckBox
     {
         idc = IDC_TMF_ADMINMENU_RESP_GROUPMARKERCHECKBOX;
         text = "Give group marker";
-        x = TMF_ADMINMENU_RESP_X_COL4 + (7 * (((safezoneW / safezoneH) min 1.2) / 40));
-        y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-        w = (1 * (((safezoneW / safezoneH) min 1.2) / 40));
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        x = TMF_ADMINMENU_RESP_X_COL4 + (7 * GUI_GRID_W);
+        y = 7.7 * GUI_GRID_H + GUI_GRID_CENTER_Y;
+        w = (1 * GUI_GRID_W);
+        h = GUI_GRID_H;
         //action = "['respawnMenuToggleGroupCheckbox'] spawn tmf_respawn_fnc_handleRespawnUI";
     };
     class respawnMenuMarkerName: RscEdit
     {
         idc = IDC_TMF_ADMINMENU_RESP_GROUPMARKERNAME;
         text = "INSERT_MARKER_NAME";
-        
+
         // colorBackground[] = {0.5, 0.5, 0.5, 0.1};
         // colorBorder[] = {1, 1, 1, 0.33};
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 8.8 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
-    
-    
+
+
         //Marker combo boxs
     class MarkerTypeCombo: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_RESP_MARKERTYPE;
         text = "Side";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        font = "RobotoCondensed";
-        
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        font = GUI_FONT_NORMAL;
+
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "9.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 9.9 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
     class MarkerColourCombo: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_RESP_MARKERCOLOUR;
         text = "Side";
-        
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        font = "RobotoCondensed";
-        
+
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        font = GUI_FONT_NORMAL;
+
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "11 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 11 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
+        h = GUI_GRID_H;
     };
-    
+
     class respawnMenuSpawnButton: GVAR(RscButtonMenu)
     {
         idc = IDC_TMF_ADMINMENU_RESP_SPAWNBUTTON;
         text = "Spawn Group";
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "19 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = 19 * GUI_GRID_H + GUI_GRID_CENTER_Y;
         w = TMF_ADMINMENU_RESP_W_COL4;
-        h = TMF_ADMINMENU_STD_HEIGHT;
-        
+        h = GUI_GRID_H;
+
         onButtonClick=QUOTE((ctrlParent (param [0])) call FUNC(respawn_respawnButton));
     };
-    
+
 
 
     // class respawnMenuCloseButton: GVAR(RscButtonMenu)

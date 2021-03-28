@@ -9,7 +9,7 @@ GVAR(playerManagement_selected) = [];
 
 if (isTMF) then {
     [
-        {time > 5 && [] call FUNC(isAuthorized)},
+        {time > 5 && [player, "logs"] call FUNC(isAuthorized)},
         {
             _this call FUNC(resyncLog);
 

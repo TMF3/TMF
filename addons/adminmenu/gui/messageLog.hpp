@@ -7,19 +7,19 @@ class Controls
         w = TMF_ADMINMENU_MSGS_W_LIST;
         h = TMF_ADMINMENU_MSGS_H_LIST;
         colorBackground[] = {0, 0, 0, 0.3};
-        style = "0x02";
+        style = ST_CENTER;
     };
 
     class ListMessages: RscListBox
     {
         idc = IDC_TMF_ADMINMENU_MSGS_LIST;
         //style = 32 + 16; // LB_MULTI + ST_MULTI
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx = GUI_TEXT_SIZE_SMALL;
+        sizeEx2 = GUI_TEXT_SIZE_SMALL;
         pictureColor[] = {1,1,1,1}; // Picture color
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,1}; // Disabled picture color
-        rowHeight = TMF_ADMINMENU_STD_HEIGHT;
+        rowHeight = GUI_GRID_H;
         colorText[] = {1,1,1,1};
         colorBackground[] = {1,0,0,0};
         itemBackground[] = {1,1,1,0.2};
@@ -37,9 +37,9 @@ class Controls
         onButtonClick = QUOTE(_this call FUNC(messageLog_print));
         tooltip = "Prints currently selected log entry to RPT.";
         colorBackground[] = {0, 0, 0, 1};
-        x = 0 * TMF_ADMINMENU_STD_WIDTH;
-        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
-        w = 9 * TMF_ADMINMENU_STD_WIDTH;
+        x = 0 * GUI_GRID_W;
+        y = 19.5 * GUI_GRID_H;
+        w = 9 * GUI_GRID_W;
     };
 
     class ButtonPrintAll: GVAR(RscButtonMenu)
@@ -49,8 +49,8 @@ class Controls
         tooltip = "Prints all logged entries to RPT.";
         onButtonClick = QUOTE(_this call FUNC(messageLog_printAll));
         colorBackground[] = {0, 0, 0, 1};
-        x = 9.1 * TMF_ADMINMENU_STD_WIDTH;
-        y = 19.5 * TMF_ADMINMENU_STD_HEIGHT;
-        w = 7 * TMF_ADMINMENU_STD_WIDTH;
+        x = 9.1 * GUI_GRID_W;
+        y = 19.5 * GUI_GRID_H;
+        w = 7 * GUI_GRID_W;
     };
 };

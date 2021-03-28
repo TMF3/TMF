@@ -1,4 +1,5 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
+#include "\a3\ui_f\hpp\defineCommonGrids.inc"
 
 disableSerialization;
 params ["_ctrlGroup"];
@@ -7,24 +8,24 @@ params ["_ctrlGroup"];
 
 private _display = uiNamespace getVariable [QGVAR(modalDisplay), displayNull];
 private _ctrlEdit = _display ctrlCreate [QGVAR(RscEditMultiCode), -1, _ctrlGroup];
-_ctrlEdit ctrlSetPosition [0.1 * TMF_ADMINMENU_STD_WIDTH, 1.1 * TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth - (0.2 * TMF_ADMINMENU_STD_WIDTH), _ctrlGrpHeight - (2.3 * TMF_ADMINMENU_STD_HEIGHT)];
+_ctrlEdit ctrlSetPosition [0.1 * GUI_GRID_W, 1.1 * GUI_GRID_H, _ctrlGrpWidth - (0.2 * GUI_GRID_W), _ctrlGrpHeight - (2.3 * GUI_GRID_H)];
 _ctrlEdit ctrlCommit 0;
 _ctrlEdit ctrlSetText (missionNamespace getVariable [QGVAR(utility_runcode_last), ""]);
 
 private _ctrlHintEdit = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
-_ctrlHintEdit ctrlSetPosition [0, 0, _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlHintEdit ctrlSetPosition [0, 0, _ctrlGrpWidth, GUI_GRID_H];
 _ctrlHintEdit ctrlCommit 0;
 _ctrlHintEdit ctrlSetText "'_this' is the targetted player object";
 
-private _bottomY = _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT;
+private _bottomY = _ctrlGrpHeight - GUI_GRID_H;
 
 private _ctrlHintCombo = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
-_ctrlHintCombo ctrlSetPosition [0, _bottomY, 0.15 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlHintCombo ctrlSetPosition [0, _bottomY, 0.15 * _ctrlGrpWidth, GUI_GRID_H];
 _ctrlHintCombo ctrlCommit 0;
 _ctrlHintCombo ctrlSetText "Execute on:";
 
 private _ctrlCombo = _display ctrlCreate [QGVAR(RscCombo), -1, _ctrlGroup];
-_ctrlCombo ctrlSetPosition [0.15 * _ctrlGrpWidth, _bottomY, 0.25 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlCombo ctrlSetPosition [0.15 * _ctrlGrpWidth, _bottomY, 0.25 * _ctrlGrpWidth, GUI_GRID_H];
 _ctrlCombo ctrlCommit 0;
 _ctrlCombo lbAdd "Your Client";
 _ctrlCombo lbAdd "Targets' Clients";
@@ -33,7 +34,7 @@ _ctrlCombo lbAdd "All Clients and Server";
 _ctrlCombo lbSetCurSel 0;
 
 private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
-_ctrlButton ctrlSetPosition [0.8 * _ctrlGrpWidth, _bottomY, 0.2 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlButton ctrlSetPosition [0.8 * _ctrlGrpWidth, _bottomY, 0.2 * _ctrlGrpWidth, GUI_GRID_H];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Execute";
 _ctrlButton setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];

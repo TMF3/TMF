@@ -1,4 +1,5 @@
 #include "\x\tmf\addons\adminmenu\script_component.hpp"
+#include "\a3\ui_f\hpp\defineCommonGrids.inc"
 
 disableSerialization;
 params ["_ctrlGroup"];
@@ -7,29 +8,29 @@ params ["_ctrlGroup"];
 
 private _ctrlLabelTraits = _display ctrlCreate [QGVAR(RscText), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlLabelTraits;
-_ctrlLabelTraits ctrlSetPosition [0, 0, (0.25 * _ctrlGrpWidth), TMF_ADMINMENU_STD_HEIGHT];
+_ctrlLabelTraits ctrlSetPosition [0, 0, (0.25 * _ctrlGrpWidth), GUI_GRID_H];
 _ctrlLabelTraits ctrlCommit 0;
 _ctrlLabelTraits ctrlSetText "Assign Players' Traits";
 
 private _ctrlComboTraitLabelW = 0.4 * _ctrlGrpWidth;
 private _ctrlComboTraitX = 0.5 * _ctrlGrpWidth;
-private _ctrlComboTraitY = 2.2 * TMF_ADMINMENU_STD_HEIGHT;
+private _ctrlComboTraitY = 2.2 * GUI_GRID_H;
 private _ctrlComboTraitW = 0.5 * _ctrlGrpWidth;
 private _traitComboCtrls = [];
 
 {
-    private _ctrlLineY = _ctrlComboTraitY + _forEachIndex * (1.1 * TMF_ADMINMENU_STD_HEIGHT);
+    private _ctrlLineY = _ctrlComboTraitY + _forEachIndex * (1.1 * GUI_GRID_H);
 
     private _ctrlComboTraitLabel = _display ctrlCreate [QGVAR(RscTextLarge), -1, _ctrlGroup];
     GVAR(utilityTabControls) pushBack _ctrlComboTraitLabel;
-    _ctrlComboTraitLabel ctrlSetPosition [0.1 * TMF_ADMINMENU_STD_WIDTH, _ctrlLineY, _ctrlComboTraitLabelW, TMF_ADMINMENU_STD_HEIGHT];
+    _ctrlComboTraitLabel ctrlSetPosition [0.1 * GUI_GRID_W, _ctrlLineY, _ctrlComboTraitLabelW, GUI_GRID_H];
     _ctrlComboTraitLabel ctrlCommit 0;
     _ctrlComboTraitLabel ctrlSetText _x;
 
     private _ctrlComboTrait = _display ctrlCreate [QGVAR(RscCombo), -1, _ctrlGroup];
     GVAR(utilityTabControls) pushBack _ctrlComboTrait;
     _traitComboCtrls pushBack _ctrlComboTrait;
-    _ctrlComboTrait ctrlSetPosition [_ctrlComboTraitX, _ctrlLineY, _ctrlComboTraitW, TMF_ADMINMENU_STD_HEIGHT];
+    _ctrlComboTrait ctrlSetPosition [_ctrlComboTraitX, _ctrlLineY, _ctrlComboTraitW, GUI_GRID_H];
     _ctrlComboTrait ctrlCommit 0;
 
     _ctrlComboTrait lbSetValue [(_ctrlComboTrait lbAdd "Don't Change"), -1];
@@ -47,7 +48,7 @@ private _traitComboCtrls = [];
 
 private _ctrlButton = _display ctrlCreate [QGVAR(RscButtonMenu), -1, _ctrlGroup];
 GVAR(utilityTabControls) pushBack _ctrlButton;
-_ctrlButton ctrlSetPosition [_ctrlGrpWidth * 0.8, _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, _ctrlGrpWidth * 0.2, TMF_ADMINMENU_STD_HEIGHT];
+_ctrlButton ctrlSetPosition [_ctrlGrpWidth * 0.8, _ctrlGrpHeight - GUI_GRID_H, _ctrlGrpWidth * 0.2, GUI_GRID_H];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Assign Traits";
 _ctrlButton setVariable [QGVAR(association), _traitComboCtrls];

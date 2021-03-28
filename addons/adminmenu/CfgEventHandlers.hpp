@@ -6,3 +6,4 @@ class Extended_PostInit_EventHandlers {
 };
 
 XEH_PREINIT;
+XEH_PRESTART;

@@ -1,5 +1,6 @@
 PREP(fpsHandlerServer);
 PREP(isAuthorized);
+PREP(checkPermission);
 PREP(getCurrentAdminClient);
 PREP(getCurrentAdminServer);
 PREP(keyPressed);

@@ -17,22 +17,45 @@
  * Return:
  * Boolean. - Whether player is an authorized admin
  */
-params [["_unit", player,[objNull]]];
+params [["_unit", player,[objNull]], ["_perm","",[""]]];
 
-private _index = ("true" configClasses (configFile >> QGVAR(authorized_players))) findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
+TRACE_2("Checking if unit is authorized",_unit,_perm);
 
+private _uid = getPlayerUID _unit;
+private _classes = "true" configClasses (configFile >> QGVAR(authorized_players));
+private _index = _classes findIf {getText (_x >> "uid") isEqualTo getPlayerUID _unit};
+
+#ifdef DEBUG_MODE_FULL
+private _authorized = switch true do {
+#else
 switch true do {
-    // Return true for server/HCs
-    case ((isServer || !hasInterface) && {isNull _unit});
-    // Player UID listed in authorized_players config
-    case (_index != -1);
-    // Check if local client is admin
+#endif
+    case (isServer);
+    case (!hasInterface);
     case ((local _unit || isNull _unit) && {[] call BIS_fnc_admin > 0});
     // Check if remote client is admin (only available for servers)
     case (isServer && {admin owner _unit > 0});
     case (!isMultiplayer);
     case (is3DEN);
-    case (is3DENMultiplayer): {true};
+    case (is3DENPreview): {true};
+
+    // Player UID listed in authorized_players config
+    case (_index != -1): {
+        if (_perm != "") then {
+            // Check specific permission
+            private _class = _classes # _index;
+
+            [_class,_perm] call FUNC(checkPermission)
+        } else {
+            // Overall true
+            true
+        };
+    };
 
     default {false};
+#ifndef DEBUG_MODE_FULL
+}; // Because otherwise github validation fails
+#else
 };
+TRACE_1("Authorization check complete",_authorized);
+#endif

@@ -77,6 +77,28 @@ if (_tmfNetworkEnabled) then {
 
 
 if (hasInterface) then {
+    // Set up god mode
+    if GVAR(godmodeEnabled) then {
+        ["Admins", 0] call acre_api_fnc_godModeNameGroup;
+        ["Spectators", 1] call acre_api_fnc_godModeNameGroup;
+        ["Curators", 2] call acre_api_fnc_godModeNameGroup;
+
+        private _canBroadcast = [player, "acreBroadcast"] call EFUNC(adminMenu,isAuthorized);
+        private _canGroupChat = [player, "acreGroupChat"] call EFUNC(adminMenu,isAuthorized);
+
+        TRACE_3("Initializing god mode",getPlayerUID player,_canBroadcast,_canGroupChat);
+        [_canBroadcast, _canGroupChat] call acre_api_fnc_godModeConfigureAccess;
+
+        if _canGroupChat then {
+            [getPlayerUID player, 0, 1] remoteExecCall ["acre_api_fnc_godModeModifyGroup", 0, true];
+        };
+        [{
+            allPlayers select {_x isKindOf QEGVAR(spectator,unit) || {[_x] call acre_api_fnc_isSpectator}}
+        }, 1, 0] call acre_api_fnc_godModeModifyGroup;
+        [{[] call BIS_fnc_listCuratorPlayers}, 2, 0] call acre_api_fnc_godModeModifyGroup;
+    };
+
+    // Handle VarSync
     [{
         if (isNull player) exitWith {};
         params ["_tmfNetworkEnabled"];
