@@ -1,3 +1,3 @@
-#include "\x\tmf\addons\AI\script_component.hpp"
+#include "\x\tmf\addons\ai\script_component.hpp"
 
 // Do Nothing.

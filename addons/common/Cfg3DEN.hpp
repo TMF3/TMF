@@ -1,5 +1,5 @@
-#include "\a3\3DEN\UI\macros.inc"
-#include "\a3\3DEN\UI\resincl.inc"
+#include "\a3\3den\UI\macros.inc"
+#include "\a3\3den\UI\resincl.inc"
 
 class Cfg3DEN
 {
@@ -48,7 +48,7 @@ class Cfg3DEN
             colorBackground[] = {0.1,0.1,0.95};
             colorPreview[] = {1,1,1};
             colorPreviewBackground[] = {0.1,0.1,0.95};
-            sizeEx = SIZEEX_PURISTA(SIZEEX_M); // Text size
+            sizeEx = SIZEEX_PURISTA_M; // Text size
             font = FONT_NORMAL; // Font from CfgFontFamilies
             text = "";
             lineSpacing = 1; // When ST_MULTI style is used, this defines distance between lines (1 is text height)

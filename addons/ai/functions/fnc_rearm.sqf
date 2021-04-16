@@ -1,4 +1,4 @@
-#include "\x\tmf\addons\AI\script_component.hpp"
+#include "\x\tmf\addons\ai\script_component.hpp"
 params ["_self","_caller"];
 _repairPerTick = 0.1;
 _fuelPerTick = 0.1;

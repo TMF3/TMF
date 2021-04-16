@@ -1,6 +1,6 @@
 
-#include "\a3\3DEN\UI\macros.inc"
-#include "\a3\3DEN\UI\resincl.inc"
+#include "\a3\3den\UI\macros.inc"
+#include "\a3\3den\UI\resincl.inc"
 
 class ctrlDefault;
 class ctrlDefaultText;// : ctrlDefault;
@@ -13,7 +13,7 @@ class RscButtonMenu;
 class RscText;
 
 
-class cfgScriptPaths 
+class cfgScriptPaths
 {
     TMF_briefing = "x\tmf\addons\briefing\ui_scripts\"; //" - Escape for VS code linter
 };
@@ -81,7 +81,7 @@ class Cfg3DEN
                     };
                 };
             };
-            
+
         };
     };
     // Configuration of all objects
@@ -141,8 +141,8 @@ class Cfg3DEN
     {
         class Title;
         class Toolbox; //class Toolbox: Title
-    
-    
+
+
         class BriefingSettings : Toolbox
         {
             scriptName = "BriefingSettings";
@@ -152,7 +152,7 @@ class Cfg3DEN
 
             attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'BriefingSettings_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'BriefingSettings_script');";
-            
+
             w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
             h = 16 * SIZE_M * GRID_H;
             class Controls
@@ -161,11 +161,11 @@ class Cfg3DEN
                 {
                     text = "Briefings:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = 1 * SIZE_M * GRID_H;
                     y = 0;
                     x = SIZE_M * GRID_W;
                     colorBackground[] = {0,0,0,0};
-                };                    
+                };
                 class BriefeesTitle : BriefTitle
                 {
                     text = "Those to be briefed:";
@@ -274,7 +274,7 @@ class Cfg3DEN
                     x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*3.5 + SIZE_M * GRID_W;
                     action = "['BriefingDelClickCancel',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                 };
-                
+
                 class EditBriefingTitle : BriefTitle
                 {
                     idc = 313201;
@@ -284,7 +284,7 @@ class Cfg3DEN
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
                     colorBackground[] = {0.1,0.1,0.1,1};
                 };
-                
+
                 class EditBriefingShortTitle : BriefTitle
                 {
                     idc = 313202;
@@ -311,8 +311,8 @@ class Cfg3DEN
                     h = SIZE_M * GRID_H;
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W;
                 };
-                
-                class EditBriefingSciptName : EditBriefingShortTitle 
+
+                class EditBriefingSciptName : EditBriefingShortTitle
                 {
                     idc = 313207;
                     text = "Script location:";
@@ -320,7 +320,7 @@ class Cfg3DEN
                     y = 5.3 * SIZE_M * GRID_H;
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
                 };
-                
+
                 class EditBriefingScript : EditBriefingShort
                 {
                     idc = 313211;
@@ -329,6 +329,6 @@ class Cfg3DEN
 
             };
         };
-        
+
     };
 };

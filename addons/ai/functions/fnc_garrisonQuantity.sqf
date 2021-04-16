@@ -1,5 +1,5 @@
 if(is3DEN) exitWith {};
-#include "\x\tmf\addons\AI\script_component.hpp"
+#include "\x\tmf\addons\ai\script_component.hpp"
 params ["_logic","_units","_activated"];
 
 private _headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
@@ -149,5 +149,5 @@ if((_logic getVariable ["WakeUp", false])) then {
 // Ensure side is corrected -- https://feedback.bistudio.com/T70739.
 private _units = units _mainGroup;
 _units join _mainGroup;
-    
+
 _logic setVariable ["spawned_units",_units,true]; // global set variable

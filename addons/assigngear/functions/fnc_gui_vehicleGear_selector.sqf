@@ -7,7 +7,7 @@
  * Internal Use Only
  */
 #include "\a3\3den\UI\dikCodes.inc"
-#include "\a3\3DEN\UI\resincl.inc"
+#include "\a3\3den\UI\resincl.inc"
 disableSerialization;
 params ["_mode", "_args"];
 TRACE_2("UI", _mode, _args);
@@ -204,7 +204,7 @@ switch _mode do {
         };
         private _ctrlList = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
         private _rowIndex = lnbCurSelRow _ctrlList;
-        private _value = ((_ctrlList lnbValue [_rowIndex, 0]) + _amount) max 0; 
+        private _value = ((_ctrlList lnbValue [_rowIndex, 0]) + _amount) max 0;
 
         _ctrlList lnbSetValue  [[_rowIndex, 0], _value];
         _ctrlList lnbSetText [[_rowIndex, 2], str _value];
