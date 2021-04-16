@@ -1,6 +1,6 @@
 
-#include "\a3\3DEN\UI\resincl.inc"
-#include "\a3\3DEN\UI\macros.inc"
+#include "\a3\3den\UI\resincl.inc"
+#include "\a3\3den\UI\macros.inc"
 
 #define GROUP_MARKER_PREVIEW "x\tmf\addons\orbat\textures\empty.paa", \
 "x\tmf\addons\orbat\textures\yellow_inf.paa", \

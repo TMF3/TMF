@@ -1,6 +1,6 @@
 
-#include "\a3\3DEN\UI\macros.inc"
-#include "\a3\3DEN\UI\resincl.inc"
+#include "\a3\3den\UI\macros.inc"
+#include "\a3\3den\UI\resincl.inc"
 
 
 class ctrlDefault;
@@ -15,7 +15,7 @@ class RscText;
 class RscPicture;
 
 /*
-class cfgScriptPaths 
+class cfgScriptPaths
 {
     TMF_briefing = "x\tmf\addons\briefing\ui_scripts\";
 };
@@ -90,20 +90,20 @@ class Cfg3DEN
             };
         };
     };
-    
+
     //FULLPAGE -> https://community.bistudio.com/wiki/Eden_Editor:_Scenario_Attributes
-    
+
     // "Multiplayer" get3DENMissionAttribute "maxplayers" // OR minplayers
     // "Multiplayer" get3DENMissionAttribute "gametype" // "DM" - https://community.bistudio.com/wiki/Multiplayer_Game_Types
-    
+
     //"Multiplayer" get3DENMissionAttribute "IntelOverviewText" // Summary
-    
+
    // "Scenario" get3DENMissionAttribute "Author"
     //"Scenario" get3DENMissionAttribute "IntelBriefingName"
-    
+
     class Attributes
     {
-    
+
         class Default;
         class Title : Default
         {
@@ -142,7 +142,7 @@ class Cfg3DEN
                     x = ATTRIBUTE_TITLE_W * GRID_W;
                     h = SIZE_M * GRID_H;
                     w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W;
-                    
+
                 };
                 class Picture : RscPicture
                 {
@@ -189,7 +189,7 @@ class Cfg3DEN
                     x = ATTRIBUTE_TITLE_W * GRID_W;
                     h = SIZE_M * GRID_H;
                     w = (ATTRIBUTE_CONTENT_W -(1.5* SIZE_M)) * GRID_W;
-                    
+
                 };
                 class Picture : RscPicture
                 {
@@ -333,13 +333,13 @@ class Cfg3DEN
                 };
             };
         };
-        
+
         class Toolbox; //class Toolbox: Title
-        
+
         class TMF_autoTest_Test : Toolbox {
             attributeLoad = "_this call tmf_autotest_fnc_autotest";
             attributeSave = "true";
-            
+
             w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
             h = 24 * SIZE_M * GRID_H;
             class Controls
@@ -350,7 +350,7 @@ class Cfg3DEN
                     style = ST_RIGHT;
                     w = ATTRIBUTE_TITLE_W * GRID_W;
                     x = 0;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = 1 * SIZE_M * GRID_H;
                     y = 0;
                     colorBackground[] = {0,0,0,0};
                     tooltip = "";
@@ -380,7 +380,7 @@ class Cfg3DEN
 
             };
         };
-        
+
     };
-    
+
 };

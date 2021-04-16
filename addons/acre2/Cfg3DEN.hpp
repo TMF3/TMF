@@ -1,6 +1,6 @@
 
-#include "\a3\3DEN\UI\macros.inc"
-#include "\a3\3DEN\UI\resincl.inc"
+#include "\a3\3den\UI\macros.inc"
+#include "\a3\3den\UI\resincl.inc"
 
 class ctrlDefault;
 class ctrlDefaultText;// : ctrlDefault;
@@ -14,7 +14,7 @@ class RscButtonMenu;
 class RscText;
 
 
-class cfgScriptPaths 
+class cfgScriptPaths
 {
     TMF_acre2 = "x\tmf\addons\acre2\ui_scripts\"; //"
 };
@@ -136,7 +136,7 @@ class Cfg3DEN
                         control = "None"; // UI control base class displayed in Edit Attributes window, points to Cfg3DEN >> Attributes
                         expression = "[_this,'TMF_Network',_value] call tmf_common_fnc_initGroupVar;";// expression = "_this setVariable ['TMF_Network',_value,true];";
                         wikiType = "[[Number]]";
-                        defaultValue = -1;                        
+                        defaultValue = -1;
                     };
                     class TMF_Channellist
                     {
@@ -217,16 +217,16 @@ class Cfg3DEN
     {
         class Title;
         class Toolbox; //class Toolbox: Title
-        
+
         class TMF_AcreAddRadioActions : Toolbox {
             scriptName = "AcreAddRadioActions";
             scriptPath = "TMF_acre2";
             onLoad = "['onLoad',_this,'AcreAddRadioActions','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');"; // 3rd param is the path PATH\scriptName.sqf
             onUnload = "['onUnload',_this,'AcreAddRadioActions','TMF_acre2',false] call (uinamespace getvariable 'BIS_fnc_initDisplay');";
-            
+
             attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'AcreAddRadioActions_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'AcreAddRadioActions_script');";
-            
+
             w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
             h = 6 * SIZE_M * GRID_H;
             class Controls
@@ -237,7 +237,7 @@ class Cfg3DEN
                     style = ST_RIGHT;
                     w = ATTRIBUTE_TITLE_W * GRID_W;
                     x = 0;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = 1 * SIZE_M * GRID_H;
                     y = 0;
                     colorBackground[] = {0,0,0,0};
                     tooltip = "These radios will be available for selection (via scroll wheel action) for the first 5 minutes after the player has spawned.";
@@ -267,7 +267,7 @@ class Cfg3DEN
 
             };
         };
-        
+
         class BabelSettings : Toolbox
         {
             scriptName = "BabelSettings";
@@ -277,7 +277,7 @@ class Cfg3DEN
 
             attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'BabelSettings_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'BabelSettings_script');";
-            
+
             w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
             h = 16 * SIZE_M * GRID_H;
             class Controls
@@ -286,11 +286,11 @@ class Cfg3DEN
                 {
                     text = "Languages:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = 1 * SIZE_M * GRID_H;
                     y = 0;
                     x = SIZE_M * GRID_W;
                     colorBackground[] = {0,0,0,0};
-                };                    
+                };
                 class SpeakersTitle : LangTitle
                 {
                     text = "Language speakers:";
@@ -399,7 +399,7 @@ class Cfg3DEN
                     x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W;
                     action = "['languageDelClickCancel',_this] call (uinamespace getvariable 'BabelSettings_script');";
                 };
-                
+
                 class EditLanguageTitle : LangTitle
                 {
                     idc = 313201;
@@ -409,7 +409,7 @@ class Cfg3DEN
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
                     colorBackground[] = {0.1,0.1,0.1,1};
                 };
-                
+
                 class EditLanguageShortTitle : LangTitle
                 {
                     idc = 313202;
@@ -448,26 +448,26 @@ class Cfg3DEN
 
             attributeLoad = "['attributeLoad', _this, _value] call (uinamespace getvariable 'RadioChannels_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'RadioChannels_script');";
-            
+
             w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
             h = (32 * SIZE_M + 1) * GRID_H;
-                    
+
             //Attribute_Title_W = left side? Attribute_content_W = right Side?
             // SIZE_M <- size of margin (relatively big-ish)
             class Controls
             {
-                
+
                 class Title0: ctrlStatic
                 {
                     text = "Radio network allocation:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = 1 * SIZE_M * GRID_H;
                     y = 0;
                     x = SIZE_M * GRID_W;
                     colorBackground[] = {0,0,0,0};
                     tooltip = "Each network is a collection of radio channels. The network number is displayed on the right side below. To assign a different network select the entity below and press the number on your keyboard for the network number you wish to assign.";
                 };
-                
+
                 class NetworkTree : ctrlTree
                 {
                     idc = 189438;
@@ -481,7 +481,7 @@ class Cfg3DEN
                     action = "['presetTreeClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     onTreeDblClick = "['presetTreeDoubleClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
                 };
-                
+
                 class MyLine:RscText
                 {
                      style = ST_LINE;
@@ -491,7 +491,7 @@ class Cfg3DEN
                      y = SIZE_M * GRID_H * 12.4;
                      w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)) * GRID_W);
                 };
-                
+
                 class networkButton : RscButtonMenu
                 {
                     idc = 1502;
@@ -506,18 +506,18 @@ class Cfg3DEN
                     action = "['networkToggleButton',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Toggle through the radio networks.";
                 };
-                
+
                 class Title1: Title0
                 {
                     text = "Channels of selected network:";
                     w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = 1 * SIZE_M * GRID_H;
                     y = SIZE_M * GRID_H * 14;
                     x = SIZE_M * GRID_W;
                     colorBackground[] = {0,0,0,0};
                     tooltip = "";
                 };
-                
+
                 class Title2 : Title1
                 {
                     text = "Entities present on selected channel:";
@@ -633,7 +633,7 @@ class Cfg3DEN
                     x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W;
                     action = "['channelDelClickCancel',_this] call (uinamespace getvariable 'RadioChannels_script');";
                 };
-                
+
                 class EditChannelTitle : Title1
                 {
                     idc = 313201;
@@ -644,7 +644,7 @@ class Cfg3DEN
                     colorBackground[] = {0.1,0.1,0.1,1};
                     tooltip = "";
                 };
-                
+
                 class EditChannelShortTitle : Title1
                 {
                     idc = 313202;
@@ -744,7 +744,7 @@ class Cfg3DEN
                     //style = ST_LEFT + ST_MULTI; // Style
 
                     checked = 0; // Default state
-                    
+
                     colorText[] = {COLOR_TEXT_RGBA}; // Text and frame color
                     colorSelect[] = {0,0,0,1}; // Text selection color
                     sizeEx = SIZEEX_PURISTA(SIZEEX_M); // Text size
@@ -812,10 +812,10 @@ class Cfg3DEN
                     onMouseHolding = "";
 
                     onCheckedChanged = "";
-                    
+
                 };
             };
         };
-        
+
     };
 };

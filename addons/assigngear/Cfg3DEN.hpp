@@ -1,5 +1,5 @@
-#include "\a3\3DEN\UI\macros.inc"
-#include "\a3\3DEN\UI\resincl.inc"
+#include "\a3\3den\UI\macros.inc"
+#include "\a3\3den\UI\resincl.inc"
 class ctrlCombo;
 class ctrlStatic;
 class ctrlToolbox;
@@ -71,7 +71,7 @@ class Cfg3DEN
             class GVAR(vehicleGear) {
                 displayName = "TMF: Vehicle Gear";
                 collapsed = 0;
-                class Attributes 
+                class Attributes
                 {
                     class GVAR(vehicle)
                     {
