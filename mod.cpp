@@ -1,4 +1,4 @@
-name = "Teamwork";
+name = "Teamwork v0.0.0";
 picture = "\x\tmf\addons\common\UI\logo_tmf_ca.paa";
 actionName = "Website";
 action = "http://teamonetactical.com/wiki/doku.php?id=tmf:start";

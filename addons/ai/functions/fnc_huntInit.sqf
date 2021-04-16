@@ -1,4 +1,4 @@
-#include "\x\tmf\addons\AI\script_component.hpp"
+#include "\x\tmf\addons\ai\script_component.hpp"
 params ["_logic"];
 
 
@@ -16,7 +16,7 @@ if (_hunterVal == -1) then {
     private _side = switch (_hunterVal) do {
         case 0: {east};
         case 1: {west};
-        case 2: {resistance}; 
+        case 2: {resistance};
         default {civilian};
     };
     _hunters = allUnits select {side _x == _side};

@@ -1,4 +1,4 @@
-#include "\x\tmf\addons\AI\script_component.hpp"
+#include "\x\tmf\addons\ai\script_component.hpp"
 params ["_logic","_units","_activated"];
 
 if (!_activated) exitWith {};

@@ -1,7 +1,7 @@
-#include "\x\tmf\addons\AI\script_component.hpp"
+#include "\x\tmf\addons\ai\script_component.hpp"
 // Must be scheduled enviorment (spawned)
 params ["_hunters", "_targetSide", "_position", "_range",["_targets",[]]];
-    
+
 private _continue = true;
 while {_continue} do {
     // CHEAT
@@ -22,7 +22,7 @@ while {_continue} do {
                     _closestFloat = _distanceToTarget;
                 };
             } forEach _targets;
-            
+
             // SEARCH: If we still don't have a target search.
             if (isNull _closestTarget) then {
                 if (_unit distance _position < _range) then {
@@ -50,7 +50,7 @@ while {_continue} do {
                 {
                     _x reveal _closestTarget;
                 } forEach _hunters;
-                
+
             };
         };
 
