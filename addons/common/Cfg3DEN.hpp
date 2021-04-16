@@ -48,7 +48,7 @@ class Cfg3DEN
             colorBackground[] = {0.1,0.1,0.95};
             colorPreview[] = {1,1,1};
             colorPreviewBackground[] = {0.1,0.1,0.95};
-            sizeEx = SIZEEX_PURISTA(SIZEEX_M); // Text size
+            sizeEx = SIZEEX_PURISTA_M; // Text size
             font = FONT_NORMAL; // Font from CfgFontFamilies
             text = "";
             lineSpacing = 1; // When ST_MULTI style is used, this defines distance between lines (1 is text height)

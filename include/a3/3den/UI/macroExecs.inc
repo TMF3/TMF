@@ -1,3 +1,5 @@
+// HEMTT doesn't support __EXEC __EVAL
+#ifdef ALLOW_EXECEVAL
 __EXEC(\
 	_fnc_sizeEx = {\
 		_pixelScale = 20 * pixelScale;\
@@ -54,3 +56,4 @@ __EXEC(\
 	_fnc_colorHEXtoRGBA_4 = {[_this,4] call _fnc_colorHEXtoRGBA};\
 	_fnc_colorHEXtoRGBA_6 = {[_this,6] call _fnc_colorHEXtoRGBA};\
 )
+#endif

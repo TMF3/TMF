@@ -11,7 +11,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y - GRID_H * 15;
             w = 50 * GRID_W;
             h = SIZE_M * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_M);
+            sizeEx = SIZEEX_PURISTA_M;
         };
         class TitleIcon : RscPicture {
             text = QPATHTOEF(common,UI\logo_tmf_small_ca.paa);
@@ -29,7 +29,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y - GRID_H * 9;
             w = 60 * GRID_W;
             h = SIZE_S * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
         };
         class Category : RscCombo {
             idc = IDC_RSCGEARSELECTOR_CATEGORY;
@@ -38,7 +38,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y - GRID_H * 5;
             w = 56 * GRID_W;
             h = SIZE_S * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
 
             onLBSelChanged = QUOTE( \
                 params [ARR_2('_ctrl', '_selectedIndex')]; \
@@ -53,7 +53,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y - GRID_H * 1;
             w = 60 * GRID_W;
             h = SIZE_S * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
         };
         class Faction : RscCombo {
             idc = IDC_RSCGEARSELECTOR_FACTION;
@@ -62,7 +62,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y + GRID_H * 3;
             w = 56 * GRID_W;
             h = SIZE_S * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
 
             onLBSelChanged = QUOTE( \
                 params [ARR_2('_ctrl', '_selectedIndex')]; \
@@ -77,7 +77,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y + GRID_H * 7;
             w = 60 * GRID_W;
             h = SIZE_S * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
         };
         class Role : RscCombo{
             idc = IDC_RSCGEARSELECTOR_ROLE;
@@ -86,7 +86,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y + GRID_H * 11;
             w = 56 * GRID_W;
             h = SIZE_S * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
         };
 
         class ButtonCancel : RscButtonMenuCancel {
@@ -94,7 +94,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y + GRID_H * 17;
             w = (59 / 3) * GRID_W;
             h = SIZE_M * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
         };
         class ButtonRandom : RscButtonMenu {
             text = "Random";
@@ -109,7 +109,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y + GRID_H * 17;
             w = (59 / 3) * GRID_W;
             h = SIZE_M * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
         };
         class ButtonOK : RscButtonMenuOK {
             idc = IDC_RSCGEARSELECTOR_SUBMIT;
@@ -123,7 +123,7 @@ class GVAR(RscGearSelector) : RscStandardDisplay {
             y = CENTER_Y + GRID_H * 17;
             w = (59 / 3) * GRID_W;
             h = SIZE_M * GRID_H;
-            sizeEx = SIZEEX_PURISTA(SIZEEX_S);
+            sizeEx = SIZEEX_PURISTA_S;
         };
     };
     class controlsBackground {
