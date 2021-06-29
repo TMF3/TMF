@@ -106,42 +106,54 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 14: { // scope
+            case 14: { // primaryweaponmagazine
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {_unit addPrimaryWeaponItem _magazine};
+            };
+            case 15: { // scope
                 private _scope = selectRandom _x;
                 if !(_scope isEqualTo '') then {_unit addPrimaryWeaponItem _scope};
             };
-            case 15: { // bipod
+            case 16: { // bipod
                 private _bipod = selectRandom _x;
                 if !(_bipod isEqualTo '') then {_unit addPrimaryWeaponItem _bipod};
             };
-            case 16: { // attachment
+            case 17: { // attachment
                 private _attachment = selectRandom _x;
                 if !(_attachment isEqualTo '') then {_unit addPrimaryWeaponItem _attachment};
             };
-            case 17: { // silencer
+            case 18: { // silencer
                 private _silencer = selectRandom _x;
                 if !(_silencer isEqualTo '') then {_unit addPrimaryWeaponItem _silencer};
             };
-            case 18: { // secondaryWeapon
+            case 19: { // secondaryWeapon
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 19: { // secondaryAttachments
+            case 20: { // secondaryweaponmagazine
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {_unit addSecondaryWeaponItem _magazine};
+            };
+            case 21: { // secondaryAttachments
                 {_unit addSecondaryWeaponItem _x} forEach _x;
             };
-            case 20: { // sidearmweapon
+            case 22: { // sidearmweapon
                 private _weapon = selectRandom _x;
                 if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
             };
-            case 21: { // sidearmattachments
+            case 23: { // sidearmweaponmagazine
+                private _magazine = selectRandom _x;
+                if !(_magazine isEqualTo '') then {_unit addHandgunItem _magazine};
+            };
+            case 24: { // sidearmattachments
                 {_unit addHandgunItem _x} forEach _x;
             };
-            case 22: { // Unit traits
+            case 25: { // Unit traits
                 {
                     [_unit, _x] call FUNC(setUnitTrait);
                 } forEach _x;
             };
-            case 23: { // code
+            case 26: { // code
                 _unit call compile _x;
             };
         };

@@ -51,6 +51,7 @@ class r : baseMan
     headgear[] = {"H_HelmetB","H_HelmetSpecB"};
     backpack[] = {"B_Kitbag_rgr"};
     primaryWeapon[] = {"arifle_MX_F"};
+    primaryWeaponMagazine[] = {"30Rnd_65x39_caseless_mag"};
     scope[] = {"optic_Holosight"};
     attachment[] = {"acc_pointer_IR"};
     magazines[] =
