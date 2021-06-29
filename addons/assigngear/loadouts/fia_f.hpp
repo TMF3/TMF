@@ -25,6 +25,7 @@ class baseMan {// Weaponless baseclass
 
     // All randomized
     primaryWeapon[] = {};
+    primaryMagazine[] = {};
     scope[] = {};
     bipod[] = {};
     attachment[] = {};
@@ -33,8 +34,10 @@ class baseMan {// Weaponless baseclass
 
     // Only *Weapons[] arrays are randomized
     secondaryWeapon[] = {};
+    secondaryMagazine[] = {};
     secondaryAttachments[] = {};
     sidearmWeapon[] = {};
+    sidearmMagazine[] = {};
     sidearmAttachments[] = {};
     // Leave empty to remove all. "Default" for secondaryWeapon or sidearmWeapon > leave original weapon.
 

@@ -15,6 +15,7 @@ class baseMan {// Weaponless baseclass
 
     // All randomized
     primaryWeapon[] = {};
+    primaryMagazine[] = {};
     scope[] = {};
     bipod[] = {};
     attachment[] = {};
@@ -23,8 +24,10 @@ class baseMan {// Weaponless baseclass
 
     // Only *Weapons[] arrays are randomized
     secondaryWeapon[] = {};
+    secondaryMagazine[] = {};
     secondaryAttachments[] = {};
     sidearmWeapon[] = {};
+    sidearmMagazine[] = {};
     sidearmAttachments[] = {};
     // Leave empty to remove all. "Default" for secondaryWeapon or sidearmWeapon > leave original weapon.
 
@@ -51,7 +54,7 @@ class r : baseMan
     headgear[] = {"H_HelmetB","H_HelmetSpecB"};
     backpack[] = {"B_Kitbag_rgr"};
     primaryWeapon[] = {"arifle_MX_F"};
-    primaryWeaponMagazine[] = {"30Rnd_65x39_caseless_mag"};
+    primaryMagazine[] = {"30Rnd_65x39_caseless_mag"};
     scope[] = {"optic_Holosight"};
     attachment[] = {"acc_pointer_IR"};
     magazines[] =

@@ -67,16 +67,16 @@ private _loadoutArray = [];
 
         // Weapons
         CASE("primaryweapon",13);
-        CASE("primaryweaponmagazine",14);
+        CASE("primarymagazine",14);
         CASE("scope",15);
         CASE("bipod",16);
         CASE("attachment",17);
         CASE("silencer",18);
         CASE("secondaryweapon",19);
-        CASE("secondaryweaponmagazine",20);
+        CASE("secondarymagazine",20);
         CASE("secondaryattachments",21);
         CASE("sidearmweapon",22);
-        CASE("sidearmweaponmagazine",23);
+        CASE("sidearmmagazine",23);
         CASE("sidearmattachments",24);
 
         CASE("traits",25);

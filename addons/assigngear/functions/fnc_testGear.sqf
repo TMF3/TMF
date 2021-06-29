@@ -86,6 +86,8 @@ private _fncTestUnit = {
         // Get primary weapon and items
         private _primaryWeapon = GETGEAR("primaryWeapon"); //CfgWeapons"
         [_primaryWeapon, _cfgWeapons] call _fnc_checkExists;
+        private _primaryMagazine = GETGEAR("primaryMagazine"); // "CfgMagazines"
+        [_primaryMagazine, _cfgMagazines] call _fnc_checkExists;
         private _scope = GETGEAR("scope"); // "CfgWeapons"
         [_scope, _cfgWeapons] call _fnc_checkExists;
         private _bipod = GETGEAR("bipod"); //"CfgWeapons"
@@ -98,10 +100,14 @@ private _fncTestUnit = {
         // Get other weapon and items
         private _secondaryWeapon = GETGEAR("secondaryWeapon"); //CfgWeapons"
         [_secondaryWeapon, _cfgWeapons] call _fnc_checkExists;
+        private _secondaryMagazine = GETGEAR("secondaryMagazine");//"CfgMagazines"
+        [_secondaryMagazine, _cfgMagazines] call _fnc_checkExists;
         private _secondaryAttachments = GETGEAR("secondaryAttachments");//"CfgWeapons"
         [_secondaryAttachments, _cfgWeapons] call _fnc_checkExists;
         private _sidearmWeapon = GETGEAR("sidearmWeapon"); //CfgWeapons"
         [_sidearmWeapon, _cfgWeapons] call _fnc_checkExists;
+        private _sidearmMagazine = GETGEAR("sidearmMagazine");//"CfgMagazines"
+        [_sidearmMagazine, _cfgMagazines] call _fnc_checkExists;
         private _sidearmAttachments = GETGEAR("sidearmAttachments");//"CfgWeapons"
         [_sidearmAttachments, _cfgWeapons] call _fnc_checkExists;
 
