@@ -57,18 +57,21 @@
 // Otherwise the weapon specific magazines will not work. E.g. PrimaryMagazine
 // Primary
 #define IDX_PRIMARY_WEAPON 9
-#define IDX_PRIMARY_MAGAZINE 10
+// Must come after PrimaryWeapon
+#define IDX_PRIMARY_MAGAZINE 10 
 #define IDX_PRIMARY_SCOPE 11
 #define IDX_PRIMARY_BIPOD 12
 #define IDX_PRIMARY_ATTACHMENT 13
 #define IDX_PRIMARY_SILENCER 14
 // Secondary
 #define IDX_SECONDARY_WEAPON 15
-#define IDX_SECONDARY_MAGAZINE 16
+// Must come after SecondaryWeapon
+#define IDX_SECONDARY_MAGAZINE 16 
 #define IDX_SECONDARY_ATTACHMENT 17
 // Sidearm
 #define IDX_SIDEARM_WEAPON 18
-#define IDX_SIDEARM_MAGAZINE 19
+// Must come after SidearmWeapon
+#define IDX_SIDEARM_MAGAZINE 19 
 #define IDX_SIDEARM_ATTACHMENT 20
 // Items & Magazines
 // Items go first to guarantee specific mission items are always included regardless of mission maker. E.g. Demo charges.
