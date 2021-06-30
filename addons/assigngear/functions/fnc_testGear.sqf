@@ -84,31 +84,31 @@ private _fncTestUnit = {
         } forEach _faces;
 
         // Get primary weapon and items
-        private _primaryWeapon = GETGEAR("primaryWeapon"); //CfgWeapons"
+        private _primaryWeapon = GETGEAR("primaryWeapon"); // "CfgWeapons"
         [_primaryWeapon, _cfgWeapons] call _fnc_checkExists;
         private _primaryMagazine = GETGEAR("primaryMagazine"); // "CfgMagazines"
         [_primaryMagazine, _cfgMagazines] call _fnc_checkExists;
         private _scope = GETGEAR("scope"); // "CfgWeapons"
         [_scope, _cfgWeapons] call _fnc_checkExists;
-        private _bipod = GETGEAR("bipod"); //"CfgWeapons"
+        private _bipod = GETGEAR("bipod"); // "CfgWeapons"
         [_bipod, _cfgWeapons] call _fnc_checkExists;
         private _attachment = GETGEAR("attachment"); // "CfgWeapons"
         [_attachment, _cfgWeapons] call _fnc_checkExists;
-        private _silencer = GETGEAR("silencer"); //"CfgWeapons"
+        private _silencer = GETGEAR("silencer"); // "CfgWeapons"
         [_silencer, _cfgWeapons] call _fnc_checkExists;
 
         // Get other weapon and items
-        private _secondaryWeapon = GETGEAR("secondaryWeapon"); //CfgWeapons"
+        private _secondaryWeapon = GETGEAR("secondaryWeapon"); // "CfgWeapons"
         [_secondaryWeapon, _cfgWeapons] call _fnc_checkExists;
-        private _secondaryMagazine = GETGEAR("secondaryMagazine");//"CfgMagazines"
+        private _secondaryMagazine = GETGEAR("secondaryMagazine");// "CfgMagazines"
         [_secondaryMagazine, _cfgMagazines] call _fnc_checkExists;
-        private _secondaryAttachments = GETGEAR("secondaryAttachments");//"CfgWeapons"
+        private _secondaryAttachments = GETGEAR("secondaryAttachments");// "CfgWeapons"
         [_secondaryAttachments, _cfgWeapons] call _fnc_checkExists;
-        private _sidearmWeapon = GETGEAR("sidearmWeapon"); //CfgWeapons"
+        private _sidearmWeapon = GETGEAR("sidearmWeapon"); // CfgWeapons"
         [_sidearmWeapon, _cfgWeapons] call _fnc_checkExists;
-        private _sidearmMagazine = GETGEAR("sidearmMagazine");//"CfgMagazines"
+        private _sidearmMagazine = GETGEAR("sidearmMagazine");// "CfgMagazines"
         [_sidearmMagazine, _cfgMagazines] call _fnc_checkExists;
-        private _sidearmAttachments = GETGEAR("sidearmAttachments");//"CfgWeapons"
+        private _sidearmAttachments = GETGEAR("sidearmAttachments");// "CfgWeapons"
         [_sidearmAttachments, _cfgWeapons] call _fnc_checkExists;
 
         private _linkedItems = GETGEAR("linkedItems");// "Cfgmagazines"
@@ -211,10 +211,18 @@ private _fncTestUnit = {
             };
         } forEach _magsAndItems;
 
-        //Mag check
+        // Mag check
         if (count _primaryWeapon > 0) then {
             private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
+            // Check if all options in "primaryMagazine" fit and if they do, add first to _mags array
+            if (count _primaryMagazine > 0) then {
+                if (({_x in (_primaryMagazine apply {toLower _x})} count _weaponMags) == count _primaryMagazine) then {
+                    _mags pushBack (toLower (_primaryMagazine select 0));
+                } else {
+                    _output pushBack [1,format["Role: %2 - %3 incompatible primaryMagazine - %1.", _x,_faction,_role]];
+                };
+            };
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount < 3 && !(_weaponMags isEqualTo [])) then {
                 _output pushBack [1,format["Role: %2 - %3 has less than 3 compatible mags for primary weapon.", _x,_faction,_role]];
@@ -224,9 +232,29 @@ private _fncTestUnit = {
         if (count _sidearmWeapon > 0 && !(_weaponMags isEqualTo [])) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
+            // Check if all options in "sidearmMagazine" fit and if they do, add first to _mags array
+            if (count _sidearmMagazine > 0) then {
+                if (({_x in (_sidearmMagazine apply {toLower _x})} count _weaponMags) == count _sidearmMagazine) then {
+                    _mags pushBack (toLower (_sidearmMagazine select 0));
+                } else {
+                    _output pushBack [1,format["Role: %2 - %3 incompatible sidearmMagazine - %1.", _x,_faction,_role]];
+                };
+            };
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount == 0) then {
                 _output pushBack [1,format["Role: %2 - %3 has no compatible mag for sidearm.", _x,_faction,_role]];
+            };
+        };
+
+        if (count _secondaryWeapon > 0) then {
+            private _weaponMags = (([_secondaryWeapon select 0] call CBA_fnc_compatibleMagazines) + ['default']) apply {toLower _x};
+            // Check if all options in "secondaryMagazine" fit and if they do, add first to _mags array
+            if (count _secondaryMagazine > 0) then {
+                if (({_x in (_secondaryMagazine apply {toLower _x})} count _weaponMags) == count _secondaryMagazine) then {
+                    _mags pushBack (toLower (_secondaryMagazine select 0));
+                } else {
+                    _output pushBack [1,format["Role: %2 - %3 incompatible secondaryMagazine - %1.", _x,_faction,_role]];
+                };
             };
         };
 

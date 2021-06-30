@@ -40,6 +40,46 @@
 
 /* assignGear specific macros */
 #define GETGEAR(var) [_cfg >> var] call CFUNC(getCfgEntryFromPath)
+/* assignGear _loadout indexes */
+// Appearance
+#define IDX_DISPLAY_NAME 0
+#define IDX_FACES 1
+#define IDX_INSIGNIAS 2
+// Equipment
+#define IDX_HEADGEAR 3
+#define IDX_GOGGLES 4
+#define IDX_HMD 5
+// Containers - These must come before Items.
+#define IDX_UNIFORM 6
+#define IDX_VEST 7
+#define IDX_BACKPACK 8
+// Weapons & Weapon Magazine - These must come before magazines. 
+// Otherwise the weapon specific magazines will not work. E.g. PrimaryMagazine
+// Primary
+#define IDX_PRIMARY_WEAPON 9
+#define IDX_PRIMARY_MAGAZINE 10
+#define IDX_PRIMARY_SCOPE 11
+#define IDX_PRIMARY_BIPOD 12
+#define IDX_PRIMARY_ATTACHMENT 13
+#define IDX_PRIMARY_SILENCER 14
+// Secondary
+#define IDX_SECONDARY_WEAPON 15
+#define IDX_SECONDARY_MAGAZINE 16
+#define IDX_SECONDARY_ATTACHMENT 17
+// Sidearm
+#define IDX_SIDEARM_WEAPON 18
+#define IDX_SIDEARM_MAGAZINE 19
+#define IDX_SIDEARM_ATTACHMENT 20
+// Items & Magazines
+// Items go first to guarantee specific mission items are always included regardless of mission maker. E.g. Demo charges.
+#define IDX_ITEMS 21
+#define IDX_BACKPACK_ITEMS 22
+#define IDX_MAGAZINES 24
+// Linked Items - Map, Compass, Radio, Watch
+#define IDX_LINKED_ITEMS 25
+#define IDX_TRAITS 26
+#define IDX_CODE 27
+
 #define LIST_2(var1) var1,var1
 #define LIST_3(var1) var1,var1,var1
 #define LIST_4(var1) var1,var1,var1,var1

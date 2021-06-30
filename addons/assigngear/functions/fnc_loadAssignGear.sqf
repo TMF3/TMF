@@ -42,45 +42,39 @@ private _loadoutArray = [];
 ; // Travis doesn't like defines without ;
 {
     switch (toLower configName _x) do {
-        // Equipment/appearance
-        CASE("displayname",0);
-        CASE("uniform",1);
-        CASE("vest",2);
-        CASE("backpack",3);
-        CASE("headgear",4);
-        case "goggles": {
+        CASE("displayname",             IDX_DISPLAY_NAME);
+        CASE("uniform",                 IDX_UNIFORM);
+        CASE("vest",                    IDX_VEST);
+        CASE("backpack",                IDX_BACKPACK);
+        CASE("headgear",                IDX_HEADGEAR);
+        case "goggles": {  
             private _goggles = _x call BIS_fnc_getCfgData;
             if (_goggles isEqualTo []) then {
                 _goggles pushBack ""; // an empty array would mean goggles being skipped in main assignGear function
             };
-            _loadoutArray set [5, _goggles];
+            _loadoutArray set [IDX_GOGGLES, _goggles];
         };
-        CASE("hmd",6);
-        CASE("faces",7);
-        CASE("insignias",8);
-
-        // Items/magazines
-        CASE("backpackitems",9);
-        CASE("items",10);
-        CASE("magazines",11);
-        CASE("linkeditems",12);
-
-        // Weapons
-        CASE("primaryweapon",13);
-        CASE("primarymagazine",14);
-        CASE("scope",15);
-        CASE("bipod",16);
-        CASE("attachment",17);
-        CASE("silencer",18);
-        CASE("secondaryweapon",19);
-        CASE("secondarymagazine",20);
-        CASE("secondaryattachments",21);
-        CASE("sidearmweapon",22);
-        CASE("sidearmmagazine",23);
-        CASE("sidearmattachments",24);
-
-        CASE("traits",25);
-        CASE("code",26);
+        CASE("hmd",                     IDX_HMD);
+        CASE("faces",                   IDX_FACES);
+        CASE("insignias",               IDX_INSIGNIAS);
+        CASE("backpackitems",           IDX_BACKPACK_ITEMS);
+        CASE("items",                   IDX_ITEMS);
+        CASE("magazines",               IDX_MAGAZINES);
+        CASE("linkeditems",             IDX_LINKED_ITEMS);
+        CASE("primaryweapon",           IDX_PRIMARY_WEAPON);
+        CASE("primarymagazine",         IDX_PRIMARY_MAGAZINE);
+        CASE("scope",                   IDX_PRIMARY_SCOPE);
+        CASE("bipod",                   IDX_PRIMARY_BIPOD);
+        CASE("attachment",              IDX_PRIMARY_ATTACHMENT);
+        CASE("silencer",                IDX_PRIMARY_SILENCER);
+        CASE("secondaryweapon",         IDX_SECONDARY_WEAPON);
+        CASE("secondarymagazine",       IDX_SECONDARY_MAGAZINE);
+        CASE("secondaryattachments",    IDX_SECONDARY_ATTACHMENT);
+        CASE("sidearmweapon",           IDX_SIDEARM_WEAPON);
+        CASE("sidearmmagazine",         IDX_SIDEARM_MAGAZINE);
+        CASE("sidearmattachments",      IDX_SIDEARM_ATTACHMENT);
+        CASE("traits",                  IDX_TRAITS);
+        CASE("code",                    IDX_CODE);
     };
 } forEach configProperties [CFGROLE];
 
