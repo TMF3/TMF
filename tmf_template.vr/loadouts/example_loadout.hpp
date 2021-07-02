@@ -15,6 +15,9 @@ class baseMan {// Weaponless baseclass
 
     // All randomized
     primaryWeapon[] = {};
+    // The magazines that should be loaded in the weapon. Remember to include magazines for attachments. E.g. UGLs
+    // Only include a single type of each magazine to load.
+    primaryMagazine[] = {};
     scope[] = {};
     bipod[] = {};
     attachment[] = {};
@@ -23,8 +26,12 @@ class baseMan {// Weaponless baseclass
 
     // Only *Weapons[] arrays are randomized
     secondaryWeapon[] = {};
+    // Only include a single type of each magazine to load.
+    secondaryMagazine[] = {};
     secondaryAttachments[] = {};
     sidearmWeapon[] = {};
+    // Only include a single type of each magazine to load.
+    sidearmMagazine[] = {};
     sidearmAttachments[] = {};
     // Leave empty to remove all. "Default" for secondaryWeapon or sidearmWeapon > leave original weapon.
 
@@ -51,6 +58,7 @@ class r : baseMan
     headgear[] = {"H_HelmetB","H_HelmetSpecB"};
     backpack[] = {"B_Kitbag_rgr"};
     primaryWeapon[] = {"arifle_MX_F"};
+    primaryMagazine[] = {"30Rnd_65x39_caseless_mag"};
     scope[] = {"optic_Holosight"};
     attachment[] = {"acc_pointer_IR"};
     magazines[] =
@@ -65,6 +73,7 @@ class g : r
 {
     displayName = "Grenadier";
     primaryWeapon[] = {"arifle_MX_GL_F"};
+    primaryMagazine[] = {"30Rnd_65x39_caseless_mag", "1Rnd_HE_Grenade_shell"};
     magazines[] +=
     {
         LIST_8("1Rnd_HE_Grenade_shell"),
@@ -84,6 +93,7 @@ class smg : r
 {
     displayName = "Submachinegunner";
     primaryWeapon[] = {"SMG_01_F"};
+    primaryMagazine[] = {"30Rnd_45ACP_Mag_SMG_01"};
     magazines[] =
     {
         LIST_10("30Rnd_45ACP_Mag_SMG_01"),
@@ -104,6 +114,7 @@ class sl : ftl
 {
     displayName = "Squad Leader";
     sidearmWeapon[] = {"hgun_Pistol_heavy_01_F"};
+    sidearmMagazine[] = {"11Rnd_45ACP_Mag"};
     magazines[] +=
     {
         LIST_4("11Rnd_45ACP_Mag")
@@ -130,8 +141,10 @@ class ar : r
 {
     displayName = "Automatic Rifleman";
     primaryWeapon[] = {"arifle_MX_SW_F"};
+    primaryMagazine[] = {"100Rnd_65x39_caseless_mag"};
     bipod[] = {"bipod_01_F_snd"};
     sidearmWeapon[] = {"hgun_Pistol_heavy_01_F"};
+    sidearmMagazine[] = {"11Rnd_45ACP_Mag"};
     magazines[] =
     {
         LIST_6("100Rnd_65x39_caseless_mag"),
@@ -154,6 +167,7 @@ class rat : car
 {
     displayName = "Rifleman (AT)";
     secondaryWeapon[] = {"launch_NLAW_F"};
+    secondaryMagazine[] = {"NLAW_F"};
     magazines[] +=
     {
         "NLAW_F"
@@ -163,6 +177,7 @@ class dm : r
 {
     displayName = "Designated Marksman";
     primaryWeapon[] = {"srifle_DMR_03_tan_F"};
+    primaryMagazine[] = {"20Rnd_762x51_Mag"};
     scope[] = {"optic_MRCO"};
     bipod[] = {"bipod_01_F_snd"};
     magazines[] =
@@ -176,6 +191,7 @@ class mmgg : ar
 {
     displayName = "MMG Gunner";
     primaryWeapon[] = {"MMG_02_sand_F"};
+    primaryMagazine[] = {"130Rnd_338_Mag"};
     scope[] = {"optic_MRCO"};
     magazines[] =
     {
@@ -239,6 +255,7 @@ class matg : car
 {
     displayName = "MAT Gunner";
     secondaryWeapon[] = {"launch_NLAW_F"};
+    secondaryMagazine[] = {"NLAW_F"};
     magazines[] +=
     {
         LIST_3("NLAW_F")
@@ -329,6 +346,7 @@ class samg : car
 {
     displayName = "AA Missile Specialist";
     secondaryWeapon[] = {"launch_B_Titan_F"};
+    secondaryMagazine[] = {"Titan_AA"};
     magazines[] +=
     {
         LIST_3("Titan_AA")
@@ -359,8 +377,10 @@ class sn : r
     headgear[] = {};
     goggles[] = {"default"};
     primaryWeapon[] = {"srifle_LRR_F"};
+    primaryMagazine[] = {"7Rnd_408_Mag"};
     scope[] = {"optic_SOS"};
     sidearmWeapon[] = {"hgun_Pistol_heavy_01_F"};
+    sidearmMagazine[] = {"11Rnd_45ACP_Mag"};
     magazines[] =
     {
         LIST_7("7Rnd_408_Mag"),
