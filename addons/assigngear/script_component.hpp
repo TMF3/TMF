@@ -40,6 +40,7 @@
 
 /* assignGear specific macros */
 #define GETGEAR(var) [_cfg >> var] call CFUNC(getCfgEntryFromPath)
+
 /* assignGear _loadout indexes */
 // Appearance
 #define IDX_DISPLAY_NAME 0

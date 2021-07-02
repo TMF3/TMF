@@ -54,6 +54,7 @@ class r : baseMan
     headgear[] = {"H_HelmetIA_net","H_HelmetIA_camo","H_HelmetIA"};
     backpack[] = {"B_Kitbag_rgr"};
     primaryWeapon[] = {"arifle_Mk20_F"};
+    primaryMagazine[] = {"30Rnd_556x45_Stanag"};
     scope[] = {"optic_ACO_grn"};
     attachment[] = {"acc_pointer_IR"};
     magazines[] =
@@ -68,6 +69,7 @@ class g : r
 {
     displayName = "Grenadier";
     primaryWeapon[] = {"arifle_Mk20_GL_MRCO_pointer_F"};
+    primaryMagazine[] = {"30Rnd_556x45_Stanag", "1Rnd_HE_Grenade_shell"};
     magazines[] +=
     {
         LIST_8("1Rnd_HE_Grenade_shell"),
@@ -87,6 +89,7 @@ class smg : r
 {
     displayName = "Submachinegunner";
     primaryWeapon[] = {"SMG_02_F"};
+    primaryMagazine[] = {"30Rnd_9x21_Mag"};
     magazines[] =
     {
         LIST_10("30Rnd_9x21_Mag"),
@@ -107,6 +110,7 @@ class sl : ftl
 {
     displayName = "Squad Leader";
     sidearmWeapon[] = {"hgun_ACPC2_F"};
+    sidearmMagazine[] = {"9Rnd_45ACP_Mag"};
     magazines[] +=
     {
         LIST_4("9Rnd_45ACP_Mag")
@@ -133,8 +137,10 @@ class ar : r
 {
     displayName = "Automatic Rifleman";
     primaryWeapon[] = {"LMG_Mk200_F"};
+    primaryMagazine[] = {"200Rnd_65x39_cased_Box"};
     bipod[] = {"bipod_03_F_oli"};
     sidearmWeapon[] = {"hgun_ACPC2_F"};
+    sidearmMagazine[] = {"9Rnd_45ACP_Mag"};
     magazines[] =
     {
         LIST_2("200Rnd_65x39_cased_Box"),
@@ -157,6 +163,7 @@ class rat : car
 {
     displayName = "Rifleman (AT)";
     secondaryWeapon[] = {"launch_NLAW_F"};
+    secondaryMagazine[] = {"NLAW_F"};
     magazines[] +=
     {
         "NLAW_F"
@@ -166,6 +173,7 @@ class dm : r
 {
     displayName = "Designated Marksman";
     primaryWeapon[] = {"srifle_EBR_F"};
+    primaryMagazine[] = {"20Rnd_762x51_Mag"};
     scope[] = {"optic_MRCO"};
     bipod[] = {"bipod_03_F_oli"};
     magazines[] =
@@ -179,6 +187,7 @@ class mmgg : ar
 {
     displayName = "MMG Gunner";
     primaryWeapon[] = {"MMG_01_tan_F"};
+    primaryMagazine[] = {"150Rnd_93x64_Mag"};
     scope[] = {"optic_MRCO"};
     magazines[] =
     {
@@ -243,6 +252,7 @@ class matg : car
 {
     displayName = "MAT Gunner";
     secondaryWeapon[] = {"launch_NLAW_F"};
+    secondaryMagazine[] = {"NLAW_F"};
     magazines[] +=
     {
         LIST_3("NLAW_F")
@@ -333,6 +343,7 @@ class samg : car
 {
     displayName = "AA Missile Specialist";
     secondaryWeapon[] = {"launch_I_Titan_F"};
+    secondaryMagazine[] = {"Titan_AA"};
     magazines[] +=
     {
         LIST_3("Titan_AA")
@@ -363,8 +374,10 @@ class sn : r
     headgear[] = {};
     goggles[] = {"default"};
     primaryWeapon[] = {"srifle_GM6_F"};
+    primaryMagazine[] = {"5Rnd_127x108_Mag"};
     scope[] = {"optic_SOS"};
     sidearmWeapon[] = {"hgun_ACPC2_F"};
+    sidearmMagazine[] = {"9Rnd_45ACP_Mag"};
     magazines[] =
     {
         LIST_7("5Rnd_127x108_Mag"),
