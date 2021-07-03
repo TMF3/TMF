@@ -13,17 +13,8 @@
  * When a mission is changed.
  */
 
-private _fnc_fileExists = {
-        disableSerialization;
-        private _ctrl = (findDisplay 0) ctrlCreate ["RscHTML", -1];
-        _ctrl htmlLoad _this;
-        private _exists = ctrlHTMLLoaded _ctrl;
-        ctrlDelete _ctrl;
-        _exists
-};
-    
 //Cache description.ext
 GVAR(descriptionExt) = "";
-if ("description.ext" call _fnc_fileExists) then {
+if FILE_EXISTS("description.ext") then {
     GVAR(descriptionExt) = preprocessFile "description.ext";
 };
