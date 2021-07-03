@@ -18,19 +18,10 @@ private _return = false;
 
 if (_messageId isEqualTo 0) then { //Mission saved.
     if (isNil QGVAR(descriptionExt)) then { GVAR(descriptionExt) = "";}; // on mission load will be niled.
-
-    private _fnc_fileExists = {
-        disableSerialization;
-        private _ctrl = (findDisplay 0) ctrlCreate ["RscHTML", -1];
-        _ctrl htmlLoad _this;
-        private _exists = ctrlHTMLLoaded _ctrl;
-        ctrlDelete _ctrl;
-        _exists
-    };
-
-    if ("description.ext" call _fnc_fileExists) then {
+    private _descriptionPath = "description.ext";
+    if (fileExists _descriptionPath;) then {
         // Check if description.ext has changed
-        private _newdescription = preprocessFile "description.ext";
+        private _newdescription = preprocessFile _descriptionPath;
         if (!(_newdescription isEqualTo GVAR(descriptionExt))) then {
 
             // Clear namespace, and in turn all cached loadouts

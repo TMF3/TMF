@@ -12,18 +12,9 @@
  * When a mission is changed.
  */
 #include "\x\tmf\addons\assignGear\script_component.hpp"
-
-private _fnc_fileExists = {
-        disableSerialization;
-        private _ctrl = (findDisplay 0) ctrlCreate ["RscHTML", -1];
-        _ctrl htmlLoad _this;
-        private _exists = ctrlHTMLLoaded _ctrl;
-        ctrlDelete _ctrl;
-        _exists
-};
     
 //Cache description.ext
 GVAR(descriptionExt) = "";
-if ("description.ext" call _fnc_fileExists) then {
+if (fileExists "description.ext") then {
     GVAR(descriptionExt) = preprocessFile "description.ext";
 };

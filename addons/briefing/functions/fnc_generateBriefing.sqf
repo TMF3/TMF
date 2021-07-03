@@ -43,18 +43,9 @@ if (_unitCond isEqualType "") then { _unitCond = call compile _unitCond; };
 
 //Process scripts.
 
-private _fnc_fileExists = {
-    disableSerialization;
-    private _ctrl = (findDisplay 0) ctrlCreate ["RscHTML", -1];
-    _ctrl htmlLoad _this;
-    private _exists = ctrlHTMLLoaded _ctrl;
-    ctrlDelete _ctrl;
-    _exists
-};
-
 {
     private _scriptName = (_briefingArray select _x) select 2;
-    if ((_scriptName) call _fnc_fileExists) then {
+    if (fileExists _scriptName) then {
         call compile preprocessfilelinenumbers _scriptName;
     } else {
         [_scriptName] spawn {
@@ -67,7 +58,7 @@ private _fnc_fileExists = {
 
 //Do Admin briefing.
 if ([] call tmf_common_fnc_isAdmin) then {
-    if (("briefing\admin.sqf") call _fnc_fileExists) then {
+    if (fileExists "briefing\admin.sqf") then {
         call compile preprocessfilelinenumbers "briefing\admin.sqf";
     } else {
         [] spawn {
