@@ -46,48 +46,48 @@ fn_findNextFreeId = {
 
 switch _mode do {
     case "onLoad": {
-        #include "OrbatSettings_onLoad.sqf"
+       #include "OrbatSettings_onLoad.sqf"
     };
     case "refreshTree": {
-        #include "OrbatSettings_refreshTree.sqf"
+       #include "OrbatSettings_refreshTree.sqf"
     };
     case "orbatToggleButton": {
-        #include "OrbatSettings_orbatToggleButton.sqf"
+       #include "OrbatSettings_orbatToggleButton.sqf"
     };
     case "treeDelClick": {
-        #include "OrbatSettings_treeDelClick.sqf"
+       #include "OrbatSettings_treeDelClick.sqf"
     };
     case "treeAddClick": {
-        #include "OrbatSettings_treeAddClick.sqf"
+       #include "OrbatSettings_treeAddClick.sqf"
     };
     case "treeEditClick": {
-        #include "OrbatSettings_treeEditClick.sqf"
+       #include "OrbatSettings_treeEditClick.sqf"
     };
     case "editOrbatEntryClickCancel": {
-        #include "OrbatSettings_editOrbatEntryClickCancel.sqf"
+       #include "OrbatSettings_editOrbatEntryClickCancel.sqf"
     };
     case "editOrbatEntryClickOkay":{
-        #include "OrbatSettings_editOrbatEntryClickOkay.sqf"
+       #include "OrbatSettings_editOrbatEntryClickOkay.sqf"
     };
     case "treeMoveClick": {
-        #include "OrbatSettings_treeMoveClick.sqf"
+       #include "OrbatSettings_treeMoveClick.sqf"
     };
     case "moveTreeDoubleClick": {
-        #include "OrbatSettings_moveTreeDoubleClick.sqf"
+       #include "OrbatSettings_moveTreeDoubleClick.sqf"
     };
     case "attributeSave": {
-        #include "OrbatSettings_attributeSave.sqf"
+       #include "OrbatSettings_attributeSave.sqf"
     };
     case "attributeLoad": {
-        #include "OrbatSettings_attributeLoad.sqf"
+       #include "OrbatSettings_attributeLoad.sqf"
     };
     case "orbatBinChanged": {
-        #include "OrbatSettings_orbatBinChanged.sqf"
+       #include "OrbatSettings_orbatBinChanged.sqf"
     };
     case "moveUp";
     case "moveDown";
     case "moveBottom";
     case "moveTop": {
-        #include "OrbatSettings_move.sqf"
+       #include "OrbatSettings_move.sqf"
     };
 };

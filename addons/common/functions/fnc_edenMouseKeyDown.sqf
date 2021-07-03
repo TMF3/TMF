@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_mouseKeyDown
  * Author: Nick
@@ -12,7 +13,6 @@
  * Left mouse button down behaviour for drag to garrison
  *
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 #define MANOBJECTS ((get3DENSelected "Object") select {_x isKindOf "CAManBase"})
 
 

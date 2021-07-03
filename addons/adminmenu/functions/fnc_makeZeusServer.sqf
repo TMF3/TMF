@@ -27,11 +27,7 @@ private _isValidCurator = false;
 } forEach allCurators;
 
 if (!_isValidCurator) then {
-    if (isNil QGVAR(sideCenter)) then {
-        GVAR(sideCenter) = createCenter sideLogic;
-    };
-
-    private _curator = (createGroup GVAR(sideCenter)) createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
+    private _curator = GVAR(zeusGroup) createUnit ["ModuleCurator_F", [0,0,0], [], 0, "NONE"];
     _curator setVariable ["Addons", 3, true];
     _curator setVariable [QGVAR(zeus), true, true];
     _curator setVariable ["showNotification", false, true];

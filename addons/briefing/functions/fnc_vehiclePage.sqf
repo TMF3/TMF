@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\briefing\script_component.hpp"
 /*
  *      Name: TMF_briefing_fnc_vehiclePage
  *      Author: Nick, Snippers
@@ -12,7 +13,6 @@
  *      Description:
  *          Generate briefing pages giving information about the provided vehicles
  */
-#include "\x\tmf\addons\briefing\script_component.hpp"
 params ["_target","_vehicles"];
 
 {

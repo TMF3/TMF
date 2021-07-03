@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_loadFactionCategories
  * Author = Head, Nick, Snippers
@@ -11,7 +12,6 @@
  * Description:
  * UI function do not use
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 
 disableSerialization;
 params ["_control"];

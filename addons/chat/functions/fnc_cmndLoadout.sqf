@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\chat\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_chat_loadout
  * Author = Freddo
@@ -16,8 +17,6 @@
  * Return:
  * None
  */
-
-#include "\x\tmf\addons\chat\script_component.hpp"
 
 IS_CMND_AVAILABLE(GVAR(loadoutUsage),"#loadout");
 

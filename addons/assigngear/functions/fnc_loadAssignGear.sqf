@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_loadAssignGear
  * Author = Freddo
@@ -13,8 +14,6 @@
  * Description:
  * Loads assigngear from config
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
-
 #define CFGROLE (_cfg >> "CfgLoadouts" >> _faction >> _role)
 #define CFGPARSE (configFile >> "CfgLoadoutsParser")
 

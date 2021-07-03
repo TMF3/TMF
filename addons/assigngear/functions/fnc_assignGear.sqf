@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_assignGear
  * Author = Nick, Freddo
@@ -13,7 +14,6 @@
  * Description:
  * Assigns a loadout defined in CfgLoadouts to a unit.
  */
-#include "\x\tmf\addons\assignGear\script_component.hpp"
 
 params [["_unit", player]];
 

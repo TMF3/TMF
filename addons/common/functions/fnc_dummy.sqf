@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_dummy
  * Author: Nick
@@ -11,6 +12,4 @@
  * Description:
  * None
  */
-#include "\x\tmf\addons\common\script_component.hpp"
-
 LOG("dummy");

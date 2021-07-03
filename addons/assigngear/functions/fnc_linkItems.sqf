@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_linkItems
  * Author = Nick
@@ -12,7 +13,6 @@
  * Description:
  * Tries to link all items to unit
  */
- #include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_items"];
 
 if (isNil "_unit") exitWith {};

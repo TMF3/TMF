@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\chat\script_component.hpp"
 /*
  * Name = TMF_chat_fnc_cmndRadio
  * Author = Freddo
@@ -11,8 +12,6 @@
  * Description:
  * See Syntaxes
  */
-
-#include "\x\tmf\addons\chat\script_component.hpp"
 
 IS_CMND_AVAILABLE(GVAR(radioUsage),"#radio");
 

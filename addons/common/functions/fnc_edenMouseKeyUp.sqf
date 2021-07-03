@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_mouseKeyUp
  * Author: Nick
@@ -12,7 +13,6 @@
  * Left mouse button up behaviour for drag to garrison
  *
  */
- #include "\x\tmf\addons\common\script_component.hpp"
 #define MANOBJECTS ((get3DENSelected "object") select {_x isKindOf "CAManBase"})
 
 // Exit conditions

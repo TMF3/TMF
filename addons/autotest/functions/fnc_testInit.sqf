@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\autotest\script_component.hpp"
 /*
  * Name = TMF_autotest_fnc_testInit
  * Author = Nick
@@ -13,13 +14,10 @@
  * raises a warning if it contains a lot of code,
  * VA code or doesn't contain isServer.
  */
-#include "\x\tmf\addons\autotest\script_component.hpp"
-
 private _output = [];
 
 {
-    (_x get3DENAttribute 'Init') params ["_init",""];
-    _init = toLower _init;
+    private _init = toLower ((_x get3DENAttribute 'Init') param [0,""]);
     private _count = count _init;
     private _VA = (_init find "exported from arsenal") >= 0;
     private _isServer = (_init find "isserver") >= 0;

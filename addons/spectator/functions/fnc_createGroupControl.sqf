@@ -2,13 +2,6 @@
 params ["_grp"];
 disableSerialization;
 
-private _grpCache = _x getVariable [QGVAR(grpCache),[0,[0,0,0],[1,1,1,1],true]];
-_grpCache params ["_grpTime","_avgpos","_color","_isAI"];
-if (count _avgpos <= 0 || time > _grpTime) then {
-    _grpCache = ([_x] call FUNC(updateGroupCache));
-};
-_grpCache params ["_grpTime","_avgpos","_color","_isAI"];
-
 private _control = (uiNamespace getVariable [QGVAR(display),displayNull]) ctrlCreate [QGVAR(GroupTag), -1];
 _control ctrlShow false;
 
@@ -19,7 +12,12 @@ if (count _twGrpMkr == 3) then {
     [_control,_gname] call FUNC(controlSetText);
 }
 else {
-    [_control,"\A3\ui_f\data\map\markers\nato\b_unknown.paa",_color] call FUNC(controlSetPicture);
+    private _grpCache = _x getVariable [QGVAR(grpCache),[[], [1,1,1,1], true]];
+    private _grpPos = _grpCache # 0;
+    if (count _grpPos <= 0) then {
+        _grpCache = ([_x] call FUNC(updateGroupCache));
+    };
+    [_control,"\A3\ui_f\data\map\markers\nato\b_unknown.paa", _grpCache # 1] call FUNC(controlSetPicture);
     [_control,groupId _grp] call FUNC(controlSetText);
 };
 [_control,"",[],true] call FUNC(controlSetText);

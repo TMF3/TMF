@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 /*
  * Name: TMF_common_fnc_hideMapObjectsInit
  * Author: Nick
@@ -12,7 +13,6 @@
  * Init for map objects hider
  *
  */
-#include "\x\tmf\addons\common\script_component.hpp"
 params ["_logic"];
 
 if is3DEN exitWith {};
@@ -30,6 +30,7 @@ _ints = _ints arrayIntersect (nearestTerrainObjects [_logic, [], 50, false]); //
 
 {
     if (isServer) then { _x hideObjectGlobal true } else { _x hideObject true };
+    _x allowDamage false;
     _x setPosATL ((getPosATL _x) vectorAdd [0,0,-1000]);
 } forEach _ints;
 

@@ -1,5 +1,3 @@
-
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
 params ["_button","_args"];
 
@@ -76,6 +74,10 @@ switch (_button) do {
     case "mute" : {
       [] call acre_sys_core_fnc_toggleHeadset;
     };
+    case "radio": {
+        // Broadcast event.
+        [QGVAR(radioButtonPressed), []] call CBA_fnc_localEvent;
+    };
     case "vision" : {
         GVAR(visionMode) = GVAR(visionMode) +1;
         if(GVAR(visionMode) > 2) then {GVAR(visionMode) = 0};
@@ -95,46 +97,71 @@ switch (_button) do {
         _control ctrlSetTooltip format ["Switch to %1", GVAR(visionMode_strings) select _i ];
     };
     case "camera" : {
-        private _tooltip = "SWITCH TO FOLLOW CAMERA";
-        private _messsage = "FIRST PERSON ENABLED";
-        private _modes = [getMissionConfigValue ["TMF_Spectator_AllowFollowCam",true],getMissionConfigValue ["TMF_Spectator_AllowFreeCam",true],getMissionConfigValue ["TMF_Spectator_AllowFPCam",true]];
-        private _nextMode = GVAR(mode) +1;
-        if(_nextMode > 2) then {_nextMode = 0;};
-
-        while{!(_modes select (_nextMode))} do {
-            _nextMode = GVAR(mode) +1;
-            if(_nextMode > 2) then {_nextMode = 0;};
+        if( count (GVAR(allowed_modes) select {_x}) <= 0) exitWith {
+            // we leave because otherwise it will loop forever...
         };
 
+
+        private _nextMode = GVAR(mode) + 1;
+        if(_nextMode > 2) then {
+            _nextMode = 0;
+        };
+        while { !(GVAR(allowed_modes) # _nextMode ) } do {
+            _nextMode = _nextMode + 1;
+            if(_nextMode > 2) then {
+                _nextMode = 0;
+            };
+        };
+
+        switch(_nextMode) do {
+            case FOLLOWCAM: {
+                if(GVAR(mode) == FREECAM) then {
+                    private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
+                    GVAR(followcam_angle) = [(getDir GVAR(camera) + 180) mod 360,(_pitch+180) mod 360];
+                };
+                GVAR(mode) = FOLLOWCAM;
+            };
+            case FREECAM: {
+                if(GVAR(mode) == FOLLOWCAM) then {
+                    GVAR(followcam_angle) = [getDir GVAR(camera), (GVAR(camera) call BIS_fnc_getPitchBank) select 0];
+                };
+                GVAR(mode) = FREECAM;
+            };
+            case FIRSTPERSON: {
+                GVAR(mode) = FIRSTPERSON;
+            };
+        };
+        [] call FUNC(setTarget);
+
+
+
+
+
+
+        _nextMode = GVAR(mode) + 1;
+        if(_nextMode > 2) then {
+            _nextMode = 0;
+        };
+        while { !(GVAR(allowed_modes) # _nextMode ) } do {
+            _nextMode = _nextMode + 1;
+            if(_nextMode > 2) then {
+                _nextMode = 0;
+            };
+        };
+
+
+        private _tooltip = "SWITCH TO FOLLOW CAMERA";
         switch (_nextMode) do {
             case (FOLLOWCAM): {
                 _tooltip = "SWITCH TO FREECAM";
-                _messsage = "SWITCHED TO FOLLOWCAM";
             };
             case (FREECAM): {
-                _tooltip = "SWITCH TO FIRST PERSON";
-                _messsage = "SWITCHED TO FREECAM";
+                _tooltip = "SWITCH TO FRISTPERSON";
             };
             case (FIRSTPERSON): {
                 _tooltip = "SWITCH TO FOLLOWCAM";
-                _messsage = "SWITCHED TO FIRST PERSON";
             };
         };
-
-        // Update variables based off previous mode.
-        if (GVAR(mode) == FOLLOWCAM) then {
-            private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
-            GVAR(followcam_angle) = [getDir GVAR(camera),_pitch];
-        };
-        if (GVAR(mode) == FREECAM) then {
-            GVAR(mode) = FOLLOWCAM;
-            private _pitch = (GVAR(camera) call BIS_fnc_getPitchBank) select 0;
-            GVAR(followcam_angle) = [(getDir GVAR(camera) + 180) mod 360,(_pitch+180) mod 360];
-        };
-
-        GVAR(mode) = _nextMode;
-        [] call FUNC(setTarget);
-
         _control ctrlSetTooltip _tooltip;
     };
 };

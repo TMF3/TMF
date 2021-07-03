@@ -7,28 +7,22 @@ params["","_type"];
 if (_type == 20) then {
     if (isNull GVAR(adminEyeSelectedObj)) then {
         hint "Nothing selected to Trigger";
-        
+
     } else {
         if (typeOf GVAR(adminEyeSelectedObj) == "tmf_ai_wavespawn") then {
             // Wave spawner trigger.
-
-            [EFUNC(ai,spawnWave),[GVAR(adminEyeSelectedObj)]] call CBA_fnc_execNextFrame;
-
+            TRACE_1("Admin Eye triggered wave", GVAR(adminEyeSelectedObj));
+            [{
+                params ["_waveSpawner"];
+                [_waveSpawner] remoteExecCall [QEFUNC(ai,spawnWave), _waveSpawner];
+            }, GVAR(adminEyeSelectedObj)] call CBA_fnc_execNextFrame;
         } else {
+            private _trigger = GVAR(adminEyeSelectedObj);
 
-            private _statements = triggerStatements GVAR(adminEyeSelectedObj);
-            if (count _statements > 0) then { // isTrigger.
-                [{
-                    params ["_trigger"];
-                    private _statements = triggerStatements _trigger;
-                    
-                    private _activation = triggerActivation _trigger;
-                    _trigger setVariable ["tmf_trigger_serialised",[_statements,triggerTimeout _trigger, +_activation]];
-                    
-                    _activation set[2,false];
-                    _trigger setTriggerActivation _activation;
-                    _trigger setTriggerStatements ["true","[thisTrigger] call tmf_adminmenu_fnc_adminEye_restoreTrigger",""];
-                }, [GVAR(adminEyeSelectedObj)]] call CBA_fnc_execNextFrame;
+            if (local _trigger) then {
+                [_trigger] call FUNC(adminEye_fireTrigger);
+            } else {
+                [_trigger] remoteExecCall [QFUNC(adminEye_fireTrigger), 2];
             };
         };
     };

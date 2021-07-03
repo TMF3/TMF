@@ -17,3 +17,4 @@ class cfgPatches
 
 #include "CfgEventHandlers.hpp"
 #include "Cfg3DEN.hpp"
+#include "CfgMarkerBrushes.hpp"

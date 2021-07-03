@@ -51,13 +51,18 @@ if (isTMF) then {
 }, []] call CBA_fnc_waitUntilAndExecute;
 
 
-if (isServer) then {
-    // As group init variables are sent frame after init, wait double frames before sending VarSync.
-    // This should then go to the end of the network traffic queue.
+/// VARIABLE SYNCHRONIZATION - ENSURE VARIABLES ARE SYNCHRONIZED BEFORE PROCESSING.
+/// Some code relies on tmf_common__VarSync being set before processing e.g. briefing/radio assignment
+// Register event to recieve notification of variable synchorization has been completed.
+[QGVAR(serverVariableSyncResponse),{
+    GVAR(VarSync) = true;
+    diag_log "TMF Common: Variable Synchronization Completed";
+}] call CBA_fnc_addEventHandler;
+
+// Send request event to server. Server will respon a frame later with the response being added to back of message queue.
+// Initially wait 2 frames to allow all group variable initialization to finish
+[{
     [{
-        [{
-            GVAR(VarSync) = true;
-            publicVariable QGVAR(VarSync);
-        }] call CBA_fnc_execNextFrame;
+        [QGVAR(requestServerSync), [clientOwner]] call CBA_fnc_serverEvent;
     }] call CBA_fnc_execNextFrame;
-};
+}] call CBA_fnc_execNextFrame;

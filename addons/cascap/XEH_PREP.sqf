@@ -1,2 +1,0 @@
-PREP(init);
-PREP(serverInit);

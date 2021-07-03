@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\AI\script_component.hpp"
 /*
  * Name: TMF_ai_fnc_spawnWave
  * Author: Head, Snippers
@@ -11,29 +12,46 @@
  * Description:
  * Handles spawning units
  */
-#include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic"];
 private _spawnedVehicles = [];
 private _spawnedGroups = [];
 private _spawnedUnits = [];
+private _spawnedObjects = [];
 private _data = _logic getVariable [QGVAR(waveData), []];
-_data params ['_groups', '_vehicles'];
+_data params ['_groups', '_vehicles', '_objects'];
 {
-    _x params ['_type','_pos','_dir','_custom', '_pylons'];
+    _x params ["_type", "_pos", "_dir", "_vectorDirAndUp", "_isSimple", "_simulationEnabled","_simpleObjData"];
+
+    if (_isSimple) then {
+        private _simpleObj = [_type,_pos, _dir] call BIS_fnc_createSimpleObject;
+        _simpleObj setPosWorld _pos;
+        _simpleObj setVectorDirAndUp _vectorDirAndUp;
+        _spawnedObjects pushBack _simpleObj;
+    } else {
+        private _object = createVehicle [_type, _pos, [], 0, "CAN_COLLIDE"];
+        _object setDir _dir;
+        _object setVectorDirAndUp _vectorDirAndUp;
+        _object enableSimulation _simulationEnabled;
+        _spawnedObjects pushBack _object;
+    };
+} forEach _objects;
+
+{
+    _x params ['_type','_pos','_vectorDirAndUp','_custom', '_pylons'];
     private _formationType = "NONE";
     if((_pos select 2) > 3) then {_formationType = "FLY"};
     private _vehicle = createVehicle [_type, [0,0,0], [], 0, _formationType];
     _vehicle setPosATL _pos;
-    _vehicle setDir _dir;
+    _vehicle setVectorDirAndUp _vectorDirAndUp;
     [_vehicle,_custom select 0,_custom select 1] spawn BIS_fnc_initVehicle;
 
     if(count _pylons > 0) then {
         private _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
-        { 
-            _vehicle removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon") 
+        {
+            _vehicle removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon")
         } forEach getPylonMagazines _vehicle;
-        { 
-            _vehicle setPylonLoadout [_forEachIndex + 1, _x, true, _pylonPaths select _forEachIndex] 
+        {
+            _vehicle setPylonLoadout [_forEachIndex + 1, _x, true, _pylonPaths select _forEachIndex]
         } forEach _pylons;
     };
     _spawnedVehicles pushBack _vehicle;
@@ -45,12 +63,12 @@ _data params ['_groups', '_vehicles'];
 
     private _grp = createGroup [_side, true]; // Delete group when empty
     {
-        _x params ["_type","_pos","_dir","_gear", "_vehicleIndex", "_vehicleRole","_disabledAIFeatures"];
+        _x params ["_type","_pos","_vectorDirAndUp","_gear", "_vehicleIndex", "_vehicleRole"];
         private _unit = _grp createUnit [_type, [0,0,0],[] , 0, "NONE"];
         _spawnedUnits pushBack _unit;
         _unit setPosATL _pos;
         _unit setUnitLoadout [_gear, false];
-        _unit setDir _dir;
+        _unit setVectorDirAndUp _vectorDirAndUp;
         if (_vehicleIndex >= 0) then {
             private _vehicle = _spawnedVehicles # _vehicleIndex;
             _vehicleRole params ["_role", "_path"];
@@ -80,10 +98,6 @@ _data params ['_groups', '_vehicles'];
                 };
             };
         };
-
-        {
-            _unit disableAI _x;
-        } forEach _disabledAIFeatures;
     } forEach _units;
     (units _grp) join _grp;
      _lastIndex = (count waypoints _grp)-1;
@@ -98,24 +112,41 @@ _data params ['_groups', '_vehicles'];
 } forEach _groups;
 
 _wave = _logic getVariable ["Waves",1];
-_logic setVariable ["Waves", (_wave-1)];
+_logic setVariable ["Waves", (_wave-1), true];
 _handlers = _logic getVariable ["Handlers",[]];
 {
     if(_x isEqualType {}) then {
-        [_wave,_spawnedGroups] call _x;
+        [_wave,_spawnedGroups,_spawnedUnits,_spawnedVehicles,_spawnedObjects,_logic,_forEachIndex] call _x;
     };
 } forEach _handlers;
 // Check if there is another wave
 if(_logic getVariable ["Waves",1] > 0) then {
+    private _time = _logic getvariable ["Time",10];
+    private _whenDead = _logic getVariable ["WhenDead",0];
 
-    // Check if we need to wait for them to die
-    if(_logic getVariable ["WhenDead",false]) then {
-        [{ {{alive _x} count (units _x) > 0 } count (_this select 1) <= 0 }, FUNC(spawnWave), [_logic,_spawnedGroups]] call CBA_fnc_waitUntilAndExecute;
-    }
-    else {  // Otherwise spawn the wave after sleeping for some time
-        [FUNC(spawnWave), [_logic], _logic getvariable ["Time",10]] call CBA_fnc_waitAndExecute;
-    };
+    // Wait for conditions before spawning waves
+    [
+        {
+            //params ["","","_minimumDead","_spawnedUnits", "_targetTime"];
+            CBA_missionTime > (_this # 4) &&
+            {{!alive _x || lifeState _x isEqualTo "INCAPACITATED"} count (_this # 3) >= (_this # 2)}
+        },
+        FUNC(spawnWave),
+        [_logic,_spawnedGroups,_whenDead * count _spawnedUnits,_spawnedUnits, CBA_missionTime + _time]
+    ] call CBA_fnc_waitUntilAndExecute;
 
+} else {
+    deleteVehicle _logic;
 };
 
-[format ["Spawned wave, unit count: %1, vehicle count: %2, group count %3",count _spawnedUnits,count _spawnedVehicles,count _spawnedGroups],count _spawnedUnits > 40, "AI"] call EFUNC(adminmenu,log);
+[
+    format [
+        "Spawned wave, unit count: %1, vehicle count: %2, group count %3, object count %4",
+        count _spawnedUnits,
+        count _spawnedVehicles,
+        count _spawnedGroups,
+        count _spawnedObjects
+    ],
+    count _spawnedUnits > 40,
+    "AI"
+] call EFUNC(adminmenu,log);

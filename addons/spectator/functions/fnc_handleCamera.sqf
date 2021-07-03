@@ -1,5 +1,6 @@
-#include "defines.hpp"
 #include "\x\tmf\addons\spectator\script_component.hpp"
+
+if(!([] call FUNC(isOpen))) exitWith {};
 
 GVAR(mPos) params ["_x","_y"];
 GVAR(mButtons) params ["_leftButton","_rightButton"];
@@ -133,3 +134,4 @@ if(GVAR(mode) == FIRSTPERSON) then
     };
     if(vehicle GVAR(target) == GVAR(target) && (GVAR(mButtons) select 1)) then { GVAR(target) switchCamera "gunner"; };
 };
+GVAR(freecam_timestamp) = time;

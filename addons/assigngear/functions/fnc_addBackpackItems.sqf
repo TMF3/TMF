@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\assignGear\script_component.hpp"
 /*
  * Name = TMF_assignGear_fnc_addBackpackItems
  * Author = Nick
@@ -12,7 +13,6 @@
  * Description:
  * Tries to add items to a units' backpack. Logs those that were skipped
  */
- #include "\x\tmf\addons\assignGear\script_component.hpp"
 params ["_unit","_items"];
 
 if (isNil "_unit" || isNil "_items") exitWith {};

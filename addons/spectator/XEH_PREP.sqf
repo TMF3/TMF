@@ -34,3 +34,6 @@ PREP(createVehicleControl);
 PREP(updateKillList);
 PREP(initSpectatorUnit);
 PREP(testSpectator);
+PREP(onEntityKilled);
+PREP(processData);
+PREP(onModeSwitch);
