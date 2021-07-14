@@ -60,7 +60,7 @@ class GVAR(wavespawn) : Module_F {
                 };                                                                                                                                                                             \
             );
             defaultValue = "'params [""_wave"",""_spawnedGroups"",""_spawnedUnits"",""_spawnedVehicles"",""_spawnedObjects"",""_logic"",""_wavehandlerID""];'";
-            control = "cba_common_EditCodeMulti10";
+            control = "EditCodeMulti5";
         };
         class ModuleDescription: ModuleDescription {};
     };
