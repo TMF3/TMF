@@ -750,7 +750,7 @@ switch _mode do {
             private _radioChannels = (RadioChannelArray select RadioCurrentNetwork) select 1;
             _radioChannels deleteAt _curSel;
             // Update all channel lists for units/groups on same preset.
-            private _units = allUnits select {([_x] call TMF_acre2_fnc_unitToPreset) == 1};
+            private _units = allUnits select {([_x] call TMF_acre2_fnc_unitToPreset) == RadioCurrentNetwork};
             private _groups = []; {_groups pushBackUnique (group _x);} forEach _units;
             {
                 private _entity = _x;
