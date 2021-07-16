@@ -108,7 +108,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
             };
             case IDX_PRIMARY_MAGAZINE: { // primarymagazine
                 {
-                    if !(_x isEqualTo '') then {_unit addPrimaryWeaponItem _x};
+                    _unit addPrimaryWeaponItem _x;
                 } forEach _x;
             };
             case IDX_PRIMARY_SCOPE: { // scope
@@ -133,7 +133,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
             };
             case IDX_SECONDARY_MAGAZINE: { // secondarymagazine
                 {
-                    if !(_x isEqualTo '') then {_unit addSecondaryWeaponItem _x};
+                    _unit addSecondaryWeaponItem _x;
                 } forEach _x;
             };
             case IDX_SECONDARY_ATTACHMENT: { // secondaryAttachments
@@ -145,7 +145,7 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
             };
             case IDX_SIDEARM_MAGAZINE: { // sidearmmagazine
                 {
-                    if !(_x isEqualTo '') then {_unit addHandgunItem _x};
+                    _unit addHandgunItem _x;
                 } forEach _x;
             };
             case IDX_SIDEARM_ATTACHMENT: { // sidearmattachments
@@ -162,6 +162,9 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
         };
     };
 } forEach _loadoutArray;
+
+// Force reload the unit to pull mags into all weapons if not specified in each of the weapons.
+reload _unit;
 
 _unit setVariable [QGVAR(faction), _faction,true];
 _unit setVariable [QGVAR(role), _role,true];
