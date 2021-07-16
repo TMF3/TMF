@@ -16,7 +16,7 @@ class baseMan {// Weaponless baseclass
     // All randomized
     primaryWeapon[] = {};
     // The magazines that should be loaded in the weapon. Remember to include magazines for attachments. E.g. UGLs
-    // Only include a single type of each magazine to load.
+    // Only include a single type of each magazine to load. Each magazine is applied to the weapon once.
     primaryMagazine[] = {};
     scope[] = {};
     bipod[] = {};
