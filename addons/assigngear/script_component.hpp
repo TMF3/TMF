@@ -61,29 +61,31 @@
 #define IDX_PRIMARY_WEAPON 9
 // Must come after PrimaryWeapon
 #define IDX_PRIMARY_MAGAZINE 10 
-#define IDX_PRIMARY_SCOPE 11
-#define IDX_PRIMARY_BIPOD 12
-#define IDX_PRIMARY_ATTACHMENT 13
-#define IDX_PRIMARY_SILENCER 14
 // Secondary
-#define IDX_SECONDARY_WEAPON 15
+#define IDX_SECONDARY_WEAPON 11
 // Must come after SecondaryWeapon
-#define IDX_SECONDARY_MAGAZINE 16 
-#define IDX_SECONDARY_ATTACHMENT 17
+#define IDX_SECONDARY_MAGAZINE 12
 // Sidearm
-#define IDX_SIDEARM_WEAPON 18
+#define IDX_SIDEARM_WEAPON 13
 // Must come after SidearmWeapon
-#define IDX_SIDEARM_MAGAZINE 19 
-#define IDX_SIDEARM_ATTACHMENT 20
+#define IDX_SIDEARM_MAGAZINE 14 
 // Items & Magazines
-// Items go first to guarantee specific mission items are always included regardless of mission maker. E.g. Demo charges.
-#define IDX_BACKPACK_ITEMS 21
-#define IDX_ITEMS 22
-#define IDX_MAGAZINES 24
+// Magazines must go after weapons.
+#define IDX_BACKPACK_ITEMS 15
+#define IDX_ITEMS 16
+#define IDX_MAGAZINES 17
+// Attachments - Must come after magazines
+#define IDX_PRIMARY_SCOPE 18
+#define IDX_PRIMARY_BIPOD 19
+#define IDX_PRIMARY_ATTACHMENT 20
+#define IDX_PRIMARY_SILENCER 21
+#define IDX_SECONDARY_ATTACHMENT 22
+#define IDX_SIDEARM_ATTACHMENT 23
+
 // Linked Items - Map, Compass, Radio, Watch
-#define IDX_LINKED_ITEMS 25
-#define IDX_TRAITS 26
-#define IDX_CODE 27
+#define IDX_LINKED_ITEMS 24
+#define IDX_TRAITS 25
+#define IDX_CODE 26
 
 #define LIST_2(var1) var1,var1
 #define LIST_3(var1) var1,var1,var1

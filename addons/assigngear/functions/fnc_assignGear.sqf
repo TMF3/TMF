@@ -36,6 +36,14 @@ ISNILS(_loadoutArray, [ARR_2(_faction, _role)] call FUNC(cacheAssignGear));
 
 _unit setUnitLoadout (configFile >> 'EmptyLoadout');
 
+private _primaryWeapon = "";
+private _primaryMagazine = [];
+private _secondaryWeapon = "";
+private _secondaryMagazine = [];
+private _sidearmWeapon = "";
+private _sidearmMagazine = [];
+private _magazines = [];
+
 // Each index is tied to a specific type of item
 {
     if (!isNil "_x" && {!(_x isEqualTo [])} && {!(_x isEqualTo "")}) then {
@@ -91,6 +99,19 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 } forEach _x;
             };
             case IDX_MAGAZINES: { // magazines
+                if (count _primaryMagazine > 0) then {
+                    if !(_primaryWeapon isEqualTo '') then {_unit addWeapon _primaryWeapon};
+                    { _unit addPrimaryWeaponItem _x; } forEach _primaryMagazine;
+                };
+                if (count _secondaryMagazine > 0) then {
+                    if !(_secondaryWeapon isEqualTo '') then {_unit addWeapon _secondaryWeapon};
+                    { _unit addSecondaryWeaponItem _x; } forEach _secondaryMagazine;
+                };
+                if (count _sidearmMagazine > 0) then {
+                    if !(_sidearmWeapon isEqualTo '') then {_unit addWeapon _sidearmWeapon};
+                    { _unit addHandgunItem _x; } forEach _sidearmMagazine;
+                };
+
                 { // Magazines try to fill vest first
                     switch true do {
                         case (_unit canAddItemToVest _x): {_unit addItemToVest _x;};
@@ -98,18 +119,25 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                         default {_unit addItemToBackpack _x;};
                     };
                 } forEach _x;
+
+                if (count _primaryMagazine == 0) then {
+                    if !(_primaryWeapon isEqualTo '') then {_unit addWeapon _primaryWeapon};
+                };
+                if (count _secondaryWeapon == 0) then {
+                    if !(_secondaryWeapon isEqualTo '') then {_unit addWeapon _secondaryWeapon};
+                };
+                if (count _sidearmMagazine == 0) then {
+                    if !(_sidearmWeapon isEqualTo '') then {_unit addWeapon _sidearmWeapon};
+                };
             };
             case IDX_LINKED_ITEMS: { // linkedItems
                 {_unit addWeapon _x} forEach _x;
             };
             case IDX_PRIMARY_WEAPON: { // primaryWeapon
-                private _weapon = selectRandom _x;
-                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+                _primaryWeapon = selectRandom _x;
             };
             case IDX_PRIMARY_MAGAZINE: { // primarymagazine
-                {
-                    _unit addPrimaryWeaponItem _x;
-                } forEach _x;
+                _primaryMagazine = _x;
             };
             case IDX_PRIMARY_SCOPE: { // scope
                 private _scope = selectRandom _x;
@@ -128,25 +156,19 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
                 if !(_silencer isEqualTo '') then {_unit addPrimaryWeaponItem _silencer};
             };
             case IDX_SECONDARY_WEAPON: { // secondaryWeapon
-                private _weapon = selectRandom _x;
-                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+                _secondaryWeapon = selectRandom _x;
             };
             case IDX_SECONDARY_MAGAZINE: { // secondarymagazine
-                {
-                    _unit addSecondaryWeaponItem _x;
-                } forEach _x;
+                _sidearmMagazine = _x;
             };
             case IDX_SECONDARY_ATTACHMENT: { // secondaryAttachments
                 {_unit addSecondaryWeaponItem _x} forEach _x;
             };
             case IDX_SIDEARM_WEAPON: { // sidearmweapon
-                private _weapon = selectRandom _x;
-                if !(_weapon isEqualTo '') then {_unit addWeapon _weapon};
+                _sidearmWeapon = selectRandom _x;
             };
             case IDX_SIDEARM_MAGAZINE: { // sidearmmagazine
-                {
-                    _unit addHandgunItem _x;
-                } forEach _x;
+                _sidearmMagazine = _x;
             };
             case IDX_SIDEARM_ATTACHMENT: { // sidearmattachments
                 {_unit addHandgunItem _x} forEach _x;
@@ -162,9 +184,6 @@ _unit setUnitLoadout (configFile >> 'EmptyLoadout');
         };
     };
 } forEach _loadoutArray;
-
-// Force reload the unit to pull mags into all weapons if not specified in each of the weapons.
-reload _unit;
 
 _unit setVariable [QGVAR(faction), _faction,true];
 _unit setVariable [QGVAR(role), _role,true];
