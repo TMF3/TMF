@@ -44,16 +44,17 @@
 /* assignGear _loadout indexes */
 // Appearance
 #define IDX_DISPLAY_NAME 0
-#define IDX_FACES 1
-#define IDX_INSIGNIAS 2
-// Equipment
-#define IDX_HEADGEAR 3
-#define IDX_GOGGLES 4
-#define IDX_HMD 5
 // Containers - These must come before Items.
-#define IDX_UNIFORM 6
-#define IDX_VEST 7
-#define IDX_BACKPACK 8
+#define IDX_UNIFORM 1
+#define IDX_VEST 2
+#define IDX_BACKPACK 3
+#define IDX_FACES 4
+// Insignias - This must come after uniform otherwise it will fail to apply.
+#define IDX_INSIGNIAS 5
+// Equipment
+#define IDX_HEADGEAR 6
+#define IDX_GOGGLES 7
+#define IDX_HMD 8
 // Weapons & Weapon Magazine - These must come before magazines. 
 // Otherwise the weapon specific magazines will not work. E.g. PrimaryMagazine
 // Primary
@@ -76,8 +77,8 @@
 #define IDX_SIDEARM_ATTACHMENT 20
 // Items & Magazines
 // Items go first to guarantee specific mission items are always included regardless of mission maker. E.g. Demo charges.
-#define IDX_ITEMS 21
-#define IDX_BACKPACK_ITEMS 22
+#define IDX_BACKPACK_ITEMS 21
+#define IDX_ITEMS 22
 #define IDX_MAGAZINES 24
 // Linked Items - Map, Compass, Radio, Watch
 #define IDX_LINKED_ITEMS 25

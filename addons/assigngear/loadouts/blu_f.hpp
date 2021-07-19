@@ -376,7 +376,7 @@ class sn : r
     primaryMagazine[] = {"7Rnd_408_Mag"};
     scope[] = {"optic_SOS"};
     sidearmWeapon[] = {"hgun_Pistol_heavy_01_F"};
-    sidearmMagazine[] = {"11Rnd_45ACP_Mag"}
+    sidearmMagazine[] = {"11Rnd_45ACP_Mag"};
     magazines[] =
     {
         LIST_7("7Rnd_408_Mag"),
