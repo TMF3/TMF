@@ -42,7 +42,6 @@ private _secondaryWeapon = "";
 private _secondaryMagazine = [];
 private _sidearmWeapon = "";
 private _sidearmMagazine = [];
-private _magazines = [];
 
 // Each index is tied to a specific type of item
 {
