@@ -33,8 +33,13 @@ if (_message isEqualTo "") exitWith {
 private _unit = [_name] call FUNC(findMatch);
 
 if (!isNull _unit) then {
-    parseText format ["<t size='1.25'>Whisper from %1</t><br />%2", name player, _message] remoteExecCall ["hint", _unit];
+    [
+        [format ["Whisper from %1", name player], 1.25],
+        [_message],
+        false,
+        true
+    ] remoteExecCall ["CBA_fnc_notify", _unit];
     systemChat format ["TMF: Whisper sent to %1", name _unit];
 } else {
-    systemChat FORMAT_1("TMF Error: No unit found containing %1, or more than one found.", str _message);
+    systemChat format ["TMF Error: No unit found containing %1, or more than one found.", str _name];
 };
