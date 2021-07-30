@@ -35,7 +35,6 @@ PREP(edenHideMapObjects);
 PREP(hideMapObjectsInit);
 PREP(getPosVisual);
 PREP(initDisplayDebriefing);
-PREP(initDisplayMultiplayerSetup);
 PREP(testGroupsSlottingScreen);
 PREP(secondsToTime);
 PREP(edenDisplayFactionIcons);
