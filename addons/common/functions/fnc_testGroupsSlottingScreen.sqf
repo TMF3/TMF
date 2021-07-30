@@ -14,8 +14,6 @@
 
 private _output = [];
 
-
-private _units = playableUnits + [player] - [objNull];
 {
     private _desc = (_x get3DENAttribute "description") # 0;
 
@@ -26,6 +24,6 @@ private _units = playableUnits + [player] - [objNull];
             _output pushBack [1,format ["Unit lacks slotting group name: %1 (should be: %1@Group Name)", _desc]];
         };
     };
-} forEach (playableUnits + [player]);
+} forEach (playableUnits + [player] - [objNull]);
 
 _output
