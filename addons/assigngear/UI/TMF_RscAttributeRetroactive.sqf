@@ -11,7 +11,7 @@ switch (_mode) do {
     case "onLoad": {};
     case "onUnload": {};
     case "confirmed": {
-        _unit setVariable [QGVARMAIN(Retroactive),0 == lbCurSel _ctrlToolbox];
-        _unit setVariable [QGVARMAIN(updated),true];
+        _unit setVariable [QGVARMAIN(Retroactive),0 == lbCurSel _ctrlToolbox,true];
+        _unit setVariable [QGVARMAIN(updated),true,true];
     };
 };

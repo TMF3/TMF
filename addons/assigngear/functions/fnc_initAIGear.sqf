@@ -74,7 +74,7 @@ if (_hash isEqualTo []) then {
     true,
     [],
     _retroactive
-] remoteExecCall ["CBA_fnc_addClassEventHandler",0,true];
+] call CBA_fnc_addClassEventHandler;
 
 TRACE_3("Initialized AIGear",_faction,_loadout,_retroactive);
 
