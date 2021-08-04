@@ -5,10 +5,7 @@
  *
  * Arguments:
  * 0: OBJECT
- * 1: ARRAY in the format of role, faction, contents.
- *    0: STRING. Category
- *    1: STRING: Faction
- *    2: Array: Contents
+ * 1: HASH
  *
  * Return:
  * None.
@@ -16,25 +13,40 @@
  * Description:
  * Insert items into the vehicle storage.
  */
-params ['_object', ['_data', []]];
+params [
+    '_object',
+    ['_data', [], [[]]]
+];
 
-TRACE_1("Vehicle Gear INIT", _this);
-if(count _data <= 0) exitWith {};
-_data params ['_category', '_faction', ['_contents',  [], [], [] , [[]], 3]];
-TRACE_3("Vehicle Gear INIT", _category, _faction, _contents);
+if is3DEN exitWith {};
 
-[
-     {
-        params ['_object', '_contents'];
-        {
-            {
-                if((_x # 0) isKindOf "Bag_Base") then {
-                    _object addBackpackCargoGlobal _x;
-                } else {
-                    _object addItemCargoGlobal _x;
-                };
-            } forEach _x;
-        } forEach _contents;
-     },
-     [_object, _contents]
-] call CBA_fnc_execNextFrame;
+TRACE_2("Adding vehicle gear to vehicle",_object,_data);
+
+_data = _data param [2,createHashMap];
+
+// Backwards compatibility
+if (_gear isEqualType []) then {
+    TRACE_1("Converting legacy ammobox array to hashmap",_data);
+    private _hashArray = [];
+    {
+        _hashArray append _x;
+    } forEach _data;
+    _hashArray = _hashArray apply {[
+        toLower (_x # 0),
+        _x # 1
+    ]};
+    _data = createHashMapFromArray _hashArray;
+    TRACE_1("Converted legacy ammobox array to hashmap",_data);
+};
+
+[{
+    params ["_object", "_data"];
+    {
+        if (_x isKindOf "Bag_Base") then {
+            [_object, _x, _y] call CBA_fnc_addBackpackCargo;
+        } else {
+            [_object, _x, _y] call CBA_fnc_addItemCargo;
+        };
+    } forEach _data;
+}, [_object, _data]] call CBA_fnc_execNextFrame;
+

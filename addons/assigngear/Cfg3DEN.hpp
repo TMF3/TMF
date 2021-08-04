@@ -71,13 +71,13 @@ class Cfg3DEN
             class GVAR(vehicleGear) {
                 displayName = "TMF: Vehicle Gear";
                 collapsed = 0;
-                class Attributes 
+                class Attributes
                 {
                     class GVAR(vehicle)
                     {
                         property = QGVAR(vehicleContents);
                         condition = "objectHasInventoryCargo";
-                        defaultValue = "['','',[ [], [], [] ]]";
+                        defaultValue = "['', '', createHashMap]";
                         expression = QUOTE([ARR_2(_this, _value)] call FUNC(vehicleGear_init));
                         control = QGVAR(AmmoBox);
                     };
@@ -218,9 +218,9 @@ class Cfg3DEN
             };
         };
         class GVAR(AmmoBox): TitleWide {
-            onLoad = QUOTE( [ARR_2('onLoad', _this)] call FUNC(gui_vehicleGear_selector) );
-            attributeLoad = QUOTE([_value] call FUNC(gui_vehicleGear_load));
-            attributeSave = QUOTE([] call FUNC(gui_vehicleGear_save));
+            onLoad = QUOTE( [ARR_2(_this select 0, 'onLoad')] call FUNC(gui_vehicleGear_selector) );
+            attributeLoad = QUOTE([ARR_2(_this, _value)] call FUNC(gui_vehicleGear_load));
+            attributeSave = QUOTE([_this] call FUNC(gui_vehicleGear_save));
             h = (22 * ATTRIBUTE_CONTENT_H + 1) * GRID_H;
             class Controls: Controls
             {
@@ -240,6 +240,14 @@ class Cfg3DEN
                     y = 0;
                     w = ATTRIBUTE_CONTENT_W * GRID_W;
                     h = SIZE_M * GRID_H;
+                    onLBSelChanged = QUOTE( \
+                        params [ARR_2('_control', '_index')]; \
+                        [ARR_3( \
+                            ctrlParentControlsGroup _control, \
+                            'categoryChanged', \
+                            _control lbData _index \
+                        )] call FUNC(gui_vehicleGear_selector); \
+                    );
                 };
                 class FactionTitle : ctrlStatic {
                     text = "Faction"
@@ -257,6 +265,14 @@ class Cfg3DEN
                     y = 1 * SIZE_XL * GRID_H;
                     w = ATTRIBUTE_CONTENT_W * GRID_W;
                     h = SIZE_M * GRID_H;
+                    onLBSelChanged = QUOTE( \
+                        params [ARR_2('_control', '_index')]; \
+                        [ARR_3( \
+                            ctrlParentControlsGroup _control, \
+                            'filterChanged', \
+                            uiNamespace getVariable [ARR_2(QQGVAR(filter), FILTER_WEAPON)] \
+                        )] call FUNC(gui_vehicleGear_selector); \
+                    );
                 };
                 class Title2: Title
                 {
@@ -273,8 +289,19 @@ class Cfg3DEN
                     h = 2 * ATTRIBUTE_CONTENT_H * GRID_H;
                     rows = 1;
                     columns = 3;
-                    onToolBoxSelChanged = QUOTE( [ARR_2('filterChanged', _this)] call FUNC(gui_vehicleGear_selector) );
-                    strings[] = {"\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_1_ca.paa", "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_8_ca.paa", "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_6_ca.paa" };
+                    onToolBoxSelChanged = QUOTE( \
+                        params [ARR_2('_ctrl', '_idx')]; \
+                        [ARR_3( \
+                            ctrlParentControlsGroup _ctrl, \
+                            'filterChanged', \
+                            _idx \
+                        )] call FUNC(gui_vehicleGear_selector); \
+                    );
+                    strings[] = {
+                        "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_1_ca.paa",
+                        "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_8_ca.paa",
+                        "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_6_ca.paa"
+                    };
                 };
                 class ListBackground: ctrlStatic
                 {
@@ -294,8 +321,9 @@ class Cfg3DEN
                     drawSideArrows = 1;
                     idcLeft = IDC_VEHICLEGEAR_SUBTRACT;
                     idcRight = IDC_VEHICLEGEAR_ADD;
-                    columns[] = {0.05,0.15,0.85};
+                    columns[] = {0.03,0.10,0.82,0.89,1};
                     disableOverflow = 1;
+                    tooltipPerColumn = 1;
                 };
                 class ButtonClear: ctrlButton
                 {
@@ -305,6 +333,10 @@ class Cfg3DEN
                     y = 19 * ATTRIBUTE_CONTENT_H * GRID_H;
                     w = 25 * GRID_W;
                     h = ATTRIBUTE_CONTENT_H * GRID_H;
+                    onButtonClick = QUOTE( \
+                        params ['_ctrlButton']; \
+                        [ARR_2(ctrlParentControlsGroup _ctrlButton, 'clear')] call FUNC(gui_vehicleGear_selector); \
+                    );
                 };
                 class ArrowLeft: ctrlButton
                 {
