@@ -18,6 +18,13 @@ params ['_ctrlGroup', '_value'];
 private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
 private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
 private _gearCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
+private _ctrlEnabled = ctrlEnabled _ctrlGroup;
+if !(_ctrlEnabled) then {
+    // Controls are disabled when multi-selecting units with different data
+    // Temporarily enable it while data is loading to allow EHs to work, then redisable.
+    LOG("Temporarily reenabling Vehicle Gear UI to load");
+    _ctrlGroup ctrlEnable true;
+};
 
 _value params [
     ['_category', '', ['']],
@@ -49,6 +56,7 @@ for "_i" from 0 to ((lbSize  _categoryCtrl)-1) do {
     private _cat = _categoryCtrl lbData _i;
     if(_cat == _category) exitWith {
         _categoryCtrl lbSetCurSel _i;
+
     };
 };
 
@@ -58,3 +66,5 @@ for "_i" from 0 to ((lbSize  _factionCtrl)-1) do {
         _factionCtrl lbSetCurSel _i;
     };
 };
+
+_ctrlGroup ctrlEnable _ctrlEnabled;

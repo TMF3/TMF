@@ -270,7 +270,7 @@ class Cfg3DEN
                         [ARR_3( \
                             ctrlParentControlsGroup _control, \
                             'filterChanged', \
-                            uiNamespace getVariable [ARR_2(QQGVAR(filter), FILTER_WEAPON)] \
+                            uiNamespace getVariable [ARR_2(QQGVAR(filter), FILTER_CONTENTS)] \
                         )] call FUNC(gui_vehicleGear_selector); \
                     );
                 };
@@ -287,7 +287,7 @@ class Cfg3DEN
                     w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
                     h = 2 * ATTRIBUTE_CONTENT_H * GRID_H;
                     rows = 1;
-                    columns = 3;
+                    columns = 4;
                     onToolBoxSelChanged = QUOTE( \
                         params [ARR_2('_ctrl', '_idx')]; \
                         [ARR_3( \
@@ -297,6 +297,7 @@ class Cfg3DEN
                         )] call FUNC(gui_vehicleGear_selector); \
                     );
                     strings[] = {
+                        "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_0_ca.paa",
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_1_ca.paa",
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_8_ca.paa",
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_6_ca.paa"
@@ -341,6 +342,7 @@ class Cfg3DEN
                     columns[] = {0.03,0.10,0.60,0.82,0.89,1};
                     disableOverflow = 1;
                     tooltipPerColumn = 1;
+                    period = 1e+011;
                 };
                 class ButtonClear: ctrlButton
                 {
