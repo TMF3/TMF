@@ -2,7 +2,7 @@
 #include "\a3\3DEN\UI\resincl.inc"
 class ctrlCombo;
 class ctrlStatic;
-class ctrlToolbox;
+class ctrlToolboxPictureKeepAspect;
 class ctrlListNBox;
 class ctrlButton;
 class Cfg3DEN
@@ -217,7 +217,7 @@ class Cfg3DEN
                 };
             };
         };
-        class GVAR(AmmoBox): TitleWide {
+        class GVAR(AmmoBox): Default {
             onLoad = QUOTE( [ARR_2(_this select 0, 'onLoad')] call FUNC(gui_vehicleGear_selector) );
             attributeLoad = QUOTE([ARR_2(_this, _value)] call FUNC(gui_vehicleGear_load));
             attributeSave = QUOTE([_this] call FUNC(gui_vehicleGear_save));
@@ -229,7 +229,7 @@ class Cfg3DEN
                     y = 0;
                     w = ATTRIBUTE_TITLE_W * GRID_W;
                     h = SIZE_XL * GRID_H;
-                    text = "Category"
+                    text = "Category";
                     style = ST_RIGHT;
                     colorBackground[] = {0,0,0,0};
                 };
@@ -250,7 +250,7 @@ class Cfg3DEN
                     );
                 };
                 class FactionTitle : ctrlStatic {
-                    text = "Faction"
+                    text = "Faction";
                     style = ST_RIGHT;
                     x = 0;
                     y = 1 * SIZE_XL * GRID_H;
@@ -279,10 +279,9 @@ class Cfg3DEN
                     text = "$STR_3den_attributes_ammobox_title2_text";
                     y = 2 * ATTRIBUTE_CONTENT_H * GRID_H;
                 };
-                class Filter: ctrlToolbox
+                class Filter: ctrlToolboxPictureKeepAspect
                 {
                     idc = IDC_VEHICLEGEAR_FILTER;
-                    style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
                     x = ATTRIBUTE_CONTENT_H * GRID_W;
                     y = 3 * ATTRIBUTE_CONTENT_H * GRID_H;
                     w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
@@ -303,10 +302,28 @@ class Cfg3DEN
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_6_ca.paa"
                     };
                 };
-                class ListBackground: ctrlStatic
+                class ListSortBackground: ctrlStatic
                 {
                     x = ATTRIBUTE_CONTENT_H * GRID_W;
                     y = 5 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - ATTRIBUTE_CONTENT_H) * GRID_W;
+                    h = ATTRIBUTE_CONTENT_H * GRID_H;
+                    colorBackground[] = {0,0,0,1};
+                };
+                class ListSort: ctrlListNBox
+                {
+                    idc = IDC_VEHICLEGEAR_LISTSORT;
+                    x = ATTRIBUTE_CONTENT_H * GRID_W;
+                    y = 5 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
+                    h = ATTRIBUTE_CONTENT_H * GRID_H;
+					disableOverflow = 1;
+                    columns[] = {0,0.60,0.82,0.89,1};
+                };
+                class ListBackground: ctrlStatic
+                {
+                    x = ATTRIBUTE_CONTENT_H * GRID_W;
+                    y = 6 * ATTRIBUTE_CONTENT_H * GRID_H;
                     w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - ATTRIBUTE_CONTENT_H) * GRID_W;
                     h = 13 * ATTRIBUTE_CONTENT_H * GRID_H;
                     colorBackground[] = {1,1,1,0.1};
@@ -315,13 +332,13 @@ class Cfg3DEN
                 {
                     idc = IDC_VEHICLEGEAR_LIST;
                     x = ATTRIBUTE_CONTENT_H * GRID_W;
-                    y = 5 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    y = 6 * ATTRIBUTE_CONTENT_H * GRID_H;
                     w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
                     h = 13 * ATTRIBUTE_CONTENT_H * GRID_H;
                     drawSideArrows = 1;
                     idcLeft = IDC_VEHICLEGEAR_SUBTRACT;
                     idcRight = IDC_VEHICLEGEAR_ADD;
-                    columns[] = {0.03,0.10,0.82,0.89,1};
+                    columns[] = {0.03,0.10,0.60,0.82,0.89,1};
                     disableOverflow = 1;
                     tooltipPerColumn = 1;
                 };
