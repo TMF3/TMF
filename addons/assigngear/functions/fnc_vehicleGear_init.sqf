@@ -18,14 +18,18 @@ params [
     ['_data', [], [[]]]
 ];
 
-if is3DEN exitWith {};
+if (is3DEN || !isServer) exitWith {};
 
 TRACE_2("Adding vehicle gear to vehicle",_object,_data);
 
-_data = _data param [2,createHashMap];
+_data params [
+    ["_category", "", [""]],
+    ["_faction", "", [""]],
+    ["_data", createHashMap, [createHashMap, []]]
+];
 
 // Backwards compatibility
-if (_gear isEqualType []) then {
+if (_data isEqualType []) then {
     TRACE_1("Converting legacy ammobox array to hashmap",_data);
     private _hashArray = [];
     {
@@ -41,6 +45,7 @@ if (_gear isEqualType []) then {
 
 [{
     params ["_object", "_data"];
+    TRACE_2("Adding vehicle gear",_object,_data);
     {
         if (_x isKindOf "Bag_Base") then {
             [_object, _x, _y] call CBA_fnc_addBackpackCargo;
