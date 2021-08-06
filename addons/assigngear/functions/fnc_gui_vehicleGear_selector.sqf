@@ -180,6 +180,7 @@ switch _mode do {
             };
         }];
 
+        [_ctrlCategory] call FUNC(loadFactionCategories);
         TRACE_2("Onload finished, created event handlers for",_addButton,_subButton);
     };
 
