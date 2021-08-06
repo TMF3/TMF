@@ -300,7 +300,7 @@ class Cfg3DEN
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_0_ca.paa",
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_1_ca.paa",
                         "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_8_ca.paa",
-                        "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_6_ca.paa"
+                        "\a3\Ui_F_Curator\Data\RscCommon\RscAttributeInventory\filter_12_ca.paa"
                     };
                 };
                 class ListSortBackground: ctrlStatic
@@ -318,7 +318,7 @@ class Cfg3DEN
                     y = 5 * ATTRIBUTE_CONTENT_H * GRID_H;
                     w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
                     h = ATTRIBUTE_CONTENT_H * GRID_H;
-					disableOverflow = 1;
+                    disableOverflow = 1;
                     columns[] = {0,0.60,0.82,0.89,1};
                 };
                 class ListBackground: ctrlStatic
