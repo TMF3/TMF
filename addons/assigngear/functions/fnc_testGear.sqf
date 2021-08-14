@@ -215,10 +215,10 @@ private _fncTestUnit = {
         if (count _primaryWeapon > 0) then {
             private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
-            // Check if all options in "primaryMagazine" fit and if they do, add first to _mags array
+            // Check if all options in "primaryMagazine" fit and if they do, add to _mags array
             if (count _primaryMagazine > 0) then {
                 if (({_x in (_primaryMagazine apply {toLower _x})} count _weaponMags) == count _primaryMagazine) then {
-                    _mags pushBack (toLower (_primaryMagazine select 0));
+                    {_mags pushBack (toLower _x)} forEach _primaryMagazine;
                 } else {
                     _output pushBack [1,format["Role: %2 - %3 incompatible primaryMagazine - %1.", _x,_faction,_role]];
                 };
@@ -232,10 +232,10 @@ private _fncTestUnit = {
         if (count _sidearmWeapon > 0 && !(_weaponMags isEqualTo [])) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
-            // Check if all options in "sidearmMagazine" fit and if they do, add first to _mags array
+            // Check if all options in "sidearmMagazine" fit and if they do, add to _mags array
             if (count _sidearmMagazine > 0) then {
                 if (({_x in (_sidearmMagazine apply {toLower _x})} count _weaponMags) == count _sidearmMagazine) then {
-                    _mags pushBack (toLower (_sidearmMagazine select 0));
+                    {_mags pushBack (toLower _x)} forEach _sidearmMagazine;
                 } else {
                     _output pushBack [1,format["Role: %2 - %3 incompatible sidearmMagazine - %1.", _x,_faction,_role]];
                 };
@@ -251,7 +251,7 @@ private _fncTestUnit = {
             // Check if all options in "secondaryMagazine" fit and if they do, add first to _mags array
             if (count _secondaryMagazine > 0) then {
                 if (({_x in (_secondaryMagazine apply {toLower _x})} count _weaponMags) == count _secondaryMagazine) then {
-                    _mags pushBack (toLower (_secondaryMagazine select 0));
+                    {_mags pushBack (toLower _x)} forEach _secondaryMagazine;
                 } else {
                     _output pushBack [1,format["Role: %2 - %3 incompatible secondaryMagazine - %1.", _x,_faction,_role]];
                 };
