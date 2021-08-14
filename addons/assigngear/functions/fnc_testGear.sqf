@@ -217,7 +217,7 @@ private _fncTestUnit = {
             private _weaponMags = [_weapon] call CBA_fnc_compatibleMagazines;
             {
                 _weaponMags append ([_cfgWeapons >> _weapon >> _x] call CBA_fnc_compatibleMagazines);
-            } forEach [_weapon] call CBA_fnc_getMuzzles;
+            } forEach ([_weapon] call CBA_fnc_getMuzzles);
             _weaponMags = _weaponMags apply {toLower _x};
             // Check if all options in "primaryMagazine" fit and if they do, add to _mags array
             if (count _primaryMagazine > 0) then {
