@@ -59,7 +59,7 @@ class r : baseMan
     attachment[] = {"acc_pointer_IR"};
     magazines[] =
     {
-        LIST_11("30Rnd_556x45_Stanag"),
+        LIST_10("30Rnd_556x45_Stanag"),
         LIST_2("30Rnd_556x45_Stanag_Tracer_Yellow"),
         LIST_2("HandGrenade"),
         LIST_2("SmokeShell")
@@ -72,7 +72,7 @@ class g : r
     primaryMagazine[] = {"30Rnd_556x45_Stanag", "1Rnd_HE_Grenade_shell"};
     magazines[] +=
     {
-        LIST_8("1Rnd_HE_Grenade_shell"),
+        LIST_7("1Rnd_HE_Grenade_shell"),
         LIST_4("1Rnd_Smoke_Grenade_shell")
     };
 };
@@ -92,7 +92,7 @@ class smg : r
     primaryMagazine[] = {"30Rnd_9x21_Mag"};
     magazines[] =
     {
-        LIST_10("30Rnd_9x21_Mag"),
+        LIST_9("30Rnd_9x21_Mag"),
         LIST_2("HandGrenade"),
         LIST_2("SmokeShell")
     };
@@ -113,7 +113,7 @@ class sl : ftl
     sidearmMagazine[] = {"9Rnd_45ACP_Mag"};
     magazines[] +=
     {
-        LIST_4("9Rnd_45ACP_Mag")
+        LIST_3("9Rnd_45ACP_Mag")
     };
     linkedItems[] =
     {
@@ -143,11 +143,11 @@ class ar : r
     sidearmMagazine[] = {"9Rnd_45ACP_Mag"};
     magazines[] =
     {
-        LIST_2("200Rnd_65x39_cased_Box"),
+        LIST_1("200Rnd_65x39_cased_Box"),
         "200Rnd_65x39_cased_Box_Tracer",
         "HandGrenade",
         "SmokeShell",
-        LIST_4("9Rnd_45ACP_Mag")
+        LIST_3("9Rnd_45ACP_Mag")
     };
 };
 class aar : r
@@ -164,10 +164,7 @@ class rat : car
     displayName = "Rifleman (AT)";
     secondaryWeapon[] = {"launch_NLAW_F"};
     secondaryMagazine[] = {"NLAW_F"};
-    magazines[] +=
-    {
-        "NLAW_F"
-    };
+    magazines[] += {};
 };
 class dm : r
 {
@@ -178,7 +175,7 @@ class dm : r
     bipod[] = {"bipod_03_F_oli"};
     magazines[] =
     {
-        LIST_11("20Rnd_762x51_Mag"),
+        LIST_10("20Rnd_762x51_Mag"),
         LIST_2("HandGrenade"),
         LIST_2("SmokeShell")
     };
@@ -191,7 +188,7 @@ class mmgg : ar
     scope[] = {"optic_MRCO"};
     magazines[] =
     {
-        LIST_3("150Rnd_93x64_Mag"),
+        LIST_2("150Rnd_93x64_Mag"),
         LIST_2("150Rnd_93x64_Mag"),
         "HandGrenade",
         "SmokeShell",
@@ -255,7 +252,7 @@ class matg : car
     secondaryMagazine[] = {"NLAW_F"};
     magazines[] +=
     {
-        LIST_3("NLAW_F")
+        LIST_2("NLAW_F")
     };
 };
 class matac : r
@@ -346,7 +343,7 @@ class samg : car
     secondaryMagazine[] = {"Titan_AA"};
     magazines[] +=
     {
-        LIST_3("Titan_AA")
+        LIST_2("Titan_AA")
     };
 };
 class samag : car
@@ -380,9 +377,9 @@ class sn : r
     sidearmMagazine[] = {"9Rnd_45ACP_Mag"};
     magazines[] =
     {
-        LIST_7("5Rnd_127x108_Mag"),
+        LIST_6("5Rnd_127x108_Mag"),
         LIST_2("HandGrenade"),
-        LIST_4("9Rnd_45ACP_Mag")
+        LIST_3("9Rnd_45ACP_Mag")
     };
 };
 class sp : g
