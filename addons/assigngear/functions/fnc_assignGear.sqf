@@ -122,7 +122,7 @@ private _sidearmMagazine = [];
                 if (count _primaryMagazine == 0) then {
                     if !(_primaryWeapon isEqualTo '') then {_unit addWeapon _primaryWeapon};
                 };
-                if (count _secondaryWeapon == 0) then {
+                if (count _secondaryMagazine == 0) then {
                     if !(_secondaryWeapon isEqualTo '') then {_unit addWeapon _secondaryWeapon};
                 };
                 if (count _sidearmMagazine == 0) then {
