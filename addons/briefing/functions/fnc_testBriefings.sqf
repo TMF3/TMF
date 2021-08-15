@@ -8,22 +8,12 @@ if (_briefingArray isEqualType "") then { _briefingArray = call compile _briefin
 
 _briefingArray pushBack ["Admin",[],"briefing\admin.sqf"];
 
-private _fnc_fileExists = {
-    disableSerialization;
-    private _ctrl = (findDisplay 0) ctrlCreate ["RscHTML", -1];
-    _ctrl htmlLoad _this;
-    private _exists = ctrlHTMLLoaded _ctrl;
-    ctrlDelete _ctrl;
-    _exists
-};
-
-
 private _units = playableUnits; // Check allplayable units have a briefing
 private _conditions = [];
 // Check briefings exist.
 {
     _x params ["_name", "_cond", "_scriptPath"];
-    if ((_scriptPath) call _fnc_fileExists) then {
+    if FILE_EXISTS(_scriptPath) then {
         //TODO: error check the briefing script for errors.
         //call compile preprocessFileLineNumbers _scriptPath;
     } else {

@@ -22,9 +22,11 @@ class CfgPatches
 #include "CfgScriptPaths.hpp"
 #include "CfgEventHandlers.hpp"
 #include "autotest.hpp"
-#include "CfgLoadouts.hpp"
 #include "CfgModules.hpp"
 #include "Cfg3DEN.hpp"
 #include "CfgFaceSets.hpp"
 #include "CfgRemoteExec.hpp"
 #include "display3DEN.hpp"
+
+#include "loadouts\macros.inc"
+#include "CfgLoadouts.hpp"

@@ -128,7 +128,7 @@ switch _mode do {
         _categoryCtrl ctrlAddEventHandler ["LBSelChanged", {
             params ['_control', '_index'];
             GVAR(vehicleGear_data) set [0, _control lbData _index];
-            ['filterChanged', [ _control, (uiNamespace getVariable [QGVAR(filter), FILTER_WEAPON]) ]] call FUNC(gui_vehicleGear_selector);
+            ['categoryChanged', [ _control ]] call FUNC(gui_vehicleGear_selector);
         }];
         _factionCtrl ctrlAddEventHandler ["LBSelChanged",   {
             params ['_control', '_index'];
@@ -140,11 +140,16 @@ switch _mode do {
         TRACE_1("Updated vehicleData", GVAR(vehicleGear_data));
         ['filterChanged', [ _ctrlGroup,FILTER_WEAPON ]] call FUNC(gui_vehicleGear_selector);
     };
+    case 'categoryChanged': {
+        _args params ["_control", "_category"];
+        private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
+        [_factionCtrl, _currentCategory] call FUNC(loadFactions);
+        _factionCtrl lbSetCurSel 0;
+    };
     case 'filterChanged': {
         _args params ["_control", "_newFilter"];
 
         uiNamespace setVariable [QGVAR(filter), _newFilter];
-        private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
         private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
         private _faction = _factionCtrl lbData (lbCurSel _factionCtrl);
         private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) then [
