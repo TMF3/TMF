@@ -7,10 +7,10 @@ class GVAR(ambientVehicles): Module_F
     category = "Teamwork";
 
     function = QFUNC(ambientVehicleInit);
-    functionPriority = 1;
+    functionPriority = 10;
     isGlobal = false;
     isTriggerActivated = true;
-    isDisposable = true;
+    isDisposable = false;
     is3DEN = true;
 
     class Attributes: AttributesBase {
@@ -54,7 +54,7 @@ class GVAR(ambientVehicles): Module_F
             tooltip = "Code executed on every vehicle created";
             defaultValue = "'params [""_vehicle""];'";
             expression = "_this setVariable ['%s',compile _value,true];";
-            control = "cba_common_EditCodeMulti5";
+            control = "EditCodeMulti5";
         };
 
         class ModuleDescription: ModuleDescription{};
@@ -62,7 +62,7 @@ class GVAR(ambientVehicles): Module_F
 
     class ModuleDescription: ModuleDescription
     {
-        description = "Populates roads with parked vehicles.<br/>To use sync vehicles and a TMF Area module.";
+        description = "Populates roads with parked vehicles and objects.<br/>To use sync vehicles/objects and a TMF Area module.<br/>When used with a repeatable trigger, vehicles will be despawned if they are more than 500 meters from any player when the trigger is deactivated.";
         sync[] = {"AnyVehicle", QEGVAR(ai,area)};
 
         class EGVAR(ai,area)

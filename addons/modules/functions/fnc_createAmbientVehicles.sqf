@@ -1,6 +1,6 @@
 #include "../script_component.hpp"
 /* ----------------------------------------------------------------------------
-Internal Function: TMF_ambient_fnc_createAmbientVehicles
+Internal Function: TMF_modules_fnc_createAmbientVehicles
 
 Description:
     Spawns empty vehicles close to roads in an area,
@@ -32,40 +32,40 @@ TRACE_4("Creating ambient vehicles",_area,_vehicles,_vehicleCount,_code);
 private _createdVehicles = [];
 
 #ifdef DEBUG_MODE_FULL
-// Initialize or cleanup debug marks
-if (isNil QGVAR(vehicleDebugMarkers)) then {
-    GVAR(vehicleDebugMarkers) = 0;
-} else {
-    {
-        deleteMarker _x;
-    } forEach (allMapMarkers select {(_x find QGVAR(roadDebugMark_)) == 0});
-};
-
-private _fnc_createDebugMarker = {
-    params [["_road",objNull]];
-
-    if (isNull _road) exitWith {};
-
-    private _childSegments = roadsConnectedTo _road;
-    private _txt = format [QGVAR(roadDebugMark_%1),GVAR(vehicleDebugMarkers)];
-    private _debugMkr = createMarker [_txt, getPos _road];
-    _debugMkr setMarkerShape "ICON";
-    _debugMkr setMarkerType "hd_dot";
-    _debugMkr setMarkerText format ["%1",count _childSegments];
-    switch (count _childSegments) do {
-        case 0: { _debugMkr setMarkerColor "ColorBlue";};
-        case 1: {_debugMkr setMarkerColor "ColorRed";};
-        case 2: {_debugMkr setMarkerColor "ColorGreen";};
-        case 3: {_debugMkr setMarkerColor "ColorYellow";};
-        case 4: {_debugMkr setMarkerColor "ColorOrange";};
-        case 5: {_debugMkr setMarkerColor "ColorPink";};
-        case 6: {_debugMkr setMarkerColor "ColorWhite";};
-        case 7: {_debugMkr setMarkerColor "ColorBrown";};
-        default {};
+    // Initialize or cleanup debug marks
+    if (isNil QGVAR(vehicleDebugMarkers)) then {
+        GVAR(vehicleDebugMarkers) = 0;
+    } else {
+        {
+            deleteMarker _x;
+        } forEach (allMapMarkers select {(_x find QGVAR(roadDebugMark_)) == 0});
     };
 
-    INC(GVAR(vehicleDebugMarkers));
-};
+    private _fnc_createDebugMarker = {
+        params [["_road",objNull]];
+
+        if (isNull _road) exitWith {};
+
+        private _childSegments = roadsConnectedTo _road;
+        private _txt = format [QGVAR(roadDebugMark_%1),GVAR(vehicleDebugMarkers)];
+        private _debugMkr = createMarker [_txt, getPos _road];
+        _debugMkr setMarkerShape "ICON";
+        _debugMkr setMarkerType "hd_dot";
+        _debugMkr setMarkerText format ["%1",count _childSegments];
+        switch (count _childSegments) do {
+            case 0: { _debugMkr setMarkerColor "ColorBlue";};
+            case 1: {_debugMkr setMarkerColor "ColorRed";};
+            case 2: {_debugMkr setMarkerColor "ColorGreen";};
+            case 3: {_debugMkr setMarkerColor "ColorYellow";};
+            case 4: {_debugMkr setMarkerColor "ColorOrange";};
+            case 5: {_debugMkr setMarkerColor "ColorPink";};
+            case 6: {_debugMkr setMarkerColor "ColorWhite";};
+            case 7: {_debugMkr setMarkerColor "ColorBrown";};
+            default {};
+        };
+
+        INC(GVAR(vehicleDebugMarkers));
+    };
 #endif
 
 private _fnc_findRoadConnections = {
@@ -109,8 +109,12 @@ private _fnc_isNearIntersection = {
 // Code start here
 _area params ["_center", "_sizeX", "_sizeY", "_dir", "_isRect", "_height"];
 
-private _size = _sizeX max _sizeY;
-private _roadPosArray = _center nearRoads _size;
+private _size = if _isRect then {
+    sqrt ((_sizeX ^ 2) + (_sizeY ^ 2))
+} else {
+    _sizeX max _sizeY
+};
+private _roadPosArray = (_center nearRoads _size) inAreaArray _area;
 _roadPosArray = _roadPosArray select {count (roadsConnectedTo _x) == 2};
 
 _roadPosArray = _roadPosArray call BIS_fnc_arrayShuffle;
@@ -133,6 +137,14 @@ for "_i" from 0 to _vehicleCount do {
         private _newPos = _roadPos;
         private _direction = _road getDir _connectedRoad;
         private _vehicle = selectRandom _vehicles;
+
+        // Randomize facing direction
+        if (random 2 > 1) then {
+            ADD(_direction,180);
+            if (_direction > 360) then {
+                SUB(_direction,360);
+            };
+        };
 
         //test either side of the road for more space.
         private _direction2 = _direction + 90;

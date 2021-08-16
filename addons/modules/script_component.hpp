@@ -1,4 +1,4 @@
-#define COMPONENT ambient
+#define COMPONENT modules
 
 //#define DEBUG_MODE_FULL
 

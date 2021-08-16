@@ -4,7 +4,7 @@ class CfgPatches
 {
     class ADDON
     {
-        name = "TMF: Ambient";
+        name = "TMF: Modules";
         author = "TMF Team";
         url = "http://www.teamonetactical.com";
         units[] = {
