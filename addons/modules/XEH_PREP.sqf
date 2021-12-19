@@ -1,0 +1,2 @@
+PREP(createAmbientVehicles);
+PREP(ambientVehicleInit);
