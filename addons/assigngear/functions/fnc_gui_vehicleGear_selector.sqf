@@ -8,219 +8,275 @@
  */
 #include "\a3\3den\UI\dikCodes.inc"
 #include "\a3\3DEN\UI\resincl.inc"
+
 disableSerialization;
-params ["_mode", "_args"];
-TRACE_2("UI", _mode, _args);
-private _currentFilter = (uiNamespace getVariable [QGVAR(filter), FILTER_WEAPON]);
-private _data = (missionNamespace getVariable [QGVAR(vehicleGear_data), [ '', '', [ [],[],[] ] ]]);
-_data params [ ['_currentCategory', '', ['']], ['_currentFaction', '', ['']], ['_cache', [ [], [], [] ], [[]], 3] ];
-private _ctrlGroup = ctrlParentControlsGroup (_args # 0);
-private _fnc_getFactionItems = {
-    params ["_cfg", "_filter"];
-    private _output = [];
-    {
-        if(_filter == FILTER_WEAPON) then {
-            _output append ((_x >> 'primaryWeapon') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'magazines') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'scope') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'bipod') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'attachment') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'silencer') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'secondaryWeapon') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'secondaryAttachments') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'sidearmWeapon') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'sidearmAttachments') call BIS_fnc_getCfgDataArray);
-        };
-        if(_filter == FILTER_GEAR) then {
-            _output append ((_x >> 'uniform') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'vest') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'backpack') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'headgear') call BIS_fnc_getCfgDataArray);
-        };
-        if(_filter == FILTER_ITEMS) then {
-            _output append ((_x >> 'linkedItems') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'items') call BIS_fnc_getCfgDataArray);
-            _output append ((_x >> 'backpackItems') call BIS_fnc_getCfgDataArray);
-        };
-    } forEach ("true" configClasses _cfg);
-    _output = _output arrayIntersect _output;
-    _output apply { [_x, 0] };
+
+TRACE_1("Vehicle Gear Selector run with",_this);
+
+params [
+    ["_ctrlGroup", controlNull, [controlNull]],
+    ["_mode", '', ['']],
+    "_args"
+];
+
+ASSERT_FALSE(isNull _ctrlGroup,"Failed loading ammobox UI");
+private _ctrlCategory = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
+private _ctrlFaction = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
+private _ctrlListSort = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LISTSORT;
+private _ctrlList = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
+private _ctrlFilter = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FILTER;
+private _gearHash = _ctrlList getVariable QGVAR(gear);
+
+private _fnc_getItemCfg = {
+    _this params ["_class", "_type", "_filter"];
+    private _itemCfg = [_class] call CBA_fnc_getItemConfig;
+
+    if (isNull _itemCfg) then {
+        ERROR_1("Vehicle Gear tried to load class %1, but it doesn't exist",_class);
+    };
+
+    private _cfgSrcMod = configSourceMod _itemCfg;
+    private _logo = "";
+    private _name = "";
+    if (_cfgSrcMod != "") then {
+        private _modParams = modParams [_cfgSrcMod, ['logoSmall', 'name']];
+        _logo = _modParams # 0;
+        _name = _modParams # 1;
+    };
+
+    // Modifies original array
+    _this pushBack getText (_itemCfg >> "displayName");
+    _this pushBack getText (_itemCfg >> "picture");
+    _this pushBack _logo;
+    _this pushBack _name;
+    _this
 };
 
+private _fnc_getFactionItems = {
+    params [
+        ["_cfg", configNull, [configNull]],
+        ["_filter", 0, [0]]
+    ];
 
+    // Get cached data from namespace
+    private _namespace = [] call FUNC(initNamespace);
+    private _namespaceVarName = format ["ammobox_%1", _faction];
+    private _cachedData = _namespace getVariable _namespaceVarName;
+    if !(isNil "_cachedData") exitWith {
+        if (_filter != 0) then {
+            _cachedData select {(_x # 2) == _filter}
+        } else {
+            _cachedData
+        };
+    };
+
+    private _output = [];
+    {
+        #define GET(t,f) ((getArray (_x >> t)) apply {[_x,t,f]})
+        _output append GET('primaryWeapon',FILTER_WEAPON);
+        _output append GET('magazines',FILTER_WEAPON);
+        _output append GET('scope',FILTER_WEAPON);
+        _output append GET('bipod',FILTER_WEAPON);
+        _output append GET('attachment',FILTER_WEAPON);
+        _output append GET('silencer',FILTER_WEAPON);
+        _output append GET('secondaryWeapon',FILTER_WEAPON);
+        _output append GET('secondaryAttachments',FILTER_WEAPON);
+        _output append GET('sidearmWeapon',FILTER_WEAPON);
+        _output append GET('sidearmAttachments',FILTER_WEAPON);
+
+        _output append GET('uniform',FILTER_GEAR);
+        _output append GET('vest',FILTER_GEAR);
+        _output append GET('backpack',FILTER_GEAR);
+        _output append GET('headgear',FILTER_GEAR);
+        _output append GET('goggles',FILTER_GEAR);
+
+        _output append GET('linkedItems',FILTER_ITEMS);
+        _output append GET('items',FILTER_ITEMS);
+        _output append GET('hmd',FILTER_ITEMS);
+        _output append GET('radios',FILTER_ITEMS);
+        _output append GET('backpackItems',FILTER_ITEMS);
+        #undef GET
+    } forEach ("true" configClasses _cfg);
+    UNIQUE(_output);
+    _output = _output select {!((toLower (_x # 0)) in ["default", "", "none"])};
+
+    {
+        _x call _fnc_getItemCfg;
+    } forEach _output;
+
+    [_output, 1] call CBA_fnc_sortNestedArray;
+
+    TRACE_2("Cached vehiclegear data to namespace",_namespaceVarName,_output);
+    _namespace setVariable [_namespaceVarName, _output];
+    if (_filter != 0) then {
+        _output select {(_x # 2) == _filter}
+    } else {
+        _output
+    };
+};
 
 switch _mode do {
     case 'onLoad': {
-        LOG("ON LOAD");
-        uiNamespace setVariable[QGVAR(vehicleGear_control), _args # 0];
-        uiNamespace setVariable [QGVAR(filter), FILTER_WEAPON];
+        if (isNil "_gearHash") then {
+            // Gear hash not initialized
+            _ctrlList setVariable [QGVAR(gear), createHashMap];
+        };
 
-        GVAR(vehicleGear_shift) = false;
-        GVAR(vehicleGear_alt) = false;
-        GVAR(vehicleGear_ctrl) = false;
-
-        (_ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CLEAR) ctrlAddEventHandler ["buttonClick", {
-            ['clear', _this ] call FUNC(gui_vehicleGear_selector);
-        }];
-
-        // Add -/+ evenhandlers
         private _addButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_ADD;
         private _subButton = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_SUBTRACT;
+
+        _ctrlFilter lbSetCurSel (uiNamespace getVariable [QGVAR(filter), FILTER_CONTENTS]);
+        _ctrlListSort lnbAddRow ["Item", "Type", "", "Mod"];
+        _ctrlListSort lnbSetData [[0, 2], "SortByValue"];
+        [
+            _ctrlListSort,
+            _ctrlList,
+            [
+                IDX_VG_NAME,
+                IDX_VG_TYPE,
+                IDX_VG_VALUE,
+                IDX_VG_MOD
+            ],
+            IDC_VEHICLEGEAR_LISTSORT + 1
+        ] call BIS_fnc_initListNBoxSorting;
+
+        // Add -/+ evenhandlers
         _addButton ctrlAddEventHandler ["buttonClick", {
-            ['modifyRow', [(_this # 0), 1] ] call FUNC(gui_vehicleGear_selector);
+            params ["_ctrlButton"];
+            [ctrlParentControlsGroup _ctrlButton, 'modifyRow', [1] ] call FUNC(gui_vehicleGear_selector);
         }];
         _subButton ctrlAddEventHandler ["buttonClick", {
-            ['modifyRow', [(_this # 0), -1] ] call FUNC(gui_vehicleGear_selector);
+            params ["_ctrlButton"];
+            [ctrlParentControlsGroup _ctrlButton, 'modifyRow', [-1] ] call FUNC(gui_vehicleGear_selector);
         }];
 
         // We can only use the buttonClick event on the buttons, so this is a workaround for not getting the state of the modifier keys
-        GVAR(vehicleGear_keyDown) = _ctrlGroup ctrlAddEventHandler ["KeyDown", {
-            params ["_display", "_key", "_shift", "_ctrl", "_alt"];
+        _ctrlGroup ctrlAddEventHandler ["KeyDown", {
+            params ["_control", "_key", "_shift", "_ctrl", "_alt"];
             switch _key do {
                 case DIK_LSHIFT: {
-                    GVAR(vehicleGear_shift) = true;
+                    _control setVariable [QGVAR(shift), true];
                 };
                 case DIK_LCONTROL: {
-                    GVAR(vehicleGear_ctrl) = true;
+                    _control setVariable [QGVAR(ctrl), true];
                 };
                 case DIK_LALT: {
-                    GVAR(vehicleGear_alt) = true;
+                    _control setVariable [QGVAR(alt), true];
                 };
             };
         }];
-        GVAR(vehicleGear_keyUp) = _ctrlGroup ctrlAddEventHandler ["KeyUp", {
-            params ["_display", "_key", "_shift", "_ctrl", "_alt"];
+        _ctrlGroup ctrlAddEventHandler ["KeyUp", {
+            params ["_control", "_key", "_shift", "_ctrl", "_alt"];
             switch _key do {
                 case DIK_LSHIFT: {
-                    GVAR(vehicleGear_shift) = false;
+                    _control setVariable [QGVAR(shift), false];
                 };
                 case DIK_LCONTROL: {
-                    GVAR(vehicleGear_ctrl) = false;
+                    _control setVariable [QGVAR(ctrl), false];
                 };
                 case DIK_LALT: {
-                    GVAR(vehicleGear_alt) = false;
+                    _control setVariable [QGVAR(alt), false];
                 };
             };
         }];
-        // fill them up.
-        private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
-        private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
-        [_categoryCtrl] call FUNC(loadFactionCategories);
-        for [{ _i = 0 }, { _i < (lbSize  _categoryCtrl) }, { _i = _i + 1 }] do {
-            private _cat = _categoryCtrl lbData _i;
-            if(_cat == _currentCategory) exitWith {
-                _categoryCtrl lbSetCurSel _i;
-            };
-        };
-        [_factionCtrl, _currentCategory] call FUNC(loadFactions);
-        for [{ _i = 0 }, { _i < (lbSize  _factionCtrl) }, { _i = _i + 1 }] do {
-            private _cat = _factionCtrl lbData _i;
-            if(_cat == _currentFaction) exitWith {
-                _factionCtrl lbSetCurSel _i;
-            };
-        };
-    };
-    case 'attributeLoaded': {
-        private _categoryCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_CATEGORY;
-        private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
 
-        // We add the selection eventhandler after we loaded the data from EDEN
-        _categoryCtrl ctrlAddEventHandler ["LBSelChanged", {
-            params ['_control', '_index'];
-            GVAR(vehicleGear_data) set [0, _control lbData _index];
-            ['categoryChanged', [ _control ]] call FUNC(gui_vehicleGear_selector);
-        }];
-        _factionCtrl ctrlAddEventHandler ["LBSelChanged",   {
-            params ['_control', '_index'];
-            GVAR(vehicleGear_data) set [1, _control lbData _index];
-            ['filterChanged', [ _control, (uiNamespace getVariable [QGVAR(filter), FILTER_WEAPON]) ]] call FUNC(gui_vehicleGear_selector);
-        }];
-        GVAR(vehicleGear_data) set [0, _categoryCtrl lbData (lbCurSel _categoryCtrl)];
-        GVAR(vehicleGear_data) set [1, _factionCtrl lbData (lbCurSel _factionCtrl)];
-        TRACE_1("Updated vehicleData", GVAR(vehicleGear_data));
-        ['filterChanged', [ _ctrlGroup,FILTER_WEAPON ]] call FUNC(gui_vehicleGear_selector);
+        [_ctrlCategory] call FUNC(loadFactionCategories);
+        TRACE_2("Onload finished, created event handlers for",_addButton,_subButton);
     };
+
     case 'categoryChanged': {
-        _args params ["_control", "_category"];
-        private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
-        [_factionCtrl, _currentCategory] call FUNC(loadFactions);
-        _factionCtrl lbSetCurSel 0;
+        _args params ["_category"];
+        TRACE_2("Ammobox Category Changed",_ctrlCategory,_category);
+        [_ctrlFaction, _category] call FUNC(loadFactions);
+        _ctrlFaction lbSetCurSel 0;
     };
+
     case 'filterChanged': {
-        _args params ["_control", "_newFilter"];
+        _args params [["_newFilter", FILTER_CONTENTS, [0]]];
+
+        lnbClear _ctrlList;
 
         uiNamespace setVariable [QGVAR(filter), _newFilter];
-        private _factionCtrl = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_FACTION;
-        private _faction = _factionCtrl lbData (lbCurSel _factionCtrl);
+        private _faction = _ctrlFaction lbData (lbCurSel _ctrlFaction);
         private _cfg = if (isClass (missionConfigFile >> "CfgLoadouts" >> _faction)) then [
             {missionConfigFile},
             {configFile}
         ];
 
         _cfg = (_cfg >> "CfgLoadouts" >> _faction);
-        private _ctrlList = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
-        private _rows = [_cfg, _newFilter] call _fnc_getFactionItems;
-        private _currentCachePage = (_cache # _newFilter);
+        private _factionItems = [_cfg, _newFilter] call _fnc_getFactionItems;
 
+        // Handling items that may have gotten deleted from the loadout, or when loadout changes without clearing
+        if (_newFilter isEqualTo FILTER_CONTENTS) then {
+            _factionItems = _factionItems select {(toLower (_x # 0)) in _gearHash};
+            {
+                private _class = _x;
+                private _idx = _factionItems findIf {(_x # 0) == _class};
+                if (_idx == -1) then {
+                    _factionItems pushBack ([_class, "notInFaction", 0] call _fnc_getItemCfg);
+                };
+            } forEach _gearHash;
+        };
 
-        lnbClear _ctrlList;
+        [_factionItems, 1] call CBA_fnc_sortNestedArray;
+
+        private _addedClasses = [];
         {
-            _x params ["_className", "_value"];
-            private _index = _currentCachePage findIf { (_x # 0) == _className };
-            if(_index >= 0) then {
-                _x set [1, (_currentCachePage # _index) # 1];
-                _value = (_currentCachePage # _index) # 1;
-            };
-            private _itemCfg = configNull;
-            switch true do {
-                case (isClass (configFile >> "CfgWeapons" >> _className)): { _itemCfg = (configFile >> "CfgWeapons") };
-                case (isClass (configFile >> "CfgVehicles" >> _className)): { _itemCfg = (configFile >> "CfgVehicles") };
-                case (isClass (configFile >> "CfgMagazines" >> _className)): { _itemCfg = (configFile >> "CfgMagazines") };
-            };
-            private _displayName = (_itemCfg >> _className >> "displayName") call BIS_fnc_getCfgData;
-            private _rowIndex = _ctrlList lnbAddRow ["",_displayName, str _value,""];
-            _ctrlList lnbSetData [[_rowIndex, 0], _className];
-            _ctrlList lnbSetValue [[_rowIndex, 0], _value];
-            _ctrlList lnbSetPicture [[_rowIndex, 0], (_itemCfg >> _className >> "picture") call BIS_fnc_getCfgData];
-        } forEach _rows;
+            _x params ["_className", "_type", "_filter", "_displayName", "_picture", "_modLogo", "_modName"];
 
-        _cache set [_newFilter, _rows];
+            if (toLower _className in _addedClasses) then {
+                LOG_1("Vehicle gear already added row for %1, skipping",_className);
+            } else {
+                private _value = _gearHash getOrDefault [toLower _className, 0];
+
+                private _i = _ctrlList lnbAddRow ["", _displayName, _type, str _value, ""];
+                _ctrlList lnbSetPicture [[_i, IDX_VG_DATA], _picture];
+                _ctrlList lnbSetTooltip [[_i, IDX_VG_NAME], _className];
+                _ctrlList lnbSetData [[_i, IDX_VG_NAME], _className];
+                _ctrlList lnbSetData [[_i, IDX_VG_TYPE], _type];
+                _ctrlList lnbSetValue [[_i, IDX_VG_VALUE], _value];
+                _ctrlList lnbSetPicture [[_i, IDX_VG_MOD], _modLogo];
+                _ctrlList lnbSetText [[_i, IDX_VG_MOD], _modName];
+                _ctrlList lnbSetColor [[_i, IDX_VG_MOD], [0,0,0,0]]; // Transparent text for sorting
+                _addedClasses pushBack toLower _className;
+            };
+        } forEach _factionItems;
     };
     case 'modifyRow': {
-        _args params ['_control', '_baseAmount'];
+        _args params ['_baseAmount'];
+
         private _amount = switch true do {
-            case GVAR(vehicleGear_shift) : {
-                5 * _baseAmount
-            };
-            case GVAR(vehicleGear_ctrl) : {
-                10 * _baseAmount
-            };
-            case GVAR(vehicleGear_alt) : {
-                20 * _baseAmount
-            };
-            default {
-                _baseAmount
-            };
+            case (_ctrlGroup getVariable [QGVAR(shift), false]): {5 * _baseAmount};
+            case (_ctrlGroup getVariable [QGVAR(ctrl), false]): {10 * _baseAmount};
+            case (_ctrlGroup getVariable [QGVAR(alt), false]): {20 * _baseAmount};
+            default {_baseAmount};
         };
-        private _ctrlList = _ctrlGroup controlsGroupCtrl IDC_VEHICLEGEAR_LIST;
         private _rowIndex = lnbCurSelRow _ctrlList;
-        private _value = ((_ctrlList lnbValue [_rowIndex, 0]) + _amount) max 0; 
+        private _class = _ctrlList lnbData [_rowIndex, IDX_VG_NAME];
+        private _value = (_ctrlList lnbValue [_rowIndex, IDX_VG_VALUE]) + _amount;
 
-        _ctrlList lnbSetValue  [[_rowIndex, 0], _value];
-        _ctrlList lnbSetText [[_rowIndex, 2], str _value];
+        _gearHash set [
+            toLower _class,
+            _value max 0
+        ];
 
-        private _className = _ctrlList lnbData [_rowIndex, 0];
+        _value = _gearHash get toLower _class;
+        _ctrlList lnbSetValue [[_rowIndex, IDX_VG_VALUE], _value];
+        _ctrlList lnbSetText [[_rowIndex, IDX_VG_VALUE], str _value];
 
-        private _currentCachePage = (_cache # _currentFilter);
-        private _itemIndex = _currentCachePage findIf { (_x # 0) == _className };
-        private _item = _currentCachePage # _itemIndex;
-        _item set [1, _value];
+        TRACE_3("Ammobox modified row",_class,_value,_gearHash);
     };
 
     case 'clear': {
-        _cache set [0, []];
-        _cache set [1, []];
-        _cache set [2, []];
-        ['filterChanged', [ _ctrlGroup, _currentFilter ]] call FUNC(gui_vehicleGear_selector);
+        _ctrlList setVariable [QGVAR(gear), createHashMap];
+        [
+            _ctrlGroup,
+            'filterChanged',
+            uiNamespace getVariable [QGVAR(filter), FILTER_CONTENTS]
+        ] call FUNC(gui_vehicleGear_selector);
+    };
+
+    default {
+        ERROR_1("Invalid ammobox UI selector mode: %1",_mode);
     };
 };

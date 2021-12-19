@@ -14,7 +14,12 @@
  */
 
 disableSerialization;
-params ["_control",["_activeFactionCategory",""]];
+params [
+    "_control",
+    ["_activeFactionCategory","",[""]]
+];
+
+TRACE_2("Loading factions to ListBox",_control,_activeFactionCategory);
 
 // Clear control
 lbClear _control;
@@ -22,8 +27,6 @@ lbClear _control;
 if (_activeFactionCategory == "") then {
     _activeFactionCategory = GVAR(currentFactionCategory);
 };
-
-
 
 // Get the selected unit
 private _selected = get3DENSelected "object";
@@ -35,10 +38,6 @@ if (count _selected > 0) then {
 _activeFaction = toLower _activeFaction;
 
 private _factions = [];
-
-
-
-
 private _found = false;
 
 if (_activeFactionCategory == "mission") then {

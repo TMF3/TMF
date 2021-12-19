@@ -30,9 +30,21 @@
 #define IDC_RSCATTRIBUTERETROACTIVE_RSCATTRIBUTERETROACTIVE 835403
 
 /* AssignGear Vehicle */
+#define IDX_VG_DATA 0
+#define IDX_VG_NAME 1
+#define IDX_VG_TYPE 2
+#define IDX_VG_VALUE 3
+#define IDX_VG_MOD 4
+
+#define FILTER_CONTENTS 0
+#define FILTER_WEAPON 1
+#define FILTER_GEAR 2
+#define FILTER_ITEMS 3
+
 #define IDC_VEHICLEGEAR_CATEGORY 666434
 #define IDC_VEHICLEGEAR_FACTION 666343
 #define IDC_VEHICLEGEAR_FILTER 666964
+#define IDC_VEHICLEGEAR_LISTSORT 666304
 #define IDC_VEHICLEGEAR_LIST 666344
 #define IDC_VEHICLEGEAR_CLEAR 666656
 #define IDC_VEHICLEGEAR_ADD 666777
@@ -61,7 +73,3 @@
 #define LIST_20(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 
 #define DEF_LOADOUTS ["baseMan","r","g","car","m","smg","ftl","sl","co","fac","ar","aar","rat","dm","mmgg","mmgac","mmgag","hmgg","hmgac","matg","matac","matag","hatg","hatac","hatag","mtrg","mtrac","mtrag","samg","samag","sn","sp","vc","vd","vg","pp","pcc","pc","eng","engm","UAV","jp"]
-
-#define FILTER_WEAPON 0
-#define FILTER_GEAR 1
-#define FILTER_ITEMS 2
