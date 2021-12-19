@@ -13,30 +13,38 @@ Parameters:
 Author:
     Freddo
 ---------------------------------------------------------------------------- */
-params ["_logic","_units","_activated"];
+params [
+    ["_logic", objNull],
+    ["_units", []],
+    ["_activated", false]
+];
 
-if (_logic call BIS_fnc_isCuratorEditable) then {
-    waitUntil {
-        (!isNil {_logic getVariable QGVARMAIN(updated)} || isNull _logic) &&
-        {!isNil {_logic getVariable QGVARMAIN(Faction)}} &&
-        {!isNil {_logic getVariable QGVARMAIN(Loadout)}} &&
-        {!isNil {_logic getVariable QGVARMAIN(Retroactive)}}
+TRACE_3("Executing AIGear Module Function",_logic,_units,_activated);
+
+[{
+    isNull _this || {
+        _this getVariable [QGVARMAIN(updated), false] &&
+        {!isNil {_this getVariable QGVARMAIN(Faction)}} &&
+        {!isNil {_this getVariable QGVARMAIN(Loadout)}} &&
+        {!isNil {_this getVariable QGVARMAIN(Retroactive)}}
+    }
+}, {
+    if (isNull _this) exitWith {
+        LOG("AIGear Module Deleted before applied");
     };
-};
-if (isNull _logic) exitWith {};
 
-private _faction = _logic getVariable QGVARMAIN(Faction);
-private _loadout = _logic getVariable QGVARMAIN(Loadout);
-private _retroactive = _logic getVariable QGVARMAIN(Retroactive);
+    private _faction = _this getVariable QGVARMAIN(Faction);
+    private _loadout = _this getVariable QGVARMAIN(Loadout);
+    private _retroactive = _this getVariable QGVARMAIN(Retroactive);
 
-TRACE_3("Executed AIGear module",_faction,_loadout,_retroactive);
+    TRACE_3("Executed AIGear module",_faction,_loadout,_retroactive);
 
-[
-    _faction,
-    _loadout,
-    _retroactive
-] remoteExecCall [QFUNC(initAIGear),0,true];
+    [
+        _faction,
+        _loadout,
+        _retroactive
+    ] remoteExecCall [QFUNC(initAIGear),0,true];
 
-deleteVehicle _logic;
+    deleteVehicle _this;
 
-nil
+}, _logic] call CBA_fnc_waitUntilAndExecute;
