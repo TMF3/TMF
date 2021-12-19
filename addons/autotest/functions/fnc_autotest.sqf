@@ -13,6 +13,9 @@ private _output = [];
 
     private _outputTest = call compile _code;
     if (_outputTest isEqualType []) then {
+        if (GVAR(outputToRPT) && {_output isNotEqualTo []}) then {
+            INFO(str _outputTest);
+        };
         _output append _outputTest;
         TRACE_2("Appending to output",_output,_outputTest);
     };
