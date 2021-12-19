@@ -7,13 +7,13 @@ class display3DEN
         {
             class Items
             {
-                class TMF_Folder {
-                    items[] += {"TMF_AutoTest"};
+                class GVARMAIN(Folder) {
+                    items[] += {ADDON};
                 };
-                class TMF_AutoTest
+                class ADDON
                 {
                     text = "TMF Autotest";
-                    action = "edit3DENMissionAttributes 'TMF_AutoTestAttributes';";
+                    action = QUOTE(edit3DENMissionAttributes QQGVAR(Attributes););
                     //picture = "\x\tmf\addons\common\UI\icon_gear_ca";
                 };
             };
