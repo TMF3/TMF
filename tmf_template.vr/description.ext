@@ -51,9 +51,7 @@ class CfgLoadouts
 class CfgDebriefingSections
 {
     #include "\x\tmf\addons\adminmenu\debriefAdminLog.inc"
-    class acex_killTracker
-    {
-        title = "ACEX Killed Events";
-        variable = "acex_killTracker_outputText";
-    };
+	#if __has_include("\z\ace\addons\killtracker\killtracker.inc")
+		#include "\z\ace\addons\killtracker\killtracker.inc"
+	#endif
 };
