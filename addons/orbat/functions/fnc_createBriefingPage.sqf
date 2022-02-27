@@ -261,7 +261,21 @@ _fnc_processOrbatTrackerBriefingRawData = {
                         };
                     };
 
-                    private _unitText = format["      %3<img image='%1' height='16'></img> %2 (", _unitImg, name _x, _indent];
+                    //Add role description if present, and account for CBA role description format
+                    private _unitRole = roleDescription _x;
+                    if (_unitRole regexFind ["@"] isNotEqualTo []) then {
+                        _unitRole = (_unitRole splitString "@") select 0;
+                    } else {
+                        if (isNil _unitRole || {_unitRole isEqualTo ""}) then {
+                            _unitRole = "Member";
+                            if (_x == leader group _x) then {_unitRole = "Leader";};
+                        };
+                    };
+                    if (_unitRole isNotEqualTo "") then {
+                        _unitRole = _unitRole + " - ";
+                    };
+
+                    private _unitText = format["      %4<img image='%1' height='16'></img> %2%3 (", _unitImg, _unitRole, name _x, _indent];
 
                     if (primaryWeapon _x != "") then {
                         (primaryWeaponItems _x) params ["_muzzel", "", "_optic", "_bipod"];
