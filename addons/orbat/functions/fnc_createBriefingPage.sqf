@@ -261,21 +261,21 @@ _fnc_processOrbatTrackerBriefingRawData = {
                         };
                     };
 
-                    private _memberRole = "";
-                    private _memberPrep01 = roleDescription _x;
-                    if (["@",_memberPrep01] call BIS_fnc_inString) then {
-                        _memberRole = (_memberPrep01 splitString "@") select 0;
+                    //Add role description if present, and account for CBA role description format
+                    private _unitRole = roleDescription _x;
+                    if (_unitRole regexFind ["@"] isNotEqualTo []) then {
+                        _unitRole = (_unitRole splitString "@") select 0;
                     } else {
-                        if (isNil _memberRole || {_memberRole isEqualTo ""}) then {
-                            _memberRole = "Member";
-                            if (_x == leader group _x) then {_memberRole = "Leader";};
+                        if (isNil _unitRole || {_unitRole isEqualTo ""}) then {
+                            _unitRole = "Member";
+                            if (_x == leader group _x) then {_unitRole = "Leader";};
                         };
                     };
-                    if (_memberRole isNotEqualTo "") then {
-                        _memberRole = _memberRole + " - ";
+                    if (_unitRole isNotEqualTo "") then {
+                        _unitRole = _unitRole + " - ";
                     };
 
-                    private _unitText = format["      %4<img image='%1' height='16'></img> %2%3 (", _unitImg, _memberRole, name _x, _indent];
+                    private _unitText = format["      %4<img image='%1' height='16'></img> %2%3 (", _unitImg, _unitRole, name _x, _indent];
 
                     if (primaryWeapon _x != "") then {
                         (primaryWeaponItems _x) params ["_muzzel", "", "_optic", "_bipod"];
