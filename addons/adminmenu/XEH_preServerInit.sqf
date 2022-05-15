@@ -3,7 +3,7 @@
 [ // Emit new log messages to admins
     QGVAR(serverLog),
     {
-        private _targets = (allPlayers select {[_x] call FUNC(isAuthorized)});
+        private _targets = (allPlayers select {[_x, "logs"] call FUNC(isAuthorized)});
         if (isServer && !hasInterface) then {
             GVAR(logEntries) pushBack _this;
             GVAR(logEntries) sort true;

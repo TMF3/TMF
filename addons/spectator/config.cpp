@@ -24,6 +24,12 @@ class CfgRespawnTemplates
         onPlayerKilled = "";
     };
 };
+
+class EGVAR(adminMenu,authorized_players) {
+    acreBroadcast = 1; // Can broadcast to everyone within a chat channel
+    acreGroupChat = 1; // Can broadcast to admins, spectators and curators
+};
+
 #include "autotest.hpp"
 #include "CfgEventHandlers.hpp"
 #include "display3DEN.hpp"
