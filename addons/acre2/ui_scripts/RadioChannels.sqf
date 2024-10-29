@@ -2,7 +2,7 @@
 
 params ["_mode",["_params",[]]];
 
-#include "\a3\3den\UI\dikCodes.inc"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
 // with uiNamespace do {     set3DENMissionAttributes [["teamworkMissionAcreAttributes","TMF_AcreSettings",str RadioChannelArray]];    };
 // with uiNamespace do {     set3DENMissionAttributes [["teamworkMissionAcreAttributes","TMF_AcreSettings","[]"]];    };

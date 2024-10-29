@@ -1,6 +1,6 @@
 #include "\x\tmf\addons\common\script_component.hpp"
 
-#include "XEH_PREP.sqf"
+#include "XEH_PREP.hpp"
 #include "initSettings.sqf"
 
 if is3DEN call {

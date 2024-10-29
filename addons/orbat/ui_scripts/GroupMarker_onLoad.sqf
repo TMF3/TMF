@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\orbat\script_component.hpp"
 private _ctrlGroup = _params select 0;
 GroupMarker_ctrlGroup = _ctrlGroup;
 TRACE_1("GroupMarker onLoad",_ctrlGroup);

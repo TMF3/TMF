@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-#include "XEH_PREP.sqf"
+#include "XEH_PREP.hpp"
 
 // Store DLC hash
 private _dlcClasses = "isNumber (_x >> 'appID')" configClasses (configFile >> "CfgMods");

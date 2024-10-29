@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\orbat\script_component.hpp"
 private _ctrlGroup = uiNameSpace getVariable "UnitMarker_ctrlGroup";
 private _ctrlIconToolbox = _ctrlGroup controlsGroupCtrl 100;
 private _ctrlColourToolBox = _ctrlGroup controlsGroupCtrl 101;

@@ -1,4 +1,4 @@
-#include "\a3\3DEN\UI\dikCodes.inc"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
 #define VALUE_NUMBER	"#(argb,1,1,1)color(0,0,0,0)"
 #define COLUMNS 3

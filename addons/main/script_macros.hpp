@@ -20,21 +20,21 @@
 #define XEH_POSTINIT                                    \
 class Extended_PostInit_EventHandlers {                 \
     class ADDON {                                       \
-        init = QUOTE( call COMPILE_FILE(XEH_postInit) );\
+        init = QUOTE(call COMPILE_FILE(XEH_postInit));\
     };                                                  \
 }
 
 #define XEH_PREINIT                                    \
 class Extended_PreInit_EventHandlers {                 \
     class ADDON {                                      \
-        init = QUOTE( call COMPILE_FILE(XEH_preInit) );\
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));\
     };                                                 \
 }
 
 #define XEH_PRESTART                                    \
 class Extended_PreStart_EventHandlers {                 \
     class ADDON {                                       \
-        init = QUOTE( call COMPILE_FILE(XEH_preStart) );\
+        init = QUOTE(call COMPILE_FILE(XEH_preStart));\
     };                                                  \
 }
 

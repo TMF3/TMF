@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\common\script_component.hpp"
 if (isClass (configFile >> "CfgPatches" >> "ace_safemode")) then {
     [
         QGVAR(weaponSafety),

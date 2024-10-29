@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\orbat\script_component.hpp"
 TRACE_1("OrbatSettings onLoad",_params);
 //Add EH On touch
 private _ctrlGroup = _params select 0;

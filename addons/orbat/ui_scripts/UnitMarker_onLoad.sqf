@@ -1,4 +1,5 @@
 
+#include "\x\tmf\addons\orbat\script_component.hpp"
 TRACE_1("UnitMarker onLoad",_params);
 private _ctrlGroup = _params select 0;
 UnitMarker_ctrlGroup = _ctrlGroup;

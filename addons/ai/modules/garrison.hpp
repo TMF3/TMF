@@ -18,7 +18,7 @@ class GVAR(garrison) : Module_F
             tooltip = "Shows units";
             property = "debug";
             control = "Checkbox";
-            defaultValue = false;
+            defaultValue = 0;
             expression = "_this setVariable ['%s',_value];";
         };
         class Hold
@@ -27,7 +27,7 @@ class GVAR(garrison) : Module_F
             tooltip = "Forces units to stay put and never move.";
             property = "holdPos";
             control = "Checkbox";
-            defaultValue = false;
+            defaultValue = 0;
             expression = "_this setVariable ['%s',_value];";
         };
         class unitRatio
@@ -78,7 +78,7 @@ class GVAR(garrisonQuantity) : Module_F
             tooltip = "Shows units";
             property = "debug";
             control = "Checkbox";
-            defaultValue = false;
+            defaultValue = 0;
             expression = "_this setVariable ['%s',_value];";
         };
         class Hold
@@ -87,7 +87,7 @@ class GVAR(garrisonQuantity) : Module_F
             tooltip = "Forces units to stay put and never move.";
             property = "holdPos";
             control = "Checkbox";
-            defaultValue = true;
+            defaultValue = 1;
             expression = "_this setVariable ['%s',_value];";
         };
         class aiNumberToSpawn
@@ -106,7 +106,7 @@ class GVAR(garrisonQuantity) : Module_F
             tooltip = "Enable AI to move if any enemies are close";
             property = "WakeUp";
             control = "Checkbox";
-            defaultValue = false;
+            defaultValue = 0;
             expression = "_this setVariable ['%s',_value];";
         };
     };

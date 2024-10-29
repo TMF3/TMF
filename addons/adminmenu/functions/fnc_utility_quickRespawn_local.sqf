@@ -23,8 +23,6 @@ if (_oldUnitdata isEqualType []) then {
         [_newUnit, _faction, _role] call EFUNC(assignGear,assignGear);
     };
 
-    setPlayable _newUnit;
-    selectPlayer _newUnit;
     deleteVehicle _oldUnit;
 
     // Re-enable other text/marker channels

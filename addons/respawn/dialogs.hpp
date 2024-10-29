@@ -29,7 +29,8 @@ $[
 
 
 
-class respawnMenuDialog {
+class respawnMenuDialog 
+{
     idd = 26893;
     movingEnable = 0;
     onLoad="['onLoad'] spawn tmf_respawn_fnc_handleRespawnUI;";

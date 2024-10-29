@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\chat\script_component.hpp"
 [
     QGVAR(healUsage),
     "LIST",

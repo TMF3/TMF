@@ -1,0 +1,482 @@
+2024-10-29T21:04:25.191799Z TRACE ThreadId(01) version: 1.13.3
+2024-10-29T21:04:25.191852Z TRACE ThreadId(01) platform: windows
+2024-10-29T21:04:25.191863Z TRACE ThreadId(01) args: [
+    "C:\\Users\\heads\\AppData\\Local\\Microsoft\\WinGet\\Packages\\BrettMayson.HEMTT_Microsoft.Winget.Source_8wekyb3d8bbwe\\hemtt.exe",
+    "check",
+]
+2024-10-29T21:04:25.196181Z TRACE ThreadId(01) using temporary folder: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF"
+2024-10-29T21:04:25.196202Z TRACE ThreadId(01) using project folder: "G:\\dev\\TMF"
+2024-10-29T21:04:25.196206Z TRACE ThreadId(01) using out folder: "G:\\dev\\TMF\\.hemttout"
+2024-10-29T21:04:25.196523Z TRACE ThreadId(01) using build folder: "G:\\dev\\TMF\\.hemttout\\check"
+2024-10-29T21:04:25.209171Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/patrol/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.209541Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/patrol/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.212207Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/teamcolour/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.213065Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/teamcolour/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.213751Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/common/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.215913Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/common/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.230165Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/safestart/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.232166Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/safestart/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.235159Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/respawn/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.235821Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/respawn/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.239928Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/orbat/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.241880Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/orbat/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.330743Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/spectator/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.331623Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/spectator/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.343547Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/adminmenu/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.344523Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/adminmenu/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.361864Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/zeus/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.362249Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/zeus/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.366863Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/acre2/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.367625Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/acre2/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.376074Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/main/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.376638Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/main/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.379197Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/autotest/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.379747Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/autotest/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.383879Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/assigngear/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.384253Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/assigngear/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.397957Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/chat/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.398986Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/chat/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.402394Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/briefing/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.402599Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/briefing/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.408872Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/marker/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.410044Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/marker/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.411767Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/modules/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.412441Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/modules/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.416000Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/teleport/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.416354Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/teleport/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.420090Z TRACE ThreadId(01) Prefix: VfsPath { path: "/addons/ai/$PBOPREFIX$", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.420801Z TRACE ThreadId(01) config.cpp: VfsPath { path: "/addons/ai/config.cpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.425921Z TRACE ThreadId(01) checking for version macro in VfsPath { path: "/addons/main/script_mod.hpp", fs: VFS { fs: OverlayFS { layers: [VfsPath { path: "", fs: VFS { fs: In Memory File System } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF\\include" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\output" } } } } } }, VfsPath { path: "", fs: VFS { fs: AltrootFS { root: VfsPath { path: "", fs: VFS { fs: PhysicalFS { root: "G:\\dev\\TMF" } } } } } }] } } }
+2024-10-29T21:04:25.431838Z  INFO ThreadId(01) Config loaded for TMF 1.0.0-0c02703e
+2024-10-29T21:04:25.431926Z TRACE ThreadId(01) Scanning G:\dev\TMF\addons for addons
+2024-10-29T21:04:25.437354Z  INFO ThreadId(01) Running checks
+2024-10-29T21:04:25.437370Z TRACE ThreadId(01) phase: init (BOM Check) (start)
+2024-10-29T21:04:25.437380Z TRACE ThreadId(01) phase: init (BOM Check) (done)
+2024-10-29T21:04:25.437383Z TRACE ThreadId(01) phase: init (Hooks) (start)
+2024-10-29T21:04:25.437462Z TRACE ThreadId(01) no hooks folder
+2024-10-29T21:04:25.437468Z TRACE ThreadId(01) phase: init (Hooks) (done)
+2024-10-29T21:04:25.437471Z TRACE ThreadId(01) phase: init (Stringtables) (start)
+2024-10-29T21:04:25.437474Z TRACE ThreadId(01) phase: init (Stringtables) (done)
+2024-10-29T21:04:25.437477Z TRACE ThreadId(01) phase: init (SQF) (start)
+2024-10-29T21:04:25.838707Z TRACE ThreadId(01) phase: init (SQF) (done)
+2024-10-29T21:04:25.838723Z TRACE ThreadId(01) phase: init (Rapifier) (start)
+2024-10-29T21:04:25.838727Z TRACE ThreadId(01) phase: init (Rapifier) (done)
+2024-10-29T21:04:25.838730Z TRACE ThreadId(01) phase: init (Binarize) (start)
+2024-10-29T21:04:25.838738Z TRACE ThreadId(01) Using Binarize path from registry
+2024-10-29T21:04:25.839429Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\acre2" => "G:\\dev\\TMF\\addons\\acre2"
+2024-10-29T21:04:25.856270Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\adminmenu" => "G:\\dev\\TMF\\addons\\adminmenu"
+2024-10-29T21:04:25.872486Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\ai" => "G:\\dev\\TMF\\addons\\ai"
+2024-10-29T21:04:25.887313Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\assigngear" => "G:\\dev\\TMF\\addons\\assigngear"
+2024-10-29T21:04:25.902115Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\autotest" => "G:\\dev\\TMF\\addons\\autotest"
+2024-10-29T21:04:25.917895Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\briefing" => "G:\\dev\\TMF\\addons\\briefing"
+2024-10-29T21:04:25.933214Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\chat" => "G:\\dev\\TMF\\addons\\chat"
+2024-10-29T21:04:25.947586Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\common" => "G:\\dev\\TMF\\addons\\common"
+2024-10-29T21:04:25.962535Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\main" => "G:\\dev\\TMF\\addons\\main"
+2024-10-29T21:04:25.976995Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\marker" => "G:\\dev\\TMF\\addons\\marker"
+2024-10-29T21:04:25.991891Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\modules" => "G:\\dev\\TMF\\addons\\modules"
+2024-10-29T21:04:26.007453Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\orbat" => "G:\\dev\\TMF\\addons\\orbat"
+2024-10-29T21:04:26.022069Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\patrol" => "G:\\dev\\TMF\\addons\\patrol"
+2024-10-29T21:04:26.037004Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\respawn" => "G:\\dev\\TMF\\addons\\respawn"
+2024-10-29T21:04:26.051553Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\safestart" => "G:\\dev\\TMF\\addons\\safestart"
+2024-10-29T21:04:26.066358Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\spectator" => "G:\\dev\\TMF\\addons\\spectator"
+2024-10-29T21:04:26.081056Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\teamcolour" => "G:\\dev\\TMF\\addons\\teamcolour"
+2024-10-29T21:04:26.096668Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\teleport" => "G:\\dev\\TMF\\addons\\teleport"
+2024-10-29T21:04:26.111683Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\tmf\\addons\\zeus" => "G:\\dev\\TMF\\addons\\zeus"
+2024-10-29T21:04:26.127741Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\a3\\3DEN" => "G:\\dev\\TMF\\include\\a3\\3DEN"
+2024-10-29T21:04:26.142542Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\a3\\ui_f" => "G:\\dev\\TMF\\include\\a3\\ui_f"
+2024-10-29T21:04:26.157463Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\a3\\ui_f_curator" => "G:\\dev\\TMF\\include\\a3\\ui_f_curator"
+2024-10-29T21:04:26.172721Z TRACE ThreadId(01) junction link "C:\\Users\\heads\\AppData\\Local\\Temp\\hemtt\\dev_TMF\\x\\cba" => "G:\\dev\\TMF\\include\\x\\cba"
+2024-10-29T21:04:26.187435Z TRACE ThreadId(01) phase: init (Binarize) (done)
+2024-10-29T21:04:26.187453Z TRACE ThreadId(01) phase: check (BOM Check) (start)
+2024-10-29T21:04:26.239169Z TRACE ThreadId(01) phase: check (BOM Check) (done)
+2024-10-29T21:04:26.239183Z TRACE ThreadId(01) phase: check (Hooks) (start)
+2024-10-29T21:04:26.239187Z TRACE ThreadId(01) phase: check (Hooks) (done)
+2024-10-29T21:04:26.239190Z TRACE ThreadId(01) phase: check (Stringtables) (start)
+2024-10-29T21:04:26.239220Z TRACE ThreadId(01) phase: check (Stringtables) (done)
+2024-10-29T21:04:26.239224Z TRACE ThreadId(01) phase: check (SQF) (start)
+2024-10-29T21:04:26.239276Z TRACE ThreadId(01) phase: check (SQF) (done)
+2024-10-29T21:04:26.239279Z TRACE ThreadId(01) phase: check (Rapifier) (start)
+2024-10-29T21:04:26.239312Z TRACE ThreadId(01) phase: check (Rapifier) (done)
+2024-10-29T21:04:26.239315Z TRACE ThreadId(01) phase: check (Binarize) (start)
+2024-10-29T21:04:26.605636Z  INFO ThreadId(01) Validated 0 files for binarization
+2024-10-29T21:04:26.605667Z TRACE ThreadId(01) phase: check (Binarize) (done)
+2024-10-29T21:04:26.605672Z TRACE ThreadId(01) phase: pre_build (BOM Check) (start)
+2024-10-29T21:04:26.605676Z TRACE ThreadId(01) phase: pre_build (BOM Check) (done)
+2024-10-29T21:04:26.605679Z TRACE ThreadId(01) phase: pre_build (Hooks) (start)
+2024-10-29T21:04:26.605689Z TRACE ThreadId(01) phase: pre_build (Hooks) (done)
+2024-10-29T21:04:26.605692Z TRACE ThreadId(01) phase: pre_build (Stringtables) (start)
+2024-10-29T21:04:26.607566Z TRACE ThreadId(01) phase: pre_build (Stringtables) (done)
+2024-10-29T21:04:26.607573Z TRACE ThreadId(01) phase: pre_build (SQF) (start)
+2024-10-29T21:04:27.143843Z TRACE ThreadId(08) sqf compiling /addons/acre2/XEH_postInit.sqf
+2024-10-29T21:04:27.143846Z TRACE ThreadId(03) sqf compiling /addons/ai/XEH_preStart.sqf
+2024-10-29T21:04:27.143839Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_adminEye_onClick.sqf
+2024-10-29T21:04:27.143845Z TRACE ThreadId(02) sqf compiling /addons/chat/functions/fnc_cmndRadio.sqf
+2024-10-29T21:04:27.143849Z TRACE ThreadId(05) sqf compiling /addons/orbat/functions/fnc_renameUnitAndGroups.sqf
+2024-10-29T21:04:27.143842Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_endMission.sqf
+2024-10-29T21:04:27.143858Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_onEdenMessageRecieved.sqf
+2024-10-29T21:04:27.143880Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_intro.sqf
+2024-10-29T21:04:27.143860Z TRACE ThreadId(06) sqf compiling /addons/common/functions/fnc_checkVersionArray.sqf
+2024-10-29T21:04:27.143961Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_respawn_refreshFactionCategory.sqf
+2024-10-29T21:04:27.144017Z TRACE ThreadId(12) sqf compiling /addons/common/initSettings.sqf
+2024-10-29T21:04:27.144060Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_processData.sqf
+2024-10-29T21:04:27.144104Z TRACE ThreadId(14) sqf compiling /addons/chat/functions/fnc_findMatch.sqf
+2024-10-29T21:04:27.144157Z TRACE ThreadId(15) sqf compiling /addons/assigngear/UI/TMF_RscAttributeLoadout.sqf
+2024-10-29T21:04:27.144189Z TRACE ThreadId(16) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_moveTreeDoubleClick.sqf
+2024-10-29T21:04:27.144232Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_edenHideMapObjects.sqf
+2024-10-29T21:04:27.153457Z TRACE ThreadId(05) sqf compiling /addons/orbat/functions/fnc_setMarkerUpdateInterval.sqf
+2024-10-29T21:04:27.154023Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_deserializeWaypoint.sqf
+2024-10-29T21:04:27.161556Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_getNearestRoad.sqf
+2024-10-29T21:04:27.168603Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_hideMapObjectsInit.sqf
+2024-10-29T21:04:27.184005Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_drawTags.sqf
+2024-10-29T21:04:27.187629Z TRACE ThreadId(12) sqf compiling /addons/common/XEH_preInit.sqf
+2024-10-29T21:04:27.189658Z TRACE ThreadId(06) sqf compiling /addons/common/functions/fnc_edenDraw.sqf
+2024-10-29T21:04:27.190806Z TRACE ThreadId(14) sqf compiling /addons/chat/functions/fnc_cmndWhisper.sqf
+2024-10-29T21:04:27.192817Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_gui_vehicleGear_load.sqf
+2024-10-29T21:04:27.194309Z TRACE ThreadId(05) sqf compiling /addons/orbat/functions/fnc_getGroupMarkerData.sqf
+2024-10-29T21:04:27.196175Z TRACE ThreadId(03) sqf compiling /addons/ai/XEH_preInit.sqf
+2024-10-29T21:04:27.198320Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_adminEye_onLoad.sqf
+2024-10-29T21:04:27.198637Z TRACE ThreadId(15) sqf compiling /addons/assigngear/UI/TMF_AttributesFaction.sqf
+2024-10-29T21:04:27.201896Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_numToTexture.sqf
+2024-10-29T21:04:27.204130Z TRACE ThreadId(02) sqf compiling /addons/chat/functions/fnc_commandAvailable.sqf
+2024-10-29T21:04:27.209649Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_drawLines.sqf
+2024-10-29T21:04:27.211230Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_initGroupVar.sqf
+2024-10-29T21:04:27.213034Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_respawn_removeAction.sqf
+2024-10-29T21:04:27.214916Z TRACE ThreadId(16) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+2024-10-29T21:04:27.215921Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_sideToTexture.sqf
+2024-10-29T21:04:27.216684Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_getPosVisual.sqf
+2024-10-29T21:04:27.219448Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_checkTMFVersion.sqf
+2024-10-29T21:04:27.220787Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_dummy.sqf
+2024-10-29T21:04:27.226248Z TRACE ThreadId(08) sqf compiling /addons/acre2/XEH_preInit.sqf
+2024-10-29T21:04:27.228123Z TRACE ThreadId(06) sqf compiling /addons/common/functions/fnc_edenMouseKeyUp.sqf
+2024-10-29T21:04:27.237793Z TRACE ThreadId(14) sqf compiling /addons/common/XEH_postInit.sqf
+2024-10-29T21:04:27.240803Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_testGear.sqf
+2024-10-29T21:04:27.243111Z TRACE ThreadId(03) sqf compiling /addons/ai/functions/fnc_huntInit.sqf
+2024-10-29T21:04:27.247124Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_randPosArea.sqf
+2024-10-29T21:04:27.249511Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
+2024-10-29T21:04:27.249669Z TRACE ThreadId(02) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_treeDelClick.sqf
+2024-10-29T21:04:27.251376Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_loadAssignGear.sqf
+2024-10-29T21:04:27.255750Z TRACE ThreadId(05) sqf compiling /addons/patrol/XEH_preStart.sqf
+2024-10-29T21:04:27.257234Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_edenMouseOver.sqf
+2024-10-29T21:04:27.257950Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_evaluateCondArray.sqf
+2024-10-29T21:04:27.258615Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_isAdmin.sqf
+2024-10-29T21:04:27.262713Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_keyPressed.sqf
+2024-10-29T21:04:27.262901Z TRACE ThreadId(08) sqf compiling /addons/acre2/XEH_preStart.sqf
+2024-10-29T21:04:27.265150Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_testGroupsSlottingScreen.sqf
+2024-10-29T21:04:27.275812Z TRACE ThreadId(06) sqf compiling /addons/common/functions/fnc_edenDisplayFactionIcons.sqf
+2024-10-29T21:04:27.284327Z TRACE ThreadId(14) sqf compiling /addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+2024-10-29T21:04:27.286746Z TRACE ThreadId(12) sqf compiling /addons/common/XEH_preStart.sqf
+2024-10-29T21:04:27.288482Z TRACE ThreadId(03) sqf compiling /addons/ai/functions/fnc_fortify.sqf
+2024-10-29T21:04:27.292701Z TRACE ThreadId(05) sqf compiling /addons/patrol/XEH_preInit.sqf
+2024-10-29T21:04:27.295939Z TRACE ThreadId(16) sqf compiling /addons/orbat/ui_scripts/UnitMarker.sqf
+2024-10-29T21:04:27.297316Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_getCfgEntryFromPath.sqf
+2024-10-29T21:04:27.297375Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_updateGroupCache.sqf
+2024-10-29T21:04:27.299791Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_edenMouseKeyDown.sqf
+2024-10-29T21:04:27.300122Z TRACE ThreadId(08) sqf compiling /addons/acre2/ui_scripts/BabelSettings.sqf
+2024-10-29T21:04:27.306505Z TRACE ThreadId(02) sqf compiling /addons/orbat/ui_scripts/UnitMarker_attributeLoad.sqf
+2024-10-29T21:04:27.309957Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_utility_grantzeus.sqf
+2024-10-29T21:04:27.314640Z TRACE ThreadId(06) sqf compiling /addons/marker/XEH_preStart.sqf
+2024-10-29T21:04:27.318092Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_replaceEquipment.sqf
+2024-10-29T21:04:27.321933Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_utility_heal.sqf
+2024-10-29T21:04:27.324468Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_sideToHexColor.sqf
+2024-10-29T21:04:27.325409Z TRACE ThreadId(03) sqf compiling /addons/ai/functions/fnc_garrisonQuantity.sqf
+2024-10-29T21:04:27.328840Z TRACE ThreadId(05) sqf compiling /addons/patrol/functions/fnc_3denPatrol.sqf
+2024-10-29T21:04:27.331672Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_arrayToStringArray.sqf
+2024-10-29T21:04:27.336715Z TRACE ThreadId(14) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_attributeLoad.sqf
+2024-10-29T21:04:27.337290Z TRACE ThreadId(10) sqf compiling /addons/common/functions/fnc_moduleUnits.sqf
+2024-10-29T21:04:27.339475Z TRACE ThreadId(02) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
+2024-10-29T21:04:27.343406Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_serializeWaypoint.sqf
+2024-10-29T21:04:27.343711Z TRACE ThreadId(12) sqf compiling /addons/common/functions/fnc_initDisplayDebriefing.sqf
+2024-10-29T21:04:27.344969Z TRACE ThreadId(10) sqf compiling /addons/ai/functions/fnc_doArty.sqf
+2024-10-29T21:04:27.346540Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_keyhandler.sqf
+2024-10-29T21:04:27.347735Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_sideToColor.sqf
+2024-10-29T21:04:27.351056Z TRACE ThreadId(06) sqf compiling /addons/marker/XEH_preInit.sqf
+2024-10-29T21:04:27.352968Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_sideToString.sqf
+2024-10-29T21:04:27.356234Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_respawn_toggleSpectatorVOIP.sqf
+2024-10-29T21:04:27.357124Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_serializeWaypoints.sqf
+2024-10-29T21:04:27.365856Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_utility.sqf
+2024-10-29T21:04:27.367259Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_getCfgEntry.sqf
+2024-10-29T21:04:27.367971Z TRACE ThreadId(05) sqf compiling /addons/patrol/functions/fnc_patrol.sqf
+2024-10-29T21:04:27.368831Z TRACE ThreadId(14) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_attributeSave.sqf
+2024-10-29T21:04:27.370762Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_replaceSecondaryWeapon.sqf
+2024-10-29T21:04:27.378787Z TRACE ThreadId(02) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+2024-10-29T21:04:27.384714Z TRACE ThreadId(10) sqf compiling /addons/ai/functions/fnc_arty.sqf
+2024-10-29T21:04:27.387529Z TRACE ThreadId(06) sqf compiling /addons/marker/functions/fnc_hide.sqf
+2024-10-29T21:04:27.388424Z TRACE ThreadId(12) sqf compiling /addons/common/functions/fnc_capitalize.sqf
+2024-10-29T21:04:27.391073Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_numToColor.sqf
+2024-10-29T21:04:27.391506Z TRACE ThreadId(12) sqf compiling /addons/common/functions/fnc_sideType.sqf
+2024-10-29T21:04:27.392236Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_modal_assignGear_listboxRoles.sqf
+2024-10-29T21:04:27.394944Z TRACE ThreadId(06) sqf compiling /addons/modules/XEH_preStart.sqf
+2024-10-29T21:04:27.400368Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_sideToNum.sqf
+2024-10-29T21:04:27.406308Z TRACE ThreadId(17) sqf compiling /addons/common/functions/fnc_secondsToTime.sqf
+2024-10-29T21:04:27.407410Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_numToSide.sqf
+2024-10-29T21:04:27.407452Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_setFace.sqf
+2024-10-29T21:04:27.407469Z TRACE ThreadId(14) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickCancel.sqf
+2024-10-29T21:04:27.410175Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_edenInit.sqf
+2024-10-29T21:04:27.411836Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_gui_vehicleGear_save.sqf
+2024-10-29T21:04:27.413882Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_modal.sqf
+2024-10-29T21:04:27.415266Z TRACE ThreadId(17) sqf compiling /addons/ai/functions/fnc_hunt.sqf
+2024-10-29T21:04:27.418741Z TRACE ThreadId(12) sqf compiling /addons/orbat/XEH_preInit.sqf
+2024-10-29T21:04:27.419008Z TRACE ThreadId(03) sqf compiling /addons/autotest/functions/fnc_testGroups.sqf
+2024-10-29T21:04:27.419178Z TRACE ThreadId(10) sqf compiling /addons/ai/functions/fnc_garrison.sqf
+2024-10-29T21:04:27.421650Z TRACE ThreadId(05) sqf compiling /addons/respawn/XEH_preStart.sqf
+2024-10-29T21:04:27.425989Z TRACE ThreadId(02) sqf compiling /addons/orbat/functions/fnc_createBriefingPage.sqf
+2024-10-29T21:04:27.433025Z TRACE ThreadId(16) sqf compiling /addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+2024-10-29T21:04:27.433375Z TRACE ThreadId(06) sqf compiling /addons/modules/XEH_preInit.sqf
+2024-10-29T21:04:27.443810Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_controlSetPicture.sqf
+2024-10-29T21:04:27.445403Z TRACE ThreadId(14) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_move.sqf
+2024-10-29T21:04:27.451370Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_endMission_sideSpecificLocal.sqf
+2024-10-29T21:04:27.454694Z TRACE ThreadId(03) sqf compiling /addons/autotest/functions/fnc_testHCs.sqf
+2024-10-29T21:04:27.457339Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_gui_gearSelector_loadRoles.sqf
+2024-10-29T21:04:27.458358Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_setUnitTrait.sqf
+2024-10-29T21:04:27.459111Z TRACE ThreadId(05) sqf compiling /addons/respawn/XEH_preInit.sqf
+2024-10-29T21:04:27.460525Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_respawn_factionCategoryChanged.sqf
+2024-10-29T21:04:27.467876Z TRACE ThreadId(17) sqf compiling /addons/ai/functions/fnc_waveInit.sqf
+2024-10-29T21:04:27.469529Z TRACE ThreadId(06) sqf compiling /addons/modules/functions/fnc_createAmbientVehicles.sqf
+2024-10-29T21:04:27.470090Z TRACE ThreadId(16) sqf compiling /addons/orbat/ui_scripts/OrbatSettings.sqf
+2024-10-29T21:04:27.477045Z TRACE ThreadId(09) sqf compiling /addons/common/functions/fnc_initDisplayMultiplayerSetup.sqf
+2024-10-29T21:04:27.478874Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_createVehicleControl.sqf
+2024-10-29T21:04:27.493261Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
+2024-10-29T21:04:27.495554Z TRACE ThreadId(10) sqf compiling /addons/ai/functions/fnc_huntLoop.sqf
+2024-10-29T21:04:27.495555Z TRACE ThreadId(12) sqf compiling /addons/orbat/XEH_postInit.sqf
+2024-10-29T21:04:27.500703Z TRACE ThreadId(05) sqf compiling /addons/respawn/XEH_postInit.sqf
+2024-10-29T21:04:27.500910Z TRACE ThreadId(03) sqf compiling /addons/autotest/functions/fnc_testEndings.sqf
+2024-10-29T21:04:27.502454Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_initAIGear.sqf
+2024-10-29T21:04:27.502625Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_cacheAssignGear.sqf
+2024-10-29T21:04:27.503473Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_getCurrentAdminClient.sqf
+2024-10-29T21:04:27.510235Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_getCardinal.sqf
+2024-10-29T21:04:27.514061Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_onEntityKilled.sqf
+2024-10-29T21:04:27.521001Z TRACE ThreadId(09) sqf compiling /addons/modules/functions/fnc_ambientVehicleInit.sqf
+2024-10-29T21:04:27.528201Z TRACE ThreadId(03) sqf compiling /addons/autotest/functions/fnc_testInit.sqf
+2024-10-29T21:04:27.529716Z TRACE ThreadId(08) sqf compiling /addons/acre2/ui_scripts/AcreAddRadioActions.sqf
+2024-10-29T21:04:27.534682Z TRACE ThreadId(17) sqf compiling /addons/ai/functions/fnc_addWaveHandler.sqf
+2024-10-29T21:04:27.534712Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_selectTab.sqf
+2024-10-29T21:04:27.538628Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_endMission_hunt.sqf
+2024-10-29T21:04:27.539556Z TRACE ThreadId(05) sqf compiling /addons/respawn/functions/fnc_handleRespawnUI.sqf
+2024-10-29T21:04:27.541291Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_playerManagement.sqf
+2024-10-29T21:04:27.544122Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_replacePrimaryWeapon.sqf
+2024-10-29T21:04:27.546514Z TRACE ThreadId(10) sqf compiling /addons/ai/functions/fnc_rearm.sqf
+2024-10-29T21:04:27.547370Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_gui_gearSelector_submit.sqf
+2024-10-29T21:04:27.554407Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_zeusUnload.sqf
+2024-10-29T21:04:27.555042Z TRACE ThreadId(12) sqf compiling /addons/orbat/XEH_preStart.sqf
+2024-10-29T21:04:27.557655Z TRACE ThreadId(08) sqf compiling /addons/acre2/ui_scripts/RadioChannels.sqf
+2024-10-29T21:04:27.569317Z TRACE ThreadId(17) sqf compiling /addons/ai/functions/fnc_emptyFunction.sqf
+2024-10-29T21:04:27.577824Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_adminEye_draw.sqf
+2024-10-29T21:04:27.580426Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_claimZeus.sqf
+2024-10-29T21:04:27.580937Z TRACE ThreadId(03) sqf compiling /addons/briefing/XEH_preInit.sqf
+2024-10-29T21:04:27.587344Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_moduleAIGear.sqf
+2024-10-29T21:04:27.587836Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_getCurrentAdminServer.sqf
+2024-10-29T21:04:27.589371Z TRACE ThreadId(14) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
+2024-10-29T21:04:27.592391Z TRACE ThreadId(12) sqf compiling /addons/orbat/initSettings.sqf
+2024-10-29T21:04:27.592912Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_gearSelector.sqf
+2024-10-29T21:04:27.595053Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_createUnitControl.sqf
+2024-10-29T21:04:27.597656Z TRACE ThreadId(10) sqf compiling /addons/ai/functions/fnc_removeWaveHandler.sqf
+2024-10-29T21:04:27.598838Z TRACE ThreadId(17) sqf compiling /addons/ai/functions/fnc_spawnWave.sqf
+2024-10-29T21:04:27.610551Z TRACE ThreadId(09) sqf compiling /addons/orbat/functions/fnc_draw.sqf
+2024-10-29T21:04:27.617698Z TRACE ThreadId(03) sqf compiling /addons/briefing/XEH_preStart.sqf
+2024-10-29T21:04:27.620486Z TRACE ThreadId(11) sqf compiling /addons/adminmenu/functions/fnc_modalOnUnload.sqf
+2024-10-29T21:04:27.628065Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_assignGear.sqf
+2024-10-29T21:04:27.629651Z TRACE ThreadId(10) sqf compiling /addons/assigngear/XEH_preStart.sqf
+2024-10-29T21:04:27.631169Z TRACE ThreadId(12) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_treeMoveClick.sqf
+2024-10-29T21:04:27.633238Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_messageLog_print.sqf
+2024-10-29T21:04:27.633809Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_setInsignia.sqf
+2024-10-29T21:04:27.634806Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_objectiveModule.sqf
+2024-10-29T21:04:27.650971Z TRACE ThreadId(09) sqf compiling /addons/orbat/functions/fnc_setup.sqf
+2024-10-29T21:04:27.652726Z TRACE ThreadId(11) sqf compiling /addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+2024-10-29T21:04:27.658397Z TRACE ThreadId(03) sqf compiling /addons/briefing/XEH_postInit.sqf
+2024-10-29T21:04:27.663615Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_addBackpackItems.sqf
+2024-10-29T21:04:27.665357Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_onScreen.sqf
+2024-10-29T21:04:27.667834Z TRACE ThreadId(02) sqf compiling /addons/orbat/functions/fnc_updateArray.sqf
+2024-10-29T21:04:27.668624Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_messageLog_printAll.sqf
+2024-10-29T21:04:27.677457Z TRACE ThreadId(17) sqf compiling /addons/ai/functions/fnc_rearmInit.sqf
+2024-10-29T21:04:27.680728Z TRACE ThreadId(12) sqf compiling /addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
+2024-10-29T21:04:27.687216Z TRACE ThreadId(10) sqf compiling /addons/assigngear/XEH_postInit.sqf
+2024-10-29T21:04:27.691664Z TRACE ThreadId(03) sqf compiling /addons/briefing/functions/fnc_createCreditsPage.sqf
+2024-10-29T21:04:27.698555Z TRACE ThreadId(11) sqf compiling /addons/orbat/ui_scripts/GroupMarker.sqf
+2024-10-29T21:04:27.698993Z TRACE ThreadId(07) sqf compiling /addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+2024-10-29T21:04:27.699128Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_onChange.sqf
+2024-10-29T21:04:27.699692Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_endMission_commit.sqf
+2024-10-29T21:04:27.705153Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_AIGearEH.sqf
+2024-10-29T21:04:27.710700Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_onLoad.sqf
+2024-10-29T21:04:27.715549Z TRACE ThreadId(10) sqf compiling /addons/assigngear/XEH_preInit.sqf
+2024-10-29T21:04:27.717051Z TRACE ThreadId(17) sqf compiling /addons/briefing/functions/fnc_vehiclePage.sqf
+2024-10-29T21:04:27.717105Z TRACE ThreadId(02) sqf compiling /addons/orbat/functions/fnc_drawArrayRec.sqf
+2024-10-29T21:04:27.718360Z TRACE ThreadId(12) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_orbatToggleButton.sqf
+2024-10-29T21:04:27.723904Z TRACE ThreadId(03) sqf compiling /addons/briefing/functions/fnc_generateBriefing.sqf
+2024-10-29T21:04:27.734458Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_updateKillList.sqf
+2024-10-29T21:04:27.736851Z TRACE ThreadId(14) sqf compiling /addons/chat/initSettings.sqf
+2024-10-29T21:04:27.741848Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_gui_gearSelector_loadFactions.sqf
+2024-10-29T21:04:27.749547Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+2024-10-29T21:04:27.755995Z TRACE ThreadId(12) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+2024-10-29T21:04:27.764864Z TRACE ThreadId(09) sqf compiling /addons/orbat/functions/fnc_findOrbatParent.sqf
+2024-10-29T21:04:27.767115Z TRACE ThreadId(10) sqf compiling /addons/assigngear/UI/TMF_RscDisplayAttributesModuleAIGear.sqf
+2024-10-29T21:04:27.771823Z TRACE ThreadId(14) sqf compiling /addons/chat/functions/fnc_cmndSpec.sqf
+2024-10-29T21:04:27.772081Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_onFired.sqf
+2024-10-29T21:04:27.772689Z TRACE ThreadId(02) sqf compiling /addons/orbat/functions/fnc_add.sqf
+2024-10-29T21:04:27.776380Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_initNamespace.sqf
+2024-10-29T21:04:27.778924Z TRACE ThreadId(03) sqf compiling /addons/briefing/functions/fnc_testBriefings.sqf
+2024-10-29T21:04:27.784544Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_endMission_occluder.sqf
+2024-10-29T21:04:27.800809Z TRACE ThreadId(09) sqf compiling /addons/adminmenu/functions/fnc_isAuthorized.sqf
+2024-10-29T21:04:27.801892Z TRACE ThreadId(12) sqf compiling /addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+2024-10-29T21:04:27.804234Z TRACE ThreadId(14) sqf compiling /addons/chat/functions/fnc_cmndTp.sqf
+2024-10-29T21:04:27.805040Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_drawUnitMarker.sqf
+2024-10-29T21:04:27.806429Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_loadFactionCategories.sqf
+2024-10-29T21:04:27.809450Z TRACE ThreadId(02) sqf compiling /addons/orbat/functions/fnc_loadTeams.sqf
+2024-10-29T21:04:27.825254Z TRACE ThreadId(11) sqf compiling /addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+2024-10-29T21:04:27.826410Z TRACE ThreadId(03) sqf compiling /addons/briefing/functions/fnc_generateLoadoutPage.sqf
+2024-10-29T21:04:27.827058Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_makeZeusServer.sqf
+2024-10-29T21:04:27.829987Z TRACE ThreadId(17) sqf compiling /addons/briefing/functions/fnc_unitPage.sqf
+2024-10-29T21:04:27.836068Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_drawGroupMarker.sqf
+2024-10-29T21:04:27.836068Z TRACE ThreadId(09) sqf compiling /addons/adminmenu/functions/fnc_messageLog.sqf
+2024-10-29T21:04:27.841941Z TRACE ThreadId(14) sqf compiling /addons/chat/functions/fnc_cmndRP.sqf
+2024-10-29T21:04:27.846327Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_playerManagement_updateList.sqf
+2024-10-29T21:04:27.848651Z TRACE ThreadId(12) sqf compiling /addons/assigngear/functions/fnc_replaceSidearmWeapon.sqf
+2024-10-29T21:04:27.848638Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_onEdenMissionChange.sqf
+2024-10-29T21:04:27.853760Z TRACE ThreadId(02) sqf compiling /addons/safestart/functions/pfh_exit.sqf
+2024-10-29T21:04:27.854414Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_modal_assignGear_listboxFactions.sqf
+2024-10-29T21:04:27.859492Z TRACE ThreadId(03) sqf compiling /addons/adminmenu/functions/fnc_respawn_addAction.sqf
+2024-10-29T21:04:27.862134Z TRACE ThreadId(05) sqf compiling /addons/respawn/functions/fnc_loadGear.sqf
+2024-10-29T21:04:27.868506Z TRACE ThreadId(11) sqf compiling /addons/chat/XEH_preInit.sqf
+2024-10-29T21:04:27.872895Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_init.sqf
+2024-10-29T21:04:27.879054Z TRACE ThreadId(14) sqf compiling /addons/chat/functions/fnc_cmndHeal.sqf
+2024-10-29T21:04:27.881665Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_adminEye_open.sqf
+2024-10-29T21:04:27.882052Z TRACE ThreadId(09) sqf compiling /addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+2024-10-29T21:04:27.885083Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_overrideProfileItems.sqf
+2024-10-29T21:04:27.885129Z TRACE ThreadId(12) sqf compiling /addons/assigngear/functions/fnc_gui_gearSelector_random.sqf
+2024-10-29T21:04:27.897810Z TRACE ThreadId(03) sqf compiling /addons/adminmenu/functions/fnc_respawn_factionChanged.sqf
+2024-10-29T21:04:27.904324Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
+2024-10-29T21:04:27.906087Z TRACE ThreadId(05) sqf compiling /addons/respawn/functions/fnc_respawnDrawMapIcons.sqf
+2024-10-29T21:04:27.909944Z TRACE ThreadId(02) sqf compiling /addons/safestart/functions/pfh_perframe.sqf
+2024-10-29T21:04:27.913356Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_endMission.sqf
+2024-10-29T21:04:27.915412Z TRACE ThreadId(12) sqf compiling /addons/assigngear/functions/fnc_addItems.sqf
+2024-10-29T21:04:27.919836Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_utility_quickRespawn.sqf
+2024-10-29T21:04:27.920782Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_vehicleGear_init.sqf
+2024-10-29T21:04:27.921198Z TRACE ThreadId(14) sqf compiling /addons/chat/functions/fnc_cmndLoadout.sqf
+2024-10-29T21:04:27.922754Z TRACE ThreadId(10) sqf compiling /addons/assigngear/UI/TMF_RscAttributeRetroactive.sqf
+2024-10-29T21:04:27.936356Z TRACE ThreadId(03) sqf compiling /addons/ai/XEH_postInit.sqf
+2024-10-29T21:04:27.941098Z TRACE ThreadId(09) sqf compiling /addons/assigngear/functions/fnc_linkItems.sqf
+2024-10-29T21:04:27.942564Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_respawn_respawnButton.sqf
+2024-10-29T21:04:27.948823Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_getCameraPos.sqf
+2024-10-29T21:04:27.950470Z TRACE ThreadId(12) sqf compiling /addons/assigngear/functions/fnc_gui_gearSelector_init.sqf
+2024-10-29T21:04:27.955100Z TRACE ThreadId(10) sqf compiling /addons/assigngear/UI/TMF_RscAttributeFaction.sqf
+2024-10-29T21:04:27.955421Z TRACE ThreadId(02) sqf compiling /addons/safestart/functions/pfh_start.sqf
+2024-10-29T21:04:27.955551Z TRACE ThreadId(06) sqf compiling /addons/assigngear/functions/fnc_loadFactions.sqf
+2024-10-29T21:04:27.958716Z TRACE ThreadId(15) sqf compiling /addons/assigngear/functions/fnc_loadRoles.sqf
+2024-10-29T21:04:27.960869Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_adminEye_fireTrigger.sqf
+2024-10-29T21:04:27.965966Z TRACE ThreadId(17) sqf compiling /addons/briefing/ui_scripts/BriefingSettings.sqf
+2024-10-29T21:04:27.969044Z TRACE ThreadId(09) sqf compiling /addons/spectator/functions/fnc_testSpectator.sqf
+2024-10-29T21:04:27.970502Z TRACE ThreadId(03) sqf compiling /addons/assigngear/functions/fnc_gui_gearSelector_loadCategories.sqf
+2024-10-29T21:04:27.972918Z TRACE ThreadId(05) sqf compiling /addons/respawn/functions/fnc_respawnGroupMarkerUpdate.sqf
+2024-10-29T21:04:27.974547Z TRACE ThreadId(11) sqf compiling /addons/chat/XEH_preStart.sqf
+2024-10-29T21:04:27.977790Z TRACE ThreadId(14) sqf compiling /addons/chat/initCommands.sqf
+2024-10-29T21:04:27.981226Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_handleUnitList.sqf
+2024-10-29T21:04:27.981371Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_onUnload.sqf
+2024-10-29T21:04:27.998407Z TRACE ThreadId(12) sqf compiling /addons/assigngear/functions/fnc_saveRole.sqf
+2024-10-29T21:04:27.998751Z TRACE ThreadId(02) sqf compiling /addons/safestart/functions/fnc_init.sqf
+2024-10-29T21:04:27.998985Z TRACE ThreadId(09) sqf compiling /addons/spectator/functions/fnc_createUnitNode.sqf
+2024-10-29T21:04:27.999153Z TRACE ThreadId(15) sqf compiling /addons/safestart/XEH_preInit.sqf
+2024-10-29T21:04:28.001246Z TRACE ThreadId(10) sqf compiling /addons/spectator/functions/fnc_getGroupClusters.sqf
+2024-10-29T21:04:28.001322Z TRACE ThreadId(06) sqf compiling /addons/assigngear/functions/fnc_setGoggles.sqf
+2024-10-29T21:04:28.002992Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_adminEye_onKeyPress.sqf
+2024-10-29T21:04:28.008728Z TRACE ThreadId(05) sqf compiling /addons/respawn/functions/fnc_respawnLocalClient.sqf
+2024-10-29T21:04:28.009136Z TRACE ThreadId(10) sqf compiling /addons/spectator/functions/fnc_handleCamera.sqf
+2024-10-29T21:04:28.010384Z TRACE ThreadId(03) sqf compiling /addons/safestart/functions/fnc_set.sqf
+2024-10-29T21:04:28.012845Z TRACE ThreadId(11) sqf compiling /addons/spectator/functions/fnc_toggleUI.sqf
+2024-10-29T21:04:28.016773Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_playerManagement_listSelChange.sqf
+2024-10-29T21:04:28.016819Z TRACE ThreadId(14) sqf compiling /addons/teleport/functions/fnc_playerInit.sqf
+2024-10-29T21:04:28.026233Z TRACE ThreadId(09) sqf compiling /addons/spectator/functions/fnc_initSpectatorUnit.sqf
+2024-10-29T21:04:28.029118Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_isOpen.sqf
+2024-10-29T21:04:28.029201Z TRACE ThreadId(02) sqf compiling /addons/safestart/functions/fnc_timeRemaining.sqf
+2024-10-29T21:04:28.041120Z TRACE ThreadId(03) sqf compiling /addons/spectator/XEH_preInit.sqf
+2024-10-29T21:04:28.041325Z TRACE ThreadId(06) sqf compiling /addons/acre2/functions/fnc_clientInit.sqf
+2024-10-29T21:04:28.041399Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_modal_ACRE2Radios_assign.sqf
+2024-10-29T21:04:28.049072Z TRACE ThreadId(11) sqf compiling /addons/spectator/functions/fnc_mouseHandler.sqf
+2024-10-29T21:04:28.049509Z TRACE ThreadId(12) sqf compiling /addons/assigngear/functions/fnc_helper.sqf
+2024-10-29T21:04:28.052003Z TRACE ThreadId(14) sqf compiling /addons/teleport/functions/fnc_serverInit.sqf
+2024-10-29T21:04:28.053118Z TRACE ThreadId(09) sqf compiling /addons/spectator/functions/fnc_createGroupControl.sqf
+2024-10-29T21:04:28.053262Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_fpsHandlerServer.sqf
+2024-10-29T21:04:28.057153Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_menuHandler.sqf
+2024-10-29T21:04:28.058405Z TRACE ThreadId(02) sqf compiling /addons/adminmenu/functions/fnc_respawn_refreshSpectatorList.sqf
+2024-10-29T21:04:28.068049Z TRACE ThreadId(15) sqf compiling /addons/safestart/initSettings.sqf
+2024-10-29T21:04:28.071075Z TRACE ThreadId(05) sqf compiling /addons/respawn/functions/fnc_respawnWaveServer.sqf
+2024-10-29T21:04:28.081292Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/XEH_postInit.sqf
+2024-10-29T21:04:28.084434Z TRACE ThreadId(14) sqf compiling /addons/teleport/functions/fnc_init.sqf
+2024-10-29T21:04:28.087923Z TRACE ThreadId(09) sqf compiling /addons/spectator/functions/fnc_controlSetText.sqf
+2024-10-29T21:04:28.089902Z TRACE ThreadId(02) sqf compiling /addons/adminmenu/functions/fnc_modalOnLoad.sqf
+2024-10-29T21:04:28.095534Z TRACE ThreadId(11) sqf compiling /addons/spectator/functions/fnc_createGroupNode.sqf
+2024-10-29T21:04:28.097939Z TRACE ThreadId(08) sqf compiling /addons/acre2/functions/fnc_createPresets.sqf
+2024-10-29T21:04:28.098752Z TRACE ThreadId(12) sqf compiling /addons/autotest/XEH_preInit.sqf
+2024-10-29T21:04:28.099404Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_utility_quickRespawn_local.sqf
+2024-10-29T21:04:28.100920Z TRACE ThreadId(15) sqf compiling /addons/safestart/functions/fnc_end.sqf
+2024-10-29T21:04:28.113542Z TRACE ThreadId(14) sqf compiling /addons/zeus/XEH_preStart.sqf
+2024-10-29T21:04:28.117914Z TRACE ThreadId(05) sqf compiling /addons/safestart/XEH_preStart.sqf
+2024-10-29T21:04:28.119975Z TRACE ThreadId(13) sqf compiling /addons/spectator/functions/fnc_onModeSwitch.sqf
+2024-10-29T21:04:28.121331Z TRACE ThreadId(09) sqf compiling /addons/spectator/functions/fnc_drawVehicleMarker.sqf
+2024-10-29T21:04:28.126864Z TRACE ThreadId(02) sqf compiling /addons/adminmenu/functions/fnc_dashboard.sqf
+2024-10-29T21:04:28.126940Z TRACE ThreadId(03) sqf compiling /addons/spectator/XEH_postInit.sqf
+2024-10-29T21:04:28.128065Z TRACE ThreadId(10) sqf compiling /addons/spectator/functions/fnc_onMapClick.sqf
+2024-10-29T21:04:28.131565Z TRACE ThreadId(15) sqf compiling /addons/safestart/functions/fnc_moduleInit.sqf
+2024-10-29T21:04:28.134095Z TRACE ThreadId(11) sqf compiling /addons/spectator/functions/fnc_setTarget.sqf
+2024-10-29T21:04:28.145165Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_respawn_refreshGroupBox.sqf
+2024-10-29T21:04:28.148557Z TRACE ThreadId(14) sqf compiling /addons/zeus/XEH_preInit.sqf
+2024-10-29T21:04:28.156675Z TRACE ThreadId(05) sqf compiling /addons/adminmenu/XEH_postServerInit.sqf
+2024-10-29T21:04:28.158583Z TRACE ThreadId(13) sqf compiling /addons/adminmenu/functions/fnc_respawn_mapLoaded.sqf
+2024-10-29T21:04:28.160037Z TRACE ThreadId(03) sqf compiling /addons/spectator/XEH_clientPostInit.sqf
+2024-10-29T21:04:28.160728Z TRACE ThreadId(12) sqf compiling /addons/autotest/initSettings.sqf
+2024-10-29T21:04:28.161170Z TRACE ThreadId(09) sqf compiling /addons/spectator/functions/fnc_onLoad.sqf
+2024-10-29T21:04:28.161937Z TRACE ThreadId(10) sqf compiling /addons/safestart/functions/fnc_isActive.sqf
+2024-10-29T21:04:28.163444Z TRACE ThreadId(08) sqf compiling /addons/acre2/functions/fnc_testBabel.sqf
+2024-10-29T21:04:28.163806Z TRACE ThreadId(15) sqf compiling /addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+2024-10-29T21:04:28.181543Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/initSettings.sqf
+2024-10-29T21:04:28.182740Z TRACE ThreadId(11) sqf compiling /addons/teleport/XEH_preStart.sqf
+2024-10-29T21:04:28.186640Z TRACE ThreadId(14) sqf compiling /addons/zeus/functions/fnc_toggleAllUnitsZeusServer.sqf
+2024-10-29T21:04:28.186698Z TRACE ThreadId(02) sqf compiling /addons/adminmenu/functions/fnc_debounceButton.sqf
+2024-10-29T21:04:28.186947Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_modal_ACRE2Languages_assign.sqf
+2024-10-29T21:04:28.188924Z TRACE ThreadId(17) sqf compiling /addons/spectator/functions/fnc_perFrameHandler.sqf
+2024-10-29T21:04:28.189539Z TRACE ThreadId(02) sqf compiling /addons/adminmenu/functions/fnc_showSubtitle.sqf
+2024-10-29T21:04:28.195552Z TRACE ThreadId(10) sqf compiling /addons/safestart/functions/fnc_briefingText.sqf
+2024-10-29T21:04:28.196929Z TRACE ThreadId(12) sqf compiling /addons/autotest/XEH_preStart.sqf
+2024-10-29T21:04:28.200950Z TRACE ThreadId(13) sqf compiling /addons/adminmenu/functions/fnc_modal_runCode.sqf
+2024-10-29T21:04:28.203340Z TRACE ThreadId(03) sqf compiling /addons/spectator/initSettings.sqf
+2024-10-29T21:04:28.210144Z TRACE ThreadId(08) sqf compiling /addons/acre2/functions/fnc_unitToPreset.sqf
+2024-10-29T21:04:28.215824Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/fnc_isDebugConsoleAllowed.sqf
+2024-10-29T21:04:28.216945Z TRACE ThreadId(11) sqf compiling /addons/teleport/XEH_preInit.sqf
+2024-10-29T21:04:28.218092Z TRACE ThreadId(09) sqf compiling /addons/spectator/XEH_preStart.sqf
+2024-10-29T21:04:28.223114Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_modal_steamprofile.sqf
+2024-10-29T21:04:28.229462Z TRACE ThreadId(14) sqf compiling /addons/zeus/functions/fnc_toggleAllStaticsZeusServer.sqf
+2024-10-29T21:04:28.229476Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/initKeybinds.sqf
+2024-10-29T21:04:28.231827Z TRACE ThreadId(02) sqf compiling /addons/adminmenu/functions/fnc_modalState.sqf
+2024-10-29T21:04:28.231899Z TRACE ThreadId(15) sqf compiling /addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+2024-10-29T21:04:28.238980Z TRACE ThreadId(10) sqf compiling /addons/teleport/functions/fnc_paraDrop.sqf
+2024-10-29T21:04:28.239413Z TRACE ThreadId(03) sqf compiling /addons/teleport/functions/fnc_onAction.sqf
+2024-10-29T21:04:28.241266Z TRACE ThreadId(12) sqf compiling /addons/autotest/functions/fnc_testDLC.sqf
+2024-10-29T21:04:28.241516Z TRACE ThreadId(17) sqf compiling /addons/spectator/functions/fnc_drawMap.sqf
+2024-10-29T21:04:28.247722Z TRACE ThreadId(08) sqf compiling /addons/acre2/functions/fnc_edenUnitToRadios.sqf
+2024-10-29T21:04:28.249517Z TRACE ThreadId(04) sqf compiling /addons/adminmenu/functions/fnc_respawn.sqf
+2024-10-29T21:04:28.252328Z TRACE ThreadId(11) sqf compiling /addons/autotest/functions/fnc_testAI.sqf
+2024-10-29T21:04:28.254470Z TRACE ThreadId(05) sqf compiling /addons/adminmenu/XEH_preInit.sqf
+2024-10-29T21:04:28.259943Z TRACE ThreadId(14) sqf compiling /addons/zeus/functions/fnc_openedZeusServer.sqf
+2024-10-29T21:04:28.261088Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/functions/fnc_respawn_mapClick.sqf
+2024-10-29T21:04:28.264299Z TRACE ThreadId(13) sqf compiling /addons/adminmenu/functions/fnc_log.sqf
+2024-10-29T21:04:28.265094Z TRACE ThreadId(02) sqf compiling /addons/adminmenu/functions/fnc_modal_message.sqf
+2024-10-29T21:04:28.268149Z TRACE ThreadId(10) sqf compiling /addons/teleport/functions/fnc_paradropEffect.sqf
+2024-10-29T21:04:28.268301Z TRACE ThreadId(09) sqf compiling /addons/teleport/functions/fnc_deployInit.sqf
+2024-10-29T21:04:28.272256Z TRACE ThreadId(06) sqf compiling /addons/adminmenu/functions/fnc_modal_teleport.sqf
+2024-10-29T21:04:28.278494Z TRACE ThreadId(03) sqf compiling /addons/adminmenu/functions/fnc_modal_assignGear.sqf
+2024-10-29T21:04:28.293579Z TRACE ThreadId(11) sqf compiling /addons/autotest/functions/fnc_autotest.sqf
+2024-10-29T21:04:28.297772Z TRACE ThreadId(14) sqf compiling /addons/zeus/functions/fnc_toggleACRESpectator.sqf
+2024-10-29T21:04:28.298116Z TRACE ThreadId(15) sqf compiling /addons/adminmenu/functions/fnc_sideToColor.sqf
+2024-10-29T21:04:28.299648Z TRACE ThreadId(14) sqf compiling /addons/zeus/functions/fnc_toggleAllStaticsZeus.sqf
+2024-10-29T21:04:28.301574Z TRACE ThreadId(09) sqf compiling /addons/zeus/functions/fnc_openedZeus.sqf
+2024-10-29T21:04:28.301787Z TRACE ThreadId(10) sqf compiling /addons/teleport/functions/fnc_paradropWaypoint.sqf
+2024-10-29T21:04:28.303171Z TRACE ThreadId(13) sqf compiling /addons/adminmenu/functions/fnc_remoteControl.sqf
+2024-10-29T21:04:28.303421Z TRACE ThreadId(12) sqf compiling /addons/adminmenu/functions/fnc_resyncLog.sqf
+2024-10-29T21:04:28.303732Z TRACE ThreadId(07) sqf compiling /addons/adminmenu/XEH_preServerInit.sqf
+2024-10-29T21:04:28.305060Z TRACE ThreadId(08) sqf compiling /addons/acre2/functions/fnc_testNets.sqf
+2024-10-29T21:04:28.318576Z TRACE ThreadId(17) sqf compiling /addons/zeus/functions/fnc_toggleAllUnitsZeus.sqf
+2024-10-29T21:04:28.558494Z  INFO ThreadId(01) Compiled 366 sqf files
+2024-10-29T21:04:28.558688Z TRACE ThreadId(01) phase: pre_build (SQF) (done)
+2024-10-29T21:04:28.558693Z TRACE ThreadId(01) phase: pre_build (Rapifier) (start)
+2024-10-29T21:04:29.049244Z  INFO ThreadId(01) Rapified 19 addon configs
+2024-10-29T21:04:29.049414Z TRACE ThreadId(01) phase: pre_build (Rapifier) (failed)
+2024-10-29T21:04:31.828478Z TRACE ThreadId(01) writing ci annotations to .hemttout/ci_annotations.txt
+2024-10-29T21:04:33.070161Z TRACE ThreadId(01) wrote 12004 ci annotations to .hemttout/ci_annotations.txt

@@ -1,4 +1,5 @@
 
+#include "\x\tmf\addons\orbat\script_component.hpp"
 TRACE_1("OrbatSettings moveTreeDoubleClick",_params);
 with uiNamespace do {
 

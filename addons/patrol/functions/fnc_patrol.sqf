@@ -26,11 +26,12 @@ switch (_type) do {
     };
     case (RECTANGLE): {
         private _quickFunc = {
+            private _pos = _this;
             if(_onRoad) then {
                 private _road = [_this] call CFUNC(getNearestRoad);
-                if(!isNull _road) then {_this = getpos _road};
+                if(!isNull _road) then {_pos = getpos _road};
             };
-            _this
+            _pos
         };
         private _topleft = (_pos vectorAdd [-(_radius/2),-(_radius/2),0])  call _quickFunc;
 

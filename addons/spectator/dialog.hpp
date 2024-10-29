@@ -1,4 +1,5 @@
 
+#include "\x\tmf\addons\spectator\script_component.hpp"
 class RscText;
 class RscMapControl;
 class RscTree;
@@ -53,15 +54,14 @@ class RscSpectatorShortcutButton : RscPicture {
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT    5454
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight    5455
 #define IDC_SPECTATOR_TMF_SPECTATOR_MUTE 5467
-#define IDC_SPECTATOR_TMF_SPECTATOR_MAP 5468
+
 
 
 #define BUTTON_WIDTH 0.02 * safezoneW
 #define BUTTON_HEIGHT 0.031 * safezoneH
 #define COLUMN(V) (0.002 * safezoneW + safezoneX)+((0.0215 * safezoneW)  * V)
 
-class GVAR(dialog)
-{
+class GVAR(dialog) {
   idd = DISPLAY_ID;
   movingEnable = 1;
   enableSimulation = 1;

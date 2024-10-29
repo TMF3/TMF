@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\adminmenu\script_component.hpp"
 private _fnc_settings = {
     [
         QGVAR(printToChat),

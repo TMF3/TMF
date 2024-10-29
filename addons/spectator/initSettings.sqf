@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\spectator\script_component.hpp"
 [
     QGVAR(isJIPAllowed),
     "LIST",

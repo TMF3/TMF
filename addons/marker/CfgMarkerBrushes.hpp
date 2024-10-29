@@ -7,31 +7,31 @@ class CfgMarkerBrushes {
     class Vertical;
     class Cross;
     class GVARMAIN(BDiagonalBorder): BDiagonal {
-        drawBorder = true;
+        drawBorder = 1;
         name = "Backward diagonal (Border)";
     };
     class GVARMAIN(DiagGridBorder): DiagGrid {
-        drawBorder = true;
+        drawBorder = 1;
         name = "Grid diagonal (Border)";
     };
     class GVARMAIN(FDiagonalBorder): FDiagonal {
-        drawBorder = true;
+        drawBorder = 1;
         name = "Forward diagonal (Border)";
     };
     class GVARMAIN(GridBorder): Grid {
-        drawBorder = true;
+        drawBorder = 1;
         name = "Grid (Border)";
     };
     class GVARMAIN(HorizontalBorder): Horizontal {
-        drawBorder = true;
+        drawBorder = 1;
         name = "Horizontal (Border)";
     };
     class GVARMAIN(VerticalBorder): Vertical {
-        drawBorder = true;
+        drawBorder = 1;
         name = "Vertical (Border)";
     };
     class GVARMAIN(CrossBorder): Cross {
-        drawBorder = true;
+        drawBorder = 1;
         name = "Cross (Border)";
     };
 };

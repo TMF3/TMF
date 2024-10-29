@@ -8,10 +8,10 @@ class GVAR(ambientVehicles): Module_F
 
     function = QFUNC(ambientVehicleInit);
     functionPriority = 10;
-    isGlobal = false;
-    isTriggerActivated = true;
-    isDisposable = false;
-    is3DEN = true;
+    isGlobal = 0;
+    isTriggerActivated = 1;
+    isDisposable = 0;
+    is3DEN = 1;
 
     class Attributes: AttributesBase {
         class GVAR(vehicleNumber): Default {
@@ -37,7 +37,7 @@ class GVAR(ambientVehicles): Module_F
             displayName = "Empty vehicle cargo";
             tooltip = "Whether vehicles should spawn with empty cargo.";
             typeName = "BOOL";
-            defaultValue = false;
+            defaultValue = 0;
         };
         class GVAR(lockedRate): Default {
             property = QGVAR(DOUBLES(ambientVehicles,lockedRate));
@@ -70,10 +70,10 @@ class GVAR(ambientVehicles): Module_F
             description[] = {
                 "Area in which vehicles will be spawned"
             };
-            position = true; // Position is taken into effect
-            direction = true; // Direction is taken into effect
-            optional = false; // Synced entity is optional
-            duplicate = false; // Multiple entities of this type can be synced
+            position = 1; // Position is taken into effect
+            direction = 1; // Direction is taken into effect
+            optional = 0; // Synced entity is optional
+            duplicate = 0; // Multiple entities of this type can be synced
             synced[] = {}; // Pre-define entities like "AnyBrain" can be used. See the list below
         };
         class AnyVehicle
@@ -81,10 +81,10 @@ class GVAR(ambientVehicles): Module_F
             description[] = {
                 "Vehicles that will be spawned in the area"
             };
-            position = false; // Position is taken into effect
-            direction = false; // Direction is taken into effect
-            optional = false; // Synced entity is optional
-            duplicate = true; // Multiple entities of this type can be synced
+            position = 0; // Position is taken into effect
+            direction = 0; // Direction is taken into effect
+            optional = 0; // Synced entity is optional
+            duplicate = 1; // Multiple entities of this type can be synced
             synced[] = {}; // Pre-define entities like "AnyBrain" can be used. See the list below
         };
     };

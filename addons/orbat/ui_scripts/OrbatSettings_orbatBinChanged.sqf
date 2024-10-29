@@ -1,4 +1,5 @@
 
+#include "\x\tmf\addons\orbat\script_component.hpp"
 TRACE_1("OrbatSettings orbatBinChanged",_params);
 if ((_params select 1)==0)then { //side
     with uiNamespace do {

@@ -17,7 +17,7 @@ class GVAR(artillery) : Module_F
             tooltip = "Shows units";
             property = "Debug";
             control = "Checkbox";
-            defaultValue = false;
+            defaultValue = 0;
             expression = "_this setVariable ['%s',_value];";
             typeName = "BOOL";
         };
@@ -57,7 +57,7 @@ class GVAR(artillery) : Module_F
             tooltip = "If empty will use the loaded ammo.";
             control = "Edit";
             property = "Round";
-            defaultValue = 'default';
+            defaultValue = 1;
             expression = "_this setVariable ['%s',_value];";
             typeName = "STRING";
             validate = "none";

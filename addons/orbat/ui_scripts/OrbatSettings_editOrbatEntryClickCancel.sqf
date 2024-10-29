@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\orbat\script_component.hpp"
 TRACE_1("OrbatSettings editOrbatEntryClickCancel",_params);
 with uiNamespace do {
     {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (MAIN_IDCS);

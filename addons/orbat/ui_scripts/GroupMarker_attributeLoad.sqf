@@ -1,4 +1,4 @@
-
+#include "\x\tmf\addons\orbat\script_component.hpp"
 private _ctrlGroup = _params;
 
 private _groupMarkerArray = _value;

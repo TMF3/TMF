@@ -1,4 +1,4 @@
-
+#include "\x\tmf\addons\orbat\script_component.hpp"
 private _ctrlGroup = uiNameSpace getVariable "GroupMarker_ctrlGroup";
 private _ctrlIconToolbox = _ctrlGroup controlsGroupCtrl 100;
 private _ctrlColourToolBox = _ctrlGroup controlsGroupCtrl 101;
@@ -27,6 +27,6 @@ private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNameSpace 
 
 _entity set3DENAttribute ["TMF_groupMarker",str _groupMarkerArray];
 
-TRACE_3("Group Marker attrSave",_entity,_groupMarkerArray);
+TRACE_2("Group Marker attrSave",_entity,_groupMarkerArray);
 
 str _groupMarkerArray;

@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\orbat\script_component.hpp"
 [
     QGVAR(markerUpdateInterval),
     "SLIDER",

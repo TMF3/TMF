@@ -154,7 +154,7 @@ for "_i" from 0 to _vehicleCount do {
         for "_k" from 1 to 15 do {
             _tempPos = _tempPos getPos [0.5, _direction2];
 
-            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {TRACE_1("Colliding at",_k,_tempPos)};
+            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {TRACE_2("Colliding at",_k,_tempPos)};
             _newPos = _tempPos;
 
 
@@ -178,7 +178,7 @@ for "_i" from 0 to _vehicleCount do {
         for "_j" from 1 to 15 do {
             _tempPos = _tempPos getPos [0.5, _direction2];
 
-            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {TRACE_1("Colliding at",_j,_tempPos)};
+            if ((_tempPos findEmptyPosition [0, 0, _vehicle]) isEqualTo []) exitWith {TRACE_2("Colliding at",_j,_tempPos)};
             _newPos = _tempPos;
 
             #ifdef DEBUG_MODE_FULL

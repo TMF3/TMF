@@ -1,5 +1,5 @@
 #include "\a3\3DEN\UI\resincl.inc"
-#include "\a3\3DEN\UI\dikCodes.inc"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 
 _mode = _this select 0;
 _params = _this select 1;

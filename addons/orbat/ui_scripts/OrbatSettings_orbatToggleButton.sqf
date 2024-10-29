@@ -1,4 +1,5 @@
 
+#include "\x\tmf\addons\orbat\script_component.hpp"
 TRACE_1("OrbatSettings orbatToggleButton",_params);
 with uiNamespace do {
     private _ctrlToggle = OrbatSettings_ctrlGroup controlsGroupCtrl 101;

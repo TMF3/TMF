@@ -1,3 +1,4 @@
+#include "\x\tmf\addons\autotest\script_component.hpp"
 [
     QGVAR(outputToRPT),
     "CHECKBOX",

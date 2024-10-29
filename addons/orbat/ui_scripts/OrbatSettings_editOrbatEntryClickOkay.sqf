@@ -1,4 +1,5 @@
 
+#include "\x\tmf\addons\orbat\script_component.hpp"
 TRACE_1("OrbatSettings editOrbatEntryClickOkay",_params);
 with uiNamespace do {
     private _ctrlIconToolbox = OrbatSettings_ctrlGroup controlsGroupCtrl 111;

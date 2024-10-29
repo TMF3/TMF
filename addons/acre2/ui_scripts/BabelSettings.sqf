@@ -2,7 +2,7 @@
 //with uiNameSpace do { RadioChannels_script = compile preprocessFileLineNumbers "RadioChannels.sqf"; }; with uiNameSpace do { BabelSettings_script = compile preprocessFileLineNumbers "BabelSettings.sqf"; };
 params ["_mode",["_params",[]]];
 
-#include "\a3\3den\UI\dikCodes.inc"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 //ret = (get3DENSelected "Object" select 0) set3DENAttribute ["TMF_Channellist","1"];
 //set3DENAttributes [[get3DENSelected "Object","TMF_Channelset",[1,2,3]]];
 

@@ -26,7 +26,7 @@ LOG("Client PostInit started");
             LOG("JIP: True");
 
             [{!isNull player && {!([] call BIS_fnc_isLoading)}},{
-                LOG_1("JIP: killing %1", player);
+                LOG_1("JIP: killing %1",player);
                 [player, objNull, true] spawn {
                     private _oldObject = _this # 0;
                     _this call FUNC(init);

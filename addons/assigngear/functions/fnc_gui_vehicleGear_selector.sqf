@@ -6,7 +6,7 @@
  * Description:
  * Internal Use Only
  */
-#include "\a3\3den\UI\dikCodes.inc"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 
 disableSerialization;

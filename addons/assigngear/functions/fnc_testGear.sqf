@@ -211,7 +211,7 @@ private _fncTestUnit = {
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount < 3 && !(_weaponMags isEqualTo [])) then {
-                _output pushBack [1,format["Role: %2 - %3 has less than 3 compatible mags for primary weapon.", _x,_faction,_role]];
+                _output pushBack [1,format["Role: %1 - %2 has less than 3 compatible mags for primary weapon.",_faction,_role]];
             };
         };
 
@@ -220,7 +220,7 @@ private _fncTestUnit = {
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount == 0) then {
-                _output pushBack [1,format["Role: %2 - %3 has no compatible mag for sidearm.", _x,_faction,_role]];
+                _output pushBack [1,format["Role: %1 - %2 has no compatible mag for sidearm.",_faction,_role]];
             };
         };
 

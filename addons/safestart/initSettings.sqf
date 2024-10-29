@@ -1,5 +1,4 @@
-// https://cbateam.github.io/CBA_A3/docs/files/settings/fnc_addSetting-sqf.html
-
+#include "\x\tmf\addons\safestart\script_component.hpp"
 [
     QGVAR(soundEnabled),
     "CHECKBOX",

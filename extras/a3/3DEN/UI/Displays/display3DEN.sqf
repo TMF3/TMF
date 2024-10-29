@@ -1,4 +1,4 @@
-#include "\a3\3DEN\UI\dikCodes.inc"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
 #include "\a3\3DEN\UI\resincl.inc"
 
 #define COMMIT_TIME	0.1

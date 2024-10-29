@@ -1,4 +1,5 @@
 
+#include "\x\tmf\addons\orbat\script_component.hpp"
 private _array = +(uiNamespace getVariable "OrbatSettings_Array");
 if (count _array > 0) then {
     if ((((_array) select 0) select 0) isEqualType east) then {

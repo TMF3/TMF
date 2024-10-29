@@ -177,7 +177,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
         };
 
         {
-            _itemText = format ["%1%2", _itemText, getText (_cfgWeapons >> _x select 0 >> "displayName"), _x select 1];
+            _itemText = format ["%1%2", _itemText, getText (_cfgWeapons >> _x select 0 >> "displayName")];
             _visText = format ["%1<img image='%2' height=48 />", _visText, getText (_cfgWeapons >> _x select 0  >> "picture")];
 
             if ((_x select 1) > 1) then {

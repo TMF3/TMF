@@ -21,7 +21,7 @@ if (!GVAR(Garrison)) exitWith {};
 if (current3DENOperation != "MoveItems") exitWith {};
 
 // Delay execution
-0 = [] spawn {
+[] spawn {
     // See if we have a suitable object
     private _building = GVAR(edenMouseObjects);
     if isNil "_building" exitWith {};
