@@ -1,26 +1,18 @@
-name: Build addon
-on:
-  push:
-    branches:
-      - master
-      - dev
-  pull_request:
-    branches:
-      - master
-      - dev
+name: Build
+
+on: [push]
+
 jobs:
-  build:
-    runs-on: windows-latest
-    steps:
-    - uses: actions/checkout@master
-      name: Checkout repository
-    - name: Building pbos
-      run: ./Build.exe
-    - uses: actions/upload-artifact@v4
-      name: Upload artifacts
-      with:
-        name: build
-        path: |
-          addons/*.pbo
-          mod.cpp
-          README.md
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup HEMTT
+              uses: arma-actions/hemtt@v1
+            - name: Run HEMTT build
+              run: hemtt release
+            - name: Upload Release
+              uses: actions/upload-artifact@v4
+              with:
+                  name: tmf
+                  path: release/tmf-latest.zip
