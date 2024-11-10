@@ -16,7 +16,7 @@ jobs:
       name: Checkout repository
     - name: Building pbos
       run: ./Build.exe
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v4
       name: Upload artifacts
       with:
         name: build
