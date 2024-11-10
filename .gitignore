@@ -1,4 +1,3 @@
-/addons/*.pbo
-.hemttout
-.hemttout/ci_annotations.txt
-.hemttout/latest.log
+.vscode/*
+.hemttout/*
+releases
