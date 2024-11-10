@@ -1,14 +1,10 @@
-88||88||20||39||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-88||88||58||69||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-89||89||20||39||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-89||89||59||70||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-129||129||27||36||notice||`lnbaddrow` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-136||136||27||36||notice||`lnbaddrow` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-166||166||41||51||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-205||205||60||67||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-266||266||72||82||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-271||271||44||54||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
-464||464||56||66||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+18||18||5||26||notice||`getmissionconfigvalue` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_testBabel.sqf
+181||181||42||52||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
+233||233||98||108||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
+246||246||9||15||notice||`didJip` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
+285||285||55||65||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
+335||335||175||185||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
+18||18||5||26||notice||`getmissionconfigvalue` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_testNets.sqf
 17||17||20||39||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/AcreAddRadioActions.sqf
 17||17||58||69||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/AcreAddRadioActions.sqf
 18||18||20||39||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/AcreAddRadioActions.sqf
@@ -60,43 +56,17 @@
 707||707||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/RadioChannels.sqf
 809||809||64||75||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/RadioChannels.sqf
 958||958||56||66||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/RadioChannels.sqf
-18||18||5||26||notice||`getmissionconfigvalue` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_testBabel.sqf
-18||18||5||26||notice||`getmissionconfigvalue` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_testNets.sqf
-181||181||42||52||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
-233||233||98||108||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
-246||246||9||15||notice||`didJip` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
-285||285||55||65||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
-335||335||175||185||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/functions/fnc_clientInit.sqf
-10||10||63||63||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-10||10||63||63||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-17||17||47||47||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-17||17||47||47||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-17||17||97||97||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-17||17||97||97||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-22||22||24||24||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-22||22||24||24||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-30||30||73||73||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-30||30||73||73||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-30||30||125||125||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-30||30||125||125||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-37||37||93||93||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-37||37||93||93||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-37||37||142||142||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-37||37||142||142||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-49||49||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-49||49||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-49||49||115||115||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-49||49||115||115||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
-10||10||113||120||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-11||11||12||28||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-11||11||68||84||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "not in vehicle" check||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-14||14||43||50||notice||`gettext` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-14||14||52||62||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-16||16||51||57||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-26||26||29||39||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-31||31||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-35||35||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
-42||42||40||50||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+88||88||20||39||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+88||88||58||69||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+89||89||20||39||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+89||89||59||70||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+129||129||27||36||notice||`lnbaddrow` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+136||136||27||36||notice||`lnbaddrow` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+166||166||41||51||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+205||205||60||67||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+266||266||72||82||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+271||271||44||54||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
+464||464||56||66||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/acre2/ui_scripts/BabelSettings.sqf
 10||10||31||31||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_message.sqf
 10||10||31||31||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_message.sqf
 10||10||62||62||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_message.sqf
@@ -123,6 +93,23 @@
 55||55||135||135||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_message.sqf
 55||55||161||161||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_message.sqf
 55||55||161||161||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_message.sqf
+32||32||82||89||notice||`objnull` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl.sqf
+10||10||65||65||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+10||10||65||65||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+16||16||34||34||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+16||16||34||34||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+21||21||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+21||21||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+25||25||49||49||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+25||25||49||49||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+25||25||109||109||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+25||25||109||109||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+32||32||86||86||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+32||32||86||86||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+50||50||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+50||50||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+50||50||115||115||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+50||50||115||115||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
 16||16||88||88||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_teleport.sqf
 16||16||88||88||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_teleport.sqf
 129||129||88||88||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_teleport.sqf
@@ -161,6 +148,16 @@
 164||164||92||92||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_teleport.sqf
 164||164||139||139||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_teleport.sqf
 164||164||139||139||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_teleport.sqf
+10||10||113||120||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+11||11||12||28||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+11||11||68||84||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "not in vehicle" check||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+14||14||43||50||notice||`gettext` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+14||14||52||62||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+16||16||51||57||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+26||26||29||39||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+31||31||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+35||35||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
+42||42||40||50||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_respawn_mapDrawIcons.sqf
 10||10||34||34||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_runCode.sqf
 10||10||34||34||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_runCode.sqf
 10||10||65||65||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_runCode.sqf
@@ -179,6 +176,79 @@
 27||27||83||83||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_runCode.sqf
 36||36||82||82||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_runCode.sqf
 36||36||82||82||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_runCode.sqf
+79||79||38||48||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+132||132||12||28||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+132||132||68||84||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "not in vehicle" check||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+136||136||34||44||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+148||148||118||125||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+179||179||29||39||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+184||184||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+188||188||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+195||195||40||50||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
+10||10||64||64||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+10||10||64||64||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+16||16||49||49||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+16||16||49||49||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+16||16||97||97||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+16||16||97||97||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+25||25||30||30||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+25||25||30||30||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+34||34||73||73||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+34||34||73||73||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+34||34||100||100||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+34||34||100||100||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+34||34||125||125||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+34||34||125||125||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||37||37||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||37||37||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||94||94||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||94||94||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||145||145||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||145||145||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||170||170||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+40||40||170||170||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+57||57||64||64||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+57||57||64||64||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+57||57||89||89||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+57||57||89||89||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+62||62||64||64||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+62||62||64||64||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+62||62||123||123||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+62||62||123||123||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+62||62||149||149||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+62||62||149||149||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+69||69||75||75||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+69||69||75||75||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+69||69||123||123||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+69||69||123||123||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+77||77||105||105||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+77||77||105||105||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+77||77||168||168||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+77||77||168||168||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+105||105||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+105||105||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+105||105||115||115||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+105||105||115||115||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
+10||10||63||63||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+10||10||63||63||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+17||17||47||47||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+17||17||47||47||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+17||17||97||97||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+17||17||97||97||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+22||22||24||24||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+22||22||24||24||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+30||30||73||73||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+30||30||73||73||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+30||30||125||125||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+30||30||125||125||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+37||37||93||93||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+37||37||93||93||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+37||37||142||142||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+37||37||142||142||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+49||49||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+49||49||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+49||49||115||115||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
+49||49||115||115||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Languages.sqf
 10||10||42||42||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignGear.sqf
 10||10||42||42||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignGear.sqf
 10||10||67||67||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignGear.sqf
@@ -239,7 +309,6 @@
 86||86||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignGear.sqf
 86||86||115||115||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignGear.sqf
 86||86||115||115||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignGear.sqf
-32||32||82||89||notice||`objnull` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl.sqf
 14||14||58||58||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
 14||14||58||58||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
 14||14||113||113||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
@@ -252,75 +321,20 @@
 32||32||134||134||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
 32||32||190||190||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
 32||32||190||190||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
-79||79||38||48||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-132||132||12||28||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-132||132||68||84||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "not in vehicle" check||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-136||136||34||44||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-148||148||118||125||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-179||179||29||39||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-184||184||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-188||188||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-195||195||40||50||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_adminEye_draw.sqf
-10||10||64||64||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-10||10||64||64||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-16||16||49||49||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-16||16||49||49||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-16||16||97||97||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-16||16||97||97||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-25||25||30||30||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-25||25||30||30||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-34||34||73||73||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-34||34||73||73||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-34||34||100||100||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-34||34||100||100||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-34||34||125||125||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-34||34||125||125||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||37||37||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||37||37||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||94||94||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||94||94||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||145||145||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||145||145||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||170||170||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-40||40||170||170||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-57||57||64||64||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-57||57||64||64||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-57||57||89||89||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-57||57||89||89||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-62||62||64||64||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-62||62||64||64||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-62||62||123||123||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-62||62||123||123||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-62||62||149||149||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-62||62||149||149||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-69||69||75||75||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-69||69||75||75||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-69||69||123||123||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-69||69||123||123||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-77||77||105||105||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-77||77||105||105||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-77||77||168||168||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-77||77||168||168||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-105||105||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-105||105||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-105||105||115||115||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-105||105||115||115||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_ACRE2Radios.sqf
-10||10||65||65||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-10||10||65||65||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-16||16||34||34||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-16||16||34||34||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-21||21||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-21||21||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-25||25||49||49||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-25||25||49||49||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-25||25||109||109||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-25||25||109||109||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-32||32||86||86||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-32||32||86||86||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-50||50||68||68||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-50||50||68||68||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-50||50||115||115||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
-50||50||115||115||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/adminmenu/functions/fnc_modal_assignTraits.sqf
+5||5||17||25||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_arty.sqf
+6||6||49||57||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearm.sqf
+6||6||12||23||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearm.sqf
+11||11||25||33||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearm.sqf
+124||124||28||39||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_spawnWave.sqf
+7||7||13||19||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
+7||7||37||43||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
+11||11||70||76||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
+11||11||94||100||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
+12||12||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
+6||6||24||30||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
+6||6||47||58||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
+15||15||8||19||notice||`setvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
+17||17||34||45||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
 86||86||10||24||notice||Repeated calls to global marker updates||Use setMarkerColorLocal||/addons/ai/functions/fnc_garrisonQuantity.sqf
 85||85||10||23||notice||Repeated calls to global marker updates||Use setMarkerSizeLocal||/addons/ai/functions/fnc_garrisonQuantity.sqf
 84||84||10||23||notice||Repeated calls to global marker updates||Use setMarkerTypeLocal||/addons/ai/functions/fnc_garrisonQuantity.sqf
@@ -336,39 +350,21 @@
 114||114||7||14||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_waveInit.sqf
 113||113||11||18||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_waveInit.sqf
 117||117||7||14||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_waveInit.sqf
-124||124||28||39||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_spawnWave.sqf
-7||7||13||19||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
-7||7||37||43||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
-11||11||70||76||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
-11||11||94||100||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearmInit.sqf
-12||12||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
-6||6||24||30||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
-6||6||47||58||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
-15||15||8||19||notice||`setvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
-17||17||34||45||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_doArty.sqf
-5||5||17||25||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_arty.sqf
 94||94||26||40||notice||Repeated calls to global marker updates||Use setMarkerColorLocal||/addons/ai/functions/fnc_garrison.sqf
 93||93||26||39||notice||Repeated calls to global marker updates||Use setMarkerSizeLocal||/addons/ai/functions/fnc_garrison.sqf
 92||92||26||39||notice||Repeated calls to global marker updates||Use setMarkerTypeLocal||/addons/ai/functions/fnc_garrison.sqf
 91||91||26||40||notice||Repeated calls to global marker updates||Use setMarkerShapeLocal||/addons/ai/functions/fnc_garrison.sqf
-6||6||49||57||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearm.sqf
-6||6||12||23||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearm.sqf
-11||11||25||33||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/ai/functions/fnc_rearm.sqf
 11||11||33||43||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/assigngear/XEH_preStart.sqf
-8||8||33||44||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/assigngear/UI/TMF_RscAttributeRetroactive.sqf
-10||10||32||43||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/assigngear/UI/TMF_AttributesFaction.sqf
 15||15||40||55||notice||`configsourcemod` does not match the wiki's case||non-standard command case||/addons/assigngear/UI/TMF_RscAttributeLoadout.sqf
 24||24||9||15||notice||`lbsort` does not match the wiki's case||non-standard command case||/addons/assigngear/UI/TMF_RscAttributeLoadout.sqf
+10||10||32||43||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/assigngear/UI/TMF_AttributesFaction.sqf
+8||8||33||44||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/assigngear/UI/TMF_RscAttributeRetroactive.sqf
 65||65||25||36||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/assigngear/functions/fnc_saveRole.sqf
 65||65||13||24||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/assigngear/functions/fnc_saveRole.sqf
 66||66||34||45||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/assigngear/functions/fnc_saveRole.sqf
 66||66||22||33||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/assigngear/functions/fnc_saveRole.sqf
 66||66||161||172||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/assigngear/functions/fnc_saveRole.sqf
 66||66||149||160||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/assigngear/functions/fnc_saveRole.sqf
-15||15||135||145||notice||`ConfigFile` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_createCreditsPage.sqf
-48||48||22||47||notice||`preprocessfilelinenumbers` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_generateBriefing.sqf
-61||61||22||47||notice||`preprocessfilelinenumbers` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_generateBriefing.sqf
-58||58||65||74||notice||`getnumber` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_vehiclePage.sqf
 56||56||47||56||notice||`IsEqualTo` does not match the wiki's case||non-standard command case||/addons/briefing/ui_scripts/BriefingSettings.sqf
 58||58||47||56||notice||`IsEqualTo` does not match the wiki's case||non-standard command case||/addons/briefing/ui_scripts/BriefingSettings.sqf
 91||91||20||39||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/briefing/ui_scripts/BriefingSettings.sqf
@@ -384,14 +380,18 @@
 290||290||76||86||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/briefing/ui_scripts/BriefingSettings.sqf
 295||295||48||58||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/briefing/ui_scripts/BriefingSettings.sqf
 497||497||56||66||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/briefing/ui_scripts/BriefingSettings.sqf
+48||48||22||47||notice||`preprocessfilelinenumbers` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_generateBriefing.sqf
+61||61||22||47||notice||`preprocessfilelinenumbers` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_generateBriefing.sqf
+15||15||135||145||notice||`ConfigFile` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_createCreditsPage.sqf
+58||58||65||74||notice||`getnumber` does not match the wiki's case||non-standard command case||/addons/briefing/functions/fnc_vehiclePage.sqf
 39||39||9||31||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/chat/functions/fnc_cmndTp.sqf
+22||22||42||52||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndRadio.sqf
 27||27||28||39||notice||`splitstring` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndLoadout.sqf
 43||43||64||71||notice||`gettext` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndLoadout.sqf
 48||48||30||39||notice||`isEqualto` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndLoadout.sqf
 57||57||40||54||notice||`getUnitloadout` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndLoadout.sqf
 73||73||24||24||notice||`gettext` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndLoadout.sqf
 73||73||24||24||notice||`gettext` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndLoadout.sqf
-22||22||42||52||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/chat/functions/fnc_cmndRadio.sqf
 12||12||39||50||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_initDisplayDebriefing.sqf
 13||13||42||53||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_initDisplayDebriefing.sqf
 14||14||20||31||notice||`ctrlsettext` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_initDisplayDebriefing.sqf
@@ -406,131 +406,15 @@
 11||11||26||35||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_intro.sqf
 12||12||14||23||notice||`safezoneY` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_intro.sqf
 12||12||26||35||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_intro.sqf
-60||60||77||84||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_testGroupsSlottingScreen.sqf
-13||13||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_arrayToStringArray.sqf
 15||15||11||18||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_moduleUnits.sqf
+60||60||77||84||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_testGroupsSlottingScreen.sqf
 59||59||33||45||notice||`diag_frameno` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_edenMouseKeyDown.sqf
+13||13||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/common/functions/fnc_arrayToStringArray.sqf
 27||27||42||53||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/orbat/XEH_postInit.sqf
 28||28||23||34||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/orbat/XEH_postInit.sqf
 29||29||23||34||notice||`displayctrl` does not match the wiki's case||non-standard command case||/addons/orbat/XEH_postInit.sqf
-7||7||79||88||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeMoveClick.sqf
-8||8||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeMoveClick.sqf
-9||9||78||87||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeMoveClick.sqf
-2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
-10||10||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
-14||14||64||72||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
-2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-12||12||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-16||16||65||73||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-19||19||17||25||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-26||26||69||80||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-6||6||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-6||6||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-7||7||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-7||7||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-31||31||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-32||32||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-36||36||19||30||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-42||42||36||43||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-12||12||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-16||16||65||73||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-19||19||17||25||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-26||26||69||80||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
-11||11||79||88||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-12||12||78||87||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-13||13||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-21||21||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-22||22||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-23||23||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-21||21||36||46||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatToggleButton.sqf
-20||20||69||77||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
-45||45||81||92||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
-50||50||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
-51||51||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
-52||52||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
-9||9||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-9||9||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-10||10||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-10||10||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-37||37||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-38||38||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-62||62||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_moveTreeDoubleClick.sqf
-63||63||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_moveTreeDoubleClick.sqf
-64||64||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_moveTreeDoubleClick.sqf
-18||18||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-19||19||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-20||20||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-52||52||79||88||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-53||53||78||87||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-54||54||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-81||81||36||47||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-82||82||34||45||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-86||86||27||38||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-91||91||40||47||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-111||111||32||43||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-112||112||30||41||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-116||116||23||34||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-9||9||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-9||9||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-10||10||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-10||10||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-37||37||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-38||38||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
-10||10||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
-14||14||64||72||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
-6||6||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-6||6||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-7||7||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-7||7||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-11||11||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-11||11||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-12||12||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-12||12||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-119||119||24||34||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-221||221||63||73||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
-226||226||52||59||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
-248||248||53||63||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
-21||21||36||46||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatToggleButton.sqf
-21||21||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-22||22||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-23||23||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
-18||18||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-19||19||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-20||20||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-81||81||36||47||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-82||82||34||45||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-86||86||27||38||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-91||91||40||47||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-111||111||32||43||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-112||112||30||41||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-116||116||23||34||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
-20||20||69||77||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
-45||45||81||92||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
-37||37||28||38||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
-31||31||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-32||32||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-36||36||19||30||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-42||42||36||43||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
-4||4||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickCancel.sqf
-5||5||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickCancel.sqf
-6||6||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickCancel.sqf
-221||221||63||73||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
-226||226||52||59||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
-248||248||53||63||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
-29||29||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
-30||30||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
-31||31||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
-37||37||28||38||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
-11||11||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-11||11||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-12||12||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-12||12||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-13||13||61||70||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-14||14||62||71||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-15||15||62||71||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
-119||119||24||34||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+53||53||41||51||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/functions/fnc_loadTeams.sqf
+31||31||44||51||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/orbat/functions/fnc_getGroupMarkerData.sqf
 206||206||44||54||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/functions/fnc_createBriefingPage.sqf
 206||206||75||81||notice||`typeof` does not match the wiki's case||non-standard command case||/addons/orbat/functions/fnc_createBriefingPage.sqf
 212||212||47||57||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/functions/fnc_createBriefingPage.sqf
@@ -547,8 +431,124 @@
 274||277||33||213||notice||assignment to if can be replaced with select||use select||/addons/orbat/functions/fnc_createBriefingPage.sqf
 285||285||38||159||notice||assignment to if can be replaced with select||use select||/addons/orbat/functions/fnc_createBriefingPage.sqf
 319||322||33||215||notice||assignment to if can be replaced with select||use select||/addons/orbat/functions/fnc_createBriefingPage.sqf
-53||53||41||51||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/functions/fnc_loadTeams.sqf
-31||31||44||51||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/orbat/functions/fnc_getGroupMarkerData.sqf
+6||6||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+6||6||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+7||7||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+7||7||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+31||31||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+32||32||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+36||36||19||30||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+42||42||36||43||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+12||12||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+16||16||65||73||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+19||19||17||25||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+26||26||69||80||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+31||31||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+32||32||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+36||36||19||30||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+42||42||36||43||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeLoad.sqf
+20||20||69||77||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+45||45||81||92||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+50||50||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+51||51||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+52||52||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+221||221||63||73||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
+226||226||52||59||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
+248||248||53||63||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
+11||11||79||88||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+12||12||78||87||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+13||13||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+21||21||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+22||22||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+23||23||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+12||12||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+16||16||65||73||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+19||19||17||25||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+26||26||69||80||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_attributeSave.sqf
+21||21||36||46||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatToggleButton.sqf
+4||4||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickCancel.sqf
+5||5||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickCancel.sqf
+6||6||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickCancel.sqf
+9||9||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+9||9||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+10||10||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+10||10||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+37||37||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+38||38||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
+10||10||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
+14||14||64||72||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
+11||11||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+11||11||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+12||12||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+12||12||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+119||119||24||34||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+221||221||63||73||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
+226||226||52||59||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
+248||248||53||63||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_refreshTree.sqf
+21||21||36||46||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatToggleButton.sqf
+21||21||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+22||22||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+23||23||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeAddClick.sqf
+18||18||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+19||19||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+20||20||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+81||81||36||47||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+82||82||34||45||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+86||86||27||38||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+91||91||40||47||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+111||111||32||43||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+112||112||30||41||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+116||116||23||34||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+20||20||69||77||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+45||45||81||92||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_editOrbatEntryClickOkay.sqf
+37||37||28||38||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
+11||11||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+11||11||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+12||12||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+12||12||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+13||13||61||70||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+14||14||62||71||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+15||15||62||71||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+119||119||24||34||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+62||62||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_moveTreeDoubleClick.sqf
+63||63||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_moveTreeDoubleClick.sqf
+64||64||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_moveTreeDoubleClick.sqf
+29||29||78||87||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
+30||30||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
+31||31||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
+37||37||28||38||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_orbatBinChanged.sqf
+7||7||79||88||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeMoveClick.sqf
+8||8||79||88||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeMoveClick.sqf
+9||9||78||87||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeMoveClick.sqf
+9||9||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+9||9||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+10||10||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+10||10||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+37||37||28||39||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+38||38||26||37||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+18||18||24||35||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+19||19||22||33||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+20||20||15||26||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+52||52||79||88||notice||Variable should not be all caps: MAIN_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+53||53||78||87||notice||Variable should not be all caps: EDIT_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+54||54||79||88||notice||Variable should not be all caps: MOVE_IDCS||All caps variable||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+81||81||36||47||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+82||82||34||45||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+86||86||27||38||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+91||91||40||47||notice||`GroupID` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+111||111||32||43||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+112||112||30||41||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+116||116||23||34||notice||`lbsetcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/OrbatSettings_treeEditClick.sqf
+2||2||22||33||notice||`uiNameSpace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
+10||10||38||46||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
+14||14||64||72||notice||`lbcursel` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/UnitMarker_attributeSave.sqf
+6||6||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+6||6||50||61||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+7||7||12||31||notice||`ctrladdeventhandler` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+7||7||51||62||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 17||17||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/patrol/functions/fnc_3denPatrol.sqf
 16||16||9||15||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/patrol/functions/fnc_3denPatrol.sqf
 15||15||50||56||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/patrol/functions/fnc_patrol.sqf
@@ -564,63 +564,57 @@
 35||35||45||55||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/respawn/functions/fnc_respawnDrawMapIcons.sqf
 42||42||40||50||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/respawn/functions/fnc_respawnDrawMapIcons.sqf
 46||46||14||24||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/XEH_clientPostInit.sqf
+14||14||35||45||notice||`distance2d` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_getGroupClusters.sqf
 27||27||57||63||notice||`typeof` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_createUnitNode.sqf
 28||28||13||23||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_createUnitNode.sqf
 29||29||22||32||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_createUnitNode.sqf
-31||31||6||11||notice||`isnil` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_controlSetText.sqf
-17||17||22||32||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawVehicleMarker.sqf
-14||14||35||45||notice||`distance2d` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_getGroupClusters.sqf
-62||62||21||31||notice||`distance2d` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleCamera.sqf
-128||128||8||44||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/spectator/functions/fnc_handleCamera.sqf
-135||135||8||44||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "not in vehicle" check||/addons/spectator/functions/fnc_handleCamera.sqf
-70||70||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_perFrameHandler.sqf
+23||23||78||85||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawGroupMarker.sqf
+27||27||46||52||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_setTarget.sqf
+32||32||22||34||notice||`SwitchCamera` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_setTarget.sqf
+33||33||13||49||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/spectator/functions/fnc_setTarget.sqf
 60||60||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawMap.sqf
 54||54||24||30||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawMap.sqf
 70||70||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawMap.sqf
 68||68||59||65||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawMap.sqf
 91||91||20||26||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawMap.sqf
+17||17||22||32||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawVehicleMarker.sqf
+70||70||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_perFrameHandler.sqf
+11||11||133||141||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_onEntityKilled.sqf
+26||26||19||27||notice||`pushback` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_onEntityKilled.sqf
+34||34||77||83||notice||`typeof` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleUnitList.sqf
+35||35||33||43||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleUnitList.sqf
+36||36||42||52||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleUnitList.sqf
+17||17||22||32||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawUnitMarker.sqf
+21||21||46||52||notice||`getdir` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawUnitMarker.sqf
+174||174||20||31||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_keyhandler.sqf
+84||84||15||26||notice||`setCamUseTi` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_menuHandler.sqf
+91||91||22||33||notice||`setCamUseTi` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_menuHandler.sqf
+96||96||64||75||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_menuHandler.sqf
+39||39||5||10||notice||`isnil` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_init.sqf
+4||4||37||48||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_updateKillList.sqf
+31||31||6||11||notice||`isnil` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_controlSetText.sqf
 12||12||32||41||notice||`safezoneW` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawTags.sqf
 12||12||52||61||notice||`safezoneH` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawTags.sqf
 159||159||21||31||notice||`distance2d` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawTags.sqf
 180||180||33||43||notice||`distance2d` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawTags.sqf
 198||198||32||42||notice||`distance2d` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawTags.sqf
-174||174||20||31||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_keyhandler.sqf
-10||10||51||57||notice||`typeof` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_createVehicleControl.sqf
-11||11||133||141||notice||`exitwith` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_onEntityKilled.sqf
-26||26||19||27||notice||`pushback` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_onEntityKilled.sqf
-4||4||37||48||notice||`getvariable` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_updateKillList.sqf
-17||17||22||32||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawUnitMarker.sqf
-21||21||46||52||notice||`getdir` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawUnitMarker.sqf
-23||23||78||85||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_drawGroupMarker.sqf
-39||39||5||10||notice||`isnil` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_init.sqf
-34||34||77||83||notice||`typeof` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleUnitList.sqf
-35||35||33||43||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleUnitList.sqf
-36||36||42||52||notice||`configfile` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleUnitList.sqf
-84||84||15||26||notice||`setCamUseTi` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_menuHandler.sqf
-91||91||22||33||notice||`setCamUseTi` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_menuHandler.sqf
-96||96||64||75||notice||`uinamespace` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_menuHandler.sqf
+62||62||21||31||notice||`distance2d` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_handleCamera.sqf
+128||128||8||44||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/spectator/functions/fnc_handleCamera.sqf
+135||135||8||44||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "not in vehicle" check||/addons/spectator/functions/fnc_handleCamera.sqf
 23||23||20||27||notice||`groupID` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_createGroupNode.sqf
-27||27||46||52||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_setTarget.sqf
-32||32||22||34||notice||`SwitchCamera` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_setTarget.sqf
-33||33||13||49||notice||Using `vehicle` to check if a unit is in a vehicle is innefficient||Innefficient "in vehicle" check||/addons/spectator/functions/fnc_setTarget.sqf
+10||10||51||57||notice||`typeof` does not match the wiki's case||non-standard command case||/addons/spectator/functions/fnc_createVehicleControl.sqf
 27||27||9||15||notice||`setpos` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_onAction.sqf
 6||6||16||22||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_deployInit.sqf
 10||10||11||18||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_deployInit.sqf
-4||4||5||11||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paraDrop.sqf
-9||9||7||19||notice||`moveIndriver` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paraDrop.sqf
 31||31||3||10||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paradropWaypoint.sqf
 18||18||7||14||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paradropWaypoint.sqf
 25||25||7||14||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paradropWaypoint.sqf
 21||21||22||28||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paradropWaypoint.sqf
 29||29||7||14||notice||`foreach` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paradropWaypoint.sqf
 5||5||27||35||notice||`pushback` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_playerInit.sqf
+4||4||5||11||notice||`getpos` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paraDrop.sqf
+9||9||7||19||notice||`moveIndriver` does not match the wiki's case||non-standard command case||/addons/teleport/functions/fnc_paraDrop.sqf
 1||1||3||20||notice||Variable should not be all caps: ACRE_IS_SPECTATOR||All caps variable||/addons/zeus/functions/fnc_toggleACRESpectator.sqf
-88||88||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
-89||89||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
-88||88||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
-89||89||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
-88||88||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
-89||89||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
 17||17||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/AcreAddRadioActions.sqf
 18||18||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/AcreAddRadioActions.sqf
 21||21||40||52||warning||Using `ctrladdeventhandler` with unknown event `lbdblclick`||unknown event `lbdblclick`||/addons/acre2/ui_scripts/AcreAddRadioActions.sqf
@@ -639,6 +633,12 @@
 211||211||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/RadioChannels.sqf
 212||212||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/RadioChannels.sqf
 221||221||40||49||warning||Using `ctrladdeventhandler` with unknown event `keyDown`||unknown event `keyDown`||/addons/acre2/ui_scripts/RadioChannels.sqf
+88||88||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
+89||89||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
+88||88||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
+89||89||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
+88||88||41||51||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
+89||89||41||52||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/acre2/ui_scripts/BabelSettings.sqf
 1||1||9||18||warning||redefining macro||redefining macro||/addons/adminmenu/script_component.hpp
 1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
 2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
@@ -1174,52 +1174,52 @@
 199||199||9||32||warning||redefining macro||redefining macro||/addons/adminmenu/script_component.hpp
 202||202||9||43||warning||redefining macro||redefining macro||/addons/adminmenu/script_component.hpp
 203||203||9||43||warning||redefining macro||redefining macro||/addons/adminmenu/script_component.hpp
+37||37||63||64||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
+37||37||73||74||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
+37||37||101||102||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
+37||37||114||115||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
+37||37||128||129||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
+23||23||38||39||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
+23||23||48||49||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
+23||23||61||62||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
+23||23||70||71||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
+23||23||83||84||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
 28||28||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/adminmenu/functions/fnc_modal_message.sqf
 59||59||40||53||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/adminmenu/functions/fnc_modal_message.sqf
 22||22||31||49||warning||Using `ctrlAddEventHandler` with unknown event `mouseButtonClick`||unknown event `mouseButtonClick`||/addons/adminmenu/functions/fnc_modal_teleport.sqf
 109||109||31||37||warning||Using `ctrlAddEventHandler` with unknown event `draw`||unknown event `draw`||/addons/adminmenu/functions/fnc_modal_teleport.sqf
 167||167||34||47||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/adminmenu/functions/fnc_modal_teleport.sqf
 40||40||34||47||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/adminmenu/functions/fnc_modal_runCode.sqf
-35||35||30||43||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
-37||37||63||64||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
-37||37||73||74||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
-37||37||101||102||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
-37||37||114||115||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
-37||37||128||129||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_respawn_mapKeyUp.sqf
 11||11||47||48||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_fireTrigger.sqf
 14||14||48||49||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_onKeyPress.sqf
-23||23||38||39||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
-23||23||48||49||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
-23||23||61||62||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
-23||23||70||71||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
-23||23||83||84||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/functions/fnc_adminEye_restoreTrigger.sqf
+35||35||30||43||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/adminmenu/functions/fnc_remoteControl_dialog.sqf
 142||142||74||75||warning||padding a macro argument||padding a macro argument||/addons/ai/functions/fnc_garrisonQuantity.sqf
 143||143||113||114||warning||padding a macro argument||padding a macro argument||/addons/ai/functions/fnc_garrisonQuantity.sqf
+144||144||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+148||148||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+144||144||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+148||148||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+144||144||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+148||148||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+16||16||9||16||warning||redefining macro||redefining macro||/addons/assigngear/functions/fnc_testGear.sqf
+19||19||31||32||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_initNamespace.sqf
 35||35||73||74||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_loadAssignGear.sqf
 35||35||83||84||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_loadAssignGear.sqf
 35||35||29||30||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_loadAssignGear.sqf
-30||30||19||20||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_assignGear.sqf
-35||35||39||40||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_assignGear.sqf
-35||35||22||23||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_assignGear.sqf
-20||20||53||54||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_gui_gearSelector_loadFactions.sqf
-20||20||15||16||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_gui_gearSelector_loadFactions.sqf
-22||22||22||23||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_gui_gearSelector_loadFactions.sqf
-19||19||31||32||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_initNamespace.sqf
-16||16||9||16||warning||redefining macro||redefining macro||/addons/assigngear/functions/fnc_testGear.sqf
 28||28||73||74||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_cacheAssignGear.sqf
 28||28||83||84||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_cacheAssignGear.sqf
 28||28||29||30||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_cacheAssignGear.sqf
 40||40||26||27||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_cacheAssignGear.sqf
+30||30||19||20||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_assignGear.sqf
+35||35||39||40||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_assignGear.sqf
+35||35||22||23||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_assignGear.sqf
 25||25||67||68||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_addBackpackItems.sqf
 25||25||74||75||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_addBackpackItems.sqf
 25||25||67||68||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_addBackpackItems.sqf
 25||25||74||75||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_addBackpackItems.sqf
-144||144||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
-148||148||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
-144||144||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
-148||148||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
-144||144||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
-148||148||41||54||warning||Using `ctrlAddEventHandler` with unknown event `buttonClick`||unknown event `buttonClick`||/addons/assigngear/functions/fnc_gui_vehicleGear_selector.sqf
+20||20||53||54||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_gui_gearSelector_loadFactions.sqf
+20||20||15||16||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_gui_gearSelector_loadFactions.sqf
+22||22||22||23||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_gui_gearSelector_loadFactions.sqf
 6||6||15||16||warning||padding a macro argument||padding a macro argument||/addons/assigngear/functions/fnc_gui_gearSelector_random.sqf
 1||1||9||18||warning||redefining macro||redefining macro||/addons/autotest/script_component.hpp
 1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
@@ -1288,10 +1288,17 @@
 45||45||69||70||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndTp.sqf
 51||51||53||54||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndTp.sqf
 54||54||93||94||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndTp.sqf
+30||30||73||74||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
+33||33||78||79||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
+41||41||54||55||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
+43||43||74||75||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
 38||38||43||44||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndHeal.sqf
 49||49||50||51||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndHeal.sqf
 51||51||43||44||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndHeal.sqf
 53||53||95||96||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndHeal.sqf
+27||27||56||57||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_commandAvailable.sqf
+33||33||80||81||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_commandAvailable.sqf
+42||42||112||113||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_commandAvailable.sqf
 21||21||38||39||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndLoadout.sqf
 25||25||50||51||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndLoadout.sqf
 34||34||67||68||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndLoadout.sqf
@@ -1307,13 +1314,6 @@
 76||76||74||75||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndLoadout.sqf
 78||78||80||81||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndLoadout.sqf
 78||78||90||91||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndLoadout.sqf
-30||30||73||74||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
-33||33||78||79||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
-41||41||54||55||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
-43||43||74||75||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_cmndRadio.sqf
-27||27||56||57||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_commandAvailable.sqf
-33||33||80||81||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_commandAvailable.sqf
-42||42||112||113||warning||padding a macro argument||padding a macro argument||/addons/chat/functions/fnc_commandAvailable.sqf
 1||1||9||18||warning||redefining macro||redefining macro||/addons/common/script_component.hpp
 1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
 2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
@@ -1360,24 +1360,6 @@
 136||136||27||28||warning||padding a macro argument||padding a macro argument||/addons/modules/functions/fnc_ambientVehicleInit.sqf
 161||161||53||54||warning||padding a macro argument||padding a macro argument||/addons/modules/functions/fnc_ambientVehicleInit.sqf
 161||161||68||69||warning||padding a macro argument||padding a macro argument||/addons/modules/functions/fnc_ambientVehicleInit.sqf
-1||1||9||18||warning||redefining macro||redefining macro||/addons/orbat/script_component.hpp
-1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-4||4||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-5||5||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-6||6||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-8||8||9||16||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-9||9||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-11||11||9||25||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-971||971||13||17||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-972||972||13||21||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-17||17||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-20||20||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-27||27||9||20||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-34||34||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-42||42||9||14||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-43||43||9||15||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-46||46||9||26||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
 28||28||60||66||warning||Using `ctrlAddEventHandler` with unknown event `draw`||unknown event `draw`||/addons/orbat/XEH_postInit.sqf
 29||29||60||66||warning||Using `ctrlAddEventHandler` with unknown event `draw`||unknown event `draw`||/addons/orbat/XEH_postInit.sqf
 28||28||60||66||warning||Using `ctrlAddEventHandler` with unknown event `draw`||unknown event `draw`||/addons/orbat/XEH_postInit.sqf
@@ -1440,14 +1422,30 @@
 42||42||9||14||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
 43||43||9||15||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
 46||46||9||26||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
+1||1||9||18||warning||redefining macro||redefining macro||/addons/orbat/script_component.hpp
+1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+4||4||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+5||5||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+6||6||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+8||8||9||16||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+9||9||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+11||11||9||25||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
+971||971||13||17||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
+972||972||13||21||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
+17||17||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
+20||20||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
+27||27||9||20||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
+34||34||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
+42||42||9||14||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
+43||43||9||15||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
+46||46||9||26||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
 6||6||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 7||7||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 6||6||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 7||7||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 6||6||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 7||7||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-9||9||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-10||10||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
 1||1||9||18||warning||redefining macro||redefining macro||/addons/orbat/script_component.hpp
 1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
 2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
@@ -1508,8 +1506,6 @@
 10||10||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
 9||9||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
 10||10||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
-6||6||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
-7||7||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 1||1||9||18||warning||redefining macro||redefining macro||/addons/orbat/script_component.hpp
 1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
 2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
@@ -1770,6 +1766,10 @@
 12||12||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
 11||11||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
 12||12||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/OrbatSettings_onLoad.sqf
+9||9||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+10||10||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/UnitMarker_onLoad.sqf
+6||6||33||43||warning||Using `ctrladdeventhandler` with unknown event `setfocus`||unknown event `setfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
+7||7||33||44||warning||Using `ctrladdeventhandler` with unknown event `killfocus`||unknown event `killfocus`||/addons/orbat/ui_scripts/GroupMarker_onLoad.sqf
 1||1||9||18||warning||redefining macro||redefining macro||/addons/safestart/script_component.hpp
 1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
 2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
@@ -1790,6 +1790,11 @@
 46||46||9||26||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
 6||6||9||19||warning||redefining macro||redefining macro||/addons/safestart/script_component.hpp
 8||8||9||14||warning||redefining macro||redefining macro||/addons/safestart/script_component.hpp
+66||66||36||43||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
+82||82||43||50||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
+82||82||43||50||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
+82||82||43||50||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
+37||37||29||30||warning||padding a macro argument||padding a macro argument||/addons/safestart/functions/fnc_set.sqf
 24||24||32||33||warning||padding a macro argument||padding a macro argument||/addons/safestart/functions/fnc_briefingText.sqf
 36||36||42||43||warning||padding a macro argument||padding a macro argument||/addons/safestart/functions/fnc_briefingText.sqf
 39||39||53||54||warning||padding a macro argument||padding a macro argument||/addons/safestart/functions/fnc_briefingText.sqf
@@ -1800,11 +1805,6 @@
 18||18||28||35||warning||Using `removeEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_exit.sqf
 10||10||32||39||warning||Using `removeEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_exit.sqf
 10||10||32||39||warning||Using `removeEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_exit.sqf
-66||66||36||43||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
-82||82||43||50||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
-82||82||43||50||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
-82||82||43||50||warning||Using `addEventHandler` with unknown event `fired`||unknown event `fired`||/addons/safestart/functions/pfh_start.sqf
-37||37||29||30||warning||padding a macro argument||padding a macro argument||/addons/safestart/functions/fnc_set.sqf
 1||1||9||18||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
 2||2||9||18||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
 3||3||9||16||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
@@ -1854,208 +1854,8 @@
 22||22||71||72||warning||padding a macro argument||padding a macro argument||/addons/spectator/XEH_clientPostInit.sqf
 22||22||82||83||warning||padding a macro argument||padding a macro argument||/addons/spectator/XEH_clientPostInit.sqf
 22||22||99||100||warning||padding a macro argument||padding a macro argument||/addons/spectator/XEH_clientPostInit.sqf
-1||1||9||18||warning||redefining macro||redefining macro||/addons/acre2/script_component.hpp
-1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-4||4||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-5||5||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-6||6||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-8||8||9||16||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-9||9||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-11||11||9||25||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-971||971||13||17||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-972||972||13||21||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-17||17||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-20||20||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-27||27||9||20||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-34||34||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-42||42||9||14||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-43||43||9||15||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-46||46||9||26||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-6||6||9||33||warning||redefining macro||redefining macro||/addons/acre2/script_component.hpp
-3||3||22||23||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/CfgEventHandlers.hpp
-3||3||54||55||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/CfgEventHandlers.hpp
-4||4||28||29||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/CfgEventHandlers.hpp
-4||4||66||67||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/CfgEventHandlers.hpp
-4||4||20||21||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/autotest.hpp
-5||5||73||74||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/autotest.hpp
-7||7||12||13||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/autotest.hpp
-3||3||22||23||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/autotest.hpp
-8||8||8||9||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/autotest.hpp
-6||6||64||65||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/gui/endMission.hpp
-89||89||64||65||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/gui/endMission.hpp
-215||215||64||65||warning||padding a macro argument||padding a macro argument||/addons/adminmenu/gui/endMission.hpp
 57||57||32||33||warning||padding a macro argument||padding a macro argument||/addons/ai/modules/waveSpawner.hpp
 61||61||12||13||warning||padding a macro argument||padding a macro argument||/addons/ai/modules/waveSpawner.hpp
-117||117||35||36||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-125||125||12||13||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-161||161||35||36||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-173||173||12||13||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-209||209||35||36||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-217||217||12||13||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-252||252||35||36||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-262||262||12||13||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-297||297||35||36||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
-308||308||12||13||warning||padding a macro argument||padding a macro argument||/addons/autotest/Cfg3DEN.hpp
 11||11||38||39||warning||padding a macro argument||padding a macro argument||/addons/modules/CfgEventHandlers.hpp
 8||8||26||27||warning||padding a macro argument||padding a macro argument||/addons/modules/CfgEventHandlers.hpp
 13||13||12||13||warning||padding a macro argument||padding a macro argument||/addons/modules/CfgEventHandlers.hpp
-4||4||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-5||5||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-6||6||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-7||7||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-8||8||9||17||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-9||9||9||19||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-10||10||9||19||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-11||11||9||22||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-12||12||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-13||13||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-14||14||9||23||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-15||15||9||22||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-16||16||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-17||17||9||27||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-18||18||9||24||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-19||19||9||26||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-20||20||9||26||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-21||21||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-22||22||9||19||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-23||23||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-24||24||9||19||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-25||25||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-26||26||9||28||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-27||27||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-28||28||9||23||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-29||29||9||28||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-30||30||9||28||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-31||31||9||21||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-32||32||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-33||33||9||15||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-34||34||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-35||35||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-38||38||9||15||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-39||39||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-40||40||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-41||41||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-42||42||9||17||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-43||43||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-44||44||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-45||45||9||14||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-46||46||9||19||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-48||48||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-49||49||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-50||50||9||17||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-51||51||9||21||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-52||52||9||19||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-53||53||9||17||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-54||54||9||22||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-55||55||9||26||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-56||56||9||24||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-57||57||9||21||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-58||58||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-60||60||9||18||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-61||61||9||19||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-62||62||9||29||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-64||64||9||17||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-67||67||9||15||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-68||68||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-69||69||9||16||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-71||71||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-74||74||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-75||75||9||22||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-78||78||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-79||79||9||17||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-82||82||9||20||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-83||83||9||24||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-86||86||9||21||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-87||87||9||25||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-88||88||9||23||warning||redefining macro||redefining macro||/addons/respawn/defines.hpp
-1||1||9||18||warning||redefining macro||redefining macro||/addons/safestart/script_component.hpp
-1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-4||4||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-5||5||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-6||6||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-8||8||9||16||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-9||9||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-11||11||9||25||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-971||971||13||17||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-972||972||13||21||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-17||17||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-20||20||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-27||27||9||20||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-34||34||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-42||42||9||14||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-43||43||9||15||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-46||46||9||26||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-6||6||9||19||warning||redefining macro||redefining macro||/addons/safestart/script_component.hpp
-8||8||9||14||warning||redefining macro||redefining macro||/addons/safestart/script_component.hpp
-7||7||22||23||warning||padding a macro argument||padding a macro argument||/addons/spectator/CfgEventHandlers.hpp
-7||7||54||55||warning||padding a macro argument||padding a macro argument||/addons/spectator/CfgEventHandlers.hpp
-8||8||28||29||warning||padding a macro argument||padding a macro argument||/addons/spectator/CfgEventHandlers.hpp
-8||8||66||67||warning||padding a macro argument||padding a macro argument||/addons/spectator/CfgEventHandlers.hpp
-1||1||9||18||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-2||2||9||18||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-3||3||9||16||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-4||4||9||20||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-5||5||9||19||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-6||6||9||21||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-7||7||9||17||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-8||8||9||17||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-9||9||9||20||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-10||10||9||21||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-11||11||9||21||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-12||12||9||19||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-14||14||9||46||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-15||15||9||45||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-16||16||9||43||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-17||17||9||43||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-18||18||9||43||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-19||19||9||41||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-20||20||9||41||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-22||22||9||44||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-23||23||9||48||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-24||24||9||49||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-25||25||9||41||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-26||26||9||40||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-27||27||9||42||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-30||30||9||45||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-31||31||9||43||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-32||32||9||44||warning||redefining macro||redefining macro||/addons/spectator/script_component.hpp
-1||1||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-2||2||9||15||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-4||4||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-5||5||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-6||6||9||14||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-8||8||9||16||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-9||9||9||19||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-11||11||9||25||warning||redefining macro||redefining macro||/addons/main/script_mod.hpp
-971||971||13||17||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-972||972||13||21||warning||redefining macro||redefining macro||/x/cba/addons/main/script_macros_common.hpp
-17||17||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-20||20||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-27||27||9||20||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-34||34||9||21||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-42||42||9||14||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-43||43||9||15||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-46||46||9||26||warning||redefining macro||redefining macro||/addons/main/script_macros.hpp
-46||46||9||46||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-47||47||9||45||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-48||48||9||43||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-49||49||9||43||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-50||50||9||43||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-51||51||9||41||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-52||52||9||41||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-53||53||9||44||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-54||54||9||48||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-55||55||9||49||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-56||56||9||41||warning||redefining macro||redefining macro||/addons/spectator/dialog.hpp
-23||23||1||2||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/acre2/Cfg3DEN.hpp
-76||76||1||2||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/adminmenu/gui/adminMenu.hpp
-1||1||1||7||error||__EXEC is not supported||__EXEC is not supported||/a3/3DEN/UI/macroexecs.inc
-25||25||1||2||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/autotest/Cfg3DEN.hpp
-22||22||1||2||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/briefing/Cfg3DEN.hpp
-171||171||1||2||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/orbat/Cfg3DEN.hpp
-42||42||1||2||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/patrol/display3DENEditbox.hpp
-33||33||1||2||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/respawn/dialogs.hpp
-1||1||45||46||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/safestart/RscDisplayGetReady.hpp
-64||64||20||21||error||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||found "{" but expected one of end of input, "S", "r", "A", "i", "u", "9", "x", "V", "3", "l", "K", "1", "p", "v", "j", "k", "L", "M", "N", "b", "D", "g", "s", "w", "f", "o", "Z", "J", "F", "6", "T", "t", "I", "B", "P", "0", "n", "h", "O", "R", "5", "8", "z", "Q", "Y", ";", "_", "G", "X", "2", "4", "W", "q", "d", "a", "C", "7", "E", "c", "y", "H", "m", "e", "U"||/addons/spectator/dialog.hpp

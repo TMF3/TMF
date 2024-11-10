@@ -1,0 +1,5 @@
+[rapify]
+enabled = false # Default: true
+exclude = [
+    "adminMenu.hpp"
+]
