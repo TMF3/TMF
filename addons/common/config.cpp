@@ -18,6 +18,7 @@ class cfgPatches
 #include "CfgEventHandlers.hpp"
 #include "CfgVehicles.hpp"
 #include "display3DEN.hpp"
+#include "RscDisplayLoadMission.hpp"
 
 class TMF_autotest {
     class GVAR(groupNamesSlottingScreen) {
