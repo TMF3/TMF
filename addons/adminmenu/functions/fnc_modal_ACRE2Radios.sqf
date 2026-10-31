@@ -2,6 +2,7 @@
 
 disableSerialization;
 params ["_ctrlGroup"];
+private _display = ctrlParent _ctrlGroup;
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
@@ -116,7 +117,7 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
     systemChat (_radios joinString ", ");
     private _network = -1;
 
-    if !(_networkCtrls isEqualTo []) then {
+    if (_networkCtrls isNotEqualTo []) then {
         _networkCtrls params ["_ctrlNetworkCheck", "_ctrlNetworkList"];
 
         if (cbChecked _ctrlNetworkCheck) then {
@@ -130,6 +131,6 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
         };
     };
 
-    [_radios, _network] remoteExecCall [QFUNC(modal_ACRE2Languages_assign), GVAR(utilityData)];
-    [format ["%1 Assigned radios %2 on network %3 to ",profileName,_radio,_network],false,"Admin Menu"] call FUNC(log);
+    [_radios, _network] remoteExecCall [QFUNC(modal_ACRE2Radios_assign), GVAR(utilityData)];
+    [format ["%1 Assigned radios %2 on network %3",profileName,_radios,_network],false,"Admin Menu"] call FUNC(log);
 }];

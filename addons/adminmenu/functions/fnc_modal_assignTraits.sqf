@@ -2,6 +2,7 @@
 
 disableSerialization;
 params ["_ctrlGroup"];
+private _display = ctrlParent _ctrlGroup;
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 

@@ -34,8 +34,8 @@ if (_type == 28) then {
             _x set [2,(respawnMenuRoles select _roleIdx) select 0];
         } forEach GVAR(selectedRespawnGroup);
 
-        TRACE_9("Triggered respawn wave",_groupName,_position, _faction, GVAR(selectedRespawnGroup), _markerType, _markerColor, _markerName,_halo,GVAR(selectedSide));
-        [[_groupName,_position, _faction, GVAR(selectedRespawnGroup), _markerType, _markerColor, _markerName,_halo,GVAR(selectedSide)], QEFUNC(respawn,respawnWaveServer), false] call BIS_fnc_MP;
+        TRACE_9("Triggered respawn wave",_groupName,_position,_faction,GVAR(selectedRespawnGroup),_markerType,_markerColor,_markerName,_halo,GVAR(selectedSide));
+        [_groupName,_position, _faction, GVAR(selectedRespawnGroup), _markerType, _markerColor, _markerName,_halo,GVAR(selectedSide)] remoteExec [QEFUNC(respawn,respawnWaveServer), 2];
 
         // Print to log
         private _argsStr = [

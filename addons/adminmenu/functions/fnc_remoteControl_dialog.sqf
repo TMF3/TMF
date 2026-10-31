@@ -20,7 +20,7 @@ _ctrlList ctrlCommit 0;
         _name = getText (([GVAR(remoteControlUnits) # 1, _turretPath] call BIS_fnc_turretConfig) >> "gunnerName");
     };
     private _i = _ctrlList lbAdd _name;
-    _ctrlList lbSetTextRight [_i, getText (configFile >> "CfgVehicles" >> typeOf (_x # 0) >> "displayName")];
+    _ctrlList lbSetTextRight [_i, getText (configOf (_x # 0) >> "displayName")];
     _ctrlList lbSetTooltip [_i, format ["Turret Path: %1\nFFV: %2", _x # 3, _x # 4]];
     _ctrlList lbSetPicture [_i, format ["\A3\Ui_f\data\GUI\Cfg\Ranks\%1_gs.paa", rank (_x  # 0)]];
     _ctrlList lbSetPictureColor [_i, [1, 1, 1, 1]];

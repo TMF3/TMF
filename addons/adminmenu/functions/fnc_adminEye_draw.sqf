@@ -129,11 +129,11 @@ params["_fullmapWindow"];
 {
     if(alive _x) then {
 
-        if(vehicle _x != _x && crew (vehicle _x) select 0 == _x || vehicle _x == _x) then
+        if(!isNull objectParent _x && crew (vehicle _x) select 0 == _x || isNull objectParent _x) then
         {
             private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
             if(_icon == "") then {
-                _icon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "icon");
+                _icon = getText (configOf (vehicle _x) >> "icon");
                 (vehicle _x) setVariable ["f_cam_icon",_icon];
             };
 
@@ -191,9 +191,9 @@ params["_fullmapWindow"];
         case "ICON": {
             private _markerType = getMarkerType _x;
             if (_markerType != "Empty") then {
-                _multiplier = 20;
-                _markerIcon = getText (configFile >> "CfgMarkers" >> _markerType >> "icon");
-                _markerText = markerText _x;
+                private _multiplier = 20;
+                private _markerIcon = getText (configFile >> "CfgMarkers" >> _markerType >> "icon");
+                private _markerText = markerText _x;
                 _fullmapWindow drawIcon [_markerIcon, _markerColor, _markerPos, (_markerSize select 0) * _multiplier, (_markerSize select 1) * _multiplier, _markerDir, _markerText, 1];
             };
         };

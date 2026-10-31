@@ -20,4 +20,4 @@ _trigger setTriggerTimeout _delays;
 _trigger setTriggerActivation _activation;
 _trigger setTriggerInterval _interval;
 
-TRACE_5("Admin Eye restored trigger", _trigger, _statements, _delays, _activation, _interval);
+TRACE_5("Admin Eye restored trigger",_trigger,_statements,_delays,_activation,_interval);

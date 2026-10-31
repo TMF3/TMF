@@ -7,7 +7,7 @@
         if (isServer && !hasInterface) then {
             GVAR(logEntries) pushBack _this;
             GVAR(logEntries) sort true;
-            TRACE_1("Received log message", _this);
+            TRACE_1("Received log message",_this);
         };
 
         [QGVAR(log),_this,_targets] call CBA_fnc_targetEvent;

@@ -11,7 +11,7 @@ if (_type == 20) then {
     } else {
         if (typeOf GVAR(adminEyeSelectedObj) == "tmf_ai_wavespawn") then {
             // Wave spawner trigger.
-            TRACE_1("Admin Eye triggered wave", GVAR(adminEyeSelectedObj));
+            TRACE_1("Admin Eye triggered wave",GVAR(adminEyeSelectedObj));
             [{
                 params ["_waveSpawner"];
                 [_waveSpawner] remoteExecCall [QEFUNC(ai,spawnWave), _waveSpawner];

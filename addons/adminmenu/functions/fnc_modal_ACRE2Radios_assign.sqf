@@ -7,7 +7,7 @@ params [["_radios", []], ["_network", -1]];
 private _presetName = format ["tmf_preset%1", _network];
 private _oldPresetName = ["ACRE_PRC343"] call acre_api_fnc_getPreset;
 
-if (_network > -1 && !(_presetName isEqualTo _oldPresetName)) then {
+if (_network > -1 && (_presetName isNotEqualTo _oldPresetName)) then {
     {
         _x params ["_radioList"];
         {
@@ -17,6 +17,7 @@ if (_network > -1 && !(_presetName isEqualTo _oldPresetName)) then {
 };
 
 {
+    private _radio = _x;
     if (player canAdd _radio) then {
         player addItem _radio;
         systemChat format ["[TMF] Added radio: %1", _radio];
@@ -32,7 +33,7 @@ if (_network > -1 && !(_presetName isEqualTo _oldPresetName)) then {
     };
 } forEach _radios;
 
-if (_network > -1 && !(_presetName isEqualTo _oldPresetName)) then {
+if (_network > -1 && (_presetName isNotEqualTo _oldPresetName)) then {
     [{[] call acre_api_fnc_isInitialized}, {
         params ["_unit", "_oldPresetName"];
 
