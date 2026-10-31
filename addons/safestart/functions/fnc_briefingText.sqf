@@ -21,7 +21,7 @@ Author:
 ---------------------------------------------------------------------------- */
 disableSerialization;
 
-TRACE_1("Briefing Text onLoad", _this);
+TRACE_1("Briefing Text onLoad",_this);
 
 params [["_ctrl", controlNull]];
 
@@ -33,10 +33,10 @@ params [["_ctrl", controlNull]];
         private _time = [] call FUNC(timeRemaining);
         if (_time > 0) then {
             _this ctrlSetText "SAFESTART " + ([_time, "MM:SS"] call BIS_fnc_secondsToString);
-            TRACE_1("Briefing timer set", _time);
+            TRACE_1("Briefing timer set",_time);
         } else {
             _this ctrlSetText "SAFESTART ACTIVE";
-            TRACE_1("Indefinite briefing timer set", _time);
+            TRACE_1("Indefinite briefing timer set",_time);
         };
     },
     _ctrl

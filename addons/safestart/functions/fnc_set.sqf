@@ -34,6 +34,6 @@ if (isNil QGVAR(instance)) then {
     GVAR(instance) setVariable ["timer", _duration];
 };
 
-LOG_1("SafeStart set to %1", _duration);
+LOG_1("SafeStart set to %1",_duration);
 
 nil

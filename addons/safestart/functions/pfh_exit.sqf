@@ -1,11 +1,11 @@
 #include "\x\tmf\addons\safeStart\script_component.hpp"
 
-INFO_1("Safestart Ended, Mission time: %1", CBA_missionTime);
+INFO_1("Safestart Ended, Mission time: %1",CBA_missionTime);
 
 // Reenable AI targetting and damage on local units
 if (GVAR(handleAI)) then {
     {
-        TRACE_1("Reenabled AI", _x);
+        TRACE_1("Reenabled AI",_x);
         private _EH = _x getVariable [QGVAR(aiEH),-1];
         _x removeEventHandler ["Fired",_EH];
         _x enableAI "TARGET";
