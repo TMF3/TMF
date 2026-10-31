@@ -45,8 +45,8 @@ private _problemUnits = [];
 
     private _roleDescription = (_unit get3DENAttribute "description") select 0;
     _dlcArr = _dlcArr select {
-        !([_x, _roleDescription] call BIS_fnc_inString) && // DLC usage mentioned in role description
-        !([_x, _missionSummary] call BIS_fnc_inString)     // DLC usage mentioned in mission summary
+        !(toLower _x in toLower _roleDescription) && // DLC usage mentioned in role description
+        !(toLower _x in toLower _missionSummary)     // DLC usage mentioned in mission summary
     };
 
     if (_dlcArr isNotEqualTo []) then {
@@ -100,7 +100,7 @@ private _problemVehs = [];
     if !(_dlc in _ignoredDLC) then {
         _dlc = [_dlcHash, _dlc] call CBA_fnc_hashGet;
 
-        private _index = _searchTexts findIf {[_dlc,_x] call BIS_fnc_inString};
+        private _index = _searchTexts findIf {toLower _dlc in toLower _x};
 
         if (_index == -1) then {
             TRACE_2("Vehicle found using unlisted DLC",_veh,_dlc);

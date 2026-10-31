@@ -28,7 +28,7 @@ if (isNull _unit) then {
     private _side = side CURUNIT;
     private _grpArr = allGroups select {
         _side isEqualTo side _x &&
-        [_name, groupId _x] call BIS_fnc_inString
+        (toLower _name in toLower groupId _x)
     };
     if (count _grpArr isEqualTo 1) then {
         _unit = leader (_grpArr # 0);

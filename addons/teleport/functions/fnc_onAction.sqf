@@ -3,12 +3,12 @@ params ["_target","_caller","_id","_args"];
 _args params ["_duration","_alt","_parachute","_leadersOnly"];
 
 GVAR(mapPos) = nil;
-[QGVAR(mapEvent), "onMapSingleClick", {GVAR(mapPos) = _pos;}] call BIS_fnc_addStackedEventHandler;
+private _mapClickEH = addMissionEventHandler ["MapSingleClick", {GVAR(mapPos) = _this select 1;}];
 
 openMap [true, true];
 waitUntil {!isNil QGVAR(mapPos)};
 openMap [false, false];
-[QGVAR(mapEvent), "onMapSingleClick"] call BIS_fnc_removeStackedEventHandler;
+removeMissionEventHandler ["MapSingleClick", _mapClickEH];
 private _units = units player;
 
 if(!_leadersOnly) then {_units = [player]};

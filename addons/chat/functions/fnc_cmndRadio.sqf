@@ -23,7 +23,7 @@ private _configs = "true" configClasses (configFile >> "CfgAcreComponents");
 private _radios = _configs select {
     getNumber (_x >> "type") isEqualTo 5 &&
     (getText (_x >> "name") isNotEqualTo "ACRE Base Radio") &&
-    {[_name, configName _x] call BIS_fnc_inString || {[_name, getText (_x >> "name")] call BIS_fnc_inString}}
+    {(toLower _name in toLower configName _x) || {(toLower _name in toLower getText (_x >> "name"))}}
 };
 
 if (_radios isEqualTo []) exitWith {

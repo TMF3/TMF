@@ -19,7 +19,7 @@ params ["_name"];
 private _matches = [];
 
 {
-    if ([_name, name _x] call BIS_fnc_inString) then {
+    if (toLower _name in toLower name _x) then {
         _matches pushBack _x;
     };
 } forEach ([] call CBA_fnc_players);
