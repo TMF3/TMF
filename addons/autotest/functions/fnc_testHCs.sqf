@@ -24,7 +24,7 @@ if (count _HCs < _targetHCs) then {
 
 // Check if setup correctly
 {
-    if !(_x get3DENAttribute "ControlMP" isEqualTo [true]) then {
+    if (_x get3DENAttribute "ControlMP" isNotEqualTo [true]) then {
         _warnings pushBack [0,format ["Headless Client %1 is not marked as playable.",_x]];
     };
 } forEach _HCs;

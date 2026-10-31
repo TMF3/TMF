@@ -10,22 +10,23 @@ private _output = [];
     private _test = _x;
     LOG_1("Running test: %1",configName _x);
     private _code = getText (_test >> "code");
+    // Tests read their settings from _test, which stays visible to the called code
 
     private _outputTest = call compile _code;
     if (_outputTest isEqualType []) then {
-        if (GVAR(outputToRPT) && {_output isNotEqualTo []}) then {
+        if (GVAR(outputToRPT) && {_outputTest isNotEqualTo []}) then {
             INFO(str _outputTest);
         };
         _output append _outputTest;
         TRACE_2("Appending to output",_output,_outputTest);
     };
-} forEach ("true" configClasses (configFile >> 'ADDON'));
+} forEach ("true" configClasses (configFile >> QUOTE(ADDON)));
 
 
 // Display them on the auto-test UI page in Eden.
 {
     _x params ["_type","_message"];
-    _lnbAdd = _ctrlListbox lnbAddRow ["",_message];
+    private _lnbAdd = _ctrlListbox lnbAddRow ["",_message];
 
     if (_type == 0) then { // Cross
         _ctrlListbox lnbSetPicture [[_lnbAdd,0],QPATHTOEF(briefing,UI\plus_small_ca.paa)];

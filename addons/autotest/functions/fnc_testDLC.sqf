@@ -49,13 +49,13 @@ private _problemUnits = [];
         !([_x, _missionSummary] call BIS_fnc_inString)     // DLC usage mentioned in mission summary
     };
 
-    if !(_dlcArr isEqualTo []) then {
+    if (_dlcArr isNotEqualTo []) then {
         TRACE_2("Unit has unlisted DLC",_unit,_dlcArr);
         _problemUnits pushBack [_unit,_dlcArr];
     };
-} forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
+} forEach (_unitsDLCInfo select {(_x # 1 isNotEqualTo [])});
 
-if !(_problemUnits isEqualTo []) then {
+if (_problemUnits isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemUnits > 5) then {
@@ -109,7 +109,7 @@ private _problemVehs = [];
     };
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
-if !(_problemVehs isEqualTo []) then {
+if (_problemVehs isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemVehs > 5) then  {
@@ -123,7 +123,7 @@ if !(_problemVehs isEqualTo []) then {
         _x params ["_veh","_dlc"];
         _warnings pushBack [
             1,
-            format ["|   %1 (%2) : '%3'", _veh, (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName, _dlc]
+            format ["|   %1 (%2) : '%3'", _veh, (configOf _veh) call BIS_fnc_displayName, _dlc]
         ];
     } forEach _problemVehs;
 };
@@ -134,6 +134,6 @@ _warnings pushBack [
 ];
 
 
-LOG_1("Finished DLC Tests: %1", _warnings);
+LOG_1("Finished DLC Tests: %1",_warnings);
 
 _warnings
