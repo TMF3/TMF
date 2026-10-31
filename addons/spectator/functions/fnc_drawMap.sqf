@@ -95,4 +95,4 @@ if(GVAR(tracers)) then {
     } forEach GVAR(rounds);
 };
 
-[QGVAR(draw2D), [_campos]] call CBA_fnc_localEvent;
+[QGVAR(draw2D), [getPosVisual GVAR(camera), _map]] call CBA_fnc_localEvent;

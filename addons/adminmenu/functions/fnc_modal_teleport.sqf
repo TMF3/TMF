@@ -96,6 +96,8 @@ _ctrlMap ctrlAddEventHandler ["MouseButtonClick", {
 
         systemChat format ["[TMF Admin Menu] Teleported %1 players", _numPlayers];
 
+        private _isParadropped = (missionNamespace getVariable [QGVAR(utility_teleport_paradrop), 0]) == 1;
+
         [format [
             "%1 %2 %3 %4 %5",
             profileName,

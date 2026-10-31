@@ -50,7 +50,7 @@ if (_hash isEqualTo []) then {
 
     // Fallback if no code defined
     if !(_hasCode) then {
-        _hash pushBack [_cfgName, {([_this] call BIS_fnc_objectType) select 1}];
+        _hash pushBack ["code", {([_this] call BIS_fnc_objectType) select 1}];
     };
     // Fallback if no default defined
     if (_default isEqualTo []) then {

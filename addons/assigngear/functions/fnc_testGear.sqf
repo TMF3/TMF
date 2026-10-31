@@ -215,11 +215,11 @@ private _fncTestUnit = {
             };
         };
 
-        if (count _sidearmWeapon > 0 && !(_weaponMags isEqualTo [])) then {
+        if (count _sidearmWeapon > 0) then {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount == 0) then {
+            if (_weaponMagCount == 0 && !(_weaponMags isEqualTo [])) then {
                 _output pushBack [1,format["Role: %1 - %2 has no compatible mag for sidearm.",_faction,_role]];
             };
         };
