@@ -17,8 +17,8 @@ if(is3DEN) exitWith {};
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
 
-_headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
-if(count _headless > 0 && isServer) exitWith {
+private _headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
+if(_headless isNotEqualTo [] && isServer) exitWith {
     _this remoteExec [QFUNC(waveInit), _headless select 0];
 };
 

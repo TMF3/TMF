@@ -46,7 +46,7 @@ _data params ['_groups', '_vehicles', '_objects'];
     [_vehicle,_custom select 0,_custom select 1] spawn BIS_fnc_initVehicle;
 
     if(count _pylons > 0) then {
-        private _pylonPaths = (configProperties [configFile >> "CfgVehicles" >> typeOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
+        private _pylonPaths = (configProperties [configOf _vehicle >> "Components" >> "TransportPylonsComponent" >> "Pylons", "isClass _x"]) apply {getArray (_x >> "turret")};
         {
             _vehicle removeWeaponGlobal getText (configFile >> "CfgMagazines" >> _x >> "pylonWeapon")
         } forEach getPylonMagazines _vehicle;
@@ -100,7 +100,7 @@ _data params ['_groups', '_vehicles', '_objects'];
         };
     } forEach _units;
     (units _grp) join _grp;
-     _lastIndex = (count waypoints _grp)-1;
+     private _lastIndex = (count waypoints _grp)-1;
     [_grp] call CBA_fnc_clearWaypoints;
     {
         [_grp, _forEachIndex + 1, _x] call CFUNC(deserializeWaypoint);
@@ -111,9 +111,9 @@ _data params ['_groups', '_vehicles', '_objects'];
     _spawnedGroups pushBack _grp;
 } forEach _groups;
 
-_wave = _logic getVariable ["Waves",1];
+private _wave = _logic getVariable ["Waves",1];
 _logic setVariable ["Waves", (_wave-1), true];
-_handlers = _logic getVariable ["Handlers",[]];
+private _handlers = _logic getVariable ["Handlers",[]];
 {
     if(_x isEqualType {}) then {
         [_wave,_spawnedGroups,_spawnedUnits,_spawnedVehicles,_spawnedObjects,_logic,_forEachIndex] call _x;
