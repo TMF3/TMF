@@ -24,7 +24,7 @@ _mapPos = GVAR(mapPos);
     _uPos = _mapPos vectorAdd [random 20 - random 20,random 20 - random 20,0];
   };
 
-  _unit setpos _uPos;
+  _unit setPos _uPos;
   if(_parachute) then {
     [_unit] remoteExecCall [QFUNC(paraDrop), _unit];
   };

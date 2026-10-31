@@ -18,9 +18,9 @@ with uiNamespace do {
     private _ctrlSize = OrbatSettings_ctrlGroup controlsGroupCtrl 117;
     private _ctrlFullNameEdit = OrbatSettings_ctrlGroup controlsGroupCtrl 123;
 
-    _ctrlColourToolBox lbsetcursel 0;
-    _ctrlIconToolbox lbsetcursel 0;
-    _ctrlSize lbsetcursel 0;
+    _ctrlColourToolBox lbSetCurSel 0;
+    _ctrlIconToolbox lbSetCurSel 0;
+    _ctrlSize lbSetCurSel 0;
     _ctrlNameEdit ctrlSetText "";
     _ctrlFullNameEdit ctrlSetText "";
 

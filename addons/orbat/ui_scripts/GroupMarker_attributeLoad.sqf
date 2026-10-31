@@ -28,17 +28,17 @@ if (count _groupMarkerArray > 0) then {
         private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
 
 
-        _ctrlColourToolBox lbsetcursel (_colours find _colour);
-        _ctrlIconToolbox lbsetcursel (_toolBoxIcon find _parts);
+        _ctrlColourToolBox lbSetCurSel (_colours find _colour);
+        _ctrlIconToolbox lbSetCurSel (_toolBoxIcon find _parts);
     };
     if (_size != "") then {
         private _sizeMod = ["x\tmf\addons\orbat\textures\empty.paa", "x\tmf\addons\orbat\textures\modif_o.paa","x\tmf\addons\orbat\textures\modif_dot.paa","x\tmf\addons\orbat\textures\modif_2dot.paa","x\tmf\addons\orbat\textures\modif_3dot.paa", "x\tmf\addons\orbat\textures\modif_company.paa"];
-        _ctrlSize lbsetcursel (_sizeMod find _size);
+        _ctrlSize lbSetCurSel (_sizeMod find _size);
     };
     _ctrlNameEdit ctrlSetText _mName;
 } else {
     if (count (get3DENSelected "group") > 0) then {
         private _entity = (get3DENSelected "group") select 0;
-        _ctrlNameEdit ctrlSetText (GroupID _entity);
+        _ctrlNameEdit ctrlSetText (groupId _entity);
     };
 };

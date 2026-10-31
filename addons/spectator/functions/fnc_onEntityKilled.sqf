@@ -8,7 +8,7 @@ if(count (_deadMan getVariable [QGVAR(tagControl),[]]) > 0) then {
     ctrlDelete ((_deadMan getVariable [QGVAR(tagControl),[controlNull]]) select 0);
 };
 
-if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitwith {};
+if(!(side _deadMan in [blufor,opfor,independent,civilian]) || !(_deadMan isKindOf "CAManBase" || _deadMan isKindOf "AllVehicles") ) exitWith {};
 if(isNull _instigator || _instigator == _deadMan) then {
     _instigator = _deadMan getVariable [QGVAR(lastDamage),objNull];
 };
@@ -23,4 +23,4 @@ if(_kName == "") then { _kName = getText (configFile >> "CfgVehicles" >> typeOf 
 private _weapon = getText (configFile >> "CfgWeapons" >> currentWeapon _instigator >> "displayName");
 if (!isNull (objectParent _instigator)) then { _weapon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _instigator) >> "displayName");};
 GVAR(killList_forceUpdate) = true;
-GVAR(killedUnits) pushback [_deadMan,time,_instigator,side group _deadMan,side group _instigator,_dName,_kName,_weapon,_isPlayer];
+GVAR(killedUnits) pushBack [_deadMan,time,_instigator,side group _deadMan,side group _instigator,_dName,_kName,_weapon,_isPlayer];

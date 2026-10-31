@@ -12,7 +12,7 @@ switch (_logic getVariable ["TMFUnits",-1]) do {
     case (1): {
         {
           _units append units _x;
-        } foreach synchronizedObjects _logic;
+        } forEach synchronizedObjects _logic;
     };
     case (2): {
       {

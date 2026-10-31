@@ -165,7 +165,7 @@ class respawnMenu_RscCombo
     text = "";
     shadow = 0;
     font = "PuristaLight";
-    sizeEx = "(            (            (            ((safezoneW / safezoneH) min 1.2) / 1.2) / 50) * 2)";
+    sizeEx = "(            (            (            ((safeZoneW / safeZoneH) min 1.2) / 1.2) / 50) * 2)";
     fixedWidth = 0;
     arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
     arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
@@ -311,7 +311,7 @@ class respawnMenu_RscListBox {
     };
     style = 528;
     font = "PuristaMedium";
-    sizeEx = "(            (            (            ((safezoneW / safezoneH) min 1.2) / 1.2) / 50) * 2.1)";
+    sizeEx = "(            (            (            ((safeZoneW / safeZoneH) min 1.2) / 1.2) / 50) * 2.1)";
     //sizeEx = 1;
     shadow = 0;
     colorShadow[] = {0, 0, 0, 0.5};
@@ -338,7 +338,7 @@ class respawnMenu_RscEdit
      colorDisabled[] = {1, 1, 1, 0.25};
      font = "TahomaB";
      //sizeEx = 0.04;
-     sizeEx = "(            (            (            ((safezoneW / safezoneH) min 1.2) / 1.2) / 50) * 1.6)";
+     sizeEx = "(            (            (            ((safeZoneW / safeZoneH) min 1.2) / 1.2) / 50) * 1.6)";
      autocomplete = "";
      text = "";
      size = 0.2;

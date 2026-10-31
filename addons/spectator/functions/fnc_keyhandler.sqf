@@ -171,7 +171,7 @@ switch true do {
       };
   };
   case (_key in (actionKeys "NightVision") && _type == KEYDOWN && !GVAR(showmap)) : {
-        ['vision',[uinamespace getVariable [QGVAR(vision),controlNull]]] call FUNC(menuhandler);
+        ['vision',[uiNamespace getVariable [QGVAR(vision),controlNull]]] call FUNC(menuhandler);
   };
   case (_key == DIK_Z) : {
       if(_type == KEYDOWN) then

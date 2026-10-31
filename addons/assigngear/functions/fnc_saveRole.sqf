@@ -62,7 +62,7 @@ if(count assignedItems _unit  > 0) then {
 };
 _data = _data + "};";
 copyToClipboard _data;
-if(!isNull (uinamespace getvariable ["bis_fnc_arsenal_display",displayNull]) ) then {
-    ['showMessage',[(uinamespace getvariable ["bis_fnc_arsenal_display",displayNull]),localize "STR_a3_RscDisplayArsenal_message_clipboard"]] call (uinamespace getvariable "BIS_fnc_arsenal");
+if(!isNull (uiNamespace getVariable ["bis_fnc_arsenal_display",displayNull]) ) then {
+    ['showMessage',[(uiNamespace getVariable ["bis_fnc_arsenal_display",displayNull]),localize "STR_a3_RscDisplayArsenal_message_clipboard"]] call (uiNamespace getVariable "BIS_fnc_arsenal");
 //    ['showMessage',[_display,localize "STR_a3_RscDisplayArsenal_message_clipboard"]] call bis_fnc_arsenal;
 };

@@ -85,8 +85,8 @@ switch _mode do {
         _ctrlGroup = _params select 0;
         BabelSettings_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrladdeventhandler ["setfocus",{with uinamespace do {BabelSettings_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrladdeventhandler ["killfocus",{with uinamespace do {BabelSettings_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {BabelSettings_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {BabelSettings_ctrlGroup = nil;};}];
         
                 
         {
@@ -126,14 +126,14 @@ switch _mode do {
         lnbClear _ctrlLangList;
         {
             _x params ["_name"];
-            _ctrlLangList lnbaddrow [_name, "", ""];
+            _ctrlLangList lnbAddRow [_name, "", ""];
         } forEach BabelArray;
         
         if (count BabelArray > 0) then { 
             _ctrlLangList lnbSetCurSelRow 0; BabelCurrentLang = 0;
         } else {
             _ctrlLangList lnbSetColumnsPos [0,5,5];
-            _ctrlLangList lnbaddrow ["No Languages","",""];
+            _ctrlLangList lnbAddRow ["No Languages","",""];
             BabelCurrentLang = -1;
         };
         
@@ -163,7 +163,7 @@ switch _mode do {
             private _color = (side _unit) call TMF_common_fnc_sideToColor;
             
             if (_roleDesc == "") then {
-                _roleDesc =    getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
+                _roleDesc =    getText (configFile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
             };
             private _unitIdx = _ctrlTree tvAdd [ _treeRoot, _roleDesc];
             private _location = _treeRoot + [_unitIdx];
@@ -202,7 +202,7 @@ switch _mode do {
             
             private _side = side _group;
             private _color = _side call TMF_common_fnc_sideToColor;
-            private _grpIdx = _ctrlTree tvAdd [ _treeRoot, groupID _group];
+            private _grpIdx = _ctrlTree tvAdd [ _treeRoot, groupId _group];
             private _location = _treeRoot + [_grpIdx];
             private _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";
             
@@ -263,12 +263,12 @@ switch _mode do {
                 _doSpeak = true;
             };
             
-            private _factionIdx = _ctrlTree tvAdd [ _treeRoot,getText (configfile >> "CfgFactionClasses" >> _faction >> "displayName")];
+            private _factionIdx = _ctrlTree tvAdd [ _treeRoot,getText (configFile >> "CfgFactionClasses" >> _faction >> "displayName")];
             private _location = _treeRoot + [_factionIdx];
     
             _ctrlTree tvSetValue [_location, BabelLang_data pushBack _faction];
             
-            private _factionImg = getText (configfile >> "CfgFactionClasses" >> _faction >> "icon");
+            private _factionImg = getText (configFile >> "CfgFactionClasses" >> _faction >> "icon");
             _ctrlTree tvSetPicture [_location, _factionImg];
             
             private _hasSpeaker = false;            
@@ -461,7 +461,7 @@ switch _mode do {
                     private _sideNum = _entity call TMF_common_fnc_sideToNum;
                     {
                         if (_x isEqualType "") then {
-                            if (_sideNum == getNumber (configfile >> "CfgFactionClasses" >> _x >> "side")) then {
+                            if (_sideNum == getNumber (configFile >> "CfgFactionClasses" >> _x >> "side")) then {
                                 _langEntry set [1,_condition - [_x]];
                             };
                         };

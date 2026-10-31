@@ -50,7 +50,7 @@ if (_usingFactions) then {
     _factions sort false;
     {
         _x params ["_playerCount","_unitCount","_faction"];
-        private _displayName = getText (configfile >> "CfgFactionClasses" >> _faction >> "displayName");
+        private _displayName = getText (configFile >> "CfgFactionClasses" >> _faction >> "displayName");
         _displayName = format ["%1 - [Players: %2 All Units: %3]",_displayName,_playerCount,_unitCount];
         private _index = _control lbAdd _displayName;
         private _value = _faction;

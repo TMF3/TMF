@@ -13,5 +13,5 @@ _groups = get3DENSelected "Group";
 _over = get3DENMouseOver;
 if(count _over > 0 && {(_over select 0) == "Group"}) then {_groups pushBackUnique (_over select 1)};
 {
-    [_x,getpos leader _x,_type,_radius,_points,_onroad] call FUNC(patrol);
-} foreach _groups;
+    [_x,getPos leader _x,_type,_radius,_points,_onroad] call FUNC(patrol);
+} forEach _groups;

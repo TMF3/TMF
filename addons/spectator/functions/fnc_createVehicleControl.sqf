@@ -7,7 +7,7 @@ private _control = (uiNamespace getVariable [QGVAR(display),displayNull]) ctrlCr
 _control ctrlShow false;
 
 [_control,"\a3\ui_f\data\map\Markers\military\box_CA.paa",_color] call FUNC(controlSetPicture);
-[_control,getText (configFile >> "CfgVehicles" >> typeof _veh >> "displayName")] call FUNC(controlSetText);
+[_control,getText (configFile >> "CfgVehicles" >> typeOf _veh >> "displayName")] call FUNC(controlSetText);
 
 _veh setVariable [QGVAR(tagControl), [_control]];
 _control setVariable [QGVAR(attached),_veh];

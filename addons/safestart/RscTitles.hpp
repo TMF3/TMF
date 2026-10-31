@@ -11,12 +11,12 @@ class RscTitles {
             {
                 idc = 101;
                 text = "SAFESTART ACTIVE"; //--- ToDo: Localize;
-                x = (0.50-0.5/2) * safezoneW + safezoneX;
-                y = safezoneY;
-                w = 0.5 * safezoneW;
-                h = 0.05 * safezoneH;
+                x = (0.50-0.5/2) * safeZoneW + safeZoneX;
+                y = safeZoneY;
+                w = 0.5 * safeZoneW;
+                h = 0.05 * safeZoneH;
                 style = 0x02;
-                SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 2)";
+                SizeEx = "(((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 2)";
                 colorText[] = {1,1,1,1};
                 shadow = 2;
                 font = "PuristaBold";
@@ -33,12 +33,12 @@ class RscTitles {
             class Text : RscText
             {
                 text = "X"; //--- ToDo: Localize;
-                x = safezoneX;
-                y = safezoneY + 0.825;
-                w = safezoneW;
-                h = 0.1 * safezoneH;
+                x = safeZoneX;
+                y = safeZoneY + 0.825;
+                w = safeZoneW;
+                h = 0.1 * safeZoneH;
                 style = 0x02;
-                SizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 3)";
+                SizeEx = "(((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 3)";
                 colorText[] = {1,1,1,1};
                 shadow = 2;
                 font = "EtelkaMonospaceProBold";

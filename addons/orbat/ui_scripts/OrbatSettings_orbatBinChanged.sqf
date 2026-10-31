@@ -34,7 +34,7 @@ with uiNamespace do {
         _string = OrbatSelection call EFUNC(common,sideToString);
     };
     if (OrbatSelection isEqualType "") then {
-        _string = getText (configfile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
+        _string = getText (configFile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
     };
 
     _ctrlToggle ctrlSetText format["< %1 >", _string];

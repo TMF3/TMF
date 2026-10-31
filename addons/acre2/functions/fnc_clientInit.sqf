@@ -178,7 +178,7 @@ if (!alive player) exitWith {};
             _radio = (_radioList select 0);
             {
                 if (_forEachIndex != 0) then {_text = _text + ", "; };
-                _text = _text + getText (configfile >> "CfgWeapons" >> _x >> "displayName");
+                _text = _text + getText (configFile >> "CfgWeapons" >> _x >> "displayName");
             } forEach _radioList;
             _text = _text + ":<br/>";
 
@@ -230,7 +230,7 @@ if (!alive player) exitWith {};
     private _myRadiosText = "<br/><br/><font size='16'>MY ASSIGNED RADIOS</font><br/>";
     {
         _color = [_forEachIndex] call EFUNC(common,numToColor);
-        _myRadiosText = _myRadiosText + format["<font color='%1'>%2</font><br/>",_color,getText (configfile >> "CfgWeapons" >> _x >> "displayName")];
+        _myRadiosText = _myRadiosText + format["<font color='%1'>%2</font><br/>",_color,getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
     } forEach _radiosToGive;
 
     _text = _ltext + _myRadiosText + _text;
@@ -243,7 +243,7 @@ if (!alive player) exitWith {};
     // Uses CBA PFH to have a delay yet ensure code is still run in the unscheduled enviornment.
 
     private _delay = 0;
-    if (didJip) then { _delay = 3; }; // If jip give more time.
+    if (didJIP) then { _delay = 3; }; // If jip give more time.
 
     [{
         // On finish wait.
@@ -282,7 +282,7 @@ if (!alive player) exitWith {};
                         };
 
                         //Create addAction to give radio.
-                        private _radioName = getText (configfile >> "CfgWeapons" >> _x >> "displayName");
+                        private _radioName = getText (configFile >> "CfgWeapons" >> _x >> "displayName");
                         private _actionID = _unit addAction [format ["<t color='#3375D6'>[Radios] Give myself a %1 radio</t>",_radioName],
                         {
                             private _radioToGive = (_this select 3) select 0;
@@ -332,7 +332,7 @@ if (!alive player) exitWith {};
                 // Give addActions to addRadios.
                 if (!isNil QGVAR(radioAddActions)) then {
                     {
-                        private _actionid_action = _unit addAction [format["<t color='#c3d633'>[Radios] Give myself a %1 radio (check your inventory for space)</t>",getText (configfile >> "CfgWeapons" >> _x >> "displayName")],
+                        private _actionid_action = _unit addAction [format["<t color='#c3d633'>[Radios] Give myself a %1 radio (check your inventory for space)</t>",getText (configFile >> "CfgWeapons" >> _x >> "displayName")],
                                                             format["if ((_this select 0) canAdd '%1') then { (_this select 0) addItem '%1'; (_this select 0) removeAction (_this select 2); } else { systemChat '[TMF ACRE2] No space for radios'; };",_x],0,0,false,true,"","(_target == _this)"];
                         [_actionid_action,_unit] spawn {
                             sleep 300;

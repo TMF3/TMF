@@ -7,7 +7,7 @@ if (GVAR(handleAI)) then {
     {
         TRACE_1("Reenabled AI", _x);
         private _EH = _x getVariable [QGVAR(aiEH),-1];
-        _x removeEventHandler ["fired",_EH];
+        _x removeEventHandler ["Fired",_EH];
         _x enableAI "TARGET";
         _x enableAI "AUTOTARGET";
         _x allowDamage true;
@@ -15,7 +15,7 @@ if (GVAR(handleAI)) then {
 };
 
 // Remove fired eventhandler, left click action
-player removeEventHandler ["fired",_firedEH];
+player removeEventHandler ["Fired",_firedEH];
 if !(isNil "ace_interaction_fnc_showMouseHint") then {
     [player,"DefaultAction",_playerAction] call ace_common_fnc_removeActionEventHandler;
 } else {

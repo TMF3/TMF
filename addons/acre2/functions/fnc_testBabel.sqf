@@ -15,7 +15,7 @@ Author:
 
 private _warnings = [];
 
-if (getmissionconfigvalue ["TMF_AcreBabelEnabled",false]) then {
+if (getMissionConfigValue ["TMF_AcreBabelEnabled",false]) then {
     LOG("Running Autotest on Babel");
     private _babelArray = getMissionConfigValue ["TMF_AcreBabelSettings", []];
     if IS_STRING(_babelArray) then {_babelArray = call compile _babelArray};

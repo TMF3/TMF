@@ -37,7 +37,7 @@ _ctrlButton ctrlSetPosition [0.8 * _ctrlGrpWidth, _bottomY, 0.2 * _ctrlGrpWidth,
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Execute";
 _ctrlButton setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];
-_ctrlButton ctrlAddEventHandler ["buttonClick", {
+_ctrlButton ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     (_ctrlButton getVariable [QGVAR(association), [controlNull, controlNull]]) params ["_ctrlEdit", "_ctrlCombo"];
     _ctrlButton call FUNC(debounceButton);

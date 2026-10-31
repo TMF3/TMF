@@ -59,7 +59,7 @@ if(GVAR(mode) == FOLLOWCAM) then {
     GVAR(relpos) = [(sin(_ax)*_delta)*cos(_ay), (cos(_ax)*_delta)*cos(_ay), _zLevel];
     GVAR(camera) camSetRelPos GVAR(relpos);
     GVAR(camera) camSetFov GVAR(followcam_fov);
-    if(GVAR(camera) distance2d GVAR(target) > 1000) then {
+    if(GVAR(camera) distance2D GVAR(target) > 1000) then {
         _commitTime = 0;
     };
     GVAR(camera) camCommit _commitTime;

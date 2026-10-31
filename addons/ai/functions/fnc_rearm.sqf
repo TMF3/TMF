@@ -3,12 +3,12 @@ params ["_self","_caller"];
 _repairPerTick = 0.1;
 _fuelPerTick = 0.1;
 _ammoPerTick = 0.1;
-if(_caller getvariable [QGVAR(rearming),false]) exitwith {
+if(_caller getVariable [QGVAR(rearming),false]) exitWith {
     hint "You are already rearming!";
 };
 _caller setVariable [QGVAR(rearming), true];
 _vehicle = vehicle _caller;
-if(_vehicle == _caller) exitwith {
+if(_vehicle == _caller) exitWith {
     hint "You have to be in the vehicle";
 };
 _vehicle setFuel 0;

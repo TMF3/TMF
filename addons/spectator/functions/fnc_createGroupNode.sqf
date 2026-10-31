@@ -20,7 +20,7 @@ disableSerialization;
 
 private _twGrpMkr = [_grp] call EFUNC(orbat,getGroupMarkerData);
 
-private _grpName = groupID _grp;
+private _grpName = groupId _grp;
 private _icon = "\A3\ui_f\data\map\markers\nato\b_unknown.paa";
 private _color = (side _grp) call CFUNC(sideToColor);
 

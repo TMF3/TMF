@@ -67,6 +67,6 @@ if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
         GVAR(rounds) set [_forEachIndex,[_object,_posArray,diag_frameNo,_time,_type]];
     };
     if( _type > 0  && { isNull _object } || _type == 0 && {(time - _time) > 5} ) then { GVAR(rounds) set [_forEachIndex,0]; };
-} foreach GVAR(rounds);
+} forEach GVAR(rounds);
 
 GVAR(rounds) = GVAR(rounds) - [0];

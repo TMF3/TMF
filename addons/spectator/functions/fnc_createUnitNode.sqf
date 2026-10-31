@@ -24,8 +24,8 @@ private _unitListControl = (uiNamespace getVariable [QGVAR(unitlist),controlNull
 private _index = _unitListControl tvAdd [[_parentIndex],_name];
 _unitListControl tvSetData [[_parentIndex,_index], _unit call BIS_fnc_netId];
 
-private _icon = getText (configFile >> "CfgVehicles" >> typeof (vehicle _unit) >> "icon");
-if (isText (configfile >> "CfgVehicleIcons" >> _icon )) then {
-    _icon = getText (configfile >> "CfgVehicleIcons" >> _icon );
+private _icon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "icon");
+if (isText (configFile >> "CfgVehicleIcons" >> _icon )) then {
+    _icon = getText (configFile >> "CfgVehicleIcons" >> _icon );
 };
 _unitListControl tvSetPicture [[_parentIndex,_index],_icon];

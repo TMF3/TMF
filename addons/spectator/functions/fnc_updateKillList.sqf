@@ -1,7 +1,7 @@
 #include "\x\tmf\addons\spectator\script_component.hpp"
 for "_i" from 1 to 6 do {
     private _index = count GVAR(killedUnits) - _i;
-    private _control = (uiNamespace getvariable [QGVAR(labels),[]]) select _i;
+    private _control = (uiNamespace getVariable [QGVAR(labels),[]]) select _i;
     if(_index < (count GVAR(killedUnits)) && _index >= 0 ) then {
         private _data = GVAR(killedUnits) select (count GVAR(killedUnits) - _i);
         _data params ["_unit","_time","_killer","_deadSide","_killerSide","_dName","_kName","_weapon"];

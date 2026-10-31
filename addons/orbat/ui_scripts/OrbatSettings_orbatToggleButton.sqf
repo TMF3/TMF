@@ -18,7 +18,7 @@ with uiNamespace do {
             _idx = 0;
         };
         OrbatSelection = (OrbatFactionsPresent select _idx);
-        private _string = getText (configfile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
+        private _string = getText (configFile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
         _ctrlToggle ctrlSetText format["< %1 >", _string];
     };
 

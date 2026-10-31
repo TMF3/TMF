@@ -24,12 +24,12 @@ switch (GVAR(mode)) do {
         
         _camPos = [_x,_y,(_z max (getTerrainHeightASL[_x,_y] + 10))];
         GVAR(camera) setPosASL _camPos;
-        _dir = (getPos GVAR(camera)) getDir (getpos GVAR(target));
+        _dir = (getPos GVAR(camera)) getDir (getPos GVAR(target));
         private _angleY = atan (((_targetPos select 2) - (_camPos select 2))/ (_camPos distance2D _targetPos));
         GVAR(followcam_angle) = [_dir,_angleY];
     };
     case FIRSTPERSON: {
-        GVAR(target) SwitchCamera "internal";
+        GVAR(target) switchCamera "internal";
         if (vehicle GVAR(target) != GVAR(target)) then
         {
             _vehicle = vehicle GVAR(target);

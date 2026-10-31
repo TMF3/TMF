@@ -121,7 +121,7 @@ _handlers = _logic getVariable ["Handlers",[]];
 } forEach _handlers;
 // Check if there is another wave
 if(_logic getVariable ["Waves",1] > 0) then {
-    private _time = _logic getvariable ["Time",10];
+    private _time = _logic getVariable ["Time",10];
     private _whenDead = _logic getVariable ["WhenDead",0];
 
     // Wait for conditions before spawning waves

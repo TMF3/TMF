@@ -28,7 +28,7 @@ if (_cachedData isEqualTo -1) exitWith {
         _parentData params ["_parentMarkerData"];
         _parentMarkerData params ["","_parentMarkerShortName","_parentMarkerTexture","_parentMarkerSizeTexture"];
         if (_parentMarkerTexture != "") exitWith {
-            _data = [_parentmarkerTexture,(groupID _group),""];
+            _data = [_parentmarkerTexture,(groupId _group),""];
         }
         //  private _parentData = [_group] call FUNC(findOrbatParent);
        // };

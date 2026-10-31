@@ -218,12 +218,12 @@ with uiNamespace do {
                 if (_isVeh) then {
                     // Get callsign.
                     private _callsign = (_entry get3DENAttribute "TMF_orbat_vehicleCallsign") param [0,""];
-                    _string = format ["VEHICLE - %1",getText (configfile >> "CfgVehicles" >> (typeOf _entry) >> "displayName")];
+                    _string = format ["VEHICLE - %1",getText (configFile >> "CfgVehicles" >> (typeOf _entry) >> "displayName")];
                     if (count _callsign > 0) then {
                         _string = _string + format [" (Callsign: %1)",_callsign];
                     }
                 } else { // Not Veh must be group
-                    _string = format["GROUP - %1", groupID _entry];
+                    _string = format["GROUP - %1", groupId _entry];
                 };
                 if (count _groupMarkerData > 0) then {
                     if ((_groupMarkerData select 1) != "") then {
@@ -245,7 +245,7 @@ with uiNamespace do {
                         _unitMarkerData params ["_unitIcon","_mName"];
                         private _roleDesc = ((_entry get3DENAttribute "description") select 0);
                         if (_roleDesc isEqualTo "") then {
-                            _roleDesc =    getText (configfile >> "CfgVehicles" >> (typeOf _entry) >> "displayName");
+                            _roleDesc =    getText (configFile >> "CfgVehicles" >> (typeOf _entry) >> "displayName");
                         };
                         private _string = format["UNIT - %1", _roleDesc];
                         if (_mName != "") then {

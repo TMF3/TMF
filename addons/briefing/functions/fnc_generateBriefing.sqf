@@ -45,7 +45,7 @@ if (_unitCond isEqualType "") then { _unitCond = call compile _unitCond; };
 {
     private _scriptName = (_briefingArray select _x) select 2;
     if FILE_EXISTS(_scriptName) then {
-        call compile preprocessfilelinenumbers _scriptName;
+        call compile preprocessFileLineNumbers _scriptName;
     } else {
         [_scriptName] spawn {
             params ["_scriptName"];
@@ -58,7 +58,7 @@ if (_unitCond isEqualType "") then { _unitCond = call compile _unitCond; };
 //Do Admin briefing.
 if ([] call tmf_common_fnc_isAdmin) then {
     if FILE_EXISTS("briefing\admin.sqf") then {
-        call compile preprocessfilelinenumbers "briefing\admin.sqf";
+        call compile preprocessFileLineNumbers "briefing\admin.sqf";
     } else {
         [] spawn {
             uiSleep 5;

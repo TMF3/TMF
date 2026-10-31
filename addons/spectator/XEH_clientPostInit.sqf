@@ -43,7 +43,7 @@ LOG("Client PostInit started");
 }] call CBA_fnc_addEventHandler;
 
 // Hide ST HUD if spectator is OPEN
-if (isClass (configfile >> "CfgPatches" >> "STUI_GroupHUD")) then {
+if (isClass (configFile >> "CfgPatches" >> "STUI_GroupHUD")) then {
     [{!isNil "STUI_Canvas_ShownHUD"}, {
         STUI_Canvas_ShownHUD_old = STUI_Canvas_ShownHUD;
         STUI_Canvas_ShownHUD = {

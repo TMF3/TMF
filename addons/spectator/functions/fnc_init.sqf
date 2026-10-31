@@ -36,7 +36,7 @@ waitUntil {missionNamespace getVariable ["BIS_fnc_feedback_allowDeathScreen",fal
 
 // Disable effects
 // disable effects death effects
-if(!isnil "BIS_fnc_feedback_allowPP") then { BIS_fnc_feedback_allowPP = false; };
+if(!isNil "BIS_fnc_feedback_allowPP") then { BIS_fnc_feedback_allowPP = false; };
 
 if(_isJip) then {
     [] spawn {

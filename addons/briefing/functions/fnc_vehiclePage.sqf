@@ -55,7 +55,7 @@ params ["_target","_vehicles"];
         private _turretName = [getText(_cfgTurret >> "gunnerName")] call CBA_fnc_capitalize;
         private _locked = _veh lockedTurret _x;
         // Handle FFV turrets and turned out positions
-        if ((getNumber(_cfgTurret >> "isPersonTurret") > 0) && (getnumber(_cfg >> "hideProxyInCombat") isEqualTo 0)) then {
+        if ((getNumber(_cfgTurret >> "isPersonTurret") > 0) && (getNumber(_cfg >> "hideProxyInCombat") isEqualTo 0)) then {
             // Save the idx of the turret
             _proxyIdxs pushBack getNumber(_cfgTurret >> "proxyIndex");
         };

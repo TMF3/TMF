@@ -141,11 +141,11 @@ switch _mode do {
         ] call BIS_fnc_initListNBoxSorting;
 
         // Add -/+ evenhandlers
-        _addButton ctrlAddEventHandler ["buttonClick", {
+        _addButton ctrlAddEventHandler ["ButtonClick", {
             params ["_ctrlButton"];
             [ctrlParentControlsGroup _ctrlButton, 'modifyRow', [1] ] call FUNC(gui_vehicleGear_selector);
         }];
-        _subButton ctrlAddEventHandler ["buttonClick", {
+        _subButton ctrlAddEventHandler ["ButtonClick", {
             params ["_ctrlButton"];
             [ctrlParentControlsGroup _ctrlButton, 'modifyRow', [-1] ] call FUNC(gui_vehicleGear_selector);
         }];

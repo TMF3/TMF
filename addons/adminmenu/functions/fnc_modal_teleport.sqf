@@ -19,7 +19,7 @@ if (!isNull cameraOn) then {
     _ctrlMap ctrlMapAnimAdd [0, ctrlMapScale _ctrlMap, cameraOn];
     ctrlMapAnimCommit _ctrlMap;
 };
-_ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
+_ctrlMap ctrlAddEventHandler ["MouseButtonClick", {
     params ["_ctrlMap", "", "_pos_x", "_pos_y"];
 
     private _toggle = missionNamespace getVariable [QGVAR(utility_teleport_toggle), false];
@@ -106,7 +106,7 @@ _ctrlMap ctrlAddEventHandler ["mouseButtonClick", {
         ],false,"Admin Menu"] call FUNC(log);
     };
 }];
-_ctrlMap ctrlAddEventHandler ["draw", {
+_ctrlMap ctrlAddEventHandler ["Draw", {
     params ["_ctrlMap"];
     if ((missionNamespace getVariable [QGVAR(utility_teleport_drawEnemy), 0]) == 1) then {
         {
@@ -164,7 +164,7 @@ GVAR(utilityTabControls) pushBack _ctrlButton;
 _ctrlButton ctrlSetPosition [_ctrlGrpX + 0.8 * _ctrlGrpWidth, _ctrlGrpY + _ctrlGrpHeight - TMF_ADMINMENU_STD_HEIGHT, 0.2 * _ctrlGrpWidth, TMF_ADMINMENU_STD_HEIGHT];
 _ctrlButton ctrlCommit 0;
 _ctrlButton ctrlSetText "Enable Teleport";
-_ctrlButton ctrlAddEventHandler ["buttonClick", {
+_ctrlButton ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     GVAR(utility_teleport_toggle) = !(missionNamespace getVariable [QGVAR(utility_teleport_toggle), false]);
     _ctrlButton ctrlSetText (["Enable Teleport", "Disable Teleport"] select GVAR(utility_teleport_toggle));

@@ -28,7 +28,7 @@ class Controls
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
 
-        rowHeight = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        rowHeight = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         colorText[] = {1,1,1,1};
         // colorBackground[] = {0,0,0,0};
         itemBackground[] = {1,1,1,0.2};
@@ -37,9 +37,9 @@ class Controls
         tooltip = "tooltip test";
         
         x = "0";
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL1;
-        h = 0.308 * safezoneH;
+        h = 0.308 * safeZoneH;
     };
 
     class respawnMenuAddButton: GVAR(RscButtonMenu)
@@ -47,7 +47,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_ADDBUTTON;
         text = "Add";
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL2;
         h = TMF_ADMINMENU_STD_HEIGHT;
         onButtonClick=QUOTE((ctrlParent (param [0])) call FUNC(respawn_addAction));
@@ -57,7 +57,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_REMOVEBUTTON;
         text = "Remove";
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "2.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL2;
         h = TMF_ADMINMENU_STD_HEIGHT;
         onButtonClick=QUOTE((ctrlParent (param [0])) call FUNC(respawn_removeAction));
@@ -71,7 +71,7 @@ class Controls
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "3.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL2;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -83,7 +83,7 @@ class Controls
         sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "4.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL2;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -128,7 +128,7 @@ class Controls
         colorBackground[] = {0.5, 0.5, 0.5, 0.1};
 
         x = TMF_ADMINMENU_RESP_X_COL2;
-        y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "5.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL2;
         h = 2*TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -160,7 +160,7 @@ class Controls
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
 
-        rowHeight = "1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)";
+        rowHeight = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
         colorText[] = {1,1,1,1};
         // colorBackground[] = {0,0,0,0};
         itemBackground[] = {1,1,1,0.2};
@@ -169,9 +169,9 @@ class Controls
         tooltip = "tooltip test";
 
         x = TMF_ADMINMENU_RESP_X_COL3;
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL3;
-        h = 0.308 * safezoneH;
+        h = 0.308 * safeZoneH;
     };
 
     class respawnGroupDetailsText: RscText
@@ -182,7 +182,7 @@ class Controls
         sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "1.1 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL1;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -196,7 +196,7 @@ class Controls
         sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "2.2 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "2.2 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -209,7 +209,7 @@ class Controls
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "3.3 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "3.3 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -222,7 +222,7 @@ class Controls
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "4.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "4.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -235,7 +235,7 @@ class Controls
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "5.5 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "5.5 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -248,7 +248,7 @@ class Controls
         sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "7.7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -256,9 +256,9 @@ class Controls
     {
         idc = IDC_TMF_ADMINMENU_RESP_GROUPMARKERCHECKBOX;
         text = "Give group marker";
-        x = TMF_ADMINMENU_RESP_X_COL4 + (7 * (((safezoneW / safezoneH) min 1.2) / 40));
-        y = "7.7 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
-        w = (1 * (((safezoneW / safezoneH) min 1.2) / 40));
+        x = TMF_ADMINMENU_RESP_X_COL4 + (7 * (((safeZoneW / safeZoneH) min 1.2) / 40));
+        y = "7.7 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
+        w = (1 * (((safeZoneW / safeZoneH) min 1.2) / 40));
         h = TMF_ADMINMENU_STD_HEIGHT;
         //action = "['respawnMenuToggleGroupCheckbox'] spawn tmf_respawn_fnc_handleRespawnUI";
     };
@@ -272,7 +272,7 @@ class Controls
         sizeEx = TMF_ADMINMENU_STD_SIZEX;
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "8.8 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "8.8 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -289,7 +289,7 @@ class Controls
         
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "9.9 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "9.9 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -302,7 +302,7 @@ class Controls
         font = "RobotoCondensed";
         
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "11 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "11 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
     };
@@ -312,7 +312,7 @@ class Controls
         idc = IDC_TMF_ADMINMENU_RESP_SPAWNBUTTON;
         text = "Spawn Group";
         x = TMF_ADMINMENU_RESP_X_COL4;
-        y = "19 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) + (safezoneY + (safezoneH - (((safezoneW / safezoneH) min 1.2) / 1.2))/2)";
+        y = "19 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = TMF_ADMINMENU_RESP_W_COL4;
         h = TMF_ADMINMENU_STD_HEIGHT;
         
@@ -325,10 +325,10 @@ class Controls
     // {
         // idc = 26904;
         // text = "Close";
-        // x = 0.716563 * safezoneW + safezoneX;
-        // y = 0.3196 * safezoneH + safezoneY;
-        // w = 0.0309375 * safezoneW;
-        // h = 0.022 * safezoneH;
+        // x = 0.716563 * safeZoneW + safeZoneX;
+        // y = 0.3196 * safeZoneH + safeZoneY;
+        // w = 0.0309375 * safeZoneW;
+        // h = 0.022 * safeZoneH;
         // action = "closeDialog 26893";
     // };
 
@@ -336,20 +336,20 @@ class Controls
     // {
         // idc = 1603;
         // text = "Cycle Role";
-        // x = 0.684594 * safezoneW + safezoneX;
-        // y = 0.445 * safezoneH + safezoneY;
-        // w = 0.0567187 * safezoneW;
-        // h = 0.055 * safezoneH;
+        // x = 0.684594 * safeZoneW + safeZoneX;
+        // y = 0.445 * safeZoneH + safeZoneY;
+        // w = 0.0567187 * safeZoneW;
+        // h = 0.055 * safeZoneH;
         // action="['respawnMenuChangeRoleAction'] spawn tmf_respawn_fnc_handleRespawnUI";
     // };
     // class respawnMenuChangeRankButton: GVAR(RscButtonMenu)
     // {
         // idc = 1604;
         // text = "Cycle Rank";
-        // x = 0.684594 * safezoneW + safezoneX;
-        // y = 0.544 * safezoneH + safezoneY;
-        // w = 0.0567187 * safezoneW;
-        // h = 0.055 * safezoneH;
+        // x = 0.684594 * safeZoneW + safeZoneX;
+        // y = 0.544 * safeZoneH + safeZoneY;
+        // w = 0.0567187 * safeZoneW;
+        // h = 0.055 * safeZoneH;
         // action="['respawnMenuChangeRankAction'] spawn tmf_respawn_fnc_handleRespawnUI";
     // };
 };

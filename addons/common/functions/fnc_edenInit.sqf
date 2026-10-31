@@ -35,16 +35,16 @@ GVAR(posIdxs) = [];
 
 // do stuff with mouseOver EH
 // KeyDown
-GVAR(edenMouseKeyDownIdx) = ((findDisplay 313) displayAddEventHandler ["mouseButtonDown", {
+GVAR(edenMouseKeyDownIdx) = ((findDisplay 313) displayAddEventHandler ["MouseButtonDown", {
     GVAR(mouseKeysPressed) pushBackUnique (_this select 1);
 }]); // EDEN IDC 313
 // KeyUp
-GVAR(edenMouseKeyUpIdx) = ((findDisplay 313) displayAddEventHandler ["mouseButtonUp", {
+GVAR(edenMouseKeyUpIdx) = ((findDisplay 313) displayAddEventHandler ["MouseButtonUp", {
     [_this select 1] call FUNC(edenMouseKeyUp);
     GVAR(mouseKeysPressed) = GVAR(mouseKeysPressed) - [(_this select 1)];
 }]);
 // MouseZchanged
-GVAR(edenMouseZchangedIdx) = ((findDisplay 313) displayAddEventHandler ["mouseZchanged", {
+GVAR(edenMouseZchangedIdx) = ((findDisplay 313) displayAddEventHandler ["MouseZChanged", {
     if (GVAR(Garrison)) then {
         private _A =+ GVAR(posIdxs);
         private _B = [];

@@ -15,18 +15,18 @@ _flyingVehicles = _flyingVehicles arrayIntersect _flyingVehicles;
     _groups = [];
     {
         _groups pushBackUnique group _x
-    } foreach _cargo;
+    } forEach _cargo;
 
     {
-      private _pos = getpos _vehicle;
+      private _pos = getPos _vehicle;
       _pos = _pos vectorAdd (vectorDirVisual _vehicle vectorMultiply -30);
       [_x,_pos] remoteExecCall [QFUNC(paradropEffect), _x];
       sleep 1.5;
-    } foreach _cargo;
+    } forEach _cargo;
 
     {
         _x leaveVehicle _vehicle;
-    } foreach _groups
+    } forEach _groups
   };
-} foreach _flyingVehicles;
+} forEach _flyingVehicles;
 true

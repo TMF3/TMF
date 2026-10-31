@@ -28,6 +28,6 @@ if (!(_textControl getVariable [QGVAR(lastText),""] isEqualTo _text)) then {
     _textControl ctrlSetText _text;
     _textControl setVariable [QGVAR(lastText),_text];
 };
-if (!isnil "_color" && {count _color == 4}) then {
+if (!isNil "_color" && {count _color == 4}) then {
     _textControl ctrlSetTextColor _color;
 };

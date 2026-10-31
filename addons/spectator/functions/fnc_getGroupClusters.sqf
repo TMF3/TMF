@@ -11,7 +11,7 @@ private _distanceMaX = 100;
         private _unit = _x;
         _checkedMen pushBack _x;
         {
-            if(_x != _unit && {_x distance2d _unit < _distanceMaX} ) then
+            if(_x != _unit && {_x distance2D _unit < _distanceMaX} ) then
             {
                 _cluster pushBack _x;
                 _checkedMen pushBack _x;

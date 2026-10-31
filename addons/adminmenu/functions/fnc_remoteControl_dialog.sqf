@@ -32,7 +32,7 @@ _ctrlOK ctrlSetText "Control";
 _ctrlOK ctrlSetPosition [(_dialogPosition # 0) + 0.67 * (_dialogPosition # 2), (_dialogPosition # 1) + (_dialogPosition # 3) + 0.1 * TMF_ADMINMENU_STD_HEIGHT, 0.33 * (_dialogPosition # 2), TMF_ADMINMENU_STD_HEIGHT];
 _ctrlOK ctrlCommit 0;
 _ctrlOK setVariable [QGVAR(association), _ctrlList];
-_ctrlOK ctrlAddEventHandler ["buttonClick", {
+_ctrlOK ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlOK"];
 
     private _listIndex = lbCurSel (_ctrlOK getVariable [QGVAR(association), controlNull]);

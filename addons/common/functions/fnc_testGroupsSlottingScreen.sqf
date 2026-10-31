@@ -57,7 +57,7 @@ if ([[1,1,0]] call EFUNC(common,checkTMFVersion)) then {
         _output pushBack [1,"Some groups do not have a slotting screen name:"];
         private _string = "";
         {
-            _string = _string + ((side _x) call BIS_fnc_sideName) + " - " + groupID _x + ", ";
+            _string = _string + ((side _x) call BIS_fnc_sideName) + " - " + groupId _x + ", ";
         } forEach _outputGroups;
         _output pushBack [1,format ["groups (%1): %2",count _outputGroups,_string]];
     };

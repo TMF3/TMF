@@ -15,7 +15,7 @@ Author:
 
 private _warnings = [];
 
-if (getmissionconfigvalue ["TMF_AcreNetworkEnabled",false]) then {
+if (getMissionConfigValue ["TMF_AcreNetworkEnabled",false]) then {
     LOG("Running Autotest on Radio Networks");
     private _networksArray = getMissionConfigValue ['TMF_AcreSettings', []];
     if IS_STRING(_networksArray) then {_networksArray = call compile _networksArray};

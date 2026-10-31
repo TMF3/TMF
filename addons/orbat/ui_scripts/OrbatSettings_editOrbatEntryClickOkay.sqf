@@ -17,7 +17,7 @@ with uiNamespace do {
     private _path = "";
 
     if (_icon != "") then {
-        _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbcursel _ctrlColourToolBox)) + _icon;
+        _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbCurSel _ctrlColourToolBox)) + _icon;
     };
 
     private _idx = (lbCurSel _ctrlSize);
@@ -42,7 +42,7 @@ with uiNamespace do {
             // _data set [5, -1]; Do not edit the order thing.
         };
         if (_value isEqualType grpNull) then {
-            private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNameSpace getVariable ["GroupMarker_numID",0]];
+            private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNamespace getVariable ["GroupMarker_numID",0]];
             _value set3DENAttribute ["TMF_groupMarker",str _groupMarkerArray];
         };
     };

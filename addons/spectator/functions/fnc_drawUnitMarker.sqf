@@ -14,11 +14,11 @@ private _pos = (getPosVisual _unit);
 private _icon = _unit getVariable [QGVAR(mapIcon),""];
 private _size = 19;
 if(_icon == "") then {
-    _icon = getText (configfile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "icon");
+    _icon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _unit) >> "icon");
     _unit setVariable [QGVAR(mapIcon),_icon];
 };
 
-_map drawIcon [_icon,_color,_pos,_size,_size,getdir _unit,"",0,0.04, MAP_FONT];
+_map drawIcon [_icon,_color,_pos,_size,_size,getDir _unit,"",0,0.04, MAP_FONT];
 if(isPlayer _unit) then {
     _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)",[1,1,1,1],_pos,_size,_size,0,name _x,1,0.04, MAP_FONT];
 };

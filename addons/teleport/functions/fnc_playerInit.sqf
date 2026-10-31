@@ -2,7 +2,7 @@
 params ["_duration","_alt","_parachute","_leadersOnly"];
 _str = [];
 if(_leadersOnly) then {_str pushBack "group"};
-if(_parachute) then {_str pushback "parachute"};
+if(_parachute) then {_str pushBack "parachute"};
 _text = "";
 _str pushBack "teleport";
 {

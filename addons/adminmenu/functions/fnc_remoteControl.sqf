@@ -29,7 +29,7 @@ call {
     if !(alive _unit) exitWith {_error = localize "str_a3_cfgvehicles_moduleremotecontrol_f_errorDestroyed";};
     if !(_unit isKindOf "CAManBase") exitWith {_error = "Target must be a unit.";};
     if !((side group _unit) in [east, west, resistance, civilian]) exitWith {_error = localize "str_a3_cfgvehicles_moduleremotecontrol_f_errorEmpty";};
-    private _tempOwner = _unit getVariable ["bis_fnc_moduleRemoteControl_owner", objnull];
+    private _tempOwner = _unit getVariable ["bis_fnc_moduleRemoteControl_owner", objNull];
     if (!isNull _tempOwner && {_tempOwner in allPlayers}) exitWith {_error = localize "str_a3_cfgvehicles_moduleremotecontrol_f_errorControl";};
     if (isUAVConnected vehicle _unit) exitWith {_error = localize "str_a3_cfgvehicles_moduleremotecontrol_f_errorControl";};
 };

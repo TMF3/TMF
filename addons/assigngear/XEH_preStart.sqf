@@ -8,7 +8,7 @@
 private _faceClasses = [];
 {
     _faceClasses append (("true" configClasses _x) apply {toLower (configName _x)});
-} forEach ("true" configClasses(configfile >> "CfgFaces"));
+} forEach ("true" configClasses(configFile >> "CfgFaces"));
 
 uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
 

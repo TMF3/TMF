@@ -56,7 +56,7 @@ if (!(typeOf _building isEqualTo "") && {count (_building buildingPos -1) > 0}) 
 };
 
 private _validIdxs = _building getVariable [QGVAR(validIdxs),[]];
-if ((count _validIdxs == 0) || {diag_frameno % 15 == 0}) then { // Also recalc every 15 frames, also seems to randomize order?
+if ((count _validIdxs == 0) || {diag_frameNo % 15 == 0}) then { // Also recalc every 15 frames, also seems to randomize order?
     _validIdxs = [];
     {
         // Check for obstruction //TODO Zsorting?

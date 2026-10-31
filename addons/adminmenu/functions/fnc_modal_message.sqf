@@ -25,7 +25,7 @@ _ctrlButtonPreview ctrlSetPosition [(_ctrlGrpWidth * 0.7) - (0.2 * TMF_ADMINMENU
 _ctrlButtonPreview ctrlCommit 0;
 _ctrlButtonPreview ctrlSetText "Preview";
 _ctrlButtonPreview setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];
-_ctrlButtonPreview ctrlAddEventHandler ["buttonClick", {
+_ctrlButtonPreview ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     (_ctrlButton getVariable [QGVAR(association), [controlNull, controlNull]]) params ["_ctrlEdit", "_ctrlCombo"];
     _ctrlButton call FUNC(debounceButton);
@@ -56,7 +56,7 @@ _ctrlButtonCommit ctrlSetPosition [(_ctrlGrpWidth * 0.85), _ctrlGrpHeight - TMF_
 _ctrlButtonCommit ctrlCommit 0;
 _ctrlButtonCommit ctrlSetText "Send Message";
 _ctrlButtonCommit setVariable [QGVAR(association), [_ctrlEdit, _ctrlCombo]];
-_ctrlButtonCommit ctrlAddEventHandler ["buttonClick", {
+_ctrlButtonCommit ctrlAddEventHandler ["ButtonClick", {
     params ["_ctrlButton"];
     (_ctrlButton getVariable [QGVAR(association), [controlNull, controlNull]]) params ["_ctrlEdit", "_ctrlCombo"];
     _ctrlButton call FUNC(debounceButton);
