@@ -97,7 +97,7 @@ if (!isNil "OrbatSelection") then {
 
 if (!_found) then {
     //Default
-    if (count OrbatSidesPresent > 0) then {
+    if (OrbatSidesPresent isNotEqualTo []) then {
         OrbatSelection = OrbatSidesPresent select 0;
     } else {
         OrbatSelection = east;

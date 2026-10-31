@@ -68,7 +68,7 @@ with uiNamespace do {
             GroupMarker_numID = _numId;
             if (_icon != "") then {
                 private _parts = _icon splitString '\';
-                private _lastPart = _parts select (count _parts -1);
+                private _lastPart = _parts select -1;
                 private _parts = _lastPart splitString '_';
                 private _colour = _parts select 0;
 
@@ -85,10 +85,10 @@ with uiNamespace do {
                 private _sizeMod = ["x\tmf\addons\orbat\textures\empty.paa", "x\tmf\addons\orbat\textures\modif_o.paa","x\tmf\addons\orbat\textures\modif_dot.paa","x\tmf\addons\orbat\textures\modif_2dot.paa","x\tmf\addons\orbat\textures\modif_3dot.paa", "x\tmf\addons\orbat\textures\modif_company.paa"];
                 _ctrlSize lbSetCurSel (_sizeMod find _size);
             };
-            _ctrlFullNameEdit ctrlSetText _fName;
+            _ctrlFullNameEdit ctrlSetText "";
             _ctrlNameEdit ctrlSetText _mName;
         } else {
-            _ctrlNameEdit ctrlSetText (groupId _entity);
+            _ctrlNameEdit ctrlSetText (groupId _value);
             _ctrlFullNameEdit ctrlSetText "";
         };
     };
@@ -98,7 +98,7 @@ with uiNamespace do {
         _data params ["","_mName","_icon","_size", ["_fName",""]];
         if (_icon != "") then {
             private _parts = _icon splitString '\';
-            private _lastPart = _parts select (count _parts -1);
+            private _lastPart = _parts select -1;
             private _parts = _lastPart splitString '_';
             private _colour = _parts select 0;
 

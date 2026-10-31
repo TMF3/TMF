@@ -63,7 +63,7 @@ if (_usingFactions) then {
         private _side = _x;
         [
             {side _x == _side && _x in (playableUnits + [player])} count allUnits,
-            {side _x == _side} count allUnits,
+            _side countSide allUnits,
             _side
         ]
     };

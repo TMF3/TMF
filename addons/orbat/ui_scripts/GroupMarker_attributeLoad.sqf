@@ -17,7 +17,7 @@ if (count _groupMarkerArray > 0) then {
     GroupMarker_numID = _numId;
     if (_icon != "") then {
         private _parts = _icon splitString '\';
-        private _lastPart = _parts select (count _parts -1);
+        private _lastPart = _parts select -1;
         private _parts = _lastPart splitString '_';
         private _colour = _parts select 0;
 

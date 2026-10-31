@@ -47,19 +47,19 @@ if (_cachedData isEqualTo -1) exitWith {
         };
         call {
             if (_path find "yellow_" != -1) exitWith {
-                _idx = _path find "yellow_";
+                private _idx = _path find "yellow_";
                 _path = (_path select [0,_idx]) + _targetColor + (_path select [_idx+7]);
             };
             if (_path find "red_" != -1) exitWith {
-                _idx = _path find "red_";
+                private _idx = _path find "red_";
                 _path = (_path select [0,_idx]) + _targetColor + (_path select [_idx+4]);
             };
             if (_path find "green_" != -1) exitWith {
-                _idx = _path find "green_";
+                private _idx = _path find "green_";
                 _path = (_path select [0,_idx]) + _targetColor + (_path select [_idx+6]);
             };
              if (_path find "blue_" != -1) exitWith {
-                _idx = _path find "blue_";
+                private _idx = _path find "blue_";
                 _path = (_path select [0,_idx]) + _targetColor + (_path select [_idx+5]);
             };
         };

@@ -9,7 +9,7 @@ with uiNamespace do {
     {
         if ((_x select 0) isEqualTo OrbatSelection) exitWith { _idx = _forEachIndex;};
     } forEach OrbatSettings_Array;
-    if ((count cacheAllPlayerGroups == 0) and _idx == -1) exitWith {};
+    if ((cacheAllPlayerGroups isEqualTo []) and _idx == -1) exitWith {};
     if (_idx == -1) then {
         _idx = OrbatSettings_Array pushBack [OrbatSelection,[]];
     };
@@ -218,7 +218,7 @@ with uiNamespace do {
                 if (_isVeh) then {
                     // Get callsign.
                     private _callsign = (_entry get3DENAttribute "TMF_orbat_vehicleCallsign") param [0,""];
-                    _string = format ["VEHICLE - %1",getText (configFile >> "CfgVehicles" >> (typeOf _entry) >> "displayName")];
+                    _string = format ["VEHICLE - %1",getText (configOf _entry >> "displayName")];
                     if (count _callsign > 0) then {
                         _string = _string + format [" (Callsign: %1)",_callsign];
                     }
@@ -245,7 +245,7 @@ with uiNamespace do {
                         _unitMarkerData params ["_unitIcon","_mName"];
                         private _roleDesc = ((_entry get3DENAttribute "description") select 0);
                         if (_roleDesc isEqualTo "") then {
-                            _roleDesc =    getText (configFile >> "CfgVehicles" >> (typeOf _entry) >> "displayName");
+                            _roleDesc =    getText (configOf _entry >> "displayName");
                         };
                         private _string = format["UNIT - %1", _roleDesc];
                         if (_mName != "") then {

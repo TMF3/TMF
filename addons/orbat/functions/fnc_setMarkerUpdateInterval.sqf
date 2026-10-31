@@ -28,7 +28,7 @@ LOG_1("Setting new marker update interval",_interval);
 
 GVAR(markerUpdateInterval) = _interval;
 
-if (isNil QGVAR(PFHandler) || !(time > 0)) exitWith {-1};
+if (isNil QGVAR(PFHandler) || time <= 0) exitWith {-1};
 
 // Remove old handler
 [GVAR(PFHandler)] call CBA_fnc_removePerFrameHandler;
