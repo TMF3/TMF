@@ -191,7 +191,7 @@ private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
 if(!GVAR(tracers)) exitWith {};
 {
     _x params ["_object","_posArray","_last","_time","_type"];
-    private _pos = _posArray select (count _posArray-1);
+    private _pos = _posArray select -1;
     if (!isNull _object) then {
         private _pos = [_object] call CFUNC(getPosVisual);
     };

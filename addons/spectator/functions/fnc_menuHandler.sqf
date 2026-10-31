@@ -39,8 +39,8 @@ switch (_button) do {
     case "disableAI": {
       GVAR(playersOnly) = !GVAR(playersOnly);
 
-      _text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\enabledai_ca.paa";
-      _messsage = "AI + PLAYERS";
+      private _text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\enabledai_ca.paa";
+      private _messsage = "AI + PLAYERS";
 
       if(GVAR(playersOnly)) then {_messsage = "PLAYERS ONLY";_text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\disabledai_ca.paa";};
 
@@ -91,7 +91,7 @@ switch (_button) do {
                 true setCamUseTI 0;
             };
         };
-        _i = (GVAR(visionMode))+1;
+        private _i = (GVAR(visionMode))+1;
         if(_i > 2) then {_i = 0};
     if(isNil "_control" || {isNull _control}) then {_control = uiNamespace getVariable [QGVAR(vision),controlNull];};
         _control ctrlSetTooltip format ["Switch to %1", GVAR(visionMode_strings) select _i ];

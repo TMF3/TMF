@@ -103,14 +103,14 @@ params ["_type","_args"];
 _args params ["_control","_key","_shift","_ctrl","_alt"];
 
 
-_done = true;
+private _done = true;
 switch true do {
   case (_key == DIK_ESCAPE && _type == KEYDOWN) :
   {
     [QGVAR(blackout),false] call BIS_fnc_blackOut;
     with uiNamespace do {
       closeDialog 0;
-      _display = (findDisplay 46) createDisplay (["RscDisplayInterrupt","RscDisplayMPInterrupt"] select isMultiplayer);
+      private _display = (findDisplay 46) createDisplay (["RscDisplayInterrupt","RscDisplayMPInterrupt"] select isMultiplayer);
       _display displayAddEventHandler  ["Unload", {
           with missionNamespace do {
             [player,player,true] call FUNC(init);
@@ -213,7 +213,7 @@ switch true do {
       if(_type == KEYDOWN) then {
           GVAR(showMap) = !GVAR(showMap);
           with uiNamespace do {
-              _mapshow = (missionNamespace getVariable [QGVAR(showMap),false]);
+              private _mapshow = (missionNamespace getVariable [QGVAR(showMap),false]);
               GVAR(map) ctrlShow _mapshow;
               GVAR(map) ctrlMapAnimAdd [0,0.05,missionNamespace getVariable [QGVAR(target),GVAR(camera)]];
               ctrlMapAnimCommit GVAR(map);
@@ -227,13 +227,13 @@ switch true do {
     };
     case (_key == DIK_T && _type == KEYDOWN): {
         GVAR(tracers) = !GVAR(tracers);
-        _message = "Tracers have been toggled off";
+        private _message = "Tracers have been toggled off";
         if(GVAR(tracers)) then {_message = "Tracers have been toggled on"};
         systemChat _message;
     };
     case (_key == DIK_K && _type == KEYDOWN): {
         GVAR(bulletTrails) = !GVAR(bulletTrails);
-        _message = "Bullet trails have been toggled off";
+        private _message = "Bullet trails have been toggled off";
         if(GVAR(bulletTrails)) then {_message = "Bullet trails have been toggled on"};
         systemChat _message;
     };
@@ -248,7 +248,7 @@ switch true do {
         _done = false;
     };
     case (_key == DIK_P && _type == KEYDOWN) : {
-      _time = ([time,true] call CFUNC(secondsToTime));
+      private _time = ([time,true] call CFUNC(secondsToTime));
       systemChat format["Mission time: %1:%2:%3",_time select 0,_time select 1,_time select 2];
   };
   case (_key in (actionKeys "curatorInterface") && _type == KEYDOWN): {

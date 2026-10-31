@@ -62,7 +62,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
 {
     _X params ["_unit","_time","_killer","_deadSide","_killerSide",["_dName", ""],"_kName","_weapon","_isPlayer"];
     _time = time - _time;
-    _name = "";
+    private _name = "";
     if(_isPlayer) then {_name = _dName};
     if(_time <= 10) then {
         _map drawIcon [KIA_ICON,[1,1,1,1 - (0.1 * _time)],getPos _unit,16,16,0,_name,0,0.04, MAP_FONT];
@@ -73,7 +73,7 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
 if(GVAR(tracers)) then {
     {
         _x params ["_object","_posArray","_last","_time","_type"];
-        _pos = _posArray select (count _posArray-1);
+        private _pos = _posArray select -1;
         if(!isNull _object) then {
             private _pos = (getPosATLVisual _object);
             if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
@@ -89,7 +89,7 @@ if(GVAR(tracers)) then {
         };
         if(_type == 0 && !isNull _object) then {
             _pos = getPos _object;
-            _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
+            private _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
             _map drawLine [_pos, _futurePos, [1,0,0,1]];
         };
     } forEach GVAR(rounds);

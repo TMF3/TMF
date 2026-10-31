@@ -10,7 +10,7 @@ switch (_type) do {
             private _target = _control getVariable [QGVAR(attached), objNull];
             if(_target isEqualType grpNull) then {
                 private _units = units _target select {alive _x};
-                if(count _units > 0) then {_target = _units select 0}
+                if(_units isNotEqualTo []) then {_target = _units select 0}
                 else {
                     _target = objNull
                 };
