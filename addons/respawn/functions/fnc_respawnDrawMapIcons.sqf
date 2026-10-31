@@ -8,10 +8,10 @@ params["_fullmapWindow"];
         private _name = "";
         if(isPlayer _x) then {_name = name _x};
         if(leader _x == _x && {isPlayer _x} count units _x > 0) then {_name = format["%1 - %2",toString(toArray(groupId (group _x)) - [45]),_name]};
-        if(vehicle _x != _x && crew (vehicle _x) select 0 == _x || vehicle _x == _x) then
+        if(!isNull objectParent _x && crew (vehicle _x) select 0 == _x || isNull objectParent _x) then
         {
             private _icon = (vehicle _x getVariable ["f_cam_icon",""]);
-            if(_icon == "") then {_icon = getText (configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "icon");vehicle _x setVariable ["f_cam_icon",_icon]};
+            if(_icon == "") then {_icon = getText (configOf vehicle _x >> "icon");vehicle _x setVariable ["f_cam_icon",_icon]};
             private _color = (side _x) call tmf_common_fnc_sideToColor;
             _fullmapWindow drawIcon [_icon,_color,getPos _x,19,19,getDir (vehicle _x),_name,1];
         };
@@ -38,9 +38,9 @@ params["_fullmapWindow"];
         case "ICON": {
             private _markerType = getMarkerType _x;
             if (_markerType != "Empty") then {
-                _multiplier = 20;
-                _markerIcon = getText (configFile >> "CfgMarkers" >> _markerType >> "icon");
-                _markerText = markerText _x;
+                private _multiplier = 20;
+                private _markerIcon = getText (configFile >> "CfgMarkers" >> _markerType >> "icon");
+                private _markerText = markerText _x;
                 _fullmapWindow drawIcon [_markerIcon, _markerColor, _markerPos, (_markerSize select 0) * _multiplier, (_markerSize select 1) * _multiplier, _markerDir, _markerText, 1];
             };
         };

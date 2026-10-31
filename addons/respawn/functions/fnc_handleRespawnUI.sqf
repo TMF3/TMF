@@ -198,7 +198,7 @@ switch _input do {
         _control = (RESPAWN_DISPLAY displayCtrl 26900);
         {
             private _idx = _control lbAdd (_x select 1);
-            _markerImg = (_x select 0);
+            private _markerImg = (_x select 0);
             if (_markerImg != "") then {
                 _control lbSetPicture[_idx,_markerImg]; 
                 _control lbSetColor[_idx,[1,1,1,1]];
@@ -255,7 +255,7 @@ switch _input do {
        [{
             params["_input", "_pfhID"];
             _input params ["_oldSpectList"];
-            _display = findDisplay 26893;
+            private _display = findDisplay 26893;
             if (isNull (findDisplay 26893)) exitWith { [_pfhID] call CBA_fnc_removePerFrameHandler;} ;
 
             //Recompute who is alive and Dead.
@@ -519,7 +519,7 @@ switch _input do {
         if (alive player && !(player isKindOf "tmf_spectator_unit")) then {
           _pos = getPos player;  
         } else {
-            if (count playableUnits > 0) then {
+            if (playableUnits isNotEqualTo []) then {
                 _pos = getPos (playableUnits select 0);
             } else {
                 if (count allUnits > 0) then {
@@ -597,7 +597,7 @@ switch _input do {
                     _x set [2,(respawnMenuRoles select _roleIdx) select 0];
                 } forEach GVAR(selectedRespawnGroup);
                 
-                [[_groupName,_position, _faction, GVAR(selectedRespawnGroup), _markerType, _markerColor, _markerName,_halo,GVAR(selectedSide)], QFUNC(respawnWaveServer), false] call BIS_fnc_MP;
+                [_groupName,_position, _faction, GVAR(selectedRespawnGroup), _markerType, _markerColor, _markerName,_halo,GVAR(selectedSide)] remoteExec [QFUNC(respawnWaveServer), 2];
                 GVAR(selectedRespawnGroup) = [];
 
                 // Close the Map
