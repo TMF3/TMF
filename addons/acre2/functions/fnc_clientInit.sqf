@@ -168,19 +168,15 @@ if (!alive player) exitWith {};
 
 
 
-    private _text = "<br/><font size='16'>RADIO CHANNEL LISTING</font>";
+    private _textParts = ["<br/><font size='16'>RADIO CHANNEL LISTING</font>"];
     {
         private _radioSettingsIndex = _forEachIndex;
         if (count (_channelsProcessed select _radioSettingsIndex) > 0) then { // If at least one channel is defined.
-            _text = _text + "<br/>For: ";
             private _radioFreqInfo = _x;
             private _radioList = _radioFreqInfo select 0;
             private _radio = (_radioList select 0);
-            {
-                if (_forEachIndex != 0) then {_text = _text + ", "; };
-                _text = _text + getText (configFile >> "CfgWeapons" >> _x >> "displayName");
-            } forEach _radioList;
-            _text = _text + ":<br/>";
+            private _radioNames = _radioList apply {getText (configFile >> "CfgWeapons" >> _x >> "displayName")};
+            _textParts pushBack format ["<br/>For: %1:<br/>", _radioNames joinString ", "];
 
             {
                 private _chanNum = _forEachIndex +1;
@@ -222,18 +218,18 @@ if (!alive player) exitWith {};
                 } else {
                     _channelLine = "   " +_channelLine + "<br/>";
                 };
-                _text = _text + _channelLine;
+                _textParts pushBack _channelLine;
             } forEach (_channelsProcessed select _radioSettingsIndex);
         };
     } forEach GVAR(radioCoreSettings);
 
-    private _myRadiosText = "<br/><br/><font size='16'>MY ASSIGNED RADIOS</font><br/>";
+    private _myRadiosParts = ["<br/><br/><font size='16'>MY ASSIGNED RADIOS</font><br/>"];
     {
         private _color = [_forEachIndex] call EFUNC(common,numToColor);
-        _myRadiosText = _myRadiosText + format["<font color='%1'>%2</font><br/>",_color,getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
+        _myRadiosParts pushBack format["<font color='%1'>%2</font><br/>",_color,getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
     } forEach _radiosToGive;
 
-    _text = _ltext + _myRadiosText + _text;
+    private _text = _ltext + (_myRadiosParts joinString "") + (_textParts joinString "");
 
     //Provide instructions on the page. such as * to denote a channel you are suppose to be on, explain what the colours mean.
     player createDiaryRecord ["diary", ["ACRE2", _text]];
