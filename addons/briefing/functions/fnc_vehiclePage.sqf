@@ -27,7 +27,7 @@ params ["_target","_vehicles"];
         QEGVAR(orbat,vehicleCallsign),
         [getText (_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString
     ];
-    if !((_veh getVariable [QEGVAR(orbat,vehicleCallsign),-1]) isEqualTo -1) then {
+    if ((_veh getVariable [QEGVAR(orbat,vehicleCallsign),-1]) isNotEqualTo -1) then {
         _vehName = _vehName + " (" + ([getText(_cfg >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString) + ")";
     };
     _text = _text + format["<font size='18'>%1</font>",_vehName];
@@ -83,7 +83,7 @@ params ["_target","_vehicles"];
     private _transportSoldier = getNumber(_cfg >> "transportSoldier");
 
     private _cargoProxyIdxs = [];
-    if (count _getInProxyOrder == 0) then {
+    if (_getInProxyOrder isEqualTo []) then {
         for "_i" from 1 to _transportSoldier do { _getInProxyOrder pushBack _i};
         private _turretCount = count _proxyIdxs;
         for "_i" from (1+_turretCount) to (_transportSoldier+_turretCount) do {_cargoProxyIdxs pushBack _i};
@@ -95,17 +95,19 @@ params ["_target","_vehicles"];
 
     // Resize _cargoProxyIdxs as appropriate
     _cargoProxyIdxs resize (_transportSoldier min (count _cargoProxyIdxs));
+    private _passengerLines = [];
     {
         private  _idx = _x;
         private _locked = _veh lockedCargo (_x - 1);
         private _unitText = (crew _veh) select {(_veh getCargoIndex _x) isEqualTo _idx};
-        if ((count _unitText) > 0) then {
+        if (_unitText isNotEqualTo []) then {
             _unitText = name (_unitText select 0);
         } else {
             _unitText = "Empty";
         };
-        _text = _text + format["    Passenger #%1: %2<br/>",_idx,_unitText]; // Possibly work out columns here?
+        _passengerLines pushBack format["    Passenger #%1: %2<br/>",_idx,_unitText]; // Possibly work out columns here?
     } forEach _cargoProxyIdxs;
+    _text = _text + (_passengerLines joinString "");
 
     // Vehicle weapons
     _text = _text + "<br/><font size='18'>Vehicle weapons:</font><br/>";
@@ -113,7 +115,7 @@ params ["_target","_vehicles"];
     // Driver weapons
     if ((getNumber (_cfg >> "hasDriver")) > 0) then {
         private _weapons = _veh weaponsTurret [-1];
-        if ((count _weapons) > 0) then {
+        if (_weapons isNotEqualTo []) then {
             _text = format ["%1%2:<br/>", _text, ["Driver","Pilot"] select _isAir];
             
             {
@@ -124,7 +126,7 @@ params ["_target","_vehicles"];
                 
                 if ((count _weaponMagazines) > 0) then {
                     private _weaponName = getText (configFile >> "CfgWeapons" >> _weapon >> "displayName");
-                    if !(_weaponName isEqualTo "") then {
+                    if (_weaponName isNotEqualTo "") then {
                         _text = format ["%1  <img image='\A3\ui_f\data\gui\rscCommon\rscTree\hiddenTexture_ca.paa' height='16'/>%2<br/>", _text, _weaponName];
                     };
                     
@@ -144,7 +146,7 @@ params ["_target","_vehicles"];
         if !(_veh lockedTurret _turretPath) then { // RHS uses locked turrets for turning in/out (?)
             private _turretWeapons = _veh weaponsTurret _turretPath;
 
-            if (count _turretWeapons > 0) then {
+            if (_turretWeapons isNotEqualTo []) then {
                 private _turretMagazines = _veh magazinesTurret _turretPath;
 
                 private _turretCfg = _cfg;
@@ -172,43 +174,24 @@ params ["_target","_vehicles"];
     } forEach allTurrets _veh;
 
     // Vehicle Cargo >> Backpack, Weapon, Magazine, Item
-    _text = _text + "<br/><font size='18'>Vehicle cargo:</font><br/>";
-    private _backPackCargo = getBackpackCargo _veh;
-    if ((count (_backPackCargo select 0)) > 0) then {
-        _text = _text + "Backpacks:<br/>";
-        _backPackCargo params ["_a","_b"];
-        {
-            _backPackText = [getText(configFile >> "cfgVehicles" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
-            _text = _text + format["    %1 [%2]<br/>",_backPackText,(_b select _forEachIndex)];
-        } forEach _a;
-    };
-    private _weaponCargo = getWeaponCargo _veh;
-    if ((count (_weaponCargo select 0)) > 0) then {
-        _text = _text + "Weapons:<br/>";
-        _weaponCargo params ["_a","_b"];
-        {
-            _weaponText = [getText(configFile >> "cfgWeapons" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
-            _text = _text + format["    %1 [%2]<br/>",_weaponText,(_b select _forEachIndex)];
-        } forEach _a;
-    };
-    private _magazineCargo = getMagazineCargo _veh;
-    if ((count (_magazineCargo select 0)) > 0) then {
-        _text = _text + "Magazines:<br/>";
-        _magazineCargo params ["_a","_b"];
-        {
-            _magazineText = [getText(configFile >> "cfgMagazines" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
-            _text = _text + format["    %1 [%2]<br/>",_magazineText,(_b select _forEachIndex)];
-        } forEach _a;
-    };
-    private _itemCargo = getItemCargo _veh;
-    if ((count (_itemCargo select 0)) > 0) then {
-        _text = _text + "Items:<br/>";
-        _itemCargo params ["_a","_b"];
-        {
-            _itemText = [getText(configFile >> "cfgWeapons" >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
-            _text = _text + format["    %1 [%2]<br/>",_itemText,(_b select _forEachIndex)];
-        } forEach _a;
-    };
+    private _cargoLines = ["<br/><font size='18'>Vehicle cargo:</font><br/>"];
+    {
+        _x params ["_title", "_cargo", "_cfgClass"];
+        _cargo params ["_classes", "_counts"];
+        if (_classes isNotEqualTo []) then {
+            _cargoLines pushBack (_title + ":<br/>");
+            {
+                private _name = [getText (configFile >> _cfgClass >> _x >> "displayName"),"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-(),. "] call BIS_fnc_filterString;
+                _cargoLines pushBack format ["    %1 [%2]<br/>", _name, _counts select _forEachIndex];
+            } forEach _classes;
+        };
+    } forEach [
+        ["Backpacks", getBackpackCargo _veh, "CfgVehicles"],
+        ["Weapons", getWeaponCargo _veh, "CfgWeapons"],
+        ["Magazines", getMagazineCargo _veh, "CfgMagazines"],
+        ["Items", getItemCargo _veh, "CfgWeapons"]
+    ];
+    _text = _text + (_cargoLines joinString "");
 
     _target createDiaryRecord ["loadout", ["["+_vehName+"]", "<font size='12'>NOTE: The information shown below is only accurate at mission start.</font><br/>" + _text]];
 } forEach _vehicles;

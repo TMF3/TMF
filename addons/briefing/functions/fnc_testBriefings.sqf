@@ -55,7 +55,7 @@ private _conditions = [];
 
 _units = _units - [objNull];
 
-if (count _units > 0) then {
+if (_units isNotEqualTo []) then {
     _output pushBack [1,"Some units do not have an associated briefing:"];
     _output pushBack [1,format ["units (%1): %2",count _units,str _units]]; 
 };
