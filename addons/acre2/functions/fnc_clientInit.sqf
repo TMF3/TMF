@@ -196,7 +196,7 @@ if (!alive player) exitWith {};
                 };
                 private _channelLine = format["CHN %1 (%2 MHz) - %3 - %4",_chanNum,_frequency,(_x select 0),(_x select 1)];
                 private _defaultRadio = (_x select 2);
-                if (_x select ((count _x) -1 )) then { // if player is supposet to be on this channel
+                if (_x select -1) then { // if player is supposet to be on this channel
                     // Match radio to number...
                     private _radioFndIdx = -1;
                     {
