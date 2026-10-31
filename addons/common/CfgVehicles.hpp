@@ -1,8 +1,5 @@
 class CfgVehicles {
-    class All;
-    class Logic : All {
-        class EventHandlers;
-    };
+    class Logic;
     class GVAR(hideMapObjects) : Logic {
         displayName = "[TMF] Hide Map Objects";
         class EventHandlers {

@@ -53,7 +53,7 @@ if ([[1,1,0]] call EFUNC(common,checkTMFVersion)) then {
         };
     } forEach _groups;
 
-    if (count _outputGroups > 0) then {
+    if (_outputGroups isNotEqualTo []) then {
         _output pushBack [1,"Some groups do not have a slotting screen name:"];
         private _string = "";
         {

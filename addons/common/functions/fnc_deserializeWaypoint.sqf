@@ -31,7 +31,7 @@ _wpData params [
     '_attachedObject',
     '_attachedVehicle'
 ];
-_wp = _group addWaypoint [_pos, -1, _wpIndex, _name];
+private _wp = _group addWaypoint [_pos, -1, _wpIndex, _name];
 _wp setWaypointType _type;
 _wp setWaypointBehaviour _behaviour;
 _wp setWaypointCombatMode _combatMode;

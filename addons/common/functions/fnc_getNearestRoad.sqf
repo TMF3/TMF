@@ -2,7 +2,7 @@
 params ["_point",["_radius",100]];
 private _roads = _point nearRoads _radius;
 private _road = objNull;
-if(count _roads > 0) then {
+if(_roads isNotEqualTo []) then {
     {
         _roads set [_forEachIndex, [_x distance _point, _x]];
     } forEach _roads;

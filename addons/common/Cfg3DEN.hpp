@@ -30,7 +30,6 @@ class Cfg3DEN
     };
     class Attributes
     {
-        class CheckboxNumber;
         class None {
             idc = -1;
             type = 0; style = 0;

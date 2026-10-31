@@ -26,7 +26,7 @@ if (current3DENOperation != "MoveItems") exitWith {};
     private _building = GVAR(edenMouseObjects);
     if isNil "_building" exitWith {};
     _building = _building select {!(_x in (get3DENSelected "Object"))};
-    if (count _building == 0) exitWith {};
+    if (_building isEqualTo []) exitWith {};
     if (count GVAR(posIdxs) == 0) exitWith {};
     _building = _building select 0;
     do3DENAction "Undo"; // Undo movement
