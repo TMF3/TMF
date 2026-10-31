@@ -11,13 +11,13 @@ switch _mode do {
     case "onLoad": {
         //Add EH On touch
         
-        _ctrlGroup = _params select 0;
+        private _ctrlGroup = _params select 0;
         AcreAddRadioActions_ctrlGroup = _ctrlGroup;
 
         _ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = _this select 0;};}];
         _ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {AcreAddRadioActions_ctrlGroup = nil;};}];
         
-        _ctrlList = _ctrlGroup controlsGroupCtrl 101;
+        private _ctrlList = _ctrlGroup controlsGroupCtrl 101;
         _ctrlList ctrlAddEventHandler ["LBDblClick",{with uiNamespace do {["listModify",[ctrlParentControlsGroup (_this select 0),+1],objNull] call AcreAddRadioActions_script;};}];
         
         TMF_AcreAddRadioActions_Array = ("TMF_MissionAcre2Attributes" get3DENMissionAttribute "TMF_AcreAddRadioActions");
@@ -28,14 +28,14 @@ switch _mode do {
         lnbClear _ctrlList;
         _ctrlList lnbSetColumnsPos [0.1,0.2];
         {
-            _weaponCfg = configFile >> "cfgWeapons" >> _x;
-            _displayName = getText (_weaponCfg >> "displayName");
-            _picture = getText (_weaponCfg >> "picture");
-            _description = getText (_weaponCfg >> "descriptionShort");
-            _lnbAdd = _ctrlList lnbAddRow ["",_displayName];
+            private _weaponCfg = configFile >> "cfgWeapons" >> _x;
+            private _displayName = getText (_weaponCfg >> "displayName");
+            private _picture = getText (_weaponCfg >> "picture");
+            private _description = getText (_weaponCfg >> "descriptionShort");
+            private _lnbAdd = _ctrlList lnbAddRow ["",_displayName];
             _ctrlList lnbSetData [[_lnbAdd,0],_x];
             _ctrlList lnbSetPicture [[_lnbAdd,0],_picture];
-            _alpha = if (_x in TMF_AcreAddRadioActions_Array) then {1} else {0.5};
+            private _alpha = [0.5, 1] select (_x in TMF_AcreAddRadioActions_Array);
             _ctrlList lnbSetColor [[_lnbAdd,1],[1,1,1,_alpha]];
         } forEach ACRE_RADIO_CLASSNAME_ARRAY;
     };
@@ -55,14 +55,14 @@ switch _mode do {
         lnbClear _ctrlList;
         _ctrlList lnbSetColumnsPos [0.1,0.2];
         {
-            _weaponCfg = configFile >> "cfgWeapons" >> _x;
-            _displayName = getText (_weaponCfg >> "displayName");
-            _picture = getText (_weaponCfg >> "picture");
-            _description = getText (_weaponCfg >> "descriptionShort");
-            _lnbAdd = _ctrlList lnbAddRow ["",_displayName];
+            private _weaponCfg = configFile >> "cfgWeapons" >> _x;
+            private _displayName = getText (_weaponCfg >> "displayName");
+            private _picture = getText (_weaponCfg >> "picture");
+            private _description = getText (_weaponCfg >> "descriptionShort");
+            private _lnbAdd = _ctrlList lnbAddRow ["",_displayName];
             _ctrlList lnbSetData [[_lnbAdd,0],_x];
             _ctrlList lnbSetPicture [[_lnbAdd,0],_picture];
-            _alpha = if (_x in TMF_AcreAddRadioActions_Array) then {1} else {0.5};
+            private _alpha = [0.5, 1] select (_x in TMF_AcreAddRadioActions_Array);
             _ctrlList lnbSetColor [[_lnbAdd,1],[1,1,1,_alpha]];
         } forEach ACRE_RADIO_CLASSNAME_ARRAY;    
     };

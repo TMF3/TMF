@@ -54,7 +54,7 @@ if (getMissionConfigValue ["TMF_AcreBabelEnabled",false]) then {
             };
         };
     } forEach _playerGroups;
-    if (count _warnings == 0) then {
+    if (_warnings isEqualTo []) then {
         LOG("Babel Autotest finished");
         _warnings pushBack [-1,"Babel checks complete"];
     } else {

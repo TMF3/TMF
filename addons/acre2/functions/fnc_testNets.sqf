@@ -54,7 +54,7 @@ if (getMissionConfigValue ["TMF_AcreNetworkEnabled",false]) then {
             };
         };
     } forEach _playerGroups;
-    if (count _warnings == 0) then {
+    if (_warnings isEqualTo []) then {
         LOG("Radio Net Autotest finished");
         _warnings pushBack [-1,"ACRE2 Radio Network checks complete"];
     } else {

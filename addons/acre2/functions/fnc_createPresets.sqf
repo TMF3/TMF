@@ -91,7 +91,7 @@ private _sharedRadioChannelListing = [];
             if (!_return) then {
                 private _radioPresetData = [] call acre_main_fnc_fastHashCreate;//HASH_CREATE;
                 
-                _channels = [];
+                private _channels = [];
                 for "_i" from 0 to 15 do {
                     private _channel = [] call acre_main_fnc_fastHashCreate;//HASHLIST_CREATEHASH(_channels);
                     _channel setVariable ["frequencyTX",0];
@@ -118,7 +118,7 @@ private _sharedRadioChannelListing = [];
                 if (_i > (count _channelList)) then { 
                     _channelName = "Channel " + str(_i);
                 } else {
-                    _channelEntry = _channelList select (_i-1);
+                    private _channelEntry = _channelList select (_i-1);
                     _channelName = (_channelEntry select 0);
                     if (_channelEntry select 4) then { // Check if this is a shared channel.
                         _frequency = [_radioSettingIndex, (count GVAR(networksWithRadioChannels)), (_channelEntry select 5)] call _calcChanFreq; // Use 'special preset' and 'special channel' number.

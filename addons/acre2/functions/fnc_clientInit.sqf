@@ -45,7 +45,7 @@ if (!alive player) exitWith {};
 
 
         //Call ACRE API
-        if (count _languagesToSpeak > 0) then {
+        if (_languagesToSpeak isNotEqualTo []) then {
             _languagesToSpeak call acre_api_fnc_babelSetSpokenLanguages;
             [_languagesToSpeak select 0] call acre_api_fnc_babelSetSpeakingLanguage;
         };
@@ -173,9 +173,9 @@ if (!alive player) exitWith {};
         private _radioSettingsIndex = _forEachIndex;
         if (count (_channelsProcessed select _radioSettingsIndex) > 0) then { // If at least one channel is defined.
             _text = _text + "<br/>For: ";
-            _radioFreqInfo = _x;
-            _radioList = _radioFreqInfo select 0;
-            _radio = (_radioList select 0);
+            private _radioFreqInfo = _x;
+            private _radioList = _radioFreqInfo select 0;
+            private _radio = (_radioList select 0);
             {
                 if (_forEachIndex != 0) then {_text = _text + ", "; };
                 _text = _text + getText (configFile >> "CfgWeapons" >> _x >> "displayName");
@@ -195,13 +195,13 @@ if (!alive player) exitWith {};
                     };
                 };
                 private _channelLine = format["CHN %1 (%2 MHz) - %3 - %4",_chanNum,_frequency,(_x select 0),(_x select 1)];
-                _defaultRadio = (_x select 2);
+                private _defaultRadio = (_x select 2);
                 if (_x select ((count _x) -1 )) then { // if player is supposet to be on this channel
                     // Match radio to number...
                     private _radioFndIdx = -1;
                     {
                         if (_radioFndIdx != -1) exitWith {};
-                        _radioID = _forEachIndex;
+                        private _radioID = _forEachIndex;
                         if (!(_radioID in _usedRadioIndexs)) then {
                             if (_x in _radioList) then {
                                 _radioFndIdx = _radioID;
@@ -229,7 +229,7 @@ if (!alive player) exitWith {};
 
     private _myRadiosText = "<br/><br/><font size='16'>MY ASSIGNED RADIOS</font><br/>";
     {
-        _color = [_forEachIndex] call EFUNC(common,numToColor);
+        private _color = [_forEachIndex] call EFUNC(common,numToColor);
         _myRadiosText = _myRadiosText + format["<font color='%1'>%2</font><br/>",_color,getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
     } forEach _radiosToGive;
 
