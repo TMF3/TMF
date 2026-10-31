@@ -713,8 +713,7 @@ class Cfg3DEN
                         "\idi\acre\addons\sys_prc152\Data\PRC152c_ico.paa",
                         "\idi\acre\addons\sys_prc117f\Data\PRC117F_ico.paa",
                         "\idi\acre\addons\sys_prc77\Data\prc77_icon.paa",
-                        "\idi\acre\addons\sys_sem52sl\data\ui\sem52sl_icon.paa",
-                        "\idi\acre\addons\sys_bf888s\Data\static\bf888s_icon.paa"
+                        "\idi\acre\addons\sys_sem52sl\data\ui\sem52sl_icon.paa"
                     };
                     tooltips[] = {
                         "AN/PRC-343",
@@ -722,8 +721,7 @@ class Cfg3DEN
                         "AN/PRC-152",
                         "AN/PRC-117F",
                         "AN/PRC-77",
-                        "SEM52SL",
-                        "BF-888S"
+                        "SEM52SL"
                     };
                 };
                 class SharedChannel : Title1
