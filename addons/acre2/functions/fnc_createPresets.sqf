@@ -111,6 +111,7 @@ private _sharedRadioChannelListing = [];
                 case "ACRE_PRC343": {80};
                 case "ACRE_SEM52SL": {12};
                 case "ACRE_PRC77": {2};
+                case "ACRE_BF888S": {16};
                 default {0};
             };
             for "_i" from 1 to _channelCount do {
