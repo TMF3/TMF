@@ -12,10 +12,11 @@ switch _mode do {
                 TRACE_1("Adding loadout",_x);
                 private _lbAdd = _loadoutCombo lbAdd getText (_x >> "displayName");
                 _loadoutCombo lbSetData [_lbAdd, configName _x];
-                private _dlcLogo = if (configSourceMod _x != '') then {
-                    (modParams [configSourceMod _x,['logo']]) param [0];
+                private _dlcLogo = '';
+                if (configSourceMod _x != '') then {
+                    _dlcLogo = (modParams [configSourceMod _x,['logo']]) param [0, ''];
                 };
-                if (!isNil "_dlcLogo" && {_dlcLogo != ''}) then {
+                if (_dlcLogo != '') then {
                     _loadoutCombo lbSetPictureRight [_lbAdd,_dlcLogo];
                 };
             } forEach ("true" configClasses _x);

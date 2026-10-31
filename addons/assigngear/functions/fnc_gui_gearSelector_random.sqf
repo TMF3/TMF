@@ -3,7 +3,7 @@
 params ["_display"];
 
 private _loadouts = ("true" configClasses (missionConfigFile >> "CfgLoadouts")) + ("true" configClasses (configFile >> "CfgLoadouts"));
-MAP(_loadouts, toLower configName _x);
+MAP(_loadouts,toLower configName _x);
 UNIQUE(_loadouts);
 
 [_display, selectRandom _loadouts] call FUNC(gui_gearSelector_loadCategories);

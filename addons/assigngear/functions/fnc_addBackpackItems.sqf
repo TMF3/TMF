@@ -22,7 +22,7 @@ if (isNil "_unit" || isNil "_items") exitWith {};
     }) then {
         _unit addItemToBackpack _x;
     } else {
-        WARNING_2("Adding item to backpack failed. Unit: %1, Item: %2.", _unit, _x);
+        WARNING_2("Adding item to backpack failed. Unit: %1, Item: %2.",_unit,_x);
         continue;
     };
 } forEach _items;

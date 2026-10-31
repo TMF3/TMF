@@ -15,12 +15,12 @@
         private _cfg = configFile >> "CfgLoadouts" >> _faction >> (player getVariable [QGVAR(role), ""]);
 
         private _faces = getArray (_cfg >> "faces");
-        if !(_faces isEqualTo []) then {
+        if (_faces isNotEqualTo []) then {
             [player, _faces] call FUNC(setFace);
         };
 
         private _goggles = getArray (_cfg >> "goggles");
-        if !(_goggles isEqualTo []) then {
+        if (_goggles isNotEqualTo []) then {
             [player, _goggles] call FUNC(setGoggles);
         } else {
             removeGoggles player;

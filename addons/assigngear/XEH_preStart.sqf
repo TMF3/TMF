@@ -29,7 +29,7 @@ uiNamespace setVariable ["tmf_assignGear_validFaces",_faceClasses];
         };
     } forEach configProperties [_class, "isClass _x", true];
 
-    if (count _weightedArray > 0) then {
+    if (_weightedArray isNotEqualTo []) then {
         uiNamespace setVariable ["tmf_assignGear_faceset_"+_name,_weightedArray];
     };
 } forEach ("true" configClasses (configFile >> "tmf_assignGear_facesets"));

@@ -22,7 +22,7 @@ if (_curGoggles isEqualTo "") then { // Don't respect no-goggles profile in skip
 if ("default" in _goggles || _curGoggles in _goggles) exitWith {};
 
 private _newGoggles = ""; 
-if !(_goggles isEqualTo []) then {
+if (_goggles isNotEqualTo []) then {
     _newGoggles = selectRandom _goggles;
 };
 

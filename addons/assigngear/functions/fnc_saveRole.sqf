@@ -2,8 +2,8 @@
 // TODO, tidy up and add aresnal message, move button maybe?
 
 params ["_unit","_className"];
-_data = "";
-_nl = "
+private _data = "";
+private _nl = "
 ";
 _data = _data + format ["class %1 {"+_nl,_className];
 _data = _data + format ["    displayName = %1;"+_nl,str "test"];
@@ -37,27 +37,27 @@ if(count primaryWeaponItems _unit > 0) then {
 if(secondaryWeapon _unit != "") then {
     _data = _data + format ["    secondaryWeapon[] = {%1};"+_nl,str secondaryWeapon _unit];
 };
-if(count secondaryWeaponItems _unit > 0) then {
+if(secondaryWeaponItems _unit isNotEqualTo []) then {
     _data = _data + format ["    secondaryAttachments[] = %1;"+_nl,[secondaryWeaponItems _unit] call CFUNC(arrayToStringArray)];
 };
 if(handgunWeapon _unit != "") then {
     _data = _data + format ["    sidearmWeapon[] = {%1};"+_nl,str handgunWeapon _unit];
 };
-if(count handgunItems _unit > 0) then {
+if(handgunItems _unit isNotEqualTo []) then {
     _data = _data + format ["    sidearmAttachments[] = %1;"+_nl,[handgunItems _unit] call CFUNC(arrayToStringArray)];
 };
 
-_magazines = magazines _unit;
-_items = (vestItems _unit + uniformItems _unit) - _magazines;
-if(count _magazines  > 0) then {
+private _magazines = magazines _unit;
+private _items = (vestItems _unit + uniformItems _unit) - _magazines;
+if(_magazines isNotEqualTo []) then {
     _data = _data + format ["    magazines[] = %1;"+_nl,[_magazines] call CFUNC(arrayToStringArray)];
 };
 
-if(count _items  > 0) then {
+if(_items isNotEqualTo []) then {
     _data = _data + format ["    items[] = %1;"+_nl,[_items] call CFUNC(arrayToStringArray)];
 };
 
-if(count assignedItems _unit  > 0) then {
+if(assignedItems _unit isNotEqualTo []) then {
     _data = _data + format ["    linkedItems[] = %1;"+_nl,[assignedItems _unit] call CFUNC(arrayToStringArray)];
 };
 _data = _data + "};";

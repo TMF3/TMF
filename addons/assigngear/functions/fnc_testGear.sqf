@@ -7,12 +7,13 @@ private _cfgWeapons = configFile >> "CfgWeapons";
 private _cfgVehicles = configFile >> "CfgVehicles";
 private _cfgGlasses = configFile >> "CfgGlasses";
 private _cfgMagazines = configFile >> "CfgMagazines";
-private _warnWeight = getNumber (_test >> "maxWeight");
+private _warnWeight = getNumber (_test >> "maxWeight"); // _test is set by the autotest runner
 private _maxWeight = (getNumber (configFile >> "CfgInventoryGlobalVariable" >> "maxSoldierLoad")) * 0.95; // Add a bit of padding for radios
 private _maxWeightKG = ACE_MASSTOKG(_maxWeight);
 
 private _output = [];
 
+#undef GETGEAR
 #define GETGEAR(var) [_config >> var] call CFUNC(getCfgEntryFromPath)
 
 private _fnc_checkExists = {
@@ -210,7 +211,7 @@ private _fncTestUnit = {
             private _weaponMags = [_primaryWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount < 3 && !(_weaponMags isEqualTo [])) then {
+            if (_weaponMagCount < 3 && (_weaponMags isNotEqualTo [])) then {
                 _output pushBack [1,format["Role: %1 - %2 has less than 3 compatible mags for primary weapon.",_faction,_role]];
             };
         };
@@ -219,7 +220,7 @@ private _fncTestUnit = {
             private _weaponMags = [_sidearmWeapon select 0] call CBA_fnc_compatibleMagazines;
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
-            if (_weaponMagCount == 0 && !(_weaponMags isEqualTo [])) then {
+            if (_weaponMagCount == 0 && (_weaponMags isNotEqualTo [])) then {
                 _output pushBack [1,format["Role: %1 - %2 has no compatible mag for sidearm.",_faction,_role]];
             };
         };
@@ -269,7 +270,6 @@ private _loadoutFreespace = [];
             private _mass = -1;
             if (isClass (_cfgMagazines >> _x)) then {
                 _mass = getNumber (_cfgMagazines >> _x >> "mass");
-                _mags pushBack (toLower _x);
             };
             if (isClass (_cfgWeapons >> _x)) then {
                 _mass = getNumber (_CfgWeapons >> _x >> "ItemInfo" >> "mass");
