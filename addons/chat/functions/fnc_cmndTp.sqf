@@ -36,20 +36,20 @@ if (isNull _unit) then {
 };
 
 if (!isNull _unit) then {
-    if (vehicle _unit != _unit) then {
+    if (!isNull objectParent _unit) then {
         CURUNIT moveInAny vehicle _unit;
 
         if !(CURUNIT in vehicle _unit) then {
-            systemChat FORMAT_1("TMF: %1's vehicle is full", name _unit);
+            systemChat FORMAT_1("TMF: %1's vehicle is full",name _unit);
         } else {
-            systemChat FORMAT_1("TMF: Teleported into %1's vehicle", name _unit);
+            systemChat FORMAT_1("TMF: Teleported into %1's vehicle",name _unit);
         };
     } else {
         private _pos = _unit getRelPos [3, 180];
         CURUNIT setDir (getDir _unit);
         CURUNIT setPos _pos;
-        systemChat FORMAT_1("TMF: Teleported to %1", name _unit);
+        systemChat FORMAT_1("TMF: Teleported to %1",name _unit);
     };
 } else {
-    systemChat FORMAT_1("TMF Error: No player/group containing %1, or more than one found.", str _name);
+    systemChat FORMAT_1("TMF Error: No player/group containing %1, or more than one found.",str _name);
 };

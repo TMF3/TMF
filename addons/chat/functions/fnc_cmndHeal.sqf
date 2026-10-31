@@ -35,7 +35,7 @@ switch (toLower _name) do {
             _x setDamage 0;
             systemChat "TMF: Healed everyone";
 
-            (FORMAT_1("TMF: Healed by %1", name player)) remoteExecCall ["systemChat", _x];
+            (FORMAT_1("TMF: Healed by %1",name player)) remoteExecCall ["systemChat", _x];
         } forEach allPlayers;
     };
     default { // Heal target player
@@ -46,11 +46,11 @@ switch (toLower _name) do {
                 [_target, _target] call ace_medical_treatment_fnc_fullHeal;
             };
             _target setDamage 0;
-            systemChat FORMAT_1("TMF: Healed %1", name _target);
+            systemChat FORMAT_1("TMF: Healed %1",name _target);
 
-            (FORMAT_1("TMF: Healed by %1", name player)) remoteExecCall ["systemChat", _target];
+            (FORMAT_1("TMF: Healed by %1",name player)) remoteExecCall ["systemChat", _target];
         } else {
-            systemChat FORMAT_1("TMF Error: No player containing %1, or more than one found.", str _name);
+            systemChat FORMAT_1("TMF Error: No player containing %1, or more than one found.",str _name);
         };
     };
 };
