@@ -1,5 +1,5 @@
 class ctrlMenu; /*proto*/
-class display3DEN
+class Display3DEN
 {
     class ContextMenu: ctrlMenu
     {

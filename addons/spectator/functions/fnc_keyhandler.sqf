@@ -271,7 +271,7 @@ switch true do {
             };
         };
   };
-  case default {
+  default {
       _done =false;
       if(_type == KEYDOWN) then {
         [QGVAR(keyDown),_this] call CBA_fnc_localEvent;

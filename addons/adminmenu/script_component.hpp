@@ -1,3 +1,6 @@
+#ifndef TMF_ADMINMENU_SCRIPT_COMPONENT_HPP
+#define TMF_ADMINMENU_SCRIPT_COMPONENT_HPP
+
 #define COMPONENT adminMenu
 
 #include "\x\tmf\addons\main\script_mod.hpp"
@@ -201,3 +204,5 @@
 /* AdminEye */
 #define IDC_TMF_ADMINMENU_ADME_MAP_DISPLAY  26850
 #define IDC_TMF_ADMINMENU_ADME_MAP_CONTROL  26851
+
+#endif // TMF_ADMINMENU_SCRIPT_COMPONENT_HPP

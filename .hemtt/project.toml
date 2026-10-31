@@ -1,4 +1,5 @@
 name = "TMF"
 prefix = "tmf"
+mainprefix = "x"
 [version]
 path = "addons/main/script_mod.hpp"

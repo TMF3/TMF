@@ -1,3 +1,6 @@
+#ifndef TMF_ASSIGNGEAR_SCRIPT_COMPONENT_HPP
+#define TMF_ASSIGNGEAR_SCRIPT_COMPONENT_HPP
+
 #define COMPONENT assignGear
 
 #include "\x\tmf\addons\main\script_mod.hpp"
@@ -73,3 +76,5 @@
 #define LIST_20(var1) var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1,var1
 
 #define DEF_LOADOUTS ["baseMan","r","g","car","m","smg","ftl","sl","co","fac","ar","aar","rat","dm","mmgg","mmgac","mmgag","hmgg","hmgac","matg","matac","matag","hatg","hatac","hatag","mtrg","mtrac","mtrag","samg","samag","sn","sp","vc","vd","vg","pp","pcc","pc","eng","engm","UAV","jp"]
+
+#endif // TMF_ASSIGNGEAR_SCRIPT_COMPONENT_HPP

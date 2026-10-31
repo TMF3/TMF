@@ -1,4 +1,4 @@
-#include "../script_component.hpp"
+#include "\x\tmf\addons\modules\script_component.hpp"
 /* ----------------------------------------------------------------------------
     Internal Function: TMF_modules_fnc_ambientVehicleInit
     

@@ -1,11 +1,11 @@
-class cfgVehicles {
+class CfgVehicles {
     class All;
     class Logic : All {
-        class Eventhandlers;
+        class EventHandlers;
     };
     class GVAR(hideMapObjects) : Logic {
         displayName = "[TMF] Hide Map Objects";
-        class Eventhandlers {
+        class EventHandlers {
             init = "call cba_xeh_fnc_init";
         };
     };

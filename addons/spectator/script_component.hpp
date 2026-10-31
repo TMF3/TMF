@@ -1,3 +1,6 @@
+#ifndef TMF_SPECTATOR_SCRIPT_COMPONENT_HPP
+#define TMF_SPECTATOR_SCRIPT_COMPONENT_HPP
+
 #define COMPONENT spectator
 #define FOLLOWCAM 0
 #define FREECAM 1
@@ -33,3 +36,5 @@
 
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
+
+#endif // TMF_SPECTATOR_SCRIPT_COMPONENT_HPP

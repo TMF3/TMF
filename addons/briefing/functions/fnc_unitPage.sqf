@@ -48,7 +48,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
     // Get a nested array containing all non-equipped items and their count
     private _items = (items _unit) - _weapons;
     // Remove ACRE radios (show in ACRE2 page instead) and deleted indexes;
-    _items = _items - ["ItemRadio","ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_PRC77","ACRE_PRC117F","ACRE_SEM52SL"];
+    _items = _items - ["ItemRadio","ACRE_PRC343","ACRE_PRC148","ACRE_PRC152","ACRE_PRC77","ACRE_PRC117F","ACRE_SEM52SL","ACRE_BF888S"];
     _items = _items call BIS_fnc_consolidateArray;
 
     private _visText = "";
@@ -169,7 +169,7 @@ private _cfgWeapons = configFile >> "CfgWeapons";
         private _filter = ["ItemWatch", "ItemMap", "ItemCompass"];
         {
             _visText = format["%1<img image='%2' height=48 />", _visText, getText (_cfgWeapons >> _x >> "picture")];
-        } forEach _assignedItems select {!(_x in _filter)};
+        } forEach (_assignedItems select {!(_x in _filter)});
 
         private _assignedItemsStr = (_assignedItems apply {getText (_cfgWeapons >> _x >> "displayName")}) joinString ", ";
         if !(_assignedItemsStr isEqualTo "") then {

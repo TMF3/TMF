@@ -1,5 +1,5 @@
 class ctrlMenuStrip;
-class display3DEN
+class Display3DEN
 {
     class Controls
     {
