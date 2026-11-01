@@ -2,7 +2,7 @@
 [
     QGVAR(outputToRPT),
     "CHECKBOX",
-    ["Output Autotest Results to RPT","Logs all autotest results to the RPT file/"],
+    ["Write autotest results to RPT", "Also writes every autotest result to the RPT log file, not just the Eden autotest window."],
     ["TMF", "Autotest"],
     false
 ] call CBA_fnc_addSetting;

@@ -22,7 +22,7 @@ private _fnc_checkExists = {
     {
         if ((_x != "") and (_x != "default")) then {
             if (!isClass (_config >> _x)) then {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [0,format["Loadout %2 > %3: %1 does not exist. Check the class name, or the mod that adds it is not loaded.", _x,_faction,_role]];
             };
         };
     } forEach _subarray;
@@ -34,7 +34,7 @@ private _fnc_checkExists_insignia = {
     {
         if ((_x != "") and (_x != "default")) then {
             if !(isClass (configFile >> "CfgUnitInsignia" >> _x) || {isClass (missionConfigFile >> "CfgUnitInsignia" >> _x)}) then {
-                _output pushBack [0,format["Missing insignia classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [0,format["Loadout %2 > %3: insignia %1 does not exist.", _x,_faction,_role]];
             };
         };
     } forEach _insignias;
@@ -75,11 +75,11 @@ private _fncTestUnit = {
                 private _facesetName = _face select [8];
                 private _array = uiNamespace getVariable ["tmf_assignGear_faceset_" + _facesetName,0];
                 if (_array isEqualTo 0) then {
-                     _output pushBack [0,format["Invalid faceset: %1 (for: %2 - %3)", _face,_faction,_role]];
+                     _output pushBack [0,format["Loadout %2 > %3: face set %1 does not exist.", _face,_faction,_role]];
                 };
             } else {
                 if (!(_face in _validFaces)) then {
-                    _output pushBack [0,format["Invalid face classname: %1 (for: %2 - %3)", _face,_faction,_role]];
+                    _output pushBack [0,format["Loadout %2 > %3: face %1 does not exist.", _face,_faction,_role]];
                 };
             };
         } forEach _faces;
@@ -156,10 +156,10 @@ private _fncTestUnit = {
                 if (_mass <= _freeBackpackSpace) then {
                     _freeBackpackSpace = _freeBackpackSpace - _mass;
                 } else {
-                    _output pushBack [0,format["'%1' won't fit in backpack (for: %2 - %3)", _x,_faction,_role]];
+                    _output pushBack [0,format["Loadout %2 > %3: %1 does not fit in the backpack.", _x,_faction,_role]];
                 };
             } else {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [0,format["Loadout %2 > %3: %1 does not exist. Check the class name, or the mod that adds it is not loaded.", _x,_faction,_role]];
             };
         } forEach (GETGEAR("backpackItems"));
 
@@ -197,12 +197,12 @@ private _fncTestUnit = {
                         if (_mass <= _freeBackpackSpace) then {
                             _freeBackpackSpace = _freeBackpackSpace - _mass;
                         } else {
-                            _output pushBack [0,format["'%1' won't fit (for: %2 - %3)", _x,_faction,_role]];
+                            _output pushBack [0,format["Loadout %2 > %3: %1 does not fit in the uniform, vest or backpack.", _x,_faction,_role]];
                         };
                     };
                 };
             } else {
-                _output pushBack [0,format["Missing classname: %1 (for: %2 - %3)", _x,_faction,_role]];
+                _output pushBack [0,format["Loadout %2 > %3: %1 does not exist. Check the class name, or the mod that adds it is not loaded.", _x,_faction,_role]];
             };
         } forEach _magsAndItems;
 
@@ -212,7 +212,7 @@ private _fncTestUnit = {
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount < 3 && (_weaponMags isNotEqualTo [])) then {
-                _output pushBack [1,format["Role: %1 - %2 has less than 3 compatible mags for primary weapon.",_faction,_role]];
+                _output pushBack [1,format["Loadout %1 > %2: fewer than 3 magazines for the primary weapon.",_faction,_role]];
             };
         };
 
@@ -221,13 +221,13 @@ private _fncTestUnit = {
             _weaponMags = _weaponMags apply {toLower _x};
             private _weaponMagCount = {_x in _weaponMags} count _mags;
             if (_weaponMagCount == 0 && (_weaponMags isNotEqualTo [])) then {
-                _output pushBack [1,format["Role: %1 - %2 has no compatible mag for sidearm.",_faction,_role]];
+                _output pushBack [1,format["Loadout %1 > %2: no magazines for the sidearm.",_faction,_role]];
             };
         };
 
         _return = [_freeUniformSpace,_freeVestSpace,_freeBackpackSpace];
     } else {
-        _output pushBack [0,format["Missing kit %1 - %2",_faction,_role]];
+        _output pushBack [0,format["Loadout %1 > %2 does not exist, but a unit is set to use it.",_faction,_role]];
     };
     _return;
 };
@@ -253,10 +253,10 @@ private _loadoutFreespace = [];
             private _weight = loadAbs _unit; // ACE calculation
 
             if (_weight >= _maxWeight) then {
-                _output pushBack [0,format["Role weight above maximum, %1kg > %2 (for: %3 - %4)",ACE_MASSTOKG(_weight),_maxWeightKG,_faction,_role]];
+                _output pushBack [0,format["Loadout %3 > %4 weighs %1 kg, more than the %2 kg a soldier can carry.",ACE_MASSTOKG(_weight),_maxWeightKG,_faction,_role]];
             } else {
                 if (ACE_MASSTOKG(_weight) >= _warnWeight) then {
-                    _output pushBack [1,format["Heavy role %1kg (for: %2 - %3)",ACE_MASSTOKG(_weight),_faction,_role]];
+                    _output pushBack [1,format["Loadout %2 > %3 is heavy: %1 kg.",ACE_MASSTOKG(_weight),_faction,_role]];
                 };
             };
 
@@ -287,17 +287,17 @@ private _loadoutFreespace = [];
                         if (_mass <= _freeBackpackSpace) then {
                             _freeBackpackSpace = _freeBackpackSpace - _mass;
                         } else {
-                            _output pushBack [0,format["'%1'(%4) radio won't fit for: %2 (%3)", _x,_unit,group _unit, _role]];
+                            _output pushBack [0,format["Radio %1 does not fit in the inventory of %2 (group %3, loadout %4).", _x,_unit,group _unit, _role]];
                         };
                     };
                 };
             } else {
-                _output pushBack [0,format["Missing radio classname: %1 (for: %2)", _x,_unit]];
+                _output pushBack [0,format["Radio %1 given to %2 does not exist.", _x,_unit]];
             };
         } forEach _radios;
     };
 } forEach allUnits;
 
-_output pushBack [-1,"AssignGear checks complete."];
+_output pushBack [-1,"AssignGear loadout check done"];
 
 _output;

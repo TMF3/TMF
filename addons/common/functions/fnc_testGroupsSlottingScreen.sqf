@@ -18,10 +18,10 @@ private _output = [];
     private _desc = (_x get3DENAttribute "description") # 0;
 
     if (_desc isEqualTo "") then {
-        _output pushBack [1,format ["Unit lacks role description: %1",_x]];
+        _output pushBack [1,format ["%1 has no role description, so the lobby shows only its class name.",_x]];
     } else {
         if !("@" in _desc) then {
-            _output pushBack [1,format ["Unit lacks slotting group name: %1 (should be: %1@Group Name)", _desc]];
+            _output pushBack [1,format ["Role %1 has no lobby group name. Write it as %1@Group Name.", _desc]];
         };
     };
 } forEach (playableUnits + [player] - [objNull]);

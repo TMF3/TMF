@@ -48,7 +48,7 @@ if (getMissionConfigValue ["TMF_AcreBabelEnabled",false]) then {
                     if (_unitCond isEqualTo []) then {
                         // No languages assigned on each level, post warning.
                         WARNING_1("No languages assigned for %1",_unit);
-                        _warnings pushBack [0,format ["%1 has no Babel languages assigned", _unit]];
+                        _warnings pushBack [0,format ["%1 speaks no Babel language. Assign one in the Eden TMF menu > TMF ACRE2 Settings.", _unit]];
                     };
                 } forEach (units _grp);
             };
@@ -56,7 +56,7 @@ if (getMissionConfigValue ["TMF_AcreBabelEnabled",false]) then {
     } forEach _playerGroups;
     if (_warnings isEqualTo []) then {
         LOG("Babel Autotest finished");
-        _warnings pushBack [-1,"Babel checks complete"];
+        _warnings pushBack [-1,"ACRE2 Babel language check done"];
     } else {
         WARNING_1("Babel Autotest finished with warnings: %1",_warnings);
     };

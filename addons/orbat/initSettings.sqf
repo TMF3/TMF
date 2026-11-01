@@ -2,7 +2,7 @@
 [
     QGVAR(markerUpdateInterval),
     "SLIDER",
-    ["Marker Update Interval", "Time in seconds between marker updates, 0 for every frame. Lower values are more resource intensive."],
+    ["ORBAT map marker update interval", "Seconds between updates of the ORBAT group and unit markers on the map. 0 updates every frame. Lower values cost more performance."],
     ["TMF", "ORBAT"],
     [
         0,  // Min

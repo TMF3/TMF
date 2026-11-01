@@ -60,9 +60,9 @@ if (_problemUnits isNotEqualTo []) then {
     // Avoid cluttering autotest too much
     if (count _problemUnits > 5) then {
         _problemUnits = _problemUnits select [0,5];
-        _warnings pushBack [0,"More than five playable units require notices for DLC:"];
+        _warnings pushBack [0,"More than 5 playable slots use DLC gear (first 5 shown). Name the DLC in each role description or in the mission overview:"];
     } else {
-        _warnings pushBack [1,"One or more playable units require notices for DLC:"];
+        _warnings pushBack [1,"These playable slots use DLC gear. Name the DLC in their role description or in the mission overview:"];
     };
 
     {
@@ -75,7 +75,7 @@ if (_problemUnits isNotEqualTo []) then {
 
         _warnings pushBack [
             1,
-            format ["|   %1%2 : %3", _unit, _roleStr, _dlc]
+            format ["    %1%2 needs %3", _unit, _roleStr, _dlc]
         ];
     } forEach _problemUnits;
 };
@@ -114,16 +114,16 @@ if (_problemVehs isNotEqualTo []) then {
     // Avoid cluttering autotest too much
     if (count _problemVehs > 5) then  {
         _problemVehs = _problemVehs select [0,5];
-        _warnings pushBack [0,"More than five unlocked vehicles require DLC notices:"];
+        _warnings pushBack [0,"More than 5 usable vehicles are DLC content (first 5 shown). Name the DLC in a role description or the mission overview, or lock the vehicles:"];
     } else {
-        _warnings pushBack [1,"One or more unlocked vehicles require DLC notices:"];
+        _warnings pushBack [1,"These usable vehicles are DLC content. Name the DLC in a role description or the mission overview, or lock them:"];
     };
 
     {
         _x params ["_veh","_dlc"];
         _warnings pushBack [
             1,
-            format ["|   %1 (%2) : '%3'", _veh, (configOf _veh) call BIS_fnc_displayName, _dlc]
+            format ["    %1 (%2) needs %3", _veh, (configOf _veh) call BIS_fnc_displayName, _dlc]
         ];
     } forEach _problemVehs;
 };
