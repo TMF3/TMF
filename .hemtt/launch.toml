@@ -4,9 +4,4 @@ workshop = [
     "450814997", # CBA_A3
     "751965892", # ACRE2
 ]
-parameters = [
-    "-skipIntro",
-    "-noSplash",
-    "-showScriptErrors",
-    "-debug",
-]
+# HEMTT already passes -skipIntro -noSplash -showScriptErrors -debug and -filePatching
