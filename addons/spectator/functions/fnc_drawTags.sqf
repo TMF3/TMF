@@ -9,7 +9,7 @@ if (GVAR(showMap) || !GVAR(tags)) exitWith {
 cameraEffectEnableHUD true;
 private _camPos = getPosVisual GVAR(camera);
 private _viewDistance = ((getObjectViewDistance) select 0);
-private _screenSize = [(0.04 * safeZoneW), (0.01 * safeZoneH)];
+private _screenSize = [(0.04 * (safeZoneW min (safeZoneH * 4 / 3))), (0.01 * safeZoneH)];
 
 {
     // grab the group infomation cache

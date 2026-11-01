@@ -50,7 +50,7 @@ if (_type == 28) then {
         // Close the Map
         ((findDisplay IDC_TMF_ADMINMENU_RESP_MAP_DISPLAY) displayCtrl IDC_TMF_ADMINMENU_RESP_MAP_CONTROL) ctrlShow false;
         ((findDisplay IDC_TMF_ADMINMENU_RESP_MAP_DISPLAY) displayCtrl IDC_TMF_ADMINMENU_RESP_MAP_CONTROL) mapCenterOnCamera false;
-        closeDialog IDC_TMF_ADMINMENU_RESP_MAP_DISPLAY;
+        (findDisplay IDC_TMF_ADMINMENU_RESP_MAP_DISPLAY) closeDisplay 1;
     };
 };
 //SPACEBAR (HALO TOGGLE)

@@ -280,9 +280,9 @@ class GVAR(respawnMapDialog) {
             w = 1 * safeZoneW;
             h = 1 * safeZoneH;
             onDraw = QUOTE(_this call FUNC(respawn_mapDrawIcons));
-            onSetFocus = QUOTE(_this spawn FUNC(respawn_mapLoaded)); //"['respawnMapLoaded'] spawn tmf_respawn_fnc_handleRespawnUI";
-            onMouseButtonDown = QUOTE(_this spawn FUNC(respawn_mapClick)); //"['respawnMap_onMouseButtonDown',_this] spawn tmf_respawn_fnc_handleRespawnUI";
-            onKeyUp = QUOTE(_this spawn FUNC(respawn_mapKeyUp)); //"['respawnMap_keyUp',_this] spawn tmf_respawn_fnc_handleRespawnUI";
+            onSetFocus = QUOTE(_this call FUNC(respawn_mapLoaded));
+            onMouseButtonDown = QUOTE(_this call FUNC(respawn_mapClick));
+            onKeyUp = QUOTE(_this call FUNC(respawn_mapKeyUp));
         };
     };
 };
@@ -305,9 +305,9 @@ class GVAR(adminEyeDialog) {
             w = 1 * safeZoneW;
             h = 1 * safeZoneH;
             onDraw = QUOTE(_this call FUNC(adminEye_draw));
-            onMouseButtonDown = QUOTE(_this spawn FUNC(adminEye_onClick));
-            onSetFocus = QUOTE(_this spawn FUNC(adminEye_onLoad));
-            onKeyUp = QUOTE(_this spawn FUNC(adminEye_onKeyPress));
+            onMouseButtonDown = QUOTE(_this call FUNC(adminEye_onClick));
+            onSetFocus = QUOTE(_this call FUNC(adminEye_onLoad));
+            onKeyUp = QUOTE(_this call FUNC(adminEye_onKeyPress));
         };
     };
 };

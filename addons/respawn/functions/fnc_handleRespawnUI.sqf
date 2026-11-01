@@ -508,7 +508,7 @@ switch _input do {
         }; 
               
         // Hand over control to the map dialog.
-        closeDialog 26893;
+        (findDisplay 26893) closeDisplay 2;
         createDialog "respawnMenuMapDialog";
 
         GVAR(respawnGuiParameters) = [_faction, _groupName, _markerType, _markerColor, _markerName];
@@ -603,7 +603,7 @@ switch _input do {
                 // Close the Map
                 ((findDisplay 26950) displayCtrl 26902) ctrlShow false;
                 ((findDisplay 26950) displayCtrl 26902) mapCenterOnCamera false;
-                closeDialog 26950;
+                (findDisplay 26950) closeDisplay 2;
             };
         };
         //SPACEBAR (HALO TOGGLE)

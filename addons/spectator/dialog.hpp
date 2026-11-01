@@ -57,9 +57,9 @@ class RscSpectatorShortcutButton : RscPicture {
 
 
 
-#define BUTTON_WIDTH 0.02 * safeZoneW
+#define BUTTON_WIDTH (0.02 * TMF_UI_W)
 #define BUTTON_HEIGHT 0.031 * safeZoneH
-#define COLUMN(V) (0.002 * safeZoneW + safeZoneX)+((0.0215 * safeZoneW)  * V)
+#define COLUMN(V) (safeZoneX + 0.002 * TMF_UI_W + 0.0215 * TMF_UI_W * V)
 
 class GVAR(dialog) {
   idd = DISPLAY_ID;
@@ -78,27 +78,27 @@ class GVAR(dialog) {
   class TMF_SPECTATOR_UNITLABEL: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL;
     text = ""; //--- ToDo: Localize;
-    x = (0.50-0.15/2) * safeZoneW + safeZoneX;
+    x = QUOTE(TMF_UI_X + ((0.50-0.15/2)) * TMF_UI_W);
     y = 0.025 * safeZoneH + safeZoneY;
-    w = 0.15 * safeZoneW;
+    w = QUOTE((0.15) * TMF_UI_W);
     h = 0.020 * safeZoneH;
     font = "PuristaSemiBold";
   };
   class TMF_SPECTATOR_Compass: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASS;
     text = "NW"; //--- ToDo: Localize;
-    x = (0.5-(0.07/2)) * safeZoneW + safeZoneX;
+    x = QUOTE(TMF_UI_X + ((0.5-(0.07/2))) * TMF_UI_W);
     y = 0.005* safeZoneH + safeZoneY;
-    w = 0.07 * safeZoneW;
+    w = QUOTE((0.07) * TMF_UI_W);
     h = 0.015 * safeZoneH;
     font = "PuristaBold";
   };
   class TMF_SPECTATOR_CompassLeft: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT;
     text = "NW"; //--- ToDo: Localize;
-    x = (0.5-(0.14)/2) * safeZoneW + safeZoneX;
+    x = QUOTE(TMF_UI_X + ((0.5-(0.14)/2)) * TMF_UI_W);
     y = 0.005 * safeZoneH + safeZoneY;
-    w = 0.07 * safeZoneW;
+    w = QUOTE((0.07) * TMF_UI_W);
     h = 0.015 * safeZoneH;
     SizeEx = "(((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.65)";
     colorText[] =
@@ -113,9 +113,9 @@ class GVAR(dialog) {
   class TMF_SPECTATOR_CompassRight: RscSpectatorText {
     idc = IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight;
     text = "NE"; //--- ToDo: Localize;
-    x = (0.5) * safeZoneW + safeZoneX;
+    x = QUOTE(TMF_UI_X + ((0.5)) * TMF_UI_W);
     y = 0.005 * safeZoneH + safeZoneY;
-    w = 0.07 * safeZoneW;
+    w = QUOTE((0.07) * TMF_UI_W);
     h = 0.015 * safeZoneH;
     SizeEx = "(((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.65)";
     colorText[] =
@@ -130,9 +130,9 @@ class GVAR(dialog) {
   class controls {
     class TMF_SPECTATOR_FILTER: RscSpectatorShortcutButton {
         idc = IDC_SPECTATOR_TMF_SPECTATOR_FILTER;
-        x = COLUMN(1);
+        x = QUOTE(COLUMN(1));
         y = 0.002 * safeZoneH + safeZoneY;
-        w = BUTTON_WIDTH;
+        w = QUOTE(BUTTON_WIDTH);
         h = BUTTON_HEIGHT;
         onButtonDown = "['disableAI',_this] call tmf_spectator_fnc_menuhandler;";
         text = "\A3\ui_f\data\gui\Rsc\RscDisplayMultiplayerSetup\enabledai_ca.paa";
@@ -140,9 +140,9 @@ class GVAR(dialog) {
     };
     class TMF_SPECTATOR_BUTTON: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_BUTTON;
-      x = COLUMN(0);
+      x = QUOTE(COLUMN(0));
       y = 0.002 * safeZoneH + safeZoneY;
-      w = BUTTON_WIDTH;
+      w = QUOTE(BUTTON_WIDTH);
       h = BUTTON_HEIGHT;
       text = "\x\tmf\addons\spectator\images\flag_civil_empty_ca_64.paa";
       onButtonDown = "['sidefilter',_this] call tmf_spectator_fnc_menuhandler;";
@@ -150,9 +150,9 @@ class GVAR(dialog) {
     };
     class TMF_SPECTATOR_TAGS: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_TAGS;
-      x = COLUMN(3);
+      x = QUOTE(COLUMN(3));
       y = 0.002 * safeZoneH + safeZoneY;
-      w = BUTTON_WIDTH;
+      w = QUOTE(BUTTON_WIDTH);
       h = BUTTON_HEIGHT;
       text = "\A3\ui_f\data\map\Diary\textures_ca.paa";
       onButtonDown = "['tags',_this] call tmf_spectator_fnc_menuhandler;";
@@ -160,9 +160,9 @@ class GVAR(dialog) {
     };
     class TMF_SPECTATOR_VISION: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VISION;
-      x = COLUMN(4);
+      x = QUOTE(COLUMN(4));
       y = 0.002 * safeZoneH + safeZoneY;
-      w = BUTTON_WIDTH;
+      w = QUOTE(BUTTON_WIDTH);
       h = BUTTON_HEIGHT;
       onButtonDown = "['vision',_this] call tmf_spectator_fnc_menuhandler;";
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\nvgs_ca.paa";
@@ -171,9 +171,9 @@ class GVAR(dialog) {
     class TMF_SPECTATOR_VIEW: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_VIEW;
       onButtonDown = "['camera',_this] call tmf_spectator_fnc_menuhandler;";
-      x = COLUMN(2);
+      x = QUOTE(COLUMN(2));
       y = 0.002 * safeZoneH + safeZoneY;
-      w = BUTTON_WIDTH;
+      w = QUOTE(BUTTON_WIDTH);
       h = BUTTON_HEIGHT;
       text = "\A3\ui_f\data\IGUI\Cfg\IslandMap\iconcamera_ca.paa";
       tooltip = "SWITCH TO FIRST PERSON";
@@ -181,9 +181,9 @@ class GVAR(dialog) {
     class TMF_SPECTATOR_MUTE: RscSpectatorShortcutButton {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_MUTE;
       onButtonDown = "['mute',_this] call tmf_spectator_fnc_menuhandler;";
-      x = COLUMN(5);
+      x = QUOTE(COLUMN(5));
       y = 0.002 * safeZoneH + safeZoneY;
-      w = BUTTON_WIDTH;
+      w = QUOTE(BUTTON_WIDTH);
       h = BUTTON_HEIGHT;
       text = "\A3\ui_f\data\gui\Rsc\RscDisplayArsenal\voice_ca.paa";
       tooltip = "MUTE SPECTATORS";
@@ -191,9 +191,9 @@ class GVAR(dialog) {
     class TMF_SPECTATOR_RADIO: RscSpectatorShortcutButton {
         idc = IDC_SPECTATOR_TMF_SPECTATOR_RADIO;
         onButtonDown = QUOTE([ARR_2('radio',_this)] call FUNC(menuhandler));
-        x = COLUMN(6);
+        x = QUOTE(COLUMN(6));
         y = 0.002 * safeZoneH + safeZoneY;
-        w = BUTTON_WIDTH;
+        w = QUOTE(BUTTON_WIDTH);
         h = BUTTON_HEIGHT;
         text = "\a3\Ui_f\data\GUI\Cfg\CommunicationMenu\call_ca.paa";
         tooltip = "SHOW RADIO MENU";
@@ -209,9 +209,9 @@ class GVAR(dialog) {
     };
     class TMF_SPECTATOR_UNITLIST: RscTree {
       idc = IDC_SPECTATOR_TMF_SPECTATOR_UNITLIST;
-      x = 0.002 * safeZoneW + safeZoneX;
+      x = QUOTE(safeZoneX + (0.002) * TMF_UI_W);
       y = 0.038 * safeZoneH + safeZoneY;
-      w = 0.13 * safeZoneW;
+      w = QUOTE((0.13) * TMF_UI_W);
       h = 0.940001 * safeZoneH;
       shadow = 2;
       colorBackground[] = {0,0,0,0};
@@ -237,9 +237,9 @@ class GVAR(dialog) {
     };
     class TMF_SPECTATOR_KILLLIST : RscControlsGroupNoScrollbars {
         idc = 2300;
-        x = 0.763544 * safeZoneW + safeZoneX;
+        x = QUOTE(safeZoneX + safeZoneW - 0.236456 * TMF_UI_W);
         y = 0.005 * safeZoneH + safeZoneY;
-        w = 0.233576 * safeZoneW;
+        w = QUOTE((0.233576) * TMF_UI_W);
         h = (0.020*6.5) * safeZoneH;
         style = 16;
         action = "";
@@ -250,15 +250,15 @@ class GVAR(dialog) {
             class dummy : RscText {
                 // REQUIRED
                 idc = -1;
-                x = 0.0 * safeZoneW;
+                x = QUOTE((0.0) * TMF_UI_W);
                 y = -5.0 * safeZoneH;
             };
             class Label1: RscStructuredText {
                 idc = 6;
                 action = "";
-                x = 0.00352533 * safeZoneW;
+                x = QUOTE((0.00352533) * TMF_UI_W);
                 y = 0.0 * safeZoneH;
-                w = 0.230 * safeZoneW;
+                w = QUOTE((0.230) * TMF_UI_W);
                 h = 0.020 * safeZoneH;
                 colorBackground[] = {0,0,0,0.0};
                 text = "";
@@ -270,45 +270,45 @@ class GVAR(dialog) {
             };
             class Label2: Label1 {
                 idc = 7;
-                x = 0.00352533 * safeZoneW;
+                x = QUOTE((0.00352533) * TMF_UI_W);
                 y = (0.020*1) * safeZoneH;
-                w = 0.230 * safeZoneW;
+                w = QUOTE((0.230) * TMF_UI_W);
                 h = 0.020 * safeZoneH;
                 colorBackground[] = {0,0,0,0.0};
                 action = "";
             };
             class Label3: Label1 {
                 idc = 8;
-                x = 0.00352533 * safeZoneW;
+                x = QUOTE((0.00352533) * TMF_UI_W);
                 y = (0.020*2) * safeZoneH;
-                w = 0.230 * safeZoneW;
+                w = QUOTE((0.230) * TMF_UI_W);
                 h = 0.020 * safeZoneH;
                 colorBackground[] = {0,0,0,0.0};
                 action = "";
             };
             class Label4: Label1 {
                 idc = 9;
-                x = 0.00352533 * safeZoneW;
+                x = QUOTE((0.00352533) * TMF_UI_W);
                 y = (0.020*3) * safeZoneH;
-                w = 0.230 * safeZoneW;
+                w = QUOTE((0.230) * TMF_UI_W);
                 h = 0.020 * safeZoneH;
                 colorBackground[] = {0,0,0,0.0};
                 action = "";
             };
             class Label5: Label1 {
                 idc = 10;
-                x = 0.00352533 * safeZoneW;
+                x = QUOTE((0.00352533) * TMF_UI_W);
                 y = (0.020*4) * safeZoneH;
-                w = 0.230 * safeZoneW;
+                w = QUOTE((0.230) * TMF_UI_W);
                 h = 0.020 * safeZoneH;
                 colorBackground[] = {0,0,0,0.0};
                 action = "";
             };
             class Label6: Label1 {
                 idc = 11;
-                x = 0.00352533 * safeZoneW;
+                x = QUOTE((0.00352533) * TMF_UI_W);
                 y = (0.020*5) * safeZoneH;
-                w = 0.230 * safeZoneW;
+                w = QUOTE((0.230) * TMF_UI_W);
                 h = 0.020 * safeZoneH;
                 colorBackground[] = {0,0,0,0.0};
                 action = "";

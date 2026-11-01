@@ -22,7 +22,7 @@ if (!_useMarker) then { //GVAR(respawnGroupMarkerCheckBoxVal)
 }; 
         
 // Hand over control to the map dialog.
-closeDialog IDD_TMF_ADMINMENU;
+(findDisplay IDD_TMF_ADMINMENU) closeDisplay 2;
 createDialog QGVAR(respawnMapDialog);
 
 GVAR(respawnGuiParameters) = [_faction, _groupName, _markerType, _markerColor, _markerName];

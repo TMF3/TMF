@@ -44,3 +44,7 @@ class Extended_PreStart_EventHandlers {                 \
 
 // Chat macros
 #define IS_CMND_AVAILABLE(var,cmnd) if !([var,cmnd] call EFUNC(chat,commandAvailable)) exitWith {}
+
+// UI canvas: full width up to 16:9, centered (pillarboxed) on wider screens
+#define TMF_UI_W (safeZoneW min (safeZoneH * 4 / 3))
+#define TMF_UI_X (safeZoneX + (safeZoneW - TMF_UI_W) / 2)
