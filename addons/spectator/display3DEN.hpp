@@ -13,7 +13,7 @@ class Display3DEN
                 class TMF_Spectator_Settings
                 {
                     text = "TMF Spectator Settings";
-                    action = "edit3DENMissionAttributes 'TMF_Spectator_Settings';";
+                    action = "[findDisplay 313] call CBA_settings_fnc_openSettingsMenu;"; // Spectator settings are CBA settings (TMF > Spectator)
                     picture = "\x\tmf\addons\common\UI\icon_gear_ca";
                 };
             };
