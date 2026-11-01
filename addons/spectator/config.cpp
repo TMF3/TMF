@@ -26,7 +26,6 @@ class CfgRespawnTemplates
 };
 #include "autotest.hpp"
 #include "CfgEventHandlers.hpp"
-#include "display3DEN.hpp"
 #include "dialog.hpp"
 #include "CfgVehicles.hpp"
 #include "tags.hpp"
