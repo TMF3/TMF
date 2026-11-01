@@ -1,6 +1,6 @@
 class GVAR(modal)
 {
-    idd = IDD_TMF_ADMINMENU;
+    idd = IDD_TMF_ADMINMENU_MODAL;
     movingEnable = 0;
     enableDisplay = 1;
     enableSimulation = 1;
