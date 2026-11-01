@@ -1,0 +1,11 @@
+[default]
+workshop = [
+    "450814997", # CBA_A3
+    "751965892", # ACRE2
+]
+parameters = [
+    "-skipIntro",
+    "-noSplash",
+    "-showScriptErrors",
+    "-debug",
+]
