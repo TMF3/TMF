@@ -1,4 +1,5 @@
 [default]
+mission = "tmf_template.vr" # Open the TMF template mission in Eden
 workshop = [
     "450814997", # CBA_A3
     "751965892", # ACRE2
