@@ -55,7 +55,7 @@
 //Font used by the engine as default when defined font (e.g. in description.ext) is not found
 class DefaultFont
 {
-	font = GUI_FONT_NORMAL;
+	font = "RobotoCondensed"; // quoted for rapify (GUI_FONT_NORMAL)
 };
 
 

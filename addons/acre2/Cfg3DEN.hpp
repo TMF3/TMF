@@ -42,7 +42,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_NetworkEnabled',_value];";
                             tooltip = "Enable the custom ACRE network and channel feature. Configure this in the 'Radios' section below. If disabled the below networks and channels will not be created.";
-                            defaultValue = false;
+                            defaultValue = QUOTE(false);
                             condition = "1";
                         };
                         class Babel_Enabled
@@ -52,7 +52,7 @@ class Cfg3DEN
                             control = "Checkbox";
                             //expression = "missionNamespace setVariable ['TMF_BabelEnabled',_value];";
                             tooltip = "Enable ACRE's Babel feature? Configure this is in the next section";
-                            defaultValue = false;
+                            defaultValue = QUOTE(false);
                             condition = "1";
                         };
                         class Action_Radios
@@ -227,17 +227,17 @@ class Cfg3DEN
             attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'AcreAddRadioActions_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'AcreAddRadioActions_script');";
             
-            w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
-            h = 6 * SIZE_M * GRID_H;
+            w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
+            h = QUOTE(6 * SIZE_M * GRID_H);
             class Controls
             {
                 class ActionTitle : ctrlStatic
                 {
                     text = "Radios available via action:";
                     style = ST_RIGHT;
-                    w = ATTRIBUTE_TITLE_W * GRID_W;
+                    w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     x = 0;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
                     y = 0;
                     colorBackground[] = {0,0,0,0};
                     tooltip = "These radios will be available for selection (via scroll wheel action) for the first 5 minutes after the player has spawned.";
@@ -245,19 +245,19 @@ class Cfg3DEN
                 class ActionListBackground : ctrlStatic
                 {
                     idc = 313208;
-                    x = (ATTRIBUTE_TITLE_W) * GRID_W;
-                    y = 0 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 6 * SIZE_M * GRID_H;
+                    x = QUOTE((ATTRIBUTE_TITLE_W) * GRID_W);
+                    y = QUOTE(0 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(6 * SIZE_M * GRID_H);
                     colorBackground[] = {0.33,0.33,0.33,1};
                 };
                 class ActionList: ctrlListNBox
                 {
                     idc = 101;
-                    x = (ATTRIBUTE_TITLE_W) * GRID_W;
-                    y = 0 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 6 * SIZE_M * GRID_H;
+                    x = QUOTE((ATTRIBUTE_TITLE_W) * GRID_W);
+                    y = QUOTE(0 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(6 * SIZE_M * GRID_H);
                     drawSideArrows = 0;//1;
                     idcLeft = -1;
                     idcRight = -1;
@@ -278,49 +278,49 @@ class Cfg3DEN
             attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'BabelSettings_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'BabelSettings_script');";
             
-            w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
-            h = 16 * SIZE_M * GRID_H;
+            w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
+            h = QUOTE(16 * SIZE_M * GRID_H);
             class Controls
             {
                 class LangTitle : ctrlStatic
                 {
                     text = "Languages:";
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W);
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
                     y = 0;
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     colorBackground[] = {0,0,0,0};
                 };                    
                 class SpeakersTitle : LangTitle
                 {
                     text = "Language speakers:";
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M)/2) * GRID_W;
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M)/2) * GRID_W);
                 };
                 class ButtonSpeakerMake : RscButtonMenu
                 {
                     text = "Grant";
-                    h = SIZE_M * GRID_H;
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2;
-                    y = 1 * SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2);
+                    y = QUOTE(1 * SIZE_M * GRID_H);
                     action = "['langTreeGive',_this] call (uinamespace getvariable 'BabelSettings_script');";
                     tooltip = "Make the selected element speak the selected language.";
                 };
                 class ButtonSpeakerRemove: ButtonSpeakerMake
                 {
                     text = "Remove";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['langTreeRemove',_this] call (uinamespace getvariable 'BabelSettings_script');";
                     tooltip = "Remove the selected element from speaking the selected language.";
                 };
                 class SpeakerTree : ctrlTree
                 {
                     idc = 189437;
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W; //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
-                    y = 2 * SIZE_M * GRID_H;
-                    h = 14 * SIZE_M * GRID_H;
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W); //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
+                    y = QUOTE(2 * SIZE_M * GRID_H);
+                    h = QUOTE(14 * SIZE_M * GRID_H);
                     multiselectEnabled = 1;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
@@ -329,43 +329,43 @@ class Cfg3DEN
                 };
                 class ListBackground: ctrlStatic
                 {
-                    x = SIZE_M * GRID_W;
-                    y = 2 * SIZE_M * GRID_H;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 14 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(2 * SIZE_M * GRID_H);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(14 * SIZE_M * GRID_H);
                     colorBackground[] = {1,1,1,0.1};
                 };
                 class ButtonLangAdd : RscButtonMenu
                 {
                     text = "Add";
-                    h = SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
-                    w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3;
-                    y = 1 * SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
+                    y = QUOTE(1 * SIZE_M * GRID_H);
                     action = "['langAddClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
                     tooltip = "Add a new language.";
                 };
                 class ButtonLangEdit: ButtonLangAdd
                 {
                     text = "Edit";
-                    x = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W;
+                    x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W);
                     action = "['langEditClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
                     tooltip = "Edit the selected language.";
                 };
                 class ButtonLangDel : ButtonLangAdd
                 {
                     text = "Delete";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W;
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W);
                     action = "['langDelClick',_this] call (uinamespace getvariable 'BabelSettings_script');";
                     tooltip = "Delete the selected language.";
                 };
                 class LangList: ctrlListNBox
                 {
                     idc = 101;
-                    x = SIZE_M * GRID_W;
-                    y = 2 * SIZE_M * GRID_H;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 14 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(2 * SIZE_M * GRID_H);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(14 * SIZE_M * GRID_H);
                     drawSideArrows = 0;//1;
                     idcLeft = -1;
                     idcRight = -1;
@@ -377,26 +377,26 @@ class Cfg3DEN
                 class EditLanguageBackgroundS: ctrlStatic
                 {
                     idc = 313208;
-                    x = SIZE_M * GRID_W;
-                    y = 1 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 15 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(1 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(15 * SIZE_M * GRID_H);
                     colorBackground[] = {0.33,0.33,0.33,1};
                 };
                 class EditLanguageButtonOk : ButtonSpeakerMake
                 {
                     idc = 313209;
                     text = "Okay";
-                    y = 12.25 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7;
-                    x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W;
+                    y = QUOTE(12.25 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7);
+                    x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W);
                     action = "['languageEditClickOkay',_this] call (uinamespace getvariable 'BabelSettings_script');";
                 };
                 class EditLanguageButtonCancel : EditLanguageButtonOk
                 {
                     idc = 313210;
                     text = "Cancel";
-                    x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W;
+                    x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W);
                     action = "['languageDelClickCancel',_this] call (uinamespace getvariable 'BabelSettings_script');";
                 };
                 
@@ -404,9 +404,9 @@ class Cfg3DEN
                 {
                     idc = 313201;
                     text = "Add/Edit Language";
-                    y = 1 * SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
+                    y = QUOTE(1 * SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
                     colorBackground[] = {0.1,0.1,0.1,1};
                 };
                 
@@ -414,9 +414,9 @@ class Cfg3DEN
                 {
                     idc = 313202;
                     text = "Language Name:";
-                    y = 3 * SIZE_M * GRID_H;
-                    x = 2 * SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
+                    y = QUOTE(3 * SIZE_M * GRID_H);
+                    x = QUOTE(2 * SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
                 };
                 class EditLanguageShort : ctrlEdit
                 {
@@ -431,10 +431,10 @@ class Cfg3DEN
 
                     canModify = 1; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 4.15 * SIZE_M * GRID_H;
-                    x = 2 * SIZE_M * GRID_W;
-                    h = SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W;
+                    y = QUOTE(4.15 * SIZE_M * GRID_H);
+                    x = QUOTE(2 * SIZE_M * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W);
                 };
 
             };
@@ -449,8 +449,8 @@ class Cfg3DEN
             attributeLoad = "['attributeLoad', _this, _value] call (uinamespace getvariable 'RadioChannels_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'RadioChannels_script');";
             
-            w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
-            h = (32 * SIZE_M + 1) * GRID_H;
+            w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
+            h = QUOTE((32 * SIZE_M + 1) * GRID_H);
                     
             //Attribute_Title_W = left side? Attribute_content_W = right Side?
             // SIZE_M <- size of margin (relatively big-ish)
@@ -460,10 +460,10 @@ class Cfg3DEN
                 class Title0: ctrlStatic
                 {
                     text = "Radio network allocation:";
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W);
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
                     y = 0;
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     colorBackground[] = {0,0,0,0};
                     tooltip = "Each network is a collection of radio channels. The network number is displayed on the right side below. To assign a different network select the entity below and press the number on your keyboard for the network number you wish to assign.";
                 };
@@ -471,10 +471,10 @@ class Cfg3DEN
                 class NetworkTree : ctrlTree
                 {
                     idc = 189438;
-                    x = SIZE_M * GRID_W;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M))) * GRID_W; //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
-                    y = 2 * SIZE_M * GRID_H;
-                    h = 10 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M))) * GRID_W); //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
+                    y = QUOTE(2 * SIZE_M * GRID_H);
+                    h = QUOTE(10 * SIZE_M * GRID_H);
                     multiselectEnabled = 0;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
@@ -486,10 +486,10 @@ class Cfg3DEN
                 {
                      style = ST_LINE;
                      colorText[] = {1,1,1,1.0}; // to whatever gives you a thrill
-                     x = (SIZE_M * GRID_W);
-                     h = (SIZE_M * GRID_H)/10;
-                     y = SIZE_M * GRID_H * 12.4;
-                     w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)) * GRID_W);
+                     x = QUOTE((SIZE_M * GRID_W));
+                     h = QUOTE((SIZE_M * GRID_H)/10);
+                     y = QUOTE(SIZE_M * GRID_H * 12.4);
+                     w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)) * GRID_W));
                 };
                 
                 class networkButton : RscButtonMenu
@@ -499,10 +499,10 @@ class Cfg3DEN
                         align = "center";
                     };
                     text = "&lt; Configure Network 1 &gt;";
-                    h = SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
-                    y = SIZE_M * GRID_H * 13;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W));
+                    y = QUOTE(SIZE_M * GRID_H * 13);
                     action = "['networkToggleButton',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Toggle through the radio networks.";
                 };
@@ -510,10 +510,10 @@ class Cfg3DEN
                 class Title1: Title0
                 {
                     text = "Channels of selected network:";
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
-                    y = SIZE_M * GRID_H * 14;
-                    x = SIZE_M * GRID_W;
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W);
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
+                    y = QUOTE(SIZE_M * GRID_H * 14);
+                    x = QUOTE(SIZE_M * GRID_W);
                     colorBackground[] = {0,0,0,0};
                     tooltip = "";
                 };
@@ -521,41 +521,41 @@ class Cfg3DEN
                 class Title2 : Title1
                 {
                     text = "Entities present on selected channel:";
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M)/2) * GRID_W;
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M)/2) * GRID_W);
                     tooltip = "";
                 };
                 class ButtonChannelGive : RscButtonMenu
                 {
                     text = "Give";
-                    h = SIZE_M * GRID_H;
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3;
-                    y = 15 * SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
+                    y = QUOTE(15 * SIZE_M * GRID_H);
                     action = "['channelTreeGive',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Put the selected element on the selected radio channel.";
                 };
                 class ButtonChannelLeader: ButtonChannelGive
                 {
                     text = "Leader";
-                    x = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['channelTreeLeader',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Make the leader of the group use the selected radio channel (Only avaiable on groups)";
                 };
                 class ButtonChannelRemove: ButtonChannelGive
                 {
                     text = "Remove";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3) *2 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/3) *2 + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['channelTreeRemove',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Remove the selected radio channel from the selected element.";
                 };
                 class Value: ctrlTree
                 {
                     idc = 189437;
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W; //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
-                    y = 16 * SIZE_M * GRID_H;
-                    h = 16 * SIZE_M * GRID_H;
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W); //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
+                    y = QUOTE(16 * SIZE_M * GRID_H);
+                    h = QUOTE(16 * SIZE_M * GRID_H);
                     multiselectEnabled = 1;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
@@ -564,43 +564,43 @@ class Cfg3DEN
                 };
                 class ListBackground: ctrlStatic
                 {
-                    x = SIZE_M * GRID_W;
-                    y = 16 * SIZE_M * GRID_H;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 16 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(16 * SIZE_M * GRID_H);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(16 * SIZE_M * GRID_H);
                     colorBackground[] = {1,1,1,0.1};
                 };
                 class ButtonAdd2: RscButtonMenu
                 {
                     text = "Add";
-                    h = SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
-                    w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3;
-                    y = 15 * SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
+                    y = QUOTE(15 * SIZE_M * GRID_H);
                     action = "['channelAddClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Add a radio channel to the present network";
                 };
                 class ButtonEdit: ButtonAdd2
                 {
                     text = "Edit";
-                    x = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W;
+                    x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W);
                     action = "['channelEditClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Edit the selected radio channel";
                 };
                 class ButtonDel: ButtonAdd2
                 {
                     text = "Delete";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W;
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W);
                     action = "['channelDelClick',_this] call (uinamespace getvariable 'RadioChannels_script');";
                     tooltip = "Delete the selected radio channel";
                 };
                 class List: ctrlListNBox
                 {
                     idc = 101;
-                    x = SIZE_M * GRID_W;
-                    y = 16 * SIZE_M * GRID_H;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 16 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(16 * SIZE_M * GRID_H);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(16 * SIZE_M * GRID_H);
                     drawSideArrows = 0;//1;
                     idcLeft = -1;
                     idcRight = -1;
@@ -611,26 +611,26 @@ class Cfg3DEN
                 class EditChannelBackgroundS: ctrlStatic
                 {
                     idc = 313208;
-                    x = SIZE_M * GRID_W;
-                    y = 16 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 12.75 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(16 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(12.75 * SIZE_M * GRID_H);
                     colorBackground[] = {0.33,0.33,0.33,1};
                 };
                 class EditChannelButtonOk : ButtonAdd2
                 {
                     idc = 313209;
                     text = "Okay";
-                    y = 27.3 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7;
-                    x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W;
+                    y = QUOTE(27.3 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7);
+                    x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*2.1875 + SIZE_M * GRID_W);
                     action = "['channelEditClickOkay',_this] call (uinamespace getvariable 'RadioChannels_script');";
                 };
                 class EditChannelButtonCancel : EditChannelButtonOk
                 {
                     idc = 313210;
                     text = "Cancel";
-                    x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W;
+                    x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 7)*3.9375 + SIZE_M * GRID_W);
                     action = "['channelDelClickCancel',_this] call (uinamespace getvariable 'RadioChannels_script');";
                 };
                 
@@ -638,9 +638,9 @@ class Cfg3DEN
                 {
                     idc = 313201;
                     text = "Add/Edit Channel";
-                    y = 16 * SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
+                    y = QUOTE(16 * SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
                     colorBackground[] = {0.1,0.1,0.1,1};
                     tooltip = "";
                 };
@@ -649,9 +649,9 @@ class Cfg3DEN
                 {
                     idc = 313202;
                     text = "Short channel name:";
-                    y = 17 * SIZE_M * GRID_H;
-                    x = 2*SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2*SIZE_M) ) * GRID_W;
+                    y = QUOTE(17 * SIZE_M * GRID_H);
+                    x = QUOTE(2*SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2*SIZE_M) ) * GRID_W);
                     tooltip = "";
                 };
                 class EditChannelShort : ctrlEdit
@@ -667,43 +667,43 @@ class Cfg3DEN
 
                     canModify = 1; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 18.15 * SIZE_M * GRID_H;
-                    x = 2 * SIZE_M * GRID_W;
-                    h = SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W;
+                    y = QUOTE(18.15 * SIZE_M * GRID_H);
+                    x = QUOTE(2 * SIZE_M * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W);
                 };
                 class EditChannelLongTitle : Title1
                 {
                     idc = 313203;
                     text = "Long (Briefing) channel name:";
-                    y = 19.3 * SIZE_M * GRID_H;
-                    x = 2 * SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2* SIZE_M) ) * GRID_W;
+                    y = QUOTE(19.3 * SIZE_M * GRID_H);
+                    x = QUOTE(2 * SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2* SIZE_M) ) * GRID_W);
                     tooltip = "";
                 };
                 class EditChannelLong: EditChannelShort
                 {
                     idc = 313207;
                     text = "";
-                    y = 20.45 * SIZE_M * GRID_H;
+                    y = QUOTE(20.45 * SIZE_M * GRID_H);
                 };
                 class EditChannelRadioTitle : Title1
                 {
                     idc = 313204;
                     text = "Radio";
-                    y = 21.6 * SIZE_M * GRID_H;
-                    x = 2 *SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2*SIZE_M) ) * GRID_W;
+                    y = QUOTE(21.6 * SIZE_M * GRID_H);
+                    x = QUOTE(2 *SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2*SIZE_M) ) * GRID_W);
                     tooltip = "";
                 };
-                class EditChannelRadioChooser: ctrlToolbox
+                class EditChannelRadioChooser: ctrlToolBox
                 {
                     idc = 313205;
                     style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-                    x = 2 * SIZE_M * GRID_W;
-                    y = 22.75 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4*SIZE_M) ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 2 * SIZE_M * GRID_H;
+                    x = QUOTE(2 * SIZE_M * GRID_W);
+                    y = QUOTE(22.75 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4*SIZE_M) ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(2 * SIZE_M * GRID_H);
 
                     rows = 1;
                     columns = 7;
@@ -728,17 +728,17 @@ class Cfg3DEN
                 {
                     idc = 313211;
                     text = "Share channel across networks:";
-                    y = 24.9 * SIZE_M * GRID_H;
-                    x = 2 *SIZE_M * GRID_W;
-                    w = ATTRIBUTE_TITLE_W * GRID_W;
+                    y = QUOTE(24.9 * SIZE_M * GRID_H);
+                    x = QUOTE(2 *SIZE_M * GRID_W);
+                    w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     tooltip = "Mark this channel as shared. If a channel on another network has an identical shortname and is also a shared channel they will be linked together. Use this for channels that need that need to be cross-network.";
                 };
                 class SharedCheckBox : ctrlDefault {
                     idc = 313212;
-                    y = 26.05 * SIZE_M * GRID_H;
-                    x = 2 *SIZE_M * GRID_W;
-                    w = SIZE_M * GRID_W;
-                    h = SIZE_M * GRID_H;
+                    y = QUOTE(26.05 * SIZE_M * GRID_H);
+                    x = QUOTE(2 *SIZE_M * GRID_W);
+                    w = QUOTE(SIZE_M * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
                     text = "";
                     type = CT_CHECKBOX; // Type
                     //style = ST_LEFT + ST_MULTI; // Style

@@ -24,10 +24,10 @@ class CfgVehicles {
         category = "Teamwork";
         function = QFUNC(moduleInit);
         functionPriority = 1;
-        isGlobal = false;
-        isTriggerActivated = true;
-        isDisposable = true;
-        is3DEN = false;
+        isGlobal = 0;
+        isTriggerActivated = 1;
+        isDisposable = 1;
+        is3DEN = 0;
 
         // Module attributes
         class Attributes: AttributesBase {

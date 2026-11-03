@@ -8,28 +8,28 @@ class twGroupMarker: Toolbox
     attributeLoad = "['attributeLoad',_this,_value] call (uinamespace getvariable 'GroupMarker_script');";
     attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'GroupMarker_script');";
 
-    h = (16.75+0.45) * SIZE_M * GRID_H;
+    h = QUOTE((16.75+0.45) * SIZE_M * GRID_H);
     class Controls
     {
         // ICON
         class GmTitle: ctrlStatic
         {
             x = 0;
-            w = ATTRIBUTE_TITLE_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
             y = 0;
             colorBackground[] = {0,0,0,0};
             style = ST_RIGHT;
             text = "Marker icon";
             tooltip = "Choose icon to use for this group. Use the empty icon to not use an icon";
         };
-        class Icon: ctrlToolbox
+        class Icon: ctrlToolBox
         {
             idc = 100;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            h = 12.25 * SIZE_M * GRID_H;
+            h = QUOTE(12.25 * SIZE_M * GRID_H);
 
             rows = 7;
             columns = 7;
@@ -44,18 +44,18 @@ class twGroupMarker: Toolbox
         // Colours
         class ColourTitle: GmTitle
         {
-            y = (12.25+0.15) * SIZE_M * GRID_H;
+            y = QUOTE((12.25+0.15) * SIZE_M * GRID_H);
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
-        class ColourValue: ctrlToolbox
+        class ColourValue: ctrlToolBox
         {
             idc = 101;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            y = (12.25+0.15) * SIZE_M * GRID_H;
-            h = 1.75 * SIZE_M * GRID_H;
+            y = QUOTE((12.25+0.15) * SIZE_M * GRID_H);
+            h = QUOTE(1.75 * SIZE_M * GRID_H);
 
             rows = 1;
             columns = 7;
@@ -92,33 +92,33 @@ class twGroupMarker: Toolbox
         // MARKER TEXT
         class MarkerTitle: GmTitle
         {
-            y = (14+0.3) * SIZE_M * GRID_H;
+            y = QUOTE((14+0.3) * SIZE_M * GRID_H);
             text = "Marker text";
             tooltip = "Text to display alongside the marker";
         };
         class EditValue : ctrlEdit
         {
-            y = (14+0.3) * SIZE_M * GRID_H;
+            y = QUOTE((14+0.3) * SIZE_M * GRID_H);
             idc = 102;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
         };
         // Size
         class sizeTitle: GmTitle
         {
-            y = (15+0.45) * SIZE_M * GRID_H;
+            y = QUOTE((15+0.45) * SIZE_M * GRID_H);
             text = "Marker size modifier";
             tooltip = "Size modifier";
         };
-        class sizeValue: ctrlToolbox
+        class sizeValue: ctrlToolBox
         {
             idc = 103;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            y = (15+0.45) * SIZE_M * GRID_H;
-            h = 1.75 * SIZE_M * GRID_H;
+            y = QUOTE((15+0.45) * SIZE_M * GRID_H);
+            h = QUOTE(1.75 * SIZE_M * GRID_H);
             colorBackground[] = {1,1,1,0.3};
 
             rows = 1;

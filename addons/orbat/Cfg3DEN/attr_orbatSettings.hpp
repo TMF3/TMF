@@ -8,29 +8,29 @@ class ORBATSettings : Toolbox
     attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'ORBATSettings_script');";
     attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'ORBATSettings_script');";
 
-    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
-    h = 25 * SIZE_M * GRID_H; //20
+    w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
+    h = QUOTE(25 * SIZE_M * GRID_H); //20
     class Controls
     {
         class LangTitle : ctrlStatic
         {
             text = "Split ORBATs by:";
             style = ST_RIGHT;
-            w = ATTRIBUTE_TITLE_W * GRID_W;
-            h = 1 * SIZE_M * GRID_H;
+            w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            h = QUOTE(1 * SIZE_M * GRID_H);
             y = 0;
             x = 0;
             colorBackground[] = {0,0,0,0};
             tooltip = "Use this to control whether group markers are shared with everyone on the same faction or instead on the same side. Changing this system will erase the previous heirarchy.";
         };
-        class Value: ctrlToolbox
+        class Value: ctrlToolBox
         {
             idc = 100;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_KEEP_ASPECT_RATIO; //ST_PICTURE +
             y = 0;
-            h = 1 * SIZE_M * GRID_H;
+            h = QUOTE(1 * SIZE_M * GRID_H);
             rows = 1;
             columns = 2;
             strings[] = {"Side", "Faction"};
@@ -46,10 +46,10 @@ class ORBATSettings : Toolbox
                 align = "center";
             };
             text = "&lt; Configure X &gt;";
-            h = SIZE_M * GRID_H;
-            x = SIZE_M * GRID_W;
-            w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
-            y = 2 * SIZE_M * GRID_H;
+            h = QUOTE(SIZE_M * GRID_H);
+            x = QUOTE(SIZE_M * GRID_W);
+            w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W));
+            y = QUOTE(2 * SIZE_M * GRID_H);
             action = "['orbatToggleButton',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Toggle through the various sides/factions (Only toggles through sides/factions with playable units)";
         };
@@ -57,9 +57,9 @@ class ORBATSettings : Toolbox
         {
             idc = 103;
             text = "Orbat hierarchy:";
-            x = SIZE_M * GRID_W;
+            x = QUOTE(SIZE_M * GRID_W);
             style = ST_LEFT;
-            y = 3 * SIZE_M * GRID_H;
+            y = QUOTE(3 * SIZE_M * GRID_H);
             tooltip = "Hierarchy tree of ORBAT";
         };
 
@@ -75,10 +75,10 @@ class ORBATSettings : Toolbox
         {
             idc = 104;
             text = "Move";
-            h = SIZE_M * GRID_H;
-            x = SIZE_M * GRID_W;
-            w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4;
-            y = 4 * SIZE_M * GRID_H;
+            h = QUOTE(SIZE_M * GRID_H);
+            x = QUOTE(SIZE_M * GRID_W);
+            w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4);
+            y = QUOTE(4 * SIZE_M * GRID_H);
             action = "['treeMoveClick',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Move the selected element";
         };
@@ -86,7 +86,7 @@ class ORBATSettings : Toolbox
         {
             idc = 105;
             text = "Add";
-            x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4 + SIZE_M * GRID_W;
+            x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4 + SIZE_M * GRID_W);
             action = "['treeAddClick',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Add a new virtual element as a child of the selected element. You can not create a virtual element on a real group.";
         };
@@ -94,7 +94,7 @@ class ORBATSettings : Toolbox
         {
             idc = 106;
             text = "Edit";
-            x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4 *2 + SIZE_M * GRID_W;
+            x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4 *2 + SIZE_M * GRID_W);
             action = "['treeEditClick',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Edit the orbat settings for the selected element";
         };
@@ -102,17 +102,17 @@ class ORBATSettings : Toolbox
         {
             idc = 107;
             text = "Delete";
-            x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4 *3 + SIZE_M * GRID_W;
+            x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W)/4 *3 + SIZE_M * GRID_W);
             action = "['treeDelClick',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Delete the virtual element. This will not delete real groups";
         };
         class OrbatTree : ctrlTree
         {
             idc = 102;
-            x = SIZE_M * GRID_W;
-            w = (ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (3.5*SIZE_M)) * GRID_W;
-            y = 5 * SIZE_M * GRID_H;
-            h = 19 * SIZE_M * GRID_H;
+            x = QUOTE(SIZE_M * GRID_W);
+            w = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (3.5*SIZE_M)) * GRID_W);
+            y = QUOTE(5 * SIZE_M * GRID_H);
+            h = QUOTE(19 * SIZE_M * GRID_H);
             multiselectEnabled = 1;
             disableKeyboardSearch = 1;
             colorDisabled[] = {1,1,1,0.25};
@@ -140,17 +140,17 @@ class ORBATSettings : Toolbox
             colorBackground2[] = {1,1,1,0.5};
 
             text = "";
-            h = 1*SIZE_M * GRID_H;//(ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W  - SIZE_M) * GRID_W * 0.1; //SIZE_M * GRID_H; //keep square
-            x = (ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (2.5*SIZE_M)) * GRID_W;
-            w = 2.5*SIZE_M * GRID_W; //(ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W  - SIZE_M) * GRID_W * 0.1;
-            y = 8.3 * SIZE_M * GRID_H;
+            h = QUOTE(1*SIZE_M * GRID_H);//(ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W  - SIZE_M) * GRID_W * 0.1; //SIZE_M * GRID_H; //keep square
+            x = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - (2.5*SIZE_M)) * GRID_W);
+            w = QUOTE(2.5*SIZE_M * GRID_W); //(ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W  - SIZE_M) * GRID_W * 0.1;
+            y = QUOTE(8.3 * SIZE_M * GRID_H);
             action = "['moveTop',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Move the current entry to the top.";
         };
         class TreeUp : TreeTop
         {
             idc = 125;
-            y = 10.45* SIZE_M * GRID_H;
+            y = QUOTE(10.45* SIZE_M * GRID_H);
 
             animTextureNormal = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_up_ca.paa";
             animTextureDisabled = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_up_ca.paa";
@@ -171,7 +171,7 @@ class ORBATSettings : Toolbox
             animTextureFocused = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_down_ca.paa";
             animTexturePressed = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_down_ca.paa";
             animTextureDefault = "\a3\ui_f\data\gui\Rsc\RscDisplayMultiplayer\arrow_down_ca.paa";
-            y = 12.6 * SIZE_M * GRID_H;
+            y = QUOTE(12.6 * SIZE_M * GRID_H);
             action = "['moveDown',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Move the current entry down.";
         };
@@ -185,7 +185,7 @@ class ORBATSettings : Toolbox
             animTextureDefault =  "\x\tmf\addons\orbat\ui\arrow_bottom_ca.paa";
 
             idc = 127;
-            y = 14.75 * SIZE_M * GRID_H;
+            y = QUOTE(14.75 * SIZE_M * GRID_H);
             action = "['moveBottom',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Move the current entry to the bottom.";
         };
@@ -195,20 +195,20 @@ class ORBATSettings : Toolbox
         {
             idc = 120;
             text = "Select the new parent (double click)";
-            w = (ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M) * GRID_W;
-            x = SIZE_M * GRID_W;
+            w = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M) * GRID_W);
+            x = QUOTE(SIZE_M * GRID_W);
             style = ST_LEFT;
-            y = 3.25 * SIZE_M * GRID_H;
+            y = QUOTE(3.25 * SIZE_M * GRID_H);
             tooltip = "Hierarchy tree of ORBAT";
         };
 
         class MoveTree : ctrlTree
         {
             idc = 108;
-            x = 1 * SIZE_M * GRID_W;
-            w = (ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M) * GRID_W;
-            y = 4.5 * SIZE_M * GRID_H;
-            h = 19 * SIZE_M * GRID_H;
+            x = QUOTE(1 * SIZE_M * GRID_W);
+            w = QUOTE((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M) * GRID_W);
+            y = QUOTE(4.5 * SIZE_M * GRID_H);
+            h = QUOTE(19 * SIZE_M * GRID_H);
             multiselectEnabled = 1;
             disableKeyboardSearch = 1;
             colorDisabled[] = {1,1,1,0.25};
@@ -220,8 +220,8 @@ class ORBATSettings : Toolbox
         {
             idc = 121;
             text = "Cancel";
-            y = 24 * SIZE_M * GRID_H;
-            x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 8)*4.5 + SIZE_M * GRID_W;
+            y = QUOTE(24 * SIZE_M * GRID_H);
+            x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 8)*4.5 + SIZE_M * GRID_W);
             action = "['editOrbatEntryClickCancel',_this] call (uinamespace getvariable 'ORBATSettings_script');";
             tooltip = "Cancel moving the element.";
         };
@@ -231,31 +231,31 @@ class ORBATSettings : Toolbox
         {
             idc = 109;
             text = "Add/Edit heirarchy piece:";
-            x = SIZE_M * GRID_W;
+            x = QUOTE(SIZE_M * GRID_W);
             style = ST_LEFT;
-            y = 3 * SIZE_M * GRID_H;
+            y = QUOTE(3 * SIZE_M * GRID_H);
             tooltip = "Hierarchy tree of ORBAT";
         };
         class GmTitle: ctrlStatic
         {
             idc = 110;
             x = 0;
-            w = ATTRIBUTE_TITLE_W * GRID_W;
-            h = SIZE_M * GRID_H;
-            y = 4 * SIZE_M * GRID_H;
+            w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
+            y = QUOTE(4 * SIZE_M * GRID_H);
             colorBackground[] = {0,0,0,0};
             style = ST_RIGHT;
             text = "Marker icon";
             tooltip = "Choose icon to use for this group. Use the empty icon to not use an icon";
         };
-        class Icon: ctrlToolbox
+        class Icon: ctrlToolBox
         {
             idc = 111;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            h = 12.25 * SIZE_M * GRID_H;
-            y = 4 * SIZE_M * GRID_H;
+            h = QUOTE(12.25 * SIZE_M * GRID_H);
+            y = QUOTE(4 * SIZE_M * GRID_H);
             rows = 7;
             columns = 7;
             strings[] = {GROUP_MARKER_PREVIEW};
@@ -270,18 +270,18 @@ class ORBATSettings : Toolbox
         class ColourTitle: GmTitle
         {
             idc = 112;
-            y = (4+12.25+0.15) * SIZE_M * GRID_H;
+            y = QUOTE((4+12.25+0.15) * SIZE_M * GRID_H);
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
-        class ColourValue: ctrlToolbox
+        class ColourValue: ctrlToolBox
         {
             idc = 113;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            y = (4+12.25+0.15) * SIZE_M * GRID_H;
-            h = 1.75 * SIZE_M * GRID_H;
+            y = QUOTE((4+12.25+0.15) * SIZE_M * GRID_H);
+            h = QUOTE(1.75 * SIZE_M * GRID_H);
 
             rows = 1;
             columns = 7;
@@ -319,47 +319,47 @@ class ORBATSettings : Toolbox
         class MarkerTitle: GmTitle
         {
             idc = 114;
-            y = (4+14+0.3) * SIZE_M * GRID_H;
+            y = QUOTE((4+14+0.3) * SIZE_M * GRID_H);
             text = "Marker text";
             tooltip = "Text to display alongside the marker. This should ideally be a short string e.g. 'A'";
         };
         class EditMarkerTitleValue : ctrlEdit
         {
-            y = (4+14+0.3) * SIZE_M * GRID_H;
+            y = QUOTE((4+14+0.3) * SIZE_M * GRID_H);
             idc = 115;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
         };
         class FullTitle: MarkerTitle
         {
             idc = 122;
-            y = (4+15+0.45) * SIZE_M * GRID_H;
+            y = QUOTE((4+15+0.45) * SIZE_M * GRID_H);
             text = "Briefing text";
             tooltip = "Text to display for this entry in the briefing. E.g. 'Alpha Squad', '1st Platoon'";
         };
         class EditFullTitleValue : EditMarkerTitleValue
         {
-            y = (4+15+0.45) * SIZE_M * GRID_H;
+            y = QUOTE((4+15+0.45) * SIZE_M * GRID_H);
             idc = 123;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
         };
         // Size
         class sizeTitle: GmTitle
         {
             idc = 116;
-            y = (4+16+0.6) * SIZE_M * GRID_H;
+            y = QUOTE((4+16+0.6) * SIZE_M * GRID_H);
             text = "Marker size modifier";
             tooltip = "Size modifier";
         };
-        class sizeValue: ctrlToolbox
+        class sizeValue: ctrlToolBox
         {
             idc = 117;
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
             style = ST_CENTER + ST_PICTURE + ST_KEEP_ASPECT_RATIO;
-            y = (4+16+0.6) * SIZE_M * GRID_H;
-            h = 1.75 * SIZE_M * GRID_H;
+            y = QUOTE((4+16+0.6) * SIZE_M * GRID_H);
+            h = QUOTE(1.75 * SIZE_M * GRID_H);
             colorBackground[] = {1,1,1,0.3};
 
             rows = 1;
@@ -395,17 +395,17 @@ class ORBATSettings : Toolbox
         {
             idc = 118;
             text = "Ok";
-            y = 23.5 * SIZE_M * GRID_H;
-            w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6;
-            x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*1.5 + SIZE_M * GRID_W;
-            h = SIZE_M * GRID_H;
+            y = QUOTE(23.5 * SIZE_M * GRID_H);
+            w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6);
+            x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*1.5 + SIZE_M * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
             action = "['editOrbatEntryClickOkay',_this] call (uinamespace getvariable 'ORBATSettings_script');";
         };
         class EditOrbatEntryCancel : EditOrbatEntryOk
         {
             idc = 119;
             text = "Cancel";
-            x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*3.5 + SIZE_M * GRID_W;
+            x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*3.5 + SIZE_M * GRID_W);
             action = "['editOrbatEntryClickCancel',_this] call (uinamespace getvariable 'ORBATSettings_script');";
         };
 

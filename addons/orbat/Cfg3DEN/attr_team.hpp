@@ -14,17 +14,17 @@ class TMF_ORBAT_team: Combo
         class Title: ctrlStatic {
             style = 0x01;
             x = 0;
-            w = ATTRIBUTE_TITLE_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
             colorBackground[] = {0,0,0,0};
         };
         class ValueRole: ctrlCombo
         {
             idc = 100;
             onLoad = "uiNamespace setVariable ['AttributeTMF_Orbat_team',_this select 0];";
-            x = ATTRIBUTE_TITLE_W * GRID_W;
-            w = ATTRIBUTE_CONTENT_W * GRID_W;
-            h = SIZE_M * GRID_H;
+            x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+            w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+            h = QUOTE(SIZE_M * GRID_H);
         };
     };
 };

@@ -22,23 +22,23 @@ class ScrollBar;
 class GVAR(RscButtonMenu): RscButtonMenu {
     style = "0x02 + 0x0C";
     font = "RobotoCondensed";
-    sizeEx = TMF_ADMINMENU_STD_SIZEX_L;
+    sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX_L);
     size = "(((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) * 0.9)";
     h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
 };
 
 class GVAR(RscText): RscText {
-    sizeEx = TMF_ADMINMENU_STD_SIZEX;
+    sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
 };
 
 class GVAR(RscTextLarge): RscText {
-    sizeEx = TMF_ADMINMENU_STD_SIZEX_L;
+    sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX_L);
 };
 
 class GVAR(RscSpectatorControlTableText): RscText {
-    sizeEx = TMF_ADMINMENU_STD_SIZEX;
+    sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
     h = "1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)";
-    w = (6/10) * TMF_ADMINMENU_RESP_W_COL1;
+    w = QUOTE((6/10) * TMF_ADMINMENU_RESP_W_COL1);
     x = 0;
     y = 0;
 };
@@ -54,7 +54,7 @@ class GVAR(RscEditMultiCode): RscEditMulti {
 
 class GVAR(RscCombo): RscCombo {
     font = "RobotoCondensed";
-    sizeEx = TMF_ADMINMENU_STD_SIZEX;
+    sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
 };
 
 class GVAR(RscTextIcon): RscText {
@@ -64,12 +64,12 @@ class GVAR(RscTextIcon): RscText {
 
 class GVAR(RscListBox): RscListBox {
     font = "RobotoCondensed";
-    sizeEx = TMF_ADMINMENU_STD_SIZEX;
+    sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
 };
 
 class GVAR(RscListNBox): RscListNBox {
     font = "RobotoCondensed";
-    sizeEx = TMF_ADMINMENU_STD_SIZEX;
+    sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
 };
 
 class ADDON
@@ -168,40 +168,40 @@ class ADDON
         class GroupDashboard: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_DASH;
-            w = TMF_GROUPBASE_W;
-            h = TMF_GROUPBASE_H;
+            w = QUOTE(TMF_GROUPBASE_W);
+            h = QUOTE(TMF_GROUPBASE_H);
             #include "dashboard.hpp"
         };
 
         class GroupPlayerManagement: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_PMAN;
-            w = TMF_GROUPBASE_W;
-            h = TMF_GROUPBASE_H;
+            w = QUOTE(TMF_GROUPBASE_W);
+            h = QUOTE(TMF_GROUPBASE_H);
             #include "playerManagement.hpp"
         };
 
         class GroupRespawn: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_RESP;
-            w = TMF_GROUPBASE_W;
-            h = TMF_GROUPBASE_H;
+            w = QUOTE(TMF_GROUPBASE_W);
+            h = QUOTE(TMF_GROUPBASE_H);
             #include "respawn.hpp"
         };
 
         class GroupEndMission: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_ENDM;
-            w = TMF_GROUPBASE_W;
-            h = TMF_GROUPBASE_H;
+            w = QUOTE(TMF_GROUPBASE_W);
+            h = QUOTE(TMF_GROUPBASE_H);
             #include "endMission.hpp"
         };
 
         class GroupMessageLog: GroupBase
         {
             idc = IDC_TMF_ADMINMENU_G_MSGS;
-            w = TMF_GROUPBASE_W;
-            h = TMF_GROUPBASE_H;
+            w = QUOTE(TMF_GROUPBASE_W);
+            h = QUOTE(TMF_GROUPBASE_H);
             #include "messageLog.hpp"
         };
 
@@ -275,10 +275,10 @@ class GVAR(respawnMapDialog) {
         {
             idc = IDC_TMF_ADMINMENU_RESP_MAP_CONTROL;
             type = 100;
-            x = 0 * safeZoneW + safeZoneX;
-            y = 0 * safeZoneH + safeZoneY;
-            w = 1 * safeZoneW;
-            h = 1 * safeZoneH;
+            x = QUOTE(0 * safeZoneW + safeZoneX);
+            y = QUOTE(0 * safeZoneH + safeZoneY);
+            w = QUOTE(1 * safeZoneW);
+            h = QUOTE(1 * safeZoneH);
             onDraw = QUOTE(_this call FUNC(respawn_mapDrawIcons));
             onSetFocus = QUOTE(_this call FUNC(respawn_mapLoaded));
             onMouseButtonDown = QUOTE(_this call FUNC(respawn_mapClick));
@@ -300,10 +300,10 @@ class GVAR(adminEyeDialog) {
         {
             idc = IDC_TMF_ADMINMENU_ADME_MAP_CONTROL;
             type = 100;
-            x = 0 * safeZoneW + safeZoneX;
-            y = 0 * safeZoneH + safeZoneY;
-            w = 1 * safeZoneW;
-            h = 1 * safeZoneH;
+            x = QUOTE(0 * safeZoneW + safeZoneX);
+            y = QUOTE(0 * safeZoneH + safeZoneY);
+            w = QUOTE(1 * safeZoneW);
+            h = QUOTE(1 * safeZoneH);
             onDraw = QUOTE(_this call FUNC(adminEye_draw));
             onMouseButtonDown = QUOTE(_this call FUNC(adminEye_onClick));
             onSetFocus = QUOTE(_this call FUNC(adminEye_onLoad));

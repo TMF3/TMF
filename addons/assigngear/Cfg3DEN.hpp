@@ -81,8 +81,8 @@ class Cfg3DEN
                         expression = QUOTE([ARR_2(_this, _value)] call FUNC(vehicleGear_init));
                         control = QGVAR(AmmoBox);
                     };
-                }
-            }
+                };
+            };
         };
     };
     class Attributes
@@ -105,7 +105,10 @@ class Cfg3DEN
 
         // AI Gear module controls
         class GVARMAIN(DOUBLES(aigear,faction)) : Combo {
-            INIT_CONTROL(GVARMAIN(AttributesFaction),ADDON)
+            scriptName = QGVARMAIN(AttributesFaction);
+            scriptPath = QUOTE(ADDON);
+            onLoad = QUOTE([ARR_5('onLoad',_this,QQGVARMAIN(AttributesFaction),QUOTE(QUOTE(ADDON)),false)] call (uiNamespace getVariable 'BIS_fnc_initDisplay'));
+            onUnload = QUOTE([ARR_5('onUnload',_this,QQGVARMAIN(AttributesFaction),QUOTE(QUOTE(ADDON)),false)] call (uiNamespace getVariable 'BIS_fnc_initDisplay'));
         };
 
         class GVARMAIN(loadout) : Combo {
@@ -173,9 +176,9 @@ class Cfg3DEN
                             (_this select 0) lbData (_this select 1)\
                         ] call (missionNamespace getVariable 'TMF_assignGear_fnc_loadRoles');\
                     ";
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
-                    w = ATTRIBUTE_CONTENT_W * GRID_W;
-                    h = SIZE_M * GRID_H;
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+                    w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
                 };
             };
         };
@@ -203,17 +206,17 @@ class Cfg3DEN
                 class Title: ctrlStatic {
                     style = 0x01;
                     x = 0;
-                    w = ATTRIBUTE_TITLE_W * GRID_W;
-                    h = SIZE_M * GRID_H;
+                    w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
                     colorBackground[] = {0,0,0,0};
                 };
                 class ValueRole: ctrlCombo
                 {
                     idc = 100;
                     onLoad = "uiNamespace setVariable ['AttributeTMF_Role',_this select 0];";
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
-                    w = ATTRIBUTE_CONTENT_W * GRID_W;
-                    h = SIZE_M * GRID_H;
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+                    w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
                 };
             };
         };
@@ -221,14 +224,14 @@ class Cfg3DEN
             onLoad = QUOTE( [ARR_2(_this select 0, 'onLoad')] call FUNC(gui_vehicleGear_selector) );
             attributeLoad = QUOTE([ARR_2(_this, _value)] call FUNC(gui_vehicleGear_load));
             attributeSave = QUOTE([_this] call FUNC(gui_vehicleGear_save));
-            h = (22 * ATTRIBUTE_CONTENT_H + 1) * GRID_H;
+            h = QUOTE((22 * ATTRIBUTE_CONTENT_H + 1) * GRID_H);
             class Controls: Controls
             {
                 class CategoryTitle: ctrlStatic {
                     x = 0;
                     y = 0;
-                    w = ATTRIBUTE_TITLE_W * GRID_W;
-                    h = SIZE_XL * GRID_H;
+                    w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+                    h = QUOTE(SIZE_XL * GRID_H);
                     text = "Category";
                     style = ST_RIGHT;
                     colorBackground[] = {0,0,0,0};
@@ -236,10 +239,10 @@ class Cfg3DEN
                 class CategoryValue: ctrlCombo
                 {
                     idc = IDC_VEHICLEGEAR_CATEGORY;
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
                     y = 0;
-                    w = ATTRIBUTE_CONTENT_W * GRID_W;
-                    h = SIZE_M * GRID_H;
+                    w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
                     onLBSelChanged = QUOTE( \
                         params [ARR_2('_control', '_index')]; \
                         [ARR_3( \
@@ -253,18 +256,18 @@ class Cfg3DEN
                     text = "Faction";
                     style = ST_RIGHT;
                     x = 0;
-                    y = 1 * SIZE_XL * GRID_H;
-                    w = ATTRIBUTE_TITLE_W * GRID_W;
-                    h = SIZE_XL * GRID_H;
+                    y = QUOTE(1 * SIZE_XL * GRID_H);
+                    w = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+                    h = QUOTE(SIZE_XL * GRID_H);
                     colorBackground[] = {0,0,0,0};
                 };
                 class FactionValue: ctrlCombo
                 {
                     idc = IDC_VEHICLEGEAR_FACTION;
-                    x = ATTRIBUTE_TITLE_W * GRID_W;
-                    y = 1 * SIZE_XL * GRID_H;
-                    w = ATTRIBUTE_CONTENT_W * GRID_W;
-                    h = SIZE_M * GRID_H;
+                    x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
+                    y = QUOTE(1 * SIZE_XL * GRID_H);
+                    w = QUOTE(ATTRIBUTE_CONTENT_W * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
                     onLBSelChanged = QUOTE( \
                         params [ARR_2('_control', '_index')]; \
                         [ARR_3( \
@@ -277,15 +280,15 @@ class Cfg3DEN
                 class Title2: Title
                 {
                     text = "$STR_3den_attributes_ammobox_title2_text";
-                    y = 2 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    y = QUOTE(2 * ATTRIBUTE_CONTENT_H * GRID_H);
                 };
                 class Filter: ctrlToolboxPictureKeepAspect
                 {
                     idc = IDC_VEHICLEGEAR_FILTER;
-                    x = ATTRIBUTE_CONTENT_H * GRID_W;
-                    y = 3 * ATTRIBUTE_CONTENT_H * GRID_H;
-                    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
-                    h = 2 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(3 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W);
+                    h = QUOTE(2 * ATTRIBUTE_CONTENT_H * GRID_H);
                     rows = 1;
                     columns = 4;
                     onToolBoxSelChanged = QUOTE( \
@@ -305,37 +308,37 @@ class Cfg3DEN
                 };
                 class ListSortBackground: ctrlStatic
                 {
-                    x = ATTRIBUTE_CONTENT_H * GRID_W;
-                    y = 5 * ATTRIBUTE_CONTENT_H * GRID_H;
-                    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - ATTRIBUTE_CONTENT_H) * GRID_W;
-                    h = ATTRIBUTE_CONTENT_H * GRID_H;
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(5 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - ATTRIBUTE_CONTENT_H) * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
                     colorBackground[] = {0,0,0,1};
                 };
                 class ListSort: ctrlListNBox
                 {
                     idc = IDC_VEHICLEGEAR_LISTSORT;
-                    x = ATTRIBUTE_CONTENT_H * GRID_W;
-                    y = 5 * ATTRIBUTE_CONTENT_H * GRID_H;
-                    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
-                    h = ATTRIBUTE_CONTENT_H * GRID_H;
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(5 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
                     disableOverflow = 1;
                     columns[] = {0,0.60,0.82,0.89,1};
                 };
                 class ListBackground: ctrlStatic
                 {
-                    x = ATTRIBUTE_CONTENT_H * GRID_W;
-                    y = 6 * ATTRIBUTE_CONTENT_H * GRID_H;
-                    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - ATTRIBUTE_CONTENT_H) * GRID_W;
-                    h = 13 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(6 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - ATTRIBUTE_CONTENT_H) * GRID_W);
+                    h = QUOTE(13 * ATTRIBUTE_CONTENT_H * GRID_H);
                     colorBackground[] = {1,1,1,0.1};
                 };
                 class List: ctrlListNBox
                 {
                     idc = IDC_VEHICLEGEAR_LIST;
-                    x = ATTRIBUTE_CONTENT_H * GRID_W;
-                    y = 6 * ATTRIBUTE_CONTENT_H * GRID_H;
-                    w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W;
-                    h = 13 * ATTRIBUTE_CONTENT_H * GRID_H;
+                    x = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    y = QUOTE(6 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 5) * GRID_W);
+                    h = QUOTE(13 * ATTRIBUTE_CONTENT_H * GRID_H);
                     drawSideArrows = 1;
                     idcLeft = IDC_VEHICLEGEAR_SUBTRACT;
                     idcRight = IDC_VEHICLEGEAR_ADD;
@@ -348,10 +351,10 @@ class Cfg3DEN
                 {
                     idc = IDC_VEHICLEGEAR_CLEAR;
                     text = "Clear";
-                    x = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 25) * GRID_W;
-                    y = 19 * ATTRIBUTE_CONTENT_H * GRID_H;
-                    w = 25 * GRID_W;
-                    h = ATTRIBUTE_CONTENT_H * GRID_H;
+                    x = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - 25) * GRID_W);
+                    y = QUOTE(19 * ATTRIBUTE_CONTENT_H * GRID_H);
+                    w = QUOTE(25 * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
                     onButtonClick = QUOTE( \
                         params ['_ctrlButton']; \
                         [ARR_2(ctrlParentControlsGroup _ctrlButton, 'clear')] call FUNC(gui_vehicleGear_selector); \
@@ -364,8 +367,8 @@ class Cfg3DEN
                     font = "RobotoCondensedBold";
                     x = -1;
                     y = -1;
-                    w = ATTRIBUTE_CONTENT_H * GRID_W;
-                    h = ATTRIBUTE_CONTENT_H * GRID_H;
+                    w = QUOTE(ATTRIBUTE_CONTENT_H * GRID_W);
+                    h = QUOTE(ATTRIBUTE_CONTENT_H * GRID_H);
                 };
                 class ArrowRight: ArrowLeft
                 {

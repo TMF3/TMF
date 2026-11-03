@@ -2,9 +2,9 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
 {
     idc = -1;
     x = "safeZoneX + (0) * (safeZoneW min (safeZoneH * 4 / 3))";
-    y = 0 * safeZoneH + safeZoneY;
+    y = QUOTE(0 * safeZoneH + safeZoneY);
     w = "(0.08) * (safeZoneW min (safeZoneH * 4 / 3))";
-    h = 0.06 * safeZoneH;
+    h = QUOTE(0.06 * safeZoneH);
     onMouseZChanged = "[""MouseZChanged"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseButtonDown = "[""MouseButtonDown"",_this] call tmf_spectator_fnc_mouseHandler";
     onMouseButtonUp = "[""MouseButtonUp"",_this] call tmf_spectator_fnc_mouseHandler";
@@ -18,9 +18,9 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             x = 0;
             y = 0;
             w = "(0.08) * (safeZoneW min (safeZoneH * 4 / 3))";
-            h = 0.02 * safeZoneH;
+            h = QUOTE(0.02 * safeZoneH);
             style = 48 + 2048 + 0x02; // picture + no stretch + center (not sure if works) + 0x800
-            sizeEx = 1 * safeZoneH;
+            sizeEx = QUOTE(1 * safeZoneH);
         };
         class GVAR(Name): RscText
         {
@@ -30,10 +30,10 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             colorBackground[] = { 1, 1, 1, 0 };
             colorText[] = { 1, 1, 1, 1 };
             x = 0;
-            y = 0.02 * safeZoneH;
+            y = QUOTE(0.02 * safeZoneH);
             w = "(0.08) * (safeZoneW min (safeZoneH * 4 / 3))";
-            h = 0.02 * safeZoneH;
-            sizeEx = 0.018 * safeZoneH;
+            h = QUOTE(0.02 * safeZoneH);
+            sizeEx = QUOTE(0.018 * safeZoneH);
             shadow = 2;
         };
         class GVAR(Detail): GVAR(Name)
@@ -41,10 +41,10 @@ class GVAR(EntityTag): ctrlControlsGroupNoScrollbars
             idc = 3;
             text = ""; //--- ToDo: Localize;
             x = 0;
-            y = 0.04 * safeZoneH;
+            y = QUOTE(0.04 * safeZoneH);
             w = "(0.08) * (safeZoneW min (safeZoneH * 4 / 3))";
-            h = 0.02 * safeZoneH;
-            sizeEx = 0.013 * safeZoneH;
+            h = QUOTE(0.02 * safeZoneH);
+            sizeEx = QUOTE(0.013 * safeZoneH);
         };
     };
 };
@@ -58,9 +58,9 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 x = 0;
                 y = 0;
                 w = "(0.08) * (safeZoneW min (safeZoneH * 4 / 3))";
-                h = 0.035 * safeZoneH;
+                h = QUOTE(0.035 * safeZoneH);
                 style = 48 + 2048 + 0x02; // picture + no stretch + center (not sure if works) + 0x800
-                sizeEx = 1 * safeZoneH;
+                sizeEx = QUOTE(1 * safeZoneH);
             };
             class GVAR(Name): RscText
             {
@@ -70,10 +70,10 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 colorBackground[] = { 1, 1, 1, 0 };
                 colorText[] = { 1, 1, 1, 1 };
                 x = 0;
-                y = 0.04 * safeZoneH;
+                y = QUOTE(0.04 * safeZoneH);
                 w = "(0.08) * (safeZoneW min (safeZoneH * 4 / 3))";
-                h = 0.02 * safeZoneH;
-                sizeEx = 0.018 * safeZoneH;
+                h = QUOTE(0.02 * safeZoneH);
+                sizeEx = QUOTE(0.018 * safeZoneH);
                 shadow = 2;
             };
             class GVAR(Detail): GVAR(Name)
@@ -81,10 +81,10 @@ class GVAR(GroupTag) : GVAR(EntityTag) {
                 idc = 3;
                 text = ""; //--- ToDo: Localize;
                 x = 0;
-                y = 0.08 * safeZoneH;
+                y = QUOTE(0.08 * safeZoneH);
                 w = "(0.08) * (safeZoneW min (safeZoneH * 4 / 3))";
-                h = 0.02 * safeZoneH;
-                sizeEx = 0.013 * safeZoneH;
+                h = QUOTE(0.02 * safeZoneH);
+                sizeEx = QUOTE(0.013 * safeZoneH);
             };
         };
 };

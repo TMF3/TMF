@@ -3,7 +3,7 @@ class Controls
     class LabelFilter: RscText
     {
         text = "Filter:";
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         x = "0";
         y = "0";
         w = "2.1 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
@@ -12,7 +12,7 @@ class Controls
     class ComboFilterSide: RscCombo
     {
         idc = IDC_TMF_ADMINMENU_PMAN_FILTER_SIDE;
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         font = "RobotoCondensed";
         x = "2.2 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         y = "0";
@@ -46,8 +46,8 @@ class Controls
     {
         x = "0";
         y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
-        w = TMF_ADMINMENU_PMAN_W_LISTGROUP;
-        h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+        w = QUOTE(TMF_ADMINMENU_PMAN_W_LISTGROUP);
+        h = QUOTE(TMF_ADMINMENU_PMAN_H_LISTGROUP);
         colorBackground[] = {0, 0, 0, 0.3};
         style = "0x02";
     };
@@ -57,8 +57,8 @@ class Controls
         idc = IDC_TMF_ADMINMENU_PMAN_LIST;
         style = 32 + 16; // LB_MULTI + ST_MULTI
         onLBSelChanged = QUOTE(_this call FUNC(playerManagement_listSelChange););
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
-        sizeEx2 = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
+        sizeEx2 = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         pictureColor[] = {1,1,1,1}; // Picture color
         pictureColorSelect[] = {1,1,1,1}; // Selected picture color
         pictureColorDisabled[] = {1,1,1,0.5}; // Disabled picture color
@@ -69,8 +69,8 @@ class Controls
         itemSpacing = 0;
         x = 0;
         y = "1.1 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
-        w = TMF_ADMINMENU_PMAN_W_LISTGROUP;
-        h = TMF_ADMINMENU_PMAN_H_LISTGROUP;
+        w = QUOTE(TMF_ADMINMENU_PMAN_W_LISTGROUP);
+        h = QUOTE(TMF_ADMINMENU_PMAN_H_LISTGROUP);
     };
 
     /*
@@ -79,7 +79,7 @@ class Controls
     class LabelSelect: RscText
     {
         text = "Select...";
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         x = "30.9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         y = "0";
         w = "6.9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
@@ -110,7 +110,7 @@ class Controls
     {
         idc = -1;
         text = "With Selected...";
-        sizeEx = TMF_ADMINMENU_STD_SIZEX;
+        sizeEx = QUOTE(TMF_ADMINMENU_STD_SIZEX);
         x = "30.9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";
         y = "4.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25) + (safeZoneY + (safeZoneH - (((safeZoneW / safeZoneH) min 1.2) / 1.2))/2)";
         w = "6.9 * (((safeZoneW / safeZoneH) min 1.2) / 40)";

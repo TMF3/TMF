@@ -153,49 +153,49 @@ class Cfg3DEN
             attributeLoad = "['attributeLoad',_this] call (uinamespace getvariable 'BriefingSettings_script');";
             attributeSave = "['attributeSave',_this] call (uinamespace getvariable 'BriefingSettings_script');";
             
-            w = (ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W;
-            h = 16 * SIZE_M * GRID_H;
+            w = QUOTE((ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W) * GRID_W);
+            h = QUOTE(16 * SIZE_M * GRID_H);
             class Controls
             {
                 class BriefTitle : ctrlStatic
                 {
                     text = "Briefings:";
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W;
-                    h = 1 * SIZE_M * GRID_H;                    
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) * GRID_W);
+                    h = QUOTE(1 * SIZE_M * GRID_H);                    
                     y = 0;
-                    x = SIZE_M * GRID_W;
+                    x = QUOTE(SIZE_M * GRID_W);
                     colorBackground[] = {0,0,0,0};
                 };                    
                 class BriefeesTitle : BriefTitle
                 {
                     text = "Those to be briefed:";
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M)/2) * GRID_W;
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W-SIZE_M)/2) * GRID_W);
                 };
                 class ButtonBriefeeMake : RscButtonMenu
                 {
                     text = "Grant";
-                    h = SIZE_M * GRID_H;
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2;
-                    y = 1 * SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/2);
+                    y = QUOTE(1 * SIZE_M * GRID_H);
                     action = "['BriefTreeGive',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Make the selected element recieve selected briefing.";
                 };
                 class ButtonBriefeeRemove: ButtonBriefeeMake
                 {
                     text = "Remove";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2) ) * GRID_W)/2) + (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W));
                     action = "['BriefTreeRemove',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Remove the selected element from recieveing the selected briefing.";
                 };
                 class BriefeeTree : ctrlTree
                 {
                     idc = 189437;
-                    x = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W; //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
-                    y = 2 * SIZE_M * GRID_H;
-                    h = 14 * SIZE_M * GRID_H;
+                    x = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W+SIZE_M)/2) * GRID_W);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W - SIZE_M)/2)) * GRID_W); //(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) * GRID_W)/2) - SIZE_M;
+                    y = QUOTE(2 * SIZE_M * GRID_H);
+                    h = QUOTE(14 * SIZE_M * GRID_H);
                     multiselectEnabled = 1;
                     disableKeyboardSearch = 1;
                     colorDisabled[] = {1,1,1,0.25};
@@ -204,43 +204,43 @@ class Cfg3DEN
                 };
                 class ListBackground: ctrlStatic
                 {
-                    x = SIZE_M * GRID_W;
-                    y = 2 * SIZE_M * GRID_H;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 14 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(2 * SIZE_M * GRID_H);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(14 * SIZE_M * GRID_H);
                     colorBackground[] = {1,1,1,0.1};
                 };
                 class ButtonBriefAdd : RscButtonMenu
                 {
                     text = "Add";
-                    h = SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
-                    w = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3;
-                    y = 1 * SIZE_M * GRID_H;
+                    h = QUOTE(SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3);
+                    y = QUOTE(1 * SIZE_M * GRID_H);
                     action = "['BriefAddClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Add a new briefing.";
                 };
                 class ButtonBriefEdit: ButtonBriefAdd
                 {
                     text = "Edit";
-                    x = ((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W;
+                    x = QUOTE(((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3 + SIZE_M * GRID_W);
                     action = "['BriefEditClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Edit the selected briefing.";
                 };
                 class ButtonBriefDel : ButtonBriefAdd
                 {
                     text = "Delete";
-                    x = (((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W;
+                    x = QUOTE((((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W)/3) *2 + SIZE_M * GRID_W);
                     action = "['BriefDelClick',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                     tooltip = "Delete the selected briefing.";
                 };
                 class BriefList: ctrlListNBox
                 {
                     idc = 101;
-                    x = SIZE_M * GRID_W;
-                    y = 2 * SIZE_M * GRID_H;
-                    w = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 14 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(2 * SIZE_M * GRID_H);
+                    w = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W)/2) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(14 * SIZE_M * GRID_H);
                     drawSideArrows = 0;//1;
                     idcLeft = -1;
                     idcRight = -1;
@@ -252,26 +252,26 @@ class Cfg3DEN
                 class EditBriefingBackgroundS: ctrlStatic
                 {
                     idc = 313208;
-                    x = SIZE_M * GRID_W;
-                    y = 1 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W; //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
-                    h = 15 * SIZE_M * GRID_H;
+                    x = QUOTE(SIZE_M * GRID_W);
+                    y = QUOTE(1 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W); //(ATTRIBUTE_TITLE_W + ATTRIBUTE_CONTENT_W - SIZE_M) * GRID_W;
+                    h = QUOTE(15 * SIZE_M * GRID_H);
                     colorBackground[] = {0.33,0.33,0.33,1};
                 };
                 class EditBriefingButtonOk : ButtonBriefeeMake
                 {
                     idc = 313209;
                     text = "Okay";
-                    y = 12.25 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6;
-                    x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*1.5 + SIZE_M * GRID_W;
+                    y = QUOTE(12.25 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6);
+                    x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*1.5 + SIZE_M * GRID_W);
                     action = "['BriefingEditClickOkay',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                 };
                 class EditBriefingButtonCancel : EditBriefingButtonOk
                 {
                     idc = 313210;
                     text = "Cancel";
-                    x = (((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*3.5 + SIZE_M * GRID_W;
+                    x = QUOTE((((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W / 6)*3.5 + SIZE_M * GRID_W);
                     action = "['BriefingDelClickCancel',_this] call (uinamespace getvariable 'BriefingSettings_script');";
                 };
                 
@@ -279,9 +279,9 @@ class Cfg3DEN
                 {
                     idc = 313201;
                     text = "Add/Edit Briefing";
-                    y = 1 * SIZE_M * GRID_H;
-                    x = SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
+                    y = QUOTE(1 * SIZE_M * GRID_H);
+                    x = QUOTE(SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
                     colorBackground[] = {0.1,0.1,0.1,1};
                 };
                 
@@ -289,9 +289,9 @@ class Cfg3DEN
                 {
                     idc = 313202;
                     text = "Briefing Name:";
-                    y = 3 * SIZE_M * GRID_H;
-                    x = 2 * SIZE_M * GRID_W;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
+                    y = QUOTE(3 * SIZE_M * GRID_H);
+                    x = QUOTE(2 * SIZE_M * GRID_W);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
                 };
                 class EditBriefingShort : ctrlEdit
                 {
@@ -306,10 +306,10 @@ class Cfg3DEN
 
                     canModify = 1; // True (1) to allow text editing, 0 to disable it
                     autocomplete = ""; // Text autocomplete, can be "scripting" (scripting commands) or "general" (previously typed text)
-                    y = 4.15 * SIZE_M * GRID_H;
-                    x = 2 * SIZE_M * GRID_W;
-                    h = SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W;
+                    y = QUOTE(4.15 * SIZE_M * GRID_H);
+                    x = QUOTE(2 * SIZE_M * GRID_W);
+                    h = QUOTE(SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (4 * SIZE_M) ) * GRID_W);
                 };
                 
                 class EditBriefingSciptName : EditBriefingShortTitle 
@@ -317,14 +317,14 @@ class Cfg3DEN
                     idc = 313207;
                     text = "Script location:";
                     tooltip = "Script location to mission root e.g. briefings\briefing_orbat.sqf";
-                    y = 5.3 * SIZE_M * GRID_H;
-                    w = ((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W;
+                    y = QUOTE(5.3 * SIZE_M * GRID_H);
+                    w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - SIZE_M ) * GRID_W);
                 };
                 
                 class EditBriefingScript : EditBriefingShort
                 {
                     idc = 313211;
-                    y = 6.45 * SIZE_M * GRID_H;
+                    y = QUOTE(6.45 * SIZE_M * GRID_H);
                 };
 
             };
