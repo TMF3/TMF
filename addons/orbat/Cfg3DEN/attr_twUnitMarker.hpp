@@ -23,7 +23,7 @@ class twUnitMarker: Toolbox
             text = "Specialist unit marker";
             tooltip = "Choose icon to use for this unit. Use the empty icon to not use an icon";
         };
-        class Icon: ctrlToolBox
+        class Icon: ctrlToolbox
         {
             idc = 100;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -47,7 +47,7 @@ class twUnitMarker: Toolbox
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
-        class ColourValue: ctrlToolBox
+        class ColourValue: ctrlToolbox
         {
             idc = 101;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);

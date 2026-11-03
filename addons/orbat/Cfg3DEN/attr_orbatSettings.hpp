@@ -23,7 +23,7 @@ class ORBATSettings : Toolbox
             colorBackground[] = {0,0,0,0};
             tooltip = "Use this to control whether group markers are shared with everyone on the same faction or instead on the same side. Changing this system will erase the previous heirarchy.";
         };
-        class Value: ctrlToolBox
+        class Value: ctrlToolbox
         {
             idc = 100;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -248,7 +248,7 @@ class ORBATSettings : Toolbox
             text = "Marker icon";
             tooltip = "Choose icon to use for this group. Use the empty icon to not use an icon";
         };
-        class Icon: ctrlToolBox
+        class Icon: ctrlToolbox
         {
             idc = 111;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -274,7 +274,7 @@ class ORBATSettings : Toolbox
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
-        class ColourValue: ctrlToolBox
+        class ColourValue: ctrlToolbox
         {
             idc = 113;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -352,7 +352,7 @@ class ORBATSettings : Toolbox
             text = "Marker size modifier";
             tooltip = "Size modifier";
         };
-        class sizeValue: ctrlToolBox
+        class sizeValue: ctrlToolbox
         {
             idc = 117;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);

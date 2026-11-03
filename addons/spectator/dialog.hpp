@@ -4,13 +4,8 @@ class RscText;
 class RscMapControl;
 class RscTree;
 class RscControlsGroup;
-class IGUIBack;
-class RscButtonMenuOK;
-class RscTitle;
 class RscStructuredText;
-class RscDebugConsole;
 class RscPicture;
-class RscXSliderH;
 class ctrlControlsGroupNoScrollbars;
 class RscControlsGroupNoScrollbars;
 
@@ -43,17 +38,39 @@ class RscSpectatorShortcutButton : RscPicture {
 };
 
 //--- Spectator
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL
 #define IDC_SPECTATOR_TMF_SPECTATOR_UNITLABEL  4945
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_UNITLIST
 #define IDC_SPECTATOR_TMF_SPECTATOR_UNITLIST  7171
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_VISION
 #define IDC_SPECTATOR_TMF_SPECTATOR_VISION  5545
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_FILTER
 #define IDC_SPECTATOR_TMF_SPECTATOR_FILTER  5546
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_BUTTON
 #define IDC_SPECTATOR_TMF_SPECTATOR_BUTTON  5547
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_TAGS
 #define IDC_SPECTATOR_TMF_SPECTATOR_TAGS  5548
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_VIEW
 #define IDC_SPECTATOR_TMF_SPECTATOR_VIEW  5549
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_COMPASS
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASS    5453
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASSLEFT    5454
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight
 #define IDC_SPECTATOR_TMF_SPECTATOR_COMPASSRight    5455
+#endif
+#ifndef IDC_SPECTATOR_TMF_SPECTATOR_MUTE
 #define IDC_SPECTATOR_TMF_SPECTATOR_MUTE 5467
+#endif
 
 
 

@@ -14,7 +14,7 @@ class Display3DEN
                 {
                     text = "TMF ORBAT Settings";
                     action = "edit3DENMissionAttributes 'TMF_ORBAT_Settings';";
-                    picture = "\x\tmf\addons\common\UI\icon_gear_ca";
+                    picture = "\x\tmf\addons\common\UI\icon_gear_ca.paa";
                 };
             };
         };

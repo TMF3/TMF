@@ -7,7 +7,7 @@ class CfgPatches
         name = "TMF: Spectator";
         author = "Head";
         url = "http://www.teamonetactical.com";
-        units[] = {};
+        units[] = {QGVAR(module)};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"tmf_common"};

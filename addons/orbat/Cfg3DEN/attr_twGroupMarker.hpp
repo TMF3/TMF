@@ -23,7 +23,7 @@ class twGroupMarker: Toolbox
             text = "Marker icon";
             tooltip = "Choose icon to use for this group. Use the empty icon to not use an icon";
         };
-        class Icon: ctrlToolBox
+        class Icon: ctrlToolbox
         {
             idc = 100;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -48,7 +48,7 @@ class twGroupMarker: Toolbox
             text = "Marker colour";
             tooltip = "Select the colour to use for the marker";
         };
-        class ColourValue: ctrlToolBox
+        class ColourValue: ctrlToolbox
         {
             idc = 101;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);
@@ -111,7 +111,7 @@ class twGroupMarker: Toolbox
             text = "Marker size modifier";
             tooltip = "Size modifier";
         };
-        class sizeValue: ctrlToolBox
+        class sizeValue: ctrlToolbox
         {
             idc = 103;
             x = QUOTE(ATTRIBUTE_TITLE_W * GRID_W);

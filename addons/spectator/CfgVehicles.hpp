@@ -7,11 +7,9 @@ class CfgVehicles
     {
         class ArgumentsBaseUnits
         {
-            class Units;
         };
         class ModuleDescription
         {
-            class AnyBrain;
         };
     };
     class GVAR(module) : Module_F

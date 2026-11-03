@@ -7,7 +7,6 @@ class Attributes
     {
         class Controls
         {
-            class Title;
         };
     };
     #include "attr_team.hpp"

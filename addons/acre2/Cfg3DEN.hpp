@@ -3,18 +3,17 @@
 #include "\a3\3DEN\UI\resincl.inc"
 
 class ctrlDefault;
-class ctrlDefaultText;// : ctrlDefault;
 class ctrlStatic;// : ctrlDefaultText;
 class ctrlListNBox;// : ctrlDefaultText;
 class ctrlTree;// : ctrlDefaultText;
 class ctrlEdit;// : ctrlDefaultText;
-class ctrlToolBox;// : ctrlDefaultText;
+class ctrlToolbox;// : ctrlDefaultText;
 
 class RscButtonMenu;
 class RscText;
 
 
-class cfgScriptPaths 
+class CfgScriptPaths 
 {
     TMF_acre2 = "x\tmf\addons\acre2\ui_scripts\"; //"
 };
@@ -215,7 +214,6 @@ class Cfg3DEN
 
     class Attributes
     {
-        class Title;
         class Toolbox; //class Toolbox: Title
         
         class TMF_AcreAddRadioActions : Toolbox {
@@ -696,7 +694,7 @@ class Cfg3DEN
                     w = QUOTE(((ATTRIBUTE_TITLE_W+ATTRIBUTE_CONTENT_W) - (2*SIZE_M) ) * GRID_W);
                     tooltip = "";
                 };
-                class EditChannelRadioChooser: ctrlToolBox
+                class EditChannelRadioChooser: ctrlToolbox
                 {
                     idc = 313205;
                     style = ST_PICTURE + ST_KEEP_ASPECT_RATIO;

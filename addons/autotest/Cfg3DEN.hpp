@@ -3,19 +3,14 @@
 #include "\a3\3DEN\UI\resincl.inc"
 
 
-class ctrlDefault;
-class ctrlDefaultText;// : ctrlDefault;
 class ctrlStatic;// : ctrlDefaultText;
 class ctrlListNBox;// : ctrlDefaultText;
-class ctrlTree;// : ctrlDefaultText;
 class ctrlEdit;// : ctrlDefaultText;
 
-class RscButtonMenu;
-class RscText;
 class RscPicture;
 
 /*
-class cfgScriptPaths
+class CfgScriptPaths
 {
     TMF_briefing = "x\tmf\addons\briefing\ui_scripts\";
 };
@@ -114,15 +109,7 @@ class Cfg3DEN
         };
         class GVAR(missionName) : Title
         {
-            attributeLoad = QUOTE(                                                                        \
-                _value = 'Scenario' get3DENMissionAttribute 'IntelBriefingName';                          \
-                (_this controlsGroupCtrl 100) ctrlSetText _value;                                         \
-                if (_value == '') then {                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
-                } else {                                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                };                                                                                        \
-            );
+            attributeLoad = QUOTE(_value = 'Scenario' get3DENMissionAttribute 'IntelBriefingName'; (_this controlsGroupCtrl 100) ctrlSetText _value; if (_value == '') then { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)'; } else { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; };);
             attributeSave = "true";
             class Controls : Controls
             {
@@ -158,19 +145,7 @@ class Cfg3DEN
         };
         class GVAR(missionSummary) : Title
         {
-            attributeLoad = QUOTE(                                                                            \
-                _value = 'Multiplayer' get3DENMissionAttribute 'IntelOverviewText';                           \
-                (_this controlsGroupCtrl 100) ctrlSetText _value;                                             \
-                if (_value == '' || _value == '*** Insert mission description here. ***') then {              \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';      \
-                } else {                                                                                      \
-                    if (((toLower _value) find 'slot') == -1) then {                                          \
-                        (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOF(UI\warning.paa)';                  \
-                    } else {                                                                                  \
-                        (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                    };                                                                                        \
-                };                                                                                            \
-            );
+            attributeLoad = QUOTE(_value = 'Multiplayer' get3DENMissionAttribute 'IntelOverviewText'; (_this controlsGroupCtrl 100) ctrlSetText _value; if (_value == '' || _value == '*** Insert mission description here. ***') then { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)'; } else { if (((toLower _value) find 'slot') == -1) then { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOF(UI\warning.paa)'; } else { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; }; };);
             attributeSave = "true";
             class Controls : Controls
             {
@@ -206,15 +181,7 @@ class Cfg3DEN
         };
         class GVAR(Author) : Title
         {
-            attributeLoad = QUOTE(                                                                        \
-                _value = 'Scenario' get3DENMissionAttribute 'Author';                                     \
-                (_this controlsGroupCtrl 100) ctrlSetText _value;                                         \
-                if ((_value find profileName)  == -1) then {                                              \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
-                } else {                                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                };                                                                                        \
-            );
+            attributeLoad = QUOTE(_value = 'Scenario' get3DENMissionAttribute 'Author'; (_this controlsGroupCtrl 100) ctrlSetText _value; if ((_value find profileName) == -1) then { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)'; } else { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; };);
             attributeSave = "true";
             class Controls : Controls
             {
@@ -249,17 +216,7 @@ class Cfg3DEN
         };
         class GVAR(minPlayer) : Title
         {
-            attributeLoad = QUOTE(                                                                        \
-                _value = 'Multiplayer' get3DENMissionAttribute 'minplayers';                              \
-                _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                  \
-                _playerCount = count (_playerCount arrayIntersect _playerCount);                          \
-                (_this controlsGroupCtrl 100) ctrlSetText (str _value);                                   \
-                if (_value > 0 && _value <= _playerCount) then {                                         \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; \
-                } else {                                                                                  \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';  \
-                };                                                                                        \
-            );
+            attributeLoad = QUOTE(_value = 'Multiplayer' get3DENMissionAttribute 'minplayers'; _playerCount = (playableUnits + switchableUnits + [player]) - [objNull]; _playerCount = count (_playerCount arrayIntersect _playerCount); (_this controlsGroupCtrl 100) ctrlSetText (str _value); if (_value > 0 && _value <= _playerCount) then { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; } else { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)'; };);
             attributeSave = "true";
             class Controls : Controls
             {
@@ -294,18 +251,7 @@ class Cfg3DEN
         };
         class GVAR(maxPlayer) : Title
         {
-            attributeLoad = QUOTE(                                                                                  \
-                _value = 'Multiplayer' get3DENMissionAttribute 'maxplayers';                                        \
-                _playerCount = (playableUnits + switchableUnits + [player]) - [objNull];                            \
-                _playerCount = count (_playerCount arrayIntersect _playerCount);                                    \
-                (_this controlsGroupCtrl 100) ctrlSetText (str _value);                                             \
-                if (_value != _playerCount || _value == 0) then {                                                   \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)';            \
-                    (_this controlsGroupCtrl 100) ctrlSetText ((str _value) + ' should be: ' + (str _playerCount)); \
-                } else {                                                                                            \
-                    (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)';           \
-                };                                                                                                  \
-            );
+            attributeLoad = QUOTE(_value = 'Multiplayer' get3DENMissionAttribute 'maxplayers'; _playerCount = (playableUnits + switchableUnits + [player]) - [objNull]; _playerCount = count (_playerCount arrayIntersect _playerCount); (_this controlsGroupCtrl 100) ctrlSetText (str _value); if (_value != _playerCount || _value == 0) then { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\plus_small_ca.paa)'; (_this controlsGroupCtrl 100) ctrlSetText ((str _value) + ' should be: ' + (str _playerCount)); } else { (_this controlsGroupCtrl 101) ctrlSetText 'PATHTOEF(briefing,UI\check_small_ca.paa)'; };);
             attributeSave = "true";
             class Controls : Controls
             {

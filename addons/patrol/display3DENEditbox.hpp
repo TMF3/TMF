@@ -1,15 +1,4 @@
 // Overload classes
-class RscText;
-class RscTitle;
-class RscListbox;
-class RscControlsGroupNoScrollbars;
-class RscPicture;
-class RscButtonMenu;
-class RscButtonMenuOK;
-class RscButtonMenuCancel;
-class RscStandardDisplay;
-class RscVignette;
-class RscMap;
 
 // Defines
 #include "\a3\ui_f\hpp\defineDIKCodes.inc"
@@ -22,13 +11,8 @@ class RscMap;
 #define MSGBOX_X    0.25
 #define MSGBOX_Y    0.25
 
-class ctrlDefault;
-class ctrlDefaultText;// : ctrlDefault;
-class ctrlStatic;// : ctrlDefaultText;
-class ctrlListNBox;// : ctrlDefaultText;
-class ctrlTree;// : ctrlDefaultText;
 class ctrlEdit;// : ctrlDefaultText;
-class ctrlToolBox;// : ctrlDefaultText;
+class ctrlToolbox;// : ctrlDefaultText;
 class ctrlStaticBackgroundDisableTiles;
 class ctrlStaticTitle;
 class ctrlStaticBackground;
@@ -103,7 +87,7 @@ class GVAR(editBox)
             h = QUOTE(10 * GRID_H);
             text = "Shape of patrol path";
         };
-        class PatrolShape : ctrlToolBox
+        class PatrolShape : ctrlToolbox
         {
             IDC  = 1337;
             x = (MSGBOX_X);
