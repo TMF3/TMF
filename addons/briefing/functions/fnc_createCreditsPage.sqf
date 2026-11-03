@@ -12,6 +12,6 @@ _text = _text + "<font size='14'>by " + getMissionConfigValue ["Author", ""] +"<
 _text = _text + "<font size='12'>Terrain: " + getText (configFile >> "CfgWorlds" >> worldName >> "description") + "</font>";
 
 
-_text = _text + "<br/><br/><font size='12'>This mission was created using TMF (Teamwork Mission Framework).<br/>TMF Mod v" + getText (ConfigFile >> "CfgPatches" >> "tmf_main" >> "versionStr") + "<br/>TMF Mission Template v" + (getMissionConfigValue ["tmf_version",[0,0,0]] joinString ".") + "</font>";
+_text = _text + "<br/><br/><font size='12'>This mission was created using TMF (Teamwork Mission Framework).<br/>TMF Mod v" + getText (configFile >> "CfgPatches" >> "tmf_main" >> "versionStr") + "<br/>TMF Mission Template v" + (getMissionConfigValue ["tmf_version",[0,0,0]] joinString ".") + "</font>";
 
 player createDiaryRecord ["Diary", ["Credits", _text]];

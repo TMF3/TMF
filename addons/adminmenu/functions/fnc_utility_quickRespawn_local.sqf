@@ -65,7 +65,7 @@ if (_oldUnitdata isEqualType []) then {
     [player, true] call EFUNC(orbat,setup);
 
     // Add all the respawned groups to the map markers as well.
-    [] call FUNC(respawnGroupMarkerUpdate);
+    [] call EFUNC(respawn,respawnGroupMarkerUpdate);
 } else {
     systemChat "[TMF Admin Menu] Quick Respawn failed: old unit data unavailable";
 };

@@ -37,7 +37,7 @@ fn_findNextFreeId = {
         _root call fn_nextHelper;
     } forEach OrbatSettings_Array;
 
-    if (count _usedIDs == 0) exitWith {0};
+    if (_usedIDs isEqualTo []) exitWith {0};
     _usedIDs sort false;
     //Return last ID + 1. Alternatively go conservatively and re-use?
     (_usedIDs select 0)+1

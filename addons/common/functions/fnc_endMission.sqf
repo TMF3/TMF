@@ -20,14 +20,14 @@ if (missionNamespace getVariable [QGVAR(ending),false]) exitWith {}; // Already 
 
 // Message admins
 private _message = format["[TMF] Ending mission..."];
-[_message,'tac1_admin_fnc_messageAdmin',true] call BIS_fnc_MP;
+[_message, false, "Mission"] call EFUNC(adminmenu,log);
 
 GVAR(endMissionWait) = -1;
 GVAR(ending) = true;
 
 if (!isNil "ocap_fnc_exportData") then {
     _message = format["[TMF] OCAP detected exporting (10 second timeout)..."];
-    [_message,'tac1_admin_fnc_messageAdmin',true] call BIS_fnc_MP;
+    [_message, false, "Mission"] call EFUNC(adminmenu,log);
 
     GVAR(endMissionWait) = time + 10; //Give OCAP 10 seconds.
 
@@ -36,7 +36,7 @@ if (!isNil "ocap_fnc_exportData") then {
          {
             [] call ocap_fnc_exportData;
             private _message = format["[TMF] OCAP Export complete. Ending..."];
-            [_message,'tac1_admin_fnc_messageAdmin',true] call BIS_fnc_MP;
+            [_message, false, "Mission"] call EFUNC(adminmenu,log);
             GVAR(endMissionWait) = -1;
          } call CBA_fnc_directCall;
     };
@@ -49,5 +49,5 @@ if (!isNil "ocap_fnc_exportData") then {
 //TODO - Replace with our own splashscreen
 //[endName,isVictory,fadeType,playMusic,completeTasks] spawn BIS_fnc_endMission;
 [{time > GVAR(endMissionWait)},{
-    [(_this select 0),'BIS_fnc_endMission',true] call BIS_fnc_MP; // End the mission for everyone.
+    (_this select 0) remoteExec ["BIS_fnc_endMission", 0]; // End the mission for everyone.
 }, [_this]] call CBA_fnc_waitUntilAndExecute;

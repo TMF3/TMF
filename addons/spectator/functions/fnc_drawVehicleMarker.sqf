@@ -14,12 +14,12 @@ private _pos = (getPosVisual _veh);
 private _size = 19;
 private _icon = _veh getVariable [QGVAR(mapIcon),""];
 if(_icon == "") then {
-    _icon = getText (configfile >> "CfgVehicles" >> typeOf (vehicle _veh) >> "icon");
+    _icon = getText (configOf (vehicle _veh) >> "icon");
     _veh setVariable [QGVAR(mapIcon),_icon];
 };
 private _vehicleName = _veh getVariable [QGVAR(_vehicleName),""];
 if(_vehicleName == "") then {
-    _vehicleName = getText ( configFile >> "CfgVehicles" >> typeOf _veh >> "displayname");
+    _vehicleName = getText ( configOf _veh >> "displayname");
     _veh setVariable [QGVAR(_vehicleName),_vehicleName];
 };
 if(isPlayer (effectiveCommander _veh)) then {

@@ -45,7 +45,7 @@ if (!alive player) exitWith {};
 
 
         //Call ACRE API
-        if (count _languagesToSpeak > 0) then {
+        if (_languagesToSpeak isNotEqualTo []) then {
             _languagesToSpeak call acre_api_fnc_babelSetSpokenLanguages;
             [_languagesToSpeak select 0] call acre_api_fnc_babelSetSpeakingLanguage;
         };
@@ -168,19 +168,15 @@ if (!alive player) exitWith {};
 
 
 
-    private _text = "<br/><font size='16'>RADIO CHANNEL LISTING</font>";
+    private _textParts = ["<br/><font size='16'>RADIO CHANNEL LISTING</font>"];
     {
         private _radioSettingsIndex = _forEachIndex;
         if (count (_channelsProcessed select _radioSettingsIndex) > 0) then { // If at least one channel is defined.
-            _text = _text + "<br/>For: ";
-            _radioFreqInfo = _x;
-            _radioList = _radioFreqInfo select 0;
-            _radio = (_radioList select 0);
-            {
-                if (_forEachIndex != 0) then {_text = _text + ", "; };
-                _text = _text + getText (configfile >> "CfgWeapons" >> _x >> "displayName");
-            } forEach _radioList;
-            _text = _text + ":<br/>";
+            private _radioFreqInfo = _x;
+            private _radioList = _radioFreqInfo select 0;
+            private _radio = (_radioList select 0);
+            private _radioNames = _radioList apply {getText (configFile >> "CfgWeapons" >> _x >> "displayName")};
+            _textParts pushBack format ["<br/>For: %1:<br/>", _radioNames joinString ", "];
 
             {
                 private _chanNum = _forEachIndex +1;
@@ -195,13 +191,13 @@ if (!alive player) exitWith {};
                     };
                 };
                 private _channelLine = format["CHN %1 (%2 MHz) - %3 - %4",_chanNum,_frequency,(_x select 0),(_x select 1)];
-                _defaultRadio = (_x select 2);
-                if (_x select ((count _x) -1 )) then { // if player is supposet to be on this channel
+                private _defaultRadio = (_x select 2);
+                if (_x select -1) then { // if player is supposet to be on this channel
                     // Match radio to number...
                     private _radioFndIdx = -1;
                     {
                         if (_radioFndIdx != -1) exitWith {};
-                        _radioID = _forEachIndex;
+                        private _radioID = _forEachIndex;
                         if (!(_radioID in _usedRadioIndexs)) then {
                             if (_x in _radioList) then {
                                 _radioFndIdx = _radioID;
@@ -222,18 +218,18 @@ if (!alive player) exitWith {};
                 } else {
                     _channelLine = "   " +_channelLine + "<br/>";
                 };
-                _text = _text + _channelLine;
+                _textParts pushBack _channelLine;
             } forEach (_channelsProcessed select _radioSettingsIndex);
         };
     } forEach GVAR(radioCoreSettings);
 
-    private _myRadiosText = "<br/><br/><font size='16'>MY ASSIGNED RADIOS</font><br/>";
+    private _myRadiosParts = ["<br/><br/><font size='16'>MY ASSIGNED RADIOS</font><br/>"];
     {
-        _color = [_forEachIndex] call EFUNC(common,numToColor);
-        _myRadiosText = _myRadiosText + format["<font color='%1'>%2</font><br/>",_color,getText (configfile >> "CfgWeapons" >> _x >> "displayName")];
+        private _color = [_forEachIndex] call EFUNC(common,numToColor);
+        _myRadiosParts pushBack format["<font color='%1'>%2</font><br/>",_color,getText (configFile >> "CfgWeapons" >> _x >> "displayName")];
     } forEach _radiosToGive;
 
-    _text = _ltext + _myRadiosText + _text;
+    private _text = _ltext + (_myRadiosParts joinString "") + (_textParts joinString "");
 
     //Provide instructions on the page. such as * to denote a channel you are suppose to be on, explain what the colours mean.
     player createDiaryRecord ["diary", ["ACRE2", _text]];
@@ -243,7 +239,7 @@ if (!alive player) exitWith {};
     // Uses CBA PFH to have a delay yet ensure code is still run in the unscheduled enviornment.
 
     private _delay = 0;
-    if (didJip) then { _delay = 3; }; // If jip give more time.
+    if (didJIP) then { _delay = 3; }; // If jip give more time.
 
     [{
         // On finish wait.
@@ -282,7 +278,7 @@ if (!alive player) exitWith {};
                         };
 
                         //Create addAction to give radio.
-                        private _radioName = getText (configfile >> "CfgWeapons" >> _x >> "displayName");
+                        private _radioName = getText (configFile >> "CfgWeapons" >> _x >> "displayName");
                         private _actionID = _unit addAction [format ["<t color='#3375D6'>[Radios] Give myself a %1 radio</t>",_radioName],
                         {
                             private _radioToGive = (_this select 3) select 0;
@@ -332,7 +328,7 @@ if (!alive player) exitWith {};
                 // Give addActions to addRadios.
                 if (!isNil QGVAR(radioAddActions)) then {
                     {
-                        private _actionid_action = _unit addAction [format["<t color='#c3d633'>[Radios] Give myself a %1 radio (check your inventory for space)</t>",getText (configfile >> "CfgWeapons" >> _x >> "displayName")],
+                        private _actionid_action = _unit addAction [format["<t color='#c3d633'>[Radios] Give myself a %1 radio (check your inventory for space)</t>",getText (configFile >> "CfgWeapons" >> _x >> "displayName")],
                                                             format["if ((_this select 0) canAdd '%1') then { (_this select 0) addItem '%1'; (_this select 0) removeAction (_this select 2); } else { systemChat '[TMF ACRE2] No space for radios'; };",_x],0,0,false,true,"","(_target == _this)"];
                         [_actionid_action,_unit] spawn {
                             sleep 300;

@@ -9,9 +9,9 @@ if (!isNil QGVAR(EndMissionText)) then {
         disableSerialization;
         params ["_display"];
         GVAR(EndMissionText) params [["_titleText",""],["_subtitleText",""]];
-        private _titleCtrl = _display displayctrl 20600;
-        private _subtitleCtrl = _display displayctrl 20601;
-        _titleCtrl ctrlsettext toUpper _titleText;
+        private _titleCtrl = _display displayCtrl 20600;
+        private _subtitleCtrl = _display displayCtrl 20601;
+        _titleCtrl ctrlSetText toUpper _titleText;
 
         if (_subtitleText != "") then {
             if (ctrlText _subtitleCtrl == "") then {
@@ -20,17 +20,17 @@ if (!isNil QGVAR(EndMissionText)) then {
                 private _subtitlePosStart = +_subtitlePosFinal;
                 _subtitlePosStart set [0,(_subtitlePosStart select 0) + (_subtitlePosStart select 2) / 2];
                 _subtitlePosStart set [2,0];
-                _subtitleCtrl ctrlsetposition _subtitlePosStart;
+                _subtitleCtrl ctrlSetPosition _subtitlePosStart;
                 _subtitleCtrl ctrlSetFade 0;
-                _subtitleCtrl ctrlcommit 0;
-                _subtitleCtrl ctrlshow false;
+                _subtitleCtrl ctrlCommit 0;
+                _subtitleCtrl ctrlShow false;
                 [_subtitleCtrl,_subtitlePosFinal] spawn {
                     disableSerialization;
                     params ["_subtitleCtrl","_subtitlePosFinal"];
                     sleep 2;
-                    _subtitleCtrl ctrlshow true;
-                    _subtitleCtrl ctrlsetposition _subtitlePosFinal;
-                    _subtitleCtrl ctrlcommit 0.4;
+                    _subtitleCtrl ctrlShow true;
+                    _subtitleCtrl ctrlSetPosition _subtitlePosFinal;
+                    _subtitleCtrl ctrlCommit 0.4;
                 };
             };
             // Update the text.
@@ -38,7 +38,7 @@ if (!isNil QGVAR(EndMissionText)) then {
         } else {
             _subtitleCtrl ctrlSetFade 1;
             _subtitleCtrl ctrlCommit 0;
-            _subtitleCtrl ctrlshow false;
+            _subtitleCtrl ctrlShow false;
         };
     }, [_display]] call CBA_fnc_execNextFrame;
 };

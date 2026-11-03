@@ -16,11 +16,9 @@ with uiNamespace do {
 
     //ERASE ATTRIBUTES
     {
-        private _attrValue = (_x get3DENAttribute "TMF_OrbatParent") select 0;
-        if (_attrValue == _val) then { _x set3DENAttribute ["TMF_OrbatParent", -1]; };
+        _x set3DENAttribute ["TMF_OrbatParent", -1];
         {
-            private _attrValue = (_x get3DENAttribute "TMF_OrbatParent") select 0;
-            if (_attrValue == _val) then { _x set3DENAttribute ["TMF_OrbatParent", -1]; }
+            _x set3DENAttribute ["TMF_OrbatParent", -1];
         } forEach (units _x);
     } forEach (cacheAllPlayerGroups);
 
@@ -34,7 +32,7 @@ with uiNamespace do {
         _string = OrbatSelection call EFUNC(common,sideToString);
     };
     if (OrbatSelection isEqualType "") then {
-        _string = getText (configfile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
+        _string = getText (configFile >> "CfgFactionClasses" >> OrbatSelection >> "displayName");
     };
 
     _ctrlToggle ctrlSetText format["< %1 >", _string];

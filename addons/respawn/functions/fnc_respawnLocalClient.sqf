@@ -97,7 +97,7 @@ if (isClass(configFile >> "CfgPatches" >> "acre_main")) then  {
     }, 0.1] call CBA_fnc_addPerFrameHandler;
 };
 
- _groupVarName = format ["GrpRespawn_%1",_groupNum];
+private _groupVarName = format ["GrpRespawn_%1",_groupNum];
 if (_leader) then {
     //Broadcast group var to everyone so people can join.
     missionNamespace setVariable[_groupVarName,_dummyGroup];

@@ -2,6 +2,7 @@
 
 disableSerialization;
 params ["_ctrlGroup"];
+private _display = ctrlParent _ctrlGroup;
 
 (ctrlPosition _ctrlGroup) params ["", "", "_ctrlGrpWidth", "_ctrlGrpHeight"];
 
@@ -68,8 +69,8 @@ _ctrlButton ctrlAddEventHandler ["ButtonClick", {
         };
     } forEach _langComboCtrls;
 
-    if (count _langsToAdd == 0) then {
-        if (count _langsToRemove == 0) exitWith {
+    if (_langsToAdd isEqualTo []) then {
+        if (_langsToRemove isEqualTo []) exitWith {
             systemChat "[TMF Admin Menu] No changes selected";
         };
 

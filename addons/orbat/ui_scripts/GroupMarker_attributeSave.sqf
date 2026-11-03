@@ -1,5 +1,5 @@
 #include "\x\tmf\addons\orbat\script_component.hpp"
-private _ctrlGroup = uiNameSpace getVariable "GroupMarker_ctrlGroup";
+private _ctrlGroup = uiNamespace getVariable "GroupMarker_ctrlGroup";
 private _ctrlIconToolbox = _ctrlGroup controlsGroupCtrl 100;
 private _ctrlColourToolBox = _ctrlGroup controlsGroupCtrl 101;
 private _ctrlNameEdit = _ctrlGroup controlsGroupCtrl 102;
@@ -9,21 +9,21 @@ private _toolBoxIcon = ["", "_inf.paa", "_inf_airmobile.paa", "_inf_mech.paa", "
 private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
 private _sizeMod = ["x\tmf\addons\orbat\textures\empty.paa", "x\tmf\addons\orbat\textures\modif_o.paa","x\tmf\addons\orbat\textures\modif_dot.paa","x\tmf\addons\orbat\textures\modif_2dot.paa","x\tmf\addons\orbat\textures\modif_3dot.paa", "x\tmf\addons\orbat\textures\modif_company.paa"];
 
-private _icon = _toolBoxIcon select (lbcursel _ctrlIconToolbox);
+private _icon = _toolBoxIcon select (lbCurSel _ctrlIconToolbox);
 private _path = "";
 
 if (_icon != "") then {
-    _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbcursel _ctrlColourToolBox)) + _icon;
+    _path = "x\tmf\addons\orbat\textures\" + (_colours select  (lbCurSel _ctrlColourToolBox)) + _icon;
 };
 
-private _idx = (lbcursel _ctrlSize);
+private _idx = (lbCurSel _ctrlSize);
 private _mod = "";
 if (_idx > 0) then {
     _mod = _sizeMod select _idx;
 };
 
 private _entity = (get3DENSelected "group") select 0;
-private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNameSpace getVariable ["GroupMarker_numID",0]];
+private _groupMarkerArray = [_path, (ctrlText _ctrlNameEdit), _mod, uiNamespace getVariable ["GroupMarker_numID",0]];
 
 _entity set3DENAttribute ["TMF_groupMarker",str _groupMarkerArray];
 

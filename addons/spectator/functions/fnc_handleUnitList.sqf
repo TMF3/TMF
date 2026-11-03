@@ -19,7 +19,7 @@ private _items = [];
 for "_index" from 0 to (_treeView tvCount []) do {
     private _netId = _treeView tvData [_index];
 
-    _grpIndex = _lookupGroups findIf {(_x # 0) == _netId };
+    private _grpIndex = _lookupGroups findIf {(_x # 0) == _netId };
     if(_grpIndex >= 0) then {
         private _grp = ((_lookupGroups # _grpIndex) # 1);
         _foundGroups pushBack _grp;
@@ -31,9 +31,9 @@ for "_index" from 0 to (_treeView tvCount []) do {
                 if(!alive _unit || (group _unit) != _grp) then {
                     _deleteRows pushBack _childIndex;
                 } else {
-                    private _icon = getText (configFile >> "CfgVehicles" >> typeof (vehicle _unit) >> "icon");
-                    if (isText (configfile >> "CfgVehicleIcons" >> _icon )) then {
-                        _icon = getText (configfile >> "CfgVehicleIcons" >> _icon );
+                    private _icon = getText (configOf (vehicle _unit) >> "icon");
+                    if (isText (configFile >> "CfgVehicleIcons" >> _icon )) then {
+                        _icon = getText (configFile >> "CfgVehicleIcons" >> _icon );
                     };
                     _treeView tvSetPicture [[_index, _childIndex], _icon];
                 }

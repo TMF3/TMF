@@ -12,7 +12,7 @@ switch (_type) do {
             if(count _empty > 0) then {_point = _empty};
             if(_onRoad) then {
                 private _road = [_point] call CFUNC(getNearestRoad);
-                if(!isNull _road) then {_point = getpos _road};
+                if(!isNull _road) then {_point = getPos _road};
             };
             private _type = "Move";
             if(_index == _numOfPoints+1) then {_type = "Cycle"};
@@ -29,7 +29,7 @@ switch (_type) do {
             private _pos = _this;
             if(_onRoad) then {
                 private _road = [_this] call CFUNC(getNearestRoad);
-                if(!isNull _road) then {_pos = getpos _road};
+                if(!isNull _road) then {_pos = getPos _road};
             };
             _pos
         };

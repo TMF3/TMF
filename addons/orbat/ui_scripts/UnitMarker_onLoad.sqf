@@ -6,8 +6,8 @@ UnitMarker_ctrlGroup = _ctrlGroup;
 
 private _entity = (get3DENSelected "object") select 0;
 
-_ctrlGroup ctrladdeventhandler ["setfocus",{with uinamespace do {UnitMarker_ctrlGroup = _this select 0;};}];
-_ctrlGroup ctrladdeventhandler ["killfocus",{with uinamespace do {UnitMarker_ctrlGroup = nil;};}];
+_ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {UnitMarker_ctrlGroup = _this select 0;};}];
+_ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {UnitMarker_ctrlGroup = nil;};}];
 
 private _unitMarkerArray = (_entity get3DENAttribute "TMF_SpecialistMarker") # 0;
 if (_unitMarkerArray isEqualType "") then {
@@ -23,7 +23,7 @@ if (count _unitMarkerArray > 0) then {
     _unitMarkerArray params ["_icon","_mName"];
     if (_icon != "") then {
         private _parts = _icon splitString '\';
-        private _lastPart = _parts select (count _parts -1);
+        private _lastPart = _parts select -1;
         private _parts = _lastPart splitString '_';
         private _colour = _parts select 0;
 
@@ -34,8 +34,8 @@ if (count _unitMarkerArray > 0) then {
         private _colours = ["yellow", "blue", "green", "red", "orange", "gray", "purple"];
 
 
-        _ctrlColourToolBox lbsetcursel (_colours find _colour);
-        _ctrlIconToolbox lbsetcursel (_toolBoxIcon find _parts);
+        _ctrlColourToolBox lbSetCurSel (_colours find _colour);
+        _ctrlIconToolbox lbSetCurSel (_toolBoxIcon find _parts);
     };
     _ctrlNameEdit ctrlSetText _mName;
 } else {

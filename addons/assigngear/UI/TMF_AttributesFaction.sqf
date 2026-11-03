@@ -7,7 +7,7 @@ _params params ["_ctrl","_config"];
 TRACE_3("Loading AIGear Faction Attribute",_mode,_params,_module);
 
 #ifdef CURATOR_ATTRIBUTE
-    private _ctrlCombo = _ctrl displayctrl IDC_RSCATTRIBUTEFACTION_COMBO;
+    private _ctrlCombo = _ctrl displayCtrl IDC_RSCATTRIBUTEFACTION_COMBO;
 #else
     private _ctrlCombo = _ctrl controlsGroupCtrl 100;
 #endif

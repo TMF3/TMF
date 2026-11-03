@@ -5,7 +5,7 @@ disableSerialization;
 params ["_mode","_params","_unit"];
 _params params ["_display"];
 TRACE_3("Loading AIGear Retroactive Attribute",_mode,_params,_class);
-private _ctrlToolbox = _display displayctrl IDC_RSCATTRIBUTERETROACTIVE_TOOLBOX;
+private _ctrlToolbox = _display displayCtrl IDC_RSCATTRIBUTERETROACTIVE_TOOLBOX;
 
 switch (_mode) do {
     case "onLoad": {};

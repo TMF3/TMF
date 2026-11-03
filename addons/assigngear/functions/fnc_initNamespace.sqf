@@ -16,6 +16,6 @@ if (!isNil QGVAR(namespace) && {!isNull GVAR(namespace)}) exitWith {GVAR(namespa
 
 GVAR(namespace) = false call CBA_fnc_createNamespace;
 
-LOG_1("Initialized namespace", GVAR(namespace));
+LOG_1("Initialized namespace",GVAR(namespace));
 
 GVAR(namespace)

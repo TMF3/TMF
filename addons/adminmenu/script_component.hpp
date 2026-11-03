@@ -1,10 +1,13 @@
+#ifndef TMF_ADMINMENU_SCRIPT_COMPONENT_HPP
+#define TMF_ADMINMENU_SCRIPT_COMPONENT_HPP
+
 #define COMPONENT adminMenu
 
 #include "\x\tmf\addons\main\script_mod.hpp"
 #include "\x\tmf\addons\main\script_macros.hpp"
 
-#define TMF_ADMINMENU_STD_WIDTH     (((safezoneW / safezoneH) min 1.2) / 40)
-#define TMF_ADMINMENU_STD_HEIGHT    ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25)
+#define TMF_ADMINMENU_STD_WIDTH     (((safeZoneW / safeZoneH) min 1.2) / 40)
+#define TMF_ADMINMENU_STD_HEIGHT    ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25)
 #define TMF_ADMINMENU_STD_SIZEX     (TMF_ADMINMENU_STD_HEIGHT * 0.8)
 #define TMF_ADMINMENU_STD_SIZEX_L   (TMF_ADMINMENU_STD_HEIGHT * 0.9)
 
@@ -12,6 +15,7 @@
 #define TMF_GROUPBASE_H             (20.6 * TMF_ADMINMENU_STD_HEIGHT)
 
 #define IDD_TMF_ADMINMENU           56100
+#define IDD_TMF_ADMINMENU_MODAL     56099
 
 #define IDC_TMF_ADMINMENU_FPS       56101
 #define IDC_TMF_ADMINMENU_DASH      56102
@@ -98,8 +102,8 @@
 #define IDC_TMF_ADMINMENU_PMAN_STEAM            56320
 #define IDC_TMF_ADMINMENU_PMAN_QRESPAWN         56321
 
-#define TMF_ADMINMENU_PMAN_W_LISTGROUP (29.9 * (((safezoneW / safezoneH) min 1.2) / 40))
-#define TMF_ADMINMENU_PMAN_H_LISTGROUP (19.4 * ((((safezoneW / safezoneH) min 1.2) / 1.2) / 25))
+#define TMF_ADMINMENU_PMAN_W_LISTGROUP (29.9 * (((safeZoneW / safeZoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_PMAN_H_LISTGROUP (19.4 * ((((safeZoneW / safeZoneH) min 1.2) / 1.2) / 25))
 
 // 4.4*stdwidth
 #define TMF_ADMINMENU_PMAN_W_LIST   (TMF_ADMINMENU_PMAN_W_LISTGROUP - (6.6 * TMF_ADMINMENU_STD_WIDTH))
@@ -135,18 +139,18 @@
 
 //37.8 max width let's do 37.8 - 10
 // max H is 20
-#define TMF_ADMINMENU_RESP_W_COL1 (10 * (((safezoneW / safezoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_RESP_W_COL1 (10 * (((safeZoneW / safeZoneH) min 1.2) / 40))
 #define TMF_ADMINMENU_RESP_X_COL1 0
 
-#define TMF_ADMINMENU_RESP_W_COL2 (4.8 * (((safezoneW / safezoneH) min 1.2) / 40))
-#define TMF_ADMINMENU_RESP_X_COL2 (11 * (((safezoneW / safezoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_RESP_W_COL2 (4.8 * (((safeZoneW / safeZoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_RESP_X_COL2 (11 * (((safeZoneW / safeZoneH) min 1.2) / 40))
 
-#define TMF_ADMINMENU_RESP_X_COL3 (16.8 * (((safezoneW / safezoneH) min 1.2) / 40))
-#define TMF_ADMINMENU_RESP_W_COL3 (10 * (((safezoneW / safezoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_RESP_X_COL3 (16.8 * (((safeZoneW / safeZoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_RESP_W_COL3 (10 * (((safeZoneW / safeZoneH) min 1.2) / 40))
 
 // COL3 is same as COL1 Width
-#define TMF_ADMINMENU_RESP_W_COL4 (10 * (((safezoneW / safezoneH) min 1.2) / 40))
-#define TMF_ADMINMENU_RESP_X_COL4 (27.8 * (((safezoneW / safezoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_RESP_W_COL4 (10 * (((safeZoneW / safeZoneH) min 1.2) / 40))
+#define TMF_ADMINMENU_RESP_X_COL4 (27.8 * (((safeZoneW / safeZoneH) min 1.2) / 40))
 
 #define IDC_TMF_ADMINMENU_ENDM_LIST                 56501
 #define IDC_TMF_ADMINMENU_ENDM_ENDMISSION           56502
@@ -201,3 +205,5 @@
 /* AdminEye */
 #define IDC_TMF_ADMINMENU_ADME_MAP_DISPLAY  26850
 #define IDC_TMF_ADMINMENU_ADME_MAP_CONTROL  26851
+
+#endif // TMF_ADMINMENU_SCRIPT_COMPONENT_HPP

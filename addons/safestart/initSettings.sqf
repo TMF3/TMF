@@ -2,7 +2,7 @@
 [
     QGVAR(soundEnabled),
     "CHECKBOX",
-    ["Enable Safestart Sounds", "Whether to make countdown sounds during the last few seconds"],
+    ["Countdown sounds", "Play a beep for each of the last few seconds before safe start ends."],
     ["TMF", "Safestart"],
     true
 ] call CBA_fnc_addSetting;
@@ -10,7 +10,7 @@
 [
     QGVAR(handleAI),
     "CHECKBOX",
-    ["Disable AI during safestart", "Whether to disable AI damage and targetting during safestart"],
+    ["Freeze AI during safe start", "AI cannot take damage or engage targets until safe start ends."],
     ["TMF", "Safestart"],
     true,
     1,
@@ -21,7 +21,7 @@
 [
     QGVAR(triggerSound),
     "CHECKBOX",
-    ["Dry fire sound", "Whether to make a sound when attempting to fire while safestart is active"],
+    ["Dry-fire click", "Play a click when a player tries to shoot during safe start."],
     ["TMF", "Safestart"],
     false,
     1
@@ -30,7 +30,7 @@
 [
     QGVAR(enableDefaultSS),
     "CHECKBOX",
-    ["Enable default safestart", "If no safestart module is placed, this will be used."],
+    ["Safe start without a module", "Run safe start even when the mission has no Safe Start module, using the duration below."],
     ["TMF", "Safestart"],
     false,
     1,
@@ -41,7 +41,7 @@
 [
     QGVAR(defaultSS),
     "TIME",
-    ["Default safestart duration", "0 for infinite"],
+    ["Default safe start duration", "Used when there is no Safe Start module. 0 keeps safe start on until an admin ends it."],
     ["TMF", "Safestart"],
     [0,1800,120],
     1,

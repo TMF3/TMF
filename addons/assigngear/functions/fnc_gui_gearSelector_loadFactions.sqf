@@ -17,9 +17,9 @@ switch (_category) do {
 };
 
 // Sort alphabetically and hide duplicate configFile/missionConfigFile loadouts
-MAP(_loadouts, [ARR_2(getText (_x >> "displayName"), toLower configName _x)]);
+MAP(_loadouts,[ARR_2(getText (_x >> "displayName"),toLower configName _x)]);
 if !(_isMission) then {
-    FILTER(_loadouts, !isClass (missionConfigFile >> (_x # 1)));
+    FILTER(_loadouts,!isClass (missionConfigFile >> (_x # 1)));
 };
 _loadouts = [_loadouts] call BIS_fnc_sortBy;
 

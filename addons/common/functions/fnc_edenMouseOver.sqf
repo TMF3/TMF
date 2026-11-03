@@ -18,11 +18,11 @@
 private _intersects = lineIntersectsSurfaces [getPosASL get3DENCamera,ATLToASL screenToWorld getMousePosition,objNull,objNull,true,5,"FIRE","GEOM"];
 _intersects = _intersects apply {_x select 2};
 _intersects = _intersects select {!(isNull _x)};
-if !(current3DENOperation == "") then {
+if (current3DENOperation != "") then {
     _intersects = _intersects select {!(_x in (get3DENSelected "object"))};     // Remove selected objects if they're being dragged.
 };
 
-if !(GVAR(edenMouseObjects) isEqualTo _intersects) then {
+if (GVAR(edenMouseObjects) isNotEqualTo _intersects) then {
     GVAR(edenMouseObjects) = _intersects;
     [QGVAR(edenMouseOverChanged),GVAR(edenMouseObjects)] call CBA_fnc_localEvent;
 } else {

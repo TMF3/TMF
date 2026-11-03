@@ -15,7 +15,7 @@ Author:
 
 private _warnings = [];
 
-if (getmissionconfigvalue ["TMF_AcreNetworkEnabled",false]) then {
+if (getMissionConfigValue ["TMF_AcreNetworkEnabled",false]) then {
     LOG("Running Autotest on Radio Networks");
     private _networksArray = getMissionConfigValue ['TMF_AcreSettings', []];
     if IS_STRING(_networksArray) then {_networksArray = call compile _networksArray};
@@ -48,15 +48,15 @@ if (getmissionconfigvalue ["TMF_AcreNetworkEnabled",false]) then {
                     if (_unitCond isEqualTo -1 || _unitCond > (count (_networksArray # 0)) - 1) then {
                         // No nets assigned on each level, post warning.
                         WARNING_1("No Radio Nets assigned for %1",_unit);
-                        _warnings pushBack [0,format ["%1 has no Radio Networks assigned", _unit]];
+                        _warnings pushBack [0,format ["%1 is in no radio network and gets no channels. Assign one in the Eden TMF menu > TMF ACRE2 Settings.", _unit]];
                     };
                 } forEach (units _grp);
             };
         };
     } forEach _playerGroups;
-    if (count _warnings == 0) then {
+    if (_warnings isEqualTo []) then {
         LOG("Radio Net Autotest finished");
-        _warnings pushBack [-1,"ACRE2 Radio Network checks complete"];
+        _warnings pushBack [-1,"ACRE2 radio network check done"];
     } else {
         WARNING_1("Radio Networks Autotest finished with warnings: %1",_warnings);
     };

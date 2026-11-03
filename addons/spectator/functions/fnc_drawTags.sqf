@@ -9,7 +9,7 @@ if (GVAR(showMap) || !GVAR(tags)) exitWith {
 cameraEffectEnableHUD true;
 private _camPos = getPosVisual GVAR(camera);
 private _viewDistance = ((getObjectViewDistance) select 0);
-private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
+private _screenSize = [(0.04 * (safeZoneW min (safeZoneH * 4 / 3))), (0.01 * safeZoneH)];
 
 {
     // grab the group infomation cache
@@ -156,7 +156,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
         private _fontSize = 0.04;
 
         private _pos = ([_x] call CFUNC(getPosVisual));
-        if (_camPos distance2d _pos > 400) then {_fontSize = 0};
+        if (_camPos distance2D _pos > 400) then {_fontSize = 0};
 
         // draw icon
         drawIcon3D [_icon, _color,_pos, 1, 1, 0,"", 2,_fontSize,"PuristaSemibold" ];
@@ -177,7 +177,7 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
     _pos set [2,(_pos select 2)+1];
     private _name = "";
     if (_isplayer) then {_name = _dName;};
-    if (_time <= 10 && {_camPos distance2d _pos <= 500}) then {
+    if (_time <= 10 && {_camPos distance2D _pos <= 500}) then {
         drawIcon3D ["\a3\Ui_F_Curator\Data\CfgMarkers\kia_ca.paa", [1,1,1,1 - (0.1 * _time)],_pos, 0.5, 0.5, 0,_name, 2,0.04,"PuristaSemibold" ];
     };
 } forEach GVAR(killedUnits);
@@ -191,11 +191,11 @@ private _screenSize = [(0.04 * safezoneW), (0.01 * safezoneH)];
 if(!GVAR(tracers)) exitWith {};
 {
     _x params ["_object","_posArray","_last","_time","_type"];
-    private _pos = _posArray select (count _posArray-1);
+    private _pos = _posArray select -1;
     if (!isNull _object) then {
         private _pos = [_object] call CFUNC(getPosVisual);
     };
-    private _render = (_camPos distance2d _pos <= 400);
+    private _render = (_camPos distance2D _pos <= 400);
     if (_type > 0 && _render) then {
         private _icon = switch (_type) do {
             case 1 : { GRENADE_ICON };

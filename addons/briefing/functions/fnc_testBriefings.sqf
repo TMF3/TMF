@@ -17,7 +17,7 @@ private _conditions = [];
         //TODO: error check the briefing script for errors.
         //call compile preprocessFileLineNumbers _scriptPath;
     } else {
-        _output pushBack [0,format["Briefing %1 - file missing %2", _name, _scriptPath]]; 
+        _output pushBack [0,format["Briefing %1: file %2 does not exist.", _name, _scriptPath]]; 
     };
     
     // Weed out units that are acceptable to the condition
@@ -55,9 +55,9 @@ private _conditions = [];
 
 _units = _units - [objNull];
 
-if (count _units > 0) then {
-    _output pushBack [1,"Some units do not have an associated briefing:"];
-    _output pushBack [1,format ["units (%1): %2",count _units,str _units]]; 
+if (_units isNotEqualTo []) then {
+    _output pushBack [1,"Some playable units get no briefing. Add their side or faction to a briefing in the Eden TMF menu > TMF Briefing Settings:"];
+    _output pushBack [1,format ["    %1 units: %2",count _units,str _units]]; 
 };
 
 _output;

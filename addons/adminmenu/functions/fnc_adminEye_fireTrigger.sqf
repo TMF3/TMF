@@ -8,7 +8,7 @@ private _statements = triggerStatements _trigger;
 if (count _statements > 0) then { // isTrigger.
     [{
         params ["_trigger"];
-        TRACE_1("Admin Eye triggered trigger", _trigger);
+        TRACE_1("Admin Eye triggered trigger",_trigger);
         private _statements = triggerStatements _trigger;
         private _activation = triggerActivation _trigger;
         private _interval = triggerInterval _trigger;

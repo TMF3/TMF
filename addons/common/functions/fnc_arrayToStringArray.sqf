@@ -10,5 +10,5 @@ private _text = "";
         };
         _text = _text + _t;
     };
-} foreach _arr;
+} forEach _arr;
 format["{%1}",_text];

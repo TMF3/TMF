@@ -17,8 +17,8 @@ if(is3DEN) exitWith {};
 #include "\x\tmf\addons\AI\script_component.hpp"
 params ["_logic","_units","_activated"];
 
-_headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
-if(count _headless > 0 && isServer) exitWith {
+private _headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
+if(_headless isNotEqualTo [] && isServer) exitWith {
     _this remoteExec [QFUNC(waveInit), _headless select 0];
 };
 
@@ -55,10 +55,10 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
            } else {
                {
                 _synchronizedGroups pushBackUnique (group _x);
-               } foreach crew _x;
+               } forEach crew _x;
            };
         };
-    } foreach _objects;
+    } forEach _objects;
 
     private _allUnits = [];
     { _allUnits append (units _x) } forEach _synchronizedGroups;
@@ -100,7 +100,7 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
     ]};
 
     // store vehicle data
-    _vehicles = _vehicles apply {[typeof _x,getposATL _x,[vectorDir _x,vectorUp _x],[_x] call BIS_fnc_getVehicleCustomization, getPylonMagazines _x, getDir _x]};
+    _vehicles = _vehicles apply {[typeOf _x,getPosATL _x,[vectorDir _x,vectorUp _x],[_x] call BIS_fnc_getVehicleCustomization, getPylonMagazines _x, getDir _x]};
 
     _logic setVariable [QGVAR(waveData), [_groups, _vehicles, _cachedObjects]];
 
@@ -110,11 +110,11 @@ if(!(_logic getVariable [QGVAR(init),false])) then {
         {
             if(!isNull objectParent _x) then {_units pushBackUnique vehicle _x};
             deleteVehicle _x;
-        } foreach _units;
-    } foreach _synchronizedGroups;
+        } forEach _units;
+    } forEach _synchronizedGroups;
     {
         deleteVehicle _x;
-    } foreach _objects;
+    } forEach _objects;
 
     // Generate Admin Map data (Lite version of data for broadcast)
     // Array of [typeof, pos, direction]

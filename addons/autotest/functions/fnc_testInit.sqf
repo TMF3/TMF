@@ -27,7 +27,7 @@ private _output = [];
         case (_count < 150): {
             // check _isServer
             if ((!_isServer) && (!_isLocal)) then {
-                _output pushBack [1,format["Unit %1 has large init field contents (%2) but no isServer or local check!",_x,_count]];
+                _output pushBack [1,format["%1 has a large init field (%2 characters) that runs on every machine. Wrap it in an isServer or local check.",_x,_count]];
             };
         };
         // >= 150
@@ -35,20 +35,20 @@ private _output = [];
             // check _VA
             if _VA then {
                 if (_isServer or _isLocal) then {
-                    _output pushBack [1,format["Virtual Arsenal code detected in init field of %1!",_x]];
+                    _output pushBack [1,format["%1 adds a Virtual Arsenal in its init field.",_x]];
                 } else {
-                    _output pushBack [0,format["Virtual Arsenal code detected in init field of %1, but no isServer or local check!",_x]];
+                    _output pushBack [0,format["%1 adds a Virtual Arsenal in its init field on every machine. Wrap it in an isServer or local check.",_x]];
                 };
             } else {
                 // Check _isServer
                 if ((!_isServer) && (!_isLocal)) then {
-                    _output pushBack [1,format["Unit %1 has very large init field contents (%2) but no isServer or local check!",_x,_count]];
+                    _output pushBack [1,format["%1 has a very large init field (%2 characters) that runs on every machine. Wrap it in an isServer or local check.",_x,_count]];
                 };
             };
         };
     };
 } forEach (all3DENEntities select 0);
 
-_output pushBack [-1,format["Init box checks complete, %1 issues detected",count _output]];
+_output pushBack [-1,format["Init field check done, %1 issues found",count _output]];
 
 _output

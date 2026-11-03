@@ -3,8 +3,6 @@
 disableSerialization;
 params ["_display", ["_tab", IDC_TMF_ADMINMENU_G_DASH]];
 
-_display call FUNC(utilityClose);
-
 GVAR(selectedTab) = _tab;
 
 while {count GVAR(tabPFHHandles) > 0} do {

@@ -34,10 +34,10 @@ with uiNamespace do {
         //Ensure all attributes and purged from groups/units with the attribute.
         {
             private _attrValue = (_x get3DENAttribute "TMF_OrbatParent") select 0;
-            if (_attrValue == _val) then { _x set3DENAttribute ["TMF_OrbatParent", -1]; };
+            if (_attrValue == _value) then { _x set3DENAttribute ["TMF_OrbatParent", -1]; };
             {
                 private _attrValue = (_x get3DENAttribute "TMF_OrbatParent") select 0;
-                if (_attrValue == _val) then { _x set3DENAttribute ["TMF_OrbatParent", -1]; }
+                if (_attrValue == _value) then { _x set3DENAttribute ["TMF_OrbatParent", -1]; }
             } forEach (units _x);
         } forEach (cacheAllPlayerGroups);
     };

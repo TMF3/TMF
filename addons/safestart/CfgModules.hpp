@@ -6,15 +6,9 @@ class CfgVehicles {
         class AttributesBase
         {
             class Default;
-            class Edit;                 // Default edit box (i.e., text input field)
-            class Combo;                // Default combo box (i.e., drop-down menu)
-            class Checkbox;             // Default checkbox (returned value is Bool)
-            class CheckboxNumber;       // Default checkbox (returned value is Number)
             class ModuleDescription;    // Module description
-            class Units;                // Selection of units on which the module is applied
         };
         class ModuleDescription {
-            class AnyBrain;
         };
     };
     class GVAR(module) : Module_F {
@@ -24,10 +18,10 @@ class CfgVehicles {
         category = "Teamwork";
         function = QFUNC(moduleInit);
         functionPriority = 1;
-        isGlobal = false;
-        isTriggerActivated = true;
-        isDisposable = true;
-        is3DEN = false;
+        isGlobal = 0;
+        isTriggerActivated = 1;
+        isDisposable = 1;
+        is3DEN = 0;
 
         // Module attributes
         class Attributes: AttributesBase {

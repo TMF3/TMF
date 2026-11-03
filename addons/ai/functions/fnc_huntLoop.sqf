@@ -61,6 +61,6 @@ while {_continue} do {
     } forEach _hunters;
     sleep 5;
     _hunters = _hunters select {alive _x};
-    if (count _hunters == 0) exitWith {_continue = false;};
+    if (_hunters isEqualTo []) exitWith {_continue = false;};
     sleep 10;
 };

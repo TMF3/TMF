@@ -63,7 +63,7 @@ if !(isNil "ace_interaction_fnc_showMouseHint") then {
     ] call CBA_fnc_addPlayerAction;
 };
 
-_firedEH = player addEventHandler ["fired",{
+_firedEH = player addEventHandler ["Fired",{
     deleteVehicle (_this select 6);
     if((_this select 1) == "Throw") then {
         LOG("Attempted to throw grenade during safestart");
@@ -79,7 +79,7 @@ _firedEH = player addEventHandler ["fired",{
 
 if (GVAR(handleAI)) then {
     {
-        private _eh = _x addEventHandler ["fired",{deleteVehicle (_this select 6)}];
+        private _eh = _x addEventHandler ["Fired",{deleteVehicle (_this select 6)}];
         _x setVariable [QGVAR(aiEH), _eh, true]; // Broadcasted in case AI ownership is transferred.
         _x disableAI "TARGET";
         _x disableAI "AUTOTARGET";

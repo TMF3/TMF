@@ -45,24 +45,24 @@ private _problemUnits = [];
 
     private _roleDescription = (_unit get3DENAttribute "description") select 0;
     _dlcArr = _dlcArr select {
-        !([_x, _roleDescription] call BIS_fnc_inString) && // DLC usage mentioned in role description
-        !([_x, _missionSummary] call BIS_fnc_inString)     // DLC usage mentioned in mission summary
+        !(toLower _x in toLower _roleDescription) && // DLC usage mentioned in role description
+        !(toLower _x in toLower _missionSummary)     // DLC usage mentioned in mission summary
     };
 
-    if !(_dlcArr isEqualTo []) then {
+    if (_dlcArr isNotEqualTo []) then {
         TRACE_2("Unit has unlisted DLC",_unit,_dlcArr);
         _problemUnits pushBack [_unit,_dlcArr];
     };
-} forEach (_unitsDLCInfo select {!(_x # 1 isEqualTo [])});
+} forEach (_unitsDLCInfo select {(_x # 1 isNotEqualTo [])});
 
-if !(_problemUnits isEqualTo []) then {
+if (_problemUnits isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemUnits > 5) then {
         _problemUnits = _problemUnits select [0,5];
-        _warnings pushBack [0,"More than five playable units require notices for DLC:"];
+        _warnings pushBack [0,"More than 5 playable slots use DLC gear (first 5 shown). Name the DLC in each role description or in the mission overview:"];
     } else {
-        _warnings pushBack [1,"One or more playable units require notices for DLC:"];
+        _warnings pushBack [1,"These playable slots use DLC gear. Name the DLC in their role description or in the mission overview:"];
     };
 
     {
@@ -75,7 +75,7 @@ if !(_problemUnits isEqualTo []) then {
 
         _warnings pushBack [
             1,
-            format ["|   %1%2 : %3", _unit, _roleStr, _dlc]
+            format ["    %1%2 needs %3", _unit, _roleStr, _dlc]
         ];
     } forEach _problemUnits;
 };
@@ -100,7 +100,7 @@ private _problemVehs = [];
     if !(_dlc in _ignoredDLC) then {
         _dlc = [_dlcHash, _dlc] call CBA_fnc_hashGet;
 
-        private _index = _searchTexts findIf {[_dlc,_x] call BIS_fnc_inString};
+        private _index = _searchTexts findIf {toLower _dlc in toLower _x};
 
         if (_index == -1) then {
             TRACE_2("Vehicle found using unlisted DLC",_veh,_dlc);
@@ -109,21 +109,21 @@ private _problemVehs = [];
     };
 } forEach (_vehicleDLCInfo select {!isNil {(_x # 1)}});
 
-if !(_problemVehs isEqualTo []) then {
+if (_problemVehs isNotEqualTo []) then {
 
     // Avoid cluttering autotest too much
     if (count _problemVehs > 5) then  {
         _problemVehs = _problemVehs select [0,5];
-        _warnings pushBack [0,"More than five unlocked vehicles require DLC notices:"];
+        _warnings pushBack [0,"More than 5 usable vehicles are DLC content (first 5 shown). Name the DLC in a role description or the mission overview, or lock the vehicles:"];
     } else {
-        _warnings pushBack [1,"One or more unlocked vehicles require DLC notices:"];
+        _warnings pushBack [1,"These usable vehicles are DLC content. Name the DLC in a role description or the mission overview, or lock them:"];
     };
 
     {
         _x params ["_veh","_dlc"];
         _warnings pushBack [
             1,
-            format ["|   %1 (%2) : '%3'", _veh, (configFile >> "CfgVehicles">> typeOf _veh) call BIS_fnc_displayName, _dlc]
+            format ["    %1 (%2) needs %3", _veh, (configOf _veh) call BIS_fnc_displayName, _dlc]
         ];
     } forEach _problemVehs;
 };
@@ -134,6 +134,6 @@ _warnings pushBack [
 ];
 
 
-LOG_1("Finished DLC Tests: %1", _warnings);
+LOG_1("Finished DLC Tests: %1",_warnings);
 
 _warnings

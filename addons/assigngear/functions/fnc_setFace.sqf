@@ -34,7 +34,7 @@ private _face = selectRandom _faces;
 if ((_face find "faceset:") isEqualTo 0) then {
     private _facesetName = _face select [8];
     private _array = uiNamespace getVariable ["tmf_assignGear_faceset_" + _facesetName, []];
-    if !(_array isEqualTo []) then {
+    if (_array isNotEqualTo []) then {
         _face = selectRandomWeighted _array;
     };
 };

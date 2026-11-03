@@ -7,7 +7,7 @@ with uiNamespace do {
 
     private _treeSel = tvCurSel _ctrlTree;
     private _value = OrbatTree_Data select (_ctrlTree tvValue _treeSel);
-    if ((_value isEqualType grpNull) or (_value isEqualType objNull)) exitWith {};
+    if ((_value isEqualTypeAny [grpNull, objNull])) exitWith {};
     {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MAIN_IDCS);
     {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow true;} forEach (EDIT_IDCS);
     {(OrbatSettings_ctrlGroup controlsGroupCtrl _x) ctrlShow false;} forEach (MOVE_IDCS);
@@ -18,9 +18,9 @@ with uiNamespace do {
     private _ctrlSize = OrbatSettings_ctrlGroup controlsGroupCtrl 117;
     private _ctrlFullNameEdit = OrbatSettings_ctrlGroup controlsGroupCtrl 123;
 
-    _ctrlColourToolBox lbsetcursel 0;
-    _ctrlIconToolbox lbsetcursel 0;
-    _ctrlSize lbsetcursel 0;
+    _ctrlColourToolBox lbSetCurSel 0;
+    _ctrlIconToolbox lbSetCurSel 0;
+    _ctrlSize lbSetCurSel 0;
     _ctrlNameEdit ctrlSetText "";
     _ctrlFullNameEdit ctrlSetText "";
 

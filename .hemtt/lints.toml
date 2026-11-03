@@ -7,7 +7,7 @@ options.ignore = [
 
 [sqf.var_all_caps]
 options.ignore = [
-    "SLX_*", "ACE_*"
+    "SLX_*", "ACE_*", "ACRE_*", "MAIN_IDCS", "EDIT_IDCS", "MOVE_IDCS"
 ]
 
 [sqf.undefined]

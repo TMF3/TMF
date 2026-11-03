@@ -3,7 +3,7 @@ if (isClass (configFile >> "CfgPatches" >> "ace_safemode")) then {
     [
         QGVAR(weaponSafety),
         "CHECKBOX",
-        "Enable ACE Weapon Safety on mission start",
+        ["Weapons on safe at mission start", "Players start the mission with ACE weapon safety on. Requires ACE."],
         ["TMF", "Common"],
         true,
         0,

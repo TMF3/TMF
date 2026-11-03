@@ -51,29 +51,29 @@ _map drawIcon [CAMERA_ICON, [0,0,0,1],getPos GVAR(camera),20,20,getDir GVAR(came
     private _data = _x getVariable [QGVAR(objectiveData),[]];
     if(count _data > 0) then {
         _data params ["_icon","_text","_color"];
-        private _pos = getpos _x;
+        private _pos = getPos _x;
         _map drawIcon  [_icon, _color,_pos, 32, 32, 0,"", 2,0.04, MAP_FONT];
         if(_text != "") then {
             _map drawIcon ["#(argb,8,8,3)color(0,0,0,0)", [1,1,1,_color select 3],_pos, 32, 32, 0,_text, 2,0.04, MAP_FONT];
         };
     };
-} foreach GVAR(objectives);
+} forEach GVAR(objectives);
 
 {
     _X params ["_unit","_time","_killer","_deadSide","_killerSide",["_dName", ""],"_kName","_weapon","_isPlayer"];
     _time = time - _time;
-    _name = "";
+    private _name = "";
     if(_isPlayer) then {_name = _dName};
     if(_time <= 10) then {
-        _map drawIcon [KIA_ICON,[1,1,1,1 - (0.1 * _time)],getpos _unit,16,16,0,_name,0,0.04, MAP_FONT];
+        _map drawIcon [KIA_ICON,[1,1,1,1 - (0.1 * _time)],getPos _unit,16,16,0,_name,0,0.04, MAP_FONT];
     };
-} foreach GVAR(killedUnits);
+} forEach GVAR(killedUnits);
 
 
 if(GVAR(tracers)) then {
     {
         _x params ["_object","_posArray","_last","_time","_type"];
-        _pos = _posArray select (count _posArray-1);
+        private _pos = _posArray select -1;
         if(!isNull _object) then {
             private _pos = (getPosATLVisual _object);
             if(surfaceIsWater _pos) then {_pos = getPosASLVisual _object;};
@@ -88,11 +88,11 @@ if(GVAR(tracers)) then {
             _map drawLine [_posArray # 0, _pos, [1,0,0,1]];
         };
         if(_type == 0 && !isNull _object) then {
-            _pos = getpos _object;
-            _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
+            _pos = getPos _object;
+            private _futurePos = _pos vectorAdd ((vectorDirVisual _object) vectorAdd (velocity _object vectorMultiply 0.3));
             _map drawLine [_pos, _futurePos, [1,0,0,1]];
         };
     } forEach GVAR(rounds);
 };
 
-[QGVAR(draw2D), [_campos]] call CBA_fnc_localEvent;
+[QGVAR(draw2D), [getPosVisual GVAR(camera), _map]] call CBA_fnc_localEvent;

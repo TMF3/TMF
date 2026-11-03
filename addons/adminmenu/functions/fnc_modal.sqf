@@ -13,10 +13,10 @@ private _exit = false;
 if ((missionNamespace getVariable [QGVAR(selectedTab), -1]) isEqualTo IDC_TMF_ADMINMENU_G_PMAN) then {
     GVAR(utilityData) = GVAR(playerManagement_selected) apply {_x call BIS_fnc_objectFromNetId};
 
-    _exit = count GVAR(utilityData) == 0;
+    _exit = GVAR(utilityData) isEqualTo [];
     if (!_exit && _args isEqualTo true) then {
         GVAR(utilityData) = GVAR(utilityData) select {alive _x && _x isKindOf "CAManBase"};
-        _exit = count GVAR(utilityData) == 0;
+        _exit = GVAR(utilityData) isEqualTo [];
     };
 };
 

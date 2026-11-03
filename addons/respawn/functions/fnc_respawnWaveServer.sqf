@@ -20,14 +20,13 @@ params ["_groupName", "_position", "_faction", "_selectedRespawnGroup", "_marker
     private _leader = _forEachIndex==0;
 
 
-    [[GVAR(serverRespawnGroupCounter),
+    [GVAR(serverRespawnGroupCounter),
       _position,
       _faction,
       _typeOfUnit,
       _rank,
       GVAR(serverRespawnPlayerCounter),
-      _leader,_halo,_side,_groupName],
-      "tmf_respawn_fnc_respawnLocalClient", _client] call BIS_fnc_MP;
+      _leader,_halo,_side,_groupName] remoteExec [QFUNC(respawnLocalClient), _client];
     
     //Setup respawned player to die if he disconnects?
     [GVAR(serverRespawnPlayerCounter)] spawn {
@@ -47,7 +46,7 @@ params ["_groupName", "_position", "_faction", "_selectedRespawnGroup", "_marker
     GVAR(serverRespawnPlayerCounter) = GVAR(serverRespawnPlayerCounter) + 1;
 } forEach _selectedRespawnGroup;
 
-_groupVarName = format ["GrpRespawn_%1",GVAR(serverRespawnGroupCounter)];
+private _groupVarName = format ["GrpRespawn_%1",GVAR(serverRespawnGroupCounter)];
 GVAR(serverRespawnGroupCounter) = GVAR(serverRespawnGroupCounter) + 1;
 
 [_groupVarName,_markerType,_markerName,_markerColor,_groupName] spawn {

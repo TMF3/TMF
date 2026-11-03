@@ -3,7 +3,7 @@ if(is3DEN) exitWith {};
 params ["_logic","_units","_activated"];
 
 private _headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
-if(count _headless > 0 && isServer) exitWith {
+if(_headless isNotEqualTo [] && isServer) exitWith {
     _this remoteExec [QFUNC(garrison), _headless select 0];
 };
 
@@ -42,7 +42,7 @@ private _buildings = [];
     private _areaLogic = _x;
     (_areaLogic getVariable ["objectArea",[0,0,0,false,0]]) params ["_a","_b","_dir","_isrect"];
 
-    private _nearObjects = ((getPos _x) nearObjects ["Static", _a * _b]) select {count (_x buildingPos -1) > 0 && {(getPos _x) inArea [getPos _areaLogic,_a , _b, _dir, _isrect]}};
+    private _nearObjects = ((getPos _x) nearObjects ["Static", _a * _b]) select {(_x buildingPos -1) isNotEqualTo [] && {(getPos _x) inArea [getPos _areaLogic,_a , _b, _dir, _isrect]}};
     _buildings append _nearObjects;
 
 } forEach _areas;
@@ -80,11 +80,11 @@ private _freeBuildings = []; // List of buildings that list have free positions.
 if (_aiNumberToSpawn > _freeBuildingSpaces) then {
     systemChat "TMF Garrison - Insufficent free building positions check your map for location and details.";
     private _mkr = createMarkerLocal [str (random 99999),getPos _logic];
-    _mkr setMarkerShape "ICON";
-    _mkr setMarkerType "mil_dot";
-    _mkr setMarkerSize [0.5,0.5];
-    _mkr setMarkerColor "ColorRed";
-    _mkr setMarkerText format ["Error - TMF Garrison Module - Unable to find sufficent building places (%1 available / %2 needed)", _freeBuildingSpaces, _aiNumberToSpawn];
+    _mkr setMarkerShapeLocal "ICON";
+    _mkr setMarkerTypeLocal "mil_dot";
+    _mkr setMarkerSizeLocal [0.5,0.5];
+    _mkr setMarkerColorLocal "ColorRed";
+    _mkr setMarkerTextLocal format ["Error - TMF Garrison Module - Unable to find sufficent building places (%1 available / %2 needed)", _freeBuildingSpaces, _aiNumberToSpawn];
 };
 private _garrisonedBuildings = [];
 for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
@@ -119,10 +119,10 @@ for "_i" from 1 to (_aiNumberToSpawn min _freeBuildingSpaces) do {
 
     if(_debug) then {
         private _mkr = createMarker [str (random 999),_posToUse];
-        _mkr setMarkerShape "ICON";
-        _mkr setMarkerType "mil_dot";
-        _mkr setMarkerSize [0.5,0.5];
-        _mkr setMarkerColor "ColorRed";
+        _mkr setMarkerShapeLocal "ICON";
+        _mkr setMarkerTypeLocal "mil_dot";
+        _mkr setMarkerSizeLocal [0.5,0.5];
+        _mkr setMarkerColorLocal "ColorRed";
         _mkr setMarkerText (_unitClassname);
     };
 };
@@ -139,8 +139,8 @@ if((_logic getVariable ["WakeUp", false])) then {
         _trigger setTriggerArea [_buildingSize * 3, _buildingSize * 3, 0, false, 10];
         _trigger setTriggerActivation ["ANYPLAYER","PRESENT",false];
         _trigger setTriggerStatements [
-            QUOTE(private _side = (thisTrigger getVariable [ARR_2('side', opfor)]); this && ({ side _x != _side} count thisList) > 0),
-            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2('units', [])]); deleteVehicle thisTrigger;),
+            QUOTE(private _side = (thisTrigger getVariable [ARR_2('side',opfor)]); this && ({ side _x != _side} count thisList) > 0),
+            QUOTE({ _x enableAI 'PATH'; _x setUnitPos 'AUTO'; } forEach (thisTrigger getVariable [ARR_2('units',[])]); deleteVehicle thisTrigger;),
             ""
         ];
     } forEach _garrisonedBuildings;

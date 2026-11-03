@@ -2,7 +2,7 @@
 params ["_logic","_units","_activated"];
 
 private _headless = (synchronizedObjects _logic) select {_x isKindOf "HeadlessClient_F" && !local _x};
-if(count _headless > 0 && isServer) exitWith {
+if(_headless isNotEqualTo [] && isServer) exitWith {
     _this remoteExec [QFUNC(garrison), _headless select 0];
 };
 
@@ -34,11 +34,11 @@ private _mainGroup = createGroup ((_unitData select 0) select 0);
 [_mainGroup,QGVAR(garrisonGroup),true] call tmf_common_fnc_initGroupVar;
 private _holdPos = _logic getVariable ["hold", false];
 
-if(count _areas > 0) then {
+if(_areas isNotEqualTo []) then {
     {
         private _areaLogic = _x;
         (_areaLogic getVariable ["objectArea",[0,0,0,false,0]]) params ["_a","_b","_dir","_isrect"];
-        private _buildings = ((getPos _x) nearObjects ["Static", _a * _b]) select {count (_x buildingPos -1) > 0 && {(getPos _x) inArea [getPos _areaLogic,_a , _b, _dir, _isrect]}};
+        private _buildings = ((getPos _x) nearObjects ["Static", _a * _b]) select {(_x buildingPos -1) isNotEqualTo [] && {(getPos _x) inArea [getPos _areaLogic,_a , _b, _dir, _isrect]}};
 
 
         private _freeBuildings = []; // List of buildings that list have free positions.
@@ -88,10 +88,10 @@ if(count _areas > 0) then {
 
                 if(_debug) then {
                     private _mkr = createMarker [str (random 999),_posToUse];
-                    _mkr setMarkerShape "ICON";
-                    _mkr setMarkerType "mil_dot";
-                    _mkr setMarkerSize [0.5,0.5];
-                    _mkr setMarkerColor "ColorRed";
+                    _mkr setMarkerShapeLocal "ICON";
+                    _mkr setMarkerTypeLocal "mil_dot";
+                    _mkr setMarkerSizeLocal [0.5,0.5];
+                    _mkr setMarkerColorLocal "ColorRed";
                     _mkr setMarkerText (_unitClassname);
                 };
             };

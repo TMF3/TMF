@@ -3,15 +3,15 @@ private _fnc_settings = {
     [
         QGVAR(printToChat),
         "LIST",
-        ["Print log messages to chat", "Whether to print logged messages to chat. Only visible for admins."],
+        ["Show admin log in chat", "Which admin log entries are also shown in chat. Only admins see these messages."],
         ["TMF", "Adminmenu"],
-        [[2,1,0],["All Messages", "Only Warnings", "None"],1]
+        [[2,1,0],["All entries", "Warnings only", "Off"],1]
     ] call CBA_fnc_addSetting;
 
     [
         QGVAR(endLogToRPT),
         "CHECKBOX",
-        ["Print log to server RPT on mission end", "Toggles whether to print the admin log to server RPT once mission ends."],
+        ["Save admin log to server RPT at mission end", "When the mission ends, the full admin log is written to the server's RPT file."],
         ["TMF", "Adminmenu"],
         false
     ] call CBA_fnc_addSetting;

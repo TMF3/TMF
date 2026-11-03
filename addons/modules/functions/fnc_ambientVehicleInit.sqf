@@ -1,4 +1,4 @@
-#include "../script_component.hpp"
+#include "\x\tmf\addons\modules\script_component.hpp"
 /* ----------------------------------------------------------------------------
     Internal Function: TMF_modules_fnc_ambientVehicleInit
     
@@ -17,7 +17,7 @@
 ---------------------------------------------------------------------------- */
 
 params ["_mode", "_input"];
-TRACE_2("Initializing Ambient Vehicles module", _mode, _input);
+TRACE_2("Initializing Ambient Vehicles module",_mode,_input);
 _input params ["_logic"];
 
 private _code = _logic getVariable [QGVAR(code), ""];
@@ -41,11 +41,11 @@ switch _mode do {
                     _x distance2D _obj < 500
                 }) == -1) then {
                     deleteVehicle _obj;
-                    TRACE_2("Ambient vehicles despawning vehicle", _logic, _obj);
+                    TRACE_2("Ambient vehicles despawning vehicle",_logic,_obj);
                     INC(_count);
                 };
             } forEach (_logic getVariable [QGVAR(spawnedVehicles), []]);
-            TRACE_2("Ambient vehicles finished despawning vehicles", _logic, _count);
+            TRACE_2("Ambient vehicles finished despawning vehicles",_logic,_count);
             _logic setVariable [QGVAR(vehicleNumber), _count, true];
             true
         };
@@ -53,12 +53,12 @@ switch _mode do {
         if (isNil {
             _logic getVariable QGVAR(data)
         }) then {
-            TRACE_1("Ambient Vehicles post init run before pre init, running preinit now", _logic);
+            TRACE_1("Ambient Vehicles post init run before pre init, running preinit now",_logic);
             ["preInit", _logic] call FUNC(ambientVehicleInit);
         };
 
         private _moduleData = _logic getVariable QGVAR(data);
-        ASSERT_DEFINED("_moduleData", "Ambient Vehicles module failed init, postInit ran before preInit!");
+        ASSERT_DEFINED("_moduleData","Ambient Vehicles module failed init, postInit ran before preInit!");
 
         _moduleData params [
             ["_vehicleTypes", []],
@@ -68,11 +68,11 @@ switch _mode do {
         if (_area isEqualTo [] || {
             _area isEqualTo ([] call BIS_fnc_getArea)
         }) exitWith {
-            ERROR_MSG_1("No area module synchronized to Ambient Vehicles module: %1", _logic);
+            ERROR_MSG_1("No area module synchronized to Ambient Vehicles module: %1",_logic);
         };
 
         if (_vehicleTypes isEqualTo []) exitWith {
-            ERROR_MSG_1("No vehicles synchronized to Ambient Vehicles module: %1", _logic);
+            ERROR_MSG_1("No vehicles synchronized to Ambient Vehicles module: %1",_logic);
         };
 
         private _vehicles = [_area, _vehicleTypes, _vehicleNumber, _spacing] call FUNC(createAmbientVehicles);
@@ -93,7 +93,7 @@ switch _mode do {
             _x call _code;
         } forEach _vehicles;
 
-        TRACE_2("Ambient Vehicles module spawned vehicles", _logic, _vehicles);
+        TRACE_2("Ambient Vehicles module spawned vehicles",_logic,_vehicles);
 
         _logic setVariable [QGVAR(spawnedVehicles), _vehicles, true];
     };
@@ -103,17 +103,17 @@ switch _mode do {
 
         private _moduleData = _logic getVariable QGVAR(data);
         if (!is3DEN && !isNil "_moduleData") exitWith {
-            TRACE_2("Tried to run preInit on Ambient Vehicles module, but preInit has already been run", _logic, _moduleData);
+            TRACE_2("Tried to run preInit on Ambient Vehicles module, but preInit has already been run",_logic,_moduleData);
         };
 
         if is3DEN then {
             private _connections = (get3DENConnections _logic);
-            FILTER(_connections, (_x select 0) isEqualTo "Sync");
+            FILTER(_connections,(_x select 0) isEqualTo "Sync");
             _syncedObjects = _connections apply {
                 _x # 1
             };
             _area = (_syncedObjects select {
-                _x isKindOf QEGVAR(ai, area)
+                _x isKindOf QEGVAR(ai,area)
             }) param [0, objNull];
 
             ((_area get3DENAttribute "size2") # 0) params [
@@ -133,7 +133,7 @@ switch _mode do {
         } else {
             _syncedObjects = synchronizedObjects _logic;
             _area = (_syncedObjects select {
-                _x isKindOf QEGVAR(ai, area)
+                _x isKindOf QEGVAR(ai,area)
             }) param [0, objNull];
             _area = [getPos _area, _area getVariable "objectarea"] call BIS_fnc_getArea;
         };
@@ -158,7 +158,7 @@ switch _mode do {
             } forEach _this;
         }, _syncedObjects] call CBA_fnc_execNextFrame;
 
-        TRACE_2("Ambient Vehicle PreInit run with result", _vehicleTypes, _area);
+        TRACE_2("Ambient Vehicle PreInit run with result",_vehicleTypes,_area);
         _logic setVariable [QGVAR(data), [_vehicleTypes, _area]];
     };
 

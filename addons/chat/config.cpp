@@ -1,6 +1,6 @@
 #include "script_component.hpp"
 
-class cfgPatches
+class CfgPatches
 {
     class ADDON
     {

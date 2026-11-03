@@ -12,7 +12,7 @@
     * parentDisplay: DISPLAY - display from which the window is opened from */
 
 class ctrlMenu; /*proto*/
-class display3DEN
+class Display3DEN
 {
     class ContextMenu: ctrlMenu
     {

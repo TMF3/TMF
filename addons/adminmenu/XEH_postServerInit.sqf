@@ -5,7 +5,7 @@
 if (isTMF) then {
     GVAR(disconnectEH) = addMissionEventHandler ["HandleDisconnect",{
         params ["_unit", "_id", "_uid", "_name"];
-        if !(typeOf _unit isEqualTo QEGVAR(spectator,unit)) then {
+        if (typeOf _unit isNotEqualTo QEGVAR(spectator,unit)) then {
             [format ["Player disconnected while not spectator: %1", _name], true] call FUNC(log);
         };
     }];
@@ -59,7 +59,7 @@ if (isTMF) then {
 
     // Cleanup groups no longer used.
     {
-        if (count (units _x) == 0) then {deleteGroup _x;};
+        if (units _x isEqualTo []) then {deleteGroup _x;};
     } forEach (_oldGroups - [grpNull]);
 
     //params ["_hunters", "_targetSide", "_position", "_range",["_targets",[]]]

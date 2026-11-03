@@ -150,19 +150,15 @@
 "_sl_flag.paa"
 
 
-class ctrlDefault;
-class ctrlDefaultText;// : ctrlDefault;
 class ctrlStatic;// : ctrlDefaultText;
-class ctrlListNBox;// : ctrlDefaultText;
 class ctrlTree;// : ctrlDefaultText;
 class ctrlEdit;// : ctrlDefaultText;
-class ctrlToolBox;// : ctrlDefaultText;
+class ctrlToolbox;// : ctrlDefaultText;
 class ctrlCombo;
 
 class RscButtonMenu;
-class RscText;
 
-class cfgScriptPaths
+class CfgScriptPaths
 {
     TMF_orbat = "x\tmf\addons\orbat\ui_scripts\"; // " // comment here for Bad parser.
 };

@@ -36,7 +36,7 @@ waitUntil {missionNamespace getVariable ["BIS_fnc_feedback_allowDeathScreen",fal
 
 // Disable effects
 // disable effects death effects
-if(!isnil "BIS_fnc_feedback_allowPP") then { BIS_fnc_feedback_allowPP = false; };
+if(!isNil "BIS_fnc_feedback_allowPP") then { BIS_fnc_feedback_allowPP = false; };
 
 if(_isJip) then {
     [] spawn {
@@ -50,7 +50,7 @@ if(isNil QGVAR(unit)) then {GVAR(unit) = objNull};
 
 
 // Create a Virtual Agent to act as our player to make sure we get to keep Draw3D
-if(isNull GVAR(unit) || !(typeOf GVAR(unit) isEqualTo QGVAR(unit))) then {
+if(isNull GVAR(unit) || (typeOf GVAR(unit) isNotEqualTo QGVAR(unit))) then {
 
     if (isNull GVAR(group)) then { /* Incase spectator group is null */
         createCenter sideLogic;

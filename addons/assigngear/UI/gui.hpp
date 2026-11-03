@@ -9,7 +9,6 @@ class RscButtonMenuOK: RscButtonMenu {};
 class RscBackgroundGUI;
 class RscBackgroundGUITop;
 class RscPicture;
-class RscSlider;
 class RscDisplayAttributes {
     class Controls {
         class Background;

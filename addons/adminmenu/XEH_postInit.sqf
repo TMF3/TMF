@@ -19,7 +19,7 @@ if (isTMF) then {
                 GVAR(logEntries) pushBack [CBA_missionTime, format ["Mission Ended, endtype: %1",_endType], false];
 
                 if GVAR(endLogToRPT) then {
-                    [] call FUNC(printLogToRPT);
+                    [] call FUNC(messageLog_printAll);
                 };
 
                 // Print to debriefing

@@ -3,7 +3,7 @@ class ctrlControlsGroupNoScrollbars;
 class ctrlCheckboxToolbar;
 class Separator1;
 
-class display3DEN
+class Display3DEN
 {
     class Controls
     {

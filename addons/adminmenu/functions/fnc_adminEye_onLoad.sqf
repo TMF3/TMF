@@ -9,7 +9,7 @@ private _pos = [0,0,0];
 if (alive player && !(player isKindOf "tmf_spectator_unit")) then {
     _pos = getPos player;
 } else {
-    if (count playableUnits > 0) then {
+    if (playableUnits isNotEqualTo []) then {
         _pos = getPos (playableUnits select 0);
     } else {
         if (count allUnits > 0) then {

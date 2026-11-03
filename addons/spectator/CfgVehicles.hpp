@@ -7,11 +7,9 @@ class CfgVehicles
     {
         class ArgumentsBaseUnits
         {
-            class Units;
         };
         class ModuleDescription
         {
-            class AnyBrain;
         };
     };
     class GVAR(module) : Module_F
@@ -65,7 +63,7 @@ class CfgVehicles
 
     class VirtualMan_F;
     class GVAR(unit) : VirtualMan_F {
-        author = ADDON;
+        author = QUOTE(ADDON);
         displayName = "TMF Spectator";
         scope = 2;
         scopeCurator = 1;

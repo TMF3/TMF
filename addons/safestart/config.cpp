@@ -1,13 +1,13 @@
 #include "script_component.hpp"
 
-class cfgPatches
+class CfgPatches
 {
     class ADDON
     {
         name = "TMF: Safestart";
         author = "Head";
         url = "http://www.teamonetactical.com";
-        units[] = {GVAR(module)};
+        units[] = {QGVAR(module)};
         weapons[] = {};
         requiredVersion = REQUIRED_VERSION;
         requiredAddons[] = {"tmf_common"};

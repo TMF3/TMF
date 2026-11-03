@@ -196,7 +196,7 @@ _control = (_display displayCtrl IDC_TMF_ADMINMENU_RESP_MARKERTYPE);
 lbClear _control;
 {
     private _idx = _control lbAdd (_x select 1);
-    _markerImg = (_x select 0);
+    private _markerImg = (_x select 0);
     if (_markerImg != "") then {
         _control lbSetPicture[_idx,_markerImg]; 
         _control lbSetColor[_idx,[1,1,1,1]];
@@ -272,7 +272,7 @@ if (!isNil QGVAR(respawnGroupMarkerCheckBoxVal)) then {
 [{
     params["_input", "_pfhID"];
     _input params ["_oldSpectList"];
-    _display = findDisplay IDD_TMF_ADMINMENU;
+    private _display = findDisplay IDD_TMF_ADMINMENU;
     if (isNull (findDisplay IDD_TMF_ADMINMENU)) exitWith { [_pfhID] call CBA_fnc_removePerFrameHandler;} ;
 
     //Recompute who is alive and Dead.

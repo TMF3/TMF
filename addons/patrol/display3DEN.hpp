@@ -1,5 +1,5 @@
 class ctrlMenu; /*proto*/
-class display3DEN
+class Display3DEN
 {
     class ContextMenu: ctrlMenu
     {
@@ -10,7 +10,7 @@ class display3DEN
             {
                 text = "Generate patrol";
                 action = "findDisplay 313 createDisplay 'tmf_patrol_editBox';";
-                conditionShow = selectedGroup;
+                conditionShow = QUOTE(selectedGroup);
                 value = 0;
             };
         };

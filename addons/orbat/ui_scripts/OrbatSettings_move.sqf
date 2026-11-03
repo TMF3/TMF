@@ -10,7 +10,7 @@ with uiNamespace do {
     {
         if ((_x select 0) isEqualTo OrbatSelection) exitWith { _idx = _forEachIndex;};
     } forEach OrbatSettings_Array;
-    if ((count cacheAllPlayerGroups == 0) and _idx == -1) exitWith {};
+    if ((cacheAllPlayerGroups isEqualTo []) and _idx == -1) exitWith {};
     if (_idx == -1) then {
         //_idx = OrbatSettings_Array pushBack [OrbatSelection,[]];
     };
@@ -156,7 +156,7 @@ with uiNamespace do {
                     _swapEntry = -1;
                 };
                 if (_mode == "moveBottom") then {
-                    _newsSortId = ((orbat_queue select ((count orbat_queue) - 1)) select 0)+1;
+                    _newsSortId = ((orbat_queue select -1) select 0)+1;
                     _swapEntry = -1;
                 };
                 if (_mode == "moveDown") then {

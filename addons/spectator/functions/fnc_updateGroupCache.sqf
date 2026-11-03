@@ -10,7 +10,7 @@ if(_hasPlayers || {GVAR(showGroupMarkers) == 1}) then {
         private _cluster = ([units _grp] call FUNC(getGroupClusters));
         if (count _cluster > 0) then {
             {
-                _pos = [_x] call CFUNC(getPosVisual);
+                private _pos = [_x] call CFUNC(getPosVisual);
                 _avgpos = _avgpos vectorAdd _pos;
             } forEach _cluster;
             private _c = count _cluster;
@@ -22,7 +22,7 @@ if(_hasPlayers || {GVAR(showGroupMarkers) == 1}) then {
         _avgpos set [2,(_avgpos select 2)+10];
     };
 };
-private _grpCache = _x getVariable [QGVAR(grpCache),[[0,0,0],[1,1,1,1],true]];
+private _grpCache = _grp getVariable [QGVAR(grpCache),[[0,0,0],[1,1,1,1],true]];
 if((_grpCache # 0) distance (_avgpos) < 1.5) then {
     _avgpos = _grpCache # 0; // diff is to small, render the same.
 };

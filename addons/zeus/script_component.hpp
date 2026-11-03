@@ -1,3 +1,6 @@
+#ifndef TMF_ZEUS_SCRIPT_COMPONENT_HPP
+#define TMF_ZEUS_SCRIPT_COMPONENT_HPP
+
 #define COMPONENT zeus
 
 #include "\x\tmf\addons\main\script_mod.hpp"
@@ -6,3 +9,5 @@
 #define IDC_ToggleUnitsZeus 93950
 #define IDC_ToggleStaticsZeus 93951
 #define IDC_ToggleACRESpectator 93952
+
+#endif // TMF_ZEUS_SCRIPT_COMPONENT_HPP

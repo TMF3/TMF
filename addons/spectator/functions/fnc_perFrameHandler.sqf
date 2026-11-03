@@ -33,7 +33,7 @@ private _idx = _dirArray find _leftDir;
 _dirArray = [_leftDir, _dirArray select (_idx + 1), _dirArray select (_idx + 2)];
 (uiNamespace getVariable QGVAR(compass)) params ["_compassL","_compass","_compassR"];
 
-if (!(_dirArray isEqualTo GVAR(lastCompassValue))) then {
+if ((_dirArray isNotEqualTo GVAR(lastCompassValue))) then {
     _compassL ctrlSetText (_dirArray select 0);
     _compass ctrlSetText (_dirArray select 1);
     _compassR ctrlSetText (_dirArray select 2);
@@ -67,6 +67,6 @@ if(GVAR(killList_update) >= time || GVAR(killList_forceUpdate)) then {
         GVAR(rounds) set [_forEachIndex,[_object,_posArray,diag_frameNo,_time,_type]];
     };
     if( _type > 0  && { isNull _object } || _type == 0 && {(time - _time) > 5} ) then { GVAR(rounds) set [_forEachIndex,0]; };
-} foreach GVAR(rounds);
+} forEach GVAR(rounds);
 
 GVAR(rounds) = GVAR(rounds) - [0];

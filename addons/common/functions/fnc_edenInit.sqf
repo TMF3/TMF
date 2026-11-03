@@ -20,7 +20,7 @@ call FUNC(edenDisplayFactionIcons);
 
 // Add mouseOver EH
 private _idx = missionNamespace getVariable [QGVAR(edenDrawIdx), -1];
-if !(_idx == -1) then {
+if (_idx != -1) then {
     removeMissionEventHandler ["Draw3D", _idx];
 };
 
@@ -35,20 +35,20 @@ GVAR(posIdxs) = [];
 
 // do stuff with mouseOver EH
 // KeyDown
-GVAR(edenMouseKeyDownIdx) = ((findDisplay 313) displayAddEventHandler ["mouseButtonDown", {
+GVAR(edenMouseKeyDownIdx) = ((findDisplay 313) displayAddEventHandler ["MouseButtonDown", {
     GVAR(mouseKeysPressed) pushBackUnique (_this select 1);
 }]); // EDEN IDC 313
 // KeyUp
-GVAR(edenMouseKeyUpIdx) = ((findDisplay 313) displayAddEventHandler ["mouseButtonUp", {
+GVAR(edenMouseKeyUpIdx) = ((findDisplay 313) displayAddEventHandler ["MouseButtonUp", {
     [_this select 1] call FUNC(edenMouseKeyUp);
     GVAR(mouseKeysPressed) = GVAR(mouseKeysPressed) - [(_this select 1)];
 }]);
 // MouseZchanged
-GVAR(edenMouseZchangedIdx) = ((findDisplay 313) displayAddEventHandler ["mouseZchanged", {
+GVAR(edenMouseZchangedIdx) = ((findDisplay 313) displayAddEventHandler ["MouseZChanged", {
     if (GVAR(Garrison)) then {
         private _A =+ GVAR(posIdxs);
         private _B = [];
-        while { count _A > 0 } do {
+        while { _A isNotEqualTo [] } do {
             _B pushBack (_A deleteAt floor random count _A)
         };
         GVAR(posIdxs) = +_B;

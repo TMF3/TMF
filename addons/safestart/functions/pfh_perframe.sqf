@@ -11,7 +11,7 @@ if (TIMER > 0) then {
     };
 } else {
     // Timer is set to infinite
-    if !(ctrlText _textCtrl isEqualTo "SAFESTART ACTIVE") then {
+    if (ctrlText _textCtrl isNotEqualTo "SAFESTART ACTIVE") then {
         _textCtrl ctrlSetText "SAFESTART ACTIVE";
     };
 };

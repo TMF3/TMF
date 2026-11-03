@@ -20,7 +20,7 @@ Author:
     SilentSpike 2015-07-06
 ---------------------------------------------------------------------------- */
 
-params ["_area",["_perimeter",false,true]];
+params ["_area",["_perimeter",false,[false]]];
 
 _area params ["_center","_a","_b","_angle","_isRect"];
 

@@ -59,7 +59,7 @@ if(GVAR(mode) == FOLLOWCAM) then {
     GVAR(relpos) = [(sin(_ax)*_delta)*cos(_ay), (cos(_ax)*_delta)*cos(_ay), _zLevel];
     GVAR(camera) camSetRelPos GVAR(relpos);
     GVAR(camera) camSetFov GVAR(followcam_fov);
-    if(GVAR(camera) distance2d GVAR(target) > 1000) then {
+    if(GVAR(camera) distance2D GVAR(target) > 1000) then {
         _commitTime = 0;
     };
     GVAR(camera) camCommit _commitTime;
@@ -84,7 +84,7 @@ if(GVAR(mode) == FREECAM) then {
     GVAR(freecam_move) params ["_mX","_mY","_mZ"];
     GVAR(followcam_angle) params ["_angleX","_angleY"];
 
-    _z = 0;
+    private _z = 0;
     _x = (_currPos select 0) + (_mX * (cos _angleX)) + (_mY * (sin _angleX));
     _y = (_currPos select 1) - (_mX * (sin _angleX)) + (_mY * (cos _angleX));
     _z = ((_currPos select 2) + _mZ);
@@ -125,13 +125,13 @@ if(GVAR(mode) == FREECAM) then {
 if(GVAR(mode) == FIRSTPERSON) then
 {
     GVAR(target) switchCamera "internal";
-    if(vehicle GVAR(target) != GVAR(target)) then
+    if(!isNull objectParent GVAR(target)) then
     {
         private _vehicle = vehicle GVAR(target);
         private _mode = "internal";
         if((assignedVehicleRole GVAR(target) select 0) != "Cargo") then {_mode = "gunner"};
         _vehicle switchCamera _mode;
     };
-    if(vehicle GVAR(target) == GVAR(target) && (GVAR(mButtons) select 1)) then { GVAR(target) switchCamera "gunner"; };
+    if(isNull objectParent GVAR(target) && (GVAR(mButtons) select 1)) then { GVAR(target) switchCamera "gunner"; };
 };
 GVAR(freecam_timestamp) = time;

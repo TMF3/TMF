@@ -62,7 +62,7 @@ private _oldGroups = [];
 
 // Cleanup groups no longer used.
 {
-    if (count (units _x) == 0) then {deleteGroup _x;};
+    if (units _x isEqualTo []) then {deleteGroup _x;};
 } forEach (_oldGroups - [grpNull]);
 
 [format ["Triggered hunt on %1 units",count _hunters],false,"AI"] call EFUNC(adminmenu,log);

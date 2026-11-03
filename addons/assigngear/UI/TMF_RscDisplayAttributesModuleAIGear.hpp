@@ -1,13 +1,16 @@
 class GVARMAIN(RscDisplayAttributesModuleAIGear): RscDisplayAttributes {
-    INIT_DISPLAY(GVARMAIN(RscDisplayAttributesModuleAIGear),ADDON)
+    scriptName = QGVARMAIN(RscDisplayAttributesModuleAIGear);
+    scriptPath = QUOTE(ADDON);
+    onLoad = QUOTE([ARR_4('onLoad',_this,QQGVARMAIN(RscDisplayAttributesModuleAIGear),QUOTE(QUOTE(ADDON)))] call (uiNamespace getVariable 'BIS_fnc_initDisplay'));
+    onUnload = QUOTE([ARR_4('onUnload',_this,QQGVARMAIN(RscDisplayAttributesModuleAIGear),QUOTE(QUOTE(ADDON)))] call (uiNamespace getVariable 'BIS_fnc_initDisplay'));
     curatorObjectAttributes = true;
     class Controls: Controls {
         class Background: Background{};
         class Title: Title{};
         class Content: Content {
-            class Controls: controls {
+            class Controls: Controls {
                 class Text: RscAttributeText {
-                    class Controls: controls {
+                    class Controls: Controls {
                         class Title: Title {
                             text = "Bulk applies loadouts to AI units. Cannot be undone/disabled!";
                         };

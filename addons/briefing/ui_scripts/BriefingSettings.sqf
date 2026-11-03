@@ -8,10 +8,10 @@ params ["_mode",["_params",[]]];
 fn_removeUnitFromBrief = {
     params ["_channel", "_unit"];
     
-    _list = (_unit get3DENAttribute "TMF_Briefinglist") params ["_value"];
+    (_unit get3DENAttribute "TMF_Briefinglist") params ["_value"];
     if (_value isEqualType []) then {
         //Is default do nothing
-        _//unit set3DENAttribute ["TMF_Channellist",str []];
+        //_unit set3DENAttribute ["TMF_Channellist",str []];
     } else {
         _value = call compile _value;
         _value = _value - [_channel];
@@ -22,7 +22,7 @@ fn_removeUnitFromBrief = {
 fn_removeGroupFromBrief = {
     params ["_channel", "_group"];
 
-    _list = (_group get3DENAttribute "TMF_Briefinglist") params ["_value"];
+    (_group get3DENAttribute "TMF_Briefinglist") params ["_value"];
     if (_value isEqualType []) then {
         //Is Default do nothing
         //_group set3DENAttribute ["TMF_ChannellistLeader",str []];
@@ -33,7 +33,7 @@ fn_removeGroupFromBrief = {
     };
 
     
-    _list = (_group get3DENAttribute "TMF_Briefinglist") params ["_value"];
+    (_group get3DENAttribute "TMF_Briefinglist") params ["_value"];
     if (_value isEqualType []) then {
         //is default do nothing
         //_group set3DENAttribute ["TMF_Channellist",str []];
@@ -53,9 +53,9 @@ fn_removeGroupFromBrief = {
 switch _mode do {
     case "onLoad": {
         private _playableUnits = (((all3DENEntities select 0)+(all3DENEntities select 3)) select {
-            (_x get3DENAttribute "ControlMP") IsEqualTo [true]
+            (_x get3DENAttribute "ControlMP") isEqualTo [true]
             ||
-            (_x get3DENAttribute "ControlSP") IsEqualTo [true]
+            (_x get3DENAttribute "ControlSP") isEqualTo [true]
         });
         cacheAllPlayerGroups = [];//allGroups select {{_x in _playableUnits} count (units _x) > 0};
         {
@@ -85,11 +85,11 @@ switch _mode do {
         BriefingCurrentBrief = 0;
 
         //--- Init UI
-        _ctrlGroup = _params select 0;
+        private _ctrlGroup = _params select 0;
         BriefingSettings_ctrlGroup = _ctrlGroup;
 
-        _ctrlGroup ctrladdeventhandler ["setfocus",{with uinamespace do {BriefingSettings_ctrlGroup = _this select 0;};}];
-        _ctrlGroup ctrladdeventhandler ["killfocus",{with uinamespace do {BriefingSettings_ctrlGroup = nil;};}];
+        _ctrlGroup ctrlAddEventHandler ["SetFocus",{with uiNamespace do {BriefingSettings_ctrlGroup = _this select 0;};}];
+        _ctrlGroup ctrlAddEventHandler ["KillFocus",{with uiNamespace do {BriefingSettings_ctrlGroup = nil;};}];
         
                 
         {
@@ -129,14 +129,14 @@ switch _mode do {
         lnbClear _ctrlBriefList;
         {
             _x params ["_name"];
-            _ctrlBriefList lnbaddrow [_name, "", ""];
+            _ctrlBriefList lnbAddRow [_name, "", ""];
         } forEach BriefingArray;
         
         if (count BriefingArray > 0) then { 
             _ctrlBriefList lnbSetCurSelRow 0; BriefingCurrentBrief = 0;
         } else {
             _ctrlBriefList lnbSetColumnsPos [0,5,5];
-            _ctrlBriefList lnbaddrow ["No Briefings","",""];
+            _ctrlBriefList lnbAddRow ["No Briefings","",""];
             BriefingCurrentBrief = -1;
         };
         
@@ -148,7 +148,7 @@ switch _mode do {
         
         if (isNil "BriefingSettings_ctrlGroup") exitWith {};
         
-        _ctrlTree = BriefingSettings_ctrlGroup controlsGroupCtrl 189437;
+        private _ctrlTree = BriefingSettings_ctrlGroup controlsGroupCtrl 189437;
         tvClear _ctrlTree;
         
         if (BriefingCurrentBrief == -1) exitWith {};
@@ -166,12 +166,12 @@ switch _mode do {
             private _color = (side _unit) call TMF_common_fnc_sideToColor;
             
             if (_roleDesc == "") then {
-                _roleDesc =  getText (configfile >> "CfgVehicles" >> (typeOf _unit) >> "displayName");
+                _roleDesc =  getText (configOf _unit >> "displayName");
             };
             private _unitIdx = _ctrlTree tvAdd [ _treeRoot, _roleDesc];
             private _location = _treeRoot + [_unitIdx];
             _ctrlTree tvSetValue [_location, BriefingTree_data pushBack _unit];            
-            private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configFile >> "CfgVehicles" >> (typeOf _unit) >> "icon"));
+            private _icon = getText (configFile >> "CfgVehicleIcons" >> getText (configOf _unit >> "icon"));
             if (_icon == "") then {
                 _icon = "\a3\3DEN\Data\Cfg3DEN\Object\iconPlayer_ca.paa"; //default player icon
             };
@@ -208,8 +208,8 @@ switch _mode do {
             private _location = +_treeRoot;
             if (_render) then {
                 private _color = _side call TMF_common_fnc_sideToColor;
-                private _grpIdx = _ctrlTree tvAdd [ _treeRoot, groupID _group];
-                _location = _location + [_grpIdx];
+                private _grpIdx = _ctrlTree tvAdd [ _treeRoot, groupId _group];
+                _location pushBack _grpIdx;
                 private _grpIcon = "\a3\Ui_f\data\Map\Markers\NATO\n_unknown.paa";
                 
                 //Found in (configfile >> "Cfg3DEN" >> "Group" >> "Draw" >> "textureCivilian")
@@ -239,9 +239,9 @@ switch _mode do {
             private _units = units _group;
             if (_side == sideLogic) then {
                 _units = _units select {
-                    (_x get3DENAttribute "ControlMP") IsEqualTo [true]
+                    (_x get3DENAttribute "ControlMP") isEqualTo [true]
                     ||
-                    (_x get3DENAttribute "ControlSP") IsEqualTo [true]
+                    (_x get3DENAttribute "ControlSP") isEqualTo [true]
                 };
             };
             {
@@ -287,12 +287,12 @@ switch _mode do {
             };
             
             if (_render) then {
-                private _factionIdx = _ctrlTree tvAdd [ _treeRoot,getText (configfile >> "CfgFactionClasses" >> _faction >> "displayName")];
-                _location = _location + [_factionIdx];
+                private _factionIdx = _ctrlTree tvAdd [ _treeRoot,getText (configFile >> "CfgFactionClasses" >> _faction >> "displayName")];
+                _location pushBack _factionIdx;
         
                 _ctrlTree tvSetValue [_location, BriefingTree_data pushBack _faction];
                 
-                private _factionImg = getText (configfile >> "CfgFactionClasses" >> _faction >> "icon");
+                private _factionImg = getText (configFile >> "CfgFactionClasses" >> _faction >> "icon");
                 _ctrlTree tvSetPicture [_location, _factionImg];
             };
             
@@ -341,7 +341,7 @@ switch _mode do {
             };
             
             //Collect factions for side.
-            _factions = [];
+            private _factions = [];
             {
                 _factions pushBackUnique (toLower (faction (leader _x)));
             } forEach (cacheAllPlayerGroups select {(side _x) == _side});
@@ -456,11 +456,11 @@ switch _mode do {
             private _curSel = lnbCurSelRow (BriefingSettings_ctrlGroup controlsGroupCtrl 101);
             private _condition = (BriefingArray select _curSel) select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualTypeAny [east, ""]) then {
                 _condition pushBackUnique _entity;
             } else {
-                if (_entity isEqualType grpNull or _entity isEqualType objNull) then {
-                    _list = (_entity get3DENAttribute "TMF_Briefinglist") params ["_value"];
+                if (_entity isEqualTypeAny [grpNull, objNull]) then {
+                    (_entity get3DENAttribute "TMF_Briefinglist") params ["_value"];
                     if (_value isEqualType []) then {
                         _entity set3DENAttribute ["TMF_Briefinglist",str [_curSel]];
                     } else {
@@ -487,14 +487,14 @@ switch _mode do {
             private _BriefEntry = (BriefingArray select _curSel);
             private _condition = _BriefEntry select 1;
             
-            if (_entity isEqualType east or _entity isEqualType "") then {
+            if (_entity isEqualTypeAny [east, ""]) then {
                 _BriefEntry set [1,_condition - [_entity]];
                 if (_entity isEqualType east) then {
                     //Find and remove matching faction groups
                     private _sideNum = _entity call TMF_common_fnc_sideToNum;
                     {
                         if (_x isEqualType "") then {
-                            if (_sideNum == getNumber (configfile >> "CfgFactionClasses" >> _x >> "side")) then {
+                            if (_sideNum == getNumber (configFile >> "CfgFactionClasses" >> _x >> "side")) then {
                                 _BriefEntry set [1,_condition - [_x]];
                             };
                         };
